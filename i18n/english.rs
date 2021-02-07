@@ -903,7 +903,7 @@ This feature is a bit experimental and you should probably never use it."
 // ------------------------------------------------------
 // tools
 // left bar generic (ICON FIT)
-tool.sliderDegree "Rotate $0 degree"
+tool.sliderDegree "Rotate $0 °"
 tool.sliderRadius "Radius $0 %"
 tool.sliderIntensity "Intensity $0 %"
 tool.dynTopo "DynTopo"
