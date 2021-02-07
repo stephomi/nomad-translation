@@ -265,7 +265,7 @@ history.restoreCamera "Restore camera"
 history.restoreCamera.help "Enable this option to restore the saved camera viewpoint when you undo/redo an action."
 // display undo/redo
 history.state.undo "Undo: $0"
-history.state.redo "Redo: $1"
+history.state.redo "Redo: $0"
 history.state.symmetrySplit "Symmetry Split"
 history.state.voxelRemesh "Voxel remesh"
 history.state.surfaceRemesh "Surface remesh"
