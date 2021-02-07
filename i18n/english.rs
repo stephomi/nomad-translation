@@ -221,17 +221,18 @@ Some resources are saved separately and automatically these includes:
 At the moment brush settings cannot be saved but custom brush managament is planned."
 
 // settings
-file.settings.autoSave "Auto Save"
 file.settings.reset "Reset to default"
-file.settings.reset.confirm "Reset to default"
 file.settings.reset.confirm "Reset all settings?\n\nProjects alphas matcaps hdris and backgrounds are not impacted."
 
 // materials
 file.materials "Material library"
-file.materials.autoSave "Auto Save"
 file.materials.reset "Reset to default"
-file.materials.reset.confirm "Reset to default"
 file.materials.reset.confirm "Reset material library?"
+
+// tools
+file.tools "Tools presets"
+file.tools.reset "Reset to default"
+file.tools.reset.confirm "Reset material library?"
 
 // render
 file.render "Render"
@@ -956,7 +957,7 @@ tool.shape.line "Line"
 // title
 tool.settingsTitle "Settings ($0)"
 // clay
-tool.clay.flattenOffset
+tool.clay.flattenOffset "Flatten offset"
 // crease
 tool.crease.pinchFactor "Pinch force"
 // layer
