@@ -190,7 +190,7 @@ file.export.title.help "建议导出 glTF 格式，因为它比其他格式支�
 // gltf
 file.export.gltf "导出 glTF 2.0"
 file.export.gltfLayer "导出图层"
-file.export.gltfLayer.help "将图层导出为变体（Morph）。这是来自官方的特性，能在更多软件上使用。"
+file.export.gltfLayer.help "将图层导出为可变体。这是来自官方的特性，能在更多软件上使用。"
 file.export.gltfColor "导出颜色"
 file.export.gltfColor.help "导出的是顶点颜色。这是来自官方的特性，能在更多软件上使用。"
 file.export.gltfNormal "导出法线"
@@ -200,11 +200,11 @@ file.export.gltfExtraPaint.help "将导出粗糙度、金属强度、蒙版和�
 
 // obj
 file.export.obj "导出 OBJ 格式"
-file.export.objWarning "图层与其他属性（如粗糙度、金属强度、蒙版和图层绘画）将会丢失。"
+file.export.objWarning "图层、粗糙度、金属强度、蒙版和绘画图层等其他属性将会丢失。"
 file.export.objColorAppend "导出颜色"
 file.export.objColorAppend.help "在顶点之后添加颜色信息\n\n只有部分3D软件能够识别。"
 file.export.objColorHexa "十六进制颜色"
-file.export.objColorHexa.help "将颜色转换为十六进制（像ZBrush那样）。\n\n只有部分3D软件能够识别。"
+file.export.objColorHexa.help "像ZBrush那样将颜色转换为十六进制。\n\n只有部分3D软件能够识别。"
 
 // stl
 file.export.stl "导出 STL 格式"
@@ -936,7 +936,7 @@ tool.inflate "膨胀"
 tool.pinch "挤捏"
 tool.nudge "触碰"
 tool.stamp "印记"
-tool.clearLayer "图层橡皮"
+tool.clearLayer "擦除"
 tool.gizmo "轴向变换"
 tool.gizmo.auto "自动原点"
 tool.gizmo.editPivot "编辑原点"
