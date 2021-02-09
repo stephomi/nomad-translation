@@ -194,7 +194,7 @@ file.export.gltfLayer.help "将图层导出为变体（Morph）。这是来自�
 file.export.gltfColor "导出颜色"
 file.export.gltfColor.help "导出的是顶点颜色。这是来自官方的特性，能在更多软件上使用。"
 file.export.gltfNormal "导出法线"
-file.export.gltfNormal.help "如想在其他软件上打开该文件，请勾选此选项。\n\该选项对本软件没有影响。"
+file.export.gltfNormal.help "如想在其他软件上打开该文件，请勾选此选项。\n该选项对本软件没有影响。"
 file.export.gltfExtraPaint "导出其他"
 file.export.gltfExtraPaint.help "将导出粗糙度、金属强度、蒙版和图层绘画。其他软件不会读取该属性"
 
