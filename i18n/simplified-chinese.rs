@@ -9,7 +9,7 @@ delete "删除"
 X "X"
 Y "Y"
 Z "Z"
-noSelectedMesh "网格未选择"
+noSelectedMesh "对象未选择"
 advancedSettings "高级设置"
 
 // pbr
@@ -39,8 +39,8 @@ alert.mask.noExtract "未找到可提取对象"
 alert.mask.noSplit "未找到可分离对象"
 alert.view.disabled "一些功能将在浏览模式下禁用："
 alert.separate.fail "该对象只有一部分，所以无法分开"
-alert.voxelRemesh.success "重新网格化成功！"
-alert.voxelRemesh.empty "Abort remesh: result mesh has no faces."
+alert.voxelRemesh.success "网格重构成功！"
+alert.voxelRemesh.empty "网格重构失败，因为结果并未产生面。"
 alert.voxelRemesh.invalidInput "输入无效！"
 alert.gizmo.usePivot "使用自定义坐标原点"
 alert.gizmo.useAuto "使用自动坐标原点"
@@ -58,19 +58,19 @@ alert.selection.unlock "解锁所选项"
 alert.selection.isolate "隔离所选项"
 alert.selection.showAll "显示全部"
 alert.quickSave "正在自动保存..."
-alert.multiresLost "多重网格将会丢失，是否继续？"
+alert.multiresLost "模型细分将会丢失，是否继续？"
 // autosave popup
 alert.autoSave.auto "将在 $0s 后自动保存"
 // bottom warning
 alert.warning.needLayer "当前工具仅在活动图层上可用"
-alert.warning.multiresLost "多重网格将会丢失"
-alert.warning.paintingHidden "Painting hidden: show it again in Settings panel."
-alert.warning.noPartialWireframe "Partial drawing is disabled when wireframe is displayed."
+alert.warning.multiresLost "模型细分将会丢失"
+alert.warning.paintingHidden "绘画已被隐藏，请在设置面板里将其打开。"
+alert.warning.noPartialWireframe "打开线框显示时，局部绘画将被禁用。"
 // bottom tip
-alert.tip.polygonDot "Press the green dot to apply the polygon."
-alert.tip.shapeOrthographic "Consider using orthographic camera if you want to avoid perspective frustum distortion when using screen projector."
+alert.tip.polygonDot "轻点绿色图标以应用几何体。"
+alert.tip.shapeOrthographic "为了避免因透视视图而产生的偏差，建议在相机设置里切换到正交视图。"
 // undo
-alert.state.trial "Undo canceled : trial version"
+alert.state.trial "这是试用版本，您无法再撤销。"
 
 // ------------------------------------------------------
 // background
@@ -98,13 +98,13 @@ camera.updateView "更新视图？"
 camera.addView "添加视图"
 camera.focusOn "正在观察"
 // projection
-camera.projection "投射方式"
+camera.projection "视图"
 camera.orthographic "正交视图"
-camera.perspective "透视图"
+camera.perspective "透视试图"
 camera.fov "焦距"
 // orbit
 camera.orbit "视图旋转"
-camera.orbit.help "旋转模式启用后可使用双指旋转视图"
+camera.orbit.help "旋转模式启用后可使用双指旋转视图。"
 camera.trackball "旋转模式"
 camera.turntable "水平模式"
 // speed
@@ -117,20 +117,20 @@ camera.resetView "重设视图"
 camera.snapView "固定视图"
 // interaction
 camera.pivot "视图中心点"
-camera.doubleTapMesh "双击对象网格"
+camera.doubleTapMesh "双击对象"
 camera.doubleTapBackground "双击背景"
 camera.doubleTapPivot "双击后改变"
-camera.doubleTapPivot.help "双击后改变坐标视图中心点"
+camera.doubleTapPivot.help "双击后改变坐标视图中心点。"
 camera.autoPivot "平移/缩放后改变"
-camera.autoPivot.help "双指移动相机后，原点会随之移动"
+camera.autoPivot.help "双指移动相机后，原点会随之移动。"
 camera.doubleTapFocus "聚焦"
-camera.doubleTapFocus.help "双击物体网格后视图中心将移动至该点。"
+camera.doubleTapFocus.help "双击物体表面后视图中心将移动至该点。"
 camera.doubleTapFocusSelection "聚焦所选项"
 camera.doubleTapFocusSelection.help "双击背景后相机将会缩放移动至最适合该对象的视图。"
 
 // scene and layer lists
 expandList "展开图标"
-expandList.help "可以让菜单里的图标排列间距放大"
+expandList.help "可以让菜单里的图标排列间距放大。"
 
 // ------------------------------------------------------
 // file
@@ -196,7 +196,7 @@ file.export.gltfColor.help "导出的是顶点颜色。这是来自官方的特�
 file.export.gltfNormal "导出法线"
 file.export.gltfNormal.help "如想在其他软件上打开该文件，请勾选此选项。\n该选项对本软件没有影响。"
 file.export.gltfExtraPaint "导出其他"
-file.export.gltfExtraPaint.help "将导出粗糙度、金属强度、蒙版和图层绘画。其他软件不会读取该属性"
+file.export.gltfExtraPaint.help "将导出粗糙度、金属强度、蒙版和图层绘画。其他软件不会读取该属性。"
 
 // obj
 file.export.obj "导出 OBJ 格式"
@@ -219,7 +219,7 @@ file.settings.title.help "大部分应用的设置都保存在此处（相机界
 - 画笔形状
 - 背景
 - 项目\n
-目前暂时无法保存画笔设置，自定义笔画已正在开发计划中。"
+目前暂时无法保存画笔设置，自定义笔画已在开发计划中。"
 
 // settings
 file.settings.reset "恢复默认设置"
@@ -252,11 +252,11 @@ history "历史记录"
 history.root "新建"
 history.undoConfirm "您确定要撤销所有操作吗？"
 history.undoWarning "如在此之后进行更改，将会覆盖之前的所有操作。"
-history.stack "栈参数"
+history.stack "步数"
 history.limitSize "历史记录状态限制 (Mb)"
 history.limitSize.help "历史记录的最大大小（以Mb为单位）。\n
 历史记录状态会随着下一个操作记录而改变。"
-history.limitStack "Stack limit"
+history.limitStack "步数限制"
 history.limitStack.help "程序可保留的最大操作数量。\n
 历史记录状态会随着下一个操作记录而改变。"
 history.rangeProtect "历史记录保护范围"
@@ -268,11 +268,11 @@ history.restoreCamera.help "启用该选项后您可以在撤销或重做时同�
 // display undo/redo
 history.state.undo "撤销： $0"
 history.state.redo "重做： $0"
-history.state.symmetrySplit "Symmetry Split"
+history.state.symmetrySplit "镜像"
 history.state.voxelRemesh "体素网格重构"
 history.state.surfaceRemesh "表面网格重构"
 // state multires
-history.state.multiresToDynamic "多重网格转为动态网格"
+history.state.multiresToDynamic "模型细分转为动态网格"
 history.state.multiresLevel "改变分辨率"
 history.state.multiresSubdivide "细分网格"
 history.state.multiresReverse "粗化网格"
@@ -281,13 +281,13 @@ history.state.multiresDeleteHigher "删除高分辨率模型"
 // mesh
 history.state.meshDynamicToStatic "动态网格转为静态网格"
 history.state.meshStaticToDynamic "静态网格转为动态网格"
-history.state.meshSymmetryUpdate "Symmetry update"
-history.state.meshMatrixUpdate "Matrix update"
-history.state.meshVisibility "Visibility"
+history.state.meshSymmetryUpdate "改变对称"
+history.state.meshMatrixUpdate "矩阵变换"
+history.state.meshVisibility "可见性"
 history.state.meshMaterial "Materil change"
 // state scene
-history.state.sceneAddRemove "Scene"
-history.state.sceneMeshOrder "Mesh order"
+history.state.sceneAddRemove "场景"
+history.state.sceneMeshOrder "模型顺序"
 // state layer
 history.state.layerOrder "Move layer order $0"
 history.state.layerMergeRedo "Unmerge layer $0"
@@ -918,7 +918,7 @@ tool.move "移动"
 tool.move.normal "法线方向"
 tool.drag "拖拽"
 tool.smooth "平滑"
-tool.smooth.relax "松弛"
+tool.smooth.relax "规整网格"
 tool.mask "蒙版"
 tool.mask.unmask "消除蒙版"
 tool.maskSelector "选择蒙版"
@@ -1163,15 +1163,15 @@ topology.dynamicSettings "Settings - Brush / Global"
 
 // ------------------------------------------------------
 // version trial
-version.buyWeb "Web version is only a demo"
-version.buyFull "Upgrade to full version"
-version.trialLimit "Trial version:
-- 3 undo/redo possible
-- 1 layer per mesh
-- 1 active project only
-- no import/export"
-version.restorePurchase "Restore purchase"
-version.fullFeatures "- Unlimited undo/redo
-- Unlimited layers
-- Save & Load
-- Export & import"
+version.buyWeb "网页版仅供演示"
+version.buyFull "购买完整版本"
+version.trialLimit "试用版本限制：
+- 仅允许3次以内的撤销或重做
+- 每个物体仅允许添加一个图层
+- 仅允许启用一个项目
+- 不允许导入和导出"
+version.restorePurchase "恢复购买"
+version.fullFeatures "- 撤消或重做不受限制
+- 图层数量不受限制
+- 允许保存和载入
+- 可以导入和导出文件"
