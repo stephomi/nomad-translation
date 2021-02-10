@@ -25,7 +25,7 @@ about.turntable "旋转展示"
 about.turntableSpeed "旋转速度"
 about.credits "鸣谢"
 about.creditsOpenSource "开源项目"
-about.creditsArts "材质与贴图"
+about.creditsArts "MatCap与HDRI"
 
 // ------------------------------------------------------
 // alert
@@ -49,7 +49,7 @@ alert.gizmo.editObject "编辑对象模式"
 alert.dynamic.enable "启用动态网格"
 alert.dynamic.disable "关闭动态网格"
 alert.colorPicker "在网格上拖动手指选取一个颜色"
-alert.camera.resetView "重设视图"
+alert.camera.resetView "重置视图"
 alert.camera.snapView "切换视图"
 alert.mask.show "显示蒙版"
 alert.mask.hide "隐藏蒙版"
@@ -113,7 +113,7 @@ camera.rotation "旋转"
 camera.panning "平移"
 camera.zooming "缩放"
 // misc
-camera.resetView "重设视图"
+camera.resetView "重置视图"
 camera.snapView "固定视图"
 // interaction
 camera.pivot "视图中心点"
@@ -223,7 +223,7 @@ file.settings.title.help "大部分应用的设置都保存在此处（相机界
 
 // settings
 file.settings.reset "恢复默认设置"
-file.settings.reset.confirm "确定重设所有设置？\n\n项目、画笔形状、材质、HDRIs与背景将不会被影响。"
+file.settings.reset.confirm "确定重设所有设置？\n\n项目、画笔形状、材质、HDRI与背景将不会被影响。"
 
 // materials
 file.materials "材质库"
@@ -252,11 +252,11 @@ history "历史记录"
 history.root "新建"
 history.undoConfirm "您确定要撤销所有操作吗？"
 history.undoWarning "如在此之后进行更改，将会覆盖之前的所有操作。"
-history.stack "步数"
-history.limitSize "历史记录状态限制 (Mb)"
+history.stack "历史记录设置"
+history.limitSize "历史记录限制 (Mb)"
 history.limitSize.help "历史记录的最大大小（以Mb为单位）。\n
 历史记录状态会随着下一个操作记录而改变。"
-history.limitStack "步数限制"
+history.limitStack "历史记录步数"
 history.limitStack.help "程序可保留的最大操作数量。\n
 历史记录状态会随着下一个操作记录而改变。"
 history.rangeProtect "历史记录保护范围"
@@ -284,26 +284,26 @@ history.state.meshStaticToDynamic "静态网格转为动态网格"
 history.state.meshSymmetryUpdate "改变对称"
 history.state.meshMatrixUpdate "矩阵变换"
 history.state.meshVisibility "可见性"
-history.state.meshMaterial "Materil change"
+history.state.meshMaterial "改变材质"
 // state scene
 history.state.sceneAddRemove "场景"
 history.state.sceneMeshOrder "模型顺序"
 // state layer
-history.state.layerOrder "Move layer order $0"
-history.state.layerMergeRedo "Unmerge layer $0"
-history.state.layerCreate "Create layer $0"
-history.state.layerDelete "Delete layer $0";
-history.state.layerMerge "Merge layer $0";
-history.state.layerHide "Hide layer $0"
-history.state.layerShow "Show layer $0"
-history.state.layerSelect "Select layer $0"
-history.state.layerUnselect "Unselect layer $0"
-history.state.layerName "Layer $0 name";
-history.state.layerFactor "Layer $0 factor";
-history.state.layerFactorOffset "Layer $0 offset factor";
-history.state.layerFactorColor "Layer $0 color factor";
-history.state.layerFactorRoughness "Layer $0 roughness factor";
-history.state.layerFactorMetalness "Layer $0 metalness factor";
+history.state.layerOrder "更改图层顺序 $0"
+history.state.layerMergeRedo "取消合并图层 $0"
+history.state.layerCreate "添加图层 $0"
+history.state.layerDelete "删除图层 $0";
+history.state.layerMerge "合并图层 $0";
+history.state.layerHide "隐藏图层 $0"
+history.state.layerShow "显示图层 $0"
+history.state.layerSelect "选择图层 $0"
+history.state.layerUnselect "取消选择图层 $0"
+history.state.layerName "图层 $0 重命名";
+history.state.layerFactor "调整图层 $0 参数";
+history.state.layerFactorOffset "调整图层 $0 偏移度";
+history.state.layerFactorColor "调整图层 $0 透明度";
+history.state.layerFactorRoughness "调整图层 $0 粗糙度";
+history.state.layerFactorMetalness "调整图层 $0 金属强度";
 // state light
 history.state.lightVisible "light $0 visible"
 history.state.lightIntensity "Light $0 intensity"
@@ -319,113 +319,112 @@ history.state.lightMove "Move light $0"
 
 // ------------------------------------------------------
 // pressure menu
-input.useGlobal "Use global settings"
-input.useGlobal.help "By default, the tools share the same pressure settings.\n
-Uncheck this option if you want specific pressure settings for this tool."
+input.useGlobal "使用全局压感设置"
+input.useGlobal.help "勾选后，所有工具都会使用相同的压感参数。\n
+如您希望给此工具单独设定压感参数，请取消勾选"
 
-input.pressure "Pressure"
-input.pressureTitle "Pressure ($0)"
-input.pressure.noTool "This tool doesn't use pen pressure."
-input.pressure.noGrab "Grab stroke type will ignore pressure settings."
-input.pressure.radius "Radius"
-input.pressure.intensity "Intensity" 
-input.pressure.useRadius "Active"
-input.pressure.useIntensity "Active" 
-input.pressure.curveRadius "Radius"
-input.pressure.curveIntensity "Intensity"
+input.pressure "压感"
+input.pressureTitle "压感设置 ($0)"
+input.pressure.noTool "此工具不适用压感设置。"
+input.pressure.noGrab "此工具会忽略压感设置。"
+input.pressure.radius "半径"
+input.pressure.intensity "强度" 
+input.pressure.useRadius "启用"
+input.pressure.useIntensity "启用" 
+input.pressure.curveRadius "半径"
+input.pressure.curveIntensity "强度"
 
-input.cameraInteraction "Camera:"
-input.sculptInteraction "Sculpt:"
-input.interaction.fingerAndStylus "Finger and Stylus"
-input.interaction.finger "Finger"
-input.interaction.stylus "Stylus"
+input.cameraInteraction "相机移动："
+input.sculptInteraction "雕刻:"
+input.interaction.fingerAndStylus "手指与触控笔"
+input.interaction.finger "手指"
+input.interaction.stylus "触控笔"
 
-input.fingerSmooth "Finger always smooths"
-input.unknownPressure "Allow unrecognized pressure"
-input.unknownPressure.help "Check this option if the pressure doesn't work with your pencil or if you need pressure finger." 
+input.fingerSmooth "将手指用于平滑"
+input.unknownPressure "允许未识别的压感"
+input.unknownPressure.help "当您的触控笔压感无法使用或者希望使用手指压感时，请勾选此选项。" 
 // pencil
-input.pencilAction.none "None"
-input.pencilAction.smooth "Smooth"
-input.pencilAction.alt "Add/Sub"
-input.pencilAction.android "Pencil button"
-input.pencilAction.android.help "Experimental"
-input.pencilAction.ios "Pencil double tap"
-input.pencilAction.ios.help "Only active for Apple Pencil 2nd gen."
+input.pencilAction.none "无"
+input.pencilAction.smooth "平滑"
+input.pencilAction.alt "添加或减去"
+input.pencilAction.android "触控笔按钮"
+input.pencilAction.android.help "实验功能"
+input.pencilAction.ios "双击Pencil"
+input.pencilAction.ios.help "仅支持Apple Pencil 第二代"
 // size rejection
-input.useSizeRejection "Use size rejection"
-input.useSizeRejectionWarning "If you are locked, quit and restart Nomad.\nThis setting is never saved."
-input.useSizeRejectionConfirm "Make sure to save your project first in case you can't interact with the UI anymore."
-input.useSizeRejection.help "Reject input if the contact area size larger than this value.\n
-It might not work on every device."
-input.sizeRejection "Max size threshold"
+input.useSizeRejection "启用忽略尺寸"
+input.useSizeRejectionWarning "如果您的手指无法操控，请退出并重启Nomad。\n此选项每次重启后都会关闭。"
+input.useSizeRejectionConfirm "请确保您的文件妥善保存后再点击确认！"
+input.useSizeRejection.help "如果手指与屏幕的接触面积超过设定值，屏幕将忽略手指的本次操作。\n
+部分设备可能不支持此选项"
+input.sizeRejection "尺寸阈值"
 // help
-input.interaction.title "Interaction" 
-input.interaction.title.help "These options are always global."
+input.interaction.title "交互选项" 
+input.interaction.title.help "以下选项均为全局设置。"
 
 // ------------------------------------------------------
 // interface
-interface "Interface"
+interface "界面设置"
 
 // bottom buttons
-interface.bottomButtons "Bottom buttons"
-interface.quickVoxelRemesh "Voxel remesh"
-interface.quickWireframe "Wireframe"
-interface.quickLockSelection "Lock selection"
-interface.quickLockSelection.help "When enabled, you cannot change the selection by tapping on a mesh."
-interface.quickCameraReset "Camera reset"
-interface.quickCameraSnap "Camera snap"
-interface.quickCameraSnapFlip "Flip on already snap"
-interface.quickCameraSnapFlip.help "If the camera is already snapped, the shortcut will mirror the view"
+interface.bottomButtons "底部按钮"
+interface.quickVoxelRemesh "体素网格重构"
+interface.quickWireframe "网格"
+interface.quickLockSelection "锁定选择"
+interface.quickLockSelection.help "启用后，您无法通过点击方式选择对象。"
+interface.quickCameraReset "重置视图"
+interface.quickCameraSnap "切换视图"
+interface.quickCameraSnapFlip "翻转基本视图"
+interface.quickCameraSnapFlip.help "当相机处于基本视图时，点击切换视图将会翻转至背面"
 
 // left
-interface.leftButtons "Left buttons"
-interface.quickSmooth "Smooth"
-interface.quickMask "Mask"
-interface.quickToggle "Sub/Smooth/Mask toggle"
-interface.quickPaint "Material"
-interface.quickAlpha "Alpha"
-interface.maskGesture "Mask gesture"
+interface.leftButtons "左边按钮"
+interface.quickSmooth "平滑"
+interface.quickMask "蒙版"
+interface.quickToggle "反向操作锁定"
+interface.quickPaint "材质"
+interface.quickAlpha "画笔形状"
+interface.maskGesture "蒙版手势"
 interface.screenTooSmall "If the screen is too small, some buttons won't be displayed."
-interface.maskGesture.help "Hold the mask shortcut and:\n
-- drag on the background to clear mask
-- tap on the background to invert mask
-- tap on the masked area to sharpen
-- tap on the unmasked area to sharpen"
+interface.maskGesture.help "按住蒙版快捷方式，并且：\n
+- 在背景上拖动可清除蒙版
+- 在背景上点击可反相蒙版
+- 在对象上点击可锐化蒙版边界"
 
 // colors
-interface.colors "Main colors"
-interface.colorSelect "Color widget"
-interface.colorBase "Color base"
-interface.colorBaseTransparent "Color panel" 
-interface.panelTransparent "Transparent panel"
-interface.blurFactor "Blur strength"
+interface.colors "界面颜色"
+interface.colorSelect "主色"
+interface.colorBase "底色"
+interface.colorBaseTransparent "面板颜色" 
+interface.panelTransparent "面板透明度"
+interface.blurFactor "模糊强度"
 
 // color preset
-interface.colorsPresets "Color presets"
-interface.presetBlurRed "Red"
-interface.presetBlurBlue "Blue"
-interface.presetBlurGreen "Green"
-interface.presetBlurYellow "Yellow"
-interface.presetBlackWhite "Black & White"
-interface.presetWhiteBlack "White & Black"
-interface.presetLividOrange "Livid & Orange"
-interface.presetCardboard "Cardboard"
-interface.presetDefault "Default"
+interface.colorsPresets "界面预设"
+interface.presetBlurRed "红"
+interface.presetBlurBlue "蓝"
+interface.presetBlurGreen "绿"
+interface.presetBlurYellow "黄"
+interface.presetBlackWhite "黑与白"
+interface.presetWhiteBlack "白与黑"
+interface.presetLividOrange "青与橙"
+interface.presetCardboard "纸板"
+interface.presetDefault "默认设置"
 
 // style
-interface.style "Style"
-interface.resetAll "Rest Interface"
-interface.resetAll.confirm "Reset interface settings?"
-interface.flipTop "flip top"
-interface.flipBottom "flip bottom"
-interface.flipMiddle "flip middle"
-interface.autoClose "Close panel on interaction"
-interface.autoClose.help "Close the top panels when you start interaction with the canvas."
-interface.showTooltips "Show tooltips"
-interface.showTooltips.help "This is a tooltip."
-interface.materialPreview "Material Picker preview"
-interface.toolboxHide "Auto-hide toolbox"
-interface.toolboxHide.help "Enable this option if you want to hide the toolbox."
+interface.style "风格"
+interface.resetAll "重置界面设置"
+interface.resetAll.confirm "确定要重置界面吗？"
+interface.flipTop "反转"
+interface.flipBottom "反转底部图标"
+interface.flipMiddle "反转中间图标"
+interface.autoClose "操作时收起菜单"
+interface.autoClose.help "点击背景与对象时自动收起菜单"
+interface.showTooltips "显示工具提示"
+interface.showTooltips.help "你在点的这个小问号就是工具提示 :-D"
+interface.materialPreview "调整材质参数预览"
+interface.toolboxHide "自动隐藏工具栏"
+interface.toolboxHide.help "如果你想隐藏工具栏，请勾选此选项。"
 interface.toolboxMaxColumn "Max column toolbox"
 interface.rounding "Rounding"
 interface.inlined "Slider inlined"
