@@ -42,6 +42,7 @@ alert.separate.fail "Could not separate: the object has only one part!"
 alert.voxelRemesh.success "Remeshed!"
 alert.voxelRemesh.empty "Abort remesh: result mesh has no faces."
 alert.voxelRemesh.invalidInput "Invalid input!"
+alert.matrix.clone "The object will be duplicated"
 alert.gizmo.usePivot "Use custom pivot."
 alert.gizmo.useAuto "Use automatic pivot."
 alert.gizmo.editPivot "Edit pivot mode."
@@ -413,7 +414,7 @@ interface.presetDefault "Default"
 
 // style
 interface.style "Style"
-interface.resetAll "Rest Interface"
+interface.resetAll "Reset Interface"
 interface.resetAll.confirm "Reset interface settings?"
 interface.flipTop "flip top"
 interface.flipBottom "flip bottom"
@@ -995,6 +996,7 @@ Do not use this option for flat surface.
 Close the extracted shape by using the thickness value."
 // matrix
 tool.matrix "Matrix"
+tool.matrix.clone "Clone"
 tool.matrix.action "Action"
 tool.matrix.action.help "-- Move origin
 Move the mesh to the world origin.
