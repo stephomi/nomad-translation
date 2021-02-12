@@ -42,6 +42,7 @@ alert.separate.fail "该对象只有一部分，所以无法分开"
 alert.voxelRemesh.success "网格重构成功！"
 alert.voxelRemesh.empty "网格重构失败，因为结果并未产生面。"
 alert.voxelRemesh.invalidInput "输入无效！"
+alert.matrix.clone "The object will be duplicated"
 alert.gizmo.usePivot "使用自定义坐标原点"
 alert.gizmo.useAuto "使用自动坐标原点"
 alert.gizmo.editPivot "编辑坐标原点模式"
@@ -995,6 +996,7 @@ Do not use this option for flat surface.
 Close the extracted shape by using the thickness value."
 // matrix
 tool.matrix "Matrix"
+tool.matrix.clone "Clone"
 tool.matrix.action "Action"
 tool.matrix.action.help "-- Move origin
 Move the mesh to the world origin.
