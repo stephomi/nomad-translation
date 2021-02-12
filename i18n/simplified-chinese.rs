@@ -31,7 +31,7 @@ about.creditsArts "MatCap与HDRI"
 // alert
 alert.confirmDelete "请确认是否删除？"
 alert.confirmDelete.yes "确认删除"
-alert.hole.nothing "该对象没有空洞！"
+alert.hole.nothing "该对象没有孔洞！"
 alert.shape.notVisible "当前网格不可见！"
 alert.trim.nothing "未找到可裁切对象"
 alert.trim.full  "对象不能完全裁切"
@@ -451,13 +451,13 @@ interface.debug.warning "For debugging only!"
 
 // ------------------------------------------------------
 // layer sub menu
-layer.action "Action"
+layer.action "操作"
 layer.name "重命名"
 layer.delete "删除图层"
 layer.move "移动图层"
 layer.duplicate "复制图层"
 layer.mergeDown "向下合并"
-layer.factors "图层参数"
+layer.factors "通道参数"
 layer.offsetFactor "位置偏移"
 layer.colorFactor "颜色浓度"
 
@@ -471,7 +471,7 @@ layers.title.help "图层能够记录位置偏移和绘画，这对于非线性�
 
 图层是从上到下排序的，所以上方的图层会遮盖下方的图层。
 
-为了解决图层的不透明性，图层的所有参数（颜色浓度、粗糙度、金属强度）都会使用相同的蒙版。
+为了解决图层的不透明性，图层的所有通道（颜色浓度、粗糙度、金属强度）都会使用相同的蒙版。
 您可以使用橡皮工具来擦除当前图层上的绘画蒙版。";
 layers.multipleObjectWarning "您选择了多个对象，无法修改图层。"
 layers.primitive "基本体无法添加图层。"
@@ -502,48 +502,48 @@ material.opacity = "透明度"
 
 // ------------------------------------------------------
 // mesh sub menu
-mesh.action "Action"
-mesh.closeHoles "Close holes"
-mesh.separate "Separate"
-mesh.triplanarWarning "Layers, painting and multiresolution will be lost."
-mesh.triplanarResolution "Resolution"
-mesh.triplanarCubic "Force cubic"
-mesh.triplanarConvert "Convert"
-mesh.name "Name"
-mesh.type "Type"
-mesh.typeStatic "Static"
-mesh.typeMultiresolution "Multiresolution"
-mesh.typeDynamic "Dynamic"
+mesh.action "操作"
+mesh.closeHoles "封闭孔洞"
+mesh.separate "分离对象"
+mesh.triplanarWarning "图层、绘画与模型细分将会丢失。"
+mesh.triplanarResolution "分辨率"
+mesh.triplanarCubic "强制转换为立方体"
+mesh.triplanarConvert "转换"
+mesh.name "名称"
+mesh.type "类型"
+mesh.typeStatic "静态模型"
+mesh.typeMultiresolution "模型细分"
+mesh.typeDynamic "动态模型"
 
 // ------------------------------------------------------
 // painting
-paint.useGlobal "Global material"
-paint.useGlobal.help "If this option is enabled, the selected material will be the same as the other tools"
-paint.usePainting "Enabled" 
-paint.useColor "Base color" 
-paint.useRoughness "Roughness" 
-paint.useMetalness "Metalness"
-paint.intensity "Paint intensity"
-paint.paintAll "Paint all" 
-paint.paintAll.help "Apply the current material to the mesh."
-paint.paintAllForce "Force paint all"
-paint.paintAllForce.help "Apply the current material to the mesh.\n
-Masked area and disabled channels won't be painted."
-paint.strokePaintingTitle "Painting ($0)"
-paint.layerWarning "Channel masking will be ignored if you try to apply it on a layer."
+paint.useGlobal "应用全局材料"
+paint.useGlobal.help "如勾选此选项，其他工具的材质也将会与所选材质相同。"
+paint.usePainting "启用" 
+paint.useColor "颜色" 
+paint.useRoughness "粗糙度" 
+paint.useMetalness "金属强度"
+paint.intensity "画笔强度"
+paint.paintAll "全部上色" 
+paint.paintAll.help "将当前材料应用到所选对象上。"
+paint.paintAllForce "强制全部上色"
+paint.paintAllForce.help "将当前材料应用到所选对象上。\n
+蒙版区域与未勾选通道也会被应用。"
+paint.strokePaintingTitle "画笔设置 ($0)"
+paint.layerWarning "图层上的通道蒙版不可用。"
 
 // ------------------------------------------------------
 // postprocess
-postprocess.mainEnable "Post Process" 
+postprocess.mainEnable "后期处理" 
 // fxaa
-postprocess.fxaaEnable "Antialiasing (FXAA)"
+postprocess.fxaaEnable "抗锯齿（FXAA）"
 // ssr
-postprocess.ssrEnable "Reflection (SSR)" 
-postprocess.ssrFactor "Strength" 
-postprocess.ssrDistanceFading "Distance fading" 
-postprocess.ssrDistanceFading.help "Attenuate the effect according to how far the reflection is.
-It can help in hiding artefacts that the SSR suffers from."
-postprocess.ssrMatcapWarning "SSR is only effective in PBR shading mode."
+postprocess.ssrEnable "屏幕空间反射（SSR）" 
+postprocess.ssrFactor "强度" 
+postprocess.ssrDistanceFading "淡化距离" 
+postprocess.ssrDistanceFading.help "根据反射距离来减弱效果
+此选项能减弱SSR所产生的伪影。"
+postprocess.ssrMatcapWarning "SSR仅在PBR渲染模式下有效。"
 // ssao
 postprocess.ssaoEnable "Ambient Occlusion" 
 postprocess.ssaoRadius "Size" 
@@ -594,7 +594,7 @@ primitive.cylinder "Cylinder"
 primitive.cone "Cone"
 primitive.torus "Torus"
 primitive.plane "Plane"
-primitive.triplanar "Triplanar"
+primitive.triplanar "三向投影"
 primitive.needValidate "Primitives should be validated in order to be sculpted."
 
 primitive.mainConfig "Parameter"
@@ -761,7 +761,7 @@ settings.notSaved "These options are not saved in the settings."
 
 // ------------------------------------------------------
 // shading
-shading "Shading"
+shading "渲染模式"
 // lights
 shading.lights "Lights"
 shading.lights.addLight "Add light"
