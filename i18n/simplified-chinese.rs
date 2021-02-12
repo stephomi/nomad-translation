@@ -100,7 +100,7 @@ camera.focusOn "正在观察"
 // projection
 camera.projection "视图"
 camera.orthographic "正交视图"
-camera.perspective "透视试图"
+camera.perspective "透视视图"
 camera.fov "焦距"
 // orbit
 camera.orbit "视图旋转"
@@ -122,7 +122,7 @@ camera.doubleTapBackground "双击背景"
 camera.doubleTapPivot "双击后改变"
 camera.doubleTapPivot.help "双击后改变坐标视图中心点。"
 camera.autoPivot "平移/缩放后改变"
-camera.autoPivot.help "双指移动相机后，原点会随之移动。"
+camera.autoPivot.help "双指移动相机后，中心点会随之移动。"
 camera.doubleTapFocus "聚焦"
 camera.doubleTapFocus.help "双击物体表面后视图中心将移动至该点。"
 camera.doubleTapFocusSelection "聚焦所选项"
@@ -243,7 +243,7 @@ file.render.screenResolution "屏幕尺寸"
 file.render.export "导出为png"
 file.render.4kWarn "导出4K格式可能会使用大量内存，请确认文件保存之后再导出！"
 file.render.transparent "导出透明背景"
-file.render.transparent.help "打开此选项可以让您更方便地把渲染图导入到平面软件里\n
+file.render.transparent.help "打开此选项可以让您更方便地把渲染图导入到平面软件里。\n
 暂不支持部分透明对象导出。"
 
 // ------------------------------------------------------
@@ -375,7 +375,7 @@ interface.quickLockSelection.help "启用后，您无法通过点击方式选择
 interface.quickCameraReset "重置视图"
 interface.quickCameraSnap "切换视图"
 interface.quickCameraSnapFlip "翻转基本视图"
-interface.quickCameraSnapFlip.help "当相机处于基本视图时，点击切换视图将会翻转至背面"
+interface.quickCameraSnapFlip.help "当相机处于基本视图时，点击切换视图将会翻转至背面。"
 
 // left
 interface.leftButtons "左边按钮"
@@ -412,10 +412,10 @@ interface.presetCardboard "纸板"
 interface.presetDefault "默认设置"
 
 // style
-interface.style "风格"
+interface.style "菜单风格"
 interface.resetAll "重置界面设置"
 interface.resetAll.confirm "确定要重置界面吗？"
-interface.flipTop "反转"
+interface.flipTop "整体反转"
 interface.flipBottom "反转底部图标"
 interface.flipMiddle "反转中间图标"
 interface.autoClose "操作时收起菜单"
@@ -425,18 +425,18 @@ interface.showTooltips.help "你在点的这个小问号就是工具提示 :-D"
 interface.materialPreview "调整材质参数预览"
 interface.toolboxHide "自动隐藏工具栏"
 interface.toolboxHide.help "如果你想隐藏工具栏，请勾选此选项。"
-interface.toolboxMaxColumn "Max column toolbox"
-interface.rounding "Rounding"
-interface.inlined "Slider inlined"
-interface.dampingSlider "Damping slider"
-interface.dampingSlider.help "Get more precision when you move away from the slider."
-interface.curveToolSymmetric "Symmetric tool curve widget"
-interface.curveToolSymmetric.help "The widget can be found in the Tool panel under the falloff option."
-interface.animated "Animated"
-interface.scale "Overall scale"
-interface.cursorStep "Vertical spacing"
-interface.panelWidth "Panel width"
-interface.fontScale "Font scale"
+interface.toolboxMaxColumn "工具栏列数"
+interface.rounding "界面圆角"
+interface.inlined "滑块紧凑"
+interface.dampingSlider "降低滑块灵敏度"
+interface.dampingSlider.help "勾选此选项可让滑块在调节参数时更加精确。"
+interface.curveToolSymmetric "压力曲线对称"
+interface.curveToolSymmetric.help "使画笔设置里的衰减参数曲线对称。"
+interface.animated "动效"
+interface.scale "界面缩放"
+interface.cursorStep "垂直间距"
+interface.panelWidth "面板宽度"
+interface.fontScale "字体尺寸"
 
 // toolbox
 interface.toolsOrder "工具顺序"
@@ -451,30 +451,30 @@ interface.debug.warning "For debugging only!"
 // ------------------------------------------------------
 // layer sub menu
 layer.action "Action"
-layer.name "Name"
-layer.delete "Delete"
-layer.move "Move"
-layer.duplicate "Duplicate"
-layer.mergeDown "Merge down"
-layer.factors "Channel factors"
-layer.offsetFactor "Position"
-layer.colorFactor "Color"
+layer.name "重命名"
+layer.delete "删除图层"
+layer.move "移动图层"
+layer.duplicate "复制图层"
+layer.mergeDown "向下合并"
+layer.factors "图层参数"
+layer.offsetFactor "位置偏移"
+layer.colorFactor "颜色浓度"
 
 // ------------------------------------------------------
 // layers menu
-layers.addLayer "Add layer"
-layers.addLayerTrial "Trial version is limited to 1 layer per mesh."
-layers.title "Layers"
-layers.title.help "Layers can record position offsets and painting, it can be useful for non-linear workflow.
-For example by experimenting different facial expression without relying on the history stack to undo the changes.
+layers.addLayer "添加图层"
+layers.addLayerTrial "试用版本只能给每个对象添加一个图层！"
+layers.title "图层"
+layers.title.help "图层能够记录位置偏移和绘画，这对于非线性工作流程来说非常有用。
+例如，通过试验不同的面部表情而不依赖于历史记录来撤消更改。
 
-For painting data, layers are sorted in a top-down fashion; so layers on top will mask the lower ones.
+图层是从上到下排序的，所以上方的图层会遮盖下方的图层。
 
-In order to resolve the layer opacity, all painting data (color, roughness, metalness) share the same mask.
-You can reset part of this mask (and thus, the layer influence) by using the 'DelLayer' tool.";
-layers.multipleObjectWarning "Multiple meshes are selected, please select only one mesh."
-layers.primitive "Layers are unavailable for primitives."
-layers.baseSelected "None"
+为了解决图层的不透明性，图层的所有参数（颜色浓度、粗糙度、金属强度）都会使用相同的蒙版。
+您可以使用橡皮工具来擦除当前图层上的绘画蒙版。";
+layers.multipleObjectWarning "您选择了多个对象，无法修改图层。"
+layers.primitive "基本体无法添加图层。"
+layers.baseSelected "无"
 
 // ------------------------------------------------------
 // light sub menu
@@ -494,10 +494,10 @@ light.shadowNormalBias "Normal bias"
 
 // ------------------------------------------------------
 // material
-material "Material"
-material.addNew "Add new"
-material.matcapWarning "Roughness and metalness will not be visible with matcap shading."
-material.opacity = "Opacity"
+material "材质"
+material.addNew "添加新材质"
+material.matcapWarning "粗糙度与金属强度在材质捕捉模式下不可用。"
+material.opacity = "透明度"
 
 // ------------------------------------------------------
 // mesh sub menu
