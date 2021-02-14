@@ -195,7 +195,7 @@ file.export.gltfLayer.help "将图层导出为可变体。这是来自官方的�
 file.export.gltfColor "导出颜色"
 file.export.gltfColor.help "导出的是顶点颜色。这是来自官方的特性，能在更多软件上使用。"
 file.export.gltfNormal "导出法线"
-file.export.gltfNormal.help "如想在其他软件上打开该文件，请勾选此选项。\n该选项对本软件没有影响。"
+file.export.gltfNormal.help "如想在其他软件上打开该文件，请勾选此选项。\n该选项对本应用没有影响。"
 file.export.gltfExtraPaint "导出其他"
 file.export.gltfExtraPaint.help "将导出粗糙度、金属强度、蒙版和图层绘画。其他软件不会读取该属性。"
 
@@ -306,17 +306,17 @@ history.state.layerFactorColor "调整图层 $0 透明度";
 history.state.layerFactorRoughness "调整图层 $0 粗糙度";
 history.state.layerFactorMetalness "调整图层 $0 金属强度";
 // state light
-history.state.lightVisible "light $0 visible"
-history.state.lightIntensity "Light $0 intensity"
-history.state.lightColor "Light $0 color"
-history.state.lightPosition "Light $0 position"
-history.state.lightShadow "Light $0 shadow"
-history.state.lightBias "Light $0 shadow bias"
-history.state.lightAttachment "Attachment light $0"
-history.state.lightAdd "Add light $0"
-history.state.lightDelete "Delete light $0"
-history.state.lightCopy "Copy light $0"
-history.state.lightMove "Move light $0"
+history.state.lightVisible "调整灯光 $0 可见性"
+history.state.lightIntensity "调整灯光 $0 强度"
+history.state.lightColor "调整灯光 $0 颜色"
+history.state.lightPosition "调整灯光 $0 位置"
+history.state.lightShadow "调整灯光 $0 阴影"
+history.state.lightBias "调整灯光 $0 阴影偏移"
+history.state.lightAttachment "调整灯光 $0 定位方式"
+history.state.lightAdd "添加灯光 light $0"
+history.state.lightDelete "删除灯光 $0"
+history.state.lightCopy "复制灯光 $0"
+history.state.lightMove "移动灯光 $0"
 
 // ------------------------------------------------------
 // pressure menu
@@ -370,7 +370,7 @@ interface "界面设置"
 // bottom buttons
 interface.bottomButtons "底部按钮"
 interface.quickVoxelRemesh "体素网格重构"
-interface.quickWireframe "网格"
+interface.quickWireframe "网格开关"
 interface.quickLockSelection "锁定选择"
 interface.quickLockSelection.help "启用后，您无法通过点击方式选择对象。"
 interface.quickCameraReset "重置视图"
@@ -432,7 +432,7 @@ interface.inlined "滑块紧凑"
 interface.dampingSlider "降低滑块灵敏度"
 interface.dampingSlider.help "勾选此选项可让滑块在调节参数时更加精确。"
 interface.curveToolSymmetric "压力曲线对称"
-interface.curveToolSymmetric.help "使画笔设置里的衰减参数曲线对称。"
+interface.curveToolSymmetric.help "使笔刷设置里的衰减参数曲线对称。"
 interface.animated "动效"
 interface.scale "界面缩放"
 interface.cursorStep "垂直间距"
@@ -673,152 +673,153 @@ resource.import "导入"
 
 // ------------------------------------------------------
 // scene
-scene.title "Scene"
-scene.title.help "By holding the Smooth shortcut you can:
-- select multiple objects in the viewport
+scene.title "场景"
+scene.title.help "按住快捷菜单里的“平滑”快捷方式，您可以：
+- 快速选择多个视图里的对象。
 - range-select objects in the interface list"
-scene.mergeSimple "Simple merge"
-scene.mergeVoxel "Voxel merge"
-scene.voxelResolution "Resolution"
-scene.subtractionTip "Subtraction  : Hide mesh (eye icon)"
-scene.intersectionTip "Intersection : All meshes hidden"
+scene.mergeSimple "简单合并"
+scene.mergeVoxel "体素合并"
+scene.voxelResolution "分辨率"
+scene.subtractionTip "相减运算：隐藏减去对象后点击体素合并。"
+scene.intersectionTip "相交运算：隐藏所有相关模型后点击体素合并。"
 
 // ---------------------------
 // settings
-settings.displayTitle "Display settings"
-settings.fingerRotateLighting "Rotate lighting (3 fingers)"
-settings.fingerRotateLighting.help "Drag 3 fingers horizontally on the canvas to rotate the environment, lights and matcap."
+settings.displayTitle "显示设置"
+settings.fingerRotateLighting "三指旋转灯光"
+settings.fingerRotateLighting.help "在屏幕上使用三指水平移动可使环境、灯光与材质捕捉旋转。"
 // wireframe
-settings.wireframeTitle "Wireframe"
-settings.wireframeDisplay "Wireframe"
-settings.wireframeColor "Wireframe color"
+settings.wireframeTitle "对象网格设置"
+settings.wireframeDisplay "显示对象网格"
+settings.wireframeColor "对象网格颜色"
 // backface
-settings.backfaceTitle "Backface"
-settings.backfaceVisible "Show backface"
-settings.backfaceVisible.help "Backface faces are faces that point 'away' from the camera viewpoint.\n
-All faces (triangle or quad) point to a certain direction, for example on a base sphere will see its faces point towards the outside.\n
-If you move the camera inside the sphere you'll the backface of theses faces."
-settings.backfaceColor "Backface color"
-settings.backfaceColored "Colored backface"
+settings.backfaceTitle "双面显示设置"
+settings.backfaceVisible "双面显示"
+settings.backfaceVisible.help "打开双面显示可以让您看到模型的“内面”。\n
+所有的三角形或四边形都朝向一个特定的方向，例如在基本球体上，所有的面都朝向外部。\n
+如果您将相机移动到球体内部，这些面就是背面。"
+settings.backfaceColor "内面颜色"
+settings.backfaceColored "内面着色"
 // outline
-settings.outlineTitle "Outline"
-settings.outlineEnable "Outline"
-settings.outlineThickness "Thickness"
-settings.outlineColor "Color"
+settings.outlineTitle "轮廓"
+settings.outlineEnable "显示轮廓"
+settings.outlineThickness "粗细"
+settings.outlineColor "颜色"
 // grid
-settings.gridTitle "Grid"
-settings.gridDisplay "Grid"
-settings.gridHeight "Height"
-settings.gridColor "Color"
+settings.gridTitle "世界网格"
+settings.gridDisplay "显示世界网格"
+settings.gridHeight "高度"
+settings.gridColor "颜色"
 // cursor
-settings.cursorWhileSculpting "Show circle while sculpting"
-settings.cursorShowDot "Show small dot"
-settings.cursorShowDot.help "The dot can appear as the camera pivot point or when you are sculpting."
-settings.cursorShowRope "Show rope stabilizer"
+settings.cursorWhileSculpting "雕刻时显示画笔"
+settings.cursorShowDot "显示指针点"
+settings.cursorShowDot.help "指针点会在您移动相机和雕刻时显示。"
+settings.cursorShowRope "显示画笔准星"
 // other
-settings.renderRatio "Render resolution"
-settings.darkenUnselected "Darken unselected meshes"
-settings.smoothShading "Smooth shading"
-settings.partialDraw "Partial drawing"
-settings.partialDraw.help "Feature not polished!\n
-Use it if you are sculpting a relatively small part of a high poly mesh.\n
-It should make the sculpting smoother, but you should not enable wireframe!\n
-Also it might add visual artefacts during the brush strokes"
-settings.partialDrawWarning "Do not forget to turn off this option if the visual artefacts are too bothersome!"
-settings.detailRangeTitle "Voxel/Dynamic remesh"
-settings.detailRange "Max detail range"
-settings.detailRange.help "Maximum value for voxel and dynamic topology level of detail.\n
-Higher values mean more polygons, use at your own risk!"
-settings.showPainting "Show scene painting"
-settings.lightIcon "Light icons"
-settings.lightIcon.help "Display light icons on the canvas so that you can select and edit them directly."
+settings.renderRatio "实时渲染分辨率"
+settings.darkenUnselected "变暗未选中对象"
+settings.smoothShading "平滑阴影"
+settings.partialDraw "局部雕刻"
+settings.partialDraw.help "功能未完善！\n
+仅建议您在雕刻高精度细小模型时使用。\n
+它能让雕刻过程更加流畅，但不建议您打开显示对象网格。\n
+启用此功能可能会在使用画笔时产生一些奇怪的东西。"
+settings.partialDrawWarning "如果显示不正常，请不要忘记关闭此选项！"
+settings.detailRangeTitle "体素/动态网格重构"
+settings.detailRange "最大细节范围"
+settings.detailRange.help "此选项可调节体素和动态拓扑详细程度的最大值。\n
+详细程度越高会使模型产生更多的多边形，请斟酌调整！"
+settings.showPainting "显示场景绘画"
+settings.lightIcon "显示灯光图标"
+settings.lightIcon.help "在屏幕上显示灯光图标，这样您可以直接选择并编辑灯光。"
 settings.showSnapCube "Snap cube"
-settings.loadGuiSettings "Load project gui settings"
-settings.loadGuiSettings.help "When opening or importing a project file, all the gui-related settings embedded in the project will be loaded."
-settings.holeTitle "Hole-filling"
-settings.holeNonManifold "Fill non-manifold"
-settings.holeNonManifold.help "Try to fill non manifold hole.
-This option is not saved in the settings.\n"
-settings.keepImportTopology "Keep topology at import"
-settings.keepImportTopology.help "Use this option if you don't want Nomad to fiddle with the topology of imported mesh.\n
-It will disable vertex/face reordering, removal of vertex/face duplicates and removal of unused vertices."
+settings.loadGuiSettings "加载项目GUI设置"
+settings.loadGuiSettings.help "当您打开或导入项目文件时，同时加载项目中包含的GUI设置。"
+settings.holeTitle "填补孔洞"
+settings.holeNonManifold "填补非流形孔洞"
+settings.holeNonManifold.help "应用将会尝试填补非流形孔洞。\n
+此选项不会被保存在设置中。\n"
+settings.keepImportTopology "在导入时保留拓扑"
+settings.keepImportTopology.help "如您不希望应用破坏导入模型拓扑，请勾选此选项。\n
+应用将不会：\n - 重新排序顶点和面\n - 删除重叠顶点和面\n - 移除未使用顶点\n"
 // multires
-settings.multiresTitle "Multiresolution"
-settings.multiresMaxVertices "Max vertices count"
-settings.multiresMaxVertices.help "Nomad does not perform memory check before subdivision, high poly count can easily lead to crashes."
-settings.multiresLowResVertices "Low resolution vertices threshold"
-settings.multiresLowResVertices.help "A lower resolution of the mesh can be displayed when you move the camera.\n
-You can increase this value if you want to display a higher resolution of the mesh."
+settings.multiresTitle "模型细分"
+settings.multiresMaxVertices "最大顶点数量"
+settings.multiresMaxVertices.help "应用在模型细分之前并不会检查内存，多边形数量过多很容易会导致应用崩溃。"
+settings.multiresLowResVertices "最低分辨率阈值"
+settings.multiresLowResVertices.help "在您移动相机时，模型对象可能会以较低分辨率显示。\n
+如您希望显示更高的分辨率，可以增加此值。"
 // stat
-settings.showSceneStats "Stats"
-settings.statNone "None"
-settings.statSelection "Selection"
-settings.statAll "All"
+settings.showSceneStats "现实场景状态"
+settings.statNone "不显示"
+settings.statSelection "显示所选项"
+settings.statAll "显示全部"
 // experimental
-settings.experimentalTitle "Experimental"
-settings.notSaved "These options are not saved in the settings."
+settings.experimentalTitle "实验性功能"
+settings.notSaved "这些选项不会在设置中保存。"
 // settings.parallel "Parallel sculpting"
 
 // ------------------------------------------------------
 // shading
 shading "渲染模式"
 // lights
-shading.lights "Lights"
-shading.lights.addLight "Add light"
-shading.lights.matcapWarning "Lights are ignored in Matcap mode."
+shading.lights "灯光"
+shading.lights.addLight "添加灯光"
+shading.lights.matcapWarning "灯光选项在材质捕捉模式下不可用。"
 // environment
-shading.environment "Environment"
-shading.environmentImport "Import HDR"
-shading.environmentExposure "Exposure"
-shading.environmentRotation "Rotation"
-shading.environmentRotation.help "You can rotate the environment by dragging 3 fingers horizontally on the viewport."
-shading.environmentAttachedToCamera "Attached to camera"
-shading.environmentAttachedToCamera.help "Attach the environment to the camera.\n
-It will force the lighting to be consistent, which can be useful for sculpting purposes."
+shading.environment "环境"
+shading.environmentImport "导入HDR"
+shading.environmentExposure "曝光"
+shading.environmentRotation "旋转"
+shading.environmentRotation.help "在屏幕上使用三指水平移动可使环境、灯光与材质捕捉旋转。"
+shading.environmentAttachedToCamera "与相机固定"
+shading.environmentAttachedToCamera.help "将环境与相机固定。\n
+这能让光线保持固定，对于雕刻来说非常有用。"
 // matcap
-shading.matcap "Matcap"
-shading.matcapRotation "Rotation"
-shading.matcapRotation.help "You can rotate the matcap by dragging 3 fingers horizontally on the viewport."
-shading.matcapGlobal "Use global matcap"
-shading.matcapGlobal.help "Uncheck this option to use a different matcap for this particular mesh."
+shading.matcap "材质捕捉"
+shading.matcapRotation "旋转"
+shading.matcapRotation.help "在屏幕上使用三指水平移动可使环境、灯光与材质捕捉旋转。"
+shading.matcapGlobal "使用全局材质捕捉。"
+shading.matcapGlobal.help "如果您希望在不同对象上使用不同的材质捕捉，请取消此选项。"
 
 // ------------------------------------------------------
 // bottom shortcut buttons (ICON FIT)
-shortcut.voxel "Voxel"
-shortcut.wire "Wire"
-shortcut.mask "Mask"
-shortcut.reset "Reset"
-shortcut.snap "Snap"
-shortcut.solo "Solo"
-shortcut.lock "Lock"
+shortcut.voxel "重构"
+shortcut.wire "网格"
+shortcut.mask "蒙版"
+shortcut.reset "重设"
+shortcut.snap "切换"
+shortcut.solo "隔离"
+shortcut.lock "锁定"
 
 // ------------------------------------------------------
 // stat
-stat.ramScene "Scene"
-stat.vramScene "Vram Scene"
-stat.ramHistory "History"
-stat.vramRender "Vram Render"
-stat.ramOther "Other"
-stat.usedMemory "Used Memory"
-stat.freeMemory "Free Memory"
-stat.total "Total"
-stat.used "Used"
-stat.free "Free"
-stat.faces "Faces"
-stat.triangles "Triangles"
-stat.vertices "Vertices"
-stat.quads "Quads"
-stat.sceneFaces "Scene faces"
-stat.sceneVertices "Scene vertices"
+stat.ramScene "场景"
+stat.vramScene "显存场景"
+stat.ramHistory "历史"
+stat.vramRender "显存渲染"
+stat.ramOther "其他"
+stat.usedMemory "已用内存："
+stat.freeMemory "剩余内存："
+stat.total "总计："
+stat.used "已使用："
+stat.free "剩余："
+stat.faces "面数："
+stat.triangles "三角面："
+stat.vertices "顶点："
+stat.quads "四边形："
+stat.sceneFaces "场景面数："
+stat.sceneVertices "场景顶点数："
 
 // ------------------------------------------------------
 // stroke
-stroke "Stroke"
-strokeTitle "Stroke ($0)"
-stroke.useWorldRadius "World-space radius"
-stroke.useWorldRadius.help "This is shared among every tools."
-stroke.useShareRadius "Share radius"
-stroke.useShareRadius.help "Share the radius value among every tools."
+stroke "笔刷"
+strokeTitle "笔刷设置 ($0)"
+stroke.useWorldRadius "恒定笔刷半径"
+stroke.useWorldRadius.help "勾选后笔刷半径将不会随着视图的缩放而改变。\n
+此选项将会影响到所有工具。"
+stroke.useShareRadius "相同笔刷半径"
+stroke.useShareRadius.help "使所有工具的笔刷半径相同。"
 stroke.minSpacingAdjustIntensity "Adjust spacing intensity"
 stroke.minSpacingAdjustIntensity.help "Adjust the brush intensity to ensure consistent deformation depending on the stroke spacing."
 stroke.minSpacing "Stroke spacing"
