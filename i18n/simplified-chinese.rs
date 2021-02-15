@@ -32,7 +32,7 @@ about.creditsArts "MatCap与HDRI"
 alert.confirmDelete "请确认是否删除？"
 alert.confirmDelete.yes "确认删除"
 alert.hole.nothing "该对象没有孔洞！"
-alert.shape.notVisible "当前网格不可见！"
+alert.shape.notVisible "当前对象不可见！"
 alert.trim.nothing "未找到可裁切对象"
 alert.trim.full  "对象不能完全裁切"
 alert.mask.noExtract "未找到可提取对象"
@@ -42,14 +42,14 @@ alert.separate.fail "该对象只有一部分，所以无法分开"
 alert.voxelRemesh.success "网格重构成功！"
 alert.voxelRemesh.empty "网格重构失败，因为结果并未产生面。"
 alert.voxelRemesh.invalidInput "输入无效！"
-alert.matrix.clone "The object will be duplicated"
+alert.matrix.clone "将复制此对象"
 alert.gizmo.usePivot "使用自定义坐标原点"
 alert.gizmo.useAuto "使用自动坐标原点"
 alert.gizmo.editPivot "编辑坐标原点模式"
 alert.gizmo.editObject "编辑对象模式"
 alert.dynamic.enable "启用动态网格"
 alert.dynamic.disable "关闭动态网格"
-alert.colorPicker "在网格上拖动手指选取一个颜色"
+alert.colorPicker "在对象上拖动手指选取一个颜色"
 alert.camera.resetView "重置视图"
 alert.camera.snapView "切换视图"
 alert.mask.show "显示蒙版"
@@ -180,7 +180,7 @@ file.import.add "添加"
 file.import.add.confirm "确定添加新文件？"
 
 file.exportSelection "只导出选择部分"
-file.exportSelection.help "只导出当前选择的网格，而不是所有场景。"
+file.exportSelection.help "只导出当前选择对象，而不是所有场景。"
 file.convertToQuad "Reconstruct quad"
 file.convertToQuad.help "Reconstruct quads from triangles by pairing triangle (if they are adjacent in the files)."
 
@@ -727,7 +727,7 @@ settings.partialDraw.help "功能未完善！\n
 settings.partialDrawWarning "如果显示不正常，请不要忘记关闭此选项！"
 settings.detailRangeTitle "体素/动态网格重构"
 settings.detailRange "最大细节范围"
-settings.detailRange.help "此选项可调节体素和动态拓扑详细程度的最大值。\n
+settings.detailRange.help "此选项可调节体素和动态网格详细程度的最大值。\n
 详细程度越高会使模型产生更多的多边形，请斟酌调整！"
 settings.showPainting "显示场景绘画"
 settings.lightIcon "显示灯光图标"
@@ -820,96 +820,95 @@ stroke.useWorldRadius.help "勾选后笔刷半径将不会随着视图的缩放�
 此选项将会影响到所有工具。"
 stroke.useShareRadius "相同笔刷半径"
 stroke.useShareRadius.help "使所有工具的笔刷半径相同。"
-stroke.minSpacingAdjustIntensity "Adjust spacing intensity"
-stroke.minSpacingAdjustIntensity.help "Adjust the brush intensity to ensure consistent deformation depending on the stroke spacing."
-stroke.minSpacing "Stroke spacing"
-stroke.minSpacing.help "Spacing between each stroke, relative to the tool radius.\n
-Lower value will allow smoother stroke but performance will degrade."
-stroke.lazySmooth "Stroke smoothing"
-stroke.lazySmooth.help "Average multiple pointer position to get a smoother stroke.\n
-With high values, the stroke will lag behind the pointer but will eventually catch up."
-stroke.lazyRadius "Lazy rope stabilizer"
-stroke.lazyRadius.help "Strokes will lag behind the pointer position according to a certain distance.\n
-This can be used to draw smooth lines."
-stroke.globalSettings "This is a global setting"
-stroke.snapRadius "Snap radius"
-stroke.snapRadius.help "Snap the stroke if the pointer lies close to the last recorded stroke.\n
-This can be useful when drawing long continuous lines, while doing frequent pauses."
-stroke.sculptOffset "Stroke offset"
-stroke.sculptOffset.help "Apply a constant offset on the stroke.\n
-This option is there to help for small screen when using fingers, so that your finger doesn't cover the stroke."
-stroke.accumulate "Accumulate stroke"
-stroke.accumulate.help "If this option is enabled, there is no limit to how much matter you can add/remove per stroke."
-stroke.useDynamicTopology "Allow dynamic topology"
-stroke.connectedTopology "Connected topology"
-stroke.connectedTopology.help "This option will only sculpt the vertices that are linked to the picked surface.\n
-This is typically used for the Move tool, for example if you want to exclusively move a part that self-intersect with another part."
-stroke.onlyFrontFace "Front-facing vertex only"
-stroke.onlyFrontFace.help "This option will ignore back facing vertices.\n
-It can be useful if you want to paint part of a thin geometry without impacting the other side.\n
-It also works for sculpting but you might experience some artefacts."
-stroke.intensityMultiplier "Intensity multiplier"
-stroke.curveFalloff "Falloff"
-stroke.onlyLasso "Settings only active for the lasso tool."
+stroke.minSpacingAdjustIntensity "调整间隔强度"
+stroke.minSpacingAdjustIntensity.help "调整笔刷强度，以保证根据笔画间距产生一定的变化。"
+stroke.minSpacing "笔刷间距"
+stroke.minSpacing.help "每个笔画之间的距离，与笔画半径有一定的相关性。\n
+将该值调低可使笔刷显得更加顺滑，但也会影响性能。"
+stroke.lazySmooth "顺滑笔画"
+stroke.lazySmooth.help "通过平均计算多个点来获得更加平滑的笔画。\n
+将该值调高，会使笔画不跟手。"
+stroke.lazyRadius "笔刷落后"
+stroke.lazyRadius.help "笔画将会按一定的距离落后于指针位置。\n
+此功能可用于绘制平滑线条。"
+stroke.globalSettings "这是一个全局设置。"
+stroke.snapRadius "续接笔画范围"
+stroke.snapRadius.help "如果落笔处在最后一笔笔刷附近，会自动续接上。\n
+此功能可用于绘制长线条，但需要频繁停顿时。"
+stroke.sculptOffset "笔刷偏移"
+stroke.sculptOffset.help "使笔刷持续偏移于触控处\n
+此功能适用于小屏幕设备。在使用时，手指不会遮挡到屏幕。"
+stroke.accumulate "叠加笔画"
+stroke.accumulate.help "如启用此选项，则每个笔画可添加或减去的数量将不会有限制。"
+stroke.useDynamicTopology "允许动态拓扑"
+stroke.connectedTopology "连接拓扑"
+stroke.connectedTopology.help "启用此选项后，画笔将会只雕刻连接到所选表面的顶点。\n
+此选项一般适用于移动工具, 例如专门移动与另一零件自相交的零件。 "
+stroke.onlyFrontFace "只影响对象表面"
+stroke.onlyFrontFace.help "打开此选项后，应用会忽略对背面的操作。\n
+该功能可帮助您在不影响另一侧的情况下在几何平面上绘画。\n
+该选项也可用于雕刻，但您可能会遇到一些不便。"
+stroke.intensityMultiplier "笔刷强度放大"
+stroke.curveFalloff "衰减"
+stroke.onlyLasso "该设置仅对套索工具有效。"
 // alpha
-stroke.alpha "Alpha" 
-stroke.alphaInvert "Invert value"
-stroke.alphaScale "Alpha scale"
-stroke.alphaScale.help "At minimum value, the alpha square is inside the tool circle radius.\n
-At maximum value, the tool circle radius is inside the alpha square."
+stroke.alpha "形状" 
+stroke.alphaInvert "形状反相"
+stroke.alphaScale "形状缩放"
+stroke.alphaScale.help "该值最小时,笔刷形状方框与半径圆内接。\n
+该值最大时，笔刷形状方框与半径圆外切。"
 // stroke type
-stroke.strokeType "Stroke type"
-stroke.strokeTypeDot "Dot"
-stroke.strokeTypeDrag "Drag"
-stroke.strokeTypeGrab "Grab"
-stroke.strokeTypeGrabRadius "Grab - dynamic radius"
-stroke.strokeTypeGrabIntensity "Grab - dynamic intensity"
+stroke.strokeType "笔刷类型"
+stroke.strokeTypeDot "点"
+stroke.strokeTypeDrag "拖拽"
+stroke.strokeTypeGrab "抓取"
+stroke.strokeTypeGrabRadius "抓取 - 可调半径"
+stroke.strokeTypeGrabIntensity "抓取 - 可调强度"
 
 // ------------------------------------------------------
 // symmetry
-symmetry "Symmetry"
-symmetry.enable "Enabled"
-symmetry.toolIgnore "The current tool ignores symmetry."
+symmetry "对称"
+symmetry.enable "启用对称"
+symmetry.toolIgnore "当前工具不适用对称。"
 // method
-symmetry.method "Method:"
-symmetry.method.help "-- Local
-The symmetry plane will move along the mesh when you use one of the transform tools (rotate, translate or gizmo).\n
-
--- World
-The symmetry plane is fixed and will not move."
-symmetry.methodWorld "World"
-symmetry.methodLocal "Local"
+symmetry.method "对称类型"
+symmetry.method.help " - 本地对称
+可使用轴向变换或自由变换等工具移动调整对称平面。\n
+ - 世界对称
+对称平面是固定不动的。"
+symmetry.methodWorld "世界对称"
+symmetry.methodLocal "本地对称"
 // mirror
-symmetry.mirror "Mirroring"
-symmetry.mirror.help "Try to re-apply the symmetry without impacting the topology.\n
-To succeed, the topology need to be symmetrical and at least one edge should lie exactly on the symmetry line.\n
-If it fails, you will be proposed to force the symmetry, but it will impact the topology."
-symmetry.apply "Mirror"
-symmetry.flip "Flip direction"
-symmetry.flip.help "Use this option to change the side in which the details are projected."
-symmetry.applyFail "Failed to apply symmetry:
+symmetry.mirror "镜像"
+symmetry.mirror.help "尝试在不影响拓扑的情况下重新应用对称。\n
+拓扑必须对称且至少有一个边缘恰好位于对称平面上才能成功应用。\n
+如果镜像失败，将会建议您强制对称。但这样会影响到拓扑。"
+symmetry.apply "应用镜像"
+symmetry.flip "翻转方向"
+symmetry.flip.help "勾选此选项可更改投影面的方向。"
+symmetry.applyFail "对称失败：
 - $0\n
-Do you want to enforce symmetry by mirroring the mesh?";
+是否使用镜像来强制对称？";
 // reset
-symmetry.resetOrigin "Reset Origin"
-symmetry.resetCenterMesh "Mesh center"
-symmetry.resetCenterWorld "World center"
-symmetry.resetDirection "Reset Direction"
+symmetry.resetOrigin "重设对称中心"
+symmetry.resetCenterMesh "对象中心"
+symmetry.resetCenterWorld "世界中心"
+symmetry.resetDirection "重设镜像平面"
 // advanced
-symmetry.showLine "Show line"
-symmetry.showPlane "Show plane"
-symmetry.editWarning "Symmetry edit is experimental."
-symmetry.edit "Gizmo edit"
-symmetry.edit.help "You can freely set the symmetry plane.\n
-This feature is a bit experimental and you should probably never use it."
+symmetry.showLine "显示线条"
+symmetry.showPlane "显示平面"
+symmetry.editWarning "编辑镜像平面是实验性功能。"
+symmetry.edit "轴向变换"
+symmetry.edit.help "您可以自由改变镜像平面。\n
+此功能并未完善，请尽量不要使用。"
 
 // ------------------------------------------------------
 // tools
 // left bar generic (ICON FIT)
-tool.sliderDegree "Rotate $0 °"
-tool.sliderRadius "Radius $0 %"
-tool.sliderIntensity "Intensity $0 %"
-tool.dynTopo "DynTopo"
+tool.sliderDegree "角度 $0 °"
+tool.sliderRadius "半径 $0 %"
+tool.sliderIntensity "强度 $0 %"
+tool.dynTopo "动态拓扑"
 tool.symmetry "对称"
 tool.mirror "镜像"
 tool.clay "黏土"
@@ -948,98 +947,98 @@ tool.transform.rotate "旋转"
 tool.transform.scale "缩放"
 tool.measure "测量"
 tool.view "浏览模式"
-tool.shape.flip "Flip"
-tool.shape.view "View"
-tool.shape.lasso "Lasso"
-tool.shape.curve "Curve"
-tool.shape.polygon "Polygon"
-tool.shape.rectangle "Rect"
-tool.shape.ellipse "Ellipse"
-tool.shape.line "Line"
+tool.shape.flip "翻转"
+tool.shape.view "浏览"
+tool.shape.lasso "套索"
+tool.shape.curve "曲线"
+tool.shape.polygon "多边形"
+tool.shape.rectangle "矩形"
+tool.shape.ellipse "椭圆"
+tool.shape.line "直线"
 // title
-tool.settingsTitle "Settings ($0)"
+tool.settingsTitle "设置 ($0)"
 // clay
-tool.clay.flattenOffset "Flatten offset"
+tool.clay.flattenOffset "展平偏移 "
 // crease
-tool.crease.pinchFactor "Pinch force"
+tool.crease.pinchFactor "力度"
 // layer
 tool.layer.removeInfluence "Use current layer offset"
 tool.layer.removeInfluence.help "This option is only active when there is a current layer selected.\n
 It will use the current layer offset to limit the displacement over strokes."
-tool.layer.noLayerSelected "This option is only available if a current layer is selected"
+tool.layer.noLayerSelected "此选项仅在选择图层后可用。"
 // flatten
-tool.flatten.planeLock "Lock plane"
+tool.flatten.planeLock "锁定平面"
 // smooth
 tool.smooth.stickyBorder "Sticky vertex on border"
 // masking
-tool.mask.clear "Clear"
-tool.mask.invert "Invert"
-tool.mask.blur "Blur"
-tool.mask.sharpen "Sharpen"
-tool.mask.thickness "Shell thickness"
-tool.mask.polish "Border smoothness"
-tool.mask.extract "Extract"
-tool.mask.split "Split"
-tool.mask.closeMask "Closing action (masked):"
-tool.mask.closeUnmask "Closing action (unmasked):"
-tool.mask.closeAction "Closing action:"
-tool.mask.closeActionNone "None"
-tool.mask.closeActionFill "Fill"
-tool.mask.closeActionShell "Shell"
-tool.mask.closeAction.help "-- None
-Simply extract the part and let the extracted part opened.
+tool.mask.clear "清除"
+tool.mask.invert "反相"
+tool.mask.blur "模糊"
+tool.mask.sharpen "锐化"
+tool.mask.thickness "抽壳厚度"
+tool.mask.polish "平滑边界"
+tool.mask.extract "抽壳"
+tool.mask.split "分离"
+tool.mask.closeMask "分离操作（蒙版区域）："
+tool.mask.closeUnmask "分离操作（非蒙版区域）："
+tool.mask.closeAction "分离操作："
+tool.mask.closeActionNone "无"
+tool.mask.closeActionFill "填补"
+tool.mask.closeActionShell "抽壳"
+tool.mask.closeAction.help " - 无
+仅分离蒙版区域，并且不封闭对象。
 
--- Fill
-Hole is filled and smoothed.
-Do not use this option for flat surface.
+ - 填补
+孔洞会被填补并光滑。
+不要在平面上使用。
 
 -- Shell
-Close the extracted shape by using the thickness value."
+通过增加厚度的方式来封闭图形。"
 // matrix
-tool.matrix "Matrix"
-tool.matrix.clone "Clone"
-tool.matrix.action "Action"
-tool.matrix.action.help "-- Move origin
-Move the mesh to the world origin.
+tool.matrix "坐标"
+tool.matrix.clone "克隆"
+tool.matrix.action "操作"
+tool.matrix.action.help " - 返回原点
+将对象移回原位。
 
--- Reset
-Reset the mesh transform to identity.
+ - 重设
+重设对象的所有变换。
 
--- Bake
-Apply the matrix to the vertex and reset the matrix. Visually, nothing should change."
-tool.matrix.transformOperation "Transform operation"
-tool.matrix.translation "Translation"
-tool.matrix.rotation "Rotation"
-tool.matrix.scale "Scale"
-tool.matrix.uniformScale "Uniform scale"
-tool.matrix.uniformScale.help "Nomad cannot support non-uniform scale as object transform, so it will be applied as a vertex transformation."
-tool.matrix.moveToOrigin "Move origin"
-tool.matrix.resetTransform "Reset"
-tool.matrix.bakeTransform "Bake"
-tool.matrix.bakeTransform.confirm "The transform will be baked in the active layer.\n\nDo you confirm?"
-tool.matrix.applyMethod "Method:"
-tool.matrix.applyMethodAuto "Auto"
-tool.matrix.applyMethodVertex "Vertex"
-tool.matrix.applyMethodObject "Object"
-tool.matrix.applyMethod.help "-- Auto
-Let Nomad choose between Vertex or Object mode.
-Typically, object is preferred unless symmetry is enabled or if there is masking on the mesh.
+-- 烘焙
+重新记录对象变换后的顶点坐标。在视觉上什么都不会改变。"
+tool.matrix.transformOperation "变换操作"
+tool.matrix.translation "位移"
+tool.matrix.rotation "旋转"
+tool.matrix.scale "缩放"
+tool.matrix.uniformScale "等比缩放"
+tool.matrix.uniformScale.help "应用不支持非等比缩放的对象变换，因此将用顶点变换替代。"
+tool.matrix.moveToOrigin "返回原点"
+tool.matrix.resetTransform "重设"
+tool.matrix.bakeTransform "烘焙"
+tool.matrix.bakeTransform.confirm "变换结果将会被烘焙在活动图层上。\n\n您确定要继续吗？"
+tool.matrix.applyMethod "模式："
+tool.matrix.applyMethodAuto "自动选择"
+tool.matrix.applyMethodVertex "基于顶点"
+tool.matrix.applyMethodObject "基于对象"
+tool.matrix.applyMethod.help " - 自动选择：
+让应用自动选择两种模式。
+一般会选择基于对象模式，除非打开了对称或者在对象上有蒙版。
 
--- Vertex
-Vertices are transformed individually.
-Symmetry and mask are taken into account.
-For primitives that are not validated, Object mode is forced.
+ - 基于顶点：
+顶点坐标会独自变换。
+该变换包括对称与蒙版变换。
+如果变换的是基本体，将会强制使用基于对象模式。
 
--- Object
-The object is transformed as a whole.
-Symmetry and mask are ignored.
-If you use non-uniform scaling, Vertex mode will be forced."
+ - 基于对象：
+对象会整体变换。
+不会变换对称与蒙版。
+如果进行非等比缩放，将强制使用基于顶点模式。"
 // transform
-tool.transform.multiTouch "Multi-touch"
-tool.transform.multiTouch.help "If this option is disabled, you can only use one mode (translate, rotate, scale) at a time."
+tool.transform.multiTouch "多点触控"
+tool.transform.multiTouch.help "如果您禁用此选项，则每次都只能使用移动、旋转、缩放一种操作。"
 // gizmo
-tool.gizmo.size "Widget size"
-tool.gizmo.autoHide "Hide on interaction"
+tool.gizmo.size "部件尺寸"
+tool.gizmo.autoHide "自动隐藏"
 tool.gizmo.tap "Move custom pivot on single-tap"
 tool.gizmo.tap.help "This option is only effective in custom pivot mode (Auto disabled).\n
 -- None
