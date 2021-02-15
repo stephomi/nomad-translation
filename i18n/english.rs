@@ -502,6 +502,27 @@ material.matcapWarning "Roughness and metalness will not be visible with matcap 
 material.opacity = "Opacity"
 
 // ------------------------------------------------------
+// menu name (visible on small screen menu are collapsed)
+menu.files "Files"
+menu.scene "Scene"
+menu.topology "Topology"
+menu.render "Render"
+menu.postProcess "PostProcess"
+menu.camera "Camera"
+menu.background "Background"
+menu.tool "Tool"
+menu.stroke "Stroke"
+menu.paint "Paint"
+menu.symmetry "Symmetry"
+menu.pressure "Pressure"
+menu.layers "Layers"
+menu.settings "Settings"
+menu.interface "Interface"
+menu.history "History"
+menu.historySettings "Settings"
+menu.about "About"
+
+// ------------------------------------------------------
 // mesh sub menu
 mesh.action "Action"
 mesh.closeHoles "Close holes"
