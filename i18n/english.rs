@@ -696,9 +696,7 @@ resource.import "Import"
 // ------------------------------------------------------
 // scene
 scene.title "Scene"
-scene.title.help "By holding the Smooth shortcut you can:
-- select multiple objects in the viewport
-- range-select objects in the interface list"
+scene.title.help "When using the selection checkbox, hold and drag your finger to select other objects easily."
 scene.mergeSimple "Simple merge"
 scene.mergeVoxel "Voxel merge"
 scene.voxelResolution "Resolution"
