@@ -161,6 +161,7 @@ file.project.delete.confirmOk "Are you sure?"
 
 // autosave
 file.project.autoSave "Project Auto Save"
+file.project.autoSave.confirm "Disable Auto Save?"
 file.project.autoSave.help "Save your project in a separate file at regular interval.
 The autoSave file can be found in:
 
