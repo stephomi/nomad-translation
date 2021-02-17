@@ -66,7 +66,7 @@ alert.autoSave.auto "将在 $0s 后自动保存"
 alert.warning.needLayer "当前工具仅在活动图层上可用"
 alert.warning.multiresLost "模型细分将会丢失"
 alert.warning.paintingHidden "绘画已被隐藏，请在设置面板里将其打开。"
-alert.warning.noPartialWireframe "打开线框显示时，局部绘画将被禁用。"
+alert.warning.noPartialWireframe "打开线框显示时，局部雕刻将被禁用。"
 // bottom tip
 alert.tip.polygonDot "轻点绿色图标以应用几何体。"
 alert.tip.shapeOrthographic "为了避免因透视视图而产生的偏差，建议在相机设置里切换到正交视图。"
@@ -819,17 +819,17 @@ stat.vramScene "显存场景"
 stat.ramHistory "历史"
 stat.vramRender "显存渲染"
 stat.ramOther "其他"
-stat.usedMemory "已用内存："
-stat.freeMemory "剩余内存："
-stat.total "总计："
-stat.used "已使用："
-stat.free "剩余："
-stat.faces "面数："
-stat.triangles "三角面："
-stat.vertices "顶点："
-stat.quads "四边形："
-stat.sceneFaces "场景面数："
-stat.sceneVertices "场景顶点数："
+stat.usedMemory "已用内存"
+stat.freeMemory "剩余内存"
+stat.total "总计"
+stat.used "已使用"
+stat.free "剩余"
+stat.faces "面数"
+stat.triangles "三角面"
+stat.vertices "顶点"
+stat.quads "四边形"
+stat.sceneFaces "场景面数"
+stat.sceneVertices "场景顶点数"
 
 // ------------------------------------------------------
 // stroke
@@ -1059,128 +1059,128 @@ tool.transform.multiTouch.help "如果您禁用此选项，则每次都只能使
 // gizmo
 tool.gizmo.size "部件尺寸"
 tool.gizmo.autoHide "自动隐藏"
-tool.gizmo.tap "Move custom pivot on single-tap"
-tool.gizmo.tap.help "This option is only effective in custom pivot mode (Auto disabled).\n
--- None
-Nothing happen when tapping on the mesh.
+tool.gizmo.tap "单击改变视图中心点"
+tool.gizmo.tap.help "此选项仅在自定义坐标原点模式下有效（默认禁用）。\n
+-- 无
+点击对象后无任何操作。
 
--- First hit
-Move the gizmo on the first intersection.
+-- 点击
+仅在第一次点击对象时改变原点。
 
--- Middle stab
-Move the gizmo on the average of the first two intersections."
-tool.gizmo.tapNone "None"
-tool.gizmo.tapFirstHit "First hit"
-tool.gizmo.tapMiddleStab "Middle stab"
+-- 平均
+将在圆点坐标设置在前两次点击直线的中点。"
+tool.gizmo.tapNone "无"
+tool.gizmo.tapFirstHit "点击"
+tool.gizmo.tapMiddleStab "中点"
 // trim
-tool.hole "Hole filling"
-tool.hole.fillHoles "Fill holes"
+tool.hole "填补孔洞"
+tool.hole.fillHoles "填补孔洞"
 // tool.hole.reproject "Reproject filled holes"
 // tool.hole.reproject.help "Try to reproject the filled hole so that it follows more closely the cut.
 // However, it will only work for rather simple projection."
-tool.hole.bridges "Screen-space boolean"
-tool.hole.bridges.help "If this option is enabled, you can punch holes in the volume.
-The cut slope will also follow more closely the cutting shape."
-tool.hole.threshold "Threshold epsilon"
-tool.hole.threshold.help "Tweaking this value might help with the hole filling algorithm."
-tool.hole.smoothing "Hole smoothing"
+tool.hole.bridges "真实裁切"
+tool.hole.bridges.help "启用此选项后。您可以用裁切的方式在物体上打洞。
+裁切效果也会更加接近于您所绘制的形状。"
+tool.hole.threshold "填充阈值"
+tool.hole.threshold.help "调整该值以获得更好的填充效果。"
+tool.hole.smoothing "平滑孔洞"
 // smudge
 // tool.smudge.projectScreen 
 // tool.smudge.projectScreen.help "Smudge relies heavily on polygon density.\n
 // Use this option if you want consistent smudge performance by projecting only once at the beginning of the stroke."
-tool.smudge.fullProject "Project once"
-tool.smudge.fullProject.help "You can make the smudge stroke faster by projecting the mesh only once at the beginning of the stroke.\n
-If you don't move the camera between your smudge strokes, the projection can be avoided as well.\n
-This setting is ignored if dynamic topology is activated."
-tool.smudge.quality "Quality"
-tool.smudge.quality.help "It changes the resolution of the projected pixels, lower values means faster strokes."
+tool.smudge.fullProject "单次投影"
+tool.smudge.fullProject.help "您可以在涂抹之前打开此选项来加快笔刷的响应速度。\n
+如果您在涂抹时不转动相机，也可以避免再次运算。\n
+如果激活了动态网格，将会忽略此设置。 "
+tool.smudge.quality "质量"
+tool.smudge.quality.help "此选项可改变投影的分辨率，将该值调低可提高笔刷速度。"
 // trim / split / project / selMask
-tool.shape "Shape"
-tool.shape.rectangleSquare "Square"
-tool.shape.rectangleCentered "Centered"
-tool.shape.ellipseCircle "Circle"
-tool.shape.ellipseCentered "Centered"
-tool.shape.lineRotateStep "Rotate step"
+tool.shape "形状"
+tool.shape.rectangleSquare "正方形"
+tool.shape.rectangleCentered "中心"
+tool.shape.ellipseCircle "圆形"
+tool.shape.ellipseCentered "中心"
+tool.shape.lineRotateStep "旋转角度"
 // measure
-tool.measure.goldenRatio "Show golden ratio"
+tool.measure.goldenRatio "显示黄金分割比"
 // fallback
-tool.noSettings "This tool doesn't have any specific settings."
+tool.noSettings "该工具无特殊设置。"
 
 // ------------------------------------------------------
 // topology
-topology "Topology"
+topology "拓扑"
 // multires
-topology.multires.title "Multiresolution"
-topology.multires.title.help "Keep multiple resolution of a mesh.\n
-If you make changes in a lower resolution, details from the higher resolutions will be reprojected when you switch back.\n
-Layers are available on every resolution."
-topology.multiresReverse "Reverse"
-topology.multiresReverse.confirm "Could not create base subdivision.\n
-The current topoloy is probably not a result from a subdivision."
-topology.multiresReverse.confirm.yes "ok"
-topology.multiresReverse.confirm.cancel ""
-topology.multiresSubdivide "Subdivide"
-topology.multiresSubdivideConfirm "The mesh will have $0M vertices, are you sure?"
-topology.multiresDeleteLower "Delete lower"
-topology.multiresDeleteHigher "Delete higher"
-topology.multiresKeepTriangles "Keep triangles"
-topology.multiresLinear "Flat subdivision"
+topology.multires.title "多重网格"
+topology.multires.title.help "保留对象的不同分辨率。\n
+您可以在低分辨率对物体进行修改，之后在高分辨率将细节重新投影。\n
+图层在不同分辨率下都可用。"
+topology.multiresReverse "粗化"
+topology.multiresReverse.confirm "无法再进一步粗化模型。\n
+当前对象的拓扑可能不是细分产生的。"
+topology.multiresReverse.confirm.yes "确认"
+topology.multiresReverse.confirm.cancel "取消"
+topology.multiresSubdivide "细分"
+topology.multiresSubdivideConfirm "该对象将会产生 $0M 个顶点，您确定要继续吗？"
+topology.multiresDeleteLower "删除低模"
+topology.multiresDeleteHigher "删除高模"
+topology.multiresKeepTriangles "保留三角形"
+topology.multiresLinear "平面细分"
 // voxel
-topology.voxel.title "Voxel remeshing"
-topology.voxel.title.help "Remeshing by sampling the mesh on a grid.\n
-If the object is not closed (watertight), an hole-filling algorithm will be applied first.\n
-Layers are reprojected after remeshing but the quality will degrade."
-topology.voxelResolution "Resolution"
-topology.voxelRemesh "Remesh"
+topology.voxel.title "体素网格重构"
+topology.voxel.title.help "通过在网格上采样对象来重新整理网格。\n
+如对象未封闭，则会先填充孔洞。\n
+图层在应用后会重新投影，但质量会受到影响。"
+topology.voxelResolution "分辨率"
+topology.voxelRemesh "重构"
 // dynamic topology
-topology.surfaceUniform "Remesh"
-topology.surfaceDetail "Detail"
-topology.surfaceDetail.help "Unlike voxel remeshing, surface remeshing doesn't require the mesh to be closed.\n
-It can also support masking so that you can protect some part of the mesh from topology changes.\n
-Layers are updated correctly."
-topology.surfaceMethod "Method"
-toplogy.surfaceMethodUniformisation "Uniformisation"
-toplogy.surfaceMethodSubdivision "Subdivision"
-toplogy.surfaceMethodDecimation "Decimation"
-topology.surfaceMethod.help "Behavior of dynamic topology:
-- Uniformisation: add and remove detail
-- Subdivision: add detail
-- Decimation: remove detail"
-topology.surfaceUseMasking "Protect masked area"
-topology.surfaceUseMasking.help "The masked areas will protect the topology from beging changed."
-topology.surfaceExtrapolate "Vertex extrapolation"
+topology.surfaceUniform "重构"
+topology.surfaceDetail "细节"
+topology.surfaceDetail.help "不同于体素网格重构，表面网格重构不需要封闭对象。\n
+此功能还支持蒙版，可以保护您不希望被更改拓扑的部分。\n
+图层不会受到影响。"
+topology.surfaceMethod "模式"
+toplogy.surfaceMethodUniformisation "标准"
+toplogy.surfaceMethodSubdivision "细分"
+toplogy.surfaceMethodDecimation "粗化"
+topology.surfaceMethod.help "不同模式的影响：
+ - 标准：智能判断
+ - 细分：增加细节
+ - 粗化：移除细节"
+topology.surfaceUseMasking "保护蒙版区域"
+topology.surfaceUseMasking.help "蒙版区域的拓扑将不会受到影响。"
+topology.surfaceExtrapolate "顶点扩张"
 // dynamic
-topology.dynamic "Dynamic topology"
-topology.dynamicActivate "Enabled"
-topology.dynamicActivate.help "With dynamic topology, sculpting tools can subdivide or simplify the mesh locally in real time.\n
-This feature can have a noticeable impact on performance.\n
-Layers are updated correctly."
-topology.dynamicDetailLevel "Detail"
-topology.dynamicDetailEdge "Detail"
-topology.dynamicDetailMethod "Level of detail based on..."
-topology.dynamicDetailMethodZoom "Zoom"
-topology.dynamicDetailMethodRadius "Radius"
-topology.dynamicDetailMethodConstant "Constant"
-topology.dynamicDetailMethod.help "-- Zoom
-The level of detail is based on how far you are from the surface.
+topology.dynamic "动态网格"
+topology.dynamicActivate "启用"
+topology.dynamicActivate.help "动态拓扑可以让您在雕刻过程中实时增删网格。\n
+开启此功能可能会对性能产生较大影响。\n
+图层不会受到影响。"
+topology.dynamicDetailLevel "细节"
+topology.dynamicDetailEdge "细节等级"
+topology.dynamicDetailMethod "细节等级模式"
+topology.dynamicDetailMethodZoom "视野"
+topology.dynamicDetailMethodRadius "半径"
+topology.dynamicDetailMethodConstant "网格"
+topology.dynamicDetailMethod.help " - 视野
+视野缩放程度决定拓扑的详细程度。
 
--- Radius
-The tool radius defines the amount of detail.
+ - 半径
+笔刷半径决定拓扑的详细程度。
 
 -- Constant
-The detail is fixed, the detail value is shared with the voxel slider as well."
-topology.dynamicQuality "Prefer..."
-topology.dynamicQuality.help "If you choose Quality, the 2 main differences are:
-- refinement is applied before the sculpting operator, you will get less interpolating artefact when painting or sculpting very small details
-- refinement is not applied incrementally, if you sculpt very small details or do quick strokes, the topology will always be correctly refined\n
-For better performance, and if you plan on using this option, you might consider enabling the \"partial drawing\" option in the Settings panel."
-topology.dynamicQualitySpeed "Speed"
-topology.dynamicQualityQuality "Quality"
-topology.dynamicUsePressure "Use pressure on radius"
-topology.dynamicUsePressure.help "Use this option if you want the pen pressure impact on tool radius to impact the level of detail."
-topology.dynamicBrush "Brush"
-topology.dynamicGlobal "Global"
-topology.dynamicSettings "Settings - Brush / Global"
+细节等级决定拓扑的详细程度。"
+topology.dynamicQuality "质量"
+topology.dynamicQuality.help "性能模式特性如下：
+- 在雕刻前会对模型进行细分，可以减少您在雕刻过程中产生的伪像。
+- 无法逐步应用细化功能，如果您雕刻非常小的细节或进行快速笔触，则拓扑将始终正确进行细化。\n
+如果您希望使用性能模式，可以考虑在设置面板中开启“局部雕刻”功能。"
+topology.dynamicQualitySpeed "速度"
+topology.dynamicQualityQuality "性能"
+topology.dynamicUsePressure "同时使用压感"
+topology.dynamicUsePressure.help "启用此选项后，压感也会对对象产生影响。"
+topology.dynamicBrush "笔刷"
+topology.dynamicGlobal "全局"
+topology.dynamicSettings "动态拓扑笔刷设置"
 
 // ------------------------------------------------------
 // version trial
