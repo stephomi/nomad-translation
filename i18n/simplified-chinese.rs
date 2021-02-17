@@ -386,11 +386,12 @@ interface.quickToggle "反向操作锁定"
 interface.quickPaint "材质"
 interface.quickAlpha "画笔形状"
 interface.maskGesture "蒙版手势"
-interface.screenTooSmall "If the screen is too small, some buttons won't be displayed."
+interface.screenTooSmall "如设备屏幕太小，一些图标将不会显示。"
 interface.maskGesture.help "按住蒙版快捷方式，并且：\n
 - 在背景上拖动可清除蒙版
 - 在背景上点击可反相蒙版
 - 在对象上点击可锐化蒙版边界"
+
 
 // colors
 interface.colors "界面颜色"
@@ -499,6 +500,27 @@ material "材质"
 material.addNew "添加新材质"
 material.matcapWarning "粗糙度与金属强度在材质捕捉模式下不可用。"
 material.opacity = "透明度"
+
+// ------------------------------------------------------
+// menu name (visible on small screen menu are collapsed)
+menu.files "Files"
+menu.scene "Scene"
+menu.topology "Topology"
+menu.render "Render"
+menu.postProcess "PostProcess"
+menu.camera "Camera"
+menu.background "Background"
+menu.tool "Tool"
+menu.stroke "Stroke"
+menu.paint "Paint"
+menu.symmetry "Symmetry"
+menu.pressure "Pressure"
+menu.layers "Layers"
+menu.settings "Settings"
+menu.interface "Interface"
+menu.history "History"
+menu.historySettings "Settings"
+menu.about "About"
 
 // ------------------------------------------------------
 // mesh sub menu
@@ -674,9 +696,7 @@ resource.import "导入"
 // ------------------------------------------------------
 // scene
 scene.title "场景"
-scene.title.help "按住快捷菜单里的“平滑”快捷方式，您可以：
-- 快速选择多个视图里的对象。
-- range-select objects in the interface list"
+scene.title.help "使用选择复选框时，按住并拖动手指即可轻松选择其他对象。 "
 scene.mergeSimple "简单合并"
 scene.mergeVoxel "体素合并"
 scene.voxelResolution "分辨率"
