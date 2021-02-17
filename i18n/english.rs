@@ -368,7 +368,7 @@ input.interaction.title.help "These options are always global."
 interface "Interface"
 
 // bottom buttons
-interface.bottomButtons "Bottom buttons"
+interface.bottomButtons "Add shortcuts (bottom)..."
 interface.quickVoxelRemesh "Voxel remesh"
 interface.quickWireframe "Wireframe"
 interface.quickLockSelection "Lock selection"
@@ -379,7 +379,7 @@ interface.quickCameraSnapFlip "Flip on already snap"
 interface.quickCameraSnapFlip.help "If the camera is already snapped, the shortcut will mirror the view"
 
 // left
-interface.leftButtons "Left buttons"
+interface.leftButtons "Add shortcuts (left)..."
 interface.quickSmooth "Smooth"
 interface.quickMask "Mask"
 interface.quickToggle "Sub/Smooth/Mask toggle"
