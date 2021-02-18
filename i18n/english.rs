@@ -130,6 +130,10 @@ camera.doubleTapFocusSelection "Focus on selection"
 camera.doubleTapFocusSelection.help "When double taping on background focus on the selected mesh instead of the whole scene."
 
 // scene and layer lists
+curve.preset "Preset"
+curve.custom "Custom"
+
+// scene and layer lists
 expandList "UI: Expand list"
 expandList.help "Just an UI option for easier list management."
 
@@ -423,6 +427,8 @@ interface.flipMiddle "flip middle"
 interface.autoClose "Close panel on interaction"
 interface.autoClose.help "Close the top panels when you start interaction with the canvas."
 interface.showTooltips "Show tooltips"
+interface.showPin "Show pin menu icon"
+interface.showPin.help "The screen width needs to be big enough to support menu pinning."
 interface.showTooltips.help "This is a tooltip."
 interface.materialPreview "Material Picker preview"
 interface.toolboxHide "Auto-hide toolbox"
