@@ -238,7 +238,7 @@ file.settings.title.help "大部分应用的设置都保存在此处（相机界
 - 背景
 - 项目
 
-目前暂时无法保存画笔设置，自定义笔画已在开发计划中。"
+目前暂时无法保存画笔设置，但已在开发计划中。"
 
 // settings
 file.settings.reset "恢复默认设置"
@@ -301,14 +301,14 @@ history.state.surfaceRemesh "表面网格重构"
 history.state.multiresToDynamic "模型细分转为动态网格"
 history.state.multiresLevel "改变分辨率"
 history.state.multiresSubdivide "细分网格"
-history.state.multiresReverse "粗化网格"
+history.state.multiresReverse "简化网格"
 history.state.multiresDeleteLower "删除低分辨率模型"
 history.state.multiresDeleteHigher "删除高分辨率模型"
 // mesh
 history.state.meshDynamicToStatic "动态网格转为静态网格"
 history.state.meshStaticToDynamic "静态网格转为动态网格"
 history.state.meshSymmetryUpdate "改变对称"
-history.state.meshMatrixUpdate "矩阵变换"
+history.state.meshMatrixUpdate "轴向变换"
 history.state.meshVisibility "可见性"
 history.state.meshMaterial "改变材质"
 // state scene
@@ -348,7 +348,7 @@ history.state.lightMove "移动灯光 $0"
 input.useGlobal "使用全局压感设置"
 input.useGlobal.help "勾选后，所有工具都会使用相同的压感参数。
 
-如您希望给此工具单独设定压感参数，请取消勾选"
+如您希望给此工具单独设定压感参数，请取消勾选。"
 
 input.pressure "压感"
 input.pressureTitle "压感设置 ($0)"
@@ -361,8 +361,8 @@ input.pressure.useIntensity "启用"
 input.pressure.curveRadius "半径"
 input.pressure.curveIntensity "强度"
 
-input.cameraInteraction "相机移动："
-input.sculptInteraction "雕刻:"
+input.cameraInteraction "相机移动"
+input.sculptInteraction "雕刻"
 input.interaction.fingerAndStylus "手指与触控笔"
 input.interaction.finger "手指"
 input.interaction.stylus "触控笔"
@@ -382,7 +382,7 @@ input.pencilAction.ios.help "仅支持Apple Pencil 第二代"
 input.useSizeRejection "启用忽略尺寸"
 input.useSizeRejectionWarning "如果您的手指无法操控，请退出并重启Nomad。
 此选项每次重启后都会关闭。"
-input.useSizeRejectionConfirm "请确保您的文件妥善保存后再点击确认！"
+input.useSizeRejectionConfirm "请确定您的文件妥善保存后再点击确认！"
 input.useSizeRejection.help "如果手指与屏幕的接触面积超过设定值，屏幕将忽略手指的本次操作。
 
 部分设备可能不支持此选项"
@@ -396,7 +396,7 @@ input.interaction.title.help "以下选项均为全局设置。"
 interface "界面设置"
 
 // bottom buttons
-interface.bottomButtons "底部按钮"
+interface.bottomButtons "底部快捷方式"
 interface.quickVoxelRemesh "体素网格重构"
 interface.quickWireframe "网格开关"
 interface.quickLockSelection "锁定选择"
@@ -407,7 +407,7 @@ interface.quickCameraSnapFlip "翻转基本视图"
 interface.quickCameraSnapFlip.help "当相机处于基本视图时，点击切换视图将会翻转至背面。"
 
 // left
-interface.leftButtons "左边按钮"
+interface.leftButtons "左侧快捷方式"
 interface.quickSmooth "平滑"
 interface.quickMask "蒙版"
 interface.quickToggle "反向操作锁定"
@@ -449,7 +449,7 @@ interface.flipTop "整体反转"
 interface.flipBottom "反转底部图标"
 interface.flipMiddle "反转中间图标"
 interface.autoClose "操作时收起菜单"
-interface.autoClose.help "点击背景与对象时自动收起菜单"
+interface.autoClose.help "点击背景与对象后自动收起菜单。"
 interface.showTooltips "显示工具提示"
 interface.showPin ""
 interface.showPin.help ""
@@ -462,7 +462,7 @@ interface.rounding "界面圆角"
 interface.inlined "滑块紧凑"
 interface.dampingSlider "降低滑块灵敏度"
 interface.dampingSlider.help "勾选此选项可让滑块在调节参数时更加精确。"
-interface.curveToolSymmetric "压力曲线对称"
+interface.curveToolSymmetric "衰减曲线对称"
 interface.curveToolSymmetric.help "使笔刷设置里的衰减参数曲线对称。"
 interface.animated "动效"
 interface.scale "界面缩放"
@@ -510,20 +510,20 @@ layers.baseSelected "无"
 
 // ------------------------------------------------------
 // light sub menu
-light "Light"
-light.color "Color"
-light.intensity "Intensity"
-light.attachment "Attachment"
-light.attachment.fixed "Fixed"
-light.attachment.camera "Camera"
-light.attachment.environment "Environment"
-light.attachment.help "-- Fixed
-Light orientation won't change.
+light "光线"
+light.color "颜色"
+light.intensity "强度"
+light.attachment "固定光照"
+light.attachment.fixed "固定"
+light.attachment.camera "随相机移动"
+light.attachment.environment "环境"
+light.attachment.help "- 固定
+灯光方向不会改变。
 
--- Camera
-Light orientation depends on the camera view."
-light.shadowCast "Shadow"
-light.shadowNormalBias "Normal bias"
+- 随相机移动
+灯光方向随着相机视角而改变。"
+light.shadowCast "显示阴影"
+light.shadowNormalBias "阴影偏差"
 
 // ------------------------------------------------------
 // material
@@ -534,24 +534,24 @@ material.opacity = "透明度"
 
 // ------------------------------------------------------
 // menu name (visible on small screen menu are collapsed)
-menu.files "Files"
-menu.scene "Scene"
-menu.topology "Topology"
-menu.render "Render"
-menu.postProcess "PostProcess"
-menu.camera "Camera"
-menu.background "Background"
-menu.tool "Tool"
-menu.stroke "Stroke"
-menu.paint "Paint"
-menu.symmetry "Symmetry"
-menu.pressure "Pressure"
-menu.layers "Layers"
-menu.settings "Settings"
-menu.interface "Interface"
-menu.history "History"
-menu.historySettings "Settings"
-menu.about "About"
+menu.files "文件"
+menu.scene "场景"
+menu.topology "拓扑"
+menu.render "渲染"
+menu.postProcess "后期处理"
+menu.camera "相机"
+menu.background "背景"
+menu.tool "工具"
+menu.stroke "笔刷设置"
+menu.paint "画笔设置"
+menu.symmetry "对称"
+menu.pressure "压感"
+menu.layers "图层"
+menu.settings "显示设置"
+menu.interface "界面设置"
+menu.history "历史记录"
+menu.historySettings "历史记录设置"
+menu.about "关于"
 
 // ------------------------------------------------------
 // mesh sub menu
@@ -698,7 +698,7 @@ primitive.triplanarResetMask "重置蒙版"
 primitive.triplanarReproject "重新投影"
 primitive.triplanarReproject.title "修改三向投影设置后会更新平面上的蒙版。
 
-If you uncheck this option, it will revert to the default spherical masks."
+如您不勾选此选项，它将恢复为默认的球形蒙版。"
 primitive.isolate.all "全部"
 primitive.isolate.back "背面"
 primitive.isolate.right "右面"
@@ -808,9 +808,9 @@ settings.keepImportTopology "在导入时保留拓扑"
 settings.keepImportTopology.help "如您不希望应用破坏导入模型拓扑，请勾选此选项。
 
 应用将不会：
- - 重新排序顶点和面
- - 删除重叠顶点和面
- - 移除未使用顶点
+- 重新排序顶点和面
+- 删除重叠顶点和面
+- 移除未使用顶点
 "
 // multires
 settings.multiresTitle "模型细分"
@@ -896,20 +896,20 @@ stroke.useShareRadius.help "使所有工具的笔刷半径相同。"
 stroke.minSpacingAdjustIntensity "调整间隔强度"
 stroke.minSpacingAdjustIntensity.help "调整笔刷强度，以保证根据笔画间距产生一定的变化。"
 stroke.minSpacing "笔刷间距"
-stroke.minSpacing.help "每个笔画之间的距离，与笔画半径有一定的相关性。
+stroke.minSpacing.help "该选项可调节每个笔画之间的距离，与笔画半径有一定的相关性。
 
 将该值调低可使笔刷显得更加顺滑，但也会影响性能。"
-stroke.lazySmooth "顺滑笔画"
+stroke.lazySmooth "平滑笔画"
 stroke.lazySmooth.help "通过平均计算多个点来获得更加平滑的笔画。
 
-将该值调高，会使笔画不跟手。"
+将该值调高会使笔画变得不跟手。"
 stroke.lazyRadius "笔刷落后"
 stroke.lazyRadius.help "笔画将会按一定的距离落后于指针位置。
 
 此功能可用于绘制平滑线条。"
 stroke.globalSettings "这是一个全局设置。"
 stroke.snapRadius "续接笔画范围"
-stroke.snapRadius.help "如果落笔处在最后一笔笔刷附近，会自动续接上。
+stroke.snapRadius.help "如果落笔处在最后一笔的续接范围内，笔刷将会自动续接上。
 
 此功能可用于绘制长线条，但需要频繁停顿时。"
 stroke.sculptOffset "笔刷偏移"
@@ -924,7 +924,7 @@ stroke.connectedTopology.help "启用此选项后，画笔将会只雕刻连接�
 
 此选项一般适用于移动工具, 例如专门移动与另一零件自相交的零件。 "
 stroke.onlyFrontFace "只影响对象表面"
-stroke.onlyFrontFace.help "打开此选项后，应用会忽略对背面的操作。
+stroke.onlyFrontFace.help "打开此选项后，应用会忽略对“背面”的操作。
 
 该功能可帮助您在不影响另一侧的情况下在几何平面上绘画。
 
@@ -954,13 +954,13 @@ symmetry.enable "启用对称"
 symmetry.toolIgnore "当前工具不适用对称。"
 // method
 symmetry.method "对称类型"
-symmetry.method.help " - 本地对称
+symmetry.method.help "- 本体对称
 可使用轴向变换或自由变换等工具移动调整对称平面。
 
- - 世界对称
+- 世界对称
 对称平面是固定不动的。"
 symmetry.methodWorld "世界对称"
-symmetry.methodLocal "本地对称"
+symmetry.methodLocal "本体对称"
 // mirror
 symmetry.mirror "镜像"
 symmetry.mirror.help "尝试在不影响拓扑的情况下重新应用对称。
@@ -1073,26 +1073,26 @@ tool.mask.closeAction "分离操作："
 tool.mask.closeActionNone "无"
 tool.mask.closeActionFill "填补"
 tool.mask.closeActionShell "抽壳"
-tool.mask.closeAction.help " - 无
+tool.mask.closeAction.help "- 无
 仅分离蒙版区域，并且不封闭对象。
 
- - 填补
+- 填补
 孔洞会被填补并光滑。
 不要在平面上使用。
 
--- Shell
+- Shell
 通过增加厚度的方式来封闭图形。"
 // matrix
 tool.matrix "坐标"
 tool.matrix.clone "克隆"
 tool.matrix.action "操作"
-tool.matrix.action.help " - 返回原点
+tool.matrix.action.help "- 返回原点
 将对象移回原位。
 
- - 重设
+- 重设
 重设对象的所有变换。
 
--- 烘焙
+- 烘焙
 重新记录对象变换后的顶点坐标。在视觉上什么都不会改变。"
 tool.matrix.transformOperation "变换操作"
 tool.matrix.translation "位移"
@@ -1110,16 +1110,16 @@ tool.matrix.applyMethod "模式："
 tool.matrix.applyMethodAuto "自动选择"
 tool.matrix.applyMethodVertex "基于顶点"
 tool.matrix.applyMethodObject "基于对象"
-tool.matrix.applyMethod.help " - 自动选择：
+tool.matrix.applyMethod.help "- 自动选择：
 让应用自动选择两种模式。
 一般会选择基于对象模式，除非打开了对称或者在对象上有蒙版。
 
- - 基于顶点：
+- 基于顶点：
 顶点坐标会独自变换。
 该变换包括对称与蒙版变换。
 如果变换的是基本体，将会强制使用基于对象模式。
 
- - 基于对象：
+- 基于对象：
 对象会整体变换。
 不会变换对称与蒙版。
 如果进行非等比缩放，将强制使用基于顶点模式。"
@@ -1132,13 +1132,13 @@ tool.gizmo.autoHide "自动隐藏"
 tool.gizmo.tap "单击改变视图中心点"
 tool.gizmo.tap.help "此选项仅在自定义坐标原点模式下有效（默认禁用）。
 
--- 无
+- 无
 点击对象后无任何操作。
 
--- 点击
+- 点击
 仅在第一次点击对象时改变原点。
 
--- 平均
+- 平均
 将在圆点坐标设置在前两次点击直线的中点。"
 tool.gizmo.tapNone "无"
 tool.gizmo.tapFirstHit "点击"
@@ -1189,8 +1189,8 @@ topology.multires.title.help "保留对象的不同分辨率。
 您可以在低分辨率对物体进行修改，之后在高分辨率将细节重新投影。
 
 图层在不同分辨率下都可用。"
-topology.multiresReverse "粗化"
-topology.multiresReverse.confirm "无法再进一步粗化模型。
+topology.multiresReverse "简化"
+topology.multiresReverse.confirm "无法再进一步简化模型。
 
 当前对象的拓扑可能不是细分产生的。"
 topology.multiresReverse.confirm.yes "确认"
@@ -1221,11 +1221,11 @@ topology.surfaceDetail.help "不同于体素网格重构，表面网格重构不
 topology.surfaceMethod "模式"
 toplogy.surfaceMethodUniformisation "标准"
 toplogy.surfaceMethodSubdivision "细分"
-toplogy.surfaceMethodDecimation "粗化"
+toplogy.surfaceMethodDecimation "简化"
 topology.surfaceMethod.help "不同模式的影响：
- - 标准：智能判断
- - 细分：增加细节
- - 粗化：移除细节"
+- 标准：智能判断
+- 细分：增加细节
+- 简化：移除细节"
 topology.surfaceUseMasking "保护蒙版区域"
 topology.surfaceUseMasking.help "蒙版区域的拓扑将不会受到影响。"
 topology.surfaceExtrapolate "顶点扩张"
@@ -1243,13 +1243,13 @@ topology.dynamicDetailMethod "细节等级模式"
 topology.dynamicDetailMethodZoom "视野"
 topology.dynamicDetailMethodRadius "半径"
 topology.dynamicDetailMethodConstant "网格"
-topology.dynamicDetailMethod.help " - 视野
+topology.dynamicDetailMethod.help "- 视野
 视野缩放程度决定拓扑的详细程度。
 
- - 半径
+- 半径
 笔刷半径决定拓扑的详细程度。
 
--- Constant
+- Constant
 细节等级决定拓扑的详细程度。"
 topology.dynamicQuality "质量"
 topology.dynamicQuality.help "性能模式特性如下：
