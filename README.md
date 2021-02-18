@@ -4,11 +4,12 @@ Translation file for the [Nomad Sculpt](https://nomadsculpt.com/]), available on
 
 # Testing
 
-To test the translation file, it should be named `debug.rs`.
+For iOS and Android, the file should be named `debug.rs`.
+For the web version, it simply needs to end with `.rs`.
 
 - iOS: copy the file in `Nomad/debug.rs` and restart the app
 - Android: copy the file in `Android/data/com.stephaneginier.nomad/files/debug.rs` and restart the app
-- [Web version](https://stephaneginier.com/archive/nomad_demo/), simply drag n drop the file
+- For the [Web version](https://stephaneginier.com/archive/nomad_demo/), simply drag n drop the file
 
 # Documentation
 

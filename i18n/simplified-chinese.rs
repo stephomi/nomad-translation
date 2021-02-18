@@ -83,7 +83,6 @@ background.blur "模糊"
 background.exposure "曝光"
 
 background.imageEnable "参考图像"
-background.imageEnable "启用"
 background.imageX "X轴方向"
 background.imageY "Y轴方向"
 background.imageRotation "旋转"
@@ -130,6 +129,10 @@ camera.doubleTapFocusSelection "聚焦所选项"
 camera.doubleTapFocusSelection.help "双击背景后相机将会缩放移动至最适合该对象的视图。"
 
 // scene and layer lists
+curve.preset ""
+curve.custom ""
+
+// scene and layer lists
 expandList "展开图标"
 expandList.help "可以让菜单里的图标排列间距放大。"
 
@@ -156,11 +159,14 @@ file.project.new "新建"
 file.project.new.confirm "确认新建场景？"
 file.project.delete "删除"
 file.project.delete.confirm "确认删除 $0？"
-file.project.delete.confirmActive "删除 $0？\n\n这是当前正打开的项目！"
+file.project.delete.confirmActive "删除 $0？
+
+这是当前正打开的项目！"
 file.project.delete.confirmOk "确定要删除吗？"
 
 // autosave
 file.project.autoSave "自动保存项目"
+file.project.autoSave.confirm ""
 file.project.autoSave.help "每隔一段时间将您的项目另存为一个单独的文件。
 
 这个自动保存文件可以在以下目录找到：
@@ -173,7 +179,10 @@ file.project.autoSave.delete.confirm "确认删除？"
 
 // import
 file.import.title "从外部导入"
-file.import.title.help "支持导入的格式：\n- Wavefront (.obj)\n- glTF 2.0 (.glb .gltf)\n- STL (.stl)"
+file.import.title.help "支持导入的格式：
+- Wavefront (.obj)
+- glTF 2.0 (.glb .gltf)
+- STL (.stl)"
 file.importOpen "打开"
 file.importOpen.confirm "确定打开新文件？"
 file.import.add "添加"
@@ -195,7 +204,8 @@ file.export.gltfLayer.help "将图层导出为可变体。这是来自官方的�
 file.export.gltfColor "导出颜色"
 file.export.gltfColor.help "导出的是顶点颜色。这是来自官方的特性，能在更多软件上使用。"
 file.export.gltfNormal "导出法线"
-file.export.gltfNormal.help "如想在其他软件上打开该文件，请勾选此选项。\n该选项对本应用没有影响。"
+file.export.gltfNormal.help "如想在其他软件上打开该文件，请勾选此选项。
+该选项对本应用没有影响。"
 file.export.gltfExtraPaint "导出其他"
 file.export.gltfExtraPaint.help "将导出粗糙度、金属强度、蒙版和图层绘画。其他软件不会读取该属性。"
 
@@ -203,28 +213,38 @@ file.export.gltfExtraPaint.help "将导出粗糙度、金属强度、蒙版和�
 file.export.obj "导出 OBJ 格式"
 file.export.objWarning "图层、粗糙度、金属强度、蒙版和绘画图层等其他属性将会丢失。"
 file.export.objColorAppend "导出颜色"
-file.export.objColorAppend.help "在顶点之后添加颜色信息\n\n只有部分3D软件能够识别。"
+file.export.objColorAppend.help "在顶点之后添加颜色信息
+
+只有部分3D软件能够识别。"
 file.export.objColorHexa "十六进制颜色"
-file.export.objColorHexa.help "像ZBrush那样将颜色转换为十六进制。\n\n只有部分3D软件能够识别。"
+file.export.objColorHexa.help "像ZBrush那样将颜色转换为十六进制。
+
+只有部分3D软件能够识别。"
 
 // stl
 file.export.stl "导出 STL 格式"
 file.export.stlWarning "图层和绘画将会丢失"
-file.export.stlAscii "默认情况下，格式为二进制。\n\n您可以选择导出为文本格式（ASCII），但文件会更大。"
+file.export.stlAscii "默认情况下，格式为二进制。
+
+您可以选择导出为文本格式（ASCII），但文件会更大。"
 
 file.settings.title "设置"
-file.settings.title.help "大部分应用的设置都保存在此处（相机界面等）。\n
+file.settings.title.help "大部分应用的设置都保存在此处（相机界面等）。
+
 某些资源将自动保存在其他地方，包括：
 - HDR
 - 材质
 - 画笔形状
 - 背景
-- 项目\n
+- 项目
+
 目前暂时无法保存画笔设置，自定义笔画已在开发计划中。"
 
 // settings
 file.settings.reset "恢复默认设置"
-file.settings.reset.confirm "确定重设所有设置？\n\n项目、画笔形状、材质、HDRI与背景将不会被影响。"
+file.settings.reset.confirm "确定重设所有设置？
+
+项目、画笔形状、材质、HDRI与背景将不会被影响。"
 
 // materials
 file.materials "材质库"
@@ -244,7 +264,8 @@ file.render.screenResolution "屏幕尺寸"
 file.render.export "导出为png"
 file.render.4kWarn "导出4K格式可能会使用大量内存，请确认文件保存之后再导出！"
 file.render.transparent "导出透明背景"
-file.render.transparent.help "打开此选项可以让您更方便地把渲染图导入到平面软件里。\n
+file.render.transparent.help "打开此选项可以让您更方便地把渲染图导入到平面软件里。
+
 暂不支持部分透明对象导出。"
 
 // ------------------------------------------------------
@@ -255,15 +276,19 @@ history.undoConfirm "您确定要撤销所有操作吗？"
 history.undoWarning "如在此之后进行更改，将会覆盖之前的所有操作。"
 history.stack "历史记录设置"
 history.limitSize "历史记录限制 (Mb)"
-history.limitSize.help "历史记录的最大大小（以Mb为单位）。\n
+history.limitSize.help "历史记录的最大大小（以Mb为单位）。
+
 历史记录状态会随着下一个操作记录而改变。"
 history.limitStack "历史记录步数"
-history.limitStack.help "程序可保留的最大操作数量。\n
+history.limitStack.help "程序可保留的最大操作数量。
+
 历史记录状态会随着下一个操作记录而改变。"
 history.rangeProtect "历史记录保护范围"
 history.rangeProtect.help "如您在历史记录中做了大量操作，程序会在覆盖操作之前提示您。"
 history.gesture "快捷手势"
-history.gesture.help "双指轻点撤销。\n\n三指轻点重做。"
+history.gesture.help "双指轻点撤销。
+
+三指轻点重做。"
 history.restoreCamera "恢复相机视角"
 history.restoreCamera.help "启用该选项后您可以在撤销或重做时同时恢复当时的相机视角。"
 // display undo/redo
@@ -321,7 +346,8 @@ history.state.lightMove "移动灯光 $0"
 // ------------------------------------------------------
 // pressure menu
 input.useGlobal "使用全局压感设置"
-input.useGlobal.help "勾选后，所有工具都会使用相同的压感参数。\n
+input.useGlobal.help "勾选后，所有工具都会使用相同的压感参数。
+
 如您希望给此工具单独设定压感参数，请取消勾选"
 
 input.pressure "压感"
@@ -354,9 +380,11 @@ input.pencilAction.ios "双击Pencil"
 input.pencilAction.ios.help "仅支持Apple Pencil 第二代"
 // size rejection
 input.useSizeRejection "启用忽略尺寸"
-input.useSizeRejectionWarning "如果您的手指无法操控，请退出并重启Nomad。\n此选项每次重启后都会关闭。"
+input.useSizeRejectionWarning "如果您的手指无法操控，请退出并重启Nomad。
+此选项每次重启后都会关闭。"
 input.useSizeRejectionConfirm "请确保您的文件妥善保存后再点击确认！"
-input.useSizeRejection.help "如果手指与屏幕的接触面积超过设定值，屏幕将忽略手指的本次操作。\n
+input.useSizeRejection.help "如果手指与屏幕的接触面积超过设定值，屏幕将忽略手指的本次操作。
+
 部分设备可能不支持此选项"
 input.sizeRejection "尺寸阈值"
 // help
@@ -387,11 +415,11 @@ interface.quickPaint "材质"
 interface.quickAlpha "画笔形状"
 interface.maskGesture "蒙版手势"
 interface.screenTooSmall "如设备屏幕太小，一些图标将不会显示。"
-interface.maskGesture.help "按住蒙版快捷方式，并且：\n
+interface.maskGesture.help "按住蒙版快捷方式，并且：
+
 - 在背景上拖动可清除蒙版
 - 在背景上点击可反相蒙版
 - 在对象上点击可锐化蒙版边界"
-
 
 // colors
 interface.colors "界面颜色"
@@ -423,6 +451,8 @@ interface.flipMiddle "反转中间图标"
 interface.autoClose "操作时收起菜单"
 interface.autoClose.help "点击背景与对象时自动收起菜单"
 interface.showTooltips "显示工具提示"
+interface.showPin ""
+interface.showPin.help ""
 interface.showTooltips.help "你在点的这个小问号就是工具提示 :-D"
 interface.materialPreview "调整材质参数预览"
 interface.toolboxHide "自动隐藏工具栏"
@@ -488,7 +518,8 @@ light.attachment.fixed "Fixed"
 light.attachment.camera "Camera"
 light.attachment.environment "Environment"
 light.attachment.help "-- Fixed
-Light orientation won't change.\n
+Light orientation won't change.
+
 -- Camera
 Light orientation depends on the camera view."
 light.shadowCast "Shadow"
@@ -549,7 +580,8 @@ paint.intensity "画笔强度"
 paint.paintAll "全部上色" 
 paint.paintAll.help "将当前材料应用到所选对象上。"
 paint.paintAllForce "强制全部上色"
-paint.paintAllForce.help "将当前材料应用到所选对象上。\n
+paint.paintAllForce.help "将当前材料应用到所选对象上。
+
 蒙版区域与未勾选通道也会被应用。"
 paint.strokePaintingTitle "画笔设置 ($0)"
 paint.layerWarning "图层上的通道蒙版不可用。"
@@ -628,7 +660,8 @@ primitive.mirror "镜像"
 primitive.mirror.help "通过镜像方式复制该基本体。"
 primitive.validate "转换"
 primitive.maxFaces "面数限制"
-primitive.maxFaces.help "该基本体可拥有的最大面数。\n
+primitive.maxFaces.help "该基本体可拥有的最大面数。
+
 该参数只能在转换为可编辑对象前修改。"
 primitive.linear "线性细分"
 primitive.subdivision "细分等级"
@@ -651,16 +684,20 @@ primitive.projectOnSphere.help "将点分布在一个完美的球体上。"
 
 // triplanar
 primitive.triplanar.title "三向投影 - 设置"
-primitive.triplanar.title.help "三向投影是将原对象三个平面的投影重新组合起来填充体素网格，然后将其多边形化。\n
-您可以通过在三个投影上修改蒙版或移动滑块的方式来改变几何体。\n
-建议您关闭对称选项，否则可能会导致最终效果与您的预期不符。\n
+primitive.triplanar.title.help "三向投影是将原对象三个平面的投影重新组合起来填充体素网格，然后将其多边形化。
+
+您可以通过在三个投影上修改蒙版或移动滑块的方式来改变几何体。
+
+建议您关闭对称选项，否则可能会导致最终效果与您的预期不符。
+
 您可以开启遮罩面板中的“拓扑连接”选项来在绘制时影响其他平面。"
 primitive.triplanarIsolate "可见性"
 primitive.triplanarSameSize "固定比例（立方体）"
 primitive.triplanarPolish "羽化"
 primitive.triplanarResetMask "重置蒙版"
 primitive.triplanarReproject "重新投影"
-primitive.triplanarReproject.title "修改三向投影设置后会更新平面上的蒙版。\n
+primitive.triplanarReproject.title "修改三向投影设置后会更新平面上的蒙版。
+
 If you uncheck this option, it will revert to the default spherical masks."
 primitive.isolate.all "全部"
 primitive.isolate.back "背面"
@@ -715,8 +752,10 @@ settings.wireframeColor "对象网格颜色"
 // backface
 settings.backfaceTitle "双面显示设置"
 settings.backfaceVisible "双面显示"
-settings.backfaceVisible.help "打开双面显示可以让您看到模型的“内面”。\n
-所有的三角形或四边形都朝向一个特定的方向，例如在基本球体上，所有的面都朝向外部。\n
+settings.backfaceVisible.help "打开双面显示可以让您看到模型的“内面”。
+
+所有的三角形或四边形都朝向一个特定的方向，例如在基本球体上，所有的面都朝向外部。
+
 如果您将相机移动到球体内部，这些面就是背面。"
 settings.backfaceColor "内面颜色"
 settings.backfaceColored "内面着色"
@@ -740,14 +779,18 @@ settings.renderRatio "实时渲染分辨率"
 settings.darkenUnselected "变暗未选中对象"
 settings.smoothShading "平滑阴影"
 settings.partialDraw "局部雕刻"
-settings.partialDraw.help "功能未完善！\n
-仅建议您在雕刻高精度细小模型时使用。\n
-它能让雕刻过程更加流畅，但不建议您打开显示对象网格。\n
+settings.partialDraw.help "功能未完善！
+
+仅建议您在雕刻高精度细小模型时使用。
+
+它能让雕刻过程更加流畅，但不建议您打开显示对象网格。
+
 启用此功能可能会在使用画笔时产生一些奇怪的东西。"
 settings.partialDrawWarning "如果显示不正常，请不要忘记关闭此选项！"
 settings.detailRangeTitle "体素/动态网格重构"
 settings.detailRange "最大细节范围"
-settings.detailRange.help "此选项可调节体素和动态网格详细程度的最大值。\n
+settings.detailRange.help "此选项可调节体素和动态网格详细程度的最大值。
+
 详细程度越高会使模型产生更多的多边形，请斟酌调整！"
 settings.showPainting "显示场景绘画"
 settings.lightIcon "显示灯光图标"
@@ -757,17 +800,25 @@ settings.loadGuiSettings "加载项目GUI设置"
 settings.loadGuiSettings.help "当您打开或导入项目文件时，同时加载项目中包含的GUI设置。"
 settings.holeTitle "填补孔洞"
 settings.holeNonManifold "填补非流形孔洞"
-settings.holeNonManifold.help "应用将会尝试填补非流形孔洞。\n
-此选项不会被保存在设置中。\n"
+settings.holeNonManifold.help "应用将会尝试填补非流形孔洞。
+
+此选项不会被保存在设置中。
+"
 settings.keepImportTopology "在导入时保留拓扑"
-settings.keepImportTopology.help "如您不希望应用破坏导入模型拓扑，请勾选此选项。\n
-应用将不会：\n - 重新排序顶点和面\n - 删除重叠顶点和面\n - 移除未使用顶点\n"
+settings.keepImportTopology.help "如您不希望应用破坏导入模型拓扑，请勾选此选项。
+
+应用将不会：
+ - 重新排序顶点和面
+ - 删除重叠顶点和面
+ - 移除未使用顶点
+"
 // multires
 settings.multiresTitle "模型细分"
 settings.multiresMaxVertices "最大顶点数量"
 settings.multiresMaxVertices.help "应用在模型细分之前并不会检查内存，多边形数量过多很容易会导致应用崩溃。"
 settings.multiresLowResVertices "最低分辨率阈值"
-settings.multiresLowResVertices.help "在您移动相机时，模型对象可能会以较低分辨率显示。\n
+settings.multiresLowResVertices.help "在您移动相机时，模型对象可能会以较低分辨率显示。
+
 如您希望显示更高的分辨率，可以增加此值。"
 // stat
 settings.showSceneStats "现实场景状态"
@@ -793,7 +844,8 @@ shading.environmentExposure "曝光"
 shading.environmentRotation "旋转"
 shading.environmentRotation.help "在屏幕上使用三指水平移动可使环境、灯光与材质捕捉旋转。"
 shading.environmentAttachedToCamera "与相机固定"
-shading.environmentAttachedToCamera.help "将环境与相机固定。\n
+shading.environmentAttachedToCamera.help "将环境与相机固定。
+
 这能让光线保持固定，对于雕刻来说非常有用。"
 // matcap
 shading.matcap "材质捕捉"
@@ -836,37 +888,46 @@ stat.sceneVertices "场景顶点数"
 stroke "笔刷"
 strokeTitle "笔刷设置 ($0)"
 stroke.useWorldRadius "恒定笔刷半径"
-stroke.useWorldRadius.help "勾选后笔刷半径将不会随着视图的缩放而改变。\n
+stroke.useWorldRadius.help "勾选后笔刷半径将不会随着视图的缩放而改变。
+
 此选项将会影响到所有工具。"
 stroke.useShareRadius "相同笔刷半径"
 stroke.useShareRadius.help "使所有工具的笔刷半径相同。"
 stroke.minSpacingAdjustIntensity "调整间隔强度"
 stroke.minSpacingAdjustIntensity.help "调整笔刷强度，以保证根据笔画间距产生一定的变化。"
 stroke.minSpacing "笔刷间距"
-stroke.minSpacing.help "每个笔画之间的距离，与笔画半径有一定的相关性。\n
+stroke.minSpacing.help "每个笔画之间的距离，与笔画半径有一定的相关性。
+
 将该值调低可使笔刷显得更加顺滑，但也会影响性能。"
 stroke.lazySmooth "顺滑笔画"
-stroke.lazySmooth.help "通过平均计算多个点来获得更加平滑的笔画。\n
+stroke.lazySmooth.help "通过平均计算多个点来获得更加平滑的笔画。
+
 将该值调高，会使笔画不跟手。"
 stroke.lazyRadius "笔刷落后"
-stroke.lazyRadius.help "笔画将会按一定的距离落后于指针位置。\n
+stroke.lazyRadius.help "笔画将会按一定的距离落后于指针位置。
+
 此功能可用于绘制平滑线条。"
 stroke.globalSettings "这是一个全局设置。"
 stroke.snapRadius "续接笔画范围"
-stroke.snapRadius.help "如果落笔处在最后一笔笔刷附近，会自动续接上。\n
+stroke.snapRadius.help "如果落笔处在最后一笔笔刷附近，会自动续接上。
+
 此功能可用于绘制长线条，但需要频繁停顿时。"
 stroke.sculptOffset "笔刷偏移"
-stroke.sculptOffset.help "使笔刷持续偏移于触控处\n
+stroke.sculptOffset.help "使笔刷持续偏移于触控处
+
 此功能适用于小屏幕设备。在使用时，手指不会遮挡到屏幕。"
 stroke.accumulate "叠加笔画"
 stroke.accumulate.help "如启用此选项，则每个笔画可添加或减去的数量将不会有限制。"
 stroke.useDynamicTopology "允许动态拓扑"
 stroke.connectedTopology "连接拓扑"
-stroke.connectedTopology.help "启用此选项后，画笔将会只雕刻连接到所选表面的顶点。\n
+stroke.connectedTopology.help "启用此选项后，画笔将会只雕刻连接到所选表面的顶点。
+
 此选项一般适用于移动工具, 例如专门移动与另一零件自相交的零件。 "
 stroke.onlyFrontFace "只影响对象表面"
-stroke.onlyFrontFace.help "打开此选项后，应用会忽略对背面的操作。\n
-该功能可帮助您在不影响另一侧的情况下在几何平面上绘画。\n
+stroke.onlyFrontFace.help "打开此选项后，应用会忽略对背面的操作。
+
+该功能可帮助您在不影响另一侧的情况下在几何平面上绘画。
+
 该选项也可用于雕刻，但您可能会遇到一些不便。"
 stroke.intensityMultiplier "笔刷强度放大"
 stroke.curveFalloff "衰减"
@@ -875,7 +936,8 @@ stroke.onlyLasso "该设置仅对套索工具有效。"
 stroke.alpha "形状" 
 stroke.alphaInvert "形状反相"
 stroke.alphaScale "形状缩放"
-stroke.alphaScale.help "该值最小时,笔刷形状方框与半径圆内接。\n
+stroke.alphaScale.help "该值最小时,笔刷形状方框与半径圆内接。
+
 该值最大时，笔刷形状方框与半径圆外切。"
 // stroke type
 stroke.strokeType "笔刷类型"
@@ -893,21 +955,25 @@ symmetry.toolIgnore "当前工具不适用对称。"
 // method
 symmetry.method "对称类型"
 symmetry.method.help " - 本地对称
-可使用轴向变换或自由变换等工具移动调整对称平面。\n
+可使用轴向变换或自由变换等工具移动调整对称平面。
+
  - 世界对称
 对称平面是固定不动的。"
 symmetry.methodWorld "世界对称"
 symmetry.methodLocal "本地对称"
 // mirror
 symmetry.mirror "镜像"
-symmetry.mirror.help "尝试在不影响拓扑的情况下重新应用对称。\n
-拓扑必须对称且至少有一个边缘恰好位于对称平面上才能成功应用。\n
+symmetry.mirror.help "尝试在不影响拓扑的情况下重新应用对称。
+
+拓扑必须对称且至少有一个边缘恰好位于对称平面上才能成功应用。
+
 如果镜像失败，将会建议您强制对称。但这样会影响到拓扑。"
 symmetry.apply "应用镜像"
 symmetry.flip "翻转方向"
 symmetry.flip.help "勾选此选项可更改投影面的方向。"
 symmetry.applyFail "对称失败：
-- $0\n
+- $0
+
 是否使用镜像来强制对称？";
 // reset
 symmetry.resetOrigin "重设对称中心"
@@ -919,7 +985,8 @@ symmetry.showLine "显示线条"
 symmetry.showPlane "显示平面"
 symmetry.editWarning "编辑镜像平面是实验性功能。"
 symmetry.edit "轴向变换"
-symmetry.edit.help "您可以自由改变镜像平面。\n
+symmetry.edit.help "您可以自由改变镜像平面。
+
 此功能并未完善，请尽量不要使用。"
 
 // ------------------------------------------------------
@@ -983,7 +1050,8 @@ tool.clay.flattenOffset "展平偏移 "
 tool.crease.pinchFactor "力度"
 // layer
 tool.layer.removeInfluence "Use current layer offset"
-tool.layer.removeInfluence.help "This option is only active when there is a current layer selected.\n
+tool.layer.removeInfluence.help "This option is only active when there is a current layer selected.
+
 It will use the current layer offset to limit the displacement over strokes."
 tool.layer.noLayerSelected "此选项仅在选择图层后可用。"
 // flatten
@@ -1035,7 +1103,9 @@ tool.matrix.uniformScale.help "应用不支持非等比缩放的对象变换，�
 tool.matrix.moveToOrigin "返回原点"
 tool.matrix.resetTransform "重设"
 tool.matrix.bakeTransform "烘焙"
-tool.matrix.bakeTransform.confirm "变换结果将会被烘焙在活动图层上。\n\n您确定要继续吗？"
+tool.matrix.bakeTransform.confirm "变换结果将会被烘焙在活动图层上。
+
+您确定要继续吗？"
 tool.matrix.applyMethod "模式："
 tool.matrix.applyMethodAuto "自动选择"
 tool.matrix.applyMethodVertex "基于顶点"
@@ -1060,7 +1130,8 @@ tool.transform.multiTouch.help "如果您禁用此选项，则每次都只能使
 tool.gizmo.size "部件尺寸"
 tool.gizmo.autoHide "自动隐藏"
 tool.gizmo.tap "单击改变视图中心点"
-tool.gizmo.tap.help "此选项仅在自定义坐标原点模式下有效（默认禁用）。\n
+tool.gizmo.tap.help "此选项仅在自定义坐标原点模式下有效（默认禁用）。
+
 -- 无
 点击对象后无任何操作。
 
@@ -1089,8 +1160,10 @@ tool.hole.smoothing "平滑孔洞"
 // tool.smudge.projectScreen.help "Smudge relies heavily on polygon density.\n
 // Use this option if you want consistent smudge performance by projecting only once at the beginning of the stroke."
 tool.smudge.fullProject "单次投影"
-tool.smudge.fullProject.help "您可以在涂抹之前打开此选项来加快笔刷的响应速度。\n
-如果您在涂抹时不转动相机，也可以避免再次运算。\n
+tool.smudge.fullProject.help "您可以在涂抹之前打开此选项来加快笔刷的响应速度。
+
+如果您在涂抹时不转动相机，也可以避免再次运算。
+
 如果激活了动态网格，将会忽略此设置。 "
 tool.smudge.quality "质量"
 tool.smudge.quality.help "此选项可改变投影的分辨率，将该值调低可提高笔刷速度。"
@@ -1111,11 +1184,14 @@ tool.noSettings "该工具无特殊设置。"
 topology "拓扑"
 // multires
 topology.multires.title "多重网格"
-topology.multires.title.help "保留对象的不同分辨率。\n
-您可以在低分辨率对物体进行修改，之后在高分辨率将细节重新投影。\n
+topology.multires.title.help "保留对象的不同分辨率。
+
+您可以在低分辨率对物体进行修改，之后在高分辨率将细节重新投影。
+
 图层在不同分辨率下都可用。"
 topology.multiresReverse "粗化"
-topology.multiresReverse.confirm "无法再进一步粗化模型。\n
+topology.multiresReverse.confirm "无法再进一步粗化模型。
+
 当前对象的拓扑可能不是细分产生的。"
 topology.multiresReverse.confirm.yes "确认"
 topology.multiresReverse.confirm.cancel "取消"
@@ -1127,16 +1203,20 @@ topology.multiresKeepTriangles "保留三角形"
 topology.multiresLinear "平面细分"
 // voxel
 topology.voxel.title "体素网格重构"
-topology.voxel.title.help "通过在网格上采样对象来重新整理网格。\n
-如对象未封闭，则会先填充孔洞。\n
+topology.voxel.title.help "通过在网格上采样对象来重新整理网格。
+
+如对象未封闭，则会先填充孔洞。
+
 图层在应用后会重新投影，但质量会受到影响。"
 topology.voxelResolution "分辨率"
 topology.voxelRemesh "重构"
 // dynamic topology
 topology.surfaceUniform "重构"
 topology.surfaceDetail "细节"
-topology.surfaceDetail.help "不同于体素网格重构，表面网格重构不需要封闭对象。\n
-此功能还支持蒙版，可以保护您不希望被更改拓扑的部分。\n
+topology.surfaceDetail.help "不同于体素网格重构，表面网格重构不需要封闭对象。
+
+此功能还支持蒙版，可以保护您不希望被更改拓扑的部分。
+
 图层不会受到影响。"
 topology.surfaceMethod "模式"
 toplogy.surfaceMethodUniformisation "标准"
@@ -1152,8 +1232,10 @@ topology.surfaceExtrapolate "顶点扩张"
 // dynamic
 topology.dynamic "动态网格"
 topology.dynamicActivate "启用"
-topology.dynamicActivate.help "动态拓扑可以让您在雕刻过程中实时增删网格。\n
-开启此功能可能会对性能产生较大影响。\n
+topology.dynamicActivate.help "动态拓扑可以让您在雕刻过程中实时增删网格。
+
+开启此功能可能会对性能产生较大影响。
+
 图层不会受到影响。"
 topology.dynamicDetailLevel "细节"
 topology.dynamicDetailEdge "细节等级"
@@ -1172,7 +1254,8 @@ topology.dynamicDetailMethod.help " - 视野
 topology.dynamicQuality "质量"
 topology.dynamicQuality.help "性能模式特性如下：
 - 在雕刻前会对模型进行细分，可以减少您在雕刻过程中产生的伪像。
-- 无法逐步应用细化功能，如果您雕刻非常小的细节或进行快速笔触，则拓扑将始终正确进行细化。\n
+- 无法逐步应用细化功能，如果您雕刻非常小的细节或进行快速笔触，则拓扑将始终正确进行细化。
+
 如果您希望使用性能模式，可以考虑在设置面板中开启“局部雕刻”功能。"
 topology.dynamicQualitySpeed "速度"
 topology.dynamicQualityQuality "性能"
