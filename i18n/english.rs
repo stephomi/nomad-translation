@@ -82,8 +82,7 @@ background.environment "Environment"
 background.blur "Blur"
 background.exposure "Exposure"
 
-background.imageEnable "Reference Image"
-background.imageEnable "Enabled"
+background.imageEnable "Reference image"
 background.imageX "Position X"
 background.imageY "Position Y"
 background.imageRotation "Rotation"
@@ -160,7 +159,9 @@ file.project.new "New"
 file.project.new.confirm "Create new scene?"
 file.project.delete "Delete..."
 file.project.delete.confirm "Delete $0?"
-file.project.delete.confirmActive "Delete $0?\n\nThis is the current active project!"
+file.project.delete.confirmActive "Delete $0?
+
+This is the current active project!"
 file.project.delete.confirmOk "Are you sure?"
 
 // autosave
@@ -177,7 +178,10 @@ file.project.autoSave.delete.confirm "Confirm?"
 
 // import
 file.import.title "Import"
-file.import.title.help "Supported format:\n- Wavefront (.obj)\n- glTF 2.0 (.glb .gltf)\n- STL (.stl)"
+file.import.title.help "Supported format:
+- Wavefront (.obj)
+- glTF 2.0 (.glb .gltf)
+- STL (.stl)"
 file.importOpen "Open..."
 file.importOpen.confirm "Import new file?"
 file.import.add "Add..."
@@ -199,7 +203,9 @@ file.export.gltfLayer.help "Export layers as morphs. Officially supported by glT
 file.export.gltfColor "Export colors"
 file.export.gltfColor.help "Export vertex colors. Officially supported by glTF so it should work on other softwares as well."
 file.export.gltfNormal "Export normals"
-file.export.gltfNormal.help "Check this option if you want to open the file in another softwares.\n\nNomad does not need them."
+file.export.gltfNormal.help "Check this option if you want to open the file in another softwares.
+
+Nomad does not need them."
 file.export.gltfExtraPaint "Export extra paint"
 file.export.gltfExtraPaint.help "Export roughness metalness mask and layer painting. This will be ignored by other softwares."
 
@@ -207,28 +213,38 @@ file.export.gltfExtraPaint.help "Export roughness metalness mask and layer paint
 file.export.obj "Export OBJ"
 file.export.objWarning "Layers and extra painting (roughness metalness and mask) will be lost."
 file.export.objColorAppend "Export colors"
-file.export.objColorAppend.help "Append color information after vertices.\n\nSome 3d softwares will be able to read it but not all of them."
+file.export.objColorAppend.help "Append color information after vertices.
+
+Some 3d softwares will be able to read it but not all of them."
 file.export.objColorHexa "Hexa color"
-file.export.objColorHexa.help "Write color as hexadecimal (zbrush method).\n\nSome 3d softwares will be able to read it but not all of them."
+file.export.objColorHexa.help "Write color as hexadecimal (zbrush method).
+
+Some 3d softwares will be able to read it but not all of them."
 
 // stl
 file.export.stl "Export STL"
 file.export.stlWarning "Layers and painting will be lost."
-file.export.stlAscii "By default the format is binary.\n\nYou can choose to export to text format (ASCII) but the file will be bigger."
+file.export.stlAscii "By default the format is binary.
+
+You can choose to export to text format (ASCII) but the file will be bigger."
 
 file.settings.title "Settings"
-file.settings.title.help "Most of the app settings are saved here (Camera Interface etc).\n
+file.settings.title.help "Most of the app settings are saved here (Camera Interface etc).
+
 Some resources are saved separately and automatically these includes:
 - HDRs
 - Matcaps
 - Alphas
 - Backgrounds
-- Projects\n
+- Projects
+
 At the moment brush settings cannot be saved but custom brush managament is planned."
 
 // settings
 file.settings.reset "Reset to default"
-file.settings.reset.confirm "Reset all settings?\n\nProjects alphas matcaps hdris and backgrounds are not impacted."
+file.settings.reset.confirm "Reset all settings?
+
+Projects alphas matcaps hdris and backgrounds are not impacted."
 
 // materials
 file.materials "Material library"
@@ -248,7 +264,8 @@ file.render.screenResolution "screen"
 file.render.export "Export png"
 file.render.4kWarn "4K export might use lot of memory make sure to save first!"
 file.render.transparent "Transparent background"
-file.render.transparent.help "This option can be useful if you want to insert the mesh in a 2d creation software.\n
+file.render.transparent.help "This option can be useful if you want to insert the mesh in a 2d creation software.
+
 Partial object transparency is not supported for now."
 
 // ------------------------------------------------------
@@ -259,15 +276,19 @@ history.undoConfirm "Do you confirm undoing all these operations?"
 history.undoWarning "If you make an edit afterwards you might lose lot of changes."
 history.stack "Stack"
 history.limitSize "History limit (Mb)"
-history.limitSize.help "Maximum size (in Mb) of the history.\n
+history.limitSize.help "Maximum size (in Mb) of the history.
+
 The history will be updated on the next recorded operation."
 history.limitStack "Stack limit"
-history.limitStack.help "Maximum number of operation the application can keep.\n
+history.limitStack.help "Maximum number of operation the application can keep.
+
 The history will be updated on the next recorded operation."
 history.rangeProtect "Range protection"
 history.rangeProtect.help "If you go far in the history, it will prompt a confirm dialog before undoing many operations."
 history.gesture "Quick gesture"
-history.gesture.help "2-finger tap to undo.\n\n3-finger tap to redo."
+history.gesture.help "2-finger tap to undo.
+
+3-finger tap to redo."
 history.restoreCamera "Restore camera"
 history.restoreCamera.help "Enable this option to restore the saved camera viewpoint when you undo/redo an action."
 // display undo/redo
@@ -325,7 +346,8 @@ history.state.lightMove "Move light $0"
 // ------------------------------------------------------
 // pressure menu
 input.useGlobal "Use global settings"
-input.useGlobal.help "By default, the tools share the same pressure settings.\n
+input.useGlobal.help "By default, the tools share the same pressure settings.
+
 Uncheck this option if you want specific pressure settings for this tool."
 
 input.pressure "Pressure"
@@ -358,9 +380,11 @@ input.pencilAction.ios "Pencil double tap"
 input.pencilAction.ios.help "Only active for Apple Pencil 2nd gen."
 // size rejection
 input.useSizeRejection "Use size rejection"
-input.useSizeRejectionWarning "If you are locked, quit and restart Nomad.\nThis setting is never saved."
+input.useSizeRejectionWarning "If you are locked, quit and restart Nomad.
+This setting is never saved."
 input.useSizeRejectionConfirm "Make sure to save your project first in case you can't interact with the UI anymore."
-input.useSizeRejection.help "Reject input if the contact area size larger than this value.\n
+input.useSizeRejection.help "Reject input if the contact area size larger than this value.
+
 It might not work on every device."
 input.sizeRejection "Max size threshold"
 // help
@@ -391,7 +415,8 @@ interface.quickPaint "Material"
 interface.quickAlpha "Alpha"
 interface.maskGesture "Mask gesture"
 interface.screenTooSmall "If the screen is too small, some buttons won't be displayed."
-interface.maskGesture.help "Hold the mask shortcut and:\n
+interface.maskGesture.help "Hold the mask shortcut and:
+
 - drag on the background to clear mask
 - tap on the background to invert mask
 - tap on the masked area to sharpen
@@ -494,7 +519,8 @@ light.attachment.fixed "Fixed"
 light.attachment.camera "Camera"
 light.attachment.environment "Environment"
 light.attachment.help "-- Fixed
-Light orientation won't change.\n
+Light orientation won't change.
+
 -- Camera
 Light orientation depends on the camera view."
 light.shadowCast "Shadow"
@@ -555,7 +581,8 @@ paint.intensity "Paint intensity"
 paint.paintAll "Paint all" 
 paint.paintAll.help "Apply the current material to the mesh."
 paint.paintAllForce "Force paint all"
-paint.paintAllForce.help "Apply the current material to the mesh.\n
+paint.paintAllForce.help "Apply the current material to the mesh.
+
 Masked area and disabled channels won't be painted."
 paint.strokePaintingTitle "Painting ($0)"
 paint.layerWarning "Channel masking will be ignored if you try to apply it on a layer."
@@ -634,7 +661,8 @@ primitive.mirror "Mirroring"
 primitive.mirror.help "Duplicate the primitiveb by using the symmetrical plane."
 primitive.validate "Validate"
 primitive.maxFaces "Max faces"
-primitive.maxFaces.help "The maximum number of faces a primitive can have.\n
+primitive.maxFaces.help "The maximum number of faces a primitive can have.
+
 This limit is only active while the primitive is not validated, afterwards the safeguard is gone."
 primitive.linear "Flat subdivision"
 primitive.subdivision "Post subdivision"
@@ -657,16 +685,20 @@ primitive.projectOnSphere.help "Snaps the points on a perfect sphere."
 
 // triplanar
 primitive.triplanar.title "Triplanar - Setting"
-primitive.triplanar.title.help "Triplanar is using the mask information from 3 planes to fill a voxel grid that is then polygonized.\n
-If you interact with the division or size sliders, the painting information will reset (smoothness is ok).\n
-You should probably disable symmetry as it might not function as you would expect.\n
+primitive.triplanar.title.help "Triplanar is using the mask information from 3 planes to fill a voxel grid that is then polygonized.
+
+If you interact with the division or size sliders, the painting information will reset (smoothness is ok).
+
+You should probably disable symmetry as it might not function as you would expect.
+
 You can use the 'Topologically connected' option in the mask panel to paint a plane impacting the other planes."
 primitive.triplanarIsolate "Visibility"
 primitive.triplanarSameSize "Same size (cube)"
 primitive.triplanarPolish "Smoothness"
 primitive.triplanarResetMask "Reset mask"
 primitive.triplanarReproject "Resize mask"
-primitive.triplanarReproject.title "Reproject the plane mask when updating the triplanar settings.\n\
+primitive.triplanarReproject.title "Reproject the plane mask when updating the triplanar settings.
+\
 If you uncheck this option, it will revert to the default spherical masks."
 primitive.isolate.all "All"
 primitive.isolate.back "Back"
@@ -721,8 +753,10 @@ settings.wireframeColor "Wireframe color"
 // backface
 settings.backfaceTitle "Backface"
 settings.backfaceVisible "Show backface"
-settings.backfaceVisible.help "Backface faces are faces that point 'away' from the camera viewpoint.\n
-All faces (triangle or quad) point to a certain direction, for example on a base sphere will see its faces point towards the outside.\n
+settings.backfaceVisible.help "Backface faces are faces that point 'away' from the camera viewpoint.
+
+All faces (triangle or quad) point to a certain direction, for example on a base sphere will see its faces point towards the outside.
+
 If you move the camera inside the sphere you'll the backface of theses faces."
 settings.backfaceColor "Backface color"
 settings.backfaceColored "Colored backface"
@@ -746,14 +780,18 @@ settings.renderRatio "Render resolution"
 settings.darkenUnselected "Darken unselected meshes"
 settings.smoothShading "Smooth shading"
 settings.partialDraw "Partial drawing"
-settings.partialDraw.help "Feature not polished!\n
-Use it if you are sculpting a relatively small part of a high poly mesh.\n
-It should make the sculpting smoother, but you should not enable wireframe!\n
+settings.partialDraw.help "Feature not polished!
+
+Use it if you are sculpting a relatively small part of a high poly mesh.
+
+It should make the sculpting smoother, but you should not enable wireframe!
+
 Also it might add visual artefacts during the brush strokes"
 settings.partialDrawWarning "Do not forget to turn off this option if the visual artefacts are too bothersome!"
 settings.detailRangeTitle "Voxel/Dynamic remesh"
 settings.detailRange "Max detail range"
-settings.detailRange.help "Maximum value for voxel and dynamic topology level of detail.\n
+settings.detailRange.help "Maximum value for voxel and dynamic topology level of detail.
+
 Higher values mean more polygons, use at your own risk!"
 settings.showPainting "Show scene painting"
 settings.lightIcon "Light icons"
@@ -764,16 +802,19 @@ settings.loadGuiSettings.help "When opening or importing a project file, all the
 settings.holeTitle "Hole-filling"
 settings.holeNonManifold "Fill non-manifold"
 settings.holeNonManifold.help "Try to fill non manifold hole.
-This option is not saved in the settings.\n"
+This option is not saved in the settings.
+"
 settings.keepImportTopology "Keep topology at import"
-settings.keepImportTopology.help "Use this option if you don't want Nomad to fiddle with the topology of imported mesh.\n
+settings.keepImportTopology.help "Use this option if you don't want Nomad to fiddle with the topology of imported mesh.
+
 It will disable vertex/face reordering, removal of vertex/face duplicates and removal of unused vertices."
 // multires
 settings.multiresTitle "Multiresolution"
 settings.multiresMaxVertices "Max vertices count"
 settings.multiresMaxVertices.help "Nomad does not perform memory check before subdivision, high poly count can easily lead to crashes."
 settings.multiresLowResVertices "Low resolution vertices threshold"
-settings.multiresLowResVertices.help "A lower resolution of the mesh can be displayed when you move the camera.\n
+settings.multiresLowResVertices.help "A lower resolution of the mesh can be displayed when you move the camera.
+
 You can increase this value if you want to display a higher resolution of the mesh."
 // stat
 settings.showSceneStats "Stats"
@@ -799,7 +840,8 @@ shading.environmentExposure "Exposure"
 shading.environmentRotation "Rotation"
 shading.environmentRotation.help "You can rotate the environment by dragging 3 fingers horizontally on the viewport."
 shading.environmentAttachedToCamera "Attached to camera"
-shading.environmentAttachedToCamera.help "Attach the environment to the camera.\n
+shading.environmentAttachedToCamera.help "Attach the environment to the camera.
+
 It will force the lighting to be consistent, which can be useful for sculpting purposes."
 // matcap
 shading.matcap "Matcap"
@@ -848,30 +890,38 @@ stroke.useShareRadius.help "Share the radius value among every tools."
 stroke.minSpacingAdjustIntensity "Adjust spacing intensity"
 stroke.minSpacingAdjustIntensity.help "Adjust the brush intensity to ensure consistent deformation depending on the stroke spacing."
 stroke.minSpacing "Stroke spacing"
-stroke.minSpacing.help "Spacing between each stroke, relative to the tool radius.\n
+stroke.minSpacing.help "Spacing between each stroke, relative to the tool radius.
+
 Lower value will allow smoother stroke but performance will degrade."
 stroke.lazySmooth "Stroke smoothing"
-stroke.lazySmooth.help "Average multiple pointer position to get a smoother stroke.\n
+stroke.lazySmooth.help "Average multiple pointer position to get a smoother stroke.
+
 With high values, the stroke will lag behind the pointer but will eventually catch up."
 stroke.lazyRadius "Lazy rope stabilizer"
-stroke.lazyRadius.help "Strokes will lag behind the pointer position according to a certain distance.\n
+stroke.lazyRadius.help "Strokes will lag behind the pointer position according to a certain distance.
+
 This can be used to draw smooth lines."
 stroke.globalSettings "This is a global setting"
 stroke.snapRadius "Snap radius"
-stroke.snapRadius.help "Snap the stroke if the pointer lies close to the last recorded stroke.\n
+stroke.snapRadius.help "Snap the stroke if the pointer lies close to the last recorded stroke.
+
 This can be useful when drawing long continuous lines, while doing frequent pauses."
 stroke.sculptOffset "Stroke offset"
-stroke.sculptOffset.help "Apply a constant offset on the stroke.\n
+stroke.sculptOffset.help "Apply a constant offset on the stroke.
+
 This option is there to help for small screen when using fingers, so that your finger doesn't cover the stroke."
 stroke.accumulate "Accumulate stroke"
 stroke.accumulate.help "If this option is enabled, there is no limit to how much matter you can add/remove per stroke."
 stroke.useDynamicTopology "Allow dynamic topology"
 stroke.connectedTopology "Connected topology"
-stroke.connectedTopology.help "This option will only sculpt the vertices that are linked to the picked surface.\n
+stroke.connectedTopology.help "This option will only sculpt the vertices that are linked to the picked surface.
+
 This is typically used for the Move tool, for example if you want to exclusively move a part that self-intersect with another part."
 stroke.onlyFrontFace "Front-facing vertex only"
-stroke.onlyFrontFace.help "This option will ignore back facing vertices.\n
-It can be useful if you want to paint part of a thin geometry without impacting the other side.\n
+stroke.onlyFrontFace.help "This option will ignore back facing vertices.
+
+It can be useful if you want to paint part of a thin geometry without impacting the other side.
+
 It also works for sculpting but you might experience some artefacts."
 stroke.intensityMultiplier "Intensity multiplier"
 stroke.curveFalloff "Falloff"
@@ -880,7 +930,8 @@ stroke.onlyLasso "Settings only active for the lasso tool."
 stroke.alpha "Alpha" 
 stroke.alphaInvert "Invert value"
 stroke.alphaScale "Alpha scale"
-stroke.alphaScale.help "At minimum value, the alpha square is inside the tool circle radius.\n
+stroke.alphaScale.help "At minimum value, the alpha square is inside the tool circle radius.
+
 At maximum value, the tool circle radius is inside the alpha square."
 // stroke type
 stroke.strokeType "Stroke type"
@@ -898,7 +949,8 @@ symmetry.toolIgnore "The current tool ignores symmetry."
 // method
 symmetry.method "Method:"
 symmetry.method.help "-- Local
-The symmetry plane will move along the mesh when you use one of the transform tools (rotate, translate or gizmo).\n
+The symmetry plane will move along the mesh when you use one of the transform tools (rotate, translate or gizmo).
+
 
 -- World
 The symmetry plane is fixed and will not move."
@@ -906,14 +958,17 @@ symmetry.methodWorld "World"
 symmetry.methodLocal "Local"
 // mirror
 symmetry.mirror "Mirroring"
-symmetry.mirror.help "Try to re-apply the symmetry without impacting the topology.\n
-To succeed, the topology need to be symmetrical and at least one edge should lie exactly on the symmetry line.\n
+symmetry.mirror.help "Try to re-apply the symmetry without impacting the topology.
+
+To succeed, the topology need to be symmetrical and at least one edge should lie exactly on the symmetry line.
+
 If it fails, you will be proposed to force the symmetry, but it will impact the topology."
 symmetry.apply "Mirror"
 symmetry.flip "Flip direction"
 symmetry.flip.help "Use this option to change the side in which the details are projected."
 symmetry.applyFail "Failed to apply symmetry:
-- $0\n
+- $0
+
 Do you want to enforce symmetry by mirroring the mesh?";
 // reset
 symmetry.resetOrigin "Reset Origin"
@@ -925,7 +980,8 @@ symmetry.showLine "Show line"
 symmetry.showPlane "Show plane"
 symmetry.editWarning "Symmetry edit is experimental."
 symmetry.edit "Gizmo edit"
-symmetry.edit.help "You can freely set the symmetry plane.\n
+symmetry.edit.help "You can freely set the symmetry plane.
+
 This feature is a bit experimental and you should probably never use it."
 
 // ------------------------------------------------------
@@ -989,7 +1045,8 @@ tool.clay.flattenOffset "Flatten offset"
 tool.crease.pinchFactor "Pinch force"
 // layer
 tool.layer.removeInfluence "Use current layer offset"
-tool.layer.removeInfluence.help "This option is only active when there is a current layer selected.\n
+tool.layer.removeInfluence.help "This option is only active when there is a current layer selected.
+
 It will use the current layer offset to limit the displacement over strokes."
 tool.layer.noLayerSelected "This option is only available if a current layer is selected"
 // flatten
@@ -1041,7 +1098,9 @@ tool.matrix.uniformScale.help "Nomad cannot support non-uniform scale as object 
 tool.matrix.moveToOrigin "Move origin"
 tool.matrix.resetTransform "Reset"
 tool.matrix.bakeTransform "Bake"
-tool.matrix.bakeTransform.confirm "The transform will be baked in the active layer.\n\nDo you confirm?"
+tool.matrix.bakeTransform.confirm "The transform will be baked in the active layer.
+
+Do you confirm?"
 tool.matrix.applyMethod "Method:"
 tool.matrix.applyMethodAuto "Auto"
 tool.matrix.applyMethodVertex "Vertex"
@@ -1066,7 +1125,8 @@ tool.transform.multiTouch.help "If this option is disabled, you can only use one
 tool.gizmo.size "Widget size"
 tool.gizmo.autoHide "Hide on interaction"
 tool.gizmo.tap "Move custom pivot on single-tap"
-tool.gizmo.tap.help "This option is only effective in custom pivot mode (Auto disabled).\n
+tool.gizmo.tap.help "This option is only effective in custom pivot mode (Auto disabled).
+
 -- None
 Nothing happen when tapping on the mesh.
 
@@ -1095,8 +1155,10 @@ tool.hole.smoothing "Hole smoothing"
 // tool.smudge.projectScreen.help "Smudge relies heavily on polygon density.\n
 // Use this option if you want consistent smudge performance by projecting only once at the beginning of the stroke."
 tool.smudge.fullProject "Project once"
-tool.smudge.fullProject.help "You can make the smudge stroke faster by projecting the mesh only once at the beginning of the stroke.\n
-If you don't move the camera between your smudge strokes, the projection can be avoided as well.\n
+tool.smudge.fullProject.help "You can make the smudge stroke faster by projecting the mesh only once at the beginning of the stroke.
+
+If you don't move the camera between your smudge strokes, the projection can be avoided as well.
+
 This setting is ignored if dynamic topology is activated."
 tool.smudge.quality "Quality"
 tool.smudge.quality.help "It changes the resolution of the projected pixels, lower values means faster strokes."
@@ -1117,11 +1179,14 @@ tool.noSettings "This tool doesn't have any specific settings."
 topology "Topology"
 // multires
 topology.multires.title "Multiresolution"
-topology.multires.title.help "Keep multiple resolution of a mesh.\n
-If you make changes in a lower resolution, details from the higher resolutions will be reprojected when you switch back.\n
+topology.multires.title.help "Keep multiple resolution of a mesh.
+
+If you make changes in a lower resolution, details from the higher resolutions will be reprojected when you switch back.
+
 Layers are available on every resolution."
 topology.multiresReverse "Reverse"
-topology.multiresReverse.confirm "Could not create base subdivision.\n
+topology.multiresReverse.confirm "Could not create base subdivision.
+
 The current topoloy is probably not a result from a subdivision."
 topology.multiresReverse.confirm.yes "ok"
 topology.multiresReverse.confirm.cancel ""
@@ -1133,16 +1198,20 @@ topology.multiresKeepTriangles "Keep triangles"
 topology.multiresLinear "Flat subdivision"
 // voxel
 topology.voxel.title "Voxel remeshing"
-topology.voxel.title.help "Remeshing by sampling the mesh on a grid.\n
-If the object is not closed (watertight), an hole-filling algorithm will be applied first.\n
+topology.voxel.title.help "Remeshing by sampling the mesh on a grid.
+
+If the object is not closed (watertight), an hole-filling algorithm will be applied first.
+
 Layers are reprojected after remeshing but the quality will degrade."
 topology.voxelResolution "Resolution"
 topology.voxelRemesh "Remesh"
 // dynamic topology
 topology.surfaceUniform "Remesh"
 topology.surfaceDetail "Detail"
-topology.surfaceDetail.help "Unlike voxel remeshing, surface remeshing doesn't require the mesh to be closed.\n
-It can also support masking so that you can protect some part of the mesh from topology changes.\n
+topology.surfaceDetail.help "Unlike voxel remeshing, surface remeshing doesn't require the mesh to be closed.
+
+It can also support masking so that you can protect some part of the mesh from topology changes.
+
 Layers are updated correctly."
 topology.surfaceMethod "Method"
 toplogy.surfaceMethodUniformisation "Uniformisation"
@@ -1158,8 +1227,10 @@ topology.surfaceExtrapolate "Vertex extrapolation"
 // dynamic
 topology.dynamic "Dynamic topology"
 topology.dynamicActivate "Enabled"
-topology.dynamicActivate.help "With dynamic topology, sculpting tools can subdivide or simplify the mesh locally in real time.\n
-This feature can have a noticeable impact on performance.\n
+topology.dynamicActivate.help "With dynamic topology, sculpting tools can subdivide or simplify the mesh locally in real time.
+
+This feature can have a noticeable impact on performance.
+
 Layers are updated correctly."
 topology.dynamicDetailLevel "Detail"
 topology.dynamicDetailEdge "Detail"
@@ -1178,7 +1249,8 @@ The detail is fixed, the detail value is shared with the voxel slider as well."
 topology.dynamicQuality "Prefer..."
 topology.dynamicQuality.help "If you choose Quality, the 2 main differences are:
 - refinement is applied before the sculpting operator, you will get less interpolating artefact when painting or sculpting very small details
-- refinement is not applied incrementally, if you sculpt very small details or do quick strokes, the topology will always be correctly refined\n
+- refinement is not applied incrementally, if you sculpt very small details or do quick strokes, the topology will always be correctly refined
+
 For better performance, and if you plan on using this option, you might consider enabling the \"partial drawing\" option in the Settings panel."
 topology.dynamicQualitySpeed "Speed"
 topology.dynamicQualityQuality "Quality"
