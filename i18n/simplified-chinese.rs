@@ -129,8 +129,8 @@ camera.doubleTapFocusSelection "聚焦所选项"
 camera.doubleTapFocusSelection.help "双击背景后相机将会缩放移动至最适合该对象的视图。"
 
 // scene and layer lists
-curve.preset "Preset"
-curve.custom "Custom"
+curve.preset "预设"
+curve.custom "自定义"
 
 // scene and layer lists
 expandList "展开图标"
@@ -166,7 +166,7 @@ file.project.delete.confirmOk "确定要删除吗？"
 
 // autosave
 file.project.autoSave "自动保存项目"
-file.project.autoSave.confirm "Disable Auto Save?"
+file.project.autoSave.confirm "确定要关闭自动保存吗？"
 file.project.autoSave.help "每隔一段时间将您的项目另存为一个单独的文件。
 
 这个自动保存文件可以在以下目录找到：
@@ -451,8 +451,8 @@ interface.flipMiddle "反转中间图标"
 interface.autoClose "操作时收起菜单"
 interface.autoClose.help "点击背景与对象后自动收起菜单。"
 interface.showTooltips "显示工具提示"
-interface.showPin "Show pin menu icon"
-interface.showPin.help "The screen width needs to be big enough to support menu pinning."
+interface.showPin ""
+interface.showPin.help ""
 interface.showTooltips.help "你在点的这个小问号就是工具提示 :-D"
 interface.materialPreview "调整材质参数预览"
 interface.toolboxHide "自动隐藏工具栏"
