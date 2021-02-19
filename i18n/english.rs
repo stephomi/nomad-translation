@@ -1175,6 +1175,13 @@ tool.measure.goldenRatio "Show golden ratio"
 tool.noSettings "This tool doesn't have any specific settings."
 
 // ------------------------------------------------------
+// tool presets
+tool.preset.save "Save"
+tool.preset.reset "Reset"
+tool.preset.clone "Clone"
+tool.preset.delete "Remove"
+
+// ------------------------------------------------------
 // topology
 topology "Topology"
 // multires

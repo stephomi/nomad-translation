@@ -1180,6 +1180,13 @@ tool.measure.goldenRatio "显示黄金分割比"
 tool.noSettings "该工具无特殊设置。"
 
 // ------------------------------------------------------
+// tool presets
+tool.preset.save ""
+tool.preset.reset ""
+tool.preset.clone ""
+tool.preset.delete ""
+
+// ------------------------------------------------------
 // topology
 topology "拓扑"
 // multires
