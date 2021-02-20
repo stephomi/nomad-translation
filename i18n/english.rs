@@ -223,7 +223,9 @@ Some 3d softwares will be able to read it but not all of them."
 
 // stl
 file.export.stl "Export STL"
-file.export.stlWarning "Layers and painting will be lost."
+file.export.stlWarning "Layers and extra painting (roughness metalness and mask) will be lost."
+file.export.stlColor "Export colors"
+file.export.stlColor.help "Some 3d softwares will be able to read it but not all of them."
 file.export.stlAscii "By default the format is binary.
 
 You can choose to export to text format (ASCII) but the file will be bigger."

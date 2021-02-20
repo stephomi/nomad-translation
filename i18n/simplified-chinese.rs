@@ -223,7 +223,9 @@ file.export.objColorHexa.help "像ZBrush那样将颜色转换为十六进制。
 
 // stl
 file.export.stl "导出 STL 格式"
-file.export.stlWarning "图层和绘画将会丢失"
+file.export.stlWarning "图层、粗糙度、金属强度、蒙版和绘画图层等其他属性将会丢失。"
+file.export.stlColor "导出颜色"
+file.export.stlColor.help "只有部分3D软件能够识别。"
 file.export.stlAscii "默认情况下，格式为二进制。
 
 您可以选择导出为文本格式（ASCII），但文件会更大。"
