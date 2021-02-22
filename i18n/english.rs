@@ -347,7 +347,6 @@ history.state.lightMove "Move light $0"
 history.state.lightType "Light $0 type"
 history.state.lightSpotAngle "Light $0 spot angle"
 history.state.lightSpotSoftness "Light $0 spot softness"
-history.state.lightRadius "Light $0 spot radius"
 
 // ------------------------------------------------------
 // pressure menu
@@ -534,7 +533,6 @@ light.type.directional "Directional"
 light.type.spot "Spot"
 light.spotAngle "Cone angle"
 light.spotSoftness "Softness"
-light.radius "Radius falloff"
 light.shadowCast "Shadow"
 light.shadowNormalBias "Normal bias"
 
