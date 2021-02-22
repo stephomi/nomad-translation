@@ -344,6 +344,9 @@ history.state.lightAdd "添加灯光 light $0"
 history.state.lightDelete "删除灯光 $0"
 history.state.lightCopy "复制灯光 $0"
 history.state.lightMove "移动灯光 $0"
+history.state.lightType "改变灯光 $0 类型"
+history.state.lightSpotAngle ""
+history.state.lightSpotSoftness ""
 
 // ------------------------------------------------------
 // pressure menu
@@ -453,8 +456,10 @@ interface.flipMiddle "反转中间图标"
 interface.autoClose "操作时收起菜单"
 interface.autoClose.help "点击背景与对象后自动收起菜单。"
 interface.showTooltips "显示工具提示"
-interface.showPin ""
-interface.showPin.help ""
+interface.showPin "显示固定菜单按钮"
+interface.showPin.help "固定按钮会出现在菜单的上方。
+
+屏幕宽度需要足够宽才能支持菜单固定。"
 interface.showTooltips.help "你在点的这个小问号就是工具提示 :-D"
 interface.materialPreview "调整材质参数预览"
 interface.toolboxHide "自动隐藏工具栏"
@@ -524,6 +529,12 @@ light.attachment.help "- 固定
 
 - 随相机移动
 灯光方向随着相机视角而改变。"
+light.type "类型"
+light.type.directional ""
+light.type.spot ""
+light.spotAngle ""
+light.spotSoftness ""
+light.radius "衰减半径"
 light.shadowCast "显示阴影"
 light.shadowNormalBias "阴影偏差"
 
@@ -1183,10 +1194,10 @@ tool.noSettings "该工具无特殊设置。"
 
 // ------------------------------------------------------
 // tool presets
-tool.preset.save ""
-tool.preset.reset ""
-tool.preset.clone ""
-tool.preset.delete ""
+tool.preset.save "保存"
+tool.preset.reset "重置"
+tool.preset.clone "克隆"
+tool.preset.delete "删除"
 
 // ------------------------------------------------------
 // topology
