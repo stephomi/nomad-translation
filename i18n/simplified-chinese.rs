@@ -26,6 +26,8 @@ about.turntableSpeed "旋转速度"
 about.credits "鸣谢"
 about.creditsOpenSource "开源项目"
 about.creditsArts "MatCap与HDRI"
+about.languages ""
+about.languages.help ""
 
 // ------------------------------------------------------
 // alert

@@ -26,6 +26,8 @@ about.turntableSpeed "Turntable Speed"
 about.credits "Credits"
 about.creditsOpenSource "Open-Source"
 about.creditsArts "Matcaps & Hdris"
+about.languages "Languages"
+about.languages.help "The translation file is available at github.com/stephomi/nomad-translation"
 
 // ------------------------------------------------------
 // alert
