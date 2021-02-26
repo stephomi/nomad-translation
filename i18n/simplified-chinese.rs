@@ -453,8 +453,6 @@ interface.resetAll.confirm "确定要重置界面吗？"
 interface.flipTop "整体反转"
 interface.flipBottom "反转底部图标"
 interface.flipMiddle "反转中间图标"
-interface.autoClose "操作时收起菜单"
-interface.autoClose.help "点击背景与对象后自动收起菜单。"
 interface.showTooltips "显示工具提示"
 interface.showPin "显示固定菜单按钮"
 interface.showPin.help "固定按钮会出现在菜单的上方。
