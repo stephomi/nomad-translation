@@ -598,6 +598,16 @@ paint.strokePaintingTitle "Painting ($0)"
 paint.layerWarning "Channel masking will be ignored if you try to apply it on a layer."
 
 // ------------------------------------------------------
+// popup
+popup.save "Save"
+popup.save.confirm "Confirm save?"
+popup.reset "Reset"
+popup.reset.confirm "Confirm reset?"
+popup.clone "Clone"
+popup.rename "Rename"
+popup.delete "Remove"
+
+// ------------------------------------------------------
 // postprocess
 postprocess.mainEnable "Post Process" 
 // fxaa
@@ -939,10 +949,14 @@ stroke.onlyLasso "Settings only active for the lasso tool."
 // alpha
 stroke.alpha "Alpha" 
 stroke.alphaInvert "Invert value"
-stroke.alphaScale "Alpha scale"
-stroke.alphaScale.help "At minimum value, the alpha square is inside the tool circle radius.
-
-At maximum value, the tool circle radius is inside the alpha square."
+stroke.alphaWrap "Tiling"
+stroke.alphaWrap.none "None"
+stroke.alphaWrap.repeat "Repeat"
+stroke.alphaWrap.mirror "Mirror"
+stroke.alphaProject "Method"
+stroke.alphaProject.surfaceContinuous "Surface"
+stroke.alphaProject.screenFixed "Screen project"
+stroke.alphaTiling "Tiling"
 // stroke type
 stroke.strokeType "Stroke type"
 stroke.strokeTypeDot "Dot"
@@ -1183,13 +1197,6 @@ tool.shape.lineRotateStep "Rotate step"
 tool.measure.goldenRatio "Show golden ratio"
 // fallback
 tool.noSettings "This tool doesn't have any specific settings."
-
-// ------------------------------------------------------
-// tool presets
-tool.preset.save "Save"
-tool.preset.reset "Reset"
-tool.preset.clone "Clone"
-tool.preset.delete "Remove"
 
 // ------------------------------------------------------
 // topology

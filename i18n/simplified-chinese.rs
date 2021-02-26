@@ -534,7 +534,6 @@ light.type.directional ""
 light.type.spot ""
 light.spotAngle ""
 light.spotSoftness ""
-light.radius "衰减半径"
 light.shadowCast "显示阴影"
 light.shadowNormalBias "阴影偏差"
 
@@ -598,6 +597,16 @@ paint.paintAllForce.help "将当前材料应用到所选对象上。
 蒙版区域与未勾选通道也会被应用。"
 paint.strokePaintingTitle "画笔设置 ($0)"
 paint.layerWarning "图层上的通道蒙版不可用。"
+
+// ------------------------------------------------------
+// popup
+popup.save "保存"
+popup.save.confirm ""
+popup.reset "重置"
+popup.reset.confirm ""
+popup.clone "克隆"
+popup.rename ""
+popup.delete "删除"
 
 // ------------------------------------------------------
 // postprocess
@@ -948,10 +957,14 @@ stroke.onlyLasso "该设置仅对套索工具有效。"
 // alpha
 stroke.alpha "形状" 
 stroke.alphaInvert "形状反相"
-stroke.alphaScale "形状缩放"
-stroke.alphaScale.help "该值最小时,笔刷形状方框与半径圆内接。
-
-该值最大时，笔刷形状方框与半径圆外切。"
+stroke.alphaWrap ""
+stroke.alphaWrap.none ""
+stroke.alphaWrap.repeat ""
+stroke.alphaWrap.mirror ""
+stroke.alphaProject ""
+stroke.alphaProject.surfaceContinuous ""
+stroke.alphaProject.screenFixed ""
+stroke.alphaTiling "形状缩放"
 // stroke type
 stroke.strokeType "笔刷类型"
 stroke.strokeTypeDot "点"
@@ -1191,13 +1204,6 @@ tool.shape.lineRotateStep "旋转角度"
 tool.measure.goldenRatio "显示黄金分割比"
 // fallback
 tool.noSettings "该工具无特殊设置。"
-
-// ------------------------------------------------------
-// tool presets
-tool.preset.save "保存"
-tool.preset.reset "重置"
-tool.preset.clone "克隆"
-tool.preset.delete "删除"
 
 // ------------------------------------------------------
 // topology
