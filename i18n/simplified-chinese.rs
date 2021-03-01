@@ -26,8 +26,8 @@ about.turntableSpeed "旋转速度"
 about.credits "鸣谢"
 about.creditsOpenSource "开源项目"
 about.creditsArts "MatCap与HDRI"
-about.languages ""
-about.languages.help ""
+about.languages "多语言翻译"
+about.languages.help "如您希望了解更多，请访问https://github.com/stephomi/nomad-translation（英文）"
 
 // ------------------------------------------------------
 // alert
@@ -601,11 +601,11 @@ paint.layerWarning "图层上的通道蒙版不可用。"
 // ------------------------------------------------------
 // popup
 popup.save "保存"
-popup.save.confirm ""
+popup.save.confirm "确认要保存吗？"
 popup.reset "重置"
-popup.reset.confirm ""
+popup.reset.confirm "确认要重置吗？"
 popup.clone "克隆"
-popup.rename ""
+popup.rename "重命名"
 popup.delete "删除"
 
 // ------------------------------------------------------
