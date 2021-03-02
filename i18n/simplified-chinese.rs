@@ -26,8 +26,8 @@ about.turntableSpeed "旋转速度"
 about.credits "鸣谢"
 about.creditsOpenSource "开源项目"
 about.creditsArts "MatCap与HDRI"
-about.languages ""
-about.languages.help ""
+about.languages "多语言翻译"
+about.languages.help "如您希望了解更多，请访问https://github.com/stephomi/nomad-translation（英文）"
 
 // ------------------------------------------------------
 // alert
@@ -348,8 +348,8 @@ history.state.lightDelete "删除灯光 $0"
 history.state.lightCopy "复制灯光 $0"
 history.state.lightMove "移动灯光 $0"
 history.state.lightType "改变灯光 $0 类型"
-history.state.lightSpotAngle ""
-history.state.lightSpotSoftness ""
+history.state.lightSpotAngle "改变灯光 $0 入射角"
+history.state.lightSpotSoftness "改变灯光 $0 硬度"
 
 // ------------------------------------------------------
 // pressure menu
@@ -531,10 +531,10 @@ light.attachment.help "- 固定
 - 随相机移动
 灯光方向随着相机视角而改变。"
 light.type "类型"
-light.type.directional ""
-light.type.spot ""
-light.spotAngle ""
-light.spotSoftness ""
+light.type.directional "平行光"
+light.type.spot "聚光灯"
+light.spotAngle "入射角"
+light.spotSoftness "边缘硬度"
 light.shadowCast "显示阴影"
 light.shadowNormalBias "阴影偏差"
 
@@ -602,11 +602,11 @@ paint.layerWarning "图层上的通道蒙版不可用。"
 // ------------------------------------------------------
 // popup
 popup.save "保存"
-popup.save.confirm ""
+popup.save.confirm "确认要保存吗？"
 popup.reset "重置"
-popup.reset.confirm ""
+popup.reset.confirm "确认要重置吗？"
 popup.clone "克隆"
-popup.rename ""
+popup.rename "重命名"
 popup.delete "删除"
 
 // ------------------------------------------------------
@@ -962,13 +962,13 @@ stroke.onlyLasso "该设置仅对套索工具有效。"
 // alpha
 stroke.alpha "形状" 
 stroke.alphaInvert "形状反相"
-stroke.alphaWrap ""
-stroke.alphaWrap.none ""
-stroke.alphaWrap.repeat ""
-stroke.alphaWrap.mirror ""
-stroke.alphaProject ""
-stroke.alphaProject.surfaceContinuous ""
-stroke.alphaProject.screenFixed ""
+stroke.alphaWrap "平铺"
+stroke.alphaWrap.none "无"
+stroke.alphaWrap.repeat "重复"
+stroke.alphaWrap.mirror "镜像"
+stroke.alphaProject "平铺模式"
+stroke.alphaProject.surfaceContinuous "表面连续"
+stroke.alphaProject.screenFixed "屏幕投影"
 stroke.alphaTiling "形状缩放"
 // stroke type
 stroke.strokeType "笔刷类型"
