@@ -90,6 +90,7 @@ background.imageY "Position Y"
 background.imageRotation "Rotation"
 background.imageScale "Scale"
 background.imageOverlay "Overlay"
+background.imageAlpha "Alpha"
 background.imageReset "Reset settings"
 
 // ------------------------------------------------------
@@ -258,7 +259,7 @@ file.materials.reset.confirm "Reset material library?"
 // tools
 file.tools "Tools presets"
 file.tools.reset "Reset to default"
-file.tools.reset.confirm "Reset material library?"
+file.tools.reset.confirm "Reset tools library?"
 
 // render
 file.render "Render"
@@ -610,6 +611,10 @@ popup.delete "Remove"
 // ------------------------------------------------------
 // postprocess
 postprocess.mainEnable "Post Process" 
+postprocess.quality "Quality"
+postprocess.quality.help "Activate these options to improve the quality to the detriment of performance."
+postprocess.maxSamples "Max samples"
+postprocess.fullResolution "Full Resolution"
 // fxaa
 postprocess.fxaaEnable "Antialiasing (FXAA)"
 // ssr
@@ -1084,6 +1089,7 @@ tool.mask.blur "Blur"
 tool.mask.sharpen "Sharpen"
 tool.mask.thickness "Shell thickness"
 tool.mask.polish "Border smoothness"
+tool.mask.engraveEmboss "Engrave / Emboss"
 tool.mask.extract "Extract"
 tool.mask.split "Split"
 tool.mask.closeMask "Closing action (masked):"

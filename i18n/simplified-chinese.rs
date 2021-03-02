@@ -90,6 +90,7 @@ background.imageY "Y轴方向"
 background.imageRotation "旋转"
 background.imageScale "缩放"
 background.imageOverlay "透明度"
+background.imageAlpha ""
 background.imageReset "重设"
 
 // ------------------------------------------------------
@@ -611,6 +612,10 @@ popup.delete "删除"
 // ------------------------------------------------------
 // postprocess
 postprocess.mainEnable "后期处理" 
+postprocess.quality ""
+postprocess.quality.help ""
+postprocess.maxSamples ""
+postprocess.fullResolution ""
 // fxaa
 postprocess.fxaaEnable "抗锯齿（FXAA）"
 // ssr
@@ -1091,6 +1096,7 @@ tool.mask.blur "模糊"
 tool.mask.sharpen "锐化"
 tool.mask.thickness "抽壳厚度"
 tool.mask.polish "平滑边界"
+tool.mask.engraveEmboss ""
 tool.mask.extract "抽壳"
 tool.mask.split "分离"
 tool.mask.closeMask "分离操作（蒙版区域）："
