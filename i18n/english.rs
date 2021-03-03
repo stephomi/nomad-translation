@@ -612,7 +612,13 @@ popup.delete "Remove"
 // postprocess
 postprocess.mainEnable "Post Process" 
 postprocess.quality "Quality"
-postprocess.quality.help "Activate these options to improve the quality to the detriment of performance."
+postprocess.quality.help "Activate these options to improve the quality to the detriment of performance.
+
+It will impact:
+- Reflection
+- Ambient Occlusion
+- Depth Of Field
+"
 postprocess.maxSamples "Max samples"
 postprocess.fullResolution "Full Resolution"
 // fxaa
@@ -962,6 +968,8 @@ stroke.alphaProject "Method"
 stroke.alphaProject.surfaceContinuous "Surface"
 stroke.alphaProject.screenFixed "Screen project"
 stroke.alphaTiling "Tiling"
+stroke.alphaScale "Alpha scale"
+stroke.alphaScale.help "At minimum value, the alpha square is inside the tool circle radius."
 // stroke type
 stroke.strokeType "Stroke type"
 stroke.strokeTypeDot "Dot"
