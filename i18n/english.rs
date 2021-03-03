@@ -668,6 +668,10 @@ postprocess.sharpnessFactor "Strength"
 // grain
 postprocess.grainEnable "Grain" 
 postprocess.grainFactor "Strength" 
+// curvature
+postprocess.curvatureEnable "Curvature" 
+postprocess.curvatureCavity "Cavity" 
+postprocess.curvatureBump "Bump" 
 
 // ------------------------------------------------------
 // primitive (scene menu)
