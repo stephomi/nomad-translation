@@ -614,7 +614,7 @@ postprocess.mainEnable "Post Process"
 postprocess.quality "Quality"
 postprocess.quality.help "Activate these options to improve the quality to the detriment of performance.
 
-It will impact:
+It will improve:
 - Reflection
 - Ambient Occlusion
 - Depth Of Field
