@@ -28,6 +28,7 @@ about.creditsOpenSource "开源项目"
 about.creditsArts "MatCap与HDRI"
 about.languages "多语言翻译"
 about.languages.help "如您希望了解更多，请访问https://github.com/stephomi/nomad-translation（英文）"
+about.openUrl ""
 
 // ------------------------------------------------------
 // alert
@@ -663,6 +664,10 @@ postprocess.sharpnessFactor "强度"
 // grain
 postprocess.grainEnable "噪点" 
 postprocess.grainFactor "强度" 
+// curvature
+postprocess.curvatureEnable "" 
+postprocess.curvatureCavity "" 
+postprocess.curvatureBump "" 
 
 // ------------------------------------------------------
 // primitive (scene menu)
@@ -970,6 +975,8 @@ stroke.alphaProject "平铺模式"
 stroke.alphaProject.surfaceContinuous "表面连续"
 stroke.alphaProject.screenFixed "屏幕投影"
 stroke.alphaTiling "形状缩放"
+stroke.alphaScale ""
+stroke.alphaScale.help ""
 // stroke type
 stroke.strokeType "笔刷类型"
 stroke.strokeTypeDot "点"
@@ -1042,6 +1049,7 @@ tool.mask.unmask "消除蒙版"
 tool.maskSelector "选择蒙版"
 tool.paint "绘画"
 tool.paint.erase "橡皮"
+tool.paint.depthFilter ""
 tool.smudge "涂抹"
 tool.flatten "铲平"
 tool.flatten.fill "填充"

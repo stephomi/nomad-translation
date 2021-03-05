@@ -28,6 +28,7 @@ about.creditsOpenSource "Open-Source"
 about.creditsArts "Matcaps & Hdris"
 about.languages "Languages"
 about.languages.help "The translation file is available at github.com/stephomi/nomad-translation"
+about.openUrl "Open?"
 
 // ------------------------------------------------------
 // alert
@@ -1047,6 +1048,7 @@ tool.mask.unmask "Unmask"
 tool.maskSelector "SelMask"
 tool.paint "Paint"
 tool.paint.erase "Erase"
+tool.paint.depthFilter "Depth filtering"
 tool.smudge "Smudge"
 tool.flatten "Flatten"
 tool.flatten.fill "Fill"
