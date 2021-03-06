@@ -223,7 +223,7 @@ file.export.objColorAppend.help "给顶点添加颜色信息。
 file.export.objColorHexa "十六进制颜色"
 file.export.objColorHexa.help "像ZBrush那样将颜色转换为十六进制。
 
-只有部分3D软件能够识别。"
+该属性只有部分3D软件能够识别。"
 
 // stl
 file.export.stl "导出 STL 格式"
