@@ -612,16 +612,16 @@ popup.delete "删除"
 // ------------------------------------------------------
 // postprocess
 postprocess.mainEnable "后期处理" 
-postprocess.quality "质量"
-postprocess.quality.help "激活以下选项可提升渲染质量，但可能会影响性能。
+postprocess.quality "效果质量"
+postprocess.quality.help "该设置可提升部分效果的渲染质量，但可能会影响性能。
 
-可提升以下效果的渲染质量：
+仅对以下效果有效：
 - 屏幕空间反射（SSR）
 - 环境光屏蔽
 - 景深
 "
 postprocess.maxSamples "最大采样值"
-postprocess.fullResolution "最大分辨率"
+postprocess.fullResolution "最大实时分辨率"
 // fxaa
 postprocess.fxaaEnable "抗锯齿（FXAA）"
 // ssr
@@ -670,9 +670,9 @@ postprocess.sharpnessFactor "强度"
 postprocess.grainEnable "噪点" 
 postprocess.grainFactor "强度" 
 // curvature
-postprocess.curvatureEnable "" 
-postprocess.curvatureCavity "" 
-postprocess.curvatureBump "" 
+postprocess.curvatureEnable "曲率贴图" 
+postprocess.curvatureCavity "缝隙颜色" 
+postprocess.curvatureBump "凸起颜色" 
 
 // ------------------------------------------------------
 // primitive (scene menu)
