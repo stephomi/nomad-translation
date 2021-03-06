@@ -27,8 +27,8 @@ about.credits "鸣谢"
 about.creditsOpenSource "开源项目"
 about.creditsArts "MatCap与HDRI"
 about.languages "多语言翻译"
-about.languages.help "如您希望了解更多，请访问https://github.com/stephomi/nomad-translation"
-about.openUrl "是否打开此网页？"
+about.languages.help "如您希望了解更多，请访问https://github.com/stephomi/nomad-translation（英文）"
+about.openUrl "是否打开此链接？"
 
 // ------------------------------------------------------
 // alert
@@ -238,7 +238,7 @@ file.settings.title "设置"
 file.settings.title.help "大部分应用的设置都保存在此处（相机界面等）。
 
 某些资源将自动保存在其他地方，包括：
-- HDR
+- HDRI
 - 材质
 - 画笔形状
 - 背景
@@ -876,7 +876,7 @@ shading.lights.addLight "添加灯光"
 shading.lights.matcapWarning "灯光选项在材质捕捉模式下不可用。"
 // environment
 shading.environment "HDRI"
-shading.environmentImport "导入HDR"
+shading.environmentImport "导入HDRI"
 shading.environmentExposure "曝光"
 shading.environmentRotation "旋转"
 shading.environmentRotation.help "在屏幕上使用三指水平移动可使环境、灯光与材质捕捉旋转。"
