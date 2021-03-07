@@ -670,7 +670,7 @@ postprocess.sharpnessFactor "强度"
 postprocess.grainEnable "噪点" 
 postprocess.grainFactor "强度" 
 // curvature
-postprocess.curvatureEnable "曲率贴图" 
+postprocess.curvatureEnable "曲率描边" 
 postprocess.curvatureCavity "缝隙颜色" 
 postprocess.curvatureBump "凸起颜色" 
 
