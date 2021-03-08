@@ -90,8 +90,8 @@ background.imageX "X轴方向"
 background.imageY "Y轴方向"
 background.imageRotation "旋转"
 background.imageScale "缩放"
-background.imageOverlay "透明度"
-background.imageAlpha ""
+background.imageOverlay "对象透明度"
+background.imageAlpha "背景透明度"
 background.imageReset "重设"
 
 // ------------------------------------------------------
@@ -617,7 +617,7 @@ postprocess.quality.help "该设置可提升部分效果的渲染质量，但可
 
 仅对以下效果有效：
 - 屏幕空间反射（SSR）
-- 环境光屏蔽
+- 环境光屏蔽（AO）
 - 景深
 "
 postprocess.maxSamples "最大采样值"
@@ -632,7 +632,7 @@ postprocess.ssrDistanceFading.help "根据反射距离来减弱效果。
 此选项能减弱SSR所产生的伪影。"
 postprocess.ssrMatcapWarning "SSR仅在PBR渲染模式下有效。"
 // ssao
-postprocess.ssaoEnable "环境光遮蔽" 
+postprocess.ssaoEnable "环境光遮蔽（AO）" 
 postprocess.ssaoRadius "半径" 
 postprocess.ssaoFactor "强度" 
 postprocess.ssaoBias "扩张强度" 
@@ -980,8 +980,8 @@ stroke.alphaProject "平铺模式"
 stroke.alphaProject.surfaceContinuous "表面连续"
 stroke.alphaProject.screenFixed "屏幕投影"
 stroke.alphaTiling "形状平铺"
-stroke.alphaScale ""
-stroke.alphaScale.help ""
+stroke.alphaScale "形状缩放"
+stroke.alphaScale.help "当该值最小时，画笔形状将不会大于工具画笔的半径圆。"
 // stroke type
 stroke.strokeType "笔刷类型"
 stroke.strokeTypeDot "点"
@@ -1054,7 +1054,7 @@ tool.mask.unmask "消除蒙版"
 tool.maskSelector "选择蒙版"
 tool.paint "绘画"
 tool.paint.erase "橡皮"
-tool.paint.depthFilter ""
+tool.paint.depthFilter "启用忽略压感"
 tool.smudge "涂抹"
 tool.flatten "铲平"
 tool.flatten.fill "填充"
@@ -1109,7 +1109,7 @@ tool.mask.blur "模糊"
 tool.mask.sharpen "锐化"
 tool.mask.thickness "抽壳厚度"
 tool.mask.polish "平滑边界"
-tool.mask.engraveEmboss ""
+tool.mask.engraveEmboss "凹印"
 tool.mask.extract "抽壳"
 tool.mask.split "分离"
 tool.mask.closeMask "分离操作（蒙版区域）："
