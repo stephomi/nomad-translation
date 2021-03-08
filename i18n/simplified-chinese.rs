@@ -29,6 +29,16 @@ about.creditsArts "MatCap与HDRI"
 about.languages "多语言翻译"
 about.languages.help "如您希望了解更多，请访问https://github.com/stephomi/nomad-translation（英文）"
 about.openUrl "是否打开此链接？"
+// nomad
+about.website ""
+about.forum ""
+about.manual ""
+about.mail ""
+// social
+about.twitter ""
+about.instagram ""
+about.facebook ""
+about.discord ""
 
 // ------------------------------------------------------
 // alert

@@ -29,6 +29,16 @@ about.creditsArts "Matcaps & Hdris"
 about.languages "Languages"
 about.languages.help "The translation file is available at github.com/stephomi/nomad-translation"
 about.openUrl "Open?"
+// nomad
+about.website "Website"
+about.forum "Forum"
+about.manual "Manual"
+about.mail "Support"
+// social
+about.twitter "Twitter"
+about.instagram "Instagram"
+about.facebook "Facebook"
+about.discord "Discord"
 
 // ------------------------------------------------------
 // alert
