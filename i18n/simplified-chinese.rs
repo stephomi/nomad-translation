@@ -28,7 +28,7 @@ about.creditsOpenSource "开源项目"
 about.creditsArts "MatCap与HDRI"
 about.languages "多语言翻译"
 about.languages.help "如您希望了解更多，请访问https://github.com/stephomi/nomad-translation（英文）"
-about.openUrl ""
+about.openUrl "是否打开此链接？"
 
 // ------------------------------------------------------
 // alert
@@ -90,8 +90,8 @@ background.imageX "X轴方向"
 background.imageY "Y轴方向"
 background.imageRotation "旋转"
 background.imageScale "缩放"
-background.imageOverlay "透明度"
-background.imageAlpha ""
+background.imageOverlay "对象透明度"
+background.imageAlpha "背景透明度"
 background.imageReset "重设"
 
 // ------------------------------------------------------
@@ -108,7 +108,7 @@ camera.perspective "透视视图"
 camera.fov "焦距"
 // orbit
 camera.orbit "视图旋转"
-camera.orbit.help "旋转模式启用后可使用双指旋转视图。"
+camera.orbit.help "在旋转模式下，可使用双指旋转场景的水平面。"
 camera.trackball "旋转模式"
 camera.turntable "水平模式"
 // speed
@@ -217,13 +217,13 @@ file.export.gltfExtraPaint.help "将导出粗糙度、金属强度、蒙版和�
 file.export.obj "导出 OBJ 格式"
 file.export.objWarning "图层、粗糙度、金属强度、蒙版和绘画图层等其他属性将会丢失。"
 file.export.objColorAppend "导出颜色"
-file.export.objColorAppend.help "在顶点之后添加颜色信息
+file.export.objColorAppend.help "给顶点添加颜色信息。
 
 只有部分3D软件能够识别。"
 file.export.objColorHexa "十六进制颜色"
 file.export.objColorHexa.help "像ZBrush那样将颜色转换为十六进制。
 
-只有部分3D软件能够识别。"
+该属性只有部分3D软件能够识别。"
 
 // stl
 file.export.stl "导出 STL 格式"
@@ -238,13 +238,12 @@ file.settings.title "设置"
 file.settings.title.help "大部分应用的设置都保存在此处（相机界面等）。
 
 某些资源将自动保存在其他地方，包括：
-- HDR
+- HDRI
 - 材质
 - 画笔形状
 - 背景
 - 项目
-
-目前暂时无法保存画笔设置，但已在开发计划中。"
+"
 
 // settings
 file.settings.reset "恢复默认设置"
@@ -397,7 +396,7 @@ input.useSizeRejection.help "如果手指与屏幕的接触面积超过设定值
 部分设备可能不支持此选项"
 input.sizeRejection "尺寸阈值"
 // help
-input.interaction.title "交互选项" 
+input.interaction.title "防误触" 
 input.interaction.title.help "以下选项均为全局设置。"
 
 // ------------------------------------------------------
@@ -613,25 +612,31 @@ popup.delete "删除"
 // ------------------------------------------------------
 // postprocess
 postprocess.mainEnable "后期处理" 
-postprocess.quality ""
-postprocess.quality.help ""
-postprocess.maxSamples ""
-postprocess.fullResolution ""
+postprocess.quality "效果质量"
+postprocess.quality.help "该设置可提升部分效果的渲染质量，但可能会影响性能。
+
+仅对以下效果有效：
+- 屏幕空间反射（SSR）
+- 环境光屏蔽（AO）
+- 景深
+"
+postprocess.maxSamples "最大采样值"
+postprocess.fullResolution "最大实时分辨率"
 // fxaa
 postprocess.fxaaEnable "抗锯齿（FXAA）"
 // ssr
 postprocess.ssrEnable "屏幕空间反射（SSR）" 
 postprocess.ssrFactor "强度" 
 postprocess.ssrDistanceFading "淡化距离" 
-postprocess.ssrDistanceFading.help "根据反射距离来减弱效果
+postprocess.ssrDistanceFading.help "根据反射距离来减弱效果。
 此选项能减弱SSR所产生的伪影。"
 postprocess.ssrMatcapWarning "SSR仅在PBR渲染模式下有效。"
 // ssao
-postprocess.ssaoEnable "环境光遮蔽" 
+postprocess.ssaoEnable "环境光遮蔽（AO）" 
 postprocess.ssaoRadius "半径" 
 postprocess.ssaoFactor "强度" 
-postprocess.ssaoBias "曲率偏移" 
-postprocess.ssaoBias.help "效果的敏感性取决于表面曲率。"
+postprocess.ssaoBias "扩张强度" 
+postprocess.ssaoBias.help "模型表面曲率将会影响效果的强度。"
 // dof
 postprocess.dofEnable "景深"
 postprocess.dofBlurFar "远景模糊" 
@@ -643,8 +648,8 @@ postprocess.bloomIntensity "强度"
 postprocess.bloomRadius "半径" 
 postprocess.bloomRadius.help "此参数可调节泛光的宽度。"
 postprocess.bloomThreshold "阈值" 
-postprocess.bloomThreshold.help "泛光阈值能够判断一个像素是否使产生泛光效果。
-如果该值为零，会使所有像素都产生泛光效果。"
+postprocess.bloomThreshold.help "泛光阈值能够判断泛光的光线强度。
+阈值越高，空间里越亮的物体才会产生泛光效果。"
 // tone mapping
 postprocess.toneEnable "色调映射" 
 postprocess.toneExposure "曝光" 
@@ -665,9 +670,9 @@ postprocess.sharpnessFactor "强度"
 postprocess.grainEnable "噪点" 
 postprocess.grainFactor "强度" 
 // curvature
-postprocess.curvatureEnable "" 
-postprocess.curvatureCavity "" 
-postprocess.curvatureBump "" 
+postprocess.curvatureEnable "曲率描边" 
+postprocess.curvatureCavity "缝隙颜色" 
+postprocess.curvatureBump "凸起颜色" 
 
 // ------------------------------------------------------
 // primitive (scene menu)
@@ -765,7 +770,7 @@ resource.import "导入"
 // ------------------------------------------------------
 // scene
 scene.title "场景"
-scene.title.help "使用选择复选框时，按住并拖动手指即可轻松选择其他对象。 "
+scene.title.help "当场景内有多个对象时，在复选框处上下滑动即可快速选择多个对象。 "
 scene.mergeSimple "简单合并"
 scene.mergeVoxel "体素合并"
 scene.voxelResolution "分辨率"
@@ -870,13 +875,13 @@ shading.lights "灯光"
 shading.lights.addLight "添加灯光"
 shading.lights.matcapWarning "灯光选项在材质捕捉模式下不可用。"
 // environment
-shading.environment "环境"
-shading.environmentImport "导入HDR"
+shading.environment "HDRI"
+shading.environmentImport "导入HDRI"
 shading.environmentExposure "曝光"
 shading.environmentRotation "旋转"
 shading.environmentRotation.help "在屏幕上使用三指水平移动可使环境、灯光与材质捕捉旋转。"
-shading.environmentAttachedToCamera "与相机固定"
-shading.environmentAttachedToCamera.help "将环境与相机固定。
+shading.environmentAttachedToCamera "固定HDRI"
+shading.environmentAttachedToCamera.help "启用此选项后，移动相机时将不会移动HDRI。
 
 这能让光线保持固定，对于雕刻来说非常有用。"
 // matcap
@@ -935,8 +940,8 @@ stroke.lazySmooth "平滑笔画"
 stroke.lazySmooth.help "通过平均计算多个点来获得更加平滑的笔画。
 
 将该值调高会使笔画变得不跟手。"
-stroke.lazyRadius "笔刷落后"
-stroke.lazyRadius.help "笔画将会按一定的距离落后于指针位置。
+stroke.lazyRadius "笔画延后"
+stroke.lazyRadius.help "笔画将会按一定的距离延后于指针位置。
 
 此功能可用于绘制平滑线条。"
 stroke.globalSettings "这是一个全局设置。"
@@ -950,7 +955,7 @@ stroke.sculptOffset.help "使笔刷持续偏移于触控处
 此功能适用于小屏幕设备。在使用时，手指不会遮挡到屏幕。"
 stroke.accumulate "叠加笔画"
 stroke.accumulate.help "如启用此选项，则每个笔画可添加或减去的数量将不会有限制。"
-stroke.useDynamicTopology "允许动态拓扑"
+stroke.useDynamicTopology "允许动态网格"
 stroke.connectedTopology "连接拓扑"
 stroke.connectedTopology.help "启用此选项后，画笔将会只雕刻连接到所选表面的顶点。
 
@@ -974,9 +979,9 @@ stroke.alphaWrap.mirror "镜像"
 stroke.alphaProject "平铺模式"
 stroke.alphaProject.surfaceContinuous "表面连续"
 stroke.alphaProject.screenFixed "屏幕投影"
-stroke.alphaTiling "形状缩放"
-stroke.alphaScale ""
-stroke.alphaScale.help ""
+stroke.alphaTiling "形状平铺"
+stroke.alphaScale "形状缩放"
+stroke.alphaScale.help "当该值最小时，画笔形状将不会大于工具画笔的半径圆。"
 // stroke type
 stroke.strokeType "笔刷类型"
 stroke.strokeTypeDot "点"
@@ -1033,7 +1038,7 @@ symmetry.edit.help "您可以自由改变镜像平面。
 tool.sliderDegree "角度 $0 °"
 tool.sliderRadius "半径 $0 %"
 tool.sliderIntensity "强度 $0 %"
-tool.dynTopo "动态拓扑"
+tool.dynTopo "动态网格"
 tool.symmetry "对称"
 tool.mirror "镜像"
 tool.clay "黏土"
@@ -1049,7 +1054,7 @@ tool.mask.unmask "消除蒙版"
 tool.maskSelector "选择蒙版"
 tool.paint "绘画"
 tool.paint.erase "橡皮"
-tool.paint.depthFilter ""
+tool.paint.depthFilter "启用忽略压感"
 tool.smudge "涂抹"
 tool.flatten "铲平"
 tool.flatten.fill "填充"
@@ -1104,7 +1109,7 @@ tool.mask.blur "模糊"
 tool.mask.sharpen "锐化"
 tool.mask.thickness "抽壳厚度"
 tool.mask.polish "平滑边界"
-tool.mask.engraveEmboss ""
+tool.mask.engraveEmboss "凹印"
 tool.mask.extract "抽壳"
 tool.mask.split "分离"
 tool.mask.closeMask "分离操作（蒙版区域）："
@@ -1224,7 +1229,7 @@ tool.noSettings "该工具无特殊设置。"
 topology "拓扑"
 // multires
 topology.multires.title "多重网格"
-topology.multires.title.help "保留对象的不同分辨率。
+topology.multires.title.help "此功能可保留对象的不同分辨率。
 
 您可以在低分辨率对物体进行修改，之后在高分辨率将细节重新投影。
 
@@ -1243,7 +1248,7 @@ topology.multiresKeepTriangles "保留三角形"
 topology.multiresLinear "平面细分"
 // voxel
 topology.voxel.title "体素网格重构"
-topology.voxel.title.help "通过在网格上采样对象来重新整理网格。
+topology.voxel.title.help "此功能可重构对象的网格，使其变得更加整齐。
 
 如对象未封闭，则会先填充孔洞。
 
@@ -1255,7 +1260,7 @@ topology.surfaceUniform "重构"
 topology.surfaceDetail "细节"
 topology.surfaceDetail.help "不同于体素网格重构，表面网格重构不需要封闭对象。
 
-此功能还支持蒙版，可以保护您不希望被更改拓扑的部分。
+此功能还支持遮罩，可以保护您不希望被更改拓扑的部分。
 
 图层不会受到影响。"
 topology.surfaceMethod "模式"
@@ -1272,7 +1277,7 @@ topology.surfaceExtrapolate "顶点扩张"
 // dynamic
 topology.dynamic "动态网格"
 topology.dynamicActivate "启用"
-topology.dynamicActivate.help "动态拓扑可以让您在雕刻过程中实时增删网格。
+topology.dynamicActivate.help "启用此功能可以让您在雕刻过程中实时增删网格。
 
 开启此功能可能会对性能产生较大影响。
 
@@ -1303,7 +1308,7 @@ topology.dynamicUsePressure "同时使用压感"
 topology.dynamicUsePressure.help "启用此选项后，压感也会对对象产生影响。"
 topology.dynamicBrush "笔刷"
 topology.dynamicGlobal "全局"
-topology.dynamicSettings "动态拓扑笔刷设置"
+topology.dynamicSettings "动态网格笔刷设置"
 
 // ------------------------------------------------------
 // version trial
