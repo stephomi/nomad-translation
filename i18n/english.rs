@@ -221,7 +221,7 @@ file.export.gltfNormal.help "Check this option if you want to open the file in a
 
 Nomad does not need them."
 file.export.gltfExtraPaint "Export extra paint"
-file.export.gltfExtraPaint.help "Export roughness metalness mask and layer painting. This will be ignored by other softwares."
+file.export.gltfExtraPaint.help "Export roughness, metalness, mask and layer painting. This will be ignored by other softwares."
 
 // obj
 file.export.obj "Export OBJ"
