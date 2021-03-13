@@ -756,6 +756,11 @@ primitive.isolate.bottom "Bottom"
 primitive.planeSameSize "Same size (square)"
 // box
 primitive.boxRegular "Same size (cube)"
+// tube
+primitive.tubeRegular "Same thickness"
+primitive.tubeThicknessStart "Thickness start"
+primitive.tubeThicknessEnd "Thickness end"
+primitive.tubeTwist "Twist"
 // icosahedron
 primitive.icosahedronRadius "Radius"
 // torus
