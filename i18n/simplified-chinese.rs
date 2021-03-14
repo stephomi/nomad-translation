@@ -81,7 +81,6 @@ alert.warning.multiresLost "模型细分将会丢失"
 alert.warning.paintingHidden "绘画已被隐藏，请在设置面板里将其打开。"
 alert.warning.noPartialWireframe "打开线框显示时，局部雕刻将被禁用。"
 // bottom tip
-alert.tip.polygonDot "轻点绿色图标以应用几何体。"
 alert.tip.shapeOrthographic "为了避免因透视视图而产生的偏差，建议在相机设置里切换到正交视图。"
 // undo
 alert.state.trial "这是试用版本，您无法再撤销。"

@@ -81,7 +81,6 @@ alert.warning.multiresLost "Multiresolution will be lost."
 alert.warning.paintingHidden "Painting hidden: show it again in Settings panel."
 alert.warning.noPartialWireframe "Partial drawing is disabled when wireframe is displayed."
 // bottom tip
-alert.tip.polygonDot "Press the green dot to apply the polygon."
 alert.tip.shapeOrthographic "Consider using orthographic camera if you want to avoid perspective frustum distortion when using screen projector."
 // undo
 alert.state.trial "Undo canceled : trial version"
