@@ -2,6 +2,7 @@
 // arguments with $0 $1 etc
 
 // general stuffs
+confirm "Confirm?"
 yes "Yes"
 ok "Ok"
 cancel "Cancel"
@@ -63,6 +64,7 @@ alert.gizmo.editObject "Edit object mode."
 alert.dynamic.enable "Active dynamic topology"
 alert.dynamic.disable "Disable dynamic topology"
 alert.colorPicker "Drag your finger on the mesh to pick a color."
+alert.backgroundTransform "Tap on your screen to exit transform mode."
 alert.camera.resetView "Reset view"
 alert.camera.snapView "Snap view"
 alert.mask.show "Show mask"
@@ -95,10 +97,7 @@ background.blur "Blur"
 background.exposure "Exposure"
 
 background.imageEnable "Reference image"
-background.imageX "Position X"
-background.imageY "Position Y"
-background.imageRotation "Rotation"
-background.imageScale "Scale"
+background.imageTransform "Transform"
 background.imageOverlay "Overlay"
 background.imageAlpha "Alpha"
 background.imageReset "Reset settings"

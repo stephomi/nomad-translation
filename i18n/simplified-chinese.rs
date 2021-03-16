@@ -2,6 +2,7 @@
 // arguments with $0 $1 etc
 
 // general stuffs
+confirm ""
 yes "确认"
 ok "好"
 cancel "取消"
@@ -63,6 +64,7 @@ alert.gizmo.editObject "编辑对象模式"
 alert.dynamic.enable "启用动态网格"
 alert.dynamic.disable "关闭动态网格"
 alert.colorPicker "在对象上拖动手指选取一个颜色"
+alert.backgroundTransform ""
 alert.camera.resetView "重置视图"
 alert.camera.snapView "切换视图"
 alert.mask.show "显示蒙版"
@@ -95,10 +97,7 @@ background.blur "模糊"
 background.exposure "曝光"
 
 background.imageEnable "参考图像"
-background.imageX "X轴方向"
-background.imageY "Y轴方向"
-background.imageRotation "旋转"
-background.imageScale "缩放"
+background.imageTransform ""
 background.imageOverlay "对象透明度"
 background.imageAlpha "背景透明度"
 background.imageReset "重设"
