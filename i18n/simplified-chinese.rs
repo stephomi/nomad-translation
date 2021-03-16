@@ -91,7 +91,7 @@ alert.state.trial "这是试用版本，您无法再撤销。"
 // background
 background "背景"
 background.settings "设置"
-background.color "颜色"
+// background.color "颜色"
 background.environment "环境"
 background.blur "模糊"
 background.exposure "曝光"
