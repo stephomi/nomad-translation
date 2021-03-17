@@ -756,8 +756,8 @@ primitive.planeSameSize "Same size (square)"
 primitive.boxRegular "Same size (cube)"
 // tube
 primitive.tubeRegular "Same thickness"
-primitive.tubeThicknessStart "Thickness start"
-primitive.tubeThicknessEnd "Thickness end"
+primitive.tubeThicknessStart "Radius start"
+primitive.tubeThicknessEnd "Radius end"
 primitive.tubeTwist "Twist"
 // icosahedron
 primitive.icosahedronRadius "Radius"
@@ -765,18 +765,20 @@ primitive.icosahedronRadius "Radius"
 primitive.torusRadiusOuter "Radius outer"
 primitive.torusRadiusInner "Radius inner"
 primitive.torusAngle "Angle"
-primitive.torusHole "Hole"
 // sphere
 primitive.sphereRadius "Radius"
 // cylinder
-primitive.cylinderSameSize "Sync bottom/top radius"
-primitive.cylinderRadiusBottom "Radius bottom"
-primitive.cylinderRadiusTop "Radius top"
 primitive.cylinderHeight "Height"
-primitive.cylinderHole "Has hole"
 // cone
 primitive.coneRadius "Radius"
 primitive.coneHeight "Height"
+// hole sub menu (cylinder, tube, etc)
+primitive.hole "Hole"
+primitive.hasHole "Has hole"
+// both used for hole radius and main radius
+primitive.radiusSync "Sync start/end radius"
+primitive.radiusStart "Radius start"
+primitive.radiusEnd "Radius end"
 
 // common resources stuffs
 resource.delete "Delete"

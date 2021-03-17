@@ -765,18 +765,20 @@ primitive.icosahedronRadius "半径尺寸"
 primitive.torusRadiusOuter "外圈半径"
 primitive.torusRadiusInner "内圈半径"
 primitive.torusAngle "角度"
-primitive.torusHole "孔洞"
 // sphere
 primitive.sphereRadius "半径尺寸"
 // cylinder
-primitive.cylinderSameSize "固定两个圆面的半径"
-primitive.cylinderRadiusBottom "底面半径"
-primitive.cylinderRadiusTop "顶面半径"
 primitive.cylinderHeight "高度"
-primitive.cylinderHole "具有孔洞"
 // cone
 primitive.coneRadius "半径"
 primitive.coneHeight "高度"
+// hole sub menu (cylinder, tube, etc)
+primitive.hole "孔洞"
+primitive.hasHole "具有孔洞"
+// both used for hole radius and main radius
+primitive.radiusSync "固定两个圆面的半径"
+primitive.radiusStart "底面半径"
+primitive.radiusEnd "顶面半径"
 
 // common resources stuffs
 resource.delete "删除"
