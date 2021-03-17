@@ -91,7 +91,7 @@ alert.state.trial "这是试用版本，您无法再撤销。"
 // background
 background "背景"
 background.settings "设置" // unused
-background.color "颜色"
+background.color "颜色" // unused
 background.environment "环境"
 background.blur "模糊"
 background.exposure "曝光"
@@ -1031,7 +1031,9 @@ symmetry.mirror.help "尝试在不影响拓扑的情况下重新应用对称。
 如果镜像失败，将会建议您强制对称。但这样会影响到拓扑。"
 symmetry.mirrorLeftToRight ""
 symmetry.mirrorRightToLeft ""
-symmetry.mirrorFail "";
+symmetry.mirrorFail "对称失败：
+
+是否使用镜像来强制对称？";
 // reset
 symmetry.resetOrigin "重设对称中心"
 symmetry.resetCenterMesh "对象中心"
