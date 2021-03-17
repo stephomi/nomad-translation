@@ -90,7 +90,7 @@ alert.state.trial "Undo canceled : trial version"
 // ------------------------------------------------------
 // background
 background "Background"
-// background.settings "Settings"
+background.settings "Settings" // unused
 background.color "Color"
 background.environment "Environment"
 background.blur "Blur"
@@ -1020,11 +1020,9 @@ symmetry.mirror.help "Try to re-apply the symmetry without impacting the topolog
 To succeed, the topology need to be symmetrical and at least one edge should lie exactly on the symmetry line.
 
 If it fails, you will be proposed to force the symmetry, but it will impact the topology."
-symmetry.apply "Mirror"
-symmetry.flip "Flip direction"
-symmetry.flip.help "Use this option to change the side in which the details are projected."
-symmetry.applyFail "Failed to apply symmetry:
-- $0
+symmetry.mirrorLeftToRight "Left to Right"
+symmetry.mirrorRightToLeft "Right to Left"
+symmetry.mirrorFail "Failed to apply symmetry.
 
 Do you want to enforce symmetry by mirroring the mesh?";
 // reset
@@ -1087,6 +1085,7 @@ tool.transform "Transform"
 tool.transform.move "Move"
 tool.transform.rotate "Rotate"
 tool.transform.scale "Scale"
+tool.transform.snap "Snap"
 tool.measure "Measure"
 tool.view "View"
 tool.lathe "Lathe"

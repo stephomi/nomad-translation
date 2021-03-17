@@ -90,8 +90,8 @@ alert.state.trial "这是试用版本，您无法再撤销。"
 // ------------------------------------------------------
 // background
 background "背景"
-background.settings "设置"
-// background.color "颜色"
+background.settings "设置" // unused
+background.color ""
 background.environment "环境"
 background.blur "模糊"
 background.exposure "曝光"
@@ -1029,13 +1029,9 @@ symmetry.mirror.help "尝试在不影响拓扑的情况下重新应用对称。
 拓扑必须对称且至少有一个边缘恰好位于对称平面上才能成功应用。
 
 如果镜像失败，将会建议您强制对称。但这样会影响到拓扑。"
-symmetry.apply "应用镜像"
-symmetry.flip "翻转方向"
-symmetry.flip.help "勾选此选项可更改投影面的方向。"
-symmetry.applyFail "对称失败：
-- $0
-
-是否使用镜像来强制对称？";
+symmetry.mirrorLeftToRight ""
+symmetry.mirrorRightToLeft ""
+symmetry.mirrorFail "";
 // reset
 symmetry.resetOrigin "重设对称中心"
 symmetry.resetCenterMesh "对象中心"
@@ -1096,6 +1092,7 @@ tool.transform "自由变换"
 tool.transform.move "移动"
 tool.transform.rotate "旋转"
 tool.transform.scale "缩放"
+tool.transform.snap ""
 tool.measure "测量"
 tool.view "浏览模式"
 tool.lathe "车削"
