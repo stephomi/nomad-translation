@@ -91,7 +91,7 @@ alert.state.trial "Undo canceled : trial version"
 // background
 background "Background"
 background.settings "Settings" // unused
-background.color "Color"
+background.color "Color" // unused
 background.environment "Environment"
 background.blur "Blur"
 background.exposure "Exposure"
