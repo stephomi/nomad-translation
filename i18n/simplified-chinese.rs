@@ -74,7 +74,7 @@ alert.selection.unlock "解锁所选项"
 alert.selection.isolate "隔离所选项"
 alert.selection.showAll "显示全部"
 alert.quickSave "正在自动保存..."
-alert.multiresLost "模型细分将会丢失，是否继续？"
+alert.multiresLost "模型细分将会丢失！"
 // autosave popup
 alert.autoSave.auto "将在 $0s 后自动保存"
 // bottom warning
@@ -841,11 +841,6 @@ settings.partialDraw.help "功能未完善！
 
 启用此功能可能会在使用画笔时产生一些奇怪的东西。"
 settings.partialDrawWarning "如果显示不正常，请不要忘记关闭此选项！"
-settings.detailRangeTitle "体素/动态网格重构"
-settings.detailRange "最大细节范围"
-settings.detailRange.help "此选项可调节体素和动态网格详细程度的最大值。
-
-详细程度越高会使模型产生更多的多边形，请斟酌调整！"
 settings.showPainting "显示场景绘画"
 settings.lightIcon "显示灯光图标"
 settings.lightIcon.help "在屏幕上显示灯光图标，这样您可以直接选择并编辑灯光。"

@@ -74,7 +74,8 @@ alert.selection.unlock "Unlock selection"
 alert.selection.isolate "Isolate selection"
 alert.selection.showAll "Show all"
 alert.quickSave "Saving..."
-alert.multiresLost "Multiresolution will be lost, proceed?"
+alert.multiresLost "Multiresolution will be lost!"
+alert.rangeWarning "The detail value is high and might require lot of memory!"
 // autosave popup
 alert.autoSave.auto "Autosave in... $0s"
 // bottom warning
@@ -841,11 +842,6 @@ It should make the sculpting smoother, but you should not enable wireframe!
 
 Also it might add visual artefacts during the brush strokes"
 settings.partialDrawWarning "Do not forget to turn off this option if the visual artefacts are too bothersome!"
-settings.detailRangeTitle "Voxel/Dynamic remesh"
-settings.detailRange "Max detail range"
-settings.detailRange.help "Maximum value for voxel and dynamic topology level of detail.
-
-Higher values mean more polygons, use at your own risk!"
 settings.showPainting "Show scene painting"
 settings.lightIcon "Light icons"
 settings.lightIcon.help "Display light icons on the canvas so that you can select and edit them directly."
