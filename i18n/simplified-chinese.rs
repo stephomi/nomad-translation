@@ -2,7 +2,7 @@
 // arguments with $0 $1 etc
 
 // general stuffs
-confirm ""
+confirm "请确认是否操作？"
 yes "确认"
 ok "好"
 cancel "取消"
@@ -64,7 +64,7 @@ alert.gizmo.editObject "编辑对象模式"
 alert.dynamic.enable "启用动态网格"
 alert.dynamic.disable "关闭动态网格"
 alert.colorPicker "在对象上拖动手指选取一个颜色"
-alert.backgroundTransform ""
+alert.backgroundTransform "轻点即可退出背景变换"
 alert.camera.resetView "重置视图"
 alert.camera.snapView "切换视图"
 alert.mask.show "显示蒙版"
@@ -75,12 +75,12 @@ alert.selection.isolate "隔离所选项"
 alert.selection.showAll "显示全部"
 alert.quickSave "正在自动保存..."
 alert.multiresLost "模型细分将会丢失！"
-alert.rangeWarning ""
+alert.rangeWarning "过高的分辨率将会占用大量内存！"
 // autosave popup
 alert.autoSave.auto "将在 $0s 后自动保存"
 // bottom warning
 alert.warning.needLayer "当前工具仅在活动图层上可用"
-alert.warning.multiresLost "模型细分将会丢失"
+alert.warning.multiresLost "模型细分将会丢失！"
 alert.warning.paintingHidden "绘画已被隐藏，请在设置面板里将其打开。"
 alert.warning.noPartialWireframe "打开线框显示时，局部雕刻将被禁用。"
 // bottom tip
@@ -98,7 +98,7 @@ background.blur "模糊"
 background.exposure "曝光"
 
 background.imageEnable "参考图像"
-background.imageTransform ""
+background.imageTransform "背景变换"
 background.imageOverlay "对象透明度"
 background.imageAlpha "背景透明度"
 background.imageReset "重设"
@@ -775,9 +775,9 @@ primitive.coneRadius "半径"
 primitive.coneHeight "高度"
 // hole sub menu (cylinder, tube, etc)
 primitive.hole "孔洞"
-primitive.hasHole "具有孔洞"
+primitive.hasHole "添加孔洞"
 // both used for hole radius and main radius
-primitive.radiusSync "固定两个圆面的半径"
+primitive.radiusSync "相同半径"
 primitive.radiusStart "底面半径"
 primitive.radiusEnd "顶面半径"
 
@@ -1027,8 +1027,8 @@ symmetry.mirror.help "尝试在不影响拓扑的情况下重新应用对称。
 拓扑必须对称且至少有一个边缘恰好位于对称平面上才能成功应用。
 
 如果镜像失败，将会建议您强制对称。但这样会影响到拓扑。"
-symmetry.mirrorLeftToRight ""
-symmetry.mirrorRightToLeft ""
+symmetry.mirrorLeftToRight "从左至右"
+symmetry.mirrorRightToLeft "从右至左"
 symmetry.mirrorFail "对称失败：
 
 是否使用镜像来强制对称？";
@@ -1260,7 +1260,7 @@ topology "拓扑"
 topology.multires.title "多重网格"
 topology.multires.title.help "此功能可保留对象的不同分辨率。
 
-您可以在低分辨率对物体进行修改，之后在高分辨率将细节重新投影。
+您可以在低分辨率对物体进行修改，之后在高分辨率查看并进一步更改细节效果。
 
 图层在不同分辨率下都可用。"
 topology.multiresReverse "简化"
@@ -1286,7 +1286,7 @@ topology.voxelResolution "分辨率"
 topology.voxelRemesh "重构"
 // dynamic topology
 topology.surfaceUniform "重构"
-topology.surfaceDetail "细节"
+topology.surfaceDetail "分辨率"
 topology.surfaceDetail.help "不同于体素网格重构，表面网格重构不需要封闭对象。
 
 此功能还支持遮罩，可以保护您不希望被更改拓扑的部分。
@@ -1336,7 +1336,7 @@ topology.dynamicQualityQuality "性能"
 topology.dynamicUsePressure "同时使用压感"
 topology.dynamicUsePressure.help "启用此选项后，压感也会对对象产生影响。"
 topology.dynamicBrush "笔刷"
-topology.dynamicGlobal "全局"
+topology.dynamicGlobal "动态网格重构"
 topology.dynamicSettings "动态网格笔刷设置"
 
 // ------------------------------------------------------
