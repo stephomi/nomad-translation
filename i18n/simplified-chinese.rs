@@ -75,6 +75,7 @@ alert.selection.isolate "隔离所选项"
 alert.selection.showAll "显示全部"
 alert.quickSave "正在自动保存..."
 alert.multiresLost "模型细分将会丢失！"
+alert.rangeWarning ""
 // autosave popup
 alert.autoSave.auto "将在 $0s 后自动保存"
 // bottom warning
