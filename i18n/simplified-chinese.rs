@@ -52,6 +52,7 @@ alert.trim.full  "对象不能完全裁切"
 alert.mask.noExtract "未找到可提取对象"
 alert.mask.noSplit "未找到可分离对象"
 alert.view.disabled "一些功能将在浏览模式下禁用："
+alert.view.disabled.widgetPrimitive ""
 alert.separate.fail "该对象只有一部分，所以无法分开"
 alert.voxelRemesh.success "网格重构成功！"
 alert.voxelRemesh.empty "网格重构失败，因为结果并未产生面。"
@@ -1020,6 +1021,8 @@ symmetry.method.help "- 本体对称
 对称平面是固定不动的。"
 symmetry.methodWorld "世界对称"
 symmetry.methodLocal "本体对称"
+// flip
+symmetry.flip ""
 // mirror
 symmetry.mirror "镜像"
 symmetry.mirror.help "尝试在不影响拓扑的情况下重新应用对称。

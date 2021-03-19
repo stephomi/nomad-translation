@@ -52,6 +52,7 @@ alert.trim.full  "Abort trim: the mesh is fully trimmed."
 alert.mask.noExtract "Nothing to extract!"
 alert.mask.noSplit "Nothing to split!"
 alert.view.disabled "Features disabled in View Mode:"
+alert.view.disabled.widgetPrimitive "Primitive widgets"
 alert.separate.fail "Could not separate: the object has only one part!"
 alert.voxelRemesh.success "Remeshed!"
 alert.voxelRemesh.empty "Abort remesh: result mesh has no faces."
@@ -777,7 +778,7 @@ primitive.coneHeight "Height"
 primitive.hole "Hole"
 primitive.hasHole "Has hole"
 // both used for hole radius and main radius
-primitive.radiusSync "Sync start/end radius"
+primitive.radiusSync "Same radius"
 primitive.radiusStart "Radius start"
 primitive.radiusEnd "Radius end"
 
@@ -1011,6 +1012,8 @@ The symmetry plane will move along the mesh when you use one of the transform to
 The symmetry plane is fixed and will not move."
 symmetry.methodWorld "World"
 symmetry.methodLocal "Local"
+// flip
+symmetry.flip "Flip object"
 // mirror
 symmetry.mirror "Mirroring"
 symmetry.mirror.help "Try to re-apply the symmetry without impacting the topology.
