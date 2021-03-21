@@ -688,7 +688,7 @@ postprocess.curvatureBump "凸起颜色"
 // primitive (scene menu)
 primitive "基本体"
 primitive.box "立方体"
-primitive.sphere "球体"
+primitive.sphereCube "球体"
 primitive.sphereUV "UV球体"
 primitive.icosahedron "宝石"
 primitive.cylinder "圆柱"

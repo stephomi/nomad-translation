@@ -688,7 +688,7 @@ postprocess.curvatureBump "Bump"
 // primitive (scene menu)
 primitive "Primitive"
 primitive.box "Box"
-primitive.sphere "Sphere"
+primitive.sphereCube "Sphere"
 primitive.sphereUV "UV Sphere"
 primitive.icosahedron "Icosahedron"
 primitive.cylinder "Cylinder"
