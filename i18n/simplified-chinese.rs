@@ -1287,6 +1287,8 @@ topology.voxel.title.help "此功能可重构对象的网格，使其变得更�
 图层在应用后会重新投影，但质量会受到影响。"
 topology.voxelResolution "分辨率"
 topology.voxelRemesh "重构"
+topology.voxelSubLevel ""
+topology.voxelSubLevel.help ""
 // dynamic topology
 topology.surfaceUniform "重构"
 topology.surfaceDetail "分辨率"

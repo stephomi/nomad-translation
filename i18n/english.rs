@@ -1278,6 +1278,11 @@ If the object is not closed (watertight), an hole-filling algorithm will be appl
 Layers are reprojected after remeshing but the quality will degrade."
 topology.voxelResolution "Resolution"
 topology.voxelRemesh "Remesh"
+topology.voxelSubLevel "Rebuild multires"
+topology.voxelSubLevel.help "You can rebuild a multiresolution hierarchy from the voxel remesher output.
+
+It will also run faster, but it's best to keep a resonably low value.
+With higher value, the reprojection might fail a little bit and you might loose too much details."
 // dynamic topology
 topology.surfaceUniform "Remesh"
 topology.surfaceDetail "Detail"
