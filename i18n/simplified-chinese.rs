@@ -1022,7 +1022,7 @@ symmetry.method.help "- 本体对称
 symmetry.methodWorld "世界对称"
 symmetry.methodLocal "本体对称"
 // flip
-symmetry.flip ""
+symmetry.flip "翻转模型"
 // mirror
 symmetry.mirror "镜像"
 symmetry.mirror.help "尝试在不影响拓扑的情况下重新应用对称。
@@ -1287,8 +1287,11 @@ topology.voxel.title.help "此功能可重构对象的网格，使其变得更�
 图层在应用后会重新投影，但质量会受到影响。"
 topology.voxelResolution "分辨率"
 topology.voxelRemesh "重构"
-topology.voxelSubLevel ""
-topology.voxelSubLevel.help ""
+topology.voxelSubLevel "多重网格等级"
+topology.voxelSubLevel.help "此功能可以从重构的结果中生成多个不同分辨率的对象。
+
+能够在保留较低分辨率对象的同时，拥有更快的运行速度。
+如果重构分辨率过高的话，可能会无法生成多重网格或者失去一些细节。"
 // dynamic topology
 topology.surfaceUniform "重构"
 topology.surfaceDetail "分辨率"
