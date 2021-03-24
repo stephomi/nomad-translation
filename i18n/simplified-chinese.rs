@@ -1110,6 +1110,8 @@ tool.shape.path "路径"
 tool.shape.rectangle "矩形"
 tool.shape.ellipse "椭圆"
 tool.shape.line "直线"
+// for curve and path
+tool.shape.closed ""
 // title
 tool.settingsTitle "设置 ($0)"
 // clay

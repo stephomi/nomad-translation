@@ -1101,6 +1101,8 @@ tool.shape.path "Path"
 tool.shape.rectangle "Rect"
 tool.shape.ellipse "Ellipse"
 tool.shape.line "Line"
+// for curve and path
+tool.shape.closed "Closed"
 // title
 tool.settingsTitle "Settings ($0)"
 // clay
