@@ -165,8 +165,8 @@ file.project.save "Save"
 file.project.save.confirm "Save $0?"
 file.project.saveAs "Save As"
 file.project.saveAs.confirm "Overwrite $0?"
-file.project.open "Open"
-file.project.open.confirm "Open $0?"
+file.project.open "Load"
+file.project.open.confirm "Load $0?"
 file.project.add "Add to scene"
 file.project.add.confirm "Add $0 to the scene?"
 file.project.new "New"
@@ -177,6 +177,7 @@ file.project.delete.confirmActive "Delete $0?
 
 This is the current active project!"
 file.project.delete.confirmOk "Are you sure?"
+file.project.rename "Rename"
 
 // autosave
 file.project.autoSave "Project Auto Save"
