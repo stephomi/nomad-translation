@@ -902,7 +902,7 @@ shading.environmentAttachedToCamera.help "启用此选项后，移动相机时�
 shading.matcap "材质捕捉"
 shading.matcapRotation "旋转"
 shading.matcapRotation.help "在屏幕上使用三指水平移动可使环境、灯光与材质捕捉旋转。"
-shading.matcapGlobal "使用全局材质捕捉。"
+shading.matcapGlobal "使用全局材质捕捉"
 shading.matcapGlobal.help "如果您希望在不同对象上使用不同的材质捕捉，请取消此选项。"
 
 // ------------------------------------------------------
