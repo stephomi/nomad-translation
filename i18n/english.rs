@@ -165,8 +165,8 @@ file.project.save "Save"
 file.project.save.confirm "Save $0?"
 file.project.saveAs "Save As"
 file.project.saveAs.confirm "Overwrite $0?"
-file.project.open "Open"
-file.project.open.confirm "Open $0?"
+file.project.open "Load"
+file.project.open.confirm "Load $0?"
 file.project.add "Add to scene"
 file.project.add.confirm "Add $0 to the scene?"
 file.project.new "New"
@@ -177,6 +177,7 @@ file.project.delete.confirmActive "Delete $0?
 
 This is the current active project!"
 file.project.delete.confirmOk "Are you sure?"
+file.project.rename "Rename"
 
 // autosave
 file.project.autoSave "Project Auto Save"
@@ -1283,8 +1284,8 @@ topology.voxelRemesh "Remesh"
 topology.voxelSubLevel "Rebuild multires"
 topology.voxelSubLevel.help "You can rebuild a multiresolution hierarchy from the voxel remesher output.
 
-It will also run faster, but it's best to keep a resonably low value.
-With higher value, the reprojection might fail and you will loose details."
+It will also run faster and use less memory, especially if the voxel detail value is high.
+However if the voxel detail value is low and you are asking for lot of multires level, you'll lose details."
 // dynamic topology
 topology.surfaceUniform "Remesh"
 topology.surfaceDetail "Detail"

@@ -177,6 +177,7 @@ file.project.delete.confirmActive "删除 $0？
 
 这是当前正打开的项目！"
 file.project.delete.confirmOk "确定要删除吗？"
+file.project.rename "重命名"
 
 // autosave
 file.project.autoSave "自动保存项目"
