@@ -52,7 +52,7 @@ alert.trim.full  "对象不能完全裁切"
 alert.mask.noExtract "未找到可提取对象"
 alert.mask.noSplit "未找到可分离对象"
 alert.view.disabled "一些功能将在浏览模式下禁用："
-alert.view.disabled.widgetPrimitive ""
+alert.view.disabled.widgetPrimitive "编辑锚点"
 alert.separate.fail "该对象只有一部分，所以无法分开"
 alert.voxelRemesh.success "网格重构成功！"
 alert.voxelRemesh.empty "网格重构失败，因为结果并未产生面。"
@@ -903,7 +903,7 @@ shading.environmentAttachedToCamera.help "启用此选项后，移动相机时�
 shading.matcap "材质捕捉"
 shading.matcapRotation "旋转"
 shading.matcapRotation.help "在屏幕上使用三指水平移动可使环境、灯光与材质捕捉旋转。"
-shading.matcapGlobal "使用全局材质捕捉。"
+shading.matcapGlobal "使用全局材质捕捉"
 shading.matcapGlobal.help "如果您希望在不同对象上使用不同的材质捕捉，请取消此选项。"
 
 // ------------------------------------------------------
@@ -1023,7 +1023,7 @@ symmetry.method.help "- 本体对称
 symmetry.methodWorld "世界对称"
 symmetry.methodLocal "本体对称"
 // flip
-symmetry.flip ""
+symmetry.flip "翻转模型"
 // mirror
 symmetry.mirror "镜像"
 symmetry.mirror.help "尝试在不影响拓扑的情况下重新应用对称。
@@ -1096,7 +1096,7 @@ tool.transform "自由变换"
 tool.transform.move "移动"
 tool.transform.rotate "旋转"
 tool.transform.scale "缩放"
-tool.transform.snap ""
+tool.transform.snap "吸附中点"
 tool.measure "测量"
 tool.view "浏览模式"
 tool.lathe "车削"
@@ -1112,7 +1112,7 @@ tool.shape.rectangle "矩形"
 tool.shape.ellipse "椭圆"
 tool.shape.line "直线"
 // for curve and path
-tool.shape.closed ""
+tool.shape.closed "闭合"
 // title
 tool.settingsTitle "设置 ($0)"
 // clay
@@ -1290,8 +1290,11 @@ topology.voxel.title.help "此功能可重构对象的网格，使其变得更�
 图层在应用后会重新投影，但质量会受到影响。"
 topology.voxelResolution "分辨率"
 topology.voxelRemesh "重构"
-topology.voxelSubLevel ""
-topology.voxelSubLevel.help ""
+topology.voxelSubLevel "多重网格等级"
+topology.voxelSubLevel.help "此功能可以从重构的结果中生成多个不同分辨率的对象。
+
+能够在保留较低分辨率对象的同时，拥有更快的运行速度。
+如果重构分辨率过高的话，可能会无法生成多重网格或者失去一些细节。"
 // dynamic topology
 topology.surfaceUniform "重构"
 topology.surfaceDetail "分辨率"
