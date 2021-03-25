@@ -1284,8 +1284,8 @@ topology.voxelRemesh "Remesh"
 topology.voxelSubLevel "Rebuild multires"
 topology.voxelSubLevel.help "You can rebuild a multiresolution hierarchy from the voxel remesher output.
 
-It will also run faster, but it's best to keep a resonably low value.
-With higher value, the reprojection might fail and you will loose details."
+It will also run faster and use less memory, especially if the voxel detail value is high.
+However if the voxel detail value is low and you are asking for lot of multires level, you'll lose details."
 // dynamic topology
 topology.surfaceUniform "Remesh"
 topology.surfaceDetail "Detail"
