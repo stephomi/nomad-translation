@@ -198,9 +198,9 @@ file.import.title.help "Supported format:
 - Wavefront (.obj)
 - glTF 2.0 (.glb .gltf)
 - STL (.stl)"
-file.importOpen "Open..."
+file.importOpen "Load"
 file.importOpen.confirm "Import new file?"
-file.import.add "Add..."
+file.import.add "Add to scene"
 file.import.add.confirm "Import new file?"
 
 file.exportSelection "Export selection only"

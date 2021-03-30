@@ -116,6 +116,7 @@ camera.projection "视图"
 camera.orthographic "正交视图"
 camera.perspective "透视视图"
 camera.fov "焦距"
+camera.focal ""
 // orbit
 camera.orbit "视图旋转"
 camera.orbit.help "在旋转模式下，可使用双指旋转场景的水平面。"
