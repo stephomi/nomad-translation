@@ -1175,9 +1175,6 @@ tool.matrix.uniformScale.help "应用不支持非等比缩放的对象变换，�
 tool.matrix.moveToOrigin "返回原点"
 tool.matrix.resetTransform "重设"
 tool.matrix.bakeTransform "烘焙"
-tool.matrix.bakeTransform.confirm "变换结果将会被烘焙在活动图层上。
-
-您确定要继续吗？"
 tool.matrix.applyMethod "模式："
 tool.matrix.applyMethodAuto "自动选择"
 tool.matrix.applyMethodVertex "基于顶点"

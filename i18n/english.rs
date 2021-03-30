@@ -115,7 +115,8 @@ camera.focusOn "Focus on"
 camera.projection "Projection"
 camera.orthographic "Orthographic"
 camera.perspective "Perspective"
-camera.fov "Fov"
+camera.fov "Vertical Fov"
+camera.focal "focal $0mm (35mm sensor)"
 // orbit
 camera.orbit "Orbit mode"
 camera.orbit.help "Trackball gives more degree of freedom you can also roll the camera with 2 fingers."
@@ -1166,9 +1167,6 @@ tool.matrix.uniformScale.help "Nomad cannot support non-uniform scale as object 
 tool.matrix.moveToOrigin "Move origin"
 tool.matrix.resetTransform "Reset"
 tool.matrix.bakeTransform "Bake"
-tool.matrix.bakeTransform.confirm "The transform will be baked in the active layer.
-
-Do you confirm?"
 tool.matrix.applyMethod "Method:"
 tool.matrix.applyMethodAuto "Auto"
 tool.matrix.applyMethodVertex "Vertex"
