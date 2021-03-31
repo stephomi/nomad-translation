@@ -115,8 +115,8 @@ camera.focusOn "正在观察"
 camera.projection "视图"
 camera.orthographic "正交视图"
 camera.perspective "透视视图"
-camera.fov "焦距"
-camera.focal ""
+camera.fov "视场角"
+camera.focal "35毫米等值焦距：$0mm"
 // orbit
 camera.orbit "视图旋转"
 camera.orbit.help "在旋转模式下，可使用双指旋转场景的水平面。"
@@ -199,9 +199,9 @@ file.import.title.help "支持导入的格式：
 - Wavefront (.obj)
 - glTF 2.0 (.glb .gltf)
 - STL (.stl)"
-file.importOpen "打开"
-file.importOpen.confirm "确定打开新文件？"
-file.import.add "添加"
+file.importOpen "导入新文件"
+file.importOpen.confirm "确定导入新文件？"
+file.import.add "添加到场景"
 file.import.add.confirm "确定添加新文件？"
 
 file.exportSelection "只导出选择部分"
@@ -703,9 +703,9 @@ primitive.triplanar "三向投影"
 primitive.needValidate "基本体需转换为可编辑对象后才可雕刻。"
 
 // for 3d editing in viewport
-primitive.useFloatPanel ""
-primitive.useFloatPanel.help ""
-primitive.edit ""
+primitive.useFloatPanel "快捷编辑浮窗"
+primitive.useFloatPanel.help "在浏览模式下显示编辑基本体的小浮窗。"
+primitive.edit "编辑"
 
 primitive.mainConfig "范围"
 primitive.topology "拓扑参数"
