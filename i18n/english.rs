@@ -703,15 +703,18 @@ primitive.triplanar "Triplanar"
 primitive.needValidate "Primitives should be validated in order to be sculpted."
 
 // for 3d editing in viewport
+primitive.useFloatPanel "Panel inside viewport"
+primitive.useFloatPanel.help "Move some of the primitives options directly in the viewport."
 primitive.edit "Edit"
+primitive.edit.help "Allow 3d editing in the viewport.
+
+You can disable this feature if you want to interact with the Gizmo or the Transform tool modifying the primitive."
 
 primitive.mainConfig "Parameter"
 primitive.topology "Topology"
 primitive.geometry "Geometry"
 
 // common config
-primitive.mirror "Mirroring"
-primitive.mirror.help "Duplicate the primitiveb by using the symmetrical plane."
 primitive.validate "Validate"
 primitive.maxFaces "Max faces"
 primitive.maxFaces.help "The maximum number of faces a primitive can have.
