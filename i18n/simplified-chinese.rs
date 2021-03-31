@@ -703,15 +703,19 @@ primitive.triplanar "三向投影"
 primitive.needValidate "基本体需转换为可编辑对象后才可雕刻。"
 
 // for 3d editing in viewport
+<<<<<<< HEAD
 primitive.edit "编辑"
+=======
+primitive.useFloatPanel ""
+primitive.useFloatPanel.help ""
+primitive.edit ""
+>>>>>>> upstream/main
 
 primitive.mainConfig "范围"
 primitive.topology "拓扑参数"
 primitive.geometry "几何"
 
 // common config
-primitive.mirror "镜像"
-primitive.mirror.help "通过镜像方式复制该基本体。"
 primitive.validate "转换"
 primitive.maxFaces "面数限制"
 primitive.maxFaces.help "该基本体可拥有的最大面数。
