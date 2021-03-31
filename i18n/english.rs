@@ -1216,7 +1216,7 @@ tool.lathe.axis.fixed "Fixed"
 tool.lathe.axis.dynamic "Dynamic"
 // tube
 tool.tube.snap "Snapping"
-tool.tube.snap.all "Every points"
+tool.tube.snap.all "Every point"
 tool.tube.snap.startEnd "Start & End"
 // trim
 tool.hole "Hole filling"
