@@ -702,6 +702,9 @@ primitive.plane "平面"
 primitive.triplanar "三向投影"
 primitive.needValidate "基本体需转换为可编辑对象后才可雕刻。"
 
+// for 3d editing in viewport
+primitive.edit ""
+
 primitive.mainConfig "范围"
 primitive.topology "拓扑参数"
 primitive.geometry "几何"

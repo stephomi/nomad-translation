@@ -702,6 +702,9 @@ primitive.plane "Plane"
 primitive.triplanar "Triplanar"
 primitive.needValidate "Primitives should be validated in order to be sculpted."
 
+// for 3d editing in viewport
+primitive.edit "Edit"
+
 primitive.mainConfig "Parameter"
 primitive.topology "Topology"
 primitive.geometry "Geometry"
