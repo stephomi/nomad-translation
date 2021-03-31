@@ -703,13 +703,9 @@ primitive.triplanar "三向投影"
 primitive.needValidate "基本体需转换为可编辑对象后才可雕刻。"
 
 // for 3d editing in viewport
-<<<<<<< HEAD
+primitive.useFloatPanel "快捷编辑浮窗"
+primitive.useFloatPanel.help "在浏览模式下显示编辑基本体的小浮窗。"
 primitive.edit "编辑"
-=======
-primitive.useFloatPanel ""
-primitive.useFloatPanel.help ""
-primitive.edit ""
->>>>>>> upstream/main
 
 primitive.mainConfig "范围"
 primitive.topology "拓扑参数"
