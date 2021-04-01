@@ -141,8 +141,8 @@ camera.doubleTapMesh "Double tap on mesh"
 camera.doubleTapBackground "Double tap on background"
 camera.doubleTapPivot "Update on double tap"
 camera.doubleTapPivot.help "Update the rotation pivot when double tapping."
-camera.autoPivot "Update on panning/zooming"
-camera.autoPivot.help "Update the pivot when you interact with the camera with 2 fingers."
+camera.autoPivot "On camera gesture start"
+camera.autoPivot.help "Update the pivot when you start interacting with the camera."
 camera.doubleTapFocus "Focus"
 camera.doubleTapFocus.help "When double tapping on the mesh the camera will pan and focus on the picked point."
 camera.doubleTapFocusSelection "Focus on selection"
@@ -1000,8 +1000,22 @@ stroke.alphaProject "Method"
 stroke.alphaProject.surfaceContinuous "Surface"
 stroke.alphaProject.screenFixed "Screen project"
 stroke.alphaTiling "Tiling"
-stroke.alphaScale "Alpha scale"
+stroke.alphaScale "Scaling"
 stroke.alphaScale.help "At minimum value, the alpha square is inside the tool circle radius."
+stroke.alphaMidValue "Mid value"
+stroke.alphaMidValue.help "Middle-point value at which no deformation occurs.
+
+(Mid value = 0)
+- Black: no displacement
+- White: positive displacement
+
+(Mid value = 0.5)
+- Black: negative displacement
+- White: positive displacement
+
+(Mid value = 1)
+- Black: negative displacement
+- White: no displacement"
 // stroke type
 stroke.strokeType "Stroke type"
 stroke.strokeTypeDot "Dot"
@@ -1272,7 +1286,7 @@ Layers are available on every resolution."
 topology.multiresReverse "Reverse"
 topology.multiresReverse.confirm "Could not create base subdivision.
 
-The current topoloy is probably not a result from a subdivision."
+The current topology is probably not a result from a subdivision."
 topology.multiresReverse.confirm.yes "ok"
 topology.multiresReverse.confirm.cancel ""
 topology.multiresSubdivide "Subdivide"
