@@ -99,10 +99,15 @@ background.blur "Blur"
 background.exposure "Exposure"
 
 background.imageEnable "Reference image"
-background.imageTransform "Transform"
 background.imageOverlay "Overlay"
 background.imageAlpha "Alpha"
 background.imageReset "Reset settings"
+background.imageTransform "Transform"
+// transform
+background.imageX "Position X"
+background.imageY "Position Y"
+background.imageRotation "Rotation"
+background.imageScale "Scale"
 
 // ------------------------------------------------------
 // camera

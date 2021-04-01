@@ -99,10 +99,15 @@ background.blur "模糊"
 background.exposure "曝光"
 
 background.imageEnable "参考图像"
-background.imageTransform "背景变换"
 background.imageOverlay "对象透明度"
 background.imageAlpha "背景透明度"
 background.imageReset "重设"
+background.imageTransform "背景变换"
+// transform
+background.imageX "X轴方向"
+background.imageY "Y轴方向"
+background.imageRotation "旋转"
+background.imageScale "缩放"
 
 // ------------------------------------------------------
 // camera
