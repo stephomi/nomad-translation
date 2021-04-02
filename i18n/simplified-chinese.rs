@@ -472,11 +472,11 @@ interface.showTooltips "显示工具提示"
 interface.showPin "显示固定菜单按钮"
 interface.showPin.help "固定按钮会出现在菜单的上方。
 
-屏幕宽度需要足够宽才能支持菜单固定。"
+需要有足够的屏幕宽度才能将菜单固定。"
 interface.showTooltips.help "你在点的这个小问号就是工具提示 :-D"
 interface.materialPreview "调整材质参数预览"
 interface.toolboxHide "自动隐藏工具栏"
-interface.toolboxHide.help "如果你想隐藏工具栏，请勾选此选项。"
+interface.toolboxHide.help "如果您想隐藏工具栏，请勾选此选项。"
 interface.toolboxMaxColumn "工具栏列数"
 interface.rounding "界面圆角"
 interface.inlined "滑块紧凑"
