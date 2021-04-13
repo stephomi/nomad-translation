@@ -560,7 +560,7 @@ light.shadowNormalBias "阴影偏差"
 material "材质"
 material.addNew "添加新材质"
 material.matcapWarning "粗糙度与金属强度在材质捕捉模式下不可用。"
-material.opacity = "透明度"
+material.opacity "透明度"
 
 // ------------------------------------------------------
 // menu name (visible on small screen menu are collapsed)

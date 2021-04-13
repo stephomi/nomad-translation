@@ -560,7 +560,12 @@ light.shadowNormalBias "Normal bias"
 material "Material"
 material.addNew "Add new"
 material.matcapWarning "Roughness and metalness will not be visible with matcap shading."
-material.opacity = "Opacity"
+material.opacity "Opacity"
+
+material.alphaMode.opaque "Opaque"
+material.alphaMode.blending "Blending"
+material.alphaMode.additive "Additive"
+material.alphaMode.refraction "Refraction"
 
 // ------------------------------------------------------
 // menu name (visible on small screen menu are collapsed)
@@ -986,6 +991,8 @@ stroke.onlyFrontFace.help "This option will ignore back facing vertices.
 It can be useful if you want to paint part of a thin geometry without impacting the other side.
 
 It also works for sculpting but you might experience some artefacts."
+stroke.onlySameSide "Same-side vertex only"
+stroke.onlySameSide.help "Ignore vertices that points in the opposite direction of the deformation."
 stroke.intensityMultiplier "Intensity multiplier"
 stroke.curveFalloff "Falloff"
 stroke.onlyLasso "Settings only active for the lasso tool."
