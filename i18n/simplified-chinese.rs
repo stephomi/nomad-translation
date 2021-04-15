@@ -563,7 +563,7 @@ material.matcapWarning "粗糙度与金属强度在材质捕捉模式下不可�
 material.opacity "不透明度"
 
 material.alphaMode.opaque "实心"
-material.alphaMode.blending "正常"
+material.alphaMode.blending "正常混合"
 material.alphaMode.additive "线性减淡"
 material.alphaMode.refraction "折射"
 
