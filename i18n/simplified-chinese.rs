@@ -833,7 +833,7 @@ settings.backfaceColor "内面颜色"
 settings.backfaceColored "内面着色"
 // outline
 settings.outlineTitle "轮廓"
-settings.outlineEnable "显示轮廓"
+settings.outlineEnable "显示被选对象轮廓"
 settings.outlineThickness "粗细"
 settings.outlineColor "颜色"
 // grid
@@ -848,7 +848,7 @@ settings.cursorShowDot.help "指针点会在您移动相机和雕刻时显示。
 settings.cursorShowRope "显示画笔准星"
 // other
 settings.renderRatio "实时渲染分辨率"
-settings.darkenUnselected "变暗未选中对象"
+settings.darkenUnselected "变暗未选对象"
 settings.smoothShading "平滑阴影"
 settings.partialDraw "局部雕刻"
 settings.partialDraw.help "功能未完善！
