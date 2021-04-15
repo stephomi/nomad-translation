@@ -99,10 +99,15 @@ background.blur "模糊"
 background.exposure "曝光"
 
 background.imageEnable "参考图像"
-background.imageTransform "背景变换"
 background.imageOverlay "对象透明度"
 background.imageAlpha "背景透明度"
 background.imageReset "重设"
+background.imageTransform "背景变换"
+// transform
+background.imageX "X轴方向"
+background.imageY "Y轴方向"
+background.imageRotation "旋转"
+background.imageScale "缩放"
 
 // ------------------------------------------------------
 // camera
@@ -555,7 +560,12 @@ light.shadowNormalBias "阴影偏差"
 material "材质"
 material.addNew "添加新材质"
 material.matcapWarning "粗糙度与金属强度在材质捕捉模式下不可用。"
-material.opacity = "透明度"
+material.opacity "透明度"
+
+material.alphaMode.opaque ""
+material.alphaMode.blending ""
+material.alphaMode.additive ""
+material.alphaMode.refraction ""
 
 // ------------------------------------------------------
 // menu name (visible on small screen menu are collapsed)
@@ -706,6 +716,7 @@ primitive.needValidate "基本体需转换为可编辑对象后才可雕刻。"
 primitive.useFloatPanel "快捷编辑浮窗"
 primitive.useFloatPanel.help "在浏览模式下显示编辑基本体的小浮窗。"
 primitive.edit "编辑"
+primitive.edit.help ""
 
 primitive.mainConfig "范围"
 primitive.topology "拓扑参数"
@@ -988,6 +999,8 @@ stroke.onlyFrontFace.help "打开此选项后，应用会忽略对“背面”�
 该功能可帮助您在不影响另一侧的情况下在几何平面上绘画。
 
 该选项也可用于雕刻，但您可能会遇到一些不便。"
+stroke.onlySameSide ""
+stroke.onlySameSide.help ""
 stroke.intensityMultiplier "笔刷强度放大"
 stroke.curveFalloff "衰减"
 stroke.onlyLasso "该设置仅对套索工具有效。"
@@ -1004,6 +1017,8 @@ stroke.alphaProject.screenFixed "屏幕投影"
 stroke.alphaTiling "形状平铺"
 stroke.alphaScale "形状缩放"
 stroke.alphaScale.help "当该值最小时，画笔形状将不会大于工具画笔的半径圆。"
+stroke.alphaMidValue ""
+stroke.alphaMidValue.help ""
 // stroke type
 stroke.strokeType "笔刷类型"
 stroke.strokeTypeDot "点"

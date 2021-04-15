@@ -99,10 +99,15 @@ background.blur "Blur"
 background.exposure "Exposure"
 
 background.imageEnable "Reference image"
-background.imageTransform "Transform"
 background.imageOverlay "Overlay"
 background.imageAlpha "Alpha"
 background.imageReset "Reset settings"
+background.imageTransform "Transform"
+// transform
+background.imageX "Position X"
+background.imageY "Position Y"
+background.imageRotation "Rotation"
+background.imageScale "Scale"
 
 // ------------------------------------------------------
 // camera
@@ -136,8 +141,8 @@ camera.doubleTapMesh "Double tap on mesh"
 camera.doubleTapBackground "Double tap on background"
 camera.doubleTapPivot "Update on double tap"
 camera.doubleTapPivot.help "Update the rotation pivot when double tapping."
-camera.autoPivot "Update on panning/zooming"
-camera.autoPivot.help "Update the pivot when you interact with the camera with 2 fingers."
+camera.autoPivot "On camera gesture start"
+camera.autoPivot.help "Update the pivot when you start interacting with the camera."
 camera.doubleTapFocus "Focus"
 camera.doubleTapFocus.help "When double tapping on the mesh the camera will pan and focus on the picked point."
 camera.doubleTapFocusSelection "Focus on selection"
@@ -555,7 +560,12 @@ light.shadowNormalBias "Normal bias"
 material "Material"
 material.addNew "Add new"
 material.matcapWarning "Roughness and metalness will not be visible with matcap shading."
-material.opacity = "Opacity"
+material.opacity "Opacity"
+
+material.alphaMode.opaque "Opaque"
+material.alphaMode.blending "Blending"
+material.alphaMode.additive "Additive"
+material.alphaMode.refraction "Refraction"
 
 // ------------------------------------------------------
 // menu name (visible on small screen menu are collapsed)
@@ -981,6 +991,8 @@ stroke.onlyFrontFace.help "This option will ignore back facing vertices.
 It can be useful if you want to paint part of a thin geometry without impacting the other side.
 
 It also works for sculpting but you might experience some artefacts."
+stroke.onlySameSide "Same-side vertex only"
+stroke.onlySameSide.help "Ignore vertices that points in the opposite direction of the deformation."
 stroke.intensityMultiplier "Intensity multiplier"
 stroke.curveFalloff "Falloff"
 stroke.onlyLasso "Settings only active for the lasso tool."
@@ -995,8 +1007,22 @@ stroke.alphaProject "Method"
 stroke.alphaProject.surfaceContinuous "Surface"
 stroke.alphaProject.screenFixed "Screen project"
 stroke.alphaTiling "Tiling"
-stroke.alphaScale "Alpha scale"
+stroke.alphaScale "Scaling"
 stroke.alphaScale.help "At minimum value, the alpha square is inside the tool circle radius."
+stroke.alphaMidValue "Mid value"
+stroke.alphaMidValue.help "Middle-point value at which no deformation occurs.
+
+(Mid value = 0)
+- Black: no displacement
+- White: positive displacement
+
+(Mid value = 0.5)
+- Black: negative displacement
+- White: positive displacement
+
+(Mid value = 1)
+- Black: negative displacement
+- White: no displacement"
 // stroke type
 stroke.strokeType "Stroke type"
 stroke.strokeTypeDot "Dot"
@@ -1267,7 +1293,7 @@ Layers are available on every resolution."
 topology.multiresReverse "Reverse"
 topology.multiresReverse.confirm "Could not create base subdivision.
 
-The current topoloy is probably not a result from a subdivision."
+The current topology is probably not a result from a subdivision."
 topology.multiresReverse.confirm.yes "ok"
 topology.multiresReverse.confirm.cancel ""
 topology.multiresSubdivide "Subdivide"
