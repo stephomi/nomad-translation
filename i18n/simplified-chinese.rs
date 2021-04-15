@@ -557,15 +557,15 @@ light.shadowNormalBias "阴影偏差"
 
 // ------------------------------------------------------
 // material
-material "材质"
+material "材质选项"
 material.addNew "添加新材质"
 material.matcapWarning "粗糙度与金属强度在材质捕捉模式下不可用。"
 material.opacity "透明度"
 
-material.alphaMode.opaque ""
-material.alphaMode.blending ""
-material.alphaMode.additive ""
-material.alphaMode.refraction ""
+material.alphaMode.opaque "不透明"
+material.alphaMode.blending "混合"
+material.alphaMode.additive "叠加"
+material.alphaMode.refraction "折射"
 
 // ------------------------------------------------------
 // menu name (visible on small screen menu are collapsed)
@@ -1017,8 +1017,20 @@ stroke.alphaProject.screenFixed "屏幕投影"
 stroke.alphaTiling "形状平铺"
 stroke.alphaScale "形状缩放"
 stroke.alphaScale.help "当该值最小时，画笔形状将不会大于工具画笔的半径圆。"
-stroke.alphaMidValue ""
-stroke.alphaMidValue.help ""
+stroke.alphaMidValue "形状强度"
+stroke.alphaMidValue.help "形状强度可以让您自由调节当前笔刷形状所产生的效果。
+
+当强度值为0时：
+- 黑色：无变化
+- 白色：凸起
+
+当强度值为0.5时：
+- 黑色：下凹
+- 白色：凸起
+
+当强度值为1时：
+- 黑色：下凹
+- 白色：无变化"
 // stroke type
 stroke.strokeType "笔刷类型"
 stroke.strokeTypeDot "点"
