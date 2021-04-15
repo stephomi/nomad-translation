@@ -557,14 +557,14 @@ light.shadowNormalBias "阴影偏差"
 
 // ------------------------------------------------------
 // material
-material "材质选项"
+material "材质混合模式"
 material.addNew "添加新材质"
 material.matcapWarning "粗糙度与金属强度在材质捕捉模式下不可用。"
-material.opacity "透明度"
+material.opacity "不透明度"
 
-material.alphaMode.opaque "不透明"
-material.alphaMode.blending "混合"
-material.alphaMode.additive "叠加"
+material.alphaMode.opaque "实心"
+material.alphaMode.blending "正常"
+material.alphaMode.additive "线性减淡"
 material.alphaMode.refraction "折射"
 
 // ------------------------------------------------------
@@ -716,7 +716,9 @@ primitive.needValidate "基本体需转换为可编辑对象后才可雕刻。"
 primitive.useFloatPanel "快捷编辑浮窗"
 primitive.useFloatPanel.help "在浏览模式下显示编辑基本体的小浮窗。"
 primitive.edit "编辑"
-primitive.edit.help ""
+primitive.edit.help "Allow 3d editing in the viewport.
+
+You can disable this feature if you want to interact with the Gizmo or the Transform tool modifying the primitive."
 
 primitive.mainConfig "范围"
 primitive.topology "拓扑参数"
@@ -999,8 +1001,8 @@ stroke.onlyFrontFace.help "打开此选项后，应用会忽略对“背面”�
 该功能可帮助您在不影响另一侧的情况下在几何平面上绘画。
 
 该选项也可用于雕刻，但您可能会遇到一些不便。"
-stroke.onlySameSide ""
-stroke.onlySameSide.help ""
+stroke.onlySameSide "只移动同向顶点"
+stroke.onlySameSide.help "在修改对象造型时，不移动朝向不同的顶点。"
 stroke.intensityMultiplier "笔刷强度放大"
 stroke.curveFalloff "衰减"
 stroke.onlyLasso "该设置仅对套索工具有效。"
