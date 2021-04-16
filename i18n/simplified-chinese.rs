@@ -477,11 +477,11 @@ interface.showTooltips "显示工具提示"
 interface.showPin "显示固定菜单按钮"
 interface.showPin.help "固定按钮会出现在菜单的上方。
 
-屏幕宽度需要足够宽才能支持菜单固定。"
+需要有足够的屏幕宽度才能将菜单固定。"
 interface.showTooltips.help "你在点的这个小问号就是工具提示 :-D"
 interface.materialPreview "调整材质参数预览"
 interface.toolboxHide "自动隐藏工具栏"
-interface.toolboxHide.help "如果你想隐藏工具栏，请勾选此选项。"
+interface.toolboxHide.help "如果您想隐藏工具栏，请勾选此选项。"
 interface.toolboxMaxColumn "工具栏列数"
 interface.rounding "界面圆角"
 interface.inlined "滑块紧凑"
@@ -557,15 +557,15 @@ light.shadowNormalBias "阴影偏差"
 
 // ------------------------------------------------------
 // material
-material "材质"
+material "材质混合模式"
 material.addNew "添加新材质"
 material.matcapWarning "粗糙度与金属强度在材质捕捉模式下不可用。"
-material.opacity "透明度"
+material.opacity "不透明度"
 
-material.alphaMode.opaque ""
-material.alphaMode.blending ""
-material.alphaMode.additive ""
-material.alphaMode.refraction ""
+material.alphaMode.opaque "实心"
+material.alphaMode.blending "正常混合"
+material.alphaMode.additive "线性减淡"
+material.alphaMode.refraction "折射"
 
 // ------------------------------------------------------
 // menu name (visible on small screen menu are collapsed)
@@ -716,7 +716,9 @@ primitive.needValidate "基本体需转换为可编辑对象后才可雕刻。"
 primitive.useFloatPanel "快捷编辑浮窗"
 primitive.useFloatPanel.help "在浏览模式下显示编辑基本体的小浮窗。"
 primitive.edit "编辑"
-primitive.edit.help ""
+primitive.edit.help "Allow 3d editing in the viewport.
+
+You can disable this feature if you want to interact with the Gizmo or the Transform tool modifying the primitive."
 
 primitive.mainConfig "范围"
 primitive.topology "拓扑参数"
@@ -833,7 +835,7 @@ settings.backfaceColor "内面颜色"
 settings.backfaceColored "内面着色"
 // outline
 settings.outlineTitle "轮廓"
-settings.outlineEnable "显示轮廓"
+settings.outlineEnable "显示被选对象轮廓"
 settings.outlineThickness "粗细"
 settings.outlineColor "颜色"
 // grid
@@ -848,7 +850,7 @@ settings.cursorShowDot.help "指针点会在您移动相机和雕刻时显示。
 settings.cursorShowRope "显示画笔准星"
 // other
 settings.renderRatio "实时渲染分辨率"
-settings.darkenUnselected "变暗未选中对象"
+settings.darkenUnselected "变暗未选对象"
 settings.smoothShading "平滑阴影"
 settings.partialDraw "局部雕刻"
 settings.partialDraw.help "功能未完善！
@@ -999,8 +1001,8 @@ stroke.onlyFrontFace.help "打开此选项后，应用会忽略对“背面”�
 该功能可帮助您在不影响另一侧的情况下在几何平面上绘画。
 
 该选项也可用于雕刻，但您可能会遇到一些不便。"
-stroke.onlySameSide ""
-stroke.onlySameSide.help ""
+stroke.onlySameSide "只移动同向顶点"
+stroke.onlySameSide.help "在修改对象造型时，不移动朝向不同的顶点。"
 stroke.intensityMultiplier "笔刷强度放大"
 stroke.curveFalloff "衰减"
 stroke.onlyLasso "该设置仅对套索工具有效。"
@@ -1017,8 +1019,20 @@ stroke.alphaProject.screenFixed "屏幕投影"
 stroke.alphaTiling "形状平铺"
 stroke.alphaScale "形状缩放"
 stroke.alphaScale.help "当该值最小时，画笔形状将不会大于工具画笔的半径圆。"
-stroke.alphaMidValue ""
-stroke.alphaMidValue.help ""
+stroke.alphaMidValue "形状强度"
+stroke.alphaMidValue.help "形状强度可以让您自由调节当前笔刷形状所产生的效果。
+
+当强度值为0时：
+- 黑色：无变化
+- 白色：凸起
+
+当强度值为0.5时：
+- 黑色：下凹
+- 白色：凸起
+
+当强度值为1时：
+- 黑色：下凹
+- 白色：无变化"
 // stroke type
 stroke.strokeType "笔刷类型"
 stroke.strokeTypeDot "点"
