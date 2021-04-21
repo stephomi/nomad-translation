@@ -13,6 +13,8 @@ Z "Z"
 noSelectedMesh "对象未选择"
 advancedSettings "高级设置"
 
+loading.reprocess ""
+
 // pbr
 baseColor "颜色"
 roughness "粗糙度"

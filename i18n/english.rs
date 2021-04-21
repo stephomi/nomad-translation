@@ -13,6 +13,10 @@ Z "Z"
 noSelectedMesh "No selected mesh."
 advancedSettings "Advanced"
 
+loading.reprocess "Missing thumbnails, reprocessing files... ($0/$1)
+
+$2"
+
 // pbr
 baseColor "Color"
 roughness "Roughness"
