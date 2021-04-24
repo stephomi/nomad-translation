@@ -869,15 +869,16 @@ settings.showPainting "Show scene painting"
 settings.lightIcon "Light icons"
 settings.lightIcon.help "Display light icons on the canvas so that you can select and edit them directly."
 settings.showSnapCube "Snap cube"
-settings.loadGuiSettings "Load project gui settings"
-settings.loadGuiSettings.help "When opening or importing a project file, all the gui-related settings embedded in the project will be loaded."
 settings.holeTitle "Hole-filling"
 settings.holeNonManifold "Fill non-manifold"
 settings.holeNonManifold.help "Try to fill non manifold hole.
 This option is not saved in the settings.
 "
-settings.keepImportTopology "Keep topology at import"
-settings.keepImportTopology.help "Use this option if you don't want Nomad to fiddle with the topology of imported mesh.
+settings.loadGuiSettings "Keep gui settings (at import)"
+settings.loadGuiSettings.help "When opening or importing a project file, all the gui-related settings embedded in the project will be loaded."
+settings.loadMergeLayers "Merge Layers (at import)"
+settings.loadKeepTopology "Keep topology (at import)"
+settings.loadKeepTopology.help "Use this option if you don't want Nomad to fiddle with the topology of imported mesh.
 
 It will disable vertex/face reordering, removal of vertex/face duplicates and removal of unused vertices."
 // multires

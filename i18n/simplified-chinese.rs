@@ -875,8 +875,9 @@ settings.holeNonManifold.help "应用将会尝试填补非流形孔洞。
 
 此选项不会被保存在设置中。
 "
-settings.keepImportTopology "在导入时保留拓扑"
-settings.keepImportTopology.help "如您不希望应用破坏导入模型拓扑，请勾选此选项。
+settings.loadMergeLayers ""
+settings.loadKeepTopology "在导入时保留拓扑"
+settings.loadKeepTopology.help "如您不希望应用破坏导入模型拓扑，请勾选此选项。
 
 应用将不会：
 - 重新排序顶点和面
