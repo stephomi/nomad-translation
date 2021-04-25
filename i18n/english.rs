@@ -79,6 +79,8 @@ alert.selection.unlock "Unlock selection"
 alert.selection.isolate "Isolate selection"
 alert.selection.showAll "Show all"
 alert.quickSave "Saving..."
+alert.forceShowPainting.fill "Show painting activated, [Paint all] was used."
+alert.forceShowPainting.tool "Show painting activated, the object was painted."
 alert.multiresLost "Multiresolution will be lost!"
 alert.rangeWarning "The detail value is high and might require lot of memory!"
 // autosave popup
@@ -762,7 +764,6 @@ If you interact with the division or size sliders, the painting information will
 You should probably disable symmetry as it might not function as you would expect.
 
 You can use the 'Topologically connected' option in the mask panel to paint a plane impacting the other planes."
-primitive.triplanarIsolate "Visibility"
 primitive.triplanarSameSize "Same size (cube)"
 primitive.triplanarPolish "Smoothness"
 primitive.triplanarResetMask "Reset mask"
@@ -865,7 +866,7 @@ It should make the sculpting smoother, but you should not enable wireframe!
 
 Also it might add visual artefacts during the brush strokes"
 settings.partialDrawWarning "Do not forget to turn off this option if the visual artefacts are too bothersome!"
-settings.showPainting "Show scene painting"
+settings.showPainting "Show painting"
 settings.lightIcon "Light icons"
 settings.lightIcon.help "Display light icons on the canvas so that you can select and edit them directly."
 settings.showSnapCube "Snap cube"

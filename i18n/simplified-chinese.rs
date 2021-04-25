@@ -77,6 +77,8 @@ alert.selection.unlock "解锁所选项"
 alert.selection.isolate "隔离所选项"
 alert.selection.showAll "显示全部"
 alert.quickSave "正在自动保存..."
+alert.forceShowPainting.fill ""
+alert.forceShowPainting.tool ""
 alert.multiresLost "模型细分将会丢失！"
 alert.rangeWarning "过高的分辨率将会占用大量内存！"
 // autosave popup
@@ -760,7 +762,6 @@ primitive.triplanar.title.help "三向投影是将原对象三个平面的投影
 建议您关闭对称选项，否则可能会导致最终效果与您的预期不符。
 
 您可以开启遮罩面板中的“拓扑连接”选项来在绘制时影响其他平面。"
-primitive.triplanarIsolate "可见性"
 primitive.triplanarSameSize "固定比例（立方体）"
 primitive.triplanarPolish "羽化"
 primitive.triplanarResetMask "重置蒙版"
@@ -867,14 +868,14 @@ settings.showPainting "显示场景绘画"
 settings.lightIcon "显示灯光图标"
 settings.lightIcon.help "在屏幕上显示灯光图标，这样您可以直接选择并编辑灯光。"
 settings.showSnapCube "Snap cube"
-settings.loadGuiSettings "加载项目GUI设置"
-settings.loadGuiSettings.help "当您打开或导入项目文件时，同时加载项目中包含的GUI设置。"
 settings.holeTitle "填补孔洞"
 settings.holeNonManifold "填补非流形孔洞"
 settings.holeNonManifold.help "应用将会尝试填补非流形孔洞。
 
 此选项不会被保存在设置中。
 "
+settings.loadGuiSettings "加载项目GUI设置"
+settings.loadGuiSettings.help "当您打开或导入项目文件时，同时加载项目中包含的GUI设置。"
 settings.loadMergeLayers ""
 settings.loadKeepTopology "在导入时保留拓扑"
 settings.loadKeepTopology.help "如您不希望应用破坏导入模型拓扑，请勾选此选项。
