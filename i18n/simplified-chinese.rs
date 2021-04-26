@@ -738,6 +738,7 @@ primitive.linear "线性细分"
 primitive.subdivision "细分等级"
 
 // common config
+primitive.radius "半径尺寸"
 primitive.size "尺寸"
 primitive.sizeX "X"
 primitive.sizeY "Y"
@@ -782,14 +783,10 @@ primitive.tubeRegular "相同半径"
 primitive.tubeThicknessStart "起始半径"
 primitive.tubeThicknessEnd "结束半径"
 primitive.tubeTwist "旋转"
-// icosahedron
-primitive.icosahedronRadius "半径尺寸"
 // torus
 primitive.torusRadiusOuter "外圈半径"
 primitive.torusRadiusInner "内圈半径"
 primitive.torusAngle "角度"
-// sphere
-primitive.sphereRadius "半径尺寸"
 // cylinder
 primitive.cylinderHeight "高度"
 // cone

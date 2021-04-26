@@ -740,6 +740,7 @@ primitive.linear "Flat subdivision"
 primitive.subdivision "Post subdivision"
 
 // common config
+primitive.radius "Radius"
 primitive.size "Size"
 primitive.sizeX "Size X"
 primitive.sizeY "Size Y"
@@ -784,14 +785,10 @@ primitive.tubeRegular "Same thickness"
 primitive.tubeThicknessStart "Radius start"
 primitive.tubeThicknessEnd "Radius end"
 primitive.tubeTwist "Twist"
-// icosahedron
-primitive.icosahedronRadius "Radius"
 // torus
 primitive.torusRadiusOuter "Radius outer"
 primitive.torusRadiusInner "Radius inner"
 primitive.torusAngle "Angle"
-// sphere
-primitive.sphereRadius "Radius"
 // cylinder
 primitive.cylinderHeight "Height"
 // cone
@@ -886,7 +883,7 @@ It will disable vertex/face reordering, removal of vertex/face duplicates and re
 settings.multiresTitle "Multiresolution"
 settings.multiresMaxVertices "Max vertices count"
 settings.multiresMaxVertices.help "Nomad does not perform memory check before subdivision, high poly count can easily lead to crashes."
-settings.multiresLowResVertices "Low resolution vertices threshold"
+settings.multiresLowResVertices "Low resolution threshold"
 settings.multiresLowResVertices.help "A lower resolution of the mesh can be displayed when you move the camera.
 
 You can increase this value if you want to display a higher resolution of the mesh."
