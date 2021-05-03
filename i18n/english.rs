@@ -781,10 +781,10 @@ primitive.planeSameSize "Same size (square)"
 // box
 primitive.boxRegular "Same size (cube)"
 // tube
-primitive.tubeRegular "Same thickness"
 primitive.tubeThicknessStart "Radius start"
 primitive.tubeThicknessEnd "Radius end"
 primitive.tubeTwist "Twist"
+primitive.tubeManual "Manual"
 // torus
 primitive.torusRadiusOuter "Radius outer"
 primitive.torusRadiusInner "Radius inner"

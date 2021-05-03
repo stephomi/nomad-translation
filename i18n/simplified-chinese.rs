@@ -779,10 +779,10 @@ primitive.planeSameSize "固定比例（平面）"
 // box
 primitive.boxRegular "固定比例（立方体）"
 // tube
-primitive.tubeRegular "相同半径"
 primitive.tubeThicknessStart "起始半径"
 primitive.tubeThicknessEnd "结束半径"
 primitive.tubeTwist "旋转"
+primitive.tubeManual ""
 // torus
 primitive.torusRadiusOuter "外圈半径"
 primitive.torusRadiusInner "内圈半径"
