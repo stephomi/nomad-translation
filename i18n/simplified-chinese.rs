@@ -866,7 +866,7 @@ settings.partialDrawWarning "如果显示不正常，请不要忘记关闭此选
 settings.showPainting "图层绘画"
 settings.lightIcon "灯光图标"
 settings.lightIcon.help "在屏幕上显示灯光图标，这样您可以直接选择并编辑灯光。"
-settings.showSnapCube "Snap cube"
+settings.showSnapCube "方位视图"
 settings.holeTitle "填补孔洞"
 settings.holeNonManifold "填补非流形孔洞"
 settings.holeNonManifold.help "应用将会尝试填补非流形孔洞。
