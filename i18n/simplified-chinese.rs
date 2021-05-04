@@ -13,7 +13,9 @@ Z "Z"
 noSelectedMesh "对象未选择"
 advancedSettings "高级设置"
 
-loading.reprocess ""
+loading.reprocess "正在载入数据，请等待... ($0/$1)
+
+$2"
 
 // pbr
 baseColor "颜色"
@@ -77,8 +79,8 @@ alert.selection.unlock "解锁所选项"
 alert.selection.isolate "隔离所选项"
 alert.selection.showAll "显示全部"
 alert.quickSave "正在自动保存..."
-alert.forceShowPainting.fill ""
-alert.forceShowPainting.tool ""
+alert.forceShowPainting.fill "显示图层绘画已打开"
+alert.forceShowPainting.tool "显示图层绘画已打开"
 alert.multiresLost "模型细分将会丢失！"
 alert.rangeWarning "过高的分辨率将会占用大量内存！"
 // autosave popup
@@ -782,7 +784,7 @@ primitive.boxRegular "固定比例（立方体）"
 primitive.tubeThicknessStart "起始半径"
 primitive.tubeThicknessEnd "结束半径"
 primitive.tubeTwist "旋转"
-primitive.tubeManual ""
+primitive.tubeManual "调整半径"
 // torus
 primitive.torusRadiusOuter "外圈半径"
 primitive.torusRadiusInner "内圈半径"
@@ -821,7 +823,7 @@ settings.fingerRotateLighting "三指旋转灯光"
 settings.fingerRotateLighting.help "在屏幕上使用三指水平移动可使环境、灯光与材质捕捉旋转。"
 // wireframe
 settings.wireframeTitle "对象网格设置"
-settings.wireframeDisplay "显示对象网格"
+settings.wireframeDisplay "对象网格"
 settings.wireframeColor "对象网格颜色"
 // backface
 settings.backfaceTitle "双面显示设置"
@@ -835,12 +837,12 @@ settings.backfaceColor "内面颜色"
 settings.backfaceColored "内面着色"
 // outline
 settings.outlineTitle "轮廓"
-settings.outlineEnable "显示被选对象轮廓"
+settings.outlineEnable "被选对象轮廓"
 settings.outlineThickness "粗细"
 settings.outlineColor "颜色"
 // grid
 settings.gridTitle "世界网格"
-settings.gridDisplay "显示世界网格"
+settings.gridDisplay "世界网格"
 settings.gridHeight "高度"
 settings.gridColor "颜色"
 // cursor
@@ -861,10 +863,10 @@ settings.partialDraw.help "功能未完善！
 
 启用此功能可能会在使用画笔时产生一些奇怪的东西。"
 settings.partialDrawWarning "如果显示不正常，请不要忘记关闭此选项！"
-settings.showPainting "显示场景绘画"
-settings.lightIcon "显示灯光图标"
+settings.showPainting "图层绘画"
+settings.lightIcon "灯光图标"
 settings.lightIcon.help "在屏幕上显示灯光图标，这样您可以直接选择并编辑灯光。"
-settings.showSnapCube "Snap cube"
+settings.showSnapCube "方位视图"
 settings.holeTitle "填补孔洞"
 settings.holeNonManifold "填补非流形孔洞"
 settings.holeNonManifold.help "应用将会尝试填补非流形孔洞。
@@ -873,8 +875,8 @@ settings.holeNonManifold.help "应用将会尝试填补非流形孔洞。
 "
 settings.loadGuiSettings "加载项目GUI设置"
 settings.loadGuiSettings.help "当您打开或导入项目文件时，同时加载项目中包含的GUI设置。"
-settings.loadMergeLayers ""
-settings.loadKeepTopology "在导入时保留拓扑"
+settings.loadMergeLayers "导入时合并图层"
+settings.loadKeepTopology "导入时保留拓扑"
 settings.loadKeepTopology.help "如您不希望应用破坏导入模型拓扑，请勾选此选项。
 
 应用将不会：
