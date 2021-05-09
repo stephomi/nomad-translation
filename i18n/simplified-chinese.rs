@@ -567,6 +567,7 @@ material "材质混合模式"
 material.addNew "添加新材质"
 material.matcapWarning "粗糙度与金属强度在材质捕捉模式下不可用。"
 material.opacity "不透明度"
+material.ior ""
 
 material.alphaMode.opaque "实心"
 material.alphaMode.blending "正常混合"
@@ -783,7 +784,10 @@ primitive.boxRegular "固定比例（立方体）"
 // tube
 primitive.tubeThicknessStart "起始半径"
 primitive.tubeThicknessEnd "结束半径"
-primitive.tubeTwist "旋转"
+// primitive.tubeTwist "Twist"
+// primitive.tubeTwistRotate "Rotation"
+// primitive.tubeTwistRadius "Magnitude"
+// primitive.tubeTwistOffset "Offset"
 primitive.tubeManual "调整半径"
 // torus
 primitive.torusRadiusOuter "外圈半径"
@@ -1306,8 +1310,6 @@ topology.multiresReverse "简化"
 topology.multiresReverse.confirm "无法再进一步简化模型。
 
 当前对象的拓扑无法再进一步细分。"
-topology.multiresReverse.confirm.yes "确认"
-topology.multiresReverse.confirm.cancel "取消"
 topology.multiresSubdivide "细分"
 topology.multiresSubdivideConfirm "该对象将会产生 $0M 个顶点，您确定要继续吗？"
 topology.multiresDeleteLower "删除低模"

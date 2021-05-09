@@ -567,6 +567,7 @@ material "Material"
 material.addNew "Add new"
 material.matcapWarning "Roughness and metalness will not be visible with matcap shading."
 material.opacity "Opacity"
+material.ior "Index of Refraction"
 
 material.alphaMode.opaque "Opaque"
 material.alphaMode.blending "Blending"
@@ -783,7 +784,10 @@ primitive.boxRegular "Same size (cube)"
 // tube
 primitive.tubeThicknessStart "Radius start"
 primitive.tubeThicknessEnd "Radius end"
-primitive.tubeTwist "Twist"
+// primitive.tubeTwist "Twist"
+// primitive.tubeTwistRotate "Rotation"
+// primitive.tubeTwistRadius "Magnitude"
+// primitive.tubeTwistOffset "Offset"
 primitive.tubeManual "Manual"
 // torus
 primitive.torusRadiusOuter "Radius outer"
@@ -1297,8 +1301,6 @@ topology.multiresReverse "Reverse"
 topology.multiresReverse.confirm "Could not create base subdivision.
 
 The current topology is probably not a result from a subdivision."
-topology.multiresReverse.confirm.yes "ok"
-topology.multiresReverse.confirm.cancel ""
 topology.multiresSubdivide "Subdivide"
 topology.multiresSubdivideConfirm "The mesh will have $0M vertices, are you sure?"
 topology.multiresDeleteLower "Delete lower"
