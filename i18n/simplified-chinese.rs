@@ -567,7 +567,7 @@ material "材质混合模式"
 material.addNew "添加新材质"
 material.matcapWarning "粗糙度与金属强度在材质捕捉模式下不可用。"
 material.opacity "不透明度"
-material.ior ""
+material.ior "折射指数"
 
 material.alphaMode.opaque "实心"
 material.alphaMode.blending "正常混合"
