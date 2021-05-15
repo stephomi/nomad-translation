@@ -289,8 +289,11 @@ file.tools.reset.confirm "Reset tools library?"
 file.render "Render"
 file.render.showInterface "Show interface"
 file.render.size "Size"
+file.render.size.custom "Custom"
 file.render.screenResolution "screen"
 file.render.export "Export png"
+file.render.width "Width"
+file.render.height "Height"
 file.render.4kWarn "4K export might use lot of memory make sure to save first!"
 file.render.transparent "Transparent background"
 file.render.transparent.help "This option can be useful if you want to insert the mesh in a 2d creation software.
@@ -569,8 +572,11 @@ material.matcapWarning "Roughness and metalness will not be visible with matcap 
 material.opacity "Opacity"
 material.ior "Index of Refraction"
 material.refractionSurfaceGlossiness "Surface glossiness"
-material.refractionSurfaceGlossiness.help "You can make the surface completely smooth.
-It won't impact the interior roughness."
+material.refractionSurfaceGlossiness.help "- at 0, the surface is using the painted roughness
+- at 1, the surface is completely smooth"
+material.refractionInteriorRoughness "Interior roughness"
+material.refractionInteriorRoughness.help "- at 0, the interior is using the painted roughness
+- at 1, the interior is completely rough"
 
 material.alphaMode.opaque "Opaque"
 material.alphaMode.blending "Blending"
