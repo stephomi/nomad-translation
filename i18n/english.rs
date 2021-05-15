@@ -568,6 +568,9 @@ material.addNew "Add new"
 material.matcapWarning "Roughness and metalness will not be visible with matcap shading."
 material.opacity "Opacity"
 material.ior "Index of Refraction"
+material.refractionSurfaceGlossiness "Surface glossiness"
+material.refractionSurfaceGlossiness.help "You can make the surface completely smooth.
+It won't impact the interior roughness."
 
 material.alphaMode.opaque "Opaque"
 material.alphaMode.blending "Blending"
