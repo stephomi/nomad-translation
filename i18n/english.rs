@@ -294,7 +294,9 @@ file.render.screenResolution "screen"
 file.render.export "Export png"
 file.render.width "Width"
 file.render.height "Height"
-file.render.4kWarn "4K export might use lot of memory make sure to save first!"
+file.render.warn "The export resolution is high ($0x$1)!
+
+Make sure to save your project in case your device runs out of VRAM and crashes."
 file.render.transparent "Transparent background"
 file.render.transparent.help "This option can be useful if you want to insert the mesh in a 2d creation software.
 
@@ -694,6 +696,13 @@ postprocess.toneExposure "Exposure"
 postprocess.toneContrast "Contrast" 
 postprocess.toneSaturation "Saturation" 
 postprocess.toneMappingNone "None"
+// curve
+postprocess.curveEnable "Color Grading"
+postprocess.curve.luminance "Main"
+postprocess.curve.red "Red"
+postprocess.curve.green "Green"
+postprocess.curve.blue "Blue"
+postprocess.curveReset "Reset"
 // chromatic
 postprocess.chromaticEnable "Chromatic Aberration" 
 postprocess.chromaticFactor "Strength" 

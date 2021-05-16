@@ -293,7 +293,7 @@ file.render.screenResolution "屏幕尺寸"
 file.render.export "导出为png"
 file.render.width ""
 file.render.height ""
-file.render.4kWarn "导出4K格式可能会使用大量内存，请确认文件保存之后再导出！"
+file.render.warn "导出4K格式可能会使用大量内存，请确认文件保存之后再导出！"
 file.render.transparent "导出透明背景"
 file.render.transparent.help "打开此选项可以让您更方便地把渲染图导入到平面软件里。
 
@@ -692,6 +692,13 @@ postprocess.toneExposure "曝光"
 postprocess.toneContrast "对比度" 
 postprocess.toneSaturation "饱和度" 
 postprocess.toneMappingNone "无"
+// curve
+postprocess.curveEnable ""
+postprocess.curve.luminance ""
+postprocess.curve.red ""
+postprocess.curve.green ""
+postprocess.curve.blue ""
+postprocess.curveReset "重设"
 // chromatic
 postprocess.chromaticEnable "色彩偏移" 
 postprocess.chromaticFactor "强度" 
