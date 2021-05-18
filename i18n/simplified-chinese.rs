@@ -293,7 +293,7 @@ file.render.screenResolution "屏幕尺寸"
 file.render.export "导出为png"
 file.render.width "宽度"
 file.render.height "高度"
-file.render.warn "您当前导出的图片尺寸较高（$0x$1）!
+file.render.warn "您当前导出的图片尺寸较大（$0x$1）!
 
 请确认文件妥善保存后再继续导出，否则程序可能会因运存占用过高而闪退。"
 file.render.transparent "导出透明背景"
