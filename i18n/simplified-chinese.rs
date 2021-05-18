@@ -288,12 +288,12 @@ file.tools.reset.confirm "确定要重置材质库吗？"
 file.render "渲染"
 file.render.showInterface "显示操作界面"
 file.render.size "渲染尺寸"
-file.render.size.custom "自定"
+file.render.size.custom ""
 file.render.screenResolution "屏幕尺寸"
 file.render.export "导出为png"
-file.render.width "宽度"
-file.render.height "高度"
-file.render.4kWarn "导出4K尺寸可能会使用大量内存，请确认文件妥善保存后再导出！"
+file.render.width ""
+file.render.height ""
+file.render.warn "导出4K格式可能会使用大量内存，请确认文件保存之后再导出！"
 file.render.transparent "导出透明背景"
 file.render.transparent.help "打开此选项可以让您更方便地把渲染图导入到平面软件里。
 
@@ -570,20 +570,11 @@ material "材质混合模式"
 material.addNew "添加新材质"
 material.matcapWarning "粗糙度与金属强度在材质捕捉模式下不可用。"
 material.opacity "不透明度"
-material.ior "折射率"
-material.refractionSurfaceGlossiness "光泽度"
-material.refractionSurfaceGlossiness.help "光泽度可以增强光线打在物体表面上的反射效果。
-
-- 当光泽度为0时，对象表面的粗糙度将与材质相同。
-
-- 当光泽度为1时，对象表面的光滑效果将达到最强。"
-material.refractionInteriorRoughness "粗糙度"
-material.refractionInteriorRoughness.help "粗糙度可以增强光线透过物体后的散射效果。
-
-- 当粗糙度为0时，对象内部的粗糙度将与材质相同。
-
-- 当粗糙度为1时，对象内部的粗糙效果将达到最强。
-"
+material.ior "折射指数"
+material.refractionSurfaceGlossiness ""
+material.refractionSurfaceGlossiness.help ""
+material.refractionInteriorRoughness ""
+material.refractionInteriorRoughness.help ""
 
 material.alphaMode.opaque "实心"
 material.alphaMode.blending "正常混合"
@@ -596,6 +587,7 @@ menu.files "文件"
 menu.scene "场景"
 menu.topology "拓扑"
 menu.render "渲染"
+menu.material ""
 menu.postProcess "后期处理"
 menu.camera "相机"
 menu.background "背景"
@@ -701,6 +693,13 @@ postprocess.toneExposure "曝光"
 postprocess.toneContrast "对比度" 
 postprocess.toneSaturation "饱和度" 
 postprocess.toneMappingNone "无"
+// curve
+postprocess.curveEnable ""
+postprocess.curve.luminance ""
+postprocess.curve.red ""
+postprocess.curve.green ""
+postprocess.curve.blue ""
+postprocess.curveReset "重设"
 // chromatic
 postprocess.chromaticEnable "色彩偏移" 
 postprocess.chromaticFactor "强度" 
