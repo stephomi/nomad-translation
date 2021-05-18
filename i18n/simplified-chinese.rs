@@ -288,12 +288,14 @@ file.tools.reset.confirm "确定要重置材质库吗？"
 file.render "渲染"
 file.render.showInterface "显示操作界面"
 file.render.size "渲染尺寸"
-file.render.size.custom ""
+file.render.size.custom "自定"
 file.render.screenResolution "屏幕尺寸"
 file.render.export "导出为png"
-file.render.width ""
-file.render.height ""
-file.render.warn "导出4K格式可能会使用大量内存，请确认文件保存之后再导出！"
+file.render.width "宽度"
+file.render.height "高度"
+file.render.warn "您当前导出的图片尺寸较高（$0x$1）!
+
+请确认文件妥善保存后再继续导出，否则程序可能会因运存占用过高而闪退。"
 file.render.transparent "导出透明背景"
 file.render.transparent.help "打开此选项可以让您更方便地把渲染图导入到平面软件里。
 
@@ -570,11 +572,19 @@ material "材质混合模式"
 material.addNew "添加新材质"
 material.matcapWarning "粗糙度与金属强度在材质捕捉模式下不可用。"
 material.opacity "不透明度"
-material.ior "折射指数"
-material.refractionSurfaceGlossiness ""
-material.refractionSurfaceGlossiness.help ""
-material.refractionInteriorRoughness ""
-material.refractionInteriorRoughness.help ""
+material.ior "折射率"
+material.refractionSurfaceGlossiness "光泽度"
+material.refractionSurfaceGlossiness.help "光泽度可以增强光线打在物体表面上的反射效果。
+
+- 当光泽度为0时，对象表面的粗糙度将与材质相同。
+
+- 当光泽度为1时，对象表面的光滑效果将达到最强。"
+material.refractionInteriorRoughness "粗糙度"
+material.refractionInteriorRoughness.help "粗糙度可以增强光线透过物体后的散射效果。
+
+- 当粗糙度为0时，对象内部的粗糙度将与材质相同。
+
+- 当粗糙度为1时，对象内部的粗糙效果将达到最强。"
 
 material.alphaMode.opaque "实心"
 material.alphaMode.blending "正常混合"
