@@ -5,6 +5,7 @@
 confirm "请确认是否操作？"
 yes "确认"
 ok "好"
+auto ""
 cancel "取消"
 delete "删除"
 X "X"
