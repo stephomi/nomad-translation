@@ -4,9 +4,11 @@
 // general stuffs
 confirm "Confirm?"
 yes "Yes"
+no "No"
 ok "Ok"
 cancel "Cancel"
 delete "Delete"
+auto "Auto"
 X "X"
 Y "Y"
 Z "Z"
@@ -561,6 +563,7 @@ Light orientation depends on the camera view."
 light.type "Type"
 light.type.directional "Directional"
 light.type.spot "Spot"
+light.type.point "Point"
 light.spotAngle "Cone angle"
 light.spotSoftness "Softness"
 light.shadowCast "Shadow"
@@ -571,7 +574,7 @@ light.shadowNormalBias "Normal bias"
 material "Material"
 material.addNew "Add new"
 material.matcapWarning "Roughness and metalness will not be visible with matcap shading."
-material.opacity "Opacity"
+// refraction
 material.ior "Index of Refraction"
 material.refractionSurfaceGlossiness "Surface glossiness"
 material.refractionSurfaceGlossiness.help "- at 0, the surface is using the painted roughness
@@ -579,11 +582,17 @@ material.refractionSurfaceGlossiness.help "- at 0, the surface is using the pain
 material.refractionInteriorRoughness "Interior roughness"
 material.refractionInteriorRoughness.help "- at 0, the interior is using the painted roughness
 - at 1, the interior is completely rough"
-
+// alpha
+material.opacity "Opacity"
 material.alphaMode.opaque "Opaque"
 material.alphaMode.blending "Blending"
 material.alphaMode.additive "Additive"
 material.alphaMode.refraction "Refraction"
+// shadows
+material.castShadows "Cast shadows"
+material.receiveShadows "Receive shadows"
+// backface
+material.twoSided "Two sided"
 
 // ------------------------------------------------------
 // menu name (visible on small screen menu are collapsed)
@@ -704,6 +713,7 @@ postprocess.curve.red "Red"
 postprocess.curve.green "Green"
 postprocess.curve.blue "Blue"
 postprocess.curveReset "Reset"
+postprocess.curveResetAll "Reset All"
 // chromatic
 postprocess.chromaticEnable "Chromatic Aberration" 
 postprocess.chromaticFactor "Strength" 
@@ -849,8 +859,8 @@ settings.wireframeTitle "Wireframe"
 settings.wireframeDisplay "Wireframe"
 settings.wireframeColor "Wireframe color"
 // backface
-settings.backfaceTitle "Backface"
-settings.backfaceVisible "Show backface"
+settings.backfaceTitle "Two sided"
+settings.backfaceVisible "Two sided"
 settings.backfaceVisible.help "Backface faces are faces that point 'away' from the camera viewpoint.
 
 All faces (triangle or quad) point to a certain direction, for example on a base sphere will see its faces point towards the outside.
