@@ -3,20 +3,16 @@
 
 // general stuffs
 
-// Popup question? yes / no
+// Popup question, confirm? [yes/cancel] [ok/cancel] [delete/cancel]
 confirm "Confirm?"
 yes "Yes"
-no "No"
-
-// message information. ok / cancel
 ok "Ok"
 cancel "Cancel"
 delete "Delete"
 
-// feature      Auto / Disabled / Enabled
-// alternative: Auto / Off      / On
-enabled "On"
-disabled "Off"
+// feature: Auto / Off / On
+on "On"
+off "Off"
 auto "Auto"
 
 X "X"

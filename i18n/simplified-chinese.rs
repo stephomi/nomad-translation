@@ -3,20 +3,16 @@
 
 // general stuffs
 
-// Popup question? yes / no
+// Popup question, confirm? [yes/cancel] [ok/cancel] [delete/cancel]
 confirm "请确认是否操作？"
 yes "确认"
-no ""
-
-// message information. ok / cancel
 ok "好"
 cancel "取消"
 delete "删除"
 
-// feature      Auto / Disabled / Enabled
-// alternative: Auto / Off      / On
-enabled ""
-disabled ""
+// feature: Auto / Off / On
+on ""
+off ""
 auto ""
 
 X "X"
