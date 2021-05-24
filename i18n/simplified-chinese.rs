@@ -2,28 +2,43 @@
 // arguments with $0 $1 etc
 
 // general stuffs
+
+// Popup question? yes / no
 confirm "请确认是否操作？"
 yes "确认"
+no ""
+
+// message information. ok / cancel
 ok "好"
-auto ""
 cancel "取消"
 delete "删除"
+
+// feature      Auto / Disabled / Enabled
+// alternative: Auto / Off      / On
+enabled ""
+disabled ""
+auto ""
+
 X "X"
 Y "Y"
 Z "Z"
-noSelectedMesh "对象未选择"
-advancedSettings "高级设置"
 
+advancedSettings "高级设置"
+noSelectedMesh "对象未选择"
+
+// --------------------------------------------------------------------------------------
+
+// when you launch the app and there is missing Nomad/data files
 loading.reprocess "正在载入数据，请等待... ($0/$1)
 
 $2"
 
-// pbr
+// main pbr channel
 baseColor "颜色"
 roughness "粗糙度"
 metalness "金属强度"
 
-// ------------------------------------------------------
+// --------------------------------------------------------------------------------------
 // about
 about.minify "全屏显示"
 about.minify.help "在设备支持的情况下，可以通过四指触碰屏幕来开关全屏显示"
@@ -560,6 +575,7 @@ light.attachment.help "- 固定
 light.type "类型"
 light.type.directional "平行光"
 light.type.spot "聚光灯"
+light.type.point ""
 light.spotAngle "入射角"
 light.spotSoftness "边缘硬度"
 light.shadowCast "显示阴影"
@@ -570,17 +586,23 @@ light.shadowNormalBias "阴影偏差"
 material "材质混合模式"
 material.addNew "添加新材质"
 material.matcapWarning "粗糙度与金属强度在材质捕捉模式下不可用。"
-material.opacity "不透明度"
+// refraction
 material.ior "折射指数"
 material.refractionSurfaceGlossiness ""
 material.refractionSurfaceGlossiness.help ""
 material.refractionInteriorRoughness ""
 material.refractionInteriorRoughness.help ""
-
+// alpha
+material.opacity "不透明度"
 material.alphaMode.opaque "实心"
 material.alphaMode.blending "正常混合"
 material.alphaMode.additive "线性减淡"
 material.alphaMode.refraction "折射"
+// shadows
+material.castShadows ""
+material.receiveShadows ""
+// backface
+material.twoSided ""
 
 // ------------------------------------------------------
 // menu name (visible on small screen menu are collapsed)
@@ -701,6 +723,7 @@ postprocess.curve.red ""
 postprocess.curve.green ""
 postprocess.curve.blue ""
 postprocess.curveReset "重设"
+postprocess.curveResetAll ""
 // chromatic
 postprocess.chromaticEnable "色彩偏移" 
 postprocess.chromaticFactor "强度" 
