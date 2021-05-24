@@ -583,9 +583,11 @@ light.shadowNormalBias "阴影偏差"
 // material
 material "材质混合模式"
 material.addNew "添加新材质"
-material.matcapWarning "粗糙度与金属强度在材质捕捉模式下不可用。"
+// if the shading mode is in matcap or unlit
+material.unlitWarning "粗糙度与金属强度在材质捕捉模式下不可用。"
 // refraction
 material.ior "折射率"
+material.paintingOverride ""
 material.refractionSurfaceGlossiness "光泽度"
 material.refractionSurfaceGlossiness.help "光泽度可以增强光线打在物体表面上的反射效果。
 
@@ -609,6 +611,7 @@ material.castShadows "投射阴影"
 material.receiveShadows "接收阴影"
 // backface
 material.twoSided "双面折射"
+material.alwaysUnlit ""
 
 // ------------------------------------------------------
 // menu name (visible on small screen menu are collapsed)
@@ -696,7 +699,7 @@ postprocess.ssrFactor "强度"
 postprocess.ssrDistanceFading "淡化距离" 
 postprocess.ssrDistanceFading.help "根据反射距离来减弱效果。
 此选项能减弱SSR所产生的伪影。"
-postprocess.ssrMatcapWarning "SSR仅在PBR渲染模式下有效。"
+postprocess.ssrUnlitWarning "SSR仅在PBR渲染模式下有效。"
 // ssao
 postprocess.ssaoEnable "环境光遮蔽（AO）" 
 postprocess.ssaoRadius "半径" 
@@ -954,10 +957,14 @@ settings.notSaved "这些选项不会在设置中保存。"
 // ------------------------------------------------------
 // shading
 shading "渲染模式"
+// main render mode
+shading.pbr ""
+shading.matcap "材质捕捉"
+shading.unlit ""
 // lights
 shading.lights "灯光"
 shading.lights.addLight "添加灯光"
-shading.lights.matcapWarning "灯光选项在材质捕捉模式下不可用。"
+shading.lights.unlitWarning "灯光选项在材质捕捉模式下不可用。"
 // environment
 shading.environment "HDRI"
 shading.environmentImport "导入HDRI"

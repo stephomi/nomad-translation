@@ -583,9 +583,11 @@ light.shadowNormalBias "Normal bias"
 // material
 material "Material"
 material.addNew "Add new"
-material.matcapWarning "Roughness and metalness will not be visible with matcap shading."
+// if the shading mode is in matcap or unlit
+material.unlitWarning "Roughness and metalness will be ignored with the current shading mode."
 // refraction
 material.ior "Index of Refraction"
+material.paintingOverride "Override painting"
 material.refractionSurfaceGlossiness "Surface glossiness"
 material.refractionSurfaceGlossiness.help "- at 0, the surface is using the painted roughness
 - at 1, the surface is completely smooth"
@@ -603,6 +605,7 @@ material.castShadows "Cast shadows"
 material.receiveShadows "Receive shadows"
 // backface
 material.twoSided "Two sided"
+material.alwaysUnlit "Always unlit"
 
 // ------------------------------------------------------
 // menu name (visible on small screen menu are collapsed)
@@ -690,7 +693,7 @@ postprocess.ssrFactor "Strength"
 postprocess.ssrDistanceFading "Distance fading" 
 postprocess.ssrDistanceFading.help "Attenuate the effect according to how far the reflection is.
 It can help in hiding artefacts that the SSR suffers from."
-postprocess.ssrMatcapWarning "SSR is only effective in PBR shading mode."
+postprocess.ssrUnlitWarning "SSR is only effective in PBR shading mode."
 // ssao
 postprocess.ssaoEnable "Ambient Occlusion" 
 postprocess.ssaoRadius "Size" 
@@ -943,10 +946,14 @@ settings.notSaved "These options are not saved in the settings."
 // ------------------------------------------------------
 // shading
 shading "Shading"
+// main render mode
+shading.pbr "PBR"
+shading.matcap "Matcap"
+shading.unlit "Unlit"
 // lights
 shading.lights "Lights"
 shading.lights.addLight "Add light"
-shading.lights.matcapWarning "Lights are ignored in Matcap mode."
+shading.lights.unlitWarning "Lights are ignored in Matcap and Unlit mode."
 // environment
 shading.environment "Environment"
 shading.environmentImport "Import HDR"
