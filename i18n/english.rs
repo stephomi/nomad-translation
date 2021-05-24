@@ -2,29 +2,39 @@
 // arguments with $0 $1 etc
 
 // general stuffs
+
+// Popup question, confirm? [yes/cancel] [ok/cancel] [delete/cancel]
 confirm "Confirm?"
 yes "Yes"
-no "No"
 ok "Ok"
 cancel "Cancel"
 delete "Delete"
+
+// feature: Auto / Off / On
+on "On"
+off "Off"
 auto "Auto"
+
 X "X"
 Y "Y"
 Z "Z"
-noSelectedMesh "No selected mesh."
-advancedSettings "Advanced"
 
+advancedSettings "Advanced"
+noSelectedMesh "No selected mesh."
+
+// --------------------------------------------------------------------------------------
+
+// when you launch the app and there is missing Nomad/data files
 loading.reprocess "Missing thumbnails, reprocessing files... ($0/$1)
 
 $2"
 
-// pbr
+// main pbr channel
 baseColor "Color"
 roughness "Roughness"
 metalness "Metalness"
 
-// ------------------------------------------------------
+// --------------------------------------------------------------------------------------
 // about
 about.minify "Minify UI"
 about.minify.help "You can also tap your screen with 4 fingers, if your device supports it."

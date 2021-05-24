@@ -2,28 +2,39 @@
 // arguments with $0 $1 etc
 
 // general stuffs
+
+// Popup question, confirm? [yes/cancel] [ok/cancel] [delete/cancel]
 confirm "请确认是否操作？"
 yes "确认"
 ok "好"
-auto "自动"
 cancel "取消"
 delete "删除"
+
+// feature: Auto / Off / On
+on "开启"
+off "关闭"
+auto "自动"
+
 X "X"
 Y "Y"
 Z "Z"
-noSelectedMesh "对象未选择"
-advancedSettings "高级设置"
 
+advancedSettings "高级设置"
+noSelectedMesh "对象未选择"
+
+// --------------------------------------------------------------------------------------
+
+// when you launch the app and there is missing Nomad/data files
 loading.reprocess "正在载入数据，请等待... ($0/$1)
 
 $2"
 
-// pbr
+// main pbr channel
 baseColor "颜色"
 roughness "粗糙度"
 metalness "金属强度"
 
-// ------------------------------------------------------
+// --------------------------------------------------------------------------------------
 // about
 about.minify "全屏显示"
 about.minify.help "在设备支持的情况下，可以通过四指触碰屏幕来开关全屏显示"
@@ -562,6 +573,7 @@ light.attachment.help "- 固定
 light.type "类型"
 light.type.directional "平行光"
 light.type.spot "聚光灯"
+light.type.point "点光源"
 light.spotAngle "入射角"
 light.spotSoftness "边缘硬度"
 light.shadowCast "显示阴影"
@@ -572,7 +584,7 @@ light.shadowNormalBias "阴影偏差"
 material "材质混合模式"
 material.addNew "添加新材质"
 material.matcapWarning "粗糙度与金属强度在材质捕捉模式下不可用。"
-material.opacity "不透明度"
+// refraction
 material.ior "折射率"
 material.refractionSurfaceGlossiness "光泽度"
 material.refractionSurfaceGlossiness.help "光泽度可以增强光线打在物体表面上的反射效果。
@@ -586,11 +598,17 @@ material.refractionInteriorRoughness.help "粗糙度可以增强光线透过物�
 - 当粗糙度为0时，对象内部的粗糙度将与材质相同。
 
 - 当粗糙度为1时，对象内部的粗糙效果将达到最强。"
-
+// alpha
+material.opacity "不透明度"
 material.alphaMode.opaque "实心"
 material.alphaMode.blending "正常混合"
 material.alphaMode.additive "线性减淡"
 material.alphaMode.refraction "折射"
+// shadows
+material.castShadows "投射阴影"
+material.receiveShadows "接收阴影"
+// backface
+material.twoSided "双面折射"
 
 // ------------------------------------------------------
 // menu name (visible on small screen menu are collapsed)
@@ -711,6 +729,7 @@ postprocess.curve.red "红"
 postprocess.curve.green "绿"
 postprocess.curve.blue "蓝"
 postprocess.curveReset "重设"
+postprocess.curveResetAll "全部重设"
 // chromatic
 postprocess.chromaticEnable "色彩偏移" 
 postprocess.chromaticFactor "强度" 
@@ -1413,7 +1432,7 @@ topology.dynamicSettings "动态网格笔刷设置"
 
 // ------------------------------------------------------
 // version trial
-version.buyWeb "网页版仅供演示"
+version.buyWeb "该版本仅供演示"
 version.buyFull "购买完整版本"
 version.trialLimit "试用版本限制：
 - 仅允许3次以内的撤销或重做
