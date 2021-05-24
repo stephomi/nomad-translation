@@ -11,9 +11,9 @@ cancel "取消"
 delete "删除"
 
 // feature: Auto / Off / On
-on ""
-off ""
-auto ""
+on "开启"
+off "关闭"
+auto "自动"
 
 X "X"
 Y "Y"
@@ -300,12 +300,14 @@ file.tools.reset.confirm "确定要重置材质库吗？"
 file.render "渲染"
 file.render.showInterface "显示操作界面"
 file.render.size "渲染尺寸"
-file.render.size.custom ""
+file.render.size.custom "自定"
 file.render.screenResolution "屏幕尺寸"
 file.render.export "导出为png"
-file.render.width ""
-file.render.height ""
-file.render.warn "导出4K格式可能会使用大量内存，请确认文件保存之后再导出！"
+file.render.width "宽度"
+file.render.height "高度"
+file.render.warn "您当前导出的图片尺寸较大（$0x$1）!
+
+请确认文件妥善保存后再继续导出，否则程序可能会因运存占用过高而闪退。"
 file.render.transparent "导出透明背景"
 file.render.transparent.help "打开此选项可以让您更方便地把渲染图导入到平面软件里。
 
@@ -571,7 +573,7 @@ light.attachment.help "- 固定
 light.type "类型"
 light.type.directional "平行光"
 light.type.spot "聚光灯"
-light.type.point ""
+light.type.point "点光源"
 light.spotAngle "入射角"
 light.spotSoftness "边缘硬度"
 light.shadowCast "显示阴影"
@@ -583,11 +585,19 @@ material "材质混合模式"
 material.addNew "添加新材质"
 material.matcapWarning "粗糙度与金属强度在材质捕捉模式下不可用。"
 // refraction
-material.ior "折射指数"
-material.refractionSurfaceGlossiness ""
-material.refractionSurfaceGlossiness.help ""
-material.refractionInteriorRoughness ""
-material.refractionInteriorRoughness.help ""
+material.ior "折射率"
+material.refractionSurfaceGlossiness "光泽度"
+material.refractionSurfaceGlossiness.help "光泽度可以增强光线打在物体表面上的反射效果。
+
+- 当光泽度为0时，对象表面的粗糙度将与材质相同。
+
+- 当光泽度为1时，对象表面的光滑效果将达到最强。"
+material.refractionInteriorRoughness "粗糙度"
+material.refractionInteriorRoughness.help "粗糙度可以增强光线透过物体后的散射效果。
+
+- 当粗糙度为0时，对象内部的粗糙度将与材质相同。
+
+- 当粗糙度为1时，对象内部的粗糙效果将达到最强。"
 // alpha
 material.opacity "不透明度"
 material.alphaMode.opaque "实心"
@@ -595,10 +605,10 @@ material.alphaMode.blending "正常混合"
 material.alphaMode.additive "线性减淡"
 material.alphaMode.refraction "折射"
 // shadows
-material.castShadows ""
-material.receiveShadows ""
+material.castShadows "投射阴影"
+material.receiveShadows "接收阴影"
 // backface
-material.twoSided ""
+material.twoSided "双面折射"
 
 // ------------------------------------------------------
 // menu name (visible on small screen menu are collapsed)
@@ -606,7 +616,7 @@ menu.files "文件"
 menu.scene "场景"
 menu.topology "拓扑"
 menu.render "渲染"
-menu.material ""
+menu.material "材质"
 menu.postProcess "后期处理"
 menu.camera "相机"
 menu.background "背景"
@@ -713,13 +723,13 @@ postprocess.toneContrast "对比度"
 postprocess.toneSaturation "饱和度" 
 postprocess.toneMappingNone "无"
 // curve
-postprocess.curveEnable ""
-postprocess.curve.luminance ""
-postprocess.curve.red ""
-postprocess.curve.green ""
-postprocess.curve.blue ""
+postprocess.curveEnable "曲线"
+postprocess.curve.luminance "亮度"
+postprocess.curve.red "红"
+postprocess.curve.green "绿"
+postprocess.curve.blue "蓝"
 postprocess.curveReset "重设"
-postprocess.curveResetAll ""
+postprocess.curveResetAll "全部重设"
 // chromatic
 postprocess.chromaticEnable "色彩偏移" 
 postprocess.chromaticFactor "强度" 
@@ -1422,7 +1432,7 @@ topology.dynamicSettings "动态网格笔刷设置"
 
 // ------------------------------------------------------
 // version trial
-version.buyWeb "网页版仅供演示"
+version.buyWeb "该版本仅供演示"
 version.buyFull "购买完整版本"
 version.trialLimit "试用版本限制：
 - 仅允许3次以内的撤销或重做
