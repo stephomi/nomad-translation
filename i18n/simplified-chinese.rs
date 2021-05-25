@@ -587,7 +587,7 @@ material.addNew "添加新材质"
 material.unlitWarning "粗糙度与金属强度在材质捕捉模式下不可用。"
 // refraction
 material.ior "折射率"
-material.paintingOverride ""
+material.paintingOverride "表面效果"
 material.refractionSurfaceGlossiness "光泽度"
 material.refractionSurfaceGlossiness.help "光泽度可以增强光线打在物体表面上的反射效果。
 
@@ -611,7 +611,7 @@ material.castShadows "投射阴影"
 material.receiveShadows "接收阴影"
 // backface
 material.twoSided "双面折射"
-material.alwaysUnlit ""
+material.alwaysUnlit "无光照显示"
 
 // ------------------------------------------------------
 // menu name (visible on small screen menu are collapsed)
@@ -958,13 +958,13 @@ settings.notSaved "这些选项不会在设置中保存。"
 // shading
 shading "渲染模式"
 // main render mode
-shading.pbr ""
+shading.pbr "PBR"
 shading.matcap "材质捕捉"
-shading.unlit ""
+shading.unlit "无光照"
 // lights
 shading.lights "灯光"
 shading.lights.addLight "添加灯光"
-shading.lights.unlitWarning "灯光选项在材质捕捉模式下不可用。"
+shading.lights.unlitWarning "灯光选项在当前渲染模式下不可用。"
 // environment
 shading.environment "HDRI"
 shading.environmentImport "导入HDRI"
