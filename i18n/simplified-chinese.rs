@@ -584,7 +584,7 @@ light.shadowNormalBias "阴影偏差"
 material "材质混合模式"
 material.addNew "添加新材质"
 // if the shading mode is in matcap or unlit
-material.unlitWarning "粗糙度与金属强度在材质捕捉模式下不可用。"
+material.unlitWarning "粗糙度与金属强度在当前渲染模式下不可用。"
 // refraction
 material.ior "折射率"
 material.paintingOverride "表面效果"
@@ -611,7 +611,7 @@ material.castShadows "投射阴影"
 material.receiveShadows "接收阴影"
 // backface
 material.twoSided "双面折射"
-material.alwaysUnlit "无光照显示"
+material.alwaysUnlit "不受光显示"
 
 // ------------------------------------------------------
 // menu name (visible on small screen menu are collapsed)
@@ -905,7 +905,7 @@ settings.cursorShowRope "显示画笔准星"
 // other
 settings.renderRatio "实时渲染分辨率"
 settings.darkenUnselected "变暗未选对象"
-settings.smoothShading "平滑阴影"
+settings.smoothShading "平滑着色"
 settings.partialDraw "局部雕刻"
 settings.partialDraw.help "功能未完善！
 
@@ -960,7 +960,7 @@ shading "渲染模式"
 // main render mode
 shading.pbr "PBR"
 shading.matcap "材质捕捉"
-shading.unlit "无光照"
+shading.unlit "不受光"
 // lights
 shading.lights "灯光"
 shading.lights.addLight "添加灯光"
