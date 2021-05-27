@@ -492,6 +492,7 @@ interface.materialPreview "调整材质参数预览"
 interface.toolboxHide "自动隐藏工具栏"
 interface.toolboxHide.help "如果您想隐藏工具栏，请勾选此选项。"
 interface.toolboxMaxColumn "工具栏列数"
+interface.toolboxResetOrder "重设"
 interface.rounding "界面圆角"
 interface.curveToolSymmetric "衰减曲线对称"
 interface.curveToolSymmetric.help "使笔刷设置里的衰减参数曲线对称。"
@@ -499,12 +500,6 @@ interface.scale "界面缩放"
 interface.cursorStep "垂直间距"
 interface.panelWidth "面板宽度"
 interface.fontScale "字体尺寸"
-
-// toolbox
-interface.toolsOrder "工具顺序"
-interface.openOrderTools "编辑"
-interface.resetOrderTools "重设"
-interface.resetOrderTools.confirm "确认要重设顺序吗？"
 
 // debug
 interface.debug "Debugging"

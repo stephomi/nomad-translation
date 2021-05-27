@@ -491,6 +491,7 @@ interface.materialPreview "Material Picker preview"
 interface.toolboxHide "Auto-hide toolbox"
 interface.toolboxHide.help "Enable this option if you want to hide the toolbox."
 interface.toolboxMaxColumn "Max column toolbox"
+interface.toolboxResetOrder "Reset toolbox order"
 interface.rounding "Rounding"
 interface.curveToolSymmetric "Symmetric tool curve widget"
 interface.curveToolSymmetric.help "The widget can be found in the Tool panel under the falloff option."
@@ -498,12 +499,6 @@ interface.scale "Overall scale"
 interface.cursorStep "Vertical spacing"
 interface.panelWidth "Panel width"
 interface.fontScale "Font scale"
-
-// toolbox
-interface.toolsOrder "Tools order"
-interface.openOrderTools "Edit"
-interface.resetOrderTools "Reset"
-interface.resetOrderTools.confirm "Reset order?"
 
 // debug
 interface.debug "Debugging"
