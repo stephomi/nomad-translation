@@ -445,29 +445,15 @@ interface "界面设置"
 
 // bottom buttons
 interface.bottomButtons "底部快捷方式"
-interface.quickVoxelRemesh "体素网格重构"
-interface.quickWireframe "网格开关"
-interface.quickLockSelection "锁定选择"
-interface.quickLockSelection.help "启用后，您无法通过点击方式选择对象。"
-interface.quickCameraReset "重置视图"
-interface.quickCameraSnap "切换视图"
-interface.quickCameraSnapFlip "翻转基本视图"
-interface.quickCameraSnapFlip.help "当相机处于基本视图时，点击切换视图将会翻转至背面。"
-
-// left
-interface.leftButtons "左侧快捷方式"
-interface.quickSmooth "平滑"
-interface.quickMask "蒙版"
-interface.quickToggle "反向操作锁定"
-interface.quickPaint "材质"
-interface.quickAlpha "画笔形状"
-interface.maskGesture "蒙版手势"
-interface.screenTooSmall "如设备屏幕太小，一些图标将不会显示。"
-interface.maskGesture.help "按住蒙版快捷方式，并且：
-
-- 在背景上拖动可清除蒙版
-- 在背景上点击可反相蒙版
-- 在对象上点击可锐化蒙版边界"
+interface.shortcut.voxelRemesh "体素网格重构"
+interface.shortcut.wireframe "网格开关"
+interface.shortcut.lockSelection "锁定选择"
+interface.shortcut.lockSelection.help "启用后，您无法通过点击方式选择对象。"
+interface.shortcut.cameraReset "重置视图"
+interface.shortcut.cameraSnap "切换视图"
+interface.shortcut.perspective "透视视图"
+interface.shortcut.cameraSnapFlip "翻转基本视图"
+interface.shortcut.cameraSnapFlip.help "当相机处于基本视图时，点击切换视图将会翻转至背面。"
 
 // colors
 interface.colors "界面颜色"
@@ -991,6 +977,7 @@ shortcut.reset "重设"
 shortcut.snap "切换"
 shortcut.solo "隔离"
 shortcut.lock "锁定"
+shortcut.persp ""
 
 // ------------------------------------------------------
 // stat

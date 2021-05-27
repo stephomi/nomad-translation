@@ -446,30 +446,15 @@ interface "Interface"
 
 // bottom buttons
 interface.bottomButtons "Add shortcuts (bottom)..."
-interface.quickVoxelRemesh "Voxel remesh"
-interface.quickWireframe "Wireframe"
-interface.quickLockSelection "Lock selection"
-interface.quickLockSelection.help "When enabled, you cannot change the selection by tapping on a mesh."
-interface.quickCameraReset "Camera reset"
-interface.quickCameraSnap "Camera snap"
-interface.quickCameraSnapFlip "Flip on already snap"
-interface.quickCameraSnapFlip.help "If the camera is already snapped, the shortcut will mirror the view"
-
-// left
-interface.leftButtons "Add shortcuts (left)..."
-interface.quickSmooth "Smooth"
-interface.quickMask "Mask"
-interface.quickToggle "Sub/Smooth/Mask toggle"
-interface.quickPaint "Material"
-interface.quickAlpha "Alpha"
-interface.maskGesture "Mask gesture"
-interface.screenTooSmall "If the screen is too small, some buttons won't be displayed."
-interface.maskGesture.help "Hold the mask shortcut and:
-
-- drag on the background to clear mask
-- tap on the background to invert mask
-- tap on the masked area to sharpen
-- tap on the unmasked area to sharpen"
+interface.shortcut.voxelRemesh "Voxel remesh"
+interface.shortcut.wireframe "Wireframe"
+interface.shortcut.lockSelection "Lock selection"
+interface.shortcut.lockSelection.help "When enabled, you cannot change the selection by tapping on a mesh."
+interface.shortcut.cameraReset "Camera reset"
+interface.shortcut.cameraSnap "Camera snap"
+interface.shortcut.perspective "Perspective"
+interface.shortcut.cameraSnapFlip "Flip on already snap"
+interface.shortcut.cameraSnapFlip.help "If the camera is already snapped, the shortcut will mirror the view"
 
 // colors
 interface.colors "Main colors"
@@ -980,6 +965,7 @@ shortcut.reset "Reset"
 shortcut.snap "Snap"
 shortcut.solo "Solo"
 shortcut.lock "Lock"
+shortcut.persp "Persp"
 
 // ------------------------------------------------------
 // stat
