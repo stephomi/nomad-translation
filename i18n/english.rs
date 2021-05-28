@@ -575,6 +575,8 @@ material.opacity "Opacity"
 material.alphaMode.opaque "Opaque"
 material.alphaMode.blending "Blending"
 material.alphaMode.additive "Additive"
+material.alphaMode.dithering "Dithering"
+material.alphaMode.dithering.help "fagkoithering"
 material.alphaMode.refraction "Refraction"
 // shadows
 material.castShadows "Cast shadows"
