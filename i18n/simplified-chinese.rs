@@ -22,6 +22,9 @@ Z "Z"
 advancedSettings "高级设置"
 noSelectedMesh "对象未选择"
 
+// generic warning (typically in menu like layer or material)
+multipleObjectWarning "您选择了多个对象，无法修改图层。"
+
 // --------------------------------------------------------------------------------------
 
 // when you launch the app and there is missing Nomad/data files
@@ -529,7 +532,6 @@ layers.title.help "图层能够记录位置偏移和绘画，这对于非线性�
 
 为了解决图层的不透明性，图层的所有通道（颜色浓度、粗糙度、金属强度）都会使用相同的蒙版。
 您可以使用橡皮工具来擦除当前图层上的绘画蒙版。";
-layers.multipleObjectWarning "您选择了多个对象，无法修改图层。"
 layers.primitive "基本体无法添加图层。"
 layers.baseSelected "无"
 
@@ -582,6 +584,8 @@ material.opacity "不透明度"
 material.alphaMode.opaque "实心"
 material.alphaMode.blending "正常混合"
 material.alphaMode.additive "线性减淡"
+material.alphaMode.dithering ""
+material.alphaMode.dithering.help ""
 material.alphaMode.refraction "折射"
 // shadows
 material.castShadows "投射阴影"
@@ -1123,7 +1127,6 @@ symmetry.edit.help "您可以自由改变镜像平面。
 // ------------------------------------------------------
 // tools
 // left bar generic (ICON FIT)
-tool.sliderDegree "角度 $0 °"
 tool.sliderRadius "半径 $0 %"
 tool.sliderIntensity "强度 $0 %"
 tool.dynTopo "动态网格"
@@ -1267,6 +1270,8 @@ tool.transform.multiTouch "多点触控"
 tool.transform.multiTouch.help "如果您禁用此选项，则每次都只能使用移动、旋转、缩放一种操作。"
 // gizmo
 tool.gizmo.size "部件尺寸"
+tool.gizmo.linearRollThreshold ""
+tool.gizmo.linearRollThreshold.help ""
 tool.gizmo.autoHide "自动隐藏"
 tool.gizmo.tap "单击改变视图中心点"
 tool.gizmo.tap.help "此选项仅在自定义坐标原点模式下有效（默认禁用）。

@@ -22,6 +22,9 @@ Z "Z"
 advancedSettings "Advanced"
 noSelectedMesh "No selected mesh."
 
+// generic warning (typically in menu like layer or material)
+multipleObjectWarning "Multiple meshes are selected, please select only one mesh."
+
 // --------------------------------------------------------------------------------------
 
 // when you launch the app and there is missing Nomad/data files
@@ -528,7 +531,6 @@ For painting data, layers are sorted in a top-down fashion; so layers on top wil
 
 In order to resolve the layer opacity, all painting data (color, roughness, metalness) share the same mask.
 You can reset part of this mask (and thus, the layer influence) by using the 'DelLayer' tool.";
-layers.multipleObjectWarning "Multiple meshes are selected, please select only one mesh."
 layers.primitive "Layers are unavailable for primitives."
 layers.baseSelected "None"
 
@@ -1109,7 +1111,6 @@ This feature is a bit experimental and you should probably never use it."
 // ------------------------------------------------------
 // tools
 // left bar generic (ICON FIT)
-tool.sliderDegree "Rotate $0 °"
 tool.sliderRadius "Radius $0 %"
 tool.sliderIntensity "Intensity $0 %"
 tool.dynTopo "DynTopo"
@@ -1253,6 +1254,12 @@ tool.transform.multiTouch "Multi-touch"
 tool.transform.multiTouch.help "If this option is disabled, you can only use one mode (translate, rotate, scale) at a time."
 // gizmo
 tool.gizmo.size "Widget size"
+tool.gizmo.linearRollThreshold "Tangent roll threshold"
+tool.gizmo.linearRollThreshold.help "Angle threshold to choose between linear or circular roll method.
+
+Value above this threshold will use the circular roll.
+
+If you prefer the linear roll (direction of the tangent), simply set this value to 90°."
 tool.gizmo.autoHide "Hide on interaction"
 tool.gizmo.tap "Move custom pivot on single-tap"
 tool.gizmo.tap.help "This option is only effective in custom pivot mode (Auto disabled).
