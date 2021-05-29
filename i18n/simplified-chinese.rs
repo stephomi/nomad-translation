@@ -968,7 +968,7 @@ shortcut.reset "重设"
 shortcut.snap "切换"
 shortcut.solo "隔离"
 shortcut.lock "锁定"
-shortcut.persp ""
+shortcut.persp "透视"
 
 // ------------------------------------------------------
 // stat
