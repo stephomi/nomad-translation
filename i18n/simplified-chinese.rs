@@ -584,8 +584,8 @@ material.opacity "不透明度"
 material.alphaMode.opaque "实心"
 material.alphaMode.blending "正常混合"
 material.alphaMode.additive "线性减淡"
-material.alphaMode.dithering ""
-material.alphaMode.dithering.help ""
+material.alphaMode.dithering "抖动"
+material.alphaMode.dithering.help "加入一些噪点使颜色过渡更为平滑。"
 material.alphaMode.refraction "折射"
 // shadows
 material.castShadows "投射阴影"
@@ -972,7 +972,7 @@ shortcut.reset "重设"
 shortcut.snap "切换"
 shortcut.solo "隔离"
 shortcut.lock "锁定"
-shortcut.persp ""
+shortcut.persp "透视"
 
 // ------------------------------------------------------
 // stat
@@ -1270,8 +1270,12 @@ tool.transform.multiTouch "多点触控"
 tool.transform.multiTouch.help "如果您禁用此选项，则每次都只能使用移动、旋转、缩放一种操作。"
 // gizmo
 tool.gizmo.size "部件尺寸"
-tool.gizmo.linearRollThreshold ""
-tool.gizmo.linearRollThreshold.help ""
+tool.gizmo.linearRollThreshold "线性旋转阈值"
+tool.gizmo.linearRollThreshold.help "此参数可影响模型旋转时的“跟手程度”。
+
+当旋转角度超过设定值后，将会切换到圆形旋转模式。
+
+如果您更习惯以前的线性旋转模式（切线方向），可以将角度设置为90°。"
 tool.gizmo.autoHide "自动隐藏"
 tool.gizmo.tap "单击改变视图中心点"
 tool.gizmo.tap.help "此选项仅在自定义坐标原点模式下有效（默认禁用）。
