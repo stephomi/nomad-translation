@@ -818,6 +818,7 @@ primitive.tubeSnap "Snap"
 primitive.torusRadiusOuter "Radius outer"
 primitive.torusRadiusInner "Radius inner"
 primitive.torusAngle "Angle"
+primitive.torusAngleOffset "Angle offset"
 // cylinder
 primitive.cylinderHeight "Height"
 // cone

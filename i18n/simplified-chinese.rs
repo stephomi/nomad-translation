@@ -825,6 +825,7 @@ primitive.tubeSnap ""
 primitive.torusRadiusOuter "外圈半径"
 primitive.torusRadiusInner "内圈半径"
 primitive.torusAngle "角度"
+primitive.torusAngleOffset "角度"
 // cylinder
 primitive.cylinderHeight "高度"
 // cone
