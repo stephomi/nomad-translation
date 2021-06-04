@@ -804,6 +804,8 @@ primitive.planeSameSize "Same size (square)"
 // box
 primitive.boxRegular "Same size (cube)"
 // tube
+primitive.tubeSnapOffset "Snap offset"
+primitive.tubeSnapOffset.help "A value of 1.0 is equal to the tube's radius."
 primitive.tubeThicknessStart "Radius start"
 primitive.tubeThicknessEnd "Radius end"
 // primitive.tubeTwist "Twist"
@@ -811,6 +813,7 @@ primitive.tubeThicknessEnd "Radius end"
 // primitive.tubeTwistRadius "Magnitude"
 // primitive.tubeTwistOffset "Offset"
 primitive.tubeManual "Manual"
+primitive.tubeSnap "Snap"
 // torus
 primitive.torusRadiusOuter "Radius outer"
 primitive.torusRadiusInner "Radius inner"

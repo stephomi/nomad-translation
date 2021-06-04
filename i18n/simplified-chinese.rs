@@ -811,6 +811,8 @@ primitive.planeSameSize "固定比例（平面）"
 // box
 primitive.boxRegular "固定比例（立方体）"
 // tube
+primitive.tubeSnapOffset ""
+primitive.tubeSnapOffset.help ""
 primitive.tubeThicknessStart "起始半径"
 primitive.tubeThicknessEnd "结束半径"
 // primitive.tubeTwist "Twist"
@@ -818,6 +820,7 @@ primitive.tubeThicknessEnd "结束半径"
 // primitive.tubeTwistRadius "Magnitude"
 // primitive.tubeTwistOffset "Offset"
 primitive.tubeManual "调整半径"
+primitive.tubeSnap ""
 // torus
 primitive.torusRadiusOuter "外圈半径"
 primitive.torusRadiusInner "内圈半径"
