@@ -666,7 +666,10 @@ It will improve:
 postprocess.maxSamples "Max samples"
 postprocess.fullResolution "Full Resolution"
 // fxaa
-postprocess.fxaaEnable "Antialiasing (FXAA)"
+postprocess.fxaaEnable "Anti-aliasing (FXAA)"
+// taa
+postprocess.taaEnable "Anti-aliasing (TAA)"
+postprocess.taaEnable.help "Reduces flickering when you are moving the camera."
 // ssr
 postprocess.ssrEnable "Reflection (SSR)" 
 postprocess.ssrFactor "Strength" 

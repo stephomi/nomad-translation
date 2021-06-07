@@ -674,6 +674,9 @@ postprocess.maxSamples "最大采样值"
 postprocess.fullResolution "最大实时分辨率"
 // fxaa
 postprocess.fxaaEnable "抗锯齿（FXAA）"
+// taa
+postprocess.taaEnable ""
+postprocess.taaEnable.help ""
 // ssr
 postprocess.ssrEnable "屏幕空间反射（SSR）" 
 postprocess.ssrFactor "强度" 
