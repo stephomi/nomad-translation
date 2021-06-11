@@ -815,8 +815,8 @@ primitive.planeSameSize "固定比例（平面）"
 // box
 primitive.boxRegular "固定比例（立方体）"
 // tube
-primitive.tubeSnapOffset ""
-primitive.tubeSnapOffset.help ""
+primitive.tubeSnapOffset "吸附偏移"
+primitive.tubeSnapOffset.help "当偏移值为1.0时，偏移后的距离即为圆管半径。"
 primitive.tubeThicknessStart "起始半径"
 primitive.tubeThicknessEnd "结束半径"
 // primitive.tubeTwist "Twist"
@@ -824,7 +824,7 @@ primitive.tubeThicknessEnd "结束半径"
 // primitive.tubeTwistRadius "Magnitude"
 // primitive.tubeTwistOffset "Offset"
 primitive.tubeManual "调整半径"
-primitive.tubeSnap ""
+primitive.tubeSnap "吸附"
 // torus
 primitive.torusRadiusOuter "外圈半径"
 primitive.torusRadiusInner "内圈半径"
@@ -843,7 +843,7 @@ primitive.radiusSync "相同半径"
 primitive.radiusStart "底面半径"
 primitive.radiusEnd "顶面半径"
 // spline (for lathe and tube)
-primitive.spline ""
+primitive.spline "样条"
 
 // common resources stuffs
 resource.delete "删除"
