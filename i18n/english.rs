@@ -60,7 +60,7 @@ about.instagram "Instagram"
 about.facebook "Facebook"
 about.discord "Discord"
 
-// ------------------------------------------------------
+// --------------------------------------------------------------------------------------
 // alert
 alert.confirmDelete "Confirm deletion?"
 alert.confirmDelete.yes "Yes, delete"
@@ -110,7 +110,7 @@ alert.tip.shapeOrthographic "Consider using orthographic camera if you want to a
 // undo
 alert.state.trial "Undo canceled : trial version"
 
-// ------------------------------------------------------
+// --------------------------------------------------------------------------------------
 // background
 background "Background"
 background.settings "Settings" // unused
@@ -130,7 +130,7 @@ background.imageY "Position Y"
 background.imageRotation "Rotation"
 background.imageScale "Scale"
 
-// ------------------------------------------------------
+// --------------------------------------------------------------------------------------
 // camera
 camera "Camera"
 // saved views
@@ -177,7 +177,7 @@ curve.custom "Custom"
 expandList "UI: Expand list"
 expandList.help "Just an UI option for easier list management."
 
-// ------------------------------------------------------
+// --------------------------------------------------------------------------------------
 // file
 file.project.empty "You have no saved project yet!"
 file.project.unsaved "Unsaved changes!"
@@ -186,6 +186,7 @@ file.project.lastManualSave "Preview of the last manual save"
 file.project.trialNoOpen "Trial version: You won't be able to re-open the current project!"
 file.project.trialOnlyOpen "Trial version: you can only re-open your current project!"
 
+// --------------------------------------------------------------------------------------
 // project
 file.project "Project"
 file.project.save "Save"
@@ -317,7 +318,7 @@ file.render.transparent.help "This option can be useful if you want to insert th
 
 Partial object transparency is not supported for now."
 
-// ------------------------------------------------------
+// --------------------------------------------------------------------------------------
 // history
 history "History"
 history.root "Root"
@@ -395,7 +396,7 @@ history.state.lightType "Light $0 type"
 history.state.lightSpotAngle "Light $0 spot angle"
 history.state.lightSpotSoftness "Light $0 spot softness"
 
-// ------------------------------------------------------
+// --------------------------------------------------------------------------------------
 // pressure menu
 input.useGlobal "Use global settings"
 input.useGlobal.help "By default, the tools share the same pressure settings.
@@ -443,7 +444,7 @@ input.sizeRejection "Max size threshold"
 input.interaction.title "Interaction" 
 input.interaction.title.help "These options are always global."
 
-// ------------------------------------------------------
+// --------------------------------------------------------------------------------------
 // interface
 interface "Interface"
 
@@ -507,7 +508,7 @@ interface.fontScale "Font scale"
 interface.debug "Debugging"
 interface.debug.warning "For debugging only!"
 
-// ------------------------------------------------------
+// --------------------------------------------------------------------------------------
 // layer sub menu
 layer.action "Action"
 layer.name "Name"
@@ -519,7 +520,7 @@ layer.factors "Channel factors"
 layer.offsetFactor "Position"
 layer.colorFactor "Color"
 
-// ------------------------------------------------------
+// --------------------------------------------------------------------------------------
 // layers menu
 layers.addLayer "Add layer"
 layers.addLayerTrial "Trial version is limited to 1 layer per mesh."
@@ -534,7 +535,7 @@ You can reset part of this mask (and thus, the layer influence) by using the 'De
 layers.primitive "Layers are unavailable for primitives."
 layers.baseSelected "None"
 
-// ------------------------------------------------------
+// --------------------------------------------------------------------------------------
 // light sub menu
 light "Light"
 light.color "Color"
@@ -557,7 +558,7 @@ light.spotSoftness "Softness"
 light.shadowCast "Shadow"
 light.shadowNormalBias "Normal bias"
 
-// ------------------------------------------------------
+// --------------------------------------------------------------------------------------
 // material
 material "Material"
 material.addNew "Add new"
@@ -587,7 +588,7 @@ material.receiveShadows "Receive shadows"
 material.twoSided "Two sided"
 material.alwaysUnlit "Always unlit"
 
-// ------------------------------------------------------
+// --------------------------------------------------------------------------------------
 // menu name (visible on small screen menu are collapsed)
 menu.files "Files"
 menu.scene "Scene"
@@ -609,7 +610,7 @@ menu.history "History"
 menu.historySettings "Settings"
 menu.about "About"
 
-// ------------------------------------------------------
+// --------------------------------------------------------------------------------------
 // mesh sub menu
 mesh.action "Action"
 mesh.closeHoles "Close holes"
@@ -624,7 +625,7 @@ mesh.typeStatic "Static"
 mesh.typeMultiresolution "Multiresolution"
 mesh.typeDynamic "Dynamic"
 
-// ------------------------------------------------------
+// --------------------------------------------------------------------------------------
 // painting
 paint.useGlobal "Global material"
 paint.useGlobal.help "If this option is enabled, the selected material will be the same as the other tools"
@@ -642,7 +643,7 @@ Masked area and disabled channels won't be painted."
 paint.strokePaintingTitle "Painting ($0)"
 paint.layerWarning "Channel masking will be ignored if you try to apply it on a layer."
 
-// ------------------------------------------------------
+// --------------------------------------------------------------------------------------
 // popup
 popup.save "Save"
 popup.save.confirm "Confirm save?"
@@ -652,7 +653,7 @@ popup.clone "Clone"
 popup.rename "Rename"
 popup.delete "Remove"
 
-// ------------------------------------------------------
+// --------------------------------------------------------------------------------------
 // postprocess
 postprocess.mainEnable "Post Process" 
 postprocess.quality "Quality"
@@ -728,7 +729,7 @@ postprocess.curvatureEnable "Curvature"
 postprocess.curvatureCavity "Cavity" 
 postprocess.curvatureBump "Bump" 
 
-// ------------------------------------------------------
+// --------------------------------------------------------------------------------------
 // primitive (scene menu)
 primitive "Primitive"
 primitive.box "Box"
@@ -834,12 +835,14 @@ primitive.hasHole "Has hole"
 primitive.radiusSync "Same radius"
 primitive.radiusStart "Radius start"
 primitive.radiusEnd "Radius end"
+// spline (for lathe and tube)
+primitive.spline "Spline"
 
 // common resources stuffs
 resource.delete "Delete"
 resource.import "Import"
 
-// ------------------------------------------------------
+// --------------------------------------------------------------------------------------
 // scene
 scene.title "Scene"
 scene.title.help "When using the selection checkbox, hold and drag your finger to select other objects easily."
@@ -849,7 +852,7 @@ scene.voxelResolution "Resolution"
 scene.subtractionTip "Subtraction  : Hide mesh (eye icon)"
 scene.intersectionTip "Intersection : All meshes hidden"
 
-// ---------------------------
+// --------------------------------------------------------------------------------------
 // settings
 settings.displayTitle "Display settings"
 settings.fingerRotateLighting "Rotate lighting (3 fingers)"
@@ -930,7 +933,7 @@ settings.experimentalTitle "Experimental"
 settings.notSaved "These options are not saved in the settings."
 // settings.parallel "Parallel sculpting"
 
-// ------------------------------------------------------
+// --------------------------------------------------------------------------------------
 // shading
 shading "Shading"
 // main render mode
@@ -958,7 +961,7 @@ shading.matcapRotation.help "You can rotate the matcap by dragging 3 fingers hor
 shading.matcapGlobal "Use global matcap"
 shading.matcapGlobal.help "Uncheck this option to use a different matcap for this particular mesh."
 
-// ------------------------------------------------------
+// --------------------------------------------------------------------------------------
 // bottom shortcut buttons (ICON FIT)
 shortcut.voxel "Voxel"
 shortcut.wire "Wire"
@@ -969,7 +972,7 @@ shortcut.solo "Solo"
 shortcut.lock "Lock"
 shortcut.persp "Persp"
 
-// ------------------------------------------------------
+// --------------------------------------------------------------------------------------
 // stat
 stat.ramScene "Scene"
 stat.vramScene "Vram Scene"
@@ -988,7 +991,7 @@ stat.quads "Quads"
 stat.sceneFaces "Scene faces"
 stat.sceneVertices "Scene vertices"
 
-// ------------------------------------------------------
+// --------------------------------------------------------------------------------------
 // stroke
 stroke "Stroke"
 strokeTitle "Stroke ($0)"
@@ -1072,7 +1075,7 @@ stroke.strokeTypeGrab "Grab"
 stroke.strokeTypeGrabRadius "Grab - dynamic radius"
 stroke.strokeTypeGrabIntensity "Grab - dynamic intensity"
 
-// ------------------------------------------------------
+// --------------------------------------------------------------------------------------
 // symmetry
 symmetry "Symmetry"
 symmetry.enable "Enabled"
@@ -1115,7 +1118,7 @@ symmetry.edit.help "You can freely set the symmetry plane.
 
 This feature is a bit experimental and you should probably never use it."
 
-// ------------------------------------------------------
+// --------------------------------------------------------------------------------------
 // tools
 // left bar generic (ICON FIT)
 tool.sliderRadius "Radius $0 %"
@@ -1326,7 +1329,7 @@ tool.measure.goldenRatio "Show golden ratio"
 // fallback
 tool.noSettings "This tool doesn't have any specific settings."
 
-// ------------------------------------------------------
+// --------------------------------------------------------------------------------------
 // topology
 topology "Topology"
 // multires
@@ -1415,7 +1418,7 @@ topology.dynamicBrush "Brush"
 topology.dynamicGlobal "Global"
 topology.dynamicSettings "Settings - Brush / Global"
 
-// ------------------------------------------------------
+// --------------------------------------------------------------------------------------
 // version trial
 version.buyWeb "Web version is only a demo"
 version.buyFull "Upgrade to full version"
