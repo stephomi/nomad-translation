@@ -674,10 +674,10 @@ postprocess.quality.help "该设置可提升部分效果的渲染质量，但可
 postprocess.maxSamples "最大采样值"
 postprocess.fullResolution "最大实时分辨率"
 // fxaa
-postprocess.fxaaEnable "抗锯齿（FXAA）"
+postprocess.fxaaEnable "快速抗锯齿（FXAA）"
 // taa
-postprocess.taaEnable ""
-postprocess.taaEnable.help ""
+postprocess.taaEnable "时间性抗锯齿（TAA）"
+postprocess.taaEnable.help "TAA可减少相机移动时的闪烁，呈现出更加平滑的图像效果。"
 // ssr
 postprocess.ssrEnable "屏幕空间反射（SSR）" 
 postprocess.ssrFactor "强度" 
