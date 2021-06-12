@@ -1054,7 +1054,7 @@ stroke.onlyFrontFace.help "打开此选项后，应用会忽略对“背面”�
 该选项也可用于雕刻，但您可能会遇到一些不便。"
 stroke.onlySameSide "只移动同向顶点"
 stroke.onlySameSide.help "在修改对象造型时，不移动朝向不同的顶点。"
-stroke.intensityMultiplier "笔刷强度放大"
+stroke.intensityInfinite ""
 stroke.curveFalloff "衰减"
 stroke.onlyLasso "该设置仅对套索工具有效。"
 // alpha
@@ -1120,6 +1120,8 @@ symmetry.mirrorRightToLeft "从右至左"
 symmetry.mirrorFail "对称失败：
 
 是否使用镜像来强制对称？";
+symmetry.mirrorUseMasking ""
+symmetry.mirrorUseMasking.help ""
 // reset
 symmetry.resetOrigin "重设对称中心"
 symmetry.resetCenterMesh "对象中心"
@@ -1135,10 +1137,7 @@ symmetry.edit.help "您可以自由改变镜像平面。
 此功能并未完善，请尽量不要使用。"
 
 // --------------------------------------------------------------------------------------
-// tools
-// left bar generic (ICON FIT)
-tool.sliderRadius "半径 $0 %"
-tool.sliderIntensity "强度 $0 %"
+// tools icons on the left (should fit, so it must be short!)
 tool.dynTopo "动态网格"
 tool.symmetry "对称"
 tool.mirror "镜像"
@@ -1153,11 +1152,6 @@ tool.smooth.relax "规整网格"
 tool.mask "蒙版"
 tool.mask.unmask "消除蒙版"
 tool.maskSelector "选择蒙版"
-tool.paint "绘画"
-tool.paint.erase "橡皮"
-tool.paint.depthFilter "启用忽略压感"
-tool.paint.layerFilter "图层限定"
-tool.paint.layerFilter.help "启用该选项后，您只能够在模型的最底图层（base）上绘画。"
 tool.smudge "涂抹"
 tool.flatten "铲平"
 tool.flatten.fill "填充"
@@ -1194,24 +1188,53 @@ tool.shape.path "路径"
 tool.shape.rectangle "矩形"
 tool.shape.ellipse "椭圆"
 tool.shape.line "直线"
-// for curve and path
 tool.shape.closed "闭合"
+
+// popup when editing sliders
+tool.sliderRadius "半径 $0"
+tool.sliderIntensity "强度 $0 %"
+
+// --------------------------------------------------------------------------------------
 // title
 tool.settingsTitle "设置 ($0)"
+
+// --------------------------------------------------------------------------------------
+// tool menu
+tool.noSettings "该工具无特殊设置。"
+
+// --------------------------------------------------------------------------------------
 // clay
 tool.clay.flattenOffset "展平偏移 "
+
+// --------------------------------------------------------------------------------------
 // crease
 tool.crease.pinchFactor "力度"
+
+// --------------------------------------------------------------------------------------
 // layer
 tool.layer.removeInfluence "Use current layer offset"
 tool.layer.removeInfluence.help "This option is only active when there is a current layer selected.
 
 It will use the current layer offset to limit the displacement over strokes."
 tool.layer.noLayerSelected "此选项仅在选择图层后可用。"
+
+// --------------------------------------------------------------------------------------
 // flatten
 tool.flatten.planeLock "锁定平面"
+
+// --------------------------------------------------------------------------------------
 // smooth
 tool.smooth.stickyBorder "Sticky vertex on border"
+
+// --------------------------------------------------------------------------------------
+// paint
+tool.paint "绘画"
+tool.paint.erase "橡皮"
+tool.paint.depthFilter "启用忽略压感"
+tool.paint.layerFilter "图层限定"
+tool.paint.layerFilter.help "启用该选项后，您只能够在模型的最底图层（base）上绘画。"
+
+// --------------------------------------------------------------------------------------
 // masking
 tool.mask.clear "清除"
 tool.mask.invert "反相"
@@ -1237,7 +1260,9 @@ tool.mask.closeAction.help "- 无
 
 - Shell
 通过增加厚度的方式来封闭图形。"
-// matrix
+
+// --------------------------------------------------------------------------------------
+// matrix (transform / gizmo)
 tool.matrix "坐标"
 tool.matrix.clone "克隆"
 tool.matrix.action "操作"
@@ -1275,9 +1300,13 @@ tool.matrix.applyMethod.help "- 自动选择：
 对象会整体变换。
 不会变换对称与蒙版。
 如果进行非等比缩放，将强制使用基于顶点模式。"
+
+// --------------------------------------------------------------------------------------
 // transform
 tool.transform.multiTouch "多点触控"
 tool.transform.multiTouch.help "如果您禁用此选项，则每次都只能使用移动、旋转、缩放一种操作。"
+
+// --------------------------------------------------------------------------------------
 // gizmo
 tool.gizmo.size "部件尺寸"
 tool.gizmo.linearRollThreshold "线性旋转阈值"
@@ -1301,14 +1330,20 @@ tool.gizmo.tap.help "此选项仅在自定义坐标原点模式下有效（默�
 tool.gizmo.tapNone "无"
 tool.gizmo.tapFirstHit "点击"
 tool.gizmo.tapMiddleStab "中点"
+
+// --------------------------------------------------------------------------------------
 // lathe
 tool.lathe.axis "旋转轴位置"
 tool.lathe.axis.fixed "固定位置"
 tool.lathe.axis.dynamic "自由移动"
+
+// --------------------------------------------------------------------------------------
 // tube
 tool.tube.snap "表面捕捉"
 tool.tube.snap.all "整条曲线"
 tool.tube.snap.startEnd "仅端点"
+
+// --------------------------------------------------------------------------------------
 // trim
 tool.hole "填补孔洞"
 tool.hole.fillHoles "填补孔洞"
@@ -1321,10 +1356,9 @@ tool.hole.bridges.help "启用此选项后。您可以用裁切的方式在物�
 tool.hole.threshold "填充阈值"
 tool.hole.threshold.help "调整该值以获得更好的填充效果。"
 tool.hole.smoothing "平滑孔洞"
+
+// --------------------------------------------------------------------------------------
 // smudge
-// tool.smudge.projectScreen 
-// tool.smudge.projectScreen.help "Smudge relies heavily on polygon density.\n
-// Use this option if you want consistent smudge performance by projecting only once at the beginning of the stroke."
 tool.smudge.fullProject "单次投影"
 tool.smudge.fullProject.help "您可以在涂抹之前打开此选项来加快笔刷的响应速度。
 
@@ -1333,6 +1367,8 @@ tool.smudge.fullProject.help "您可以在涂抹之前打开此选项来加快�
 如果激活了动态网格，将会忽略此设置。 "
 tool.smudge.quality "质量"
 tool.smudge.quality.help "此选项可改变投影的分辨率，将该值调低可提高笔刷速度。"
+
+// --------------------------------------------------------------------------------------
 // trim / split / project / selMask
 tool.shape "形状"
 tool.shape.rectangleSquare "正方形"
@@ -1340,10 +1376,10 @@ tool.shape.rectangleCentered "中心"
 tool.shape.ellipseCircle "圆形"
 tool.shape.ellipseCentered "中心"
 tool.shape.lineRotateStep "旋转角度"
+
+// --------------------------------------------------------------------------------------
 // measure
 tool.measure.goldenRatio "显示黄金分割比"
-// fallback
-tool.noSettings "该工具无特殊设置。"
 
 // --------------------------------------------------------------------------------------
 // topology

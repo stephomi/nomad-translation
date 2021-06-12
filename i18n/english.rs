@@ -1037,7 +1037,7 @@ It can be useful if you want to paint part of a thin geometry without impacting 
 It also works for sculpting but you might experience some artefacts."
 stroke.onlySameSide "Same-side vertex only"
 stroke.onlySameSide.help "Ignore vertices that points in the opposite direction of the deformation."
-stroke.intensityMultiplier "Intensity multiplier"
+stroke.intensityInfinite "Infinite intensity"
 stroke.curveFalloff "Falloff"
 stroke.onlyLasso "Settings only active for the lasso tool."
 // alpha
@@ -1096,14 +1096,16 @@ symmetry.flip "Flip object"
 symmetry.mirror "Mirroring"
 symmetry.mirror.help "Try to re-apply the symmetry without impacting the topology.
 
-To succeed, the topology need to be symmetrical and at least one edge should lie exactly on the symmetry line.
-
-If it fails, you will be proposed to force the symmetry, but it will impact the topology."
+If the topology can't be kept because it is not considered symmetrical, you'll get the option to enforce the mirroring."
 symmetry.mirrorLeftToRight "Left to Right"
 symmetry.mirrorRightToLeft "Right to Left"
 symmetry.mirrorFail "Failed to apply symmetry.
 
 Do you want to enforce symmetry by mirroring the mesh?";
+symmetry.mirrorUseMasking "Protect masked area"
+symmetry.mirrorUseMasking.help "Keep masked area intact.
+
+This option will be ignored with non-symmetric topology (or disconnected surface, like a pair of eyes)."
 // reset
 symmetry.resetOrigin "Reset Origin"
 symmetry.resetCenterMesh "Mesh center"
@@ -1119,10 +1121,7 @@ symmetry.edit.help "You can freely set the symmetry plane.
 This feature is a bit experimental and you should probably never use it."
 
 // --------------------------------------------------------------------------------------
-// tools
-// left bar generic (ICON FIT)
-tool.sliderRadius "Radius $0 %"
-tool.sliderIntensity "Intensity $0 %"
+// tools icons on the left (should fit, so it must be short!)
 tool.dynTopo "DynTopo"
 tool.symmetry "Sym"
 tool.mirror "Mirror"
@@ -1137,11 +1136,6 @@ tool.smooth.relax "Relax"
 tool.mask "Mask"
 tool.mask.unmask "Unmask"
 tool.maskSelector "SelMask"
-tool.paint "Paint"
-tool.paint.erase "Erase"
-tool.paint.depthFilter "Depth filtering"
-tool.paint.layerFilter "Layer filtering"
-tool.paint.layerFilter.help "Use this option if you only want to repaint the already painted area of a layer."
 tool.smudge "Smudge"
 tool.flatten "Flatten"
 tool.flatten.fill "Fill"
@@ -1178,24 +1172,53 @@ tool.shape.path "Path"
 tool.shape.rectangle "Rect"
 tool.shape.ellipse "Ellipse"
 tool.shape.line "Line"
-// for curve and path
 tool.shape.closed "Closed"
+
+// popup when editing sliders
+tool.sliderRadius "Radius $0"
+tool.sliderIntensity "Intensity $0 %"
+
+// --------------------------------------------------------------------------------------
 // title
 tool.settingsTitle "Settings ($0)"
+
+// --------------------------------------------------------------------------------------
+// tool menu
+tool.noSettings "This tool doesn't have any specific settings."
+
+// --------------------------------------------------------------------------------------
 // clay
 tool.clay.flattenOffset "Flatten offset"
+
+// --------------------------------------------------------------------------------------
 // crease
 tool.crease.pinchFactor "Pinch force"
+
+// --------------------------------------------------------------------------------------
 // layer
 tool.layer.removeInfluence "Use current layer offset"
 tool.layer.removeInfluence.help "This option is only active when there is a current layer selected.
 
 It will use the current layer offset to limit the displacement over strokes."
 tool.layer.noLayerSelected "This option is only available if a current layer is selected"
+
+// --------------------------------------------------------------------------------------
 // flatten
 tool.flatten.planeLock "Lock plane"
+
+// --------------------------------------------------------------------------------------
 // smooth
 tool.smooth.stickyBorder "Sticky vertex on border"
+
+// --------------------------------------------------------------------------------------
+// paint
+tool.paint "Paint"
+tool.paint.erase "Erase"
+tool.paint.depthFilter "Depth filtering"
+tool.paint.layerFilter "Layer filtering"
+tool.paint.layerFilter.help "Use this option if you only want to repaint the already painted area of a layer."
+
+// --------------------------------------------------------------------------------------
 // masking
 tool.mask.clear "Clear"
 tool.mask.invert "Invert"
@@ -1221,7 +1244,9 @@ Do not use this option for flat surface.
 
 -- Shell
 Close the extracted shape by using the thickness value."
-// matrix
+
+// --------------------------------------------------------------------------------------
+// matrix (transform / gizmo)
 tool.matrix "Matrix"
 tool.matrix.clone "Clone"
 tool.matrix.action "Action"
@@ -1259,9 +1284,13 @@ For primitives that are not validated, Object mode is forced.
 The object is transformed as a whole.
 Symmetry and mask are ignored.
 If you use non-uniform scaling, Vertex mode will be forced."
+
+// --------------------------------------------------------------------------------------
 // transform
 tool.transform.multiTouch "Multi-touch"
 tool.transform.multiTouch.help "If this option is disabled, you can only use one mode (translate, rotate, scale) at a time."
+
+// --------------------------------------------------------------------------------------
 // gizmo
 tool.gizmo.size "Widget size"
 tool.gizmo.linearRollThreshold "Tangent roll threshold"
@@ -1285,14 +1314,20 @@ Move the gizmo on the average of the first two intersections."
 tool.gizmo.tapNone "None"
 tool.gizmo.tapFirstHit "First hit"
 tool.gizmo.tapMiddleStab "Middle stab"
+
+// --------------------------------------------------------------------------------------
 // lathe
 tool.lathe.axis "Axis"
 tool.lathe.axis.fixed "Fixed"
 tool.lathe.axis.dynamic "Dynamic"
+
+// --------------------------------------------------------------------------------------
 // tube
 tool.tube.snap "Snapping"
 tool.tube.snap.all "Every point"
 tool.tube.snap.startEnd "Start & End"
+
+// --------------------------------------------------------------------------------------
 // trim
 tool.hole "Hole filling"
 tool.hole.fillHoles "Fill holes"
@@ -1305,10 +1340,9 @@ The cut slope will also follow more closely the cutting shape."
 tool.hole.threshold "Threshold epsilon"
 tool.hole.threshold.help "Tweaking this value might help with the hole filling algorithm."
 tool.hole.smoothing "Hole smoothing"
+
+// --------------------------------------------------------------------------------------
 // smudge
-// tool.smudge.projectScreen 
-// tool.smudge.projectScreen.help "Smudge relies heavily on polygon density.\n
-// Use this option if you want consistent smudge performance by projecting only once at the beginning of the stroke."
 tool.smudge.fullProject "Project once"
 tool.smudge.fullProject.help "You can make the smudge stroke faster by projecting the mesh only once at the beginning of the stroke.
 
@@ -1317,6 +1351,8 @@ If you don't move the camera between your smudge strokes, the projection can be 
 This setting is ignored if dynamic topology is activated."
 tool.smudge.quality "Quality"
 tool.smudge.quality.help "It changes the resolution of the projected pixels, lower values means faster strokes."
+
+// --------------------------------------------------------------------------------------
 // trim / split / project / selMask
 tool.shape "Shape"
 tool.shape.rectangleSquare "Square"
@@ -1324,10 +1360,10 @@ tool.shape.rectangleCentered "Centered"
 tool.shape.ellipseCircle "Circle"
 tool.shape.ellipseCentered "Centered"
 tool.shape.lineRotateStep "Rotate step"
+
+// --------------------------------------------------------------------------------------
 // measure
 tool.measure.goldenRatio "Show golden ratio"
-// fallback
-tool.noSettings "This tool doesn't have any specific settings."
 
 // --------------------------------------------------------------------------------------
 // topology
