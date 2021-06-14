@@ -674,10 +674,10 @@ postprocess.quality.help "该设置可提升部分效果的渲染质量，但可
 postprocess.maxSamples "最大采样值"
 postprocess.fullResolution "最大实时分辨率"
 // fxaa
-postprocess.fxaaEnable "抗锯齿（FXAA）"
+postprocess.fxaaEnable "快速抗锯齿（FXAA）"
 // taa
-postprocess.taaEnable ""
-postprocess.taaEnable.help ""
+postprocess.taaEnable "时间性抗锯齿（TAA）"
+postprocess.taaEnable.help "TAA可减少相机移动时的闪烁，呈现出更加平滑的图像效果。"
 // ssr
 postprocess.ssrEnable "屏幕空间反射（SSR）" 
 postprocess.ssrFactor "强度" 
@@ -815,8 +815,8 @@ primitive.planeSameSize "固定比例（平面）"
 // box
 primitive.boxRegular "固定比例（立方体）"
 // tube
-primitive.tubeSnapOffset ""
-primitive.tubeSnapOffset.help ""
+primitive.tubeSnapOffset "吸附偏移"
+primitive.tubeSnapOffset.help "当偏移值为1.0时，偏移后的距离即为圆管半径。"
 primitive.tubeThicknessStart "起始半径"
 primitive.tubeThicknessEnd "结束半径"
 // primitive.tubeTwist "Twist"
@@ -824,7 +824,7 @@ primitive.tubeThicknessEnd "结束半径"
 // primitive.tubeTwistRadius "Magnitude"
 // primitive.tubeTwistOffset "Offset"
 primitive.tubeManual "调整半径"
-primitive.tubeSnap ""
+primitive.tubeSnap "吸附"
 // torus
 primitive.torusRadiusOuter "外圈半径"
 primitive.torusRadiusInner "内圈半径"
@@ -843,7 +843,7 @@ primitive.radiusSync "相同半径"
 primitive.radiusStart "底面半径"
 primitive.radiusEnd "顶面半径"
 // spline (for lathe and tube)
-primitive.spline ""
+primitive.spline "样条"
 
 // common resources stuffs
 resource.delete "删除"
