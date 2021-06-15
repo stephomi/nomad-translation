@@ -1054,7 +1054,7 @@ stroke.onlyFrontFace.help "打开此选项后，应用会忽略对“背面”�
 该选项也可用于雕刻，但您可能会遇到一些不便。"
 stroke.onlySameSide "只移动同向顶点"
 stroke.onlySameSide.help "在修改对象造型时，不移动朝向不同的顶点。"
-stroke.intensityInfinite ""
+stroke.intensityInfinite "画笔无限强度"
 stroke.curveFalloff "衰减"
 stroke.onlyLasso "该设置仅对套索工具有效。"
 // alpha
@@ -1230,7 +1230,7 @@ tool.smooth.stickyBorder "Sticky vertex on border"
 // paint
 tool.paint "绘画"
 tool.paint.erase "橡皮"
-tool.paint.depthFilter "启用忽略压感"
+tool.paint.depthFilter "深度限定"
 tool.paint.layerFilter "图层限定"
 tool.paint.layerFilter.help "启用该选项后，您只能够在模型的最底图层（base）上绘画。"
 
