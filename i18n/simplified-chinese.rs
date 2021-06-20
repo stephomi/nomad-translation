@@ -594,6 +594,7 @@ material.receiveShadows "接收阴影"
 // backface
 material.twoSided "双面折射"
 material.alwaysUnlit "不受光显示"
+material.flipCulling ""
 
 // --------------------------------------------------------------------------------------
 // menu name (visible on small screen menu are collapsed)

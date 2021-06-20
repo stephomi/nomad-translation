@@ -360,7 +360,7 @@ history.state.meshStaticToDynamic "Static to Dynamic"
 history.state.meshSymmetryUpdate "Symmetry update"
 history.state.meshMatrixUpdate "Matrix update"
 history.state.meshVisibility "Visibility"
-history.state.meshMaterial "Materil change"
+history.state.meshMaterial "Material change"
 // state scene
 history.state.sceneAddRemove "Scene"
 history.state.sceneMeshOrder "Mesh order"
@@ -587,6 +587,7 @@ material.receiveShadows "Receive shadows"
 // backface
 material.twoSided "Two sided"
 material.alwaysUnlit "Always unlit"
+material.flipCulling "Inverse culling"
 
 // --------------------------------------------------------------------------------------
 // menu name (visible on small screen menu are collapsed)
