@@ -1470,6 +1470,11 @@ topology.dynamicUsePressure.help "启用此选项后，压感也会对对象产�
 topology.dynamicBrush "笔刷"
 topology.dynamicGlobal "动态网格重构"
 topology.dynamicSettings "动态网格笔刷设置"
+// decimate
+topology.decimate.title ""
+topology.decimate.title.help ""
+topology.decimate ""
+topology.decimateTargetFaces ""
 
 // --------------------------------------------------------------------------------------
 // version trial

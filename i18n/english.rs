@@ -1454,6 +1454,14 @@ topology.dynamicUsePressure.help "Use this option if you want the pen pressure i
 topology.dynamicBrush "Brush"
 topology.dynamicGlobal "Global"
 topology.dynamicSettings "Settings - Brush / Global"
+// decimate
+topology.decimate.title "Simplify"
+topology.decimate.title.help "Reduce the number of polygons by trying to keep as much details as possible.
+
+This feature can be useful if you want to export for 3d printing.
+But you can end up with uneven triangles, so you should probably not use if you want to continue sculpting on it."
+topology.decimate "Decimate"
+topology.decimateTargetFaces "Target triangles"
 
 // --------------------------------------------------------------------------------------
 // version trial
