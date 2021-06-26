@@ -594,7 +594,7 @@ material.receiveShadows "接收阴影"
 // backface
 material.twoSided "双面折射"
 material.alwaysUnlit "不受光显示"
-material.flipCulling ""
+material.flipCulling "翻转背面"
 
 // --------------------------------------------------------------------------------------
 // menu name (visible on small screen menu are collapsed)
@@ -1121,8 +1121,10 @@ symmetry.mirrorRightToLeft "从右至左"
 symmetry.mirrorFail "对称失败：
 
 是否使用镜像来强制对称？";
-symmetry.mirrorUseMasking ""
-symmetry.mirrorUseMasking.help ""
+symmetry.mirrorUseMasking "保护蒙版区域"
+symmetry.mirrorUseMasking.help "启用后，在镜像时将不会修改蒙版区域。
+
+该选项会忽略非对称网格。"
 // reset
 symmetry.resetOrigin "重设对称中心"
 symmetry.resetCenterMesh "对象中心"
@@ -1471,10 +1473,13 @@ topology.dynamicBrush "笔刷"
 topology.dynamicGlobal "动态网格重构"
 topology.dynamicSettings "动态网格笔刷设置"
 // decimate
-topology.decimate.title ""
-topology.decimate.title.help ""
-topology.decimate ""
-topology.decimateTargetFaces ""
+topology.decimate.title "成型简化"
+topology.decimate.title.help "软件将会把模型转换为三角面片。
+此功能可以在保留尽可能多细节的同时，减少多边形的数量。
+
+仅建议在导出为3D打印模型时使用！"
+topology.decimate "三角面转换"
+topology.decimateTargetFaces "目标面数"
 
 // --------------------------------------------------------------------------------------
 // version trial
