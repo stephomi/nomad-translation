@@ -1482,8 +1482,10 @@ topology.decimate "三角面转换"
 topology.decimateTargetFaces "目标面数"
 topology.decimatePaintWeight ""
 topology.decimatePaintWeight.help ""
-topology.decimatePreserveBorders ""
-topology.decimatePreserveBorders.help ""
+// topology.decimatePreserveBorders "Preserve borders"
+// topology.decimatePreserveBorders.help "Do not decimate the border of the mesh.
+
+// This is only relevant for object that are opened."
 
 // --------------------------------------------------------------------------------------
 // version trial
