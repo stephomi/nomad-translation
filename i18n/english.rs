@@ -1451,17 +1451,27 @@ topology.dynamicQualitySpeed "Speed"
 topology.dynamicQualityQuality "Quality"
 topology.dynamicUsePressure "Use pressure on radius"
 topology.dynamicUsePressure.help "Use this option if you want the pen pressure impact on tool radius to impact the level of detail."
-topology.dynamicBrush "Brush"
-topology.dynamicGlobal "Global"
-topology.dynamicSettings "Settings - Brush / Global"
+// topology.dynamicBrush "Brush"
+// topology.dynamicGlobal "Global"
+// topology.dynamicSettings "Settings - Brush / Global"
 // decimate
-topology.decimate.title "Simplify"
+topology.decimate.title "Decimation"
 topology.decimate.title.help "Reduce the number of polygons by trying to keep as much details as possible.
 
 This feature can be useful if you want to export for 3d printing.
-But you can end up with uneven triangles, so you should probably not use if you want to continue sculpting on it."
+However you should probably not use if you want to continue sculpting on it, as it can produce uneven triangles.
+
+Note that masked area won't be decimated."
 topology.decimate "Decimate"
 topology.decimateTargetFaces "Target triangles"
+topology.decimatePaintWeight "Paint weights"
+topology.decimatePaintWeight.help "Higher value will try to preserve painting.
+
+Set this value to 0 if you don't care about the painting."
+topology.decimatePreserveBorders "Preserve borders"
+topology.decimatePreserveBorders.help "Do not decimate the border of the mesh.
+
+This is only relevant for object that are opened."
 
 // --------------------------------------------------------------------------------------
 // version trial

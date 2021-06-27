@@ -1469,9 +1469,9 @@ topology.dynamicQualitySpeed "速度"
 topology.dynamicQualityQuality "性能"
 topology.dynamicUsePressure "同时使用压感"
 topology.dynamicUsePressure.help "启用此选项后，压感也会对对象产生影响。"
-topology.dynamicBrush "笔刷"
-topology.dynamicGlobal "动态网格重构"
-topology.dynamicSettings "动态网格笔刷设置"
+// topology.dynamicBrush "Brush"
+// topology.dynamicGlobal "Global"
+// topology.dynamicSettings "Settings - Brush / Global"
 // decimate
 topology.decimate.title "成型简化"
 topology.decimate.title.help "软件将会把模型转换为三角面片。
@@ -1480,6 +1480,10 @@ topology.decimate.title.help "软件将会把模型转换为三角面片。
 仅建议在导出为3D打印模型时使用！"
 topology.decimate "三角面转换"
 topology.decimateTargetFaces "目标面数"
+topology.decimatePaintWeight ""
+topology.decimatePaintWeight.help ""
+topology.decimatePreserveBorders ""
+topology.decimatePreserveBorders.help ""
 
 // --------------------------------------------------------------------------------------
 // version trial
