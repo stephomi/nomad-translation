@@ -817,8 +817,8 @@ primitive.tubeThicknessEnd "Radius end"
 // primitive.tubeTwistRotate "Rotation"
 // primitive.tubeTwistRadius "Magnitude"
 // primitive.tubeTwistOffset "Offset"
-primitive.tubeManual "Manual"
 primitive.tubeSnap "Snap"
+// lathe
 // torus
 primitive.torusRadiusOuter "Radius outer"
 primitive.torusRadiusInner "Radius inner"
@@ -836,6 +836,7 @@ primitive.hasHole "Has hole"
 primitive.radiusSync "Same radius"
 primitive.radiusStart "Radius start"
 primitive.radiusEnd "Radius end"
+primitive.editRadius "Radius"
 // spline (for lathe and tube)
 primitive.spline "Spline"
 
@@ -877,6 +878,16 @@ settings.outlineTitle "Outline"
 settings.outlineEnable "Outline"
 settings.outlineThickness "Thickness"
 settings.outlineColor "Color"
+// snap cube
+settings.snapCubeTitle "Snap cube"
+settings.snapCubeDisplay "Snap cube"
+settings.snapCubeBottom "Bottom"
+settings.snapCubeLeft "Left"
+// stats
+settings.statsTitle "Stats"
+settings.statsDisplay "Stats"
+settings.statsRight "Right"
+settings.statsAll "Show full scene"
 // grid
 settings.gridTitle "Grid"
 settings.gridDisplay "Grid"
@@ -903,7 +914,6 @@ settings.partialDrawWarning "Do not forget to turn off this option if the visual
 settings.showPainting "Show painting"
 settings.lightIcon "Light icons"
 settings.lightIcon.help "Display light icons on the canvas so that you can select and edit them directly."
-settings.showSnapCube "Snap cube"
 settings.holeTitle "Hole-filling"
 settings.holeNonManifold "Fill non-manifold"
 settings.holeNonManifold.help "Try to fill non manifold hole.
@@ -924,11 +934,6 @@ settings.multiresLowResVertices "Low resolution threshold"
 settings.multiresLowResVertices.help "A lower resolution of the mesh can be displayed when you move the camera.
 
 You can increase this value if you want to display a higher resolution of the mesh."
-// stat
-settings.showSceneStats "Stats"
-settings.statNone "None"
-settings.statSelection "Selection"
-settings.statAll "All"
 // experimental
 settings.experimentalTitle "Experimental"
 settings.notSaved "These options are not saved in the settings."

@@ -824,8 +824,8 @@ primitive.tubeThicknessEnd "结束半径"
 // primitive.tubeTwistRotate "Rotation"
 // primitive.tubeTwistRadius "Magnitude"
 // primitive.tubeTwistOffset "Offset"
-primitive.tubeManual "调整半径"
 primitive.tubeSnap "吸附"
+// lathe
 // torus
 primitive.torusRadiusOuter "外圈半径"
 primitive.torusRadiusInner "内圈半径"
@@ -843,6 +843,7 @@ primitive.hasHole "添加孔洞"
 primitive.radiusSync "相同半径"
 primitive.radiusStart "底面半径"
 primitive.radiusEnd "顶面半径"
+primitive.editRadius "调整半径"
 // spline (for lathe and tube)
 primitive.spline "样条"
 
@@ -884,6 +885,16 @@ settings.outlineTitle "轮廓"
 settings.outlineEnable "被选对象轮廓"
 settings.outlineThickness "粗细"
 settings.outlineColor "颜色"
+// snap cube
+settings.snapCubeTitle "方位视图"
+settings.snapCubeDisplay "方位视图"
+settings.snapCubeBottom ""
+settings.snapCubeLeft ""
+// stats
+settings.statsTitle "现实场景状态"
+settings.statsDisplay "现实场景状态"
+settings.statsRight ""
+settings.statsAll "显示全部"
 // grid
 settings.gridTitle "世界网格"
 settings.gridDisplay "世界网格"
@@ -910,7 +921,6 @@ settings.partialDrawWarning "如果显示不正常，请不要忘记关闭此选
 settings.showPainting "图层绘画"
 settings.lightIcon "灯光图标"
 settings.lightIcon.help "在屏幕上显示灯光图标，这样您可以直接选择并编辑灯光。"
-settings.showSnapCube "方位视图"
 settings.holeTitle "填补孔洞"
 settings.holeNonManifold "填补非流形孔洞"
 settings.holeNonManifold.help "应用将会尝试填补非流形孔洞。
@@ -936,11 +946,6 @@ settings.multiresLowResVertices "最低分辨率阈值"
 settings.multiresLowResVertices.help "在您移动相机时，模型对象可能会以较低分辨率显示。
 
 如您希望显示更高的分辨率，可以增加此值。"
-// stat
-settings.showSceneStats "现实场景状态"
-settings.statNone "不显示"
-settings.statSelection "显示所选项"
-settings.statAll "显示全部"
 // experimental
 settings.experimentalTitle "实验性功能"
 settings.notSaved "这些选项不会在设置中保存。"
