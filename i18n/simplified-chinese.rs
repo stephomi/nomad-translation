@@ -1480,13 +1480,14 @@ topology.dynamicUsePressure.help "启用此选项后，压感也会对对象产�
 // decimate
 topology.decimate.title "成型简化"
 topology.decimate.title.help "软件将会减少模型面数，并把模型转换为三角面。
-此功能可以在保留尽可能多细节的同时，减少多边形的数量。
 
+此功能可以在保留模型尽可能多细节的同时，减少多边形的数量。
 仅建议在导出为3D打印模型时使用！"
 topology.decimate "三角面转换"
 topology.decimateTargetFaces "目标面数"
 topology.decimatePaintWeight "绘画权重"
 topology.decimatePaintWeight.help "此功能可以对绘画的细节边缘有所保护。
+
 如果您想将模型用于3D输出打印，可以将该值设置为0。"
 // topology.decimatePreserveBorders "Preserve borders"
 // topology.decimatePreserveBorders.help "Do not decimate the border of the mesh.
