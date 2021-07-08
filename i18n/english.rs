@@ -1086,6 +1086,9 @@ stroke.strokeTypeGrabIntensity "Grab - dynamic intensity"
 symmetry "Symmetry"
 symmetry.enable "Enabled"
 symmetry.toolIgnore "The current tool ignores symmetry."
+symmetry.radialX "Radial X"
+symmetry.radialY "Radial Y"
+symmetry.radialZ "Radial Z"
 // method
 symmetry.method "Method:"
 symmetry.method.help "-- Local
@@ -1102,6 +1105,8 @@ symmetry.flip "Flip object"
 symmetry.mirror "Mirroring"
 symmetry.mirror.help "Try to re-apply the symmetry without impacting the topology.
 
+Radial symmetry will be ignored.
+
 If the topology can't be kept because it is not considered symmetrical, you'll get the option to enforce the mirroring."
 symmetry.mirrorLeftToRight "Left to Right"
 symmetry.mirrorRightToLeft "Right to Left"
@@ -1113,10 +1118,10 @@ symmetry.mirrorUseMasking.help "Keep masked area intact.
 
 This option will be ignored with non-symmetric topology (or disconnected surface, like a pair of eyes)."
 // reset
-symmetry.resetOrigin "Reset Origin"
+symmetry.reset "Reset"
 symmetry.resetCenterMesh "Mesh center"
 symmetry.resetCenterWorld "World center"
-symmetry.resetDirection "Reset Direction"
+symmetry.resetDirection "Orientation"
 // advanced
 symmetry.showLine "Show line"
 symmetry.showPlane "Show plane"
@@ -1349,12 +1354,6 @@ tool.hole.smoothing "Hole smoothing"
 
 // --------------------------------------------------------------------------------------
 // smudge
-tool.smudge.fullProject "Project once"
-tool.smudge.fullProject.help "You can make the smudge stroke faster by projecting the mesh only once at the beginning of the stroke.
-
-If you don't move the camera between your smudge strokes, the projection can be avoided as well.
-
-This setting is ignored if dynamic topology is activated."
 tool.smudge.quality "Quality"
 tool.smudge.quality.help "It changes the resolution of the projected pixels, lower values means faster strokes."
 

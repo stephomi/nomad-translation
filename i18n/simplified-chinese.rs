@@ -1103,6 +1103,9 @@ stroke.strokeTypeGrabIntensity "抓取 - 可调强度"
 symmetry "对称"
 symmetry.enable "启用对称"
 symmetry.toolIgnore "当前工具不适用对称。"
+symmetry.radialX ""
+symmetry.radialY ""
+symmetry.radialZ ""
 // method
 symmetry.method "对称类型"
 symmetry.method.help "- 本体对称
@@ -1131,7 +1134,7 @@ symmetry.mirrorUseMasking.help "启用后，在镜像时将不会修改蒙版区
 
 该选项会忽略非对称网格。"
 // reset
-symmetry.resetOrigin "重设对称中心"
+symmetry.reset "重设对称中心"
 symmetry.resetCenterMesh "对象中心"
 symmetry.resetCenterWorld "世界中心"
 symmetry.resetDirection "重设镜像平面"
@@ -1367,12 +1370,6 @@ tool.hole.smoothing "平滑孔洞"
 
 // --------------------------------------------------------------------------------------
 // smudge
-tool.smudge.fullProject "单次投影"
-tool.smudge.fullProject.help "您可以在涂抹之前打开此选项来加快笔刷的响应速度。
-
-如果您在涂抹时不转动相机，也可以避免再次运算。
-
-如果激活了动态网格，将会忽略此设置。 "
 tool.smudge.quality "质量"
 tool.smudge.quality.help "此选项可改变投影的分辨率，将该值调低可提高笔刷速度。"
 
