@@ -614,7 +614,8 @@ menu.about "About"
 // --------------------------------------------------------------------------------------
 // mesh sub menu
 mesh.action "Action"
-mesh.closeHoles "Close holes"
+mesh.holeClose "Close holes"
+mesh.holeDetail "Detail"
 mesh.separate "Separate"
 mesh.triplanarWarning "Layers, painting and multiresolution will be lost."
 mesh.triplanarResolution "Resolution"

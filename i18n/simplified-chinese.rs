@@ -621,7 +621,8 @@ menu.about "关于"
 // --------------------------------------------------------------------------------------
 // mesh sub menu
 mesh.action "操作"
-mesh.closeHoles "封闭孔洞"
+mesh.holeClose "封闭孔洞"
+mesh.holeDetail "分辨率"
 mesh.separate "分离对象"
 mesh.triplanarWarning "图层、绘画与模型细分将会丢失。"
 mesh.triplanarResolution "分辨率"
