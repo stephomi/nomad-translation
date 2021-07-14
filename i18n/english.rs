@@ -644,6 +644,11 @@ paint.paintAllForce.help "Apply the current material to the mesh.
 Masked area and disabled channels won't be painted."
 paint.strokePaintingTitle "Painting ($0)"
 paint.layerWarning "Channel masking will be ignored if you try to apply it on a layer."
+paint.texture.title "Texture"
+paint.texture.title.help "An image that will color your brush stroke.
+
+Note that it will share the alpha's tiling and scale settings."
+paint.texture.warning "Stroke painting needs to be enabled to allow texture projection (checkbox on top)!"
 
 // --------------------------------------------------------------------------------------
 // popup

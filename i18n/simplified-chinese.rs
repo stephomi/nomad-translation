@@ -651,6 +651,9 @@ paint.paintAllForce.help "将当前材料应用到所选对象上。
 蒙版区域与未勾选通道也会被应用。"
 paint.strokePaintingTitle "画笔设置 ($0)"
 paint.layerWarning "图层上的通道蒙版不可用。"
+paint.texture.title ""
+paint.texture.title.help ""
+paint.texture.warning ""
 
 // --------------------------------------------------------------------------------------
 // popup
