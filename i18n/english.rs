@@ -631,7 +631,7 @@ mesh.typeDynamic "Dynamic"
 // painting
 paint.useGlobal "Global material"
 paint.useGlobal.help "If this option is enabled, the selected material will be the same as the other tools"
-paint.usePainting "Enabled" 
+paint.usePainting "Stroke painting" 
 paint.useColor "Base color" 
 paint.useRoughness "Roughness" 
 paint.useMetalness "Metalness"
