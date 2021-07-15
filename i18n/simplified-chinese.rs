@@ -651,8 +651,10 @@ paint.paintAllForce.help "将当前材料应用到所选对象上。
 蒙版区域与未勾选通道也会被应用。"
 paint.strokePaintingTitle "画笔设置 ($0)"
 paint.layerWarning "图层上的通道蒙版不可用。"
-paint.texture.title ""
-paint.texture.title.help ""
+paint.texture.title "纹理贴图"
+paint.texture.title.help "将图片作为绘画的笔刷,在模型表面绘画。
+
+您可以在笔刷的形状设置里更改纹理贴图的平铺、缩放参数。"
 paint.texture.warning ""
 
 // --------------------------------------------------------------------------------------
@@ -1106,12 +1108,12 @@ stroke.strokeTypeGrabIntensity "抓取 - 可调强度"
 // symmetry
 symmetry "对称"
 symmetry.enable "启用对称"
-symmetry.plane.title ""
+symmetry.plane.title "对称平面"
 symmetry.toolIgnore "当前工具不适用对称。"
-symmetry.radial.title ""
-symmetry.radialX ""
-symmetry.radialY ""
-symmetry.radialZ ""
+symmetry.radial.title "径向对称"
+symmetry.radialX "X"
+symmetry.radialY "Y"
+symmetry.radialZ "Z"
 // method
 symmetry.method "对称类型"
 symmetry.method.help "- 本体对称
