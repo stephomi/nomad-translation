@@ -655,7 +655,8 @@ paint.texture.title "纹理贴图"
 paint.texture.title.help "将图片作为绘画的笔刷,在模型表面绘画。
 
 您可以在笔刷的形状设置里更改纹理贴图的平铺、缩放参数。"
-paint.texture.warning ""
+paint.texture.warningEnable ""
+paint.texture.warningIgnored ""
 
 // --------------------------------------------------------------------------------------
 // popup

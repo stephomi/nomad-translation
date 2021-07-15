@@ -648,7 +648,8 @@ paint.texture.title "Texture"
 paint.texture.title.help "An image that will color your brush stroke.
 
 Note that it will share the alpha's tiling and scale settings."
-paint.texture.warning "Stroke painting needs to be enabled to allow texture projection (checkbox on top)!"
+paint.texture.warningEnable "Stroke painting needs to be enabled to allow texture projection (checkbox on top)!"
+paint.texture.warningIgnored "The current tool cannot use textures!"
 
 // --------------------------------------------------------------------------------------
 // popup
