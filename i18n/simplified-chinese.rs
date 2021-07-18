@@ -639,9 +639,6 @@ mesh.typeDynamic "动态模型"
 paint.useGlobal "应用全局材料"
 paint.useGlobal.help "如勾选此选项，其他工具的材质也将会与所选材质相同。"
 paint.usePainting "启用" 
-paint.useColor "颜色" 
-paint.useRoughness "粗糙度" 
-paint.useMetalness "金属强度"
 paint.intensity "画笔强度"
 paint.paintAll "全部上色" 
 paint.paintAll.help "将当前材料应用到所选对象上。"
@@ -657,6 +654,10 @@ paint.texture.title.help "将图片作为绘画的笔刷,在模型表面绘画�
 您可以在笔刷的形状设置里更改纹理贴图的平铺、缩放参数。"
 paint.texture.warningEnable ""
 paint.texture.warningIgnored ""
+paint.useAlpha ""
+paint.useAlpha.help ""
+paint.useFalloff ""
+paint.useFalloff.help ""
 
 // --------------------------------------------------------------------------------------
 // popup

@@ -632,9 +632,6 @@ mesh.typeDynamic "Dynamic"
 paint.useGlobal "Global material"
 paint.useGlobal.help "If this option is enabled, the selected material will be the same as the other tools"
 paint.usePainting "Stroke painting" 
-paint.useColor "Base color" 
-paint.useRoughness "Roughness" 
-paint.useMetalness "Metalness"
 paint.intensity "Paint intensity"
 paint.paintAll "Paint all" 
 paint.paintAll.help "Apply the current material to the mesh."
@@ -650,6 +647,10 @@ paint.texture.title.help "An image that will color your brush stroke.
 Note that it will share the alpha's tiling and scale settings."
 paint.texture.warningEnable "Stroke painting needs to be enabled to allow texture projection (checkbox on top)!"
 paint.texture.warningIgnored "The current tool cannot use textures!"
+paint.useAlpha "Use stroke alpha"
+paint.useAlpha.help "Using the alpha set in the stroke menu to modulate the painting."
+paint.useFalloff "Use stroke falloff"
+paint.useFalloff.help "Using the falloff set in the stroke menu to modulate the painting."
 
 // --------------------------------------------------------------------------------------
 // popup
