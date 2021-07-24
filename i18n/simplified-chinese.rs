@@ -1496,10 +1496,12 @@ topology.decimatePaintWeight "绘画权重"
 topology.decimatePaintWeight.help "此功能可以对绘画的细节边缘有所保护。
 
 如果您想将模型用于3D打印，可以将该值设置为0。"
+topology.decimateUniform ""
+topology.decimateUniform.help ""
 // topology.decimatePreserveBorders "Preserve borders"
 // topology.decimatePreserveBorders.help "Do not decimate the border of the mesh.
 
-// This is only relevant for object that are opened."
+// This is only relevant for object that are not watertight."
 
 // --------------------------------------------------------------------------------------
 // version trial

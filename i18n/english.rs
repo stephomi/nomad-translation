@@ -1478,14 +1478,16 @@ However you should probably not use if you want to continue sculpting on it, as 
 Note that masked area won't be decimated."
 topology.decimate "Decimate"
 topology.decimateTargetFaces "Target triangles"
-topology.decimatePaintWeight "Paint weights"
+topology.decimatePaintWeight "Preserve painting"
 topology.decimatePaintWeight.help "Higher value will try to preserve painting.
 
 Set this value to 0 if you don't care about the painting."
+topology.decimateUniform "Uniform faces"
+topology.decimateUniform.help "Higher value will output triangles with similar size."
 // topology.decimatePreserveBorders "Preserve borders"
 // topology.decimatePreserveBorders.help "Do not decimate the border of the mesh.
 
-// This is only relevant for object that are opened."
+// This is only relevant for object that are not watertight."
 
 // --------------------------------------------------------------------------------------
 // version trial
