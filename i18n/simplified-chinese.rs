@@ -432,8 +432,6 @@ input.pencilAction.ios "双击Pencil"
 input.pencilAction.ios.help "仅支持Apple Pencil 第二代"
 // size rejection
 input.useSizeRejection "启用忽略尺寸"
-input.useSizeRejectionWarning "如果您的手指无法操控，请退出并重启Nomad。
-此选项每次重启后都会关闭。"
 input.useSizeRejectionConfirm "请确定您的文件妥善保存后再点击确认！"
 input.useSizeRejection.help "如果手指与屏幕的接触面积超过设定值，屏幕将忽略手指的本次操作。
 

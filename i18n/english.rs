@@ -433,12 +433,10 @@ input.pencilAction.ios "Pencil double tap"
 input.pencilAction.ios.help "Only active for Apple Pencil 2nd gen."
 // size rejection
 input.useSizeRejection "Use size rejection"
-input.useSizeRejectionWarning "If you are locked, quit and restart Nomad.
-This setting is never saved."
-input.useSizeRejectionConfirm "Make sure to save your project first in case you can't interact with the UI anymore."
+input.useSizeRejectionConfirm "Make sure to disable this option if you have trouble interacting with the canvas!."
 input.useSizeRejection.help "Reject input if the contact area size larger than this value.
 
-It might not work on every device."
+Might not work on every device."
 input.sizeRejection "Max size threshold"
 // help
 input.interaction.title "Interaction" 
@@ -874,11 +872,7 @@ settings.wireframeColor "Wireframe color"
 // backface
 settings.backfaceTitle "Two sided"
 settings.backfaceVisible "Two sided"
-settings.backfaceVisible.help "Backface faces are faces that point 'away' from the camera viewpoint.
-
-All faces (triangle or quad) point to a certain direction, for example on a base sphere will see its faces point towards the outside.
-
-If you move the camera inside the sphere you'll the backface of theses faces."
+settings.backfaceVisible.help "Faces will be visible from both sides."
 settings.backfaceColor "Backface color"
 settings.backfaceColored "Colored backface"
 // outline
