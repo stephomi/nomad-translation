@@ -433,7 +433,7 @@ input.pencilAction.ios "Pencil double tap"
 input.pencilAction.ios.help "Only active for Apple Pencil 2nd gen."
 // size rejection
 input.useSizeRejection "Use size rejection"
-input.useSizeRejectionConfirm "Make sure to disable this option if you have trouble interacting with the canvas!."
+input.useSizeRejectionConfirm "Make sure to disable this option if you have trouble interacting with the canvas!"
 input.useSizeRejection.help "Reject input if the contact area size larger than this value.
 
 Might not work on every device."
