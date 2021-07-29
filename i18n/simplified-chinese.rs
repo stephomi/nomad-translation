@@ -638,7 +638,7 @@ mesh.typeDynamic "动态模型"
 // painting
 paint.useGlobal "应用全局材料"
 paint.useGlobal.help "如勾选此选项，其他工具的材质也将会与所选材质相同。"
-paint.usePainting "启用" 
+paint.usePainting "启用绘图" 
 paint.intensity "画笔强度"
 paint.paintAll "全部上色" 
 paint.paintAll.help "将当前材料应用到所选对象上。"
@@ -648,16 +648,16 @@ paint.paintAllForce.help "将当前材料应用到所选对象上。
 蒙版区域与未勾选通道也会被应用。"
 paint.strokePaintingTitle "画笔设置 ($0)"
 paint.layerWarning "图层上的通道蒙版不可用。"
-paint.texture.title "纹理贴图"
+paint.texture.title "贴图绘制"
 paint.texture.title.help "将图片作为绘画的笔刷,在模型表面绘画。
 
-您可以在笔刷的形状设置里更改纹理贴图的平铺、缩放参数。"
-paint.texture.warningEnable ""
-paint.texture.warningIgnored ""
-paint.useAlpha ""
-paint.useAlpha.help ""
-paint.useFalloff ""
-paint.useFalloff.help ""
+您可以在笔刷的形状设置里更改贴图绘制的平铺、缩放参数。"
+paint.texture.warningEnable "您需要先勾选菜单顶部的“启用绘图”后才能使用贴图绘制功能。"
+paint.texture.warningIgnored "当前工具无法使用贴图绘制功能。"
+paint.useAlpha "使用笔刷形状设置"
+paint.useAlpha.help "笔刷菜单里的“形状”设置也会作用到贴图绘制效果。"
+paint.useFalloff "使用笔刷衰减设置"
+paint.useFalloff.help "笔刷菜单里的“衰减”设置也会作用到贴图绘制效果。"
 
 // --------------------------------------------------------------------------------------
 // popup
@@ -1496,8 +1496,8 @@ topology.decimatePaintWeight "绘画权重"
 topology.decimatePaintWeight.help "此功能可以对绘画的细节边缘有所保护。
 
 如果您想将模型用于3D打印，可以将该值设置为0。"
-topology.decimateUniform ""
-topology.decimateUniform.help ""
+topology.decimateUniform "网格相似度"
+topology.decimateUniform.help "该参数值越高，简化输出的三角面就越相似。"
 // topology.decimatePreserveBorders "Preserve borders"
 // topology.decimatePreserveBorders.help "Do not decimate the border of the mesh.
 
