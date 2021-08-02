@@ -432,7 +432,7 @@ input.pencilAction.ios "双击Pencil"
 input.pencilAction.ios.help "仅支持Apple Pencil 第二代"
 // size rejection
 input.useSizeRejection "启用忽略尺寸"
-input.useSizeRejectionConfirm ""
+input.useSizeRejectionConfirm "如果您在雕刻时遇到问题，请务必关闭此选项！"
 input.useSizeRejection.help "如果手指与屏幕的接触面积超过设定值，屏幕将忽略手指的本次操作。
 
 部分设备可能不支持此选项"
