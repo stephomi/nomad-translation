@@ -1488,14 +1488,14 @@ topology.decimate.title.help "软件将会减少模型面数，并把模型转�
 
 此功能可以在保留模型尽可能多细节的同时，减少多边形的数量。
 仅建议在导出为3D打印模型时使用！"
-topology.decimate "三角面转换"
+topology.decimate "网格优化"
 topology.decimateTargetFaces "目标面数"
 topology.decimatePaintWeight "绘画权重"
 topology.decimatePaintWeight.help "此功能可以对绘画的细节边缘有所保护。
 
 如果您想将模型用于3D打印，可以将该值设置为0。"
-topology.decimateUniform "网格相似度"
-topology.decimateUniform.help "该参数值越高，简化输出的三角面就越相似。"
+topology.decimateUniform "网格均匀化"
+topology.decimateUniform.help "该参数值越高，优化输出的三角面就越统一。"
 // topology.decimatePreserveBorders "Preserve borders"
 // topology.decimatePreserveBorders.help "Do not decimate the border of the mesh.
 
