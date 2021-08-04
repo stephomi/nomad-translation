@@ -1045,7 +1045,6 @@ It can be useful if you want to paint part of a thin geometry without impacting 
 It also works for sculpting but you might experience some artefacts."
 stroke.onlySameSide "Same-side vertex only"
 stroke.onlySameSide.help "Ignore vertices that points in the opposite direction of the deformation."
-stroke.intensityInfinite "Infinite intensity"
 stroke.curveFalloff "Falloff"
 stroke.onlyLasso "Settings only active for the lasso tool."
 // alpha

@@ -1066,7 +1066,6 @@ stroke.onlyFrontFace.help "打开此选项后，应用会忽略对“背面”�
 该选项也可用于雕刻，但您可能会遇到一些不便。"
 stroke.onlySameSide "只移动同向顶点"
 stroke.onlySameSide.help "在修改对象造型时，不移动朝向不同的顶点。"
-stroke.intensityInfinite "画笔无限强度"
 stroke.curveFalloff "衰减"
 stroke.onlyLasso "该设置仅对套索工具有效。"
 // alpha
