@@ -578,8 +578,10 @@ material.refractionInteriorRoughness.help "粗糙度可以增强光线透过物�
 - 当粗糙度为0时，对象内部的粗糙度将与材质相同。
 
 - 当粗糙度为1时，对象内部的粗糙效果将达到最强。"
-material.paintGlossy ""
-material.paintGlossy.help ""
+material.paintGlossy "漆面效果"
+material.paintGlossy.help "将对象表面材质的粗糙度变为0，从而呈现更锐利的折射效果。
+
+该操作不会影响材质的颜色与金属强度。"
 // alpha
 material.opacity "不透明度"
 material.alphaMode.opaque "实心"
@@ -1008,7 +1010,7 @@ stat.ramOther "其他"
 stat.usedMemory "已用内存"
 stat.freeMemory "剩余内存"
 stat.total "面数总计："
-stat.ram ""
+stat.ram "RAM"
 stat.used "已用：$0 MB"
 stat.free "剩余：$0 MB"
 stat.faces "面数"
@@ -1186,7 +1188,7 @@ tool.clearLayer "擦除"
 tool.gizmo "轴向变换"
 tool.gizmo.auto "自动原点"
 tool.gizmo.editPivot "编辑原点"
-tool.gizmo.rotateSnap ""
+tool.gizmo.rotateSnap "角度吸附"
 tool.gizmo.local "轴向"
 tool.transform "自由变换"
 tool.transform.move "移动"
