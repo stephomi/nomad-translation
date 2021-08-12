@@ -432,7 +432,7 @@ input.pencilAction.ios "双击Pencil"
 input.pencilAction.ios.help "仅支持Apple Pencil 第二代"
 // size rejection
 input.useSizeRejection "启用忽略尺寸"
-input.useSizeRejectionConfirm ""
+input.useSizeRejectionConfirm "如果您在雕刻时遇到问题，请务必关闭此选项！"
 input.useSizeRejection.help "如果手指与屏幕的接触面积超过设定值，屏幕将忽略手指的本次操作。
 
 部分设备可能不支持此选项"
@@ -578,8 +578,10 @@ material.refractionInteriorRoughness.help "粗糙度可以增强光线透过物�
 - 当粗糙度为0时，对象内部的粗糙度将与材质相同。
 
 - 当粗糙度为1时，对象内部的粗糙效果将达到最强。"
-material.paintGlossy ""
-material.paintGlossy.help ""
+material.paintGlossy "漆面效果"
+material.paintGlossy.help "将对象表面材质的粗糙度变为0，从而呈现更锐利的折射效果。
+
+该操作不会影响材质的颜色与金属强度。"
 // alpha
 material.opacity "不透明度"
 material.alphaMode.opaque "实心"
@@ -1008,7 +1010,7 @@ stat.ramOther "其他"
 stat.usedMemory "已用内存"
 stat.freeMemory "剩余内存"
 stat.total "面数总计："
-stat.ram ""
+stat.ram "RAM"
 stat.used "已用：$0 MB"
 stat.free "剩余：$0 MB"
 stat.faces "面数"
@@ -1186,7 +1188,7 @@ tool.clearLayer "擦除"
 tool.gizmo "轴向变换"
 tool.gizmo.auto "自动原点"
 tool.gizmo.editPivot "编辑原点"
-tool.gizmo.rotateSnap ""
+tool.gizmo.rotateSnap "角度吸附"
 tool.gizmo.local "轴向"
 tool.transform "自由变换"
 tool.transform.move "移动"
@@ -1488,14 +1490,14 @@ topology.decimate.title.help "软件将会减少模型面数，并把模型转�
 
 此功能可以在保留模型尽可能多细节的同时，减少多边形的数量。
 仅建议在导出为3D打印模型时使用！"
-topology.decimate "三角面转换"
+topology.decimate "网格优化"
 topology.decimateTargetFaces "目标面数"
 topology.decimatePaintWeight "绘画权重"
 topology.decimatePaintWeight.help "此功能可以对绘画的细节边缘有所保护。
 
 如果您想将模型用于3D打印，可以将该值设置为0。"
-topology.decimateUniform "网格相似度"
-topology.decimateUniform.help "该参数值越高，简化输出的三角面就越相似。"
+topology.decimateUniform "网格均匀化"
+topology.decimateUniform.help "该参数值越高，优化输出的三角面就越统一。"
 // topology.decimatePreserveBorders "Preserve borders"
 // topology.decimatePreserveBorders.help "Do not decimate the border of the mesh.
 
