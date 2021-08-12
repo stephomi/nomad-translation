@@ -578,6 +578,8 @@ material.refractionInteriorRoughness.help "粗糙度可以增强光线透过物�
 - 当粗糙度为0时，对象内部的粗糙度将与材质相同。
 
 - 当粗糙度为1时，对象内部的粗糙效果将达到最强。"
+material.paintGlossy ""
+material.paintGlossy.help ""
 // alpha
 material.opacity "不透明度"
 material.alphaMode.opaque "实心"
@@ -1006,11 +1008,9 @@ stat.ramOther "其他"
 stat.usedMemory "已用内存"
 stat.freeMemory "剩余内存"
 stat.total "面数总计："
-stat.used "--------
-RAM
-已用："
-stat.free "
-剩余："
+stat.ram ""
+stat.used "已用：$0 MB"
+stat.free "剩余：$0 MB"
 stat.faces "面数"
 stat.triangles "三角面"
 stat.vertices "顶点"
@@ -1155,7 +1155,7 @@ symmetry.edit.help "您可以自由改变镜像平面。
 此功能并未完善，请尽量不要使用。"
 
 // --------------------------------------------------------------------------------------
-// tools icons on the left (should fit, so it must be short!)
+// tools icons on the left (ICON FIT)
 tool.dynTopo "动态网格"
 tool.symmetry "对称"
 tool.mirror "镜像"
@@ -1186,6 +1186,7 @@ tool.clearLayer "擦除"
 tool.gizmo "轴向变换"
 tool.gizmo.auto "自动原点"
 tool.gizmo.editPivot "编辑原点"
+tool.gizmo.rotateSnap ""
 tool.gizmo.local "轴向"
 tool.transform "自由变换"
 tool.transform.move "移动"

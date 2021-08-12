@@ -571,6 +571,10 @@ material.refractionSurfaceGlossiness.help "- at 0, the surface is using the pain
 material.refractionInteriorRoughness "Interior roughness"
 material.refractionInteriorRoughness.help "- at 0, the interior is using the painted roughness
 - at 1, the interior is completely rough"
+material.paintGlossy "Paint glossy"
+material.paintGlossy.help "It will paint the object with a roughness of 0, thus allowing sharp refraction.
+
+This is the same as going in the painting menu and using the paint all feature with color and metalness disabled."
 // alpha
 material.opacity "Opacity"
 material.alphaMode.opaque "Opaque"
@@ -989,9 +993,10 @@ stat.vramRender "Vram Render"
 stat.ramOther "Other"
 stat.usedMemory "Used Memory"
 stat.freeMemory "Free Memory"
-stat.total "Total"
-stat.used "Used"
-stat.free "Free"
+stat.total "Total: "
+stat.ram "RAM"
+stat.used "Used: $0 MB"
+stat.free "Free: $0 MB"
 stat.faces "Faces"
 stat.triangles "Triangles"
 stat.vertices "Vertices"
@@ -1135,7 +1140,7 @@ symmetry.edit.help "You can freely set the symmetry plane.
 This feature is a bit experimental and you should probably never use it."
 
 // --------------------------------------------------------------------------------------
-// tools icons on the left (should fit, so it must be short!)
+// tools icons on the left (ICON FIT)
 tool.dynTopo "DynTopo"
 tool.symmetry "Sym"
 tool.mirror "Mirror"
@@ -1166,6 +1171,7 @@ tool.clearLayer "DelLayer"
 tool.gizmo "Gizmo"
 tool.gizmo.auto "Auto"
 tool.gizmo.editPivot "Pivot"
+tool.gizmo.rotateSnap "Snap"
 tool.gizmo.local "Local"
 tool.transform "Transform"
 tool.transform.move "Move"
