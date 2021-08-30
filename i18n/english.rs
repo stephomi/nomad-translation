@@ -572,7 +572,7 @@ material.refractionInteriorRoughness "Interior roughness"
 material.refractionInteriorRoughness.help "- at 0, the interior is using the painted roughness
 - at 1, the interior is completely rough"
 material.paintGlossy "Paint glossy"
-material.paintGlossy.help "It will paint the object with a roughness of 0, thus allowing sharp refraction.
+material.paintGlossy.help "It will paint the object with a roughness and metalness of 0, thus allowing sharp refraction.
 
 This is the same as going in the painting menu and using the paint all feature with color and metalness disabled."
 // alpha
