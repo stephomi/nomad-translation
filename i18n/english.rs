@@ -368,18 +368,18 @@ history.state.sceneMeshOrder "Mesh order"
 history.state.layerOrder "Move layer order $0"
 history.state.layerMergeRedo "Unmerge layer $0"
 history.state.layerCreate "Create layer $0"
-history.state.layerDelete "Delete layer $0";
-history.state.layerMerge "Merge layer $0";
+history.state.layerDelete "Delete layer $0"
+history.state.layerMerge "Merge layer $0"
 history.state.layerHide "Hide layer $0"
 history.state.layerShow "Show layer $0"
 history.state.layerSelect "Select layer $0"
 history.state.layerUnselect "Unselect layer $0"
-history.state.layerName "Layer $0 name";
-history.state.layerFactor "Layer $0 factor";
-history.state.layerFactorOffset "Layer $0 offset factor";
-history.state.layerFactorColor "Layer $0 color factor";
-history.state.layerFactorRoughness "Layer $0 roughness factor";
-history.state.layerFactorMetalness "Layer $0 metalness factor";
+history.state.layerName "Layer $0 name"
+history.state.layerFactor "Layer $0 factor"
+history.state.layerFactorOffset "Layer $0 offset factor"
+history.state.layerFactorColor "Layer $0 color factor"
+history.state.layerFactorRoughness "Layer $0 roughness factor"
+history.state.layerFactorMetalness "Layer $0 metalness factor"
 // state light
 history.state.lightVisible "light $0 visible"
 history.state.lightIntensity "Light $0 intensity"
@@ -395,6 +395,10 @@ history.state.lightMove "Move light $0"
 history.state.lightType "Light $0 type"
 history.state.lightSpotAngle "Light $0 spot angle"
 history.state.lightSpotSoftness "Light $0 spot softness"
+// state view
+history.state.viewAdd "Add view $0"
+history.state.viewMove "Move view $0"
+history.state.viewDelete "Delete view $0"
 
 // --------------------------------------------------------------------------------------
 // pressure menu
@@ -529,7 +533,7 @@ For example by experimenting different facial expression without relying on the 
 For painting data, layers are sorted in a top-down fashion; so layers on top will mask the lower ones.
 
 In order to resolve the layer opacity, all painting data (color, roughness, metalness) share the same mask.
-You can reset part of this mask (and thus, the layer influence) by using the 'DelLayer' tool.";
+You can reset part of this mask (and thus, the layer influence) by using the 'DelLayer' tool."
 layers.primitive "Layers are unavailable for primitives."
 layers.baseSelected "None"
 
@@ -1119,7 +1123,7 @@ symmetry.mirrorLeftToRight "Left to Right"
 symmetry.mirrorRightToLeft "Right to Left"
 symmetry.mirrorFail "Failed to apply symmetry.
 
-Do you want to enforce symmetry by mirroring the mesh?";
+Do you want to enforce symmetry by mirroring the mesh?"
 symmetry.mirrorUseMasking "Protect masked area"
 symmetry.mirrorUseMasking.help "Keep masked area intact.
 

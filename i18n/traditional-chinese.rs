@@ -367,18 +367,18 @@ history.state.sceneMeshOrder "模型順序"
 history.state.layerOrder "更改圖層順序 $0"
 history.state.layerMergeRedo "取消合並圖層 $0"
 history.state.layerCreate "添加圖層 $0"
-history.state.layerDelete "刪除圖層 $0";
-history.state.layerMerge "合並圖層 $0";
+history.state.layerDelete "刪除圖層 $0"
+history.state.layerMerge "合並圖層 $0"
 history.state.layerHide "隱藏圖層 $0"
 history.state.layerShow "顯示圖層 $0"
 history.state.layerSelect "選擇圖層 $0"
 history.state.layerUnselect "取消選擇圖層 $0"
-history.state.layerName "圖層 $0 重命名";
-history.state.layerFactor "調整圖層 $0 參數";
-history.state.layerFactorOffset "調整圖層 $0 偏移度";
-history.state.layerFactorColor "調整圖層 $0 透明度";
-history.state.layerFactorRoughness "調整圖層 $0 粗糙度";
-history.state.layerFactorMetalness "調整圖層 $0 金屬強度";
+history.state.layerName "圖層 $0 重命名"
+history.state.layerFactor "調整圖層 $0 參數"
+history.state.layerFactorOffset "調整圖層 $0 偏移度"
+history.state.layerFactorColor "調整圖層 $0 透明度"
+history.state.layerFactorRoughness "調整圖層 $0 粗糙度"
+history.state.layerFactorMetalness "調整圖層 $0 金屬強度"
 // state light
 history.state.lightVisible "調整燈光 $0 可見性"
 history.state.lightIntensity "調整燈光 $0 強度"
@@ -394,6 +394,10 @@ history.state.lightMove "移動燈光 $0"
 history.state.lightType "改變燈光 $0 類型"
 history.state.lightSpotAngle "改變燈光 $0 入射角"
 history.state.lightSpotSoftness "改變燈光 $0 硬度"
+// state view
+history.state.viewAdd ""
+history.state.viewMove ""
+history.state.viewDelete ""
 
 // --------------------------------------------------------------------------------------
 // pressure menu
@@ -530,7 +534,7 @@ layers.title.help "圖層能夠記錄位置偏移和繪畫，這對於非線性�
 圖層是從上到下排序的，所以上方的圖層會遮蓋下方的圖層。
 
 為了解決圖層的不透明性，圖層的所有通道（顏色濃度、粗糙度、金屬強度）都會使用相同的蒙版。
-您可以使用橡皮工具來擦除當前圖層上的繪畫蒙版。";
+您可以使用橡皮工具來擦除當前圖層上的繪畫蒙版。"
 layers.primitive "基本體無法添加圖層。"
 layers.baseSelected "無"
 
@@ -1134,7 +1138,7 @@ symmetry.mirrorLeftToRight "從左至右"
 symmetry.mirrorRightToLeft "從右至左"
 symmetry.mirrorFail "對稱失敗：
 
-是否使用鏡像來強制對稱？";
+是否使用鏡像來強制對稱？"
 symmetry.mirrorUseMasking "保護蒙版區域"
 symmetry.mirrorUseMasking.help "啟用後，在鏡像時將不會修改蒙版區域。
 
