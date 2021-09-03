@@ -586,6 +586,10 @@ material.paintGlossy "漆面效果"
 material.paintGlossy.help "将对象表面材质的粗糙度变为0，从而呈现更锐利的折射效果。
 
 该操作不会影响材质的颜色与金属强度。"
+// absorption
+material.absorptionEnable ""
+material.absorptionEnable.help ""
+material.absorptionFactor ""
 // alpha
 material.opacity "不透明度"
 material.alphaMode.opaque "实心"

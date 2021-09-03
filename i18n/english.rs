@@ -579,6 +579,14 @@ material.paintGlossy "Paint glossy"
 material.paintGlossy.help "It will paint the object with a roughness and metalness of 0, thus allowing sharp refraction.
 
 This is the same as going in the painting menu and using the paint all feature with color and metalness disabled."
+// absorption
+material.absorptionEnable "Absorption"
+material.absorptionEnable.help "Simulate the light being absorbed when it travels through the volume.
+
+Thin parts will bright as it lets more light pass through, while thick areas will be darker.
+
+The effect heavily depends on the mesh geometry, only an approximation of the mesh thickness is used."
+material.absorptionFactor "Factor"
 // alpha
 material.opacity "Opacity"
 material.alphaMode.opaque "Opaque"

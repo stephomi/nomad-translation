@@ -584,6 +584,10 @@ material.refractionInteriorRoughness.help "粗糙度可以增強光線透過物�
 - 當粗糙度為1時，對象內部的粗糙效果將達到最強。"
 material.paintGlossy ""
 material.paintGlossy.help ""
+// absorption
+material.absorptionEnable ""
+material.absorptionEnable.help ""
+material.absorptionFactor ""
 // alpha
 material.opacity "不透明度"
 material.alphaMode.opaque "實心"
