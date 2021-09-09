@@ -134,8 +134,8 @@ background.imageScale "缩放"
 // camera
 camera "相机"
 // saved views
-camera.updateView "更新视图？"
-camera.addView "添加视图"
+camera.updateView "更新视角？"
+camera.addView "添加视角"
 camera.focusOn "正在观察"
 // projection
 camera.projection "视图"
@@ -395,9 +395,9 @@ history.state.lightType "改变灯光 $0 类型"
 history.state.lightSpotAngle "改变灯光 $0 入射角"
 history.state.lightSpotSoftness "改变灯光 $0 硬度"
 // state view
-history.state.viewAdd ""
-history.state.viewMove ""
-history.state.viewDelete ""
+history.state.viewAdd "添加视角 $0"
+history.state.viewMove "移动视角 $0"
+history.state.viewDelete "删除视角 $0"
 
 // --------------------------------------------------------------------------------------
 // pressure menu
@@ -587,9 +587,13 @@ material.paintGlossy.help "将对象表面材质的粗糙度变为0，从而呈�
 
 该操作不会影响材质的颜色与金属强度。"
 // absorption
-material.absorptionEnable ""
-material.absorptionEnable.help ""
-material.absorptionFactor ""
+material.absorptionEnable "吸收"
+material.absorptionEnable.help "该效果能模拟光线穿过物体时被衰减的情况。
+
+简单来说，较薄的部分因为光传播距离较短，会显得更亮，较厚的部分会显得更暗。
+
+最终效果由网格形状结构决定，仅使用网格厚度的近似值。"
+material.absorptionFactor "吸收系数"
 // alpha
 material.opacity "不透明度"
 material.alphaMode.opaque "实心"
