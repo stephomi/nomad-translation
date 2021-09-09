@@ -587,7 +587,7 @@ material.paintGlossy.help "将对象表面材质的粗糙度变为0，从而呈�
 
 该操作不会影响材质的颜色与金属强度。"
 // absorption
-material.absorptionEnable "吸收"
+material.absorptionEnable "吸收效果"
 material.absorptionEnable.help "该效果能模拟光线穿过物体时被衰减的情况。
 
 简单来说，较薄的部分因为光传播距离较短，会显得更亮，较厚的部分会显得更暗。
