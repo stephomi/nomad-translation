@@ -304,7 +304,12 @@ file.tools.reset.confirm "Reset tools library?"
 // render
 file.render "Render"
 file.render.showInterface "Show interface"
-file.render.size "Size"
+file.render.renderRatio "Render ratio"
+file.render.renderRatio.help "A value of 1.0 means that Nomad will render at the same resolution as the requested image size below.
+
+Use this option if you cannot render at certain resolution (crashes because of lack of memory)."
+file.render.help "Render ratio"
+file.render.size "Final size"
 file.render.size.custom "Custom"
 file.render.screenResolution "screen"
 file.render.export "Export png"
