@@ -303,9 +303,11 @@ file.tools.reset.confirm "确定要重置材质库吗？"
 // render
 file.render "渲染"
 file.render.showInterface "显示操作界面"
-file.render.renderRatio ""
-file.render.renderRatio.help ""
-file.render.help ""
+file.render.renderRatio "渲染分辨率"
+file.render.renderRatio.help "当该值为1.0时，软件渲染的图像分辨率保持不变。
+
+您可以在设备因内存不足，无法渲染特定分辨率时适当调整该值，通过降低画面精细程度的方式来导出图片。"
+file.render.help "渲染分辨率"
 file.render.size "渲染尺寸"
 file.render.size.custom "自定"
 file.render.screenResolution "屏幕尺寸"
