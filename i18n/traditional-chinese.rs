@@ -1280,6 +1280,7 @@ tool.mask.closeAction "分離操作："
 tool.mask.closeActionNone "無"
 tool.mask.closeActionFill "填補"
 tool.mask.closeActionShell "抽殼"
+tool.mask.closeActionLayer ""
 tool.mask.closeAction.help "- 無
 僅分離蒙版區域，並且不封閉對象。
 

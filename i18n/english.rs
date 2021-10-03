@@ -193,8 +193,8 @@ file.project.save "Save"
 file.project.save.confirm "Save $0?"
 file.project.saveAs "Save As"
 file.project.saveAs.confirm "Overwrite $0?"
-file.project.open "Load"
-file.project.open.confirm "Load $0?"
+file.project.open "Open"
+file.project.open.confirm "Open $0?"
 file.project.add "Add to scene"
 file.project.add.confirm "Add $0 to the scene?"
 file.project.new "New"
@@ -225,7 +225,7 @@ file.import.title.help "Supported format:
 - Wavefront (.obj)
 - glTF 2.0 (.glb .gltf)
 - STL (.stl)"
-file.importOpen "Load"
+file.importOpen "Open"
 file.importOpen.confirm "Import new file?"
 file.import.add "Add to scene"
 file.import.add.confirm "Import new file?"
@@ -1271,6 +1271,7 @@ tool.mask.closeAction "Closing action:"
 tool.mask.closeActionNone "None"
 tool.mask.closeActionFill "Fill"
 tool.mask.closeActionShell "Shell"
+tool.mask.closeActionLayer "Layer"
 tool.mask.closeAction.help "-- None
 Simply extract the part and let the extracted part opened.
 
@@ -1279,7 +1280,10 @@ Hole is filled and smoothed.
 Do not use this option for flat surface.
 
 -- Shell
-Close the extracted shape by using the thickness value."
+Close the extracted shape by using the thickness value.
+
+-- Layer
+Extract the layer difference (layer sub-menu only)."
 
 // --------------------------------------------------------------------------------------
 // matrix (transform / gizmo)
