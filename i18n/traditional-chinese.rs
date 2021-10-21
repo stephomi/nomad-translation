@@ -510,10 +510,6 @@ interface.cursorStep "垂直間距"
 interface.panelWidth "面板寬度"
 interface.fontScale "字體尺寸"
 
-// debug
-interface.debug "Debugging"
-interface.debug.warning "For debugging only!"
-
 // --------------------------------------------------------------------------------------
 // layer sub menu
 layer.action "操作"
@@ -563,6 +559,8 @@ light.spotAngle "入射角"
 light.spotSoftness "邊緣硬度"
 light.shadowCast "顯示陰影"
 light.shadowNormalBias "陰影偏差"
+light.visible ""
+light.resetPosition ""
 
 // --------------------------------------------------------------------------------------
 // material
@@ -628,6 +626,7 @@ menu.interface "界面設置"
 menu.history "歷史記錄"
 menu.historySettings "歷史記錄設置"
 menu.about "關於"
+menu.debug ""
 
 // --------------------------------------------------------------------------------------
 // mesh sub menu
@@ -1434,6 +1433,8 @@ topology.voxel.title.help "此功能可重構對象的網格，使其變得更�
 圖層在應用後會重新投影，但質量會受到影響。"
 topology.voxelResolution "分辨率"
 topology.voxelRemesh "重構"
+topology.voxelSharp ""
+topology.voxelSharp.help ""
 topology.voxelSubLevel "多重網格等級"
 topology.voxelSubLevel.help "此功能可以從重構的結果中生成多個不同分辨率的對象。
 

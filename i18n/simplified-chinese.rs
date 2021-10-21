@@ -512,10 +512,6 @@ interface.cursorStep "垂直间距"
 interface.panelWidth "面板宽度"
 interface.fontScale "字体尺寸"
 
-// debug
-interface.debug "Debugging"
-interface.debug.warning "For debugging only!"
-
 // --------------------------------------------------------------------------------------
 // layer sub menu
 layer.action "操作"
@@ -565,6 +561,8 @@ light.spotAngle "入射角"
 light.spotSoftness "边缘硬度"
 light.shadowCast "显示阴影"
 light.shadowNormalBias "阴影偏差"
+light.visible ""
+light.resetPosition ""
 
 // --------------------------------------------------------------------------------------
 // material
@@ -636,6 +634,7 @@ menu.interface "界面设置"
 menu.history "历史记录"
 menu.historySettings "历史记录设置"
 menu.about "关于"
+menu.debug ""
 
 // --------------------------------------------------------------------------------------
 // mesh sub menu
@@ -1442,6 +1441,8 @@ topology.voxel.title.help "此功能可重构对象的网格，使其变得更�
 图层在应用后会重新投影，但质量会受到影响。"
 topology.voxelResolution "分辨率"
 topology.voxelRemesh "重构"
+topology.voxelSharp ""
+topology.voxelSharp.help ""
 topology.voxelSubLevel "多重网格等级"
 topology.voxelSubLevel.help "此功能可以从重构的结果中生成多个不同分辨率的对象。
 

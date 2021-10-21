@@ -511,10 +511,6 @@ interface.cursorStep "Vertical spacing"
 interface.panelWidth "Panel width"
 interface.fontScale "Font scale"
 
-// debug
-interface.debug "Debugging"
-interface.debug.warning "For debugging only!"
-
 // --------------------------------------------------------------------------------------
 // layer sub menu
 layer.action "Action"
@@ -564,6 +560,8 @@ light.spotAngle "Cone angle"
 light.spotSoftness "Softness"
 light.shadowCast "Shadow"
 light.shadowNormalBias "Normal bias"
+light.visible "Show"
+light.resetPosition "Recenter"
 
 // --------------------------------------------------------------------------------------
 // material
@@ -629,6 +627,7 @@ menu.interface "Interface"
 menu.history "History"
 menu.historySettings "Settings"
 menu.about "About"
+menu.debug "Debug"
 
 // --------------------------------------------------------------------------------------
 // mesh sub menu
@@ -1428,6 +1427,10 @@ If the object is not closed (watertight), an hole-filling algorithm will be appl
 Layers are reprojected after remeshing but the quality will degrade."
 topology.voxelResolution "Resolution"
 topology.voxelRemesh "Remesh"
+topology.voxelSharp "Keep sharp edges"
+topology.voxelSharp.help "This option is mostly useful for simple primitive boolean operation.
+
+It will introduce distortion in some area due to the points being snapped on the edges."
 topology.voxelSubLevel "Rebuild multires"
 topology.voxelSubLevel.help "You can rebuild a multiresolution hierarchy from the voxel remesher output.
 
