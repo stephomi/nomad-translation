@@ -1288,7 +1288,7 @@ tool.mask.closeAction "分离操作："
 tool.mask.closeActionNone "无"
 tool.mask.closeActionFill "填补"
 tool.mask.closeActionShell "抽壳"
-tool.mask.closeActionLayer ""
+tool.mask.closeActionLayer "层"
 tool.mask.closeAction.help "- 无
 仅分离蒙版区域，并且不封闭对象。
 
