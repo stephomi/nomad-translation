@@ -614,10 +614,14 @@ material.alwaysUnlit "不受光显示"
 material.flipCulling "翻转法线"
 
 // --------------------------------------------------------------------------------------
-// menu name (visible on small screen menu are collapsed)
+// menu name (visible on small screen when menu are collapsed)
 menu.files "文件"
 menu.scene "场景"
+menu.multires "多重网格"
+menu.voxel "重构"
+menu.dyntopo "动态网格"
 menu.topology "拓扑"
+menu.primitive "基本体"
 menu.render "渲染"
 menu.material "材质"
 menu.postProcess "后期处理"
