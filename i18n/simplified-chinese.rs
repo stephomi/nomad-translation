@@ -561,8 +561,8 @@ light.spotAngle "入射角"
 light.spotSoftness "边缘硬度"
 light.shadowCast "显示阴影"
 light.shadowNormalBias "阴影偏差"
-light.visible ""
-light.resetPosition ""
+light.visible "可见性"
+light.resetPosition "重设位置"
 
 // --------------------------------------------------------------------------------------
 // material
@@ -638,7 +638,7 @@ menu.interface "界面设置"
 menu.history "历史记录"
 menu.historySettings "历史记录设置"
 menu.about "关于"
-menu.debug ""
+menu.debug "调试"
 
 // --------------------------------------------------------------------------------------
 // mesh sub menu
@@ -1445,8 +1445,10 @@ topology.voxel.title.help "此功能可重构对象的网格，使其变得更�
 图层在应用后会重新投影，但质量会受到影响。"
 topology.voxelResolution "分辨率"
 topology.voxelRemesh "重构"
-topology.voxelSharp ""
-topology.voxelSharp.help ""
+topology.voxelSharp "保留硬边"
+topology.voxelSharp.help "该功能主要用于几何构造比较简单的对象。
+
+可能会使重构结果造成一些失真。"
 topology.voxelSubLevel "多重网格等级"
 topology.voxelSubLevel.help "此功能可以从重构的结果中生成多个不同分辨率的对象。
 
