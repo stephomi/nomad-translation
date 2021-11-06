@@ -173,6 +173,23 @@ camera.doubleTapFocusSelection.help "雙擊背景後相機將會縮放移動至�
 curve.preset "預設"
 curve.custom "自定義"
 
+// --------------------------------------------------------------------------------------
+// debug
+debug.uvPrimitive.warning ""
+debug.uvPrimitive ""
+debug.uvPrimitive.help ""
+debug.uvNormalize ""
+debug.uvNormalize.help ""
+debug.uvBFF ""
+debug.uvBFF.help ""
+debug.logs ""
+debug.heightmap ""
+debug.graphics ""
+debug.dev ""
+debug.trial ""
+debug.picking ""
+debug.thumbnails ""
+
 // scene and layer lists
 expandList "展開圖標"
 expandList.help "可以讓菜單里的圖標排列間距放大。"
@@ -892,6 +909,8 @@ settings.fingerRotateLighting.help "在屏幕上使用三指水平移動可使�
 settings.wireframeTitle "對象網格設置"
 settings.wireframeDisplay "對象網格"
 settings.wireframeColor "對象網格顏色"
+settings.wireframeUV ""
+settings.wireframeUV.help ""
 // backface
 settings.backfaceTitle "雙面顯示設置"
 settings.backfaceVisible "雙面顯示"
@@ -1516,6 +1535,16 @@ topology.decimateUniform.help "該參數值越高，簡化輸出的三角面就�
 // topology.decimatePreserveBorders.help "Do not decimate the border of the mesh.
 
 // This is only relevant for object that are not watertight."
+
+// BFF is activated through Debug menu
+topology.uv.title ""
+topology.uvAtlas ""
+topology.uvAtlas.warning ""
+topology.uvBFF ""
+topology.uvBFF.warning ""
+topology.uvBFFCones ""
+topology.uvBFFCones.help ""
+topology.uvDelete ""
 
 // --------------------------------------------------------------------------------------
 // version trial

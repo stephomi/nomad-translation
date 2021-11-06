@@ -173,6 +173,29 @@ camera.doubleTapFocusSelection.help "When double taping on background focus on t
 curve.preset "Preset"
 curve.custom "Custom"
 
+// --------------------------------------------------------------------------------------
+// debug
+debug.uvPrimitive.warning "Disable this option if you don't need UVs (extra memory)."
+debug.uvPrimitive "Keep primitive UVs"
+debug.uvPrimitive.help "For now, only Box and Sphere are supported.
+
+Other types will be supported in the future."
+debug.uvNormalize "Normalize UVs"
+debug.uvNormalize.help "Nomad will normalise the UVs inside the [0-1] tile.
+
+Note that this operation only occurs when importing a mesh."
+debug.uvBFF "Add BFF UVs"
+debug.uvBFF.help "Add an alternative unwrapping method (boundary first flattening).
+
+Note that BFF will produce overlaps if your mesh topology is different than a disk or a sphere."
+debug.logs "Logs"
+debug.heightmap "Heightmap"
+debug.graphics "Graphics"
+debug.dev "Dev"
+debug.trial "Simulate Trial"
+debug.picking "UI picking"
+debug.thumbnails "Make store thumbnails"
+
 // scene and layer lists
 expandList "UI: Expand list"
 expandList.help "Just an UI option for easier list management."
@@ -893,6 +916,10 @@ settings.fingerRotateLighting.help "Drag 3 fingers horizontally on the canvas to
 settings.wireframeTitle "Wireframe"
 settings.wireframeDisplay "Wireframe"
 settings.wireframeColor "Wireframe color"
+settings.wireframeUV "Show UV"
+settings.wireframeUV.help "This option shows the texture coordinates (UV) only if they are present on the model.
+
+Otherwise it has no effect."
 // backface
 settings.backfaceTitle "Two sided"
 settings.backfaceVisible "Two sided"
@@ -1514,6 +1541,18 @@ topology.decimateUniform.help "Higher value will output triangles with similar s
 // topology.decimatePreserveBorders.help "Do not decimate the border of the mesh.
 
 // This is only relevant for object that are not watertight."
+
+// BFF is activated through Debug menu
+topology.uv.title "UV Auto-Unwrap"
+topology.uvAtlas "Unwrap Atlas"
+topology.uvAtlas.warning "Can be very slow, target <100k vertices!"
+topology.uvBFF "Unwrap Bff"
+topology.uvBFF.warning "Can have overlaps if mesh has handles!"
+topology.uvBFFCones "Cone count"
+topology.uvBFFCones.help "Higher value will reduce distortion for complex objects.
+
+Higher value will means longer compute time."
+topology.uvDelete "Delete UVs"
 
 // --------------------------------------------------------------------------------------
 // version trial

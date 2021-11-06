@@ -173,6 +173,23 @@ camera.doubleTapFocusSelection.help "双击背景后相机将会缩放移动至�
 curve.preset "预设"
 curve.custom "自定义"
 
+// --------------------------------------------------------------------------------------
+// debug
+debug.uvPrimitive.warning ""
+debug.uvPrimitive ""
+debug.uvPrimitive.help ""
+debug.uvNormalize ""
+debug.uvNormalize.help ""
+debug.uvBFF ""
+debug.uvBFF.help ""
+debug.logs ""
+debug.heightmap ""
+debug.graphics ""
+debug.dev ""
+debug.trial ""
+debug.picking ""
+debug.thumbnails ""
+
 // scene and layer lists
 expandList "展开图标"
 expandList.help "可以让菜单里的图标排列间距放大。"
@@ -614,7 +631,7 @@ material.alwaysUnlit "不受光显示"
 material.flipCulling "翻转法线"
 
 // --------------------------------------------------------------------------------------
-// menu name (visible on small screen when menu are collapsed)
+// menu name (visible on small screen menu are collapsed)
 menu.files "文件"
 menu.scene "场景"
 menu.multires "多重网格"
@@ -900,6 +917,8 @@ settings.fingerRotateLighting.help "在屏幕上使用三指水平移动可使�
 settings.wireframeTitle "对象网格设置"
 settings.wireframeDisplay "对象网格"
 settings.wireframeColor "对象网格颜色"
+settings.wireframeUV ""
+settings.wireframeUV.help ""
 // backface
 settings.backfaceTitle "双面显示设置"
 settings.backfaceVisible "双面显示"
@@ -1526,6 +1545,16 @@ topology.decimateUniform.help "该参数值越高，优化输出的三角面就�
 // topology.decimatePreserveBorders.help "Do not decimate the border of the mesh.
 
 // This is only relevant for object that are not watertight."
+
+// BFF is activated through Debug menu
+topology.uv.title ""
+topology.uvAtlas ""
+topology.uvAtlas.warning ""
+topology.uvBFF ""
+topology.uvBFF.warning ""
+topology.uvBFFCones ""
+topology.uvBFFCones.help ""
+topology.uvDelete ""
 
 // --------------------------------------------------------------------------------------
 // version trial
