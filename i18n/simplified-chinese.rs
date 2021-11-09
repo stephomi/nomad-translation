@@ -175,19 +175,22 @@ curve.custom "自定义"
 
 // --------------------------------------------------------------------------------------
 // debug
-debug.uvPrimitive.warning ""
-debug.uvPrimitive ""
-debug.uvPrimitive.help ""
-debug.uvNormalize ""
-debug.uvNormalize.help ""
-debug.uvBFF ""
-debug.uvBFF.help ""
-debug.logs ""
-debug.heightmap ""
-debug.graphics ""
-debug.dev ""
-debug.trial ""
-debug.picking ""
+debug.uvPrimitive.warning "如您不需要UV，请禁用以下选项，因为启用UV将会消耗更多运存。"
+debug.uvPrimitive "保留基本体UV"
+debug.uvPrimitive.help "目前仅支持立方体和球体，将会在未来支持更多种类。"
+debug.uvNormalize "UV规整化"
+debug.uvNormalize.help "Nomad将会把UV规整到0-1的网格内。
+此功能仅在导入网格时启用。"
+debug.uvBFF "启用BFF UV"
+debug.uvBFF.help "使用BFF算法来展平UV。
+
+请注意，如果对象的拓扑网格与正方体或球体有很大差别的话，结果有可能会产生重叠。"
+debug.logs "调试日志"
+debug.heightmap "高度图"
+debug.graphics "显示选项"
+debug.dev "开发者选项"
+debug.trial "模拟试用版本"
+debug.picking "显示UI布局边界"
 debug.thumbnails ""
 
 // scene and layer lists
@@ -917,8 +920,10 @@ settings.fingerRotateLighting.help "在屏幕上使用三指水平移动可使�
 settings.wireframeTitle "对象网格设置"
 settings.wireframeDisplay "对象网格"
 settings.wireframeColor "对象网格颜色"
-settings.wireframeUV ""
-settings.wireframeUV.help ""
+settings.wireframeUV "显示UV"
+settings.wireframeUV.help "开启此选项后，将会显示对象的纹理贴图坐标（UV）。
+
+仅在UV存在时显示。"
 // backface
 settings.backfaceTitle "双面显示设置"
 settings.backfaceVisible "双面显示"
@@ -1547,14 +1552,15 @@ topology.decimateUniform.help "该参数值越高，优化输出的三角面就�
 // This is only relevant for object that are not watertight."
 
 // BFF is activated through Debug menu
-topology.uv.title ""
-topology.uvAtlas ""
-topology.uvAtlas.warning ""
-topology.uvBFF ""
+topology.uv.title "UV自动展开"
+topology.uvAtlas "展开UV"
+topology.uvAtlas.warning "可能需要等待很长时间。
+仅限于顶点数小于100k的对象。"
+topology.uvBFF "BFF展开"
 topology.uvBFF.warning ""
 topology.uvBFFCones ""
 topology.uvBFFCones.help ""
-topology.uvDelete ""
+topology.uvDelete "删除UV"
 
 // --------------------------------------------------------------------------------------
 // version trial
