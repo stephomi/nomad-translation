@@ -175,7 +175,8 @@ curve.custom "自定义"
 
 // --------------------------------------------------------------------------------------
 // debug
-debug.uvPrimitive.warning "如您不需要UV，请禁用以下选项，因为启用UV将会消耗更多运存。"
+debug.uvPrimitive.warning "启用UV将会消耗更多运存
+如您不需要UV请禁用以下选项。"
 debug.uvPrimitive "保留基本体UV"
 debug.uvPrimitive.help "目前仅支持立方体和球体，将会在未来支持更多种类。"
 debug.uvNormalize "UV规整化"
