@@ -344,6 +344,65 @@ file.render.transparent.help "打开此选项可以让您更方便地把渲染�
 暂不支持部分透明对象导出。"
 
 // --------------------------------------------------------------------------------------
+// gesture menu
+gesture.useGlobal "使用全局压感设置"
+gesture.useGlobal.help "勾选后，所有工具都会使用相同的压感参数。
+
+如您希望给此工具单独设定压感参数，请取消勾选。"
+
+gesture.pressure "压感"
+gesture.pressureTitle "压感设置 ($0)"
+gesture.pressure.noTool "此工具不适用压感设置。"
+gesture.pressure.noGrab "此工具会忽略压感设置。"
+gesture.pressure.radius "半径"
+gesture.pressure.intensity "强度" 
+gesture.pressure.useRadius "启用"
+gesture.pressure.useIntensity "启用" 
+gesture.pressure.curveRadius "半径"
+gesture.pressure.curveIntensity "强度"
+
+gesture.cameraInteraction "相机移动"
+gesture.sculptInteraction "雕刻"
+gesture.interaction.fingerAndStylus "手指与触控笔"
+gesture.interaction.finger "手指"
+gesture.interaction.stylus "触控笔"
+
+gesture.fingerLighting "三指旋转灯光"
+gesture.fingerLighting.help "在屏幕上使用三指水平移动可使环境、灯光与材质捕捉旋转。"
+gesture.fingerRadius ""
+gesture.fingerRadius.help ""
+
+gesture.fingerSmooth "将手指用于平滑"
+gesture.unknownPressure "允许未识别的压感"
+gesture.unknownPressure.help "当您的触控笔压感无法使用或者希望使用手指压感时，请勾选此选项。" 
+
+// pencil
+gesture.pencilAction.none "无"
+gesture.pencilAction.smooth "平滑"
+gesture.pencilAction.alt "添加或减去"
+gesture.pencilAction.android "触控笔按钮"
+gesture.pencilAction.android.help "实验功能"
+gesture.pencilAction.ios "双击Pencil"
+gesture.pencilAction.ios.help "仅支持Apple Pencil 第二代"
+
+// history
+gesture.history "快捷手势"
+gesture.history.help "双指轻点撤销。
+
+三指轻点重做。"
+
+// size rejection
+gesture.useSizeRejection "启用忽略尺寸"
+gesture.useSizeRejectionConfirm "如果您在雕刻时遇到问题，请务必关闭此选项！"
+gesture.useSizeRejection.help "如果手指与屏幕的接触面积超过设定值，屏幕将忽略手指的本次操作。
+
+部分设备可能不支持此选项"
+gesture.sizeRejection "尺寸阈值"
+// help
+gesture.interaction.title "防误触" 
+gesture.interaction.title.help "以下选项均为全局设置。"
+
+// --------------------------------------------------------------------------------------
 // history
 history "历史记录"
 history.root "新建"
@@ -360,10 +419,6 @@ history.limitStack.help "程序可保留的最大操作数量。
 历史记录状态会随着下一个操作记录而改变。"
 history.rangeProtect "历史记录保护范围"
 history.rangeProtect.help "如您在历史记录中做了大量操作，程序会在覆盖操作之前提示您。"
-history.gesture "快捷手势"
-history.gesture.help "双指轻点撤销。
-
-三指轻点重做。"
 history.restoreCamera "恢复相机视角"
 history.restoreCamera.help "启用该选项后您可以在撤销或重做时同时恢复当时的相机视角。"
 // display undo/redo
@@ -424,52 +479,6 @@ history.state.lightSpotSoftness "改变灯光 $0 硬度"
 history.state.viewAdd "添加视角 $0"
 history.state.viewMove "移动视角 $0"
 history.state.viewDelete "删除视角 $0"
-
-// --------------------------------------------------------------------------------------
-// pressure menu
-input.useGlobal "使用全局压感设置"
-input.useGlobal.help "勾选后，所有工具都会使用相同的压感参数。
-
-如您希望给此工具单独设定压感参数，请取消勾选。"
-
-input.pressure "压感"
-input.pressureTitle "压感设置 ($0)"
-input.pressure.noTool "此工具不适用压感设置。"
-input.pressure.noGrab "此工具会忽略压感设置。"
-input.pressure.radius "半径"
-input.pressure.intensity "强度" 
-input.pressure.useRadius "启用"
-input.pressure.useIntensity "启用" 
-input.pressure.curveRadius "半径"
-input.pressure.curveIntensity "强度"
-
-input.cameraInteraction "相机移动"
-input.sculptInteraction "雕刻"
-input.interaction.fingerAndStylus "手指与触控笔"
-input.interaction.finger "手指"
-input.interaction.stylus "触控笔"
-
-input.fingerSmooth "将手指用于平滑"
-input.unknownPressure "允许未识别的压感"
-input.unknownPressure.help "当您的触控笔压感无法使用或者希望使用手指压感时，请勾选此选项。" 
-// pencil
-input.pencilAction.none "无"
-input.pencilAction.smooth "平滑"
-input.pencilAction.alt "添加或减去"
-input.pencilAction.android "触控笔按钮"
-input.pencilAction.android.help "实验功能"
-input.pencilAction.ios "双击Pencil"
-input.pencilAction.ios.help "仅支持Apple Pencil 第二代"
-// size rejection
-input.useSizeRejection "启用忽略尺寸"
-input.useSizeRejectionConfirm "如果您在雕刻时遇到问题，请务必关闭此选项！"
-input.useSizeRejection.help "如果手指与屏幕的接触面积超过设定值，屏幕将忽略手指的本次操作。
-
-部分设备可能不支持此选项"
-input.sizeRejection "尺寸阈值"
-// help
-input.interaction.title "防误触" 
-input.interaction.title.help "以下选项均为全局设置。"
 
 // --------------------------------------------------------------------------------------
 // interface
@@ -915,8 +924,6 @@ scene.intersectionTip "相交运算：隐藏所有相关模型后点击体素合
 // --------------------------------------------------------------------------------------
 // settings
 settings.displayTitle "显示设置"
-settings.fingerRotateLighting "三指旋转灯光"
-settings.fingerRotateLighting.help "在屏幕上使用三指水平移动可使环境、灯光与材质捕捉旋转。"
 // wireframe
 settings.wireframeTitle "对象网格设置"
 settings.wireframeDisplay "对象网格"

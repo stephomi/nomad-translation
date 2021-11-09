@@ -165,7 +165,7 @@ camera.doubleTapPivot.help "Update the rotation pivot when double tapping."
 camera.autoPivot "On camera gesture start"
 camera.autoPivot.help "Update the pivot when you start interacting with the camera."
 camera.doubleTapFocus "Focus"
-camera.doubleTapFocus.help "When double tapping on the mesh the camera will pan and focus on the picked point."
+camera.doubleTapFocus.help "When double tapping on the mesh, the camera will pan and focus on the picked point."
 camera.doubleTapFocusSelection "Focus on selection"
 camera.doubleTapFocusSelection.help "When double taping on background focus on the selected mesh instead of the whole scene."
 
@@ -347,6 +347,65 @@ file.render.transparent.help "This option can be useful if you want to insert th
 Partial object transparency is not supported for now."
 
 // --------------------------------------------------------------------------------------
+// gesture menu
+gesture.useGlobal "Use global settings"
+gesture.useGlobal.help "By default, the tools share the same pressure settings.
+
+Uncheck this option if you want specific pressure settings for this tool."
+
+gesture.pressure "Pressure"
+gesture.pressureTitle "Pressure ($0)"
+gesture.pressure.noTool "This tool doesn't use pen pressure."
+gesture.pressure.noGrab "Grab stroke type will ignore pressure settings."
+gesture.pressure.radius "Radius"
+gesture.pressure.intensity "Intensity" 
+gesture.pressure.useRadius "Active"
+gesture.pressure.useIntensity "Active" 
+gesture.pressure.curveRadius "Radius"
+gesture.pressure.curveIntensity "Intensity"
+
+gesture.cameraInteraction "Camera:"
+gesture.sculptInteraction "Sculpt:"
+gesture.interaction.fingerAndStylus "Finger and Stylus"
+gesture.interaction.finger "Finger"
+gesture.interaction.stylus "Stylus"
+
+gesture.fingerLighting "Rotate lighting (3 fingers)"
+gesture.fingerLighting.help "Drag 3 fingers horizontally on the canvas to rotate the environment, lights and matcap."
+gesture.fingerRadius "Edit tool radius (3 fingers)"
+gesture.fingerRadius.help "Drag 3 fingers vertically to edit the radius."
+
+gesture.fingerSmooth "Finger always smooths"
+gesture.unknownPressure "Allow unrecognized pressure"
+gesture.unknownPressure.help "Check this option if the pressure doesn't work with your pencil or if you need pressure finger." 
+
+// pencil
+gesture.pencilAction.none "None"
+gesture.pencilAction.smooth "Smooth"
+gesture.pencilAction.alt "Add/Sub"
+gesture.pencilAction.android "Pencil button"
+gesture.pencilAction.android.help "Experimental"
+gesture.pencilAction.ios "Pencil double tap"
+gesture.pencilAction.ios.help "Only active for Apple Pencil 2nd gen."
+
+// history
+gesture.history "Quick gesture"
+gesture.history.help "2-finger tap to undo.
+
+3-finger tap to redo."
+
+// size rejection
+gesture.useSizeRejection "Use size rejection"
+gesture.useSizeRejectionConfirm "Make sure to disable this option if you have trouble interacting with the canvas!"
+gesture.useSizeRejection.help "Reject input if the contact area size larger than this value.
+
+Might not work on every device."
+gesture.sizeRejection "Max size threshold"
+// help
+gesture.interaction.title "Gesture" 
+gesture.interaction.title.help "These options are always global."
+
+// --------------------------------------------------------------------------------------
 // history
 history "History"
 history.root "Root"
@@ -363,10 +422,6 @@ history.limitStack.help "Maximum number of operation the application can keep.
 The history will be updated on the next recorded operation."
 history.rangeProtect "Range protection"
 history.rangeProtect.help "If you go far in the history, it will prompt a confirm dialog before undoing many operations."
-history.gesture "Quick gesture"
-history.gesture.help "2-finger tap to undo.
-
-3-finger tap to redo."
 history.restoreCamera "Restore camera"
 history.restoreCamera.help "Enable this option to restore the saved camera viewpoint when you undo/redo an action."
 // display undo/redo
@@ -427,52 +482,6 @@ history.state.lightSpotSoftness "Light $0 spot softness"
 history.state.viewAdd "Add view $0"
 history.state.viewMove "Move view $0"
 history.state.viewDelete "Delete view $0"
-
-// --------------------------------------------------------------------------------------
-// pressure menu
-input.useGlobal "Use global settings"
-input.useGlobal.help "By default, the tools share the same pressure settings.
-
-Uncheck this option if you want specific pressure settings for this tool."
-
-input.pressure "Pressure"
-input.pressureTitle "Pressure ($0)"
-input.pressure.noTool "This tool doesn't use pen pressure."
-input.pressure.noGrab "Grab stroke type will ignore pressure settings."
-input.pressure.radius "Radius"
-input.pressure.intensity "Intensity" 
-input.pressure.useRadius "Active"
-input.pressure.useIntensity "Active" 
-input.pressure.curveRadius "Radius"
-input.pressure.curveIntensity "Intensity"
-
-input.cameraInteraction "Camera:"
-input.sculptInteraction "Sculpt:"
-input.interaction.fingerAndStylus "Finger and Stylus"
-input.interaction.finger "Finger"
-input.interaction.stylus "Stylus"
-
-input.fingerSmooth "Finger always smooths"
-input.unknownPressure "Allow unrecognized pressure"
-input.unknownPressure.help "Check this option if the pressure doesn't work with your pencil or if you need pressure finger." 
-// pencil
-input.pencilAction.none "None"
-input.pencilAction.smooth "Smooth"
-input.pencilAction.alt "Add/Sub"
-input.pencilAction.android "Pencil button"
-input.pencilAction.android.help "Experimental"
-input.pencilAction.ios "Pencil double tap"
-input.pencilAction.ios.help "Only active for Apple Pencil 2nd gen."
-// size rejection
-input.useSizeRejection "Use size rejection"
-input.useSizeRejectionConfirm "Make sure to disable this option if you have trouble interacting with the canvas!"
-input.useSizeRejection.help "Reject input if the contact area size larger than this value.
-
-Might not work on every device."
-input.sizeRejection "Max size threshold"
-// help
-input.interaction.title "Interaction" 
-input.interaction.title.help "These options are always global."
 
 // --------------------------------------------------------------------------------------
 // interface
@@ -910,8 +919,6 @@ scene.intersectionTip "Intersection : All meshes hidden"
 // --------------------------------------------------------------------------------------
 // settings
 settings.displayTitle "Display settings"
-settings.fingerRotateLighting "Rotate lighting (3 fingers)"
-settings.fingerRotateLighting.help "Drag 3 fingers horizontally on the canvas to rotate the environment, lights and matcap."
 // wireframe
 settings.wireframeTitle "Wireframe"
 settings.wireframeDisplay "Wireframe"

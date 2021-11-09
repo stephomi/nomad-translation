@@ -338,6 +338,65 @@ file.render.transparent.help "打開此選項可以讓您更方便地把渲染�
 暫不支持部分透明對象導出。"
 
 // --------------------------------------------------------------------------------------
+// gesture menu
+gesture.useGlobal "使用全局壓感設置"
+gesture.useGlobal.help "勾選後，所有工具都會使用相同的壓感參數。
+
+如您希望給此工具單獨設定壓感參數，請取消勾選。"
+
+gesture.pressure "壓感"
+gesture.pressureTitle "壓感設置 ($0)"
+gesture.pressure.noTool "此工具不適用壓感設置。"
+gesture.pressure.noGrab "此工具會忽略壓感設置。"
+gesture.pressure.radius "半徑"
+gesture.pressure.intensity "強度" 
+gesture.pressure.useRadius "啟用"
+gesture.pressure.useIntensity "啟用" 
+gesture.pressure.curveRadius "半徑"
+gesture.pressure.curveIntensity "強度"
+
+gesture.cameraInteraction "相機移動"
+gesture.sculptInteraction "雕刻"
+gesture.interaction.fingerAndStylus "手指與觸控筆"
+gesture.interaction.finger "手指"
+gesture.interaction.stylus "觸控筆"
+
+gesture.fingerLighting "三指旋轉燈光"
+gesture.fingerLighting.help "在屏幕上使用三指水平移動可使環境、燈光與材質捕捉旋轉。"
+gesture.fingerRadius ""
+gesture.fingerRadius.help ""
+
+gesture.fingerSmooth "將手指用於平滑"
+gesture.unknownPressure "允許未識別的壓感"
+gesture.unknownPressure.help "當您的觸控筆壓感無法使用或者希望使用手指壓感時，請勾選此選項。" 
+
+// pencil
+gesture.pencilAction.none "無"
+gesture.pencilAction.smooth "平滑"
+gesture.pencilAction.alt "添加或減去"
+gesture.pencilAction.android "觸控筆按鈕"
+gesture.pencilAction.android.help "實驗功能"
+gesture.pencilAction.ios "雙擊Pencil"
+gesture.pencilAction.ios.help "僅支持Apple Pencil 第二代"
+
+// history
+gesture.history "快捷手勢"
+gesture.history.help "雙指輕點撤銷。
+
+三指輕點重做。"
+
+// size rejection
+gesture.useSizeRejection "啟用忽略尺寸"
+gesture.useSizeRejectionConfirm ""
+gesture.useSizeRejection.help "如果手指與屏幕的接觸面積超過設定值，屏幕將忽略手指的本次操作。
+
+部分設備可能不支持此選項"
+gesture.sizeRejection "尺寸閾值"
+// help
+gesture.interaction.title "防誤觸" 
+gesture.interaction.title.help "以下選項均為全局設置。"
+
+// --------------------------------------------------------------------------------------
 // history
 history "歷史記錄"
 history.root "新建"
@@ -354,10 +413,6 @@ history.limitStack.help "程序可保留的最大操作數量。
 歷史記錄狀態會隨著下一個操作記錄而改變。"
 history.rangeProtect "歷史記錄保護範圍"
 history.rangeProtect.help "如您在歷史記錄中做了大量操作，程序會在覆蓋操作之前提示您。"
-history.gesture "快捷手勢"
-history.gesture.help "雙指輕點撤銷。
-
-三指輕點重做。"
 history.restoreCamera "恢覆相機視角"
 history.restoreCamera.help "啟用該選項後您可以在撤銷或重做時同時恢覆當時的相機視角。"
 // display undo/redo
@@ -418,52 +473,6 @@ history.state.lightSpotSoftness "改變燈光 $0 硬度"
 history.state.viewAdd ""
 history.state.viewMove ""
 history.state.viewDelete ""
-
-// --------------------------------------------------------------------------------------
-// pressure menu
-input.useGlobal "使用全局壓感設置"
-input.useGlobal.help "勾選後，所有工具都會使用相同的壓感參數。
-
-如您希望給此工具單獨設定壓感參數，請取消勾選。"
-
-input.pressure "壓感"
-input.pressureTitle "壓感設置 ($0)"
-input.pressure.noTool "此工具不適用壓感設置。"
-input.pressure.noGrab "此工具會忽略壓感設置。"
-input.pressure.radius "半徑"
-input.pressure.intensity "強度" 
-input.pressure.useRadius "啟用"
-input.pressure.useIntensity "啟用" 
-input.pressure.curveRadius "半徑"
-input.pressure.curveIntensity "強度"
-
-input.cameraInteraction "相機移動"
-input.sculptInteraction "雕刻"
-input.interaction.fingerAndStylus "手指與觸控筆"
-input.interaction.finger "手指"
-input.interaction.stylus "觸控筆"
-
-input.fingerSmooth "將手指用於平滑"
-input.unknownPressure "允許未識別的壓感"
-input.unknownPressure.help "當您的觸控筆壓感無法使用或者希望使用手指壓感時，請勾選此選項。" 
-// pencil
-input.pencilAction.none "無"
-input.pencilAction.smooth "平滑"
-input.pencilAction.alt "添加或減去"
-input.pencilAction.android "觸控筆按鈕"
-input.pencilAction.android.help "實驗功能"
-input.pencilAction.ios "雙擊Pencil"
-input.pencilAction.ios.help "僅支持Apple Pencil 第二代"
-// size rejection
-input.useSizeRejection "啟用忽略尺寸"
-input.useSizeRejectionConfirm ""
-input.useSizeRejection.help "如果手指與屏幕的接觸面積超過設定值，屏幕將忽略手指的本次操作。
-
-部分設備可能不支持此選項"
-input.sizeRejection "尺寸閾值"
-// help
-input.interaction.title "防誤觸" 
-input.interaction.title.help "以下選項均為全局設置。"
 
 // --------------------------------------------------------------------------------------
 // interface
@@ -903,8 +912,6 @@ scene.intersectionTip "相交運算：隱藏所有相關模型後點擊體素合
 // --------------------------------------------------------------------------------------
 // settings
 settings.displayTitle "顯示設置"
-settings.fingerRotateLighting "三指旋轉燈光"
-settings.fingerRotateLighting.help "在屏幕上使用三指水平移動可使環境、燈光與材質捕捉旋轉。"
 // wireframe
 settings.wireframeTitle "對象網格設置"
 settings.wireframeDisplay "對象網格"
