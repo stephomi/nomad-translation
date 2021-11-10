@@ -62,8 +62,6 @@ about.discord "Discord"
 
 // --------------------------------------------------------------------------------------
 // alert
-alert.confirmDelete "Confirm deletion?"
-alert.confirmDelete.yes "Yes, delete"
 alert.hole.nothing "The object has no holes!"
 alert.shape.notVisible "The current mesh is invisible!"
 alert.trim.nothing "Nothing to trim."
@@ -715,6 +713,8 @@ popup.reset.confirm "Confirm reset?"
 popup.clone "Clone"
 popup.rename "Rename"
 popup.delete "Remove"
+popup.delete.confirm "Confirm deletion?"
+popup.delete.confirm.yes "Yes, delete"
 
 // --------------------------------------------------------------------------------------
 // postprocess

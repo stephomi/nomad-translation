@@ -62,8 +62,6 @@ about.discord "Discord"
 
 // --------------------------------------------------------------------------------------
 // alert
-alert.confirmDelete "请确认是否删除？"
-alert.confirmDelete.yes "确认删除"
 alert.hole.nothing "该对象没有孔洞！"
 alert.shape.notVisible "当前对象不可见！"
 alert.trim.nothing "未找到可裁切对象"
@@ -720,6 +718,8 @@ popup.reset.confirm "确认要重置吗？"
 popup.clone "克隆"
 popup.rename "重命名"
 popup.delete "删除"
+popup.delete.confirm "请确认是否删除？"
+popup.delete.confirm.yes "确认删除"
 
 // --------------------------------------------------------------------------------------
 // postprocess
