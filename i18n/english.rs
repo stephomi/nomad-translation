@@ -189,9 +189,6 @@ Note that BFF will produce overlaps if your mesh topology is different than a di
 debug.logs "Logs"
 debug.heightmap "Heightmap"
 debug.graphics "Graphics"
-debug.dev "Dev"
-debug.trial "Simulate Trial"
-debug.picking "UI picking"
 debug.thumbnails "Make store thumbnails"
 
 // scene and layer lists
@@ -295,12 +292,13 @@ file.export.stlAscii "By default the format is binary.
 You can choose to export to text format (ASCII) but the file will be bigger."
 
 file.settings.title "Settings"
-file.settings.title.help "Most of the app settings are saved here (Camera Interface etc).
+file.settings.title.help "Most of the app settings are saved here (Camera, Interface etc).
 
-Some resources are saved separately and automatically these includes:
+Some resources are saved separately and automatically, it includes:
 - HDRs
 - Matcaps
 - Alphas
+- Textures
 - Backgrounds
 - Projects
 
@@ -525,8 +523,6 @@ interface.flipTop "flip top"
 interface.flipBottom "flip bottom"
 interface.flipMiddle "flip middle"
 interface.showTooltips "Show tooltips"
-interface.showPin "Show pin menu icon"
-interface.showPin.help "The screen width needs to be big enough to support menu pinning."
 interface.showTooltips.help "This is a tooltip."
 interface.materialPreview "Material Picker preview"
 interface.toolboxHide "Auto-hide toolbox"

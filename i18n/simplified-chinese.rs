@@ -187,9 +187,6 @@ debug.uvBFF.help "使用BFF算法来展平UV。
 debug.logs "调试日志"
 debug.heightmap "高度图"
 debug.graphics "显示选项"
-debug.dev "开发者选项"
-debug.trial "模拟试用版本"
-debug.picking "显示UI布局边界"
 debug.thumbnails ""
 
 // scene and layer lists
@@ -522,10 +519,6 @@ interface.flipTop "整体反转"
 interface.flipBottom "反转底部图标"
 interface.flipMiddle "反转中间图标"
 interface.showTooltips "显示工具提示"
-interface.showPin "显示固定菜单按钮"
-interface.showPin.help "固定按钮会出现在菜单的上方。
-
-需要有足够的屏幕宽度才能将菜单固定。"
 interface.showTooltips.help "你在点的这个小问号就是工具提示 :-D"
 interface.materialPreview "调整材质参数预览"
 interface.toolboxHide "自动隐藏工具栏"

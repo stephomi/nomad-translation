@@ -183,9 +183,6 @@ debug.uvBFF.help ""
 debug.logs ""
 debug.heightmap ""
 debug.graphics ""
-debug.dev ""
-debug.trial ""
-debug.picking ""
 debug.thumbnails ""
 
 // scene and layer lists
@@ -516,10 +513,6 @@ interface.flipTop "整體反轉"
 interface.flipBottom "反轉底部圖標"
 interface.flipMiddle "反轉中間圖標"
 interface.showTooltips "顯示工具提示"
-interface.showPin "顯示固定菜單按鈕"
-interface.showPin.help "固定按鈕會出現在菜單的上方。
-
-需要有足夠的屏幕寬度才能將菜單固定。"
 interface.showTooltips.help "你在點的這個小問號就是工具提示 :-D"
 interface.materialPreview "調整材質參數預覽"
 interface.toolboxHide "自動隱藏工具欄"
