@@ -975,6 +975,7 @@ settings.holeNonManifold.help "應用將會嘗試填補非流形孔洞。
 settings.loadGuiSettings "加載項目GUI設置"
 settings.loadGuiSettings.help "當您打開或導入項目文件時，同時加載項目中包含的GUI設置。"
 settings.loadMergeLayers "導入時合並圖層"
+settings.loadSkipTextures ""
 settings.loadKeepTopology "導入時保留拓撲"
 settings.loadKeepTopology.help "如您不希望應用破壞導入模型拓撲，請勾選此選項。
 

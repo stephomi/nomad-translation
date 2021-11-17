@@ -988,6 +988,7 @@ This option is not saved in the settings.
 settings.loadGuiSettings "Keep gui settings (at import)"
 settings.loadGuiSettings.help "When opening or importing a project file, all the gui-related settings embedded in the project will be loaded."
 settings.loadMergeLayers "Merge Layers (at import)"
+settings.loadSkipTextures "Skip textures (at import)"
 settings.loadKeepTopology "Keep topology (at import)"
 settings.loadKeepTopology.help "Use this option if you don't want Nomad to fiddle with the topology of imported mesh.
 
