@@ -261,8 +261,12 @@ file.export.title.help "If possible favor glTF export as it supports more featur
 file.export.gltf "Export glTF 2.0"
 file.export.gltfLayer "Export layers"
 file.export.gltfLayer.help "Export layers as morphs. Officially supported by glTF so it should work on other softwares as well."
-file.export.gltfColor "Export colors"
+file.export.gltfColor "Export vertex colors"
 file.export.gltfColor.help "Export vertex colors. Officially supported by glTF so it should work on other softwares as well."
+file.export.gltfTexture "Export textures"
+file.export.gltfTexture.help "This option doesn't bake vertex colors into textures.
+
+It only re-export textures in case they were already present in an imported file."
 file.export.gltfNormal "Export normals"
 file.export.gltfNormal.help "Check this option if you want to open the file in another softwares.
 
@@ -273,7 +277,7 @@ file.export.gltfExtraPaint.help "Export roughness, metalness, mask and layer pai
 // obj
 file.export.obj "Export OBJ"
 file.export.objWarning "Layers and extra painting (roughness metalness and mask) will be lost."
-file.export.objColorAppend "Export colors"
+file.export.objColorAppend "Export vertex colors"
 file.export.objColorAppend.help "Append color information after vertices.
 
 Some 3d softwares will be able to read it but not all of them."
@@ -285,7 +289,7 @@ Some 3d softwares will be able to read it but not all of them."
 // stl
 file.export.stl "Export STL"
 file.export.stlWarning "Layers and extra painting (roughness metalness and mask) will be lost."
-file.export.stlColor "Export colors"
+file.export.stlColor "Export vertex colors"
 file.export.stlColor.help "Some 3d softwares will be able to read it but not all of them."
 file.export.stlAscii "By default the format is binary.
 
@@ -919,10 +923,16 @@ settings.displayTitle "Display settings"
 settings.wireframeTitle "Wireframe"
 settings.wireframeDisplay "Wireframe"
 settings.wireframeColor "Wireframe color"
-settings.wireframeUV "Show UV"
-settings.wireframeUV.help "This option shows the texture coordinates (UV) only if they are present on the model.
+settings.wireframeUV "UV 2d wireframe"
+settings.wireframeUV.help "Display the wireframe UV in the background, if the model has UVs.
 
-Otherwise it has no effect."
+Note that when this option is enabled, it will also force the display of the checkerboard texture.
+
+This option is used only if the shading mode is PBR - UV."
+settings.debugUV "UV checkerboard"
+settings.debugUV.help "Display a default texture for UV models that don't have any color texture.
+
+This option is used only if the shading mode is PBR - UV."
 // backface
 settings.backfaceTitle "Two sided"
 settings.backfaceVisible "Two sided"

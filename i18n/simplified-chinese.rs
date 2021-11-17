@@ -262,6 +262,8 @@ file.export.gltfLayer "导出图层"
 file.export.gltfLayer.help "将图层导出为可变体。这是来自官方的特性，能在更多软件上使用。"
 file.export.gltfColor "导出颜色"
 file.export.gltfColor.help "导出的是顶点颜色。这是来自官方的特性，能在更多软件上使用。"
+file.export.gltfTexture ""
+file.export.gltfTexture.help ""
 file.export.gltfNormal "导出法线"
 file.export.gltfNormal.help "如想在其他软件上打开该文件，请勾选此选项。
 该选项对本应用没有影响。"
@@ -925,6 +927,8 @@ settings.wireframeUV "显示UV"
 settings.wireframeUV.help "开启此选项后，将会显示对象的纹理贴图坐标（UV）。
 
 仅在UV存在时显示。"
+settings.debugUV ""
+settings.debugUV.help ""
 // backface
 settings.backfaceTitle "双面显示设置"
 settings.backfaceVisible "双面显示"
