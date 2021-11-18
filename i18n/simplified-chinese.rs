@@ -1054,8 +1054,9 @@ shortcut.persp "透视"
 // stat
 stat.ramScene "场景"
 stat.vramScene "显存场景"
-stat.ramHistory "历史"
 stat.vramRender "显存渲染"
+stat.vramTextures ""
+stat.ramHistory "历史"
 stat.ramOther "其他"
 stat.usedMemory "已用内存"
 stat.freeMemory "剩余内存"
@@ -1290,7 +1291,8 @@ tool.layer.noLayerSelected "此选项仅在选择图层后可用。"
 
 // --------------------------------------------------------------------------------------
 // flatten
-tool.flatten.planeLock "锁定平面"
+tool.flatten.planeLockOrigin ""
+tool.flatten.planeLockNormal ""
 
 // --------------------------------------------------------------------------------------
 // smooth

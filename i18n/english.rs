@@ -1049,8 +1049,9 @@ shortcut.persp "Persp"
 // stat
 stat.ramScene "Scene"
 stat.vramScene "Vram Scene"
-stat.ramHistory "History"
 stat.vramRender "Vram Render"
+stat.vramTextures "Vram Textures"
+stat.ramHistory "History"
 stat.ramOther "Other"
 stat.usedMemory "Used Memory"
 stat.freeMemory "Free Memory"
@@ -1284,7 +1285,8 @@ tool.layer.noLayerSelected "This option is only available if a current layer is 
 
 // --------------------------------------------------------------------------------------
 // flatten
-tool.flatten.planeLock "Lock plane"
+tool.flatten.planeLockOrigin "Lock plane origin"
+tool.flatten.planeLockNormal "Lock plane normal"
 
 // --------------------------------------------------------------------------------------
 // smooth
