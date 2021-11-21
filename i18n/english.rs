@@ -1286,7 +1286,7 @@ tool.layer.noLayerSelected "This option is only available if a current layer is 
 // --------------------------------------------------------------------------------------
 // flatten
 tool.flatten.planeLockOrigin "Lock plane origin"
-tool.flatten.planeLockNormal "Lock plane normal"
+tool.flatten.planeLockNormal "Lock plane direction"
 
 // --------------------------------------------------------------------------------------
 // smooth
