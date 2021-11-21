@@ -1277,8 +1277,12 @@ tool.layer.noLayerSelected "此選項僅在選擇圖層後可用。"
 
 // --------------------------------------------------------------------------------------
 // flatten
+tool.flatten.warning ""
 tool.flatten.planeLockOrigin ""
 tool.flatten.planeLockNormal ""
+tool.flatten.planeAverageOrigin ""
+tool.flatten.planeAverageNormal ""
+tool.flatten.planeOffset ""
 
 // --------------------------------------------------------------------------------------
 // smooth
