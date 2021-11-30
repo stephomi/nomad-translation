@@ -257,20 +257,22 @@ file.convertToQuad.help "Reconstruct quads from triangles by pairing triangle (i
 file.export.title "Export"
 file.export.title.help "If possible favor glTF export as it supports more features than other formats."
 
+// generic export
+file.export.texture "Export textures"
+file.export.texture.help "This option doesn't bake vertex colors into textures.
+
+It only re-export textures in case they were already present in an imported file."
+file.export.normal "Export normals"
+file.export.normal.help "Check this option if you want to open the file in another softwares.
+
+Nomad does not need them."
+
 // gltf
 file.export.gltf "Export glTF 2.0"
 file.export.gltfLayer "Export layers"
 file.export.gltfLayer.help "Export layers as morphs. Officially supported by glTF so it should work on other softwares as well."
 file.export.gltfColor "Export vertex colors"
 file.export.gltfColor.help "Export vertex colors. Officially supported by glTF so it should work on other softwares as well."
-file.export.gltfTexture "Export textures"
-file.export.gltfTexture.help "This option doesn't bake vertex colors into textures.
-
-It only re-export textures in case they were already present in an imported file."
-file.export.gltfNormal "Export normals"
-file.export.gltfNormal.help "Check this option if you want to open the file in another softwares.
-
-Nomad does not need them."
 file.export.gltfExtraPaint "Export extra paint"
 file.export.gltfExtraPaint.help "Export roughness, metalness, mask and layer painting. This will be ignored by other softwares."
 

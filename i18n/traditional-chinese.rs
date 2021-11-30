@@ -252,17 +252,19 @@ file.convertToQuad.help "Reconstruct quads from triangles by pairing triangle (i
 file.export.title "導出"
 file.export.title.help "建議導出 glTF 格式，因為它比其他格式支持更多屬性。"
 
+// generic export
+file.export.texture ""
+file.export.texture.help ""
+file.export.normal "導出法線"
+file.export.normal.help "如想在其他軟件上打開該文件，請勾選此選項。
+該選項對本應用沒有影響。"
+
 // gltf
 file.export.gltf "導出 glTF 2.0"
 file.export.gltfLayer "導出圖層"
 file.export.gltfLayer.help "將圖層導出為可變體。這是來自官方的特性，能在更多軟件上使用。"
 file.export.gltfColor "導出顏色"
 file.export.gltfColor.help "導出的是頂點顏色。這是來自官方的特性，能在更多軟件上使用。"
-file.export.gltfTexture ""
-file.export.gltfTexture.help ""
-file.export.gltfNormal "導出法線"
-file.export.gltfNormal.help "如想在其他軟件上打開該文件，請勾選此選項。
-該選項對本應用沒有影響。"
 file.export.gltfExtraPaint "導出其他"
 file.export.gltfExtraPaint.help "將導出粗糙度、金屬強度、蒙版和圖層繪畫。其他軟件不會讀取該屬性。"
 
