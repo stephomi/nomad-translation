@@ -265,7 +265,7 @@ It only re-export textures in case they were already present in an imported file
 file.export.normal "Export normals"
 file.export.normal.help "Check this option if you want to open the file in another softwares.
 
-Nomad does not need them."
+Nomad always ignore the normals as it will recompute them."
 
 // gltf
 file.export.gltf "Export glTF 2.0"
@@ -998,7 +998,7 @@ It will disable vertex/face reordering, removal of vertex/face duplicates and re
 // multires
 settings.multiresTitle "Multiresolution"
 settings.multiresMaxVertices "Max vertices count"
-settings.multiresMaxVertices.help "Nomad does not perform memory check before subdivision, high poly count can easily lead to crashes."
+settings.multiresMaxVertices.help "Nomad doesn't perform memory check before subdivision, high poly count can easily lead to crashes."
 settings.multiresLowResVertices "Low resolution threshold"
 settings.multiresLowResVertices.help "A lower resolution of the mesh can be displayed when you move the camera.
 
