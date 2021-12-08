@@ -257,8 +257,10 @@ file.export.title "导出"
 file.export.title.help "建议导出 glTF 格式，因为它比其他格式支持更多属性。"
 
 // generic export
-file.export.texture ""
-file.export.texture.help ""
+file.export.texture "导出贴图"
+file.export.texture.help "此选项不会把Nomad里绘制的顶点颜色烘焙到贴图上。
+
+此选项的意义是为了导出模型本有的贴图。"
 file.export.normal "导出法线"
 file.export.normal.help "如想在其他软件上打开该文件，请勾选此选项。
 该选项对本应用没有影响。"
@@ -368,8 +370,8 @@ gesture.interaction.stylus "触控笔"
 
 gesture.fingerLighting "三指旋转灯光"
 gesture.fingerLighting.help "在屏幕上使用三指水平移动可使环境、灯光与材质捕捉旋转。"
-gesture.fingerRadius ""
-gesture.fingerRadius.help ""
+gesture.fingerRadius "三指调节半径"
+gesture.fingerRadius.help "在屏幕上使用三指垂直移动可调节当前工具的画笔半径。"
 
 gesture.fingerSmooth "将手指用于平滑"
 gesture.unknownPressure "允许未识别的压感"
@@ -929,8 +931,10 @@ settings.wireframeUV "显示UV"
 settings.wireframeUV.help "开启此选项后，将会显示对象的纹理贴图坐标（UV）。
 
 仅在UV存在时显示。"
-settings.debugUV ""
-settings.debugUV.help ""
+settings.debugUV "UV棋盘格"
+settings.debugUV.help "当模型没有颜色贴图时，默认展示棋盘贴图，可用于判断UV坐标的分布情况。
+
+此选项仅在渲染模式为PBR-UV时有效。"
 // backface
 settings.backfaceTitle "双面显示设置"
 settings.backfaceVisible "双面显示"
@@ -991,7 +995,7 @@ settings.holeNonManifold.help "应用将会尝试填补非流形孔洞。
 settings.loadGuiSettings "加载项目GUI设置"
 settings.loadGuiSettings.help "当您打开或导入项目文件时，同时加载项目中包含的GUI设置。"
 settings.loadMergeLayers "导入时合并图层"
-settings.loadSkipTextures ""
+settings.loadSkipTextures "导入时忽略贴图"
 settings.loadKeepTopology "导入时保留拓扑"
 settings.loadKeepTopology.help "如您不希望应用破坏导入模型拓扑，请勾选此选项。
 
@@ -1057,7 +1061,7 @@ shortcut.persp "透视"
 stat.ramScene "场景"
 stat.vramScene "显存场景"
 stat.vramRender "显存渲染"
-stat.vramTextures ""
+stat.vramTextures "显存贴图"
 stat.ramHistory "历史"
 stat.ramOther "其他"
 stat.usedMemory "已用内存"
@@ -1293,7 +1297,7 @@ tool.layer.noLayerSelected "此选项仅在选择图层后可用。"
 
 // --------------------------------------------------------------------------------------
 // flatten
-tool.flatten.warning ""
+tool.flatten.warning "以下均为实验性功能，在之后版本可能会被移除。"
 tool.flatten.planeLockOrigin ""
 tool.flatten.planeLockNormal ""
 tool.flatten.planeAverageOrigin ""
@@ -1586,7 +1590,8 @@ version.trialLimit "试用版本限制：
 - 仅允许启用一个项目
 - 不允许导入和导出"
 version.restorePurchase "恢复购买"
-version.fullFeatures "- 撤消或重做不受限制
+version.fullFeatures "购买完整版本后您可以：
+- 撤消或重做不受限制
 - 图层数量不受限制
 - 允许保存和载入
 - 可以导入和导出文件"
