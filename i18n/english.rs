@@ -637,6 +637,11 @@ material.receiveShadows "Receive shadows"
 material.twoSided "Two sided"
 material.alwaysUnlit "Always unlit"
 material.flipCulling "Inverse culling"
+// material
+material.reflectance "Reflectance"
+material.reflectance.help "Control the amount of reflection the material will receive for non-metallic materials.
+
+Most of the time, the default value should be used (0.5, which corresponds to the standard 4% reflected light at normal angle)."
 
 // --------------------------------------------------------------------------------------
 // menu name (visible on small screen menu are collapsed)

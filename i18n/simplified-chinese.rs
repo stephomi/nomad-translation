@@ -639,6 +639,9 @@ material.receiveShadows "接收阴影"
 material.twoSided "双面折射"
 material.alwaysUnlit "不受光显示"
 material.flipCulling "翻转法线"
+// material
+material.reflectance ""
+material.reflectance.help ""
 
 // --------------------------------------------------------------------------------------
 // menu name (visible on small screen menu are collapsed)
