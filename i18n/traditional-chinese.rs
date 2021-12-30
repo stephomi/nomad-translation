@@ -15,6 +15,7 @@ on "開啟"
 off "關閉"
 auto "自動"
 
+// coordinate
 X "X"
 Y "Y"
 Z "Z"
@@ -698,7 +699,7 @@ paint.useFalloff "使用筆刷衰減設置"
 paint.useFalloff.help "筆刷菜單里的“衰減”設置也會作用到貼圖繪制效果。"
 
 // --------------------------------------------------------------------------------------
-// popup
+// popup (for example tap on a tool, to open edit popup)
 popup.save "保存"
 popup.save.confirm "確認要保存嗎？"
 popup.reset "重置"
@@ -708,6 +709,10 @@ popup.rename "重命名"
 popup.delete "刪除"
 popup.delete.confirm "請確認是否刪除？"
 popup.delete.confirm.yes "確認刪除"
+
+// title when requesting input value through virtual keyboard
+input.name ""
+input.number ""
 
 // --------------------------------------------------------------------------------------
 // postprocess
@@ -979,6 +984,8 @@ settings.holeNonManifold.help "應用將會嘗試填補非流形孔洞。
 "
 settings.loadGuiSettings "加載項目GUI設置"
 settings.loadGuiSettings.help "當您打開或導入項目文件時，同時加載項目中包含的GUI設置。"
+settings.loadObjKeepGroup ""
+settings.loadObjKeepGroup.help ""
 settings.loadMergeLayers "導入時合並圖層"
 settings.loadSkipTextures ""
 settings.loadKeepTopology "導入時保留拓撲"

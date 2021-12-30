@@ -15,6 +15,7 @@ on "On"
 off "Off"
 auto "Auto"
 
+// coordinate
 X "X"
 Y "Y"
 Z "Z"
@@ -712,7 +713,7 @@ paint.useFalloff "Use stroke falloff"
 paint.useFalloff.help "Using the falloff set in the stroke menu to modulate the painting."
 
 // --------------------------------------------------------------------------------------
-// popup
+// popup (for example tap on a tool, to open edit popup)
 popup.save "Save"
 popup.save.confirm "Confirm save?"
 popup.reset "Reset"
@@ -722,6 +723,10 @@ popup.rename "Rename"
 popup.delete "Remove"
 popup.delete.confirm "Confirm deletion?"
 popup.delete.confirm.yes "Yes, delete"
+
+// title when requesting input value through virtual keyboard
+input.name "Name"
+input.number "Value"
 
 // --------------------------------------------------------------------------------------
 // postprocess
@@ -994,6 +999,8 @@ This option is not saved in the settings.
 "
 settings.loadGuiSettings "Keep gui settings (at import)"
 settings.loadGuiSettings.help "When opening or importing a project file, all the gui-related settings embedded in the project will be loaded."
+settings.loadObjKeepGroup "Keep OBJ groups"
+settings.loadObjKeepGroup.help "When enabled, Nomad will split the OBJ each vertex group into separate objects."
 settings.loadMergeLayers "Merge Layers (at import)"
 settings.loadSkipTextures "Skip textures (at import)"
 settings.loadKeepTopology "Keep topology (at import)"
