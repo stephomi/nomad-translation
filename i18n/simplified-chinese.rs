@@ -179,8 +179,7 @@ debug.uvPrimitive.warning "启用UV将会消耗更多运存
 debug.uvPrimitive "保留基本体UV"
 debug.uvPrimitive.help "目前仅支持立方体和球体，将会在未来支持更多种类。"
 debug.uvNormalize "UV规整化"
-debug.uvNormalize.help "Nomad将会把UV规整到0-1的网格内。
-此功能仅在导入网格时启用。"
+debug.uvNormalize.help "Nomad将会把UV规整到0-1的网格内。"
 debug.uvBFF "启用BFF UV"
 debug.uvBFF.help "使用BFF算法来展平UV。
 
@@ -1330,6 +1329,7 @@ tool.paint.layerFilter.help "启用该选项后，您只能够在模型的最底
 // masking
 tool.mask.clear "清除"
 tool.mask.invert "反相"
+tool.mask.flipConnected ""
 tool.mask.blur "模糊"
 tool.mask.sharpen "锐化"
 tool.mask.thickness "抽壳厚度"

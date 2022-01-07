@@ -1312,6 +1312,7 @@ tool.paint.layerFilter.help "啟用該選項後，您只能夠在模型的最底
 // masking
 tool.mask.clear "清除"
 tool.mask.invert "反相"
+tool.mask.flipConnected ""
 tool.mask.blur "模糊"
 tool.mask.sharpen "銳化"
 tool.mask.thickness "抽殼厚度"

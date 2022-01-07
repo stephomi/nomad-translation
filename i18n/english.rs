@@ -180,9 +180,7 @@ debug.uvPrimitive.help "For now, only Box and Sphere are supported.
 
 Other types will be supported in the future."
 debug.uvNormalize "Normalize UVs"
-debug.uvNormalize.help "Nomad will normalise the UVs inside the [0-1] tile.
-
-Note that this operation only occurs when importing a mesh."
+debug.uvNormalize.help "Nomad will normalise the UVs inside the [0-1] tile."
 debug.uvBFF "Add BFF UVs"
 debug.uvBFF.help "Add an alternative unwrapping method (boundary first flattening).
 
@@ -690,7 +688,9 @@ mesh.typeDynamic "Dynamic"
 // --------------------------------------------------------------------------------------
 // painting
 paint.useGlobal "Global material"
-paint.useGlobal.help "If this option is enabled, the selected material will be the same as the other tools"
+paint.useGlobal.help "If this option is enabled, the selected material will be the same as the other tools.
+
+Note that it only takes into account roughness, metalness and color settings."
 paint.usePainting "Stroke painting" 
 paint.intensity "Paint intensity"
 paint.paintAll "Paint all" 
@@ -1322,6 +1322,7 @@ tool.paint.layerFilter.help "Use this option if you only want to repaint the alr
 // masking
 tool.mask.clear "Clear"
 tool.mask.invert "Invert"
+tool.mask.flipConnected "Flip connected"
 tool.mask.blur "Blur"
 tool.mask.sharpen "Sharpen"
 tool.mask.thickness "Shell thickness"
