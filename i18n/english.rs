@@ -716,6 +716,8 @@ paint.useFalloff.help "Using the falloff set in the stroke menu to modulate the 
 // popup (for example tap on a tool, to open edit popup)
 popup.save "Save"
 popup.save.confirm "Confirm save?"
+popup.lastSave "Last save"
+popup.lastSave.confirm "Load last save?"
 popup.reset "Reset"
 popup.reset.confirm "Confirm reset?"
 popup.clone "Clone"

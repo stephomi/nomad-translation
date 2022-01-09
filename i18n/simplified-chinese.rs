@@ -715,6 +715,8 @@ paint.useFalloff.help "笔刷菜单里的“衰减”设置也会作用到贴图
 // popup (for example tap on a tool, to open edit popup)
 popup.save "保存"
 popup.save.confirm "确认要保存吗？"
+popup.lastSave ""
+popup.lastSave.confirm ""
 popup.reset "重置"
 popup.reset.confirm "确认要重置吗？"
 popup.clone "克隆"
