@@ -7,7 +7,7 @@
 // Popup question, confirm? [yes/cancel] [ok/cancel] [delete/cancel]
 confirm "Bestätigen?"
 yes "Ja"
-ok "Ok"
+ok "OK"
 cancel "Abbrechen"
 delete "Löschen"
 
@@ -94,8 +94,8 @@ alert.selection.unlock "Auswahl entsperren"
 alert.selection.isolate "Auswahl isolieren"
 alert.selection.showAll "Alles anzeigen"
 alert.quickSave "Speichere..."
-alert.forceShowPainting.fill "Show painting activated, [Paint all] was used."
-alert.forceShowPainting.tool "Show painting activated, the object was painted."
+alert.forceShowPainting.fill "Painting anzeigen aktiviert, [Paint all] wurde verwendet."
+alert.forceShowPainting.tool "Painting anzeigen aktiviert, Objekt painted."
 alert.multiresLost "Multiresolution geht verloren!"
 alert.rangeWarning "Der Detailgrad ist hoch und kann viel Speicherplatz erfordern!"
 // autosave popup
@@ -103,10 +103,10 @@ alert.autoSave.auto "Automatisches Speichern in... $0s"
 // bottom warning
 alert.warning.needLayer "Das aktuelle Werkzeug erfordert eine aktive Ebene."
 alert.warning.multiresLost "Multiresolution geht verloren."
-alert.warning.paintingHidden "Painting hidden: show it again in Settings panel."
-alert.warning.noPartialWireframe "Partial drawing is disabled when wireframe is displayed."
+alert.warning.paintingHidden "Painting ausgeblendet: Im Einstellungsfenster wieder einblenden."
+alert.warning.noPartialWireframe "Das partielle Zeichnen ist deaktiviert, wenn das Drahtgitter (Wireframe) eingeblendet ist."
 // bottom tip
-alert.tip.shapeOrthographic "Consider using orthographic camera if you want to avoid perspective frustum distortion when using screen projector."
+alert.tip.shapeOrthographic "Erwägen Sie die Verwendung einer orthografischen Kamera, wenn Sie perspektivische Verzerrungen bei der Verwendung von Screen Projektor vermeiden möchten."
 // undo
 alert.state.trial "Rückgängig abgebrochen: Sie benutzen die Testversion!"
 
@@ -127,73 +127,73 @@ background.imageTransform "Umwandeln"
 // transform
 background.imageX "X-Position"
 background.imageY "Y-Position"
-background.imageRotation "Drehung"
+background.imageRotation "Rotation"
 background.imageScale "Skalierung"
 
 // --------------------------------------------------------------------------------------
 // camera
 camera "Kamera"
 // saved views
-camera.updateView "Update view point?"
+camera.updateView "Ansicht updaten?"
 camera.addView "Ansicht hinzufügen"
-camera.focusOn "Focus on"
+camera.focusOn "Fokus auf"
 // projection
-camera.projection "Projection"
-camera.orthographic "Orthographic"
-camera.perspective "Perspective"
-camera.fov "Vertical Fov"
-camera.focal "focal $0mm (35mm sensor)"
+camera.projection "Projektion"
+camera.orthographic "Orthographisch"
+camera.perspective "Perspektivisch"
+camera.fov "Vertikales FoV"
+camera.focal "Brennweite $0mm (35mm Sensor)"
 // orbit
 camera.orbit "Orbit mode"
 camera.orbit.help "Trackball gives more degree of freedom you can also roll the camera with 2 fingers."
 camera.trackball "Trackball"
 camera.turntable "Turntable"
 // speed
-camera.speed "Speed"
+camera.speed "Geschwindigkeit"
 camera.rotation "Rotation"
-camera.panning "Panning"
-camera.zooming "Zooming"
+camera.panning "Schwenken (Pan)"
+camera.zooming "Zoomen"
 // misc
-camera.resetView "Reset view"
-camera.snapView "Snap view"
+camera.resetView "Ansicht zurücksetzen"
+camera.snapView "Ansicht einrasten"
 // interaction
 camera.pivot "Pivot"
-camera.doubleTapMesh "Double tap on mesh"
-camera.doubleTapBackground "Double tap on background"
-camera.doubleTapPivot "Update on double tap"
-camera.doubleTapPivot.help "Update the rotation pivot when double tapping."
-camera.autoPivot "On camera gesture start"
-camera.autoPivot.help "Update the pivot when you start interacting with the camera."
-camera.doubleTapFocus "Focus"
-camera.doubleTapFocus.help "When double tapping on the mesh, the camera will pan and focus on the picked point."
-camera.doubleTapFocusSelection "Focus on selection"
-camera.doubleTapFocusSelection.help "When double taping on background focus on the selected mesh instead of the whole scene."
+camera.doubleTapMesh "Doppel-Tipp Mesh"
+camera.doubleTapBackground "Doppel-Tipp Hintergrund"
+camera.doubleTapPivot "Update bei Doppel-Tipp"
+camera.doubleTapPivot.help "Aktualisieren Sie den Drehpunkt (Pivot) beim doppelten Antippen."
+camera.autoPivot "Bei Kamerabenutzung"
+camera.autoPivot.help "Aktualisieren Sie den Drehpunkt (Pivot), wenn Sie beginnen, mit der Kamera zu hantieren."
+camera.doubleTapFocus "Fokus"
+camera.doubleTapFocus.help "Wenn Sie doppelt auf das Mesh tippen, schwenkt die Kamera und fokussiert auf den ausgewählten Punkt."
+camera.doubleTapFocusSelection "Fokus auf Auswahl"
+camera.doubleTapFocusSelection.help "Wenn Sie doppelt auf den Hintergrund tippen, wird der Fokus auf das ausgewählte Mesh anstatt auf die gesamte Szene gelegt."
 
 // scene and layer lists
 curve.preset "Preset"
-curve.custom "Custom"
+curve.custom "Benutzerdefiniert"
 
 // --------------------------------------------------------------------------------------
 // debug
-debug.uvPrimitive.warning "Disable this option if you don't need UVs (extra memory)."
-debug.uvPrimitive "Keep primitive UVs"
-debug.uvPrimitive.help "For now, only Box and Sphere are supported.
+debug.uvPrimitive.warning "Deaktivieren Sie diese Option, wenn Sie keine UVs benötigen (zusätzlicher Speicher)."
+debug.uvPrimitive "Primitive UVs beibehalten"
+debug.uvPrimitive.help "Momentan werden nur Box und Kugel (Sphere) unterstützt.
 
-Other types will be supported in the future."
-debug.uvNormalize "Normalize UVs"
-debug.uvNormalize.help "Nomad will normalise the UVs inside the [0-1] tile."
-debug.uvBFF "Add BFF UVs"
-debug.uvBFF.help "Add an alternative unwrapping method (boundary first flattening).
+Andere Typen werden in Zukunft unterstützt werden."
+debug.uvNormalize "UVs normalisieren"
+debug.uvNormalize.help "Nomad normalisiert die UVs innerhalb Tile [0-1]."
+debug.uvBFF "BFF UVs hinzufügen"
+debug.uvBFF.help "Hinzufügen einer alternativen Unwrapping-Methode (boundary first flattening - BFF).
 
-Note that BFF will produce overlaps if your mesh topology is different than a disk or a sphere."
+Beachten Sie, dass BFF zu Überschneidungen führt, wenn Ihre Mesh-Topologie nicht aus einer Scheibe oder Kugel besteht."
 debug.logs "Logs"
 debug.heightmap "Heightmap"
-debug.graphics "Graphics"
-debug.thumbnails "Make store thumbnails"
+debug.graphics "Grafik"
+debug.thumbnails "Vorschaubilder erstellen"
 
 // scene and layer lists
-expandList "UI: Expand list"
-expandList.help "Just an UI option for easier list management."
+expandList "UI: Liste erweitern"
+expandList.help "Nur eine UI-Option zur einfacheren Listenverwaltung."
 
 // --------------------------------------------------------------------------------------
 // file
@@ -202,7 +202,7 @@ file.project.unsaved "Nicht gespeicherte Änderungen!"
 file.project.loseUnsaved "Sie werden nicht gespeicherte Änderungen verlieren!"
 file.project.lastManualSave "Vorschau der letzten manuellen Speicherung"
 file.project.trialNoOpen "Testversion: Sie können das aktuelle Projekt nicht mehr öffnen!"
-file.project.trialOnlyOpen "Trial version: you can only re-open your current project!"
+file.project.trialOnlyOpen "Testversion: Sie können nur Ihr aktuelles Projekt wieder öffnen!"
 
 // --------------------------------------------------------------------------------------
 // project
