@@ -73,7 +73,7 @@ alert.mask.noSplit "Nichts zum Teilen ausgewählt!"
 alert.view.disabled "Funktionen im Ansichtsmodus deaktiviert:"
 alert.view.disabled.widgetPrimitive "Primitive widgets"
 alert.separate.fail "Kann nicht getrennt werden: Das Objekt hat nur einen Teil!"
-alert.voxelRemesh.success "Remeshed!"
+alert.voxelRemesh.success "Remeshing ausgeführt!"
 alert.voxelRemesh.empty "Remeshing abgebrochen: Das Ergebnis hätte keine Faces mehr."
 alert.voxelRemesh.invalidInput "Ungültige Eingabe!"
 alert.matrix.clone "Das Objekt wird dupliziert"
@@ -85,7 +85,7 @@ alert.dynamic.enable "Dynamic Topology ist aktiviert!"
 alert.dynamic.disable "Dynamic Topology ist deaktiviert!"
 alert.colorPicker "Ziehen Sie Ihren Finger auf das Mesh, um eine Farbe auszuwählen."
 alert.backgroundTransform "Einfaches Antippen, um den Transformationsmodus zu verlassen."
-alert.camera.resetView "Ansicht zurücksetzen"
+alert.camera.resetView "Reset Ansicht"
 alert.camera.snapView "Snap-Ansicht"
 alert.mask.show "Maske anzeigen"
 alert.mask.hide "Maske ausblenden" 
@@ -122,7 +122,7 @@ background.exposure "Belichtung"
 background.imageEnable "Referenzbild"
 background.imageOverlay "Overlay"
 background.imageAlpha "Alpha"
-background.imageReset "Einstellungen zurücksetzen"
+background.imageReset "Reset Einstellungen"
 background.imageTransform "Umwandeln"
 // transform
 background.imageX "X-Position"
@@ -154,8 +154,8 @@ camera.rotation "Rotation"
 camera.panning "Schwenken (Pan)"
 camera.zooming "Zoomen"
 // misc
-camera.resetView "Ansicht zurücksetzen"
-camera.snapView "Ansicht einrasten"
+camera.resetView "Reset Ansicht"
+camera.snapView "Snap Ansicht"
 // interaction
 camera.pivot "Pivot"
 camera.doubleTapMesh "Doppel-Tap Mesh"
@@ -226,7 +226,7 @@ file.project.delete.confirmOk "Sind Sie sicher?"
 file.project.rename "Umbenennen"
 
 // autosave
-file.project.autoSave "Automatisches Speichern"
+file.project.autoSave "Auto-Speichern"
 file.project.autoSave.confirm "Automatisches Speichern deaktivieren?"
 file.project.autoSave.help "Speichert Ihr Projekt in regelmäßigen Abständen in einer separaten Datei.
 Die automatisch gespeicherte Datei finden Sie in:
@@ -234,7 +234,7 @@ Die automatisch gespeicherte Datei finden Sie in:
 $0"
 file.project.autoSave.popup "Popup-Zeitüberschreitung"
 file.project.autoSave.minutes "Timer Popup"
-file.project.autoSave.delete "AutoSave verwerfen"
+file.project.autoSave.delete "AutoSave löschen"
 file.project.autoSave.delete.confirm "Bestätigen?"
 
 // import
@@ -255,7 +255,9 @@ file.convertToQuad.help "Wiederherstellen von Vierecken aus Dreiecken durch Paar
 
 // export
 file.export.title "Export"
-file.export.title.help "Wenn möglich, bevorzugen Sie den glTF-Export, da er mehr Funktionen als andere Formate unterstützt."
+file.export.title.help "Wählen Sie den glTF-Export falls möglich. Das glTF-Format unterstützt beim Export mehr Funktionen als andere Formate.
+
+Nicht jedes Programm kann allerdings glTF importieren."
 
 // generic export
 file.export.texture "Texturen exportieren"
@@ -274,11 +276,11 @@ file.export.gltfLayer.help "Exportieren Sie Ebenen als Morphs. Offiziell von glT
 file.export.gltfColor "Vertex-Farben exportieren"
 file.export.gltfColor.help "Exportieren Sie Vertex-Farben. Offiziell von glTF unterstützt, daher sollte es auch mit anderen Programmen funktionieren."
 file.export.gltfExtraPaint "Zusätzliche Material-Ebenen exportieren"
-file.export.gltfExtraPaint.help "Exportieren Sie Roughness, Metalness, Masken und Ebenenmalerei. Dies wird von anderen Programmen ignoriert werden."
+file.export.gltfExtraPaint.help "Exportieren Sie Roughness, Metalness, Masken und Ebenen-Painting. Dies wird von anderen Programmen als Nomad ignoriert werden."
 
 // obj
 file.export.obj "OBJ exportieren"
-file.export.objWarning "Ebenen und zusätzliche Malerei (Roughness, Metalness, Masken) gehen verloren."
+file.export.objWarning "Ebenen und zusätzliches Painting (Roughness, Metalness, Masken) gehen verloren."
 file.export.objColorAppend "Vertex-Farben exportieren"
 file.export.objColorAppend.help "Farbinformationen nach Vertices einfügen.
 
@@ -290,7 +292,7 @@ Einige 3D-Programme können dies importieren, aber nicht alle."
 
 // stl
 file.export.stl "STL exportieren"
-file.export.stlWarning "Ebenen und zusätzliche Malerei (Roughness, Metalness, Masken) gehen verloren."
+file.export.stlWarning "Ebenen und zusätzliche Painting (Roughness, Metalness, Masken) gehen verloren."
 file.export.stlColor "Vertex-Farben exportieren"
 file.export.stlColor.help "Einige 3D-Programme können dies importieren, aber nicht alle."
 file.export.stlAscii "Standardmäßig ist das Format binär.
@@ -312,19 +314,19 @@ Einige Ressourcen werden separat und automatisch gespeichert, dazu gehören:
 Im Moment können die Pinsel-Einstellungen nicht gespeichert werden, aber eine benutzerdefinierte Pinsel-Verwaltung ist geplant."
 
 // settings
-file.settings.reset "Zurücksetzen"
+file.settings.reset "Reset"
 file.settings.reset.confirm "Alle Einstellungen zurücksetzen?
 
 Projekte, Alphas, MatCaps, HDRIs und Hintergründe sind davon nicht betroffen."
 
 // materials
 file.materials "Materialbibliothek"
-file.materials.reset "Zurücksetzen"
+file.materials.reset "Reset"
 file.materials.reset.confirm "Materialbibliothek zurücksetzen?"
 
 // tools
 file.tools "Werkzeug-Voreinstellungen"
-file.tools.reset "Zurücksetzen"
+file.tools.reset "Reset"
 file.tools.reset.confirm "Werkzeug-Voreinstellungen zurücksetzen?"
 
 // render
@@ -351,8 +353,8 @@ Teilweise Objekttransparenz wird momentan noch nicht unterstützt."
 
 // --------------------------------------------------------------------------------------
 // gesture menu
-gesture.useGlobal "Globale Einstellungen verwenden"
-gesture.useGlobal.help "Standardmäßig haben die Werkzeuge dieselben Pressure-Settings.
+gesture.useGlobal "Globale Vorgabe nutzen"
+gesture.useGlobal.help "Standardmäßig haben alle Werkzeuge dieselben Pressure-Settings.
 
 Deaktivieren Sie diese Option, wenn Sie spezielle Pressure-Settings für dieses Werkzeug wünschen."
 
@@ -378,28 +380,28 @@ gesture.fingerLighting.help "Bewegen Sie 3 Finger horizontal (von links nach rec
 gesture.fingerRadius "Tool-Radius bearbeiten (3 Finger)"
 gesture.fingerRadius.help "Bewegen Sie 3 Finger horizontal auf der dem Arbeitsbereich (von oben nach unten = verkleinern, von unten nach oben vergößern), um den Werkzeug-Radius zu verändern."
 
-gesture.fingerSmooth "Finger always smooths"
-gesture.unknownPressure "Allow unrecognized pressure"
-gesture.unknownPressure.help "Check this option if the pressure doesn't work with your pencil or if you need pressure finger." 
+gesture.fingerSmooth "Finger glättet immer"
+gesture.unknownPressure "Unerkannten Pressure zulassen"
+gesture.unknownPressure.help "Aktivieren Sie diese Option, wenn Pressure (Druck) mit Ihrem Stift nicht funktioniert oder wenn Sie einen Pressure für den Finger benötigen." 
 
 // pencil
 gesture.pencilAction.none "Nichts"
 gesture.pencilAction.smooth "Smooth"
 gesture.pencilAction.alt "Add/Sub"
-gesture.pencilAction.android "Pencil Taste"
+gesture.pencilAction.android "Stift: Taste"
 gesture.pencilAction.android.help "Experimentell"
-gesture.pencilAction.ios "Pencil Doppel-Tap"
+gesture.pencilAction.ios "Stift: Doppel-Tap"
 gesture.pencilAction.ios.help "Nur aktiv für Apple Pencil 2. Generation."
 
 // history
-gesture.history "Schnell-Geste"
+gesture.history "Schnelle-Geste"
 gesture.history.help "2-Finger Tap für UnDo.
 
 3-Finger Tap für ReDo."
 
 // size rejection
-gesture.useSizeRejection "Touch Anpassung"
-gesture.useSizeRejectionConfirm "Stellen Sie sicher, dass Sie diese Option deaktivieren, wenn Sie Probleme bei der Interaktion auf der Arbeitsfläche haben!"
+gesture.useSizeRejection "Touch Schwelle"
+gesture.useSizeRejectionConfirm "Wenn Sie Probleme bei der Erkennung der Touch-Eingabe haben, stellen Sie sicher, dass diese Option deaktiviert ist!"
 gesture.useSizeRejection.help "Die Eingabe auf dem Touchdisplay wird abgelehnt, wenn die Größe der Kontaktfläche beim Touch größer ist, als der vorgegebene Wert.
 
 Funktioniert möglicherweise nicht auf jedem Gerät."
@@ -425,7 +427,7 @@ history.limitStack.help "Maximale Anzahl von Änderungen, die im Verlauf bleiben
 Der Verlauf wird bei der nächsten aufgezeichneten Änderung aktualisiert."
 history.rangeProtect "Schutz des Bereichs"
 history.rangeProtect.help "Wenn Sie weit in der Verlaufsliste zurückgehen, wird ein Bestätigungsdialog angezeigt, bevor viele Änderungen auf einmal rückgängig gemacht werden."
-history.restoreCamera "Kamera zurücksetzen"
+history.restoreCamera "Reset Kamera"
 history.restoreCamera.help "Aktivieren Sie diese Option, um die gespeicherte Kamera-Ansicht wiederherzustellen, wenn Sie eine Aktion rückgängig machen/wiederherstellen (UnDo/ReDo)."
 // display undo/redo
 history.state.undo "UnDo: $0"
@@ -449,42 +451,42 @@ history.state.meshVisibility "Sichtbarkeit"
 history.state.meshMaterial "Material ändern"
 // state scene
 history.state.sceneAddRemove "Szene"
-history.state.sceneMeshOrder "Mesh order"
+history.state.sceneMeshOrder "Mesh Reihenfolge"
 // state layer
-history.state.layerOrder "Move layer order $0"
-history.state.layerMergeRedo "Unmerge layer $0"
-history.state.layerCreate "Create layer $0"
-history.state.layerDelete "Delete layer $0"
-history.state.layerMerge "Merge layer $0"
-history.state.layerHide "Hide layer $0"
-history.state.layerShow "Show layer $0"
-history.state.layerSelect "Select layer $0"
-history.state.layerUnselect "Unselect layer $0"
-history.state.layerName "Layer $0 name"
-history.state.layerFactor "Layer $0 factor"
-history.state.layerFactorOffset "Layer $0 offset factor"
-history.state.layerFactorColor "Layer $0 color factor"
-history.state.layerFactorRoughness "Layer $0 roughness factor"
-history.state.layerFactorMetalness "Layer $0 metalness factor"
+history.state.layerOrder "Layer $0 Reihenfolge"
+history.state.layerMergeRedo "Layer $0 getrennt"
+history.state.layerCreate "Layer $0 erstellt"
+history.state.layerDelete "Layer $0 gelöscht"
+history.state.layerMerge "Layer $0 verschmolzen"
+history.state.layerHide "Layer $0 ausgeblendet"
+history.state.layerShow "Layer $0 eingeblendet"
+history.state.layerSelect "Layer $0 ausgewählt"
+history.state.layerUnselect "Layer $0 deselektiert"
+history.state.layerName "Layer $0 umbenannt"
+history.state.layerFactor "Layer $0 Wert"
+history.state.layerFactorOffset "Layer $0 Offset-Wert"
+history.state.layerFactorColor "Layer $0 Color-Wert"
+history.state.layerFactorRoughness "Layer $0 Roughness-Wert"
+history.state.layerFactorMetalness "Layer $0 Metalness-Wert"
 // state light
-history.state.lightVisible "light $0 visible"
-history.state.lightIntensity "Light $0 intensity"
-history.state.lightColor "Light $0 color"
-history.state.lightPosition "Light $0 position"
-history.state.lightShadow "Light $0 shadow"
-history.state.lightBias "Light $0 shadow bias"
-history.state.lightAttachment "Attachment light $0"
-history.state.lightAdd "Add light $0"
-history.state.lightDelete "Delete light $0"
-history.state.lightCopy "Copy light $0"
-history.state.lightMove "Move light $0"
-history.state.lightType "Light $0 type"
-history.state.lightSpotAngle "Light $0 spot angle"
-history.state.lightSpotSoftness "Light $0 spot softness"
+history.state.lightVisible "Licht $0 sichtbar"
+history.state.lightIntensity "Licht $0 Stärke"
+history.state.lightColor "Licht $0 Farbe"
+history.state.lightPosition "Licht $0 Position"
+history.state.lightShadow "Licht $0 Schatten"
+history.state.lightBias "Licht $0 Schatten-Bias"
+history.state.lightAttachment "Licht $0 verbunden"
+history.state.lightAdd "Licht $0 hinzugefügt"
+history.state.lightDelete "Licht $0 gelöscht"
+history.state.lightCopy "Licht $0 kopiert"
+history.state.lightMove "Licht $0 bewegt"
+history.state.lightType "Licht $0 Typ"
+history.state.lightSpotAngle "Licht $0 Spot-Winkel"
+history.state.lightSpotSoftness "Licht $0 Spot-Santfheit"
 // state view
-history.state.viewAdd "Add view $0"
-history.state.viewMove "Move view $0"
-history.state.viewDelete "Delete view $0"
+history.state.viewAdd "Ansicht $0 hinzugefügt"
+history.state.viewMove "Ansicht $0 Reihenfolge"
+history.state.viewDelete "Ansicht $0 gelöscht"
 
 // --------------------------------------------------------------------------------------
 // interface
@@ -494,107 +496,107 @@ interface "Interface"
 interface.bottomButtons "Shortcuts hinzufügen (unten)..."
 interface.shortcut.voxelRemesh "Voxel Remesh"
 interface.shortcut.wireframe "Wireframe"
-interface.shortcut.lockSelection "Selection einfrieren"
+interface.shortcut.lockSelection "Selektion einfrieren"
 interface.shortcut.lockSelection.help "Wenn diese Funktion aktiviert ist, können Sie die Auswahl nicht ändern, indem Sie auf ein Mesh tippen."
 interface.shortcut.cameraReset "Kamera-Reset"
 interface.shortcut.cameraSnap "Kamera-Snap"
-interface.shortcut.perspective "Perspective"
+interface.shortcut.perspective "Perspektive"
 interface.shortcut.cameraSnapFlip "Flip bei Snap"
-interface.shortcut.cameraSnapFlip.help "Wenn die Kamera bereits eingerastet ist, mit diesem Shortcut  die Ansicht spiegeln"
+interface.shortcut.cameraSnapFlip.help "Wenn die Kamera bereits eingerastet ist, kann mit diesem Shortcut die Ansicht gespiegelt werden."
 
 // colors
-interface.colors "Main colors"
-interface.colorSelect "Color Widget"
-interface.colorBase "Color base"
-interface.colorBaseTransparent "Color panel" 
-interface.panelTransparent "Transparent panel"
-interface.blurFactor "Blur strength"
+interface.colors "Hauptfarben"
+interface.colorSelect "Widget-Farbe"
+interface.colorBase "Grundfarbe"
+interface.colorBaseTransparent "Panel-Farbe" 
+interface.panelTransparent "Panel transparent"
+interface.blurFactor "Unschärfe"
 
 // color preset
-interface.colorsPresets "Color presets"
-interface.presetBlurRed "Red"
-interface.presetBlurBlue "Blue"
-interface.presetBlurGreen "Green"
-interface.presetBlurYellow "Yellow"
-interface.presetBlackWhite "Black & White"
-interface.presetWhiteBlack "White & Black"
+interface.colorsPresets "Farb-Presets"
+interface.presetBlurRed "Rot"
+interface.presetBlurBlue "Blau"
+interface.presetBlurGreen "Grün"
+interface.presetBlurYellow "Gelb"
+interface.presetBlackWhite "S/W"
+interface.presetWhiteBlack "W/S"
 interface.presetLividOrange "Livid & Orange"
 interface.presetCardboard "Cardboard"
-interface.presetDefault "Default"
+interface.presetDefault "Standard"
 
 // style
-interface.style "Style"
+interface.style "Stil"
 interface.resetAll "Reset Interface"
-interface.resetAll.confirm "Reset interface settings?"
-interface.flipTop "flip top"
-interface.flipBottom "flip bottom"
-interface.flipMiddle "flip middle"
-interface.showTooltips "Show tooltips"
-interface.showTooltips.help "This is a tooltip."
-interface.materialPreview "Material Picker preview"
-interface.toolboxHide "Auto-hide toolbox"
-interface.toolboxHide.help "Enable this option if you want to hide the toolbox."
-interface.toolboxMaxColumn "Max column toolbox"
-interface.toolboxResetOrder "Reset toolbox order"
-interface.rounding "Rounding"
+interface.resetAll.confirm "Alle Interface-Einstellungen zurücksetzen?"
+interface.flipTop "Oben spiegeln"
+interface.flipBottom "Unten spiegeln"
+interface.flipMiddle "Mitte spiegeln"
+interface.showTooltips "Tooltips anzeigen"
+interface.showTooltips.help "Dies ist ein Tooltip."
+interface.materialPreview "Material-Picker Vorschau"
+interface.toolboxHide "Toolbox autom. ausblenden"
+interface.toolboxHide.help "Aktivieren Sie diese Option, wenn Sie die Toolbox ausblenden möchten."
+interface.toolboxMaxColumn "Toolbox max. Spalten"
+interface.toolboxResetOrder "Reset Anordn. Tools"
+interface.rounding "Ecken abrunden"
 interface.curveToolSymmetric "Symmetric tool curve widget"
 interface.curveToolSymmetric.help "The widget can be found in the Tool panel under the falloff option."
-interface.scale "Overall scale"
-interface.cursorStep "Vertical spacing"
-interface.panelWidth "Panel width"
-interface.fontScale "Font scale"
+interface.scale "Gesamt-Skalierung"
+interface.cursorStep "Vertikale Abstände"
+interface.panelWidth "Panel-Breite"
+interface.fontScale "Schriftgröße"
 
 // --------------------------------------------------------------------------------------
 // layer sub menu
-layer.action "Action"
+layer.action "Aktion"
 layer.name "Name"
-layer.delete "Delete"
-layer.move "Move"
-layer.duplicate "Duplicate"
+layer.delete "Löschen"
+layer.move "Bewegen"
+layer.duplicate "Duplizieren"
 layer.mergeDown "Merge down"
-layer.factors "Channel factors"
+layer.factors "Kanal-Werte"
 layer.offsetFactor "Position"
-layer.colorFactor "Color"
+layer.colorFactor "Farbe"
 
 // --------------------------------------------------------------------------------------
 // layers menu
-layers.addLayer "Add layer"
-layers.addLayerTrial "Trial version is limited to 1 layer per mesh."
-layers.title "Layers"
-layers.title.help "Layers can record position offsets and painting, it can be useful for non-linear workflow.
-For example by experimenting different facial expression without relying on the history stack to undo the changes.
+layers.addLayer "Layer hinzufügen"
+layers.addLayerTrial "Die Testversion ist auf 1 Layer je Mesh beschränkt."
+layers.title "Layer"
+layers.title.help "Ebenen (Layer) können Positionsverschiebungen und Painting aufzeichnen, was für einen nicht-linearen Arbeitsablauf nützlich sein kann.
+Zum Beispiel durch das Experimentieren mit verschiedenen Gesichtsausdrücken, ohne sich auf den Verlauf zurückzugreifen, um die Änderungen rückgängig zu machen.
 
-For painting data, layers are sorted in a top-down fashion; so layers on top will mask the lower ones.
+Beim Painting werden die Ebenen von oben nach unten sortiert, d. h. die obersten Ebenen verdecken die unteren.
 
-In order to resolve the layer opacity, all painting data (color, roughness, metalness) share the same mask.
-You can reset part of this mask (and thus, the layer influence) by using the 'DelLayer' tool."
-layers.primitive "Layers are unavailable for primitives."
-layers.baseSelected "None"
+Um die Ebenendeckkraft (Layer Opacity) aufzulösen, teilen sich alle Painting-Daten (Color, Roughness, Metalness) die gleiche Maske.
+Sie können einen Teil dieser Maske (und damit den Einfluss dieser Ebene) zurücksetzen, indem Sie das Werkzeug 'DelLayer' verwenden."
+layers.primitive "Ebenen sind für Grundobjekte (Primitives) nicht verfügbar."
+layers.baseSelected "Nichts"
 
 // --------------------------------------------------------------------------------------
 // light sub menu
-light "Light"
-light.color "Color"
-light.intensity "Intensity"
-light.attachment "Attachment"
-light.attachment.fixed "Fixed"
-light.attachment.camera "Camera"
+light "Licht"
+light.color "Farbe"
+light.intensity "Stärke"
+light.attachment "Anordnung"
+light.attachment.fixed "Fixiert"
+light.attachment.camera "Kamera"
 light.attachment.environment "Environment"
-light.attachment.help "-- Fixed
-Light orientation won't change.
+light.attachment.help "-- Fixiert
+Die Ausrichtung des Lichts wird sich nicht ändern.
 
--- Camera
-Light orientation depends on the camera view."
-light.type "Type"
-light.type.directional "Directional"
+-- Kamera
+Die Ausrichtung des Lichts hängt von der Kamera-Ansicht ab."
+light.type "Typ"
+light.type.directional "Direktional"
 light.type.spot "Spot"
-light.type.point "Point"
-light.spotAngle "Cone angle"
-light.spotSoftness "Softness"
-light.shadowCast "Shadow"
-light.shadowNormalBias "Normal bias"
-light.visible "Show"
-light.resetPosition "Recenter"
+light.type.point "Punkt"
+light.spotAngle "Winkel Lichtkegel"
+light.spotSoftness "Sanftheit"
+light.shadowCast "Schatten"
+light.shadowNormalBias "Normal-Bias"
+light.visible "Zeigen"
+light.resetPosition "Zentrieren"
 
 // --------------------------------------------------------------------------------------
 // material
@@ -720,7 +722,7 @@ popup.save "Speichern"
 popup.save.confirm "Speichern bestätigen?"
 popup.lastSave "Letzte Speicherung"
 popup.lastSave.confirm "Letzte Speicherung laden?"
-popup.reset "Zurücksetzen"
+popup.reset "Reset"
 popup.reset.confirm "Zurücksetzen bestätigen?"
 popup.clone "Klonen"
 popup.rename "Umbenennen"
@@ -734,75 +736,75 @@ input.number "Wert"
 
 // --------------------------------------------------------------------------------------
 // postprocess
-postprocess.mainEnable "Post Process" 
-postprocess.quality "Quality"
-postprocess.quality.help "Activate these options to improve the quality to the detriment of performance.
+postprocess.mainEnable "Nachbearbeitung (Post)" 
+postprocess.quality "Qualität"
+postprocess.quality.help "Aktivieren Sie diese Optionen, um die Qualität auf Kosten der Leistung zu verbessern.
 
 It will improve:
-- Reflection
-- Ambient Occlusion
-- Depth Of Field
+- Reflektionen
+- Ambient Occlusion (AO)
+- Tiefenschärfe (DoF - Depth Of Field)
 "
-postprocess.maxSamples "Max samples"
-postprocess.fullResolution "Full Resolution"
+postprocess.maxSamples "Max. Samples"
+postprocess.fullResolution "Volle Auflösung"
 // fxaa
-postprocess.fxaaEnable "Anti-aliasing (FXAA)"
+postprocess.fxaaEnable "Anti-Aliasing (FXAA)"
 // taa
-postprocess.taaEnable "Anti-aliasing (TAA)"
-postprocess.taaEnable.help "Reduces flickering when you are moving the camera."
+postprocess.taaEnable "Anti-Aliasing (TAA)"
+postprocess.taaEnable.help "Verringert das Flackern, wenn Sie die Kamera bewegen."
 // ssr
-postprocess.ssrEnable "Reflection (SSR)" 
-postprocess.ssrFactor "Strength" 
-postprocess.ssrDistanceFading "Distance fading" 
-postprocess.ssrDistanceFading.help "Attenuate the effect according to how far the reflection is.
-It can help in hiding artefacts that the SSR suffers from."
-postprocess.ssrUnlitWarning "SSR is only effective in PBR shading mode."
+postprocess.ssrEnable "Reflektion (SSR)" 
+postprocess.ssrFactor "Stärke" 
+postprocess.ssrDistanceFading "Distance-Fading" 
+postprocess.ssrDistanceFading.help "Dämpfen Sie die Wirkung je nach Entfernung der Reflexion.
+Es kann helfen, Artefakte zu verbergen, unter denen die SSR leidet."
+postprocess.ssrUnlitWarning "SSR ist nur im PBR-Shading-Modus wirksam."
 // ssao
-postprocess.ssaoEnable "Ambient Occlusion" 
-postprocess.ssaoRadius "Size" 
-postprocess.ssaoFactor "Strength" 
-postprocess.ssaoBias "Curvature bias" 
-postprocess.ssaoBias.help "How sensitive the effect is depending on the surface curvature."
+postprocess.ssaoEnable "Ambient Occlusion (AO)" 
+postprocess.ssaoRadius "Größe" 
+postprocess.ssaoFactor "Stärke" 
+postprocess.ssaoBias "Wölbungs-Bias" 
+postprocess.ssaoBias.help "Wie empfindlich der Effekt ist, hängt von der Oberflächenwölbung ab."
 // dof
-postprocess.dofEnable "Depth Of Field"
-postprocess.dofBlurFar "Far blur" 
-postprocess.dofBlurNear "Near blur"
-postprocess.dofFocusTip "Tap an object to change the focus point."
+postprocess.dofEnable "Depth Of Field (DoF)"
+postprocess.dofBlurFar "Ferne Unschärfe" 
+postprocess.dofBlurNear "Nahe Unschärfe"
+postprocess.dofFocusTip "Tippen Sie auf ein Objekt, um den Fokuspunkt zu ändern."
 // bloom
-postprocess.bloomEnable "Bloom" 
-postprocess.bloomIntensity "Intensity" 
+postprocess.bloomEnable "Leuchten (Bloom)" 
+postprocess.bloomIntensity "Stärke" 
 postprocess.bloomRadius "Radius" 
-postprocess.bloomRadius.help "How widespread the bloom is."
-postprocess.bloomThreshold "Threshold" 
-postprocess.bloomThreshold.help "Luminosity threshold to decide if a pixel will emit bloom or not.
-If the value is at 0, everything will receive bloom."
+postprocess.bloomRadius.help "Wie ausgedehnt das Leuchten ist."
+postprocess.bloomThreshold "Schwellenwert" 
+postprocess.bloomThreshold.help "Schwellenwert für die Leuchtkraft (Luminosity), um zu entscheiden, ob ein Pixel das Leuchten (Bloom) emittiert oder nicht.
+Steht der Wert auf 0, leuchtet alles."
 // tone mapping
-postprocess.toneEnable "Tone Mapping" 
-postprocess.toneExposure "Exposure" 
-postprocess.toneContrast "Contrast" 
-postprocess.toneSaturation "Saturation" 
+postprocess.toneEnable "Tone-Mapping" 
+postprocess.toneExposure "Belichtung" 
+postprocess.toneContrast "Kontrast" 
+postprocess.toneSaturation "Sättigung" 
 postprocess.toneMappingNone "None"
 // curve
-postprocess.curveEnable "Color Grading"
-postprocess.curve.luminance "Main"
-postprocess.curve.red "Red"
-postprocess.curve.green "Green"
-postprocess.curve.blue "Blue"
-postprocess.curveReset "Zurücksetzen"
-postprocess.curveResetAll "ALLES zurücksetzen"
+postprocess.curveEnable "Color-Grading"
+postprocess.curve.luminance "Luminanz"
+postprocess.curve.red "Rot"
+postprocess.curve.green "Grün"
+postprocess.curve.blue "Blau"
+postprocess.curveReset "Kanal neutral"
+postprocess.curveResetAll "Alles neutral"
 // chromatic
-postprocess.chromaticEnable "Chromatic Aberration" 
-postprocess.chromaticFactor "Strength" 
+postprocess.chromaticEnable "Chromatische Aberration" 
+postprocess.chromaticFactor "Stärke" 
 // vignette
 postprocess.vignetteEnable "Vignette" 
-postprocess.vignetteSize "Size" 
-postprocess.vignetteHardness "Hardness" 
+postprocess.vignetteSize "Größe" 
+postprocess.vignetteHardness "Ausprägung" 
 // sharpness
-postprocess.sharpnessEnable "Sharpness" 
-postprocess.sharpnessFactor "Strength" 
+postprocess.sharpnessEnable "Schärfe" 
+postprocess.sharpnessFactor "Stärke" 
 // grain
-postprocess.grainEnable "Grain" 
-postprocess.grainFactor "Strength" 
+postprocess.grainEnable "Körnung (Grain)" 
+postprocess.grainFactor "Stärke" 
 // curvature
 postprocess.curvatureEnable "Curvature" 
 postprocess.curvatureCavity "Cavity" 
@@ -873,8 +875,8 @@ You should probably disable symmetry as it might not function as you would expec
 You can use the 'Topologically connected' option in the mask panel to paint a plane impacting the other planes."
 primitive.triplanarSameSize "Same size (cube)"
 primitive.triplanarPolish "Smoothness"
-primitive.triplanarResetMask "Maske zurücksetzen"
-primitive.triplanarReproject "Resize mask"
+primitive.triplanarResetMask "Reset Maske"
+primitive.triplanarReproject "Resize Maske"
 primitive.triplanarReproject.title "Reproject the plane mask when updating the triplanar settings.
 \
 If you uncheck this option, it will revert to the default spherical masks."
