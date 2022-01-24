@@ -158,9 +158,9 @@ camera.resetView "Ansicht zurücksetzen"
 camera.snapView "Ansicht einrasten"
 // interaction
 camera.pivot "Pivot"
-camera.doubleTapMesh "Doppel-Tipp Mesh"
-camera.doubleTapBackground "Doppel-Tipp Hintergrund"
-camera.doubleTapPivot "Update bei Doppel-Tipp"
+camera.doubleTapMesh "Doppel-Tap Mesh"
+camera.doubleTapBackground "Doppel-Tap Hintergrund"
+camera.doubleTapPivot "Update bei Doppel-Tap"
 camera.doubleTapPivot.help "Aktualisieren Sie den Drehpunkt (Pivot) beim doppelten Antippen."
 camera.autoPivot "Bei Kamerabenutzung"
 camera.autoPivot.help "Aktualisieren Sie den Drehpunkt (Pivot), wenn Sie beginnen, mit der Kamera zu hantieren."
@@ -226,7 +226,7 @@ file.project.delete.confirmOk "Sind Sie sicher?"
 file.project.rename "Umbenennen"
 
 // autosave
-file.project.autoSave "Automatisches Speichern des Projekts"
+file.project.autoSave "Automatisches Speichern"
 file.project.autoSave.confirm "Automatisches Speichern deaktivieren?"
 file.project.autoSave.help "Speichert Ihr Projekt in regelmäßigen Abständen in einer separaten Datei.
 Die automatisch gespeicherte Datei finden Sie in:
@@ -234,7 +234,7 @@ Die automatisch gespeicherte Datei finden Sie in:
 $0"
 file.project.autoSave.popup "Popup-Zeitüberschreitung"
 file.project.autoSave.minutes "Timer Popup"
-file.project.autoSave.delete "Automatisches Speichern verwerfen"
+file.project.autoSave.delete "AutoSave verwerfen"
 file.project.autoSave.delete.confirm "Bestätigen?"
 
 // import
@@ -312,20 +312,20 @@ Einige Ressourcen werden separat und automatisch gespeichert, dazu gehören:
 Im Moment können die Pinsel-Einstellungen nicht gespeichert werden, aber eine benutzerdefinierte Pinsel-Verwaltung ist geplant."
 
 // settings
-file.settings.reset "Auf Standardwerte zurücksetzen"
+file.settings.reset "Zurücksetzen"
 file.settings.reset.confirm "Alle Einstellungen zurücksetzen?
 
 Projekte, Alphas, MatCaps, HDRIs und Hintergründe sind davon nicht betroffen."
 
 // materials
 file.materials "Materialbibliothek"
-file.materials.reset "Auf Standardwerte zurücksetzen"
+file.materials.reset "Zurücksetzen"
 file.materials.reset.confirm "Materialbibliothek zurücksetzen?"
 
 // tools
-file.tools "Werkzeuge-Voreinstellungen"
-file.tools.reset "Auf Standardwerte zurücksetzen"
-file.tools.reset.confirm "Werkzeuge-Voreinstellungen zurücksetzen?"
+file.tools "Werkzeug-Voreinstellungen"
+file.tools.reset "Zurücksetzen"
+file.tools.reset.confirm "Werkzeug-Voreinstellungen zurücksetzen?"
 
 // render
 file.render "Render"
@@ -338,7 +338,7 @@ file.render.help "Renderfaktor"
 file.render.size "Endgültige Größe"
 file.render.size.custom "Benutzerdefiniert"
 file.render.screenResolution "Bildschirm"
-file.render.export "png exortieren"
+file.render.export "PNG exportieren"
 file.render.width "Breite"
 file.render.height "Höhe"
 file.render.warn "Die Export-Auflösung ist hoch ($0x$1)!
@@ -351,104 +351,104 @@ Teilweise Objekttransparenz wird momentan noch nicht unterstützt."
 
 // --------------------------------------------------------------------------------------
 // gesture menu
-gesture.useGlobal "Use global settings"
-gesture.useGlobal.help "By default, the tools share the same pressure settings.
+gesture.useGlobal "Globale Einstellungen verwenden"
+gesture.useGlobal.help "Standardmäßig haben die Werkzeuge dieselben Pressure-Settings.
 
-Uncheck this option if you want specific pressure settings for this tool."
+Deaktivieren Sie diese Option, wenn Sie spezielle Pressure-Settings für dieses Werkzeug wünschen."
 
 gesture.pressure "Pressure"
 gesture.pressureTitle "Pressure ($0)"
-gesture.pressure.noTool "This tool doesn't use pen pressure."
-gesture.pressure.noGrab "Grab stroke type will ignore pressure settings."
+gesture.pressure.noTool "Dieses Werkzeug verwendet keine Pressure-Settings für den Stift."
+gesture.pressure.noGrab "Grab ignoriert Pressure-Settings."
 gesture.pressure.radius "Radius"
-gesture.pressure.intensity "Intensity" 
-gesture.pressure.useRadius "Active"
-gesture.pressure.useIntensity "Active" 
+gesture.pressure.intensity "Stärke" 
+gesture.pressure.useRadius "Aktiv"
+gesture.pressure.useIntensity "Aktiv" 
 gesture.pressure.curveRadius "Radius"
-gesture.pressure.curveIntensity "Intensity"
+gesture.pressure.curveIntensity "Stärke"
 
-gesture.cameraInteraction "Camera:"
+gesture.cameraInteraction "Kamera:"
 gesture.sculptInteraction "Sculpt:"
-gesture.interaction.fingerAndStylus "Finger and Stylus"
+gesture.interaction.fingerAndStylus "Finger und Stylus"
 gesture.interaction.finger "Finger"
 gesture.interaction.stylus "Stylus"
 
-gesture.fingerLighting "Rotate lighting (3 fingers)"
-gesture.fingerLighting.help "Drag 3 fingers horizontally on the canvas to rotate the environment, lights and matcap."
-gesture.fingerRadius "Edit tool radius (3 fingers)"
-gesture.fingerRadius.help "Drag 3 fingers vertically to edit the radius."
+gesture.fingerLighting "Licht-Rotation (3 Finger)"
+gesture.fingerLighting.help "Bewegen Sie 3 Finger horizontal (von links nach rechts oder umgekehrt) auf der dem Arbeitsbereich, um die Umgebung, die Lichter und das MatCap zu rotieren."
+gesture.fingerRadius "Tool-Radius bearbeiten (3 Finger)"
+gesture.fingerRadius.help "Bewegen Sie 3 Finger horizontal auf der dem Arbeitsbereich (von oben nach unten = verkleinern, von unten nach oben vergößern), um den Werkzeug-Radius zu verändern."
 
 gesture.fingerSmooth "Finger always smooths"
 gesture.unknownPressure "Allow unrecognized pressure"
 gesture.unknownPressure.help "Check this option if the pressure doesn't work with your pencil or if you need pressure finger." 
 
 // pencil
-gesture.pencilAction.none "None"
+gesture.pencilAction.none "Nichts"
 gesture.pencilAction.smooth "Smooth"
 gesture.pencilAction.alt "Add/Sub"
-gesture.pencilAction.android "Pencil button"
-gesture.pencilAction.android.help "Experimental"
-gesture.pencilAction.ios "Pencil double tap"
-gesture.pencilAction.ios.help "Only active for Apple Pencil 2nd gen."
+gesture.pencilAction.android "Pencil Taste"
+gesture.pencilAction.android.help "Experimentell"
+gesture.pencilAction.ios "Pencil Doppel-Tap"
+gesture.pencilAction.ios.help "Nur aktiv für Apple Pencil 2. Generation."
 
 // history
-gesture.history "Quick gesture"
-gesture.history.help "2-finger tap to undo.
+gesture.history "Schnell-Geste"
+gesture.history.help "2-Finger Tap für UnDo.
 
-3-finger tap to redo."
+3-Finger Tap für ReDo."
 
 // size rejection
-gesture.useSizeRejection "Use size rejection"
-gesture.useSizeRejectionConfirm "Make sure to disable this option if you have trouble interacting with the canvas!"
-gesture.useSizeRejection.help "Reject input if the contact area size larger than this value.
+gesture.useSizeRejection "Touch Anpassung"
+gesture.useSizeRejectionConfirm "Stellen Sie sicher, dass Sie diese Option deaktivieren, wenn Sie Probleme bei der Interaktion auf der Arbeitsfläche haben!"
+gesture.useSizeRejection.help "Die Eingabe auf dem Touchdisplay wird abgelehnt, wenn die Größe der Kontaktfläche beim Touch größer ist, als der vorgegebene Wert.
 
-Might not work on every device."
-gesture.sizeRejection "Max size threshold"
+Funktioniert möglicherweise nicht auf jedem Gerät."
+gesture.sizeRejection "Schwelle für maximale Größe"
 // help
-gesture.interaction.title "Gesture" 
-gesture.interaction.title.help "These options are always global."
+gesture.interaction.title "Gesten" 
+gesture.interaction.title.help "Diese Optionen gelten immer global."
 
 // --------------------------------------------------------------------------------------
 // history
-history "History"
+history "Verlauf"
 history.root "Root"
-history.undoConfirm "Do you confirm undoing all these operations?"
-history.undoWarning "If you make an edit afterwards you might lose lot of changes."
-history.stack "Stack"
-history.limitSize "History limit (Mb)"
-history.limitSize.help "Maximum size (in Mb) of the history.
+history.undoConfirm "Bestätigen Sie das UnDo (Rückgängig machen) all dieser Änderungen?"
+history.undoWarning "Wenn Sie eine nachträgliche Bearbeitung vornehmen, können viele Änderungen verloren gehen."
+history.stack "Stapel"
+history.limitSize "Verlaufslimit (MB)"
+history.limitSize.help "Max. Größe des Verlaufs (in MB).
 
-The history will be updated on the next recorded operation."
-history.limitStack "Stack limit"
-history.limitStack.help "Maximum number of operation the application can keep.
+Der Verlauf wird bei der nächsten aufgezeichneten Änderung aktualisiert."
+history.limitStack "Stapel-Limit"
+history.limitStack.help "Maximale Anzahl von Änderungen, die im Verlauf bleiben.
 
-The history will be updated on the next recorded operation."
-history.rangeProtect "Range protection"
-history.rangeProtect.help "If you go far in the history, it will prompt a confirm dialog before undoing many operations."
-history.restoreCamera "Restore camera"
-history.restoreCamera.help "Enable this option to restore the saved camera viewpoint when you undo/redo an action."
+Der Verlauf wird bei der nächsten aufgezeichneten Änderung aktualisiert."
+history.rangeProtect "Schutz des Bereichs"
+history.rangeProtect.help "Wenn Sie weit in der Verlaufsliste zurückgehen, wird ein Bestätigungsdialog angezeigt, bevor viele Änderungen auf einmal rückgängig gemacht werden."
+history.restoreCamera "Kamera zurücksetzen"
+history.restoreCamera.help "Aktivieren Sie diese Option, um die gespeicherte Kamera-Ansicht wiederherzustellen, wenn Sie eine Aktion rückgängig machen/wiederherstellen (UnDo/ReDo)."
 // display undo/redo
-history.state.undo "Undo: $0"
-history.state.redo "Redo: $0"
-history.state.symmetrySplit "Symmetry Split"
-history.state.voxelRemesh "Voxel remesh"
-history.state.surfaceRemesh "Surface remesh"
+history.state.undo "UnDo: $0"
+history.state.redo "ReDo: $0"
+history.state.symmetrySplit "Symmetrie Split"
+history.state.voxelRemesh "Voxel Remesh"
+history.state.surfaceRemesh "Surface Remesh"
 // state multires
-history.state.multiresToDynamic "Multires to Dynamic"
-history.state.multiresLevel "Resolution change"
+history.state.multiresToDynamic "Multires zu Dynamisch"
+history.state.multiresLevel "Auflösung ändern"
 history.state.multiresSubdivide "Subdivide"
 history.state.multiresReverse "Reversion"
-history.state.multiresDeleteLower "Delete lower"
-history.state.multiresDeleteHigher "Delete higher"
+history.state.multiresDeleteLower "Low-Res löschen"
+history.state.multiresDeleteHigher "High-Res löschen"
 // mesh
-history.state.meshDynamicToStatic "Dynamic to Static"
-history.state.meshStaticToDynamic "Static to Dynamic"
-history.state.meshSymmetryUpdate "Symmetry update"
-history.state.meshMatrixUpdate "Matrix update"
-history.state.meshVisibility "Visibility"
-history.state.meshMaterial "Material change"
+history.state.meshDynamicToStatic "Dynamisch zu Statisch"
+history.state.meshStaticToDynamic "Statisch zu Dynamisch"
+history.state.meshSymmetryUpdate "Symmetrie-Update"
+history.state.meshMatrixUpdate "Matrix-Update"
+history.state.meshVisibility "Sichtbarkeit"
+history.state.meshMaterial "Material ändern"
 // state scene
-history.state.sceneAddRemove "Scene"
+history.state.sceneAddRemove "Szene"
 history.state.sceneMeshOrder "Mesh order"
 // state layer
 history.state.layerOrder "Move layer order $0"
@@ -491,20 +491,20 @@ history.state.viewDelete "Delete view $0"
 interface "Interface"
 
 // bottom buttons
-interface.bottomButtons "Add shortcuts (bottom)..."
-interface.shortcut.voxelRemesh "Voxel remesh"
+interface.bottomButtons "Shortcuts hinzufügen (unten)..."
+interface.shortcut.voxelRemesh "Voxel Remesh"
 interface.shortcut.wireframe "Wireframe"
-interface.shortcut.lockSelection "Lock selection"
-interface.shortcut.lockSelection.help "When enabled, you cannot change the selection by tapping on a mesh."
-interface.shortcut.cameraReset "Camera reset"
-interface.shortcut.cameraSnap "Camera snap"
+interface.shortcut.lockSelection "Selection einfrieren"
+interface.shortcut.lockSelection.help "Wenn diese Funktion aktiviert ist, können Sie die Auswahl nicht ändern, indem Sie auf ein Mesh tippen."
+interface.shortcut.cameraReset "Kamera-Reset"
+interface.shortcut.cameraSnap "Kamera-Snap"
 interface.shortcut.perspective "Perspective"
-interface.shortcut.cameraSnapFlip "Flip on already snap"
-interface.shortcut.cameraSnapFlip.help "If the camera is already snapped, the shortcut will mirror the view"
+interface.shortcut.cameraSnapFlip "Flip bei Snap"
+interface.shortcut.cameraSnapFlip.help "Wenn die Kamera bereits eingerastet ist, mit diesem Shortcut  die Ansicht spiegeln"
 
 // colors
 interface.colors "Main colors"
-interface.colorSelect "Color widget"
+interface.colorSelect "Color Widget"
 interface.colorBase "Color base"
 interface.colorBaseTransparent "Color panel" 
 interface.panelTransparent "Transparent panel"
@@ -646,29 +646,29 @@ Most of the time, the default value should be used (0.5, which corresponds to th
 
 // --------------------------------------------------------------------------------------
 // menu name (visible on small screen menu are collapsed)
-menu.files "Files"
-menu.scene "Scene"
+menu.files "Dateien"
+menu.scene "Szene"
 menu.multires "Multires"
 menu.voxel "Voxel"
 menu.dyntopo "Dyntopo"
 menu.topology "..."
-menu.primitive "Primitive"
+menu.primitive "Grundformen"
 menu.render "Render"
 menu.material "Material"
-menu.postProcess "PostProcess"
-menu.camera "Camera"
-menu.background "Background"
+menu.postProcess "Nachbearbeitung"
+menu.camera "Kamera"
+menu.background "Hintergrund"
 menu.tool "Tool"
 menu.stroke "Stroke"
 menu.paint "Paint"
-menu.symmetry "Symmetry"
+menu.symmetry "Symmetrie"
 menu.pressure "Pressure"
-menu.layers "Layers"
-menu.settings "Settings"
+menu.layers "Layer"
+menu.settings "Einstellungen"
 menu.interface "Interface"
-menu.history "History"
-menu.historySettings "Settings"
-menu.about "About"
+menu.history "Verlauf"
+menu.historySettings "Einstellungen"
+menu.about "Über"
 menu.debug "Debug"
 
 // --------------------------------------------------------------------------------------
@@ -1069,10 +1069,10 @@ stat.ramScene "Szene"
 stat.vramScene "VRAM Szene"
 stat.vramRender "VRAM Render"
 stat.vramTextures "VRAM Texturen"
-stat.ramHistory "History"
+stat.ramHistory "Verlauf"
 stat.ramOther "Anderes"
-stat.usedMemory "Benutzter Speicher"
-stat.freeMemory "Freier Speicher"
+stat.usedMemory "RAM benutzt"
+stat.freeMemory "RAM frei"
 stat.ram "RAM"
 stat.used "Benutzt: $0 MB"
 stat.free "Frei: $0 MB"
@@ -1080,8 +1080,8 @@ stat.faces "Faces"
 stat.triangles "Dreiecke"
 stat.vertices "Vertices"
 stat.quads "Quads"
-stat.sceneFaces "Scene faces"
-stat.sceneVertices "Scene vertices"
+stat.sceneFaces "Szenen Faces"
+stat.sceneVertices "Szene Vertices"
 
 // --------------------------------------------------------------------------------------
 // stroke
