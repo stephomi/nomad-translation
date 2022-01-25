@@ -106,7 +106,7 @@ alert.warning.multiresLost "Multiresolution geht verloren."
 alert.warning.paintingHidden "Painting ausgeblendet: Im Einstellungsfenster wieder einblenden."
 alert.warning.noPartialWireframe "Das partielle Zeichnen ist deaktiviert, wenn das Drahtgitter (Wireframe) eingeblendet ist."
 // bottom tip
-alert.tip.shapeOrthographic "Erwägen Sie die Verwendung einer orthografischen Kamera, wenn Sie perspektivische Verzerrungen bei der Verwendung von Screen Projektor vermeiden möchten."
+alert.tip.shapeOrthographic "Erwägen Sie die Verwendung einer orthografischen Kamera, wenn Sie perspektivische Verzerrungen bei der Verwendung von Screen Project vermeiden möchten."
 // undo
 alert.state.trial "Rückgängig abgebrochen: Sie benutzen die Testversion!"
 
@@ -601,50 +601,50 @@ light.resetPosition "Zentrieren"
 // --------------------------------------------------------------------------------------
 // material
 material "Material"
-material.addNew "Add new"
+material.addNew "Hinzufügen"
 // if the shading mode is in matcap or unlit
-material.unlitWarning "Roughness and metalness will be ignored with the current shading mode."
+material.unlitWarning "Roughness und Metalness werden im aktuellen Shading-Modus irgnoriert."
 // refraction
-material.ior "Index of Refraction"
-material.paintingOverride "Override painting"
-material.refractionSurfaceGlossiness "Surface glossiness"
-material.refractionSurfaceGlossiness.help "- at 0, the surface is using the painted roughness
-- at 1, the surface is completely smooth"
-material.refractionInteriorRoughness "Interior roughness"
-material.refractionInteriorRoughness.help "- at 0, the interior is using the painted roughness
-- at 1, the interior is completely rough"
-material.paintGlossy "Paint glossy"
-material.paintGlossy.help "It will paint the object with a roughness and metalness of 0, thus allowing sharp refraction.
+material.ior "Lichtbrechungsindex (Refraction)"
+material.paintingOverride "Painting aufheben"
+material.refractionSurfaceGlossiness "Oberflächenglanz"
+material.refractionSurfaceGlossiness.help "- bei 0 nutzt die Oberfläche painted Roughness
+- bei 1 ist die Oberfläche völlig glatt"
+material.refractionInteriorRoughness "Rauheit innen"
+material.refractionInteriorRoughness.help "- bei 0 wird innen painted Roughness benutzt
+- bei 1 ist das Innere völlig rau"
+material.paintGlossy "Paint Glossy"
+material.paintGlossy.help "Painting mit Wert Roughness und Metalness von jeweils 0, für eine eine scharfe Brechung.
 
-This is the same as going in the painting menu and using the paint all feature with color and metalness disabled."
+Dies entspricht der Nutzung des Paint All-Features aus dem Paint-Menü  mit deaktivierten Color- und Roghness-Kanälen"
 // absorption
 material.absorptionEnable "Absorption"
-material.absorptionEnable.help "Simulate the light being absorbed when it travels through the volume.
+material.absorptionEnable.help "Simulieren Sie die Absorption des Lichts, wenn es das Volumen durchbricht.
 
-Thin parts will bright as it lets more light pass through, while thick areas will be darker.
+Dünne Teile werden hell, da sie mehr Licht durchlassen, während dicke Bereiche dunkler sind..
 
-The effect heavily depends on the mesh geometry, only an approximation of the mesh thickness is used."
-material.absorptionFactor "Factor"
+Der Effekt hängt stark von der Mesh-Geometrie ab, es wird nur eine Annäherung an die Mesh-Dicke verwendet."
+material.absorptionFactor "Faktor"
 // alpha
 material.opacity "Opacity"
 material.alphaMode.opaque "Opaque"
 material.alphaMode.blending "Blending"
 material.alphaMode.additive "Additive"
 material.alphaMode.dithering "Dithering"
-material.alphaMode.dithering.help "fagkoithering"
+material.alphaMode.dithering.help "Das Dithering (Fehlerdiffusion) ist eine Technik um bei Bildern die Illusion einer größeren Farbtiefe zu erzeugen. Dithering ist eine Art des Rasterns."
 material.alphaMode.refraction "Refraction"
 // shadows
-material.castShadows "Cast shadows"
-material.receiveShadows "Receive shadows"
+material.castShadows "Wirft Schatten"
+material.receiveShadows "Empfängt Schatten"
 // backface
-material.twoSided "Two sided"
-material.alwaysUnlit "Always unlit"
-material.flipCulling "Inverse culling"
+material.twoSided "Beidseitig"
+material.alwaysUnlit "Immer Unlit"
+material.flipCulling "Umgekehrtes Culling"
 // material
-material.reflectance "Reflectance"
-material.reflectance.help "Control the amount of reflection the material will receive for non-metallic materials.
+material.reflectance "Reflexionsgrad"
+material.reflectance.help "Kontrollieren Sie den Grad der Reflexion, den das Material bei nicht-metallischen Materialien erhält.
 
-Most of the time, the default value should be used (0.5, which corresponds to the standard 4% reflected light at normal angle)."
+In den meisten Fällen sollte der Standardwert verwendet werden (0,5 - was dem Standardwert von 4% reflektiertem Licht bei normalem Winkel entspricht)."
 
 // --------------------------------------------------------------------------------------
 // menu name (visible on small screen menu are collapsed)
@@ -653,7 +653,7 @@ menu.scene "Szene"
 menu.multires "Multires"
 menu.voxel "Voxel"
 menu.dyntopo "Dyntopo"
-menu.topology "..."
+menu.topology "Deci/UV..."
 menu.primitive "Grundformen"
 menu.render "Render"
 menu.material "Material"
@@ -675,46 +675,48 @@ menu.debug "Debug"
 
 // --------------------------------------------------------------------------------------
 // mesh sub menu
-mesh.action "Action"
-mesh.holeClose "Close holes"
+mesh.action "Aktion"
+mesh.holeClose "Löcher schließen"
 mesh.holeDetail "Detail"
-mesh.separate "Separate"
-mesh.triplanarWarning "Layers, painting and multiresolution will be lost."
-mesh.triplanarResolution "Resolution"
-mesh.triplanarCubic "Force cubic"
-mesh.triplanarConvert "Convert"
+mesh.separate "Trennen"
+mesh.triplanarWarning "Layer, Painting und Multiresolution geht verloren!"
+mesh.triplanarResolution "Auflösung"
+mesh.triplanarCubic "Würfelform erzwingen"
+mesh.triplanarConvert "Konvertieren"
 mesh.name "Name"
-mesh.type "Type"
-mesh.typeStatic "Static"
+mesh.type "Typ"
+mesh.typeStatic "Statisch"
 mesh.typeMultiresolution "Multiresolution"
-mesh.typeDynamic "Dynamic"
+mesh.typeDynamic "Dynamisch"
 
 // --------------------------------------------------------------------------------------
 // painting
-paint.useGlobal "Global material"
-paint.useGlobal.help "If this option is enabled, the selected material will be the same as the other tools.
+paint.useGlobal "Globales Material"
+paint.useGlobal.help "Wenn diese Option aktiviert ist, ist das ausgewählte Material dasselbe wie bei den anderen Werkzeugen.
 
-Note that it only takes into account roughness, metalness and color settings."
+Beachten Sie, dass hier nur die Einstellungen für Roughness, Metalness und Color berücksichtigt werden."
 paint.usePainting "Stroke painting" 
-paint.intensity "Paint intensity"
-paint.paintAll "Paint all" 
-paint.paintAll.help "Apply the current material to the mesh."
-paint.paintAllForce "Force paint all"
-paint.paintAllForce.help "Apply the current material to the mesh.
+paint.intensity "Paint Stäke"
+paint.paintAll "Füllen" 
+paint.paintAll.help "Wendet das aktuelle Material auf das gesamte Mesh ohne maskierte Bereiche an (Paint all).
 
-Masked area and disabled channels won't be painted."
+Maskierte Bereiche und deaktivierte Kanäle werden berücksichtigt und entsprechend ausgespart!"
+paint.paintAllForce "Füllen erzwingen"
+paint.paintAllForce.help "Wendet das aktuelle Material auf das gesamte Mesh inklusive maskierter Bereiche an (Force paint all).
+
+Maskierte Bereiche und deaktivierte Kanäle werden NICHT berücksichtigt. Es wird wirklich das gesamte Mesch mit dem Material überzogen!"
 paint.strokePaintingTitle "Painting ($0)"
-paint.layerWarning "Channel masking will be ignored if you try to apply it on a layer."
-paint.texture.title "Texture"
-paint.texture.title.help "An image that will color your brush stroke.
+paint.layerWarning "Die Kanalmaskierung wird ignoriert, wenn Sie versuchen, sie auf eine Ebene anzuwenden."
+paint.texture.title "Textur"
+paint.texture.title.help "Ein Bild, das den Brush Stroke färbt.
 
-Note that it will share the alpha's tiling and scale settings."
-paint.texture.warningEnable "Stroke painting needs to be enabled to allow texture projection (checkbox on top)!"
-paint.texture.warningIgnored "The current tool cannot use textures!"
-paint.useAlpha "Use stroke alpha"
-paint.useAlpha.help "Using the alpha set in the stroke menu to modulate the painting."
+Beachten Sie, dass Tiling und Skalierung des Alphas genutzt werden."
+paint.texture.warningEnable "Stroke Painting muss aktiviert sein, um Texturprojektion zu ermöglichen (Kontrollkästchen oben)!"
+paint.texture.warningIgnored "Das aktuelle Werkzeug kann keine Texturen verwenden!"
+paint.useAlpha "Stroke Alpha benutzen"
+paint.useAlpha.help "Verwenden Sie das Alpha-Set im Stroke-Menu um das Painting zu beeinflussen."
 paint.useFalloff "Use stroke falloff"
-paint.useFalloff.help "Using the falloff set in the stroke menu to modulate the painting."
+paint.useFalloff.help "Nutzen Sie das Falloff im Stroke-Menu um das Painting zu beeinflussen."
 
 // --------------------------------------------------------------------------------------
 // popup (for example tap on a tool, to open edit popup)
@@ -839,8 +841,8 @@ primitive.topology "Topology"
 primitive.geometry "Geometry"
 
 // common config
-primitive.validate "Validate"
-primitive.maxFaces "Max faces"
+primitive.validate "Validieren"
+primitive.maxFaces "Max Faces"
 primitive.maxFaces.help "The maximum number of faces a primitive can have.
 
 This limit is only active while the primitive is not validated, afterwards the safeguard is gone."
@@ -1083,7 +1085,7 @@ stat.triangles "Dreiecke"
 stat.vertices "Vertices"
 stat.quads "Quads"
 stat.sceneFaces "Szenen Faces"
-stat.sceneVertices "Szene Vertices"
+stat.sceneVertices "Szenen Vertices"
 
 // --------------------------------------------------------------------------------------
 // stroke
@@ -1586,26 +1588,26 @@ topology.decimateUniform.help "Higher value will output triangles with similar s
 // BFF is activated through Debug menu
 topology.uv.title "UV Auto-Unwrap"
 topology.uvAtlas "Unwrap Atlas"
-topology.uvAtlas.warning "Can be very slow, target <100k vertices!"
-topology.uvBFF "Unwrap Bff"
-topology.uvBFF.warning "Can have overlaps if mesh has handles!"
-topology.uvBFFCones "Cone count"
-topology.uvBFFCones.help "Higher value will reduce distortion for complex objects.
+topology.uvAtlas.warning "Kann sehr langsam sein, Ziel: <100k Vertices!"
+topology.uvBFF "Unwrap BFF"
+topology.uvBFF.warning "Es kann zu Überschneidungen kommen, wenn das Mesh Handles aufweist!"
+topology.uvBFFCones "Cone-Anzahl"
+topology.uvBFFCones.help "Ein höherer Wert verringert die Verzerrung bei komplexen Objekten.
 
-Higher value will means longer compute time."
+Ein höherer Wert bedeutet eine längere Berechnungszeit."
 topology.uvDelete "UVs löschen"
 
 // --------------------------------------------------------------------------------------
 // version trial
-version.buyWeb "Web version is only a demo"
-version.buyFull "Upgrade to full version"
-version.trialLimit "Trial version:
-- 3 undo/redo possible
-- 1 layer per mesh
-- 1 active project only
-- no import/export"
-version.restorePurchase "Restore purchase"
-version.fullFeatures "- Unlimited undo/redo
-- UnlimitedUnbegrenzte Layer
+version.buyWeb "Die Web-Version ist nur eine Demo"
+version.buyFull "Upgrade auf Vollversion"
+version.trialLimit "Test Version:
+- Nur 3 UnDo/Redo möglich
+- Nur 1 Layer pro Mesh
+- Nur 1 aktives Projekt
+- Kein Import/Export"
+version.restorePurchase "Kauf wiederherstellen"
+version.fullFeatures "- UnDo/ReDo unbegrenzt
+- Unbegrenzte Layer
 - Speichern  & Laden
 - Export & Import"
