@@ -818,7 +818,7 @@ primitive "Primitive"
 primitive.box "Box"
 primitive.sphereCube "Sphere"
 primitive.sphereUV "UV Sphere"
-primitive.icosahedron "Icosahedron"
+primitive.icosahedron "Ikosaeder"
 primitive.cylinder "Cylinder"
 primitive.cone "Cone"
 primitive.torus "Torus"
@@ -842,7 +842,7 @@ primitive.geometry "Geometry"
 
 // common config
 primitive.validate "Validieren"
-primitive.maxFaces "Max Faces"
+primitive.maxFaces "Max. Faces"
 primitive.maxFaces.help "The maximum number of faces a primitive can have.
 
 This limit is only active while the primitive is not validated, afterwards the safeguard is gone."
@@ -851,17 +851,17 @@ primitive.subdivision "Post subdivision"
 
 // common config
 primitive.radius "Radius"
-primitive.size "Size"
-primitive.sizeX "Size X"
-primitive.sizeY "Size Y"
-primitive.sizeZ "Size Z"
-primitive.division "Division"
-primitive.divisionX "Division X"
-primitive.divisionY "Division Y"
-primitive.divisionZ "Division Z"
-primitive.angleX "Angle X"
-primitive.angleY "Angle Y"
-primitive.angleZ "Angle Z"
+primitive.size "Maße"
+primitive.sizeX "Größe X"
+primitive.sizeY "Größe Y"
+primitive.sizeZ "Größe Z"
+primitive.division "Untereilung"
+primitive.divisionX "Untereilung X"
+primitive.divisionY "Untereilung Y"
+primitive.divisionZ "Untereilung Z"
+primitive.angleX "Winkel X"
+primitive.angleY "Winkel Y"
+primitive.angleZ "Winkel Z"
 primitive.constantDensity "Constant density"
 primitive.projectOnSphere "Project on sphere"
 primitive.projectOnSphere.help "Snaps the points on a perfect sphere."
@@ -882,10 +882,10 @@ primitive.triplanarReproject "Resize Maske"
 primitive.triplanarReproject.title "Reproject the plane mask when updating the triplanar settings.
 \
 If you uncheck this option, it will revert to the default spherical masks."
-primitive.isolate.all "All"
-primitive.isolate.back "Back"
-primitive.isolate.right "Right"
-primitive.isolate.bottom "Bottom"
+primitive.isolate.all "Alles"
+primitive.isolate.back "Hinten"
+primitive.isolate.right "Rechts"
+primitive.isolate.bottom "Unten"
 // plane
 primitive.planeSameSize "Same size (square)"
 // box
@@ -907,23 +907,23 @@ primitive.torusRadiusInner "Radius inner"
 primitive.torusAngle "Angle"
 primitive.torusAngleOffset "Angle offset"
 // cylinder
-primitive.cylinderHeight "Height"
+primitive.cylinderHeight "Höhe"
 // cone
 primitive.coneRadius "Radius"
-primitive.coneHeight "Height"
+primitive.coneHeight "Höhe"
 // hole sub menu (cylinder, tube, etc)
-primitive.hole "Hole"
-primitive.hasHole "Has hole"
+primitive.hole "Loch"
+primitive.hasHole "Hat ein Loch"
 // both used for hole radius and main radius
-primitive.radiusSync "Same radius"
-primitive.radiusStart "Radius start"
-primitive.radiusEnd "Radius end"
+primitive.radiusSync "Gleicher Radius"
+primitive.radiusStart "Anfangsradius"
+primitive.radiusEnd "Endradius"
 primitive.editRadius "Radius"
 // spline (for lathe and tube)
 primitive.spline "Spline"
 
 // common resources stuffs
-resource.delete "Delete"
+resource.delete "Löschen"
 resource.import "Import"
 
 // --------------------------------------------------------------------------------------
@@ -1033,7 +1033,7 @@ settings.notSaved "These options are not saved in the settings."
 shading "Shading"
 // main render mode
 shading.pbr "PBR"
-shading.matcap "Matcap"
+shading.matcap "MatCap"
 shading.unlit "Unlit"
 // lights
 shading.lights "Lichter"
@@ -1050,7 +1050,7 @@ shading.environmentAttachedToCamera.help "Attach the environment to the camera.
 
 It will force the lighting to be consistent, which can be useful for sculpting purposes."
 // matcap
-shading.matcap "Matcap"
+shading.matcap "MatCap"
 shading.matcapRotation "Rotation"
 shading.matcapRotation.help "You can rotate the matcap by dragging 3 fingers horizontally on the viewport."
 shading.matcapGlobal "Use global matcap"
@@ -1084,8 +1084,8 @@ stat.faces "Faces"
 stat.triangles "Dreiecke"
 stat.vertices "Vertices"
 stat.quads "Quads"
-stat.sceneFaces "Szenen Faces"
-stat.sceneVertices "Szenen Vertices"
+stat.sceneFaces "Faces in Szene"
+stat.sceneVertices "Vertices in Szene"
 
 // --------------------------------------------------------------------------------------
 // stroke
@@ -1172,7 +1172,7 @@ stroke.strokeTypeGrabIntensity "Grab - dynamic intensity"
 
 // --------------------------------------------------------------------------------------
 // symmetry
-symmetry "Symmetry"
+symmetry "Symmetrie"
 symmetry.enable "Enabled"
 symmetry.plane.title "Planes"
 symmetry.toolIgnore "The current tool ignores symmetry."
@@ -1181,7 +1181,7 @@ symmetry.radialX "Radial X"
 symmetry.radialY "Radial Y"
 symmetry.radialZ "Radial Z"
 // method
-symmetry.method "Method:"
+symmetry.method "Methode:"
 symmetry.method.help "-- Local
 The symmetry plane will move along the mesh when you use one of the transform tools (rotate, translate or gizmo).
 
@@ -1210,9 +1210,9 @@ symmetry.mirrorUseMasking.help "Keep masked area intact.
 This option will be ignored with non-symmetric topology (or disconnected surface, like a pair of eyes)."
 // reset
 symmetry.reset "Reset"
-symmetry.resetCenterMesh "Mesh center"
-symmetry.resetCenterWorld "World center"
-symmetry.resetDirection "Orientation"
+symmetry.resetCenterMesh "Mesh Zentrum"
+symmetry.resetCenterWorld "World Zentrum"
+symmetry.resetDirection "Orientierung"
 // advanced
 symmetry.showLine "Show line"
 symmetry.showPlane "Show plane"
@@ -1279,7 +1279,7 @@ tool.shape.closed "Closed"
 
 // popup when editing sliders
 tool.sliderRadius "Radius $0"
-tool.sliderIntensity "Intensity $0 %"
+tool.sliderIntensity "Stärke $0 %"
 
 // --------------------------------------------------------------------------------------
 // title
@@ -1430,9 +1430,9 @@ tool.gizmo.tapMiddleStab "Middle stab"
 
 // --------------------------------------------------------------------------------------
 // lathe
-tool.lathe.axis "Axis"
-tool.lathe.axis.fixed "Fixed"
-tool.lathe.axis.dynamic "Dynamic"
+tool.lathe.axis "Achse"
+tool.lathe.axis.fixed "Fixiert"
+tool.lathe.axis.dynamic "Dynamisch"
 
 // --------------------------------------------------------------------------------------
 // tube
@@ -1456,21 +1456,21 @@ tool.hole.smoothing "Hole smoothing"
 
 // --------------------------------------------------------------------------------------
 // smudge
-tool.smudge.quality "Quality"
+tool.smudge.quality "Qualität"
 tool.smudge.quality.help "It changes the resolution of the projected pixels, lower values means faster strokes."
 
 // --------------------------------------------------------------------------------------
 // trim / split / project / selMask
 tool.shape "Shape"
-tool.shape.rectangleSquare "Square"
-tool.shape.rectangleCentered "Centered"
-tool.shape.ellipseCircle "Circle"
-tool.shape.ellipseCentered "Centered"
+tool.shape.rectangleSquare "Quadrat"
+tool.shape.rectangleCentered "Zentriert"
+tool.shape.ellipseCircle "Kreis"
+tool.shape.ellipseCentered "Zentriert"
 tool.shape.lineRotateStep "Rotate step"
 
 // --------------------------------------------------------------------------------------
 // measure
-tool.measure.goldenRatio "Show golden ratio"
+tool.measure.goldenRatio "Goldenen Schnitt anzeigen"
 
 // --------------------------------------------------------------------------------------
 // topology
@@ -1542,7 +1542,7 @@ topology.dynamicDetailEdge "Detail"
 topology.dynamicDetailMethod "Level of detail based on..."
 topology.dynamicDetailMethodZoom "Zoom"
 topology.dynamicDetailMethodRadius "Radius"
-topology.dynamicDetailMethodConstant "Constant"
+topology.dynamicDetailMethodConstant "Konstant"
 topology.dynamicDetailMethod.help "-- Zoom
 The level of detail is based on how far you are from the surface.
 
