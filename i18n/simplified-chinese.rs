@@ -187,7 +187,7 @@ debug.uvBFF.help "使用BFF算法来展平UV。
 debug.logs "调试日志"
 debug.heightmap "高度图"
 debug.graphics "显示选项"
-debug.thumbnails ""
+debug.thumbnails "使用略缩图"
 
 // scene and layer lists
 expandList "展开图标"
@@ -640,8 +640,10 @@ material.twoSided "双面折射"
 material.alwaysUnlit "不受光显示"
 material.flipCulling "翻转法线"
 // material
-material.reflectance ""
-material.reflectance.help ""
+material.reflectance "反射率"
+material.reflectance.help "该参数能够控制非金属材质的高光效果。
+
+大多数情况下，建议将该参数保持为默认值 0.5，即对应 0.04 的基础反射率。"
 
 // --------------------------------------------------------------------------------------
 // menu name (visible on small screen menu are collapsed)
@@ -715,8 +717,8 @@ paint.useFalloff.help "笔刷菜单里的“衰减”设置也会作用到贴图
 // popup (for example tap on a tool, to open edit popup)
 popup.save "保存"
 popup.save.confirm "确认要保存吗？"
-popup.lastSave ""
-popup.lastSave.confirm ""
+popup.lastSave "上次保存"
+popup.lastSave.confirm "要加载上一次保存的文件吗？"
 popup.reset "重置"
 popup.reset.confirm "确认要重置吗？"
 popup.clone "克隆"
@@ -726,8 +728,8 @@ popup.delete.confirm "请确认是否删除？"
 popup.delete.confirm.yes "确认删除"
 
 // title when requesting input value through virtual keyboard
-input.name ""
-input.number ""
+input.name "修改名称"
+input.number "请输入文件名"
 
 // --------------------------------------------------------------------------------------
 // postprocess
@@ -1003,8 +1005,8 @@ settings.holeNonManifold.help "应用将会尝试填补非流形孔洞。
 "
 settings.loadGuiSettings "加载项目GUI设置"
 settings.loadGuiSettings.help "当您打开或导入项目文件时，同时加载项目中包含的GUI设置。"
-settings.loadObjKeepGroup ""
-settings.loadObjKeepGroup.help ""
+settings.loadObjKeepGroup "保留 OBJ 顶点组"
+settings.loadObjKeepGroup.help "启用该选项后，Nomad 会将 OBJ 文件的各个顶点组拆分为单独的对象。"
 settings.loadMergeLayers "导入时合并图层"
 settings.loadSkipTextures "导入时忽略贴图"
 settings.loadKeepTopology "导入时保留拓扑"
