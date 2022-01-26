@@ -814,40 +814,40 @@ postprocess.curvatureBump "Bump"
 
 // --------------------------------------------------------------------------------------
 // primitive (scene menu)
-primitive "Primitive"
+primitive "Grundformen"
 primitive.box "Box"
 primitive.sphereCube "Sphere"
 primitive.sphereUV "UV Sphere"
 primitive.icosahedron "Ikosaeder"
-primitive.cylinder "Cylinder"
-primitive.cone "Cone"
+primitive.cylinder "Zylinder"
+primitive.cone "Kegel"
 primitive.torus "Torus"
 primitive.lathe "Lathe"
 primitive.tube "Tube"
 primitive.plane "Plane"
 primitive.triplanar "Triplanar"
-primitive.needValidate "Primitives should be validated in order to be sculpted."
+primitive.needValidate "Grundformen müssen validiert werden, damit sie für das Sculpting bereit sind."
 
 // for 3d editing in viewport
-primitive.useFloatPanel "Panel inside viewport"
-primitive.useFloatPanel.help "Move some of the primitives options directly in the viewport."
+primitive.useFloatPanel "Panel im Ansichtsfenster"
+primitive.useFloatPanel.help "Verschieben Sie einige der Grundform-Optionen direkt ins Ansichtsfenster."
 primitive.edit "Edit"
-primitive.edit.help "Allow 3d editing in the viewport.
+primitive.edit.help "3D-Bearbeitung im Ansichtsfenster zulassen.
 
-You can disable this feature if you want to interact with the Gizmo or the Transform tool modifying the primitive."
+Sie können diese Funktion deaktivieren, wenn Sie mit dem Gizmo oder dem Transformieren-Werkzeug arbeiten möchten, um die Grundform zu ändern."
 
 primitive.mainConfig "Parameter"
-primitive.topology "Topology"
-primitive.geometry "Geometry"
+primitive.topology "Topologie"
+primitive.geometry "Geometrie"
 
 // common config
 primitive.validate "Validieren"
 primitive.maxFaces "Max. Faces"
-primitive.maxFaces.help "The maximum number of faces a primitive can have.
+primitive.maxFaces.help "Die maximale Anzahl an Face (Flächen), die eine Grundform haben kann.
 
-This limit is only active while the primitive is not validated, afterwards the safeguard is gone."
-primitive.linear "Flat subdivision"
-primitive.subdivision "Post subdivision"
+Das Limit ist nur aktiv, solange das Primitiv nicht validiert ist, danach ist der Schutz nicht mehr gegeben."
+primitive.linear "Scharfe Kanten"
+primitive.subdivision "Post Subdivision"
 
 // common config
 primitive.radius "Radius"
@@ -862,39 +862,39 @@ primitive.divisionZ "Untereilung Z"
 primitive.angleX "Winkel X"
 primitive.angleY "Winkel Y"
 primitive.angleZ "Winkel Z"
-primitive.constantDensity "Constant density"
-primitive.projectOnSphere "Project on sphere"
-primitive.projectOnSphere.help "Snaps the points on a perfect sphere."
+primitive.constantDensity "Konstante Dichte"
+primitive.projectOnSphere "Auf Sphere projizieren"
+primitive.projectOnSphere.help "Rastet die Punkte auf einer perfekten Kugel (Sphere) ein."
 
 // triplanar
-primitive.triplanar.title "Triplanar - Setting"
-primitive.triplanar.title.help "Triplanar is using the mask information from 3 planes to fill a voxel grid that is then polygonized.
+primitive.triplanar.title "Triplanar - Einstellung"
+primitive.triplanar.title.help "Triplanar verwendet die Maskeninformationen von 3 Ebenen, um ein Voxelgitter zu füllen, das dann in Polygone umgewandelt wird.
 
-If you interact with the division or size sliders, the painting information will reset (smoothness is ok).
+Wenn Sie die Regler für Division oder Größe benutzen, werden die Painting-Informationen zurückgesetzt (Smoothness kann verwendet werden).
 
-You should probably disable symmetry as it might not function as you would expect.
+Sie sollten möglichst Symmetrie deaktivieren, da sie wahrscheinlich nicht so funktioniert, wie Sie es erwarten würden.
 
-You can use the 'Topologically connected' option in the mask panel to paint a plane impacting the other planes."
-primitive.triplanarSameSize "Same size (cube)"
+Sie können die Option 'Topologisch connected' im Maskenfenster verwenden, um eine Plane zu painten, die die anderen Planes beeinflusst."
+primitive.triplanarSameSize "Gleiche Größe (Würfel)"
 primitive.triplanarPolish "Smoothness"
 primitive.triplanarResetMask "Reset Maske"
 primitive.triplanarReproject "Resize Maske"
-primitive.triplanarReproject.title "Reproject the plane mask when updating the triplanar settings.
-\
-If you uncheck this option, it will revert to the default spherical masks."
+primitive.triplanarReproject.title "Projizieren Sie die Plane-Maske neu, wenn Sie die triplanaren Einstellungen aktualisieren.
+
+Wenn Sie diese Option deaktivieren, werden wieder die standardmäßigen sphärischen Masken verwendet."
 primitive.isolate.all "Alles"
 primitive.isolate.back "Hinten"
 primitive.isolate.right "Rechts"
 primitive.isolate.bottom "Unten"
 // plane
-primitive.planeSameSize "Same size (square)"
+primitive.planeSameSize "Gleiche Größe  (quadratisch)"
 // box
-primitive.boxRegular "Same size (cube)"
+primitive.boxRegular "Gleiche Größe  (Würfel)"
 // tube
-primitive.tubeSnapOffset "Snap offset"
-primitive.tubeSnapOffset.help "A value of 1.0 is equal to the tube's radius."
-primitive.tubeThicknessStart "Radius start"
-primitive.tubeThicknessEnd "Radius end"
+primitive.tubeSnapOffset "Snap Offset"
+primitive.tubeSnapOffset.help "Ein Wert von 1,0 entspricht dem Radius des Tubes."
+primitive.tubeThicknessStart "Start-Radius"
+primitive.tubeThicknessEnd "End-Radius"
 // primitive.tubeTwist "Twist"
 // primitive.tubeTwistRotate "Rotation"
 // primitive.tubeTwistRadius "Magnitude"
@@ -902,10 +902,10 @@ primitive.tubeThicknessEnd "Radius end"
 primitive.tubeSnap "Snap"
 // lathe
 // torus
-primitive.torusRadiusOuter "Radius outer"
-primitive.torusRadiusInner "Radius inner"
-primitive.torusAngle "Angle"
-primitive.torusAngleOffset "Angle offset"
+primitive.torusRadiusOuter "Außen-Radius"
+primitive.torusRadiusInner "Innen-Radius"
+primitive.torusAngle "Winkel"
+primitive.torusAngleOffset "Winkel-Offset"
 // cylinder
 primitive.cylinderHeight "Höhe"
 // cone
@@ -928,104 +928,104 @@ resource.import "Import"
 
 // --------------------------------------------------------------------------------------
 // scene
-scene.title "Scene"
-scene.title.help "When using the selection checkbox, hold and drag your finger to select other objects easily."
-scene.mergeSimple "Simple merge"
-scene.mergeVoxel "Voxel merge"
-scene.voxelResolution "Resolution"
-scene.subtractionTip "Subtraction  : Hide mesh (eye icon)"
-scene.intersectionTip "Intersection : All meshes hidden"
+scene.title "Szene"
+scene.title.help "Wenn Sie das Auswahlkästchen verwenden, halten Sie Ihren Finger gedrückt und ziehen Sie ihn, um andere Objekte einfach auszuwählen."
+scene.mergeSimple "Simple Merge"
+scene.mergeVoxel "Voxel Merge"
+scene.voxelResolution "Auflösung"
+scene.subtractionTip "Subtraction  : Mesh ausblenden (Augensymbol)"
+scene.intersectionTip "Intersection : Alle Meshes ausgeblendet"
 
 // --------------------------------------------------------------------------------------
 // settings
-settings.displayTitle "Display settings"
+settings.displayTitle "Display Einstellungen"
 // wireframe
 settings.wireframeTitle "Wireframe"
 settings.wireframeDisplay "Wireframe"
-settings.wireframeColor "Wireframe color"
-settings.wireframeUV "UV 2d wireframe"
-settings.wireframeUV.help "Display the wireframe UV in the background, if the model has UVs.
+settings.wireframeColor "Wireframe-Farbe"
+settings.wireframeUV "UV 2D-Wireframe"
+settings.wireframeUV.help "Zeigt die Wireframe-UV im Hintergrund an, wenn das Modell UVs hat.
 
-Note that when this option is enabled, it will also force the display of the checkerboard texture.
+Beachten Sie, dass bei Aktivierung dieser Option auch die Anzeige der Checkerboard-Textur erzwungen wird.
 
-This option is used only if the shading mode is PBR - UV."
-settings.debugUV "UV checkerboard"
-settings.debugUV.help "Display a default texture for UV models that don't have any color texture.
+Diese Option wird nur verwendet, wenn der Shading-Modus PBR-UV ist."
+settings.debugUV "UV-Checkerboard"
+settings.debugUV.help "Anzeige einer Standardtextur für UV-Modelle, die keine Color-Textur haben.
 
-This option is used only if the shading mode is PBR - UV."
+Diese Option wird nur verwendet, wenn der Shading-Modus PBR-UV ist."
 // backface
-settings.backfaceTitle "Two sided"
-settings.backfaceVisible "Two sided"
-settings.backfaceVisible.help "Faces will be visible from both sides."
-settings.backfaceColor "Backface color"
-settings.backfaceColored "Colored backface"
+settings.backfaceTitle "Backfaces"
+settings.backfaceVisible "Backface"
+settings.backfaceVisible.help "Faces sind vomn beiden Seiten sichtbar."
+settings.backfaceColor "Backface-Farbe"
+settings.backfaceColored "Backfaces einfärben"
 // outline
-settings.outlineTitle "Outline"
-settings.outlineEnable "Outline"
-settings.outlineThickness "Thickness"
-settings.outlineColor "Color"
+settings.outlineTitle "Umriss"
+settings.outlineEnable "Umriss"
+settings.outlineThickness "Stärke"
+settings.outlineColor "Farbe"
 // snap cube
-settings.snapCubeTitle "Snap cube"
-settings.snapCubeDisplay "Snap cube"
-settings.snapCubeBottom "Bottom"
-settings.snapCubeLeft "Left"
+settings.snapCubeTitle "Ansichten-Würfel"
+settings.snapCubeDisplay "Ansichten-Würfel"
+settings.snapCubeBottom "Unten"
+settings.snapCubeLeft "Links"
 // stats
-settings.statsTitle "Stats"
-settings.statsDisplay "Stats"
-settings.statsRight "Right"
-settings.statsAll "Show full scene"
+settings.statsTitle "Statistik"
+settings.statsDisplay "Statistik"
+settings.statsRight "Rechts"
+settings.statsAll "Gesamte Szene anzeigen"
 // grid
-settings.gridTitle "Grid"
-settings.gridDisplay "Grid"
-settings.gridHeight "Height"
-settings.gridColor "Color"
+settings.gridTitle "Raster (Grid)"
+settings.gridDisplay "Raster"
+settings.gridHeight "Höhe"
+settings.gridColor "Farbe"
 // cursor
-settings.cursorWhileSculpting "Show circle while sculpting"
-settings.cursorShowDot "Show small dot"
-settings.cursorShowDot.help "The dot can appear as the camera pivot point or when you are sculpting."
-settings.cursorShowRope "Show rope stabilizer"
+settings.cursorWhileSculpting "Kreis anzeigen beim Sculpten"
+settings.cursorShowDot "Kleinen Punkt anzeigen"
+settings.cursorShowDot.help "Der Punkt kann als Kameradrehpunkt erscheinen oder wenn Sie sculpten."
+settings.cursorShowRope "Rope-Stabilisator anzeigen"
 // other
-settings.renderRatio "Render resolution"
-settings.darkenUnselected "Darken unselected meshes"
-settings.smoothShading "Smooth shading"
-settings.partialDraw "Partial drawing"
-settings.partialDraw.help "Feature not polished!
+settings.renderRatio "Render-Auflösung"
+settings.darkenUnselected "Nicht gewählte Meshes abdunkeln"
+settings.smoothShading "Smooth Shading"
+settings.partialDraw "Partial Drawing"
+settings.partialDraw.help "Feature noch nicht ausgereift!
 
-Use it if you are sculpting a relatively small part of a high poly mesh.
+Verwenden Sie es, wenn Sie einen relativ kleinen Teil eines High-Poly-Meshes sculpten.
 
-It should make the sculpting smoother, but you should not enable wireframe!
+Es sollte das Sculpten snoother machen, aber Sie sollten Wireframe deaktivieren!
 
-Also it might add visual artefacts during the brush strokes"
-settings.partialDrawWarning "Do not forget to turn off this option if the visual artefacts are too bothersome!"
-settings.showPainting "Show painting"
-settings.lightIcon "Light icons"
-settings.lightIcon.help "Display light icons on the canvas so that you can select and edit them directly."
-settings.holeTitle "Hole-filling"
-settings.holeNonManifold "Fill non-manifold"
-settings.holeNonManifold.help "Try to fill non manifold hole.
-This option is not saved in the settings.
+Außerdem könnte es bei den Brush-Strokes zu visuellen Artefakten kommen."
+settings.partialDrawWarning "Vergessen Sie nicht, diese Option zu deaktivieren, wenn die visuellen Artefakte zu sehr stören!"
+settings.showPainting "Pinting anzeigen"
+settings.lightIcon "Licht-Icon"
+settings.lightIcon.help "Icons für die einzelnen Lichter im Arbeitsbereich anzeigen, so dass Sie die Lichter direkt auswählen und bearbeiten können".
+settings.holeTitle "Löcher füllen"
+settings.holeNonManifold "Non-Manifold füllen"
+settings.holeNonManifold.help "Versucht, ein non-manifold Loch zu füllen.
+Diese Option ist nicht in den Einstellungen gespeichert.
 "
-settings.loadGuiSettings "Keep gui settings (at import)"
-settings.loadGuiSettings.help "When opening or importing a project file, all the gui-related settings embedded in the project will be loaded."
-settings.loadObjKeepGroup "Keep OBJ groups"
-settings.loadObjKeepGroup.help "When enabled, Nomad will split the OBJ each vertex group into separate objects."
-settings.loadMergeLayers "Merge Layers (at import)"
-settings.loadSkipTextures "Skip textures (at import)"
-settings.loadKeepTopology "Keep topology (at import)"
-settings.loadKeepTopology.help "Use this option if you don't want Nomad to fiddle with the topology of imported mesh.
+settings.loadGuiSettings "GUI-Einstellungen mitladen (beim Import)"
+settings.loadGuiSettings.help "Beim Öffnen oder Importieren einer Projektdatei werden alle in das Projekt eingebetteten GUI-bezogenen Einstellungen geladen."
+settings.loadObjKeepGroup "OBJ-Gruppen beibehalten"
+settings.loadObjKeepGroup.help "Wenn diese Option aktiviert ist, teilt Nomad das OBJ in jede Vertex-Gruppe in separate Objekte auf."
+settings.loadMergeLayers "Layer zusammenführen (beim Import)"
+settings.loadSkipTextures "Texturen überspringen (beim Import)"
+settings.loadKeepTopology "Topologie beibehalten (beim Import)"
+settings.loadKeepTopology.help "Verwenden Sie diese Option, wenn Sie nicht möchten, dass Nomad die Topologie des importierten Meshes verändert.
 
-It will disable vertex/face reordering, removal of vertex/face duplicates and removal of unused vertices."
+Es deaktiviert das Neuanordnen von Vertices/Faces, das Entfernen von Vertex-/Face-Duplikaten und das Entfernen von unbenutzten Vertices."
 // multires
 settings.multiresTitle "Multiresolution"
-settings.multiresMaxVertices "Max vertices count"
-settings.multiresMaxVertices.help "Nomad doesn't perform memory check before subdivision, high poly count can easily lead to crashes."
-settings.multiresLowResVertices "Low resolution threshold"
-settings.multiresLowResVertices.help "A lower resolution of the mesh can be displayed when you move the camera.
+settings.multiresMaxVertices "Max. Anzahl an Vertices"
+settings.multiresMaxVertices.help "Nomad führt vor der Unterteilung keine Speicherprüfung durch, eine hohe Polyanzahl kann leicht zu Abstürzen führen."
+settings.multiresLowResVertices "Low Resolution Schwelle"
+settings.multiresLowResVertices.help "Eine geringere Auflösung des Meshes wird angezeigt, wenn Sie die Kamera bewegen.
 
-You can increase this value if you want to display a higher resolution of the mesh."
+Sie können diesen Wert erhöhen, wenn Sie eine höhere Auflösung des Meshes anzeigen möchten."
 // experimental
-settings.experimentalTitle "Experimental"
-settings.notSaved "These options are not saved in the settings."
+settings.experimentalTitle "Experimentell"
+settings.notSaved "Diese Optionen werden nicht in den Einstellungen gespeichert".
 // settings.parallel "Parallel sculpting"
 
 // --------------------------------------------------------------------------------------
@@ -1038,23 +1038,23 @@ shading.unlit "Unlit"
 // lights
 shading.lights "Lichter"
 shading.lights.addLight "Licht hinzufügen"
-shading.lights.unlitWarning "Lights are ignored in Matcap and Unlit mode."
+shading.lights.unlitWarning "Lichter werden imin den Modi MatCap und Unlit ignoriert."
 // environment
 shading.environment "Umgebung"
 shading.environmentImport "HDR importieren"
-shading.environmentExposure "Exposure"
+shading.environmentExposure "Belichtung"
 shading.environmentRotation "Rotation"
-shading.environmentRotation.help "You can rotate the environment by dragging 3 fingers horizontally on the viewport."
-shading.environmentAttachedToCamera "Attached to camera"
-shading.environmentAttachedToCamera.help "Attach the environment to the camera.
+shading.environmentRotation.help "Sie können die Umgebung drehen, indem Sie 3 Finger horizontal (von links nach rechts oder umgekehrt) auf dem Touchbildschirm bewegen."
+shading.environmentAttachedToCamera "Mit der Kamera verbunden"
+shading.environmentAttachedToCamera.help " Verbinden Sie die Umgebung mit der Kamera.
 
-It will force the lighting to be consistent, which can be useful for sculpting purposes."
+Dadurch wird eine gleichmäßige Beleuchtung erzwungen, was für das Sculpting hilfreich sein kann."
 // matcap
 shading.matcap "MatCap"
 shading.matcapRotation "Rotation"
-shading.matcapRotation.help "You can rotate the matcap by dragging 3 fingers horizontally on the viewport."
-shading.matcapGlobal "Use global matcap"
-shading.matcapGlobal.help "Uncheck this option to use a different matcap for this particular mesh."
+shading.matcapRotation.help "Sie können das MatCap drehen, indem Sie 3 Finger horizontal (von links nach rechts oder umgekehrt) auf dem Touchbildschirm bewegen."
+shading.matcapGlobal "Globales MatCap verwenden"
+shading.matcapGlobal.help "Deaktivieren Sie diese Option, um ein separates MatCap für dieses Mesh zu verwenden."
 
 // --------------------------------------------------------------------------------------
 // bottom shortcut buttons (ICON FIT)
@@ -1091,136 +1091,136 @@ stat.sceneVertices "Vertices in Szene"
 // stroke
 stroke "Stroke"
 strokeTitle "Stroke ($0)"
-stroke.useWorldRadius "World-space radius"
-stroke.useWorldRadius.help "This is shared among every tools."
-stroke.useShareRadius "Share radius"
-stroke.useShareRadius.help "Share the radius value among every tools."
-stroke.minSpacingAdjustIntensity "Adjust spacing intensity"
-stroke.minSpacingAdjustIntensity.help "Adjust the brush intensity to ensure consistent deformation depending on the stroke spacing."
-stroke.minSpacing "Stroke spacing"
-stroke.minSpacing.help "Spacing between each stroke, relative to the tool radius.
+stroke.useWorldRadius "World-Space Radius"
+stroke.useWorldRadius.help "Das wird von allen Werkzeugen geteilt."
+stroke.useShareRadius "Radius teilen"
+stroke.useShareRadius.help "Teilen Sie den Wert des Radius auf mit allen Werkzeugen."
+stroke.minSpacingAdjustIntensity "Intensität der Abstände anpassen"
+stroke.minSpacingAdjustIntensity.help "Passen Sie die Brush-Intensität an, um eine gleichmäßige Verformung in Abhängigkeit von den Stroke-Abständen zu gewährleisten."
+stroke.minSpacing "Stroke Spacing"
+stroke.minSpacing.help "Abstand zwischen den einzelnen Strokes (Strichen), relativ zum Werkzeugradius.
 
-Lower value will allow smoother stroke but performance will degrade."
-stroke.lazySmooth "Stroke smoothing"
-stroke.lazySmooth.help "Average multiple pointer position to get a smoother stroke.
+Ein niedrigerer Wert ermöglicht einen gleichmäßigeren Stroke, aber die Leistung nimmt ab."
+stroke.lazySmooth "Stroke Smoothing"
+stroke.lazySmooth.help "Mittlere Position des Pointers, um einen gleichmäßigeren Stroke zu erhalten.
 
-With high values, the stroke will lag behind the pointer but will eventually catch up."
-stroke.lazyRadius "Lazy rope stabilizer"
-stroke.lazyRadius.help "Strokes will lag behind the pointer position according to a certain distance.
+Bei hohen Werten hinkt der Strich dem Pointer hinterher, holt aber schließlich auf."
+stroke.lazyRadius "Lazy Rope Stabilisator"
+stroke.lazyRadius.help "Die Strokes bleiben in einem bestimmten Abstand hinter der Pointer-Position.
 
-This can be used to draw smooth lines."
-stroke.globalSettings "This is a global setting"
-stroke.snapRadius "Snap radius"
-stroke.snapRadius.help "Snap the stroke if the pointer lies close to the last recorded stroke.
+Damit kann man geglättete Linien zeichnen."
+stroke.globalSettings "Dies ist eine globale Einstellung"
+stroke.snapRadius "Snap Radius"
+stroke.snapRadius.help "Rastet den Stroke ein, wenn der Pointer in der Nähe des letzten aufgezeichneten Strokes liegt.
 
-This can be useful when drawing long continuous lines, while doing frequent pauses."
-stroke.sculptOffset "Stroke offset"
-stroke.sculptOffset.help "Apply a constant offset on the stroke.
+Das kann nützlich sein, wenn man lange, durchgehende Linien zeichnet und dabei häufig Pausen macht."
+stroke.sculptOffset "Stroke-Offset"
+stroke.sculptOffset.help "Wendet einen konstanten Offset auf den Stroke an.
 
-This option is there to help for small screen when using fingers, so that your finger doesn't cover the stroke."
-stroke.accumulate "Accumulate stroke"
-stroke.accumulate.help "If this option is enabled, there is no limit to how much matter you can add/remove per stroke."
-stroke.useDynamicTopology "Allow dynamic topology"
-stroke.connectedTopology "Connected topology"
-stroke.connectedTopology.help "This option will only sculpt the vertices that are linked to the picked surface.
+Diese Option ist für kleine Bildschirme gedacht, wenn man mit den Fingern arbeitet, damit der Finger nicht den Stroke verdecken."
+stroke.accumulate "Strokes kumulieren"
+stroke.accumulate.help "Wenn diese Option aktiviert ist, gibt es keine Begrenzung für die Menge an Material, die Sie je Stroke hinzufügen/entfernen können."
+stroke.useDynamicTopology "Dynamic Topology erlauben"
+stroke.connectedTopology "Connected Topology"
+stroke.connectedTopology.help "Mit dieser Option werden nur die Vertices gesculptet, die mit der ausgewählten Oberfläche verbunden sind.
 
-This is typically used for the Move tool, for example if you want to exclusively move a part that self-intersect with another part."
-stroke.onlyFrontFace "Front-facing vertex only"
-stroke.onlyFrontFace.help "This option will ignore back facing vertices.
+Dies wird in der Regel für das Move-Werkzeug verwendet, zum Beispiel, wenn Sie ausschließlich ein Teil verschieben möchten, das sich mit einem anderen Teil überschneidet."
+stroke.onlyFrontFace "Nur Front-Facing Vertex"
+stroke.onlyFrontFace.help "Diese Option ignoriert Back Face Vertices.
 
-It can be useful if you want to paint part of a thin geometry without impacting the other side.
+Dies kann nützlich sein, wenn Sie einen Teil einer dünnen Geometrie painten wollen, ohne die andere Seite zu beeinträchtigen.
 
-It also works for sculpting but you might experience some artefacts."
-stroke.onlySameSide "Same-side vertex only"
-stroke.onlySameSide.help "Ignore vertices that points in the opposite direction of the deformation."
+Dies funktioniert auch für das Sculpting, aber es kann zu Artefakten kommen."
+stroke.onlySameSide "Vertices gleicher Ausrichtung"
+stroke.onlySameSide.help "Vertices, die in die entgegengesetzte Richtung der Deformation zeigen, werden ignoriert".
 stroke.curveFalloff "Falloff"
-stroke.onlyLasso "Settings only active for the lasso tool."
+stroke.onlyLasso "Einstellungen nur für das Lasso-Werkzeug aktiv."
 // alpha
 stroke.alpha "Alpha" 
-stroke.alphaInvert "Invert value"
+stroke.alphaInvert "Alpha invertieren"
 stroke.alphaWrap "Tiling"
-stroke.alphaWrap.none "None"
-stroke.alphaWrap.repeat "Repeat"
-stroke.alphaWrap.mirror "Mirror"
-stroke.alphaProject "Method"
-stroke.alphaProject.surfaceContinuous "Surface"
-stroke.alphaProject.screenFixed "Screen project"
+stroke.alphaWrap.none "Kein"
+stroke.alphaWrap.repeat "Wiederholen"
+stroke.alphaWrap.mirror "Spiegeln"
+stroke.alphaProject "Methode"
+stroke.alphaProject.surfaceContinuous "Oberfläche"
+stroke.alphaProject.screenFixed "Screen Project"
 stroke.alphaTiling "Tiling"
 stroke.alphaScale "Scaling"
-stroke.alphaScale.help "At minimum value, the alpha square is inside the tool circle radius."
-stroke.alphaMidValue "Mid value"
-stroke.alphaMidValue.help "Middle-point value at which no deformation occurs.
+stroke.alphaScale.help "Beim Minimalwert liegt das Alpha-Quadrat innerhalb des Werkzeugkreisradius".
+stroke.alphaMidValue "Mittelwert"
+stroke.alphaMidValue.help "Mittelwert, bei dem keine Verformung auftritt.
 
-(Mid value = 0)
-- Black: no displacement
-- White: positive displacement
+(Mittelwert = 0)
+- Schwarz: Kein Displacement
+- Weiß: Positives Displacement
 
-(Mid value = 0.5)
-- Black: negative displacement
-- White: positive displacement
+(Mittelwert = 0.5)
+- Schwarz: Negatives Displacement
+- Weiß: Positives Displacement
 
-(Mid value = 1)
-- Black: negative displacement
-- White: no displacement"
+(Mittelwert = 1)
+- Schwarz: Negatives Displacement
+- Weiß: Kein Displacement"
 // stroke type
-stroke.strokeType "Stroke type"
+stroke.strokeType "Stroke Typen"
 stroke.strokeTypeDot "Dot"
 stroke.strokeTypeDrag "Drag"
 stroke.strokeTypeGrab "Grab"
-stroke.strokeTypeGrabRadius "Grab - dynamic radius"
-stroke.strokeTypeGrabIntensity "Grab - dynamic intensity"
+stroke.strokeTypeGrabRadius "Grab - Dynamischer Radius"
+stroke.strokeTypeGrabIntensity "Grab - Dynamische Intensität"
 
 // --------------------------------------------------------------------------------------
 // symmetry
 symmetry "Symmetrie"
-symmetry.enable "Enabled"
+symmetry.enable "Aktiviert"
 symmetry.plane.title "Planes"
-symmetry.toolIgnore "The current tool ignores symmetry."
+symmetry.toolIgnore "Das aktuelle Werkzeug ignoriert Symmetrie."
 symmetry.radial.title "Radial"
 symmetry.radialX "Radial X"
 symmetry.radialY "Radial Y"
 symmetry.radialZ "Radial Z"
 // method
 symmetry.method "Methode:"
-symmetry.method.help "-- Local
-The symmetry plane will move along the mesh when you use one of the transform tools (rotate, translate or gizmo).
+symmetry.method.help "-- Lokal
+Die Symmetrieebene wird entlang des Meshes verschoben, wenn Sie eines der Transformationswerkzeuge (Drehen/Rotate, Verschieben/Translate oder Gizmo) verwenden.
 
 
--- World
+-- Welt
 The symmetry plane is fixed and will not move."
-symmetry.methodWorld "World"
-symmetry.methodLocal "Local"
+symmetry.methodWorld "Welt"
+symmetry.methodLocal "Lokal"
 // flip
-symmetry.flip "Flip object"
+symmetry.flip "Objekt umdrehen"
 // mirror
-symmetry.mirror "Mirroring"
-symmetry.mirror.help "Try to re-apply the symmetry without impacting the topology.
+symmetry.mirror "Spiegelung"
+symmetry.mirror.help "Versuchen Sie, die Symmetrie wiederherzustellen, ohne die Topologie zu beeinträchtigen.
 
-Radial symmetry will be ignored.
+Radiale Symmetrie wird ignoriert.
 
-If the topology can't be kept because it is not considered symmetrical, you'll get the option to enforce the mirroring."
-symmetry.mirrorLeftToRight "Left to Right"
-symmetry.mirrorRightToLeft "Right to Left"
-symmetry.mirrorFail "Failed to apply symmetry.
+Wenn die Topologie nicht beibehalten werden kann, weil sie nicht als symmetrisch angesehen wird, erhalten Sie die Möglichkeit, die Spiegelung dennoch zu erzwingen."
+symmetry.mirrorLeftToRight "Von links nach rechts"
+symmetry.mirrorRightToLeft "Von rechts nach links"
+symmetry.mirrorFail "Versuch die Symmetrie anzuwenden fehlgeschlagen.
 
-Do you want to enforce symmetry by mirroring the mesh?"
-symmetry.mirrorUseMasking "Protect masked area"
-symmetry.mirrorUseMasking.help "Keep masked area intact.
+Wollen Sie die Symmetrie durch Spiegelung des Meshes erzwingen?"
+symmetry.mirrorUseMasking "Maskierte bBereiche schützen"
+symmetry.mirrorUseMasking.help "Lässt den maskierten Bereich intakt.
 
-This option will be ignored with non-symmetric topology (or disconnected surface, like a pair of eyes)."
+Diese Option wird bei nicht-symmetrischer Topologie (oder unzusammenhängender Oberfläche, wie einem Augenpaar) ignoriert."
 // reset
 symmetry.reset "Reset"
 symmetry.resetCenterMesh "Mesh Zentrum"
-symmetry.resetCenterWorld "World Zentrum"
+symmetry.resetCenterWorld "Welt Zentrum"
 symmetry.resetDirection "Orientierung"
 // advanced
-symmetry.showLine "Show line"
-symmetry.showPlane "Show plane"
-symmetry.editWarning "Symmetry edit is experimental."
-symmetry.edit "Gizmo edit"
-symmetry.edit.help "You can freely set the symmetry plane.
+symmetry.showLine "Line anzeigen"
+symmetry.showPlane "Plane anzeigen"
+symmetry.editWarning "Symmetriebearbeitung ist experimentell".
+symmetry.edit "Gizmo bearbeiten"
+symmetry.edit.help "Sie können die Symmetrieebene frei festlegen.
 
-This feature is a bit experimental and you should probably never use it."
+Diese Funktion ist ein wenig experimentell und Sie sollten sie vermutlich nicht verwenden."
 
 // --------------------------------------------------------------------------------------
 // tools icons on the left (ICON FIT)
@@ -1283,150 +1283,150 @@ tool.sliderIntensity "Stärke $0 %"
 
 // --------------------------------------------------------------------------------------
 // title
-tool.settingsTitle "Settings ($0)"
+tool.settingsTitle "Werkzeugeinstellungen ($0)"
 
 // --------------------------------------------------------------------------------------
 // tool menu
-tool.noSettings "This tool doesn't have any specific settings."
+tool.noSettings "Dieses Werkzeug hat keine besonderen Einstellmöglichkeiten."
 
 // --------------------------------------------------------------------------------------
 // clay
-tool.clay.flattenOffset "Flatten offset"
+tool.clay.flattenOffset "Flatten Offset"
 
 // --------------------------------------------------------------------------------------
 // crease
-tool.crease.pinchFactor "Pinch force"
+tool.crease.pinchFactor "Pinch Kraft"
 
 // --------------------------------------------------------------------------------------
 // layer
-tool.layer.removeInfluence "Use current layer offset"
-tool.layer.removeInfluence.help "This option is only active when there is a current layer selected.
+tool.layer.removeInfluence "Aktuellen layer Offset verwenden"
+tool.layer.removeInfluence.help "Diese Option ist nur aktiv, wenn ein aktueller Layer ausgewählt ist.
 
-It will use the current layer offset to limit the displacement over strokes."
-tool.layer.noLayerSelected "This option is only available if a current layer is selected"
+Es wird der aktuelle Layer Offset verwendet, um das Displacement über Strokes zu begrenzen."
+tool.layer.noLayerSelected "Diese Option ist nur verfügbar, wenn ein aktueller Layer ausgewählt ist"
 
 // --------------------------------------------------------------------------------------
 // flatten
-tool.flatten.warning "These options are experimental and could be removed in the future!"
-tool.flatten.planeLockOrigin "Lock plane origin"
-tool.flatten.planeLockNormal "Lock plane direction"
-tool.flatten.planeAverageOrigin "Average plane origin"
-tool.flatten.planeAverageNormal "Average plane direction"
-tool.flatten.planeOffset "Plane offset"
+tool.flatten.warning "Diese Optionen sind experimentell und könnten zukünftig entfallen!"
+tool.flatten.planeLockOrigin "Plane Origin sperren"
+tool.flatten.planeLockNormal "Plane Ausrichtung sperren"
+tool.flatten.planeAverageOrigin "Durchschnittlicher Plane Origin"
+tool.flatten.planeAverageNormal "Durchschnittliche Plane Ausrichtung"
+tool.flatten.planeOffset "Plane Offset"
 
 // --------------------------------------------------------------------------------------
 // smooth
-tool.smooth.stickyBorder "Sticky vertex on border"
+tool.smooth.stickyBorder "Sticky Vertex am Rand"
 
 // --------------------------------------------------------------------------------------
 // paint
 tool.paint "Paint"
-tool.paint.erase "Erase"
-tool.paint.depthFilter "Depth filtering"
-tool.paint.layerFilter "Layer filtering"
-tool.paint.layerFilter.help "Use this option if you only want to repaint the already painted area of a layer."
+tool.paint.erase "Löschen"
+tool.paint.depthFilter "Depth Filter"
+tool.paint.layerFilter "Layer Filter"
+tool.paint.layerFilter.help "Verwenden Sie diese Option, wenn Sie nur den bereits gepainteten Bereich eines Layers erneut painten wollen."
 
 // --------------------------------------------------------------------------------------
 // masking
-tool.mask.clear "Clear"
-tool.mask.invert "Invert"
-tool.mask.flipConnected "Flip connected"
+tool.mask.clear "Löschen"
+tool.mask.invert "Umkehren"
+tool.mask.flipConnected "Flip Connected"
 tool.mask.blur "Blur"
-tool.mask.sharpen "Sharpen"
-tool.mask.thickness "Shell thickness"
-tool.mask.polish "Border smoothness"
-tool.mask.engraveEmboss "Engrave / Emboss"
+tool.mask.sharpen "Schärfen"
+tool.mask.thickness "Shell Dicke"
+tool.mask.polish "Rand Smoothness"
+tool.mask.engraveEmboss "Gravieren / Prägen"
 tool.mask.extract "Extract"
-tool.mask.split "Split"
-tool.mask.closeMask "Closing action (masked):"
-tool.mask.closeUnmask "Closing action (unmasked):"
-tool.mask.closeAction "Closing action:"
-tool.mask.closeActionNone "None"
+tool.mask.split "Teilen"
+tool.mask.closeMask "Closing Aktion (maskiert):"
+tool.mask.closeUnmask "Closing Aktion (unmaskiert):"
+tool.mask.closeAction "Closing Aktion:"
+tool.mask.closeActionNone "Keine"
 tool.mask.closeActionFill "Fill"
 tool.mask.closeActionShell "Shell"
 tool.mask.closeActionLayer "Layer"
 tool.mask.closeAction.help "-- None
-Simply extract the part and let the extracted part opened.
+Extrahieren Sie einfach das Teil und lassen Sie das extrahierte Teil offen.
 
 -- Fill
-Hole is filled and smoothed.
-Do not use this option for flat surface.
+Das Loch wird gefüllt und geglättet.
+Verwenden Sie diese Option nicht für ebene Oberflächen.
 
 -- Shell
-Close the extracted shape by using the thickness value.
+Schließen Sie die extrahierte Form mit Hilfe des Dickenwerts.
 
 -- Layer
-Extract the layer difference (layer sub-menu only)."
+Extrahieren Sie die Layer-Differenz (nur Layer-Untermenü)."
 
 // --------------------------------------------------------------------------------------
 // matrix (transform / gizmo)
 tool.matrix "Matrix"
-tool.matrix.clone "Clone"
-tool.matrix.action "Action"
-tool.matrix.action.help "-- Move origin
-Move the mesh to the world origin.
+tool.matrix.clone "Klonen"
+tool.matrix.action "Aktion"
+tool.matrix.action.help "-- Move Origin
+Bewegt das Mesh zum Welt Origin (Ursprung).
 
 -- Reset
-Reset the mesh transform to identity.
+Setzt die Mesh-Transformation auf Identität zurück.
 
 -- Bake
-Apply the matrix to the vertex and reset the matrix. Visually, nothing should change."
-tool.matrix.transformOperation "Transform operation"
+Wendet die Matrix auf den Vertex an und setzt die Matrix zurück. Visuell sollte sich nichts ändern."
+tool.matrix.transformOperation "Transformieren"
 tool.matrix.translation "Translation"
 tool.matrix.rotation "Rotation"
-tool.matrix.scale "Scale"
-tool.matrix.uniformScale "Uniform scale"
-tool.matrix.uniformScale.help "Nomad cannot support non-uniform scale as object transform, so it will be applied as a vertex transformation."
-tool.matrix.moveToOrigin "Move origin"
+tool.matrix.scale "Skalierung"
+tool.matrix.uniformScale "Gleichmäßige Skalierung"
+tool.matrix.uniformScale.help "Nomad kann keine ungleichmäßige Skalierung als Objekttransformation unterstützen, daher wird sie als Vertex-Transformation angewendet."
+tool.matrix.moveToOrigin "Origin verschieben"
 tool.matrix.resetTransform "Reset"
-tool.matrix.bakeTransform "Bake"
-tool.matrix.applyMethod "Method:"
+tool.matrix.bakeTransform "Backen"
+tool.matrix.applyMethod "Methode:"
 tool.matrix.applyMethodAuto "Auto"
 tool.matrix.applyMethodVertex "Vertex"
-tool.matrix.applyMethodObject "Object"
+tool.matrix.applyMethodObject "Objekt"
 tool.matrix.applyMethod.help "-- Auto
-Let Nomad choose between Vertex or Object mode.
-Typically, object is preferred unless symmetry is enabled or if there is masking on the mesh.
+Lassen Sie Nomad zwischen dem Vertex- und dem Objektmodus wählen.
+Normalerweise wird Objekt bevorzugt, es sei denn, die Symmetrie ist aktiviert oder das Mesh ist maskiert.
 
 -- Vertex
-Vertices are transformed individually.
-Symmetry and mask are taken into account.
-For primitives that are not validated, Object mode is forced.
+Vertices werden einzeln transformiert.
+Symmetrie und Masken werden dabei berücksichtigt.
+Für Grundformen, die nicht validiert sind, wird der Objektmodus erzwungen.
 
--- Object
-The object is transformed as a whole.
-Symmetry and mask are ignored.
-If you use non-uniform scaling, Vertex mode will be forced."
+-- Objekt
+Das Objekt wird als Ganzes transformiert.
+Symmetrie und Masken werden ignoriert.
+Wenn Sie eine ungleichmäßige Skalierung verwenden, wird der Vertex-Modus erzwungen."
 
 // --------------------------------------------------------------------------------------
 // transform
-tool.transform.multiTouch "Multi-touch"
-tool.transform.multiTouch.help "If this option is disabled, you can only use one mode (translate, rotate, scale) at a time."
+tool.transform.multiTouch "Multi-Touch"
+tool.transform.multiTouch.help "Wenn diese Option deaktiviert ist, können Sie jeweils nur einen Modus (Translate, Rotate, Skalieren) verwenden."
 
 // --------------------------------------------------------------------------------------
 // gizmo
-tool.gizmo.size "Widget size"
-tool.gizmo.linearRollThreshold "Tangent roll threshold"
-tool.gizmo.linearRollThreshold.help "Angle threshold to choose between linear or circular roll method.
+tool.gizmo.size "Widget-Größe"
+tool.gizmo.linearRollThreshold "Tangentiales Rollen"
+tool.gizmo.linearRollThreshold.help " Schwellenwert des Winkels für die Wahl zwischen linearer und kreisförmiger Walzmethode.
 
-Value above this threshold will use the circular roll.
+Bei Werten über diesem Schwellenwert wird die kreisförmige Rollmethode verwendet.
 
-If you prefer the linear roll (direction of the tangent), simply set this value to 90°."
-tool.gizmo.autoHide "Hide on interaction"
-tool.gizmo.tap "Move custom pivot on single-tap"
-tool.gizmo.tap.help "This option is only effective in custom pivot mode (Auto disabled).
+Wenn Sie die lineare Drehung (Richtung der Tangente) bevorzugen, setzen Sie diesen Wert einfach auf 90°."
+tool.gizmo.autoHide "Ausblenden bei Interaktion"
+tool.gizmo.tap "Benutzerdefinierten Drehpunkt (Pivot) durch Einfach-Tap verschieben"
+tool.gizmo.tap.help "Diese Option ist nur im benutzerdefinierten Pivot-Modus wirksam (Auto deaktiviert).
 
--- None
-Nothing happen when tapping on the mesh.
+-- Keine
+Beim Antippen des Meshes passiert nichts.
 
--- First hit
-Move the gizmo on the first intersection.
+-- Erster Treffer
+Bewegt das Gizmo auf die erste Schnittstelle.
 
--- Middle stab
-Move the gizmo on the average of the first two intersections."
-tool.gizmo.tapNone "None"
-tool.gizmo.tapFirstHit "First hit"
-tool.gizmo.tapMiddleStab "Middle stab"
+-- Mittlerer
+Bewegt das Gizmo auf den Durchschnitt der ersten beiden Schnittpunkte."
+tool.gizmo.tapNone "Keine"
+tool.gizmo.tapFirstHit "Erster Treffer"
+tool.gizmo.tapMiddleStab "Mittlerer"
 
 // --------------------------------------------------------------------------------------
 // lathe
@@ -1437,27 +1437,27 @@ tool.lathe.axis.dynamic "Dynamisch"
 // --------------------------------------------------------------------------------------
 // tube
 tool.tube.snap "Snapping"
-tool.tube.snap.all "Every point"
-tool.tube.snap.startEnd "Start & End"
+tool.tube.snap.all "Jeder Punkt"
+tool.tube.snap.startEnd "Start & Ende"
 
 // --------------------------------------------------------------------------------------
 // trim
-tool.hole "Hole filling"
-tool.hole.fillHoles "Fill holes"
+tool.hole "Füllen von Löchern"
+tool.hole.fillHoles "Löcher füllen"
 // tool.hole.reproject "Reproject filled holes"
 // tool.hole.reproject.help "Try to reproject the filled hole so that it follows more closely the cut.
 // However, it will only work for rather simple projection."
-tool.hole.bridges "Screen-space boolean"
-tool.hole.bridges.help "If this option is enabled, you can punch holes in the volume.
-The cut slope will also follow more closely the cutting shape."
-tool.hole.threshold "Threshold epsilon"
-tool.hole.threshold.help "Tweaking this value might help with the hole filling algorithm."
-tool.hole.smoothing "Hole smoothing"
+tool.hole.bridges "Screen-Space Boolean"
+tool.hole.bridges.help "Wenn diese Option aktiviert ist, können Sie Löcher in das Volumen stechen.
+Auch die Schnittneigung wird sich stärker an der Schnittform orientieren."
+tool.hole.threshold "Schwellenwert Epsilon"
+tool.hole.threshold.help "Eine Optimierung dieses Wertes könnte den Algorithmus zum Füllen von Löchern unterstützen."
+tool.hole.smoothing "Loch-Glättung"
 
 // --------------------------------------------------------------------------------------
 // smudge
 tool.smudge.quality "Qualität"
-tool.smudge.quality.help "It changes the resolution of the projected pixels, lower values means faster strokes."
+tool.smudge.quality.help "Es ändert die Auflösung der projizierten Pixel, niedrigere Werte bedeuten schnellere Striche (Strokes)."
 
 // --------------------------------------------------------------------------------------
 // trim / split / project / selMask
@@ -1466,7 +1466,7 @@ tool.shape.rectangleSquare "Quadrat"
 tool.shape.rectangleCentered "Zentriert"
 tool.shape.ellipseCircle "Kreis"
 tool.shape.ellipseCentered "Zentriert"
-tool.shape.lineRotateStep "Rotate step"
+tool.shape.lineRotateStep "Rotate Schritt"
 
 // --------------------------------------------------------------------------------------
 // measure
@@ -1474,112 +1474,112 @@ tool.measure.goldenRatio "Goldenen Schnitt anzeigen"
 
 // --------------------------------------------------------------------------------------
 // topology
-topology "Topology"
+topology "Topologie"
 // multires
 topology.multires.title "Multiresolution"
 topology.multires.title.help "Keep multiple resolution of a mesh.
 
-If you make changes in a lower resolution, details from the higher resolutions will be reprojected when you switch back.
+Wenn Sie Änderungen in einer niedrigeren Auflösung vornehmen, werden die Details aus der höheren Auflösung beim Zurückschalten erneut projiziert.
 
-Layers are available on every resolution."
+Layer sind in jeder Auflösung verfügbar."
 topology.multiresReverse "Reverse"
-topology.multiresReverse.confirm "Could not create base subdivision.
+topology.multiresReverse.confirm "Konnte keine Basis-Subdivision erstellen.
 
-The current topology is probably not a result from a subdivision."
+Die derzeitige Topologie ist wahrscheinlich nicht das Ergebnis einer Subdivision".
 topology.multiresSubdivide "Subdivide"
-topology.multiresSubdivideConfirm "The mesh will have $0M vertices, are you sure?"
-topology.multiresDeleteLower "Delete lower"
-topology.multiresDeleteHigher "Delete higher"
-topology.multiresKeepTriangles "Keep triangles"
-topology.multiresLinear "Flat subdivision"
+topology.multiresSubdivideConfirm "Das Mesh wird $0M Vertices aufweisen, sind Sie sicher?"
+topology.multiresDeleteLower "Niedriger löschen"
+topology.multiresDeleteHigher "Höher löschen"
+topology.multiresKeepTriangles "Dreiecke behalten"
+topology.multiresLinear "Flat Subdivision"
 // voxel
-topology.voxel.title "Voxel remeshing"
-topology.voxel.title.help "Remeshing by sampling the mesh on a grid.
+topology.voxel.title "Voxel Remeshing"
+topology.voxel.title.help "Remeshing durch Abtasten des Meshes auf einem Raster.
 
 If the object is not closed (watertight), an hole-filling algorithm will be applied first.
 
-Layers are reprojected after remeshing but the quality will degrade."
-topology.voxelResolution "Resolution"
+Die Layer werden nach dem Remeshing neu projiziert, aber die Qualität verschlechtert sich."
+topology.voxelResolution "Auflösung"
 topology.voxelRemesh "Remesh"
-topology.voxelSharp "Keep sharp edges"
-topology.voxelSharp.help "This option is mostly useful for simple primitive boolean operation.
+topology.voxelSharp "Scharfe Kanten beibehalten"
+topology.voxelSharp.help "Diese Option ist vor allem für einfache boolesche Operationen nützlich.
 
-It will introduce distortion in some area due to the points being snapped on the edges."
-topology.voxelSubLevel "Rebuild multires"
-topology.voxelSubLevel.help "You can rebuild a multiresolution hierarchy from the voxel remesher output.
+Es wird in einigen Bereichen zu Verzerrungen kommen, da die Punkte an den Kanten gefangen werden."
+topology.voxelSubLevel "Rebuild Multires"
+topology.voxelSubLevel.help "Sie können eine Multiresolution-Hierarchie aus der Voxel-Remesher-Ausgabe wiederherstellen.
 
-It will also run faster and use less memory, especially if the voxel detail value is high.
-However if the voxel detail value is low and you are asking for lot of multires level, you'll lose details."
+Wird schneller ausgeführt und weniger Speicher verbrauchen, besonders wenn der Voxel-Detailwert hoch ist.
+Wenn jedoch der Voxel-Detailwert niedrig ist und Sie viele Multires-Level benötigen, werden Sie Details verlieren."
 // dynamic topology
 topology.surfaceUniform "Remesh"
 topology.surfaceDetail "Detail"
-topology.surfaceDetail.help "Unlike voxel remeshing, surface remeshing doesn't require the mesh to be closed.
+topology.surfaceDetail.help "Anders als bei der Voxel-Remeshing-Methode ist es bei der Surface-Remeshing-Methode nicht erforderlich, dass das Mesh geschlossen ist.
 
-It can also support masking so that you can protect some part of the mesh from topology changes.
+Maskierung wird unterstützt, so dass Sie Teile des Meshes mit Masken vor Topologieänderungen schützen können.
 
-Layers are updated correctly."
-topology.surfaceMethod "Method"
+Layer werden einwandfrei aktualisiert."
+topology.surfaceMethod "Methode"
 toplogy.surfaceMethodUniformisation "Uniformisation"
 toplogy.surfaceMethodSubdivision "Subdivision"
 toplogy.surfaceMethodDecimation "Decimation"
-topology.surfaceMethod.help "Behavior of dynamic topology:
-- Uniformisation: add and remove detail
-- Subdivision: add detail
-- Decimation: remove detail"
+topology.surfaceMethod.help "Das Verhalten der dynamischen Topologie:
+- Uniformisation: Hinzufügen und Entfernen von Details
+- Subdivision: Details hinzufügen
+- Decimation: Details entfernen"
 topology.surfaceUseMasking "Protect masked area"
-topology.surfaceUseMasking.help "The masked areas will protect the topology from beging changed."
+topology.surfaceUseMasking.help "Die maskierten Bereiche schützen die Topologie in den maskierten Bereichen davor, verändert zu werden."
 topology.surfaceExtrapolate "Vertex extrapolation"
 // dynamic
-topology.dynamic "Dynamic topology"
-topology.dynamicActivate "Enabled"
-topology.dynamicActivate.help "With dynamic topology, sculpting tools can subdivide or simplify the mesh locally in real time.
+topology.dynamic "Dynamische Topologie"
+topology.dynamicActivate "Aktiviert"
+topology.dynamicActivate.help "Mit dynamischer Topologie können Sculpting-Werkzeuge das Mesh lokal in Echtzeit unterteilen oder vereinfachen, je nach aktuellem Bedarf.
 
-This feature can have a noticeable impact on performance.
+Diese Funktion kann sich spürbar auf die Leistung auswirken.
 
-Layers are updated correctly."
+Layer werden einwandfrei aktualisiert."
 topology.dynamicDetailLevel "Detail"
 topology.dynamicDetailEdge "Detail"
-topology.dynamicDetailMethod "Level of detail based on..."
+topology.dynamicDetailMethod "Detaillierungsgrad basierend auf..."
 topology.dynamicDetailMethodZoom "Zoom"
 topology.dynamicDetailMethodRadius "Radius"
 topology.dynamicDetailMethodConstant "Konstant"
 topology.dynamicDetailMethod.help "-- Zoom
-The level of detail is based on how far you are from the surface.
+Der Detaillierungsgrad hängt davon ab, wie weit man von der Oberfläche entfernt ist.
 
 -- Radius
-The tool radius defines the amount of detail.
+Der Radius des Werkzeugs bestimmt den Grad der Detaillierung.
 
 -- Constant
-The detail is fixed, the detail value is shared with the voxel slider as well."
-topology.dynamicQuality "Prefer..."
-topology.dynamicQuality.help "If you choose Quality, the 2 main differences are:
-- refinement is applied before the sculpting operator, you will get less interpolating artefact when painting or sculpting very small details
-- refinement is not applied incrementally, if you sculpt very small details or do quick strokes, the topology will always be correctly refined
+Der Detailgrad ist festgelegt, der Detailwert wird auch mit dem Voxel-Schieberegler geteilt."
+topology.dynamicQuality "Bevorzuge..."
+topology.dynamicQuality.help "Wenn Sie sich für Qualität entscheiden, sind die 2 wichtigsten Unterschiede:
+- die Verfeinerung wird vor dem Sculpting-Operator angewandt, so dass Sie beim Painting oder Sculpting sehr kleiner Details weniger interpolierende Artefakte erhalten
+- die Verfeinerung (refinement) wird nicht inkrementell angewandt. Wenn Sie sehr kleine Details modellieren oder schnelle Strokes (Striche) setzen, wird die Topologie immer korrekt verfeinert.
 
-For better performance, and if you plan on using this option, you might consider enabling the \"partial drawing\" option in the Settings panel."
-topology.dynamicQualitySpeed "Speed"
-topology.dynamicQualityQuality "Quality"
-topology.dynamicUsePressure "Use pressure on radius"
-topology.dynamicUsePressure.help "Use this option if you want the pen pressure impact on tool radius to impact the level of detail."
+Für eine bessere Leistung und wenn Sie diese Option verwenden möchten, sollten Sie die Option \"partial drawing\" im Einstellungsbereich aktivieren."
+topology.dynamicQualitySpeed "Geschwindigkeit"
+topology.dynamicQualityQuality "Qualität"
+topology.dynamicUsePressure "Druck auf Radius anwenden"
+topology.dynamicUsePressure.help "Verwenden Sie diese Option, wenn Sie möchten, dass sich der Stiftdruck (pen pressure) auf den Radius des Werkzeugs auswirkt und die Detailgenauigkeit beeinflusst."
 // topology.dynamicBrush "Brush"
 // topology.dynamicGlobal "Global"
 // topology.dynamicSettings "Settings - Brush / Global"
 // decimate
 topology.decimate.title "Decimation"
-topology.decimate.title.help "Reduce the number of polygons by trying to keep as much details as possible.
+topology.decimate.title.help "Verringert die Anzahl der Polygone, wobei versucht wird, so viele Details wie möglich zu erhalten.
 
-This feature can be useful if you want to export for 3d printing.
-However you should probably not use if you want to continue sculpting on it, as it can produce uneven triangles.
+Diese Funktion kann nützlich sein, wenn Sie für den 3D-Druck exportieren möchten.
+Sie sollten diese Funktion jedoch nicht verwenden, wenn Sie mit Sculpting fortfahren wollen, da sie ungleichmäßige Dreiecke erzeugen kann.
 
-Note that masked area won't be decimated."
+Beachten Sie, dass der maskierte Bereich nicht dezimiert wird."
 topology.decimate "Decimate"
-topology.decimateTargetFaces "Target triangles"
-topology.decimatePaintWeight "Preserve painting"
-topology.decimatePaintWeight.help "Higher value will try to preserve painting.
+topology.decimateTargetFaces "Ziel Dreiecke"
+topology.decimatePaintWeight "Painting erhalten"
+topology.decimatePaintWeight.help "Ein höherer Wert wird versuchen, Painting zu erhalten.
 
-Set this value to 0 if you don't care about the painting."
-topology.decimateUniform "Uniform faces"
-topology.decimateUniform.help "Higher value will output triangles with similar size."
+Setzen Sie diesen Wert auf 0, wenn Painting keine Rolle spielt."
+topology.decimateUniform "Uniform Faces"
+topology.decimateUniform.help "Ein höherer Wert führt zur Ausgabe von Dreiecken mit ähnlicher Größe."
 // topology.decimatePreserveBorders "Preserve borders"
 // topology.decimatePreserveBorders.help "Do not decimate the border of the mesh.
 
@@ -1591,10 +1591,10 @@ topology.uvAtlas "Unwrap Atlas"
 topology.uvAtlas.warning "Kann sehr langsam sein, Ziel: <100k Vertices!"
 topology.uvBFF "Unwrap BFF"
 topology.uvBFF.warning "Es kann zu Überschneidungen kommen, wenn das Mesh Handles aufweist!"
-topology.uvBFFCones "Cone-Anzahl"
+topology.uvBFFCones "Kegel-Anzahl"
 topology.uvBFFCones.help "Ein höherer Wert verringert die Verzerrung bei komplexen Objekten.
 
-Ein höherer Wert bedeutet eine längere Berechnungszeit."
+Ein höherer Wert bedeutet aber auch eine längere Berechnungszeit."
 topology.uvDelete "UVs löschen"
 
 // --------------------------------------------------------------------------------------
