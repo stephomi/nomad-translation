@@ -722,7 +722,7 @@ paint.useFalloff.help "Nutzen Sie das Falloff im Stroke-Menu um das Painting zu 
 // popup (for example tap on a tool, to open edit popup)
 popup.save "Speichern"
 popup.save.confirm "Speichern bestätigen?"
-popup.lastSave "Letzte Speicherung"
+popup.lastSave "Letzte Speicher"
 popup.lastSave.confirm "Letzte Speicherung laden?"
 popup.reset "Reset"
 popup.reset.confirm "Zurücksetzen bestätigen?"
@@ -1336,7 +1336,7 @@ tool.mask.sharpen "Schärfen"
 tool.mask.thickness "Shell Dicke"
 tool.mask.polish "Rand Smoothness"
 tool.mask.engraveEmboss "Gravieren / Prägen"
-tool.mask.extract "Extract"
+tool.mask.extract "Extrahieren"
 tool.mask.split "Teilen"
 tool.mask.closeMask "Closing Aktion (maskiert):"
 tool.mask.closeUnmask "Closing Aktion (unmaskiert):"
@@ -1377,7 +1377,7 @@ tool.matrix.rotation "Rotation"
 tool.matrix.scale "Skalierung"
 tool.matrix.uniformScale "Gleichmäßige Skalierung"
 tool.matrix.uniformScale.help "Nomad kann keine ungleichmäßige Skalierung als Objekttransformation unterstützen, daher wird sie als Vertex-Transformation angewendet."
-tool.matrix.moveToOrigin "Origin verschieben"
+tool.matrix.moveToOrigin "Origin Move"
 tool.matrix.resetTransform "Reset"
 tool.matrix.bakeTransform "Backen"
 tool.matrix.applyMethod "Methode:"
@@ -1407,16 +1407,16 @@ tool.transform.multiTouch.help "Wenn diese Option deaktiviert ist, können Sie j
 // gizmo
 tool.gizmo.size "Widget-Größe"
 tool.gizmo.linearRollThreshold "Tangentiales Rollen"
-tool.gizmo.linearRollThreshold.help " Schwellenwert des Winkels für die Wahl zwischen linearer und kreisförmiger Walzmethode.
+tool.gizmo.linearRollThreshold.help " Schwellenwert des Winkels für die Wahl zwischen linearer und kreisförmiger Roll-Methode.
 
-Bei Werten über diesem Schwellenwert wird die kreisförmige Rollmethode verwendet.
+Bei Werten über diesem Schwellenwert wird die kreisförmige Roll-Methode verwendet.
 
 Wenn Sie die lineare Drehung (Richtung der Tangente) bevorzugen, setzen Sie diesen Wert einfach auf 90°."
 tool.gizmo.autoHide "Ausblenden bei Interaktion"
-tool.gizmo.tap "Benutzerdefinierten Drehpunkt (Pivot) durch Einfach-Tap verschieben"
+tool.gizmo.tap "Pivot Einfach-Tap" 
 tool.gizmo.tap.help "Diese Option ist nur im benutzerdefinierten Pivot-Modus wirksam (Auto deaktiviert).
 
--- Keine
+-- Keiner
 Beim Antippen des Meshes passiert nichts.
 
 -- Erster Treffer
@@ -1424,7 +1424,7 @@ Bewegt das Gizmo auf die erste Schnittstelle.
 
 -- Mittlerer
 Bewegt das Gizmo auf den Durchschnitt der ersten beiden Schnittpunkte."
-tool.gizmo.tapNone "Keine"
+tool.gizmo.tapNone "Keiner"
 tool.gizmo.tapFirstHit "Erster Treffer"
 tool.gizmo.tapMiddleStab "Mittlerer"
 
@@ -1539,12 +1539,12 @@ Diese Funktion kann sich spürbar auf die Leistung auswirken.
 Layer werden einwandfrei aktualisiert."
 topology.dynamicDetailLevel "Detail"
 topology.dynamicDetailEdge "Detail"
-topology.dynamicDetailMethod "Detaillierungsgrad basierend auf..."
+topology.dynamicDetailMethod "Detailgrad basierend auf..."
 topology.dynamicDetailMethodZoom "Zoom"
 topology.dynamicDetailMethodRadius "Radius"
 topology.dynamicDetailMethodConstant "Konstant"
 topology.dynamicDetailMethod.help "-- Zoom
-Der Detaillierungsgrad hängt davon ab, wie weit man von der Oberfläche entfernt ist.
+Der Detailgrad hängt davon ab, wie weit man von der Oberfläche entfernt ist.
 
 -- Radius
 Der Radius des Werkzeugs bestimmt den Grad der Detaillierung.
