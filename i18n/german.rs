@@ -145,7 +145,7 @@ camera.fov "Vertikales FoV"
 camera.focal "Brennweite $0mm (35mm Sensor)"
 // orbit
 camera.orbit "Orbit mode"
-camera.orbit.help "Trackball gives more degree of freedom you can also roll the camera with 2 fingers."
+camera.orbit.help "Trackball gibt mehr einem mehr Spielraum, man kann die Kamera auch mit 2 Fingern drehen."
 camera.trackball "Trackball"
 camera.turntable "Turntable"
 // speed
@@ -271,16 +271,16 @@ Nomad ignoriert immer die Normale, da es sie neu berechnet."
 
 // gltf
 file.export.gltf "glTF 2.0 exportieren"
-file.export.gltfLayer "Ebenen exportieren"
-file.export.gltfLayer.help "Exportieren Sie Ebenen als Morphs. Offiziell von glTF unterstützt, so dass es auch auf anderen Softwares funktionieren sollte."
+file.export.gltfLayer "Layer exportieren"
+file.export.gltfLayer.help "Exportieren Sie Ebenen als Morphs. Offiziell von glTF unterstützt, so dass es auch in anderen Programmen funktionieren sollte."
 file.export.gltfColor "Vertex-Farben exportieren"
-file.export.gltfColor.help "Exportieren Sie Vertex-Farben. Offiziell von glTF unterstützt, daher sollte es auch mit anderen Programmen funktionieren."
-file.export.gltfExtraPaint "Zusätzliche Material-Ebenen exportieren"
-file.export.gltfExtraPaint.help "Exportieren Sie Roughness, Metalness, Masken und Ebenen-Painting. Dies wird von anderen Programmen als Nomad ignoriert werden."
+file.export.gltfColor.help "Exportieren Sie Vertex-Farben. Offiziell von glTF unterstützt, so dass es auch in anderen Programmen funktionieren sollte."
+file.export.gltfExtraPaint "Zusätzliche Material-Layer exportieren"
+file.export.gltfExtraPaint.help "Exportieren Sie Roughness, Metalness, Masken und Layer-Painting. Dies wird von anderen Programmen als Nomad ignoriert werden."
 
 // obj
 file.export.obj "OBJ exportieren"
-file.export.objWarning "Ebenen und zusätzliches Painting (Roughness, Metalness, Masken) gehen verloren."
+file.export.objWarning "Layer und zusätzliches Painting (Roughness, Metalness, Masken) gehen verloren."
 file.export.objColorAppend "Vertex-Farben exportieren"
 file.export.objColorAppend.help "Farbinformationen nach Vertices einfügen.
 
@@ -292,7 +292,7 @@ Einige 3D-Programme können dies importieren, aber nicht alle."
 
 // stl
 file.export.stl "STL exportieren"
-file.export.stlWarning "Ebenen und zusätzliche Painting (Roughness, Metalness, Masken) gehen verloren."
+file.export.stlWarning "Layer und zusätzliches Painting (Roughness, Metalness, Masken) gehen verloren."
 file.export.stlColor "Vertex-Farben exportieren"
 file.export.stlColor.help "Einige 3D-Programme können dies importieren, aber nicht alle."
 file.export.stlAscii "Standardmäßig ist das Format binär.
@@ -1038,7 +1038,7 @@ shading.unlit "Unlit"
 // lights
 shading.lights "Lichter"
 shading.lights.addLight "Licht hinzufügen"
-shading.lights.unlitWarning "Lichter werden imin den Modi MatCap und Unlit ignoriert."
+shading.lights.unlitWarning "Lichter werden in den Modi MatCap und Unlit generell ignoriert."
 // environment
 shading.environment "Umgebung"
 shading.environmentImport "HDR importieren"
@@ -1299,7 +1299,7 @@ tool.crease.pinchFactor "Pinch Kraft"
 
 // --------------------------------------------------------------------------------------
 // layer
-tool.layer.removeInfluence "Aktuellen layer Offset verwenden"
+tool.layer.removeInfluence "Aktuellen Layer Offset verwenden"
 tool.layer.removeInfluence.help "Diese Option ist nur aktiv, wenn ein aktueller Layer ausgewählt ist.
 
 Es wird der aktuelle Layer Offset verwendet, um das Displacement über Strokes zu begrenzen."
@@ -1345,18 +1345,18 @@ tool.mask.closeActionNone "Keine"
 tool.mask.closeActionFill "Fill"
 tool.mask.closeActionShell "Shell"
 tool.mask.closeActionLayer "Layer"
-tool.mask.closeAction.help "-- None
-Extrahieren Sie einfach das Teil und lassen Sie das extrahierte Teil offen.
+tool.mask.closeAction.help "-- Keine
+Extrahiert einfach den Bereich und lässt das extrahierte Teil offen.
 
 -- Fill
 Das Loch wird gefüllt und geglättet.
 Verwenden Sie diese Option nicht für ebene Oberflächen.
 
 -- Shell
-Schließen Sie die extrahierte Form mit Hilfe des Dickenwerts.
+Schließt die extrahierte Form mit Hilfe des Dickenwerts.
 
 -- Layer
-Extrahieren Sie die Layer-Differenz (nur Layer-Untermenü)."
+Extrahiert die Layer-Differenz (nur Layer-Untermenü)."
 
 // --------------------------------------------------------------------------------------
 // matrix (transform / gizmo)
@@ -1377,7 +1377,7 @@ tool.matrix.rotation "Rotation"
 tool.matrix.scale "Skalierung"
 tool.matrix.uniformScale "Gleichmäßige Skalierung"
 tool.matrix.uniformScale.help "Nomad kann keine ungleichmäßige Skalierung als Objekttransformation unterstützen, daher wird sie als Vertex-Transformation angewendet."
-tool.matrix.moveToOrigin "Origin Move"
+tool.matrix.moveToOrigin "Move Origin"
 tool.matrix.resetTransform "Reset"
 tool.matrix.bakeTransform "Backen"
 tool.matrix.applyMethod "Methode:"
@@ -1526,9 +1526,9 @@ topology.surfaceMethod.help "Das Verhalten der dynamischen Topologie:
 - Uniformisation: Hinzufügen und Entfernen von Details
 - Subdivision: Details hinzufügen
 - Decimation: Details entfernen"
-topology.surfaceUseMasking "Protect masked area"
-topology.surfaceUseMasking.help "Die maskierten Bereiche schützen die Topologie in den maskierten Bereichen davor, verändert zu werden."
-topology.surfaceExtrapolate "Vertex extrapolation"
+topology.surfaceUseMasking "Maskierte Bereiche schützen"
+topology.surfaceUseMasking.help "Die Topologie in den maskierten Bereichen wird von Änderungen ausgenommen."
+topology.surfaceExtrapolate "Vertex Extrapolation"
 // dynamic
 topology.dynamic "Dynamische Topologie"
 topology.dynamicActivate "Aktiviert"
