@@ -21,4 +21,3 @@ Emoji's are not supported.
 
 The translation files are simply raw text, with easy parsing in mind.
 The file extension is `.rs` because the syntax coloring is somewhat ok, but these are not Rust files.
-

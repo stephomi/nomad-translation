@@ -1,7 +1,10 @@
-// german translation by djblueprint / www.3d-board.de
-// comments with "ICON FIT" means < 10 characters
-// arguments with $0 $1 etc
+// Comments are sync from the english version, it's not possible
+// to have language specific comments at the moment.
+language_note "german translation by djblueprint / www.3d-board.de"
 
+// comments with "ICON FIT" means approximately < 10 characters
+
+// ----------------------------------------------
 // general stuffs
 
 // Popup question, confirm? [yes/cancel] [ok/cancel] [delete/cancel]
@@ -27,7 +30,7 @@ noSelectedMesh "Kein Mesh ausgewählt"
 // generic warning (typically in menu like layer or material)
 multipleObjectWarning "Mehrere Meshes sind ausgewählt, bitte nur ein Mesh auswählen."
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 
 // when you launch the app and there is missing Nomad/data files
 loading.reprocess "Fehlende Vorschaubilder, erstelle neu... ($0/$1)
@@ -39,7 +42,7 @@ baseColor "Color"
 roughness "Roughness"
 metalness "Metalness"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // about
 about.minify "Menüs ausblenden"
 about.minify.help "Sie können auch mit 4 Fingern auf den Bildschirm tippen, wenn Ihr Gerät dies unterstützt."
@@ -62,7 +65,7 @@ about.instagram "Instagram"
 about.facebook "Facebook"
 about.discord "Discord"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // alert
 alert.hole.nothing "Das Objekt hat keine Löcher!"
 alert.shape.notVisible "Das aktuelle Mesh ist unsichtbar!"
@@ -88,7 +91,7 @@ alert.backgroundTransform "Einfaches Antippen, um den Transformationsmodus zu ve
 alert.camera.resetView "Reset Ansicht"
 alert.camera.snapView "Snap-Ansicht"
 alert.mask.show "Maske anzeigen"
-alert.mask.hide "Maske ausblenden" 
+alert.mask.hide "Maske ausblenden"
 alert.selection.lock "Auswahl sperren"
 alert.selection.unlock "Auswahl entsperren"
 alert.selection.isolate "Auswahl isolieren"
@@ -110,7 +113,7 @@ alert.tip.shapeOrthographic "Erwägen Sie die Verwendung einer orthografischen K
 // undo
 alert.state.trial "Rückgängig abgebrochen: Sie benutzen die Testversion!"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // background
 background "Hintergrund"
 background.settings "Einstellungen" // unused
@@ -130,7 +133,7 @@ background.imageY "Y-Position"
 background.imageRotation "Rotation"
 background.imageScale "Skalierung"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // camera
 camera "Kamera"
 // saved views
@@ -173,7 +176,7 @@ camera.doubleTapFocusSelection.help "Wenn Sie doppelt auf den Hintergrund tippen
 curve.preset "Preset"
 curve.custom "Benutzerdefiniert"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // debug
 debug.uvPrimitive.warning "Deaktivieren Sie diese Option, wenn Sie keine UVs benötigen (zusätzlicher Speicher)."
 debug.uvPrimitive "Primitive UVs beibehalten"
@@ -195,7 +198,7 @@ debug.thumbnails "Vorschaubilder erstellen"
 expandList "UI: Liste erweitern"
 expandList.help "Nur eine UI-Option zur einfacheren Listenverwaltung."
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // file
 file.project.empty "Sie haben noch kein Projekt gespeichert!"
 file.project.unsaved "Nicht gespeicherte Änderungen!"
@@ -204,7 +207,7 @@ file.project.lastManualSave "Vorschau der letzten manuellen Speicherung"
 file.project.trialNoOpen "Testversion: Sie können das aktuelle Projekt nicht mehr öffnen!"
 file.project.trialOnlyOpen "Testversion: Sie können nur Ihr aktuelles Projekt wieder öffnen!"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // project
 file.project "Projekt"
 file.project.save "Speichern"
@@ -351,7 +354,7 @@ file.render.transparent.help "Diese Option kann nützlich sein, wenn Sie das fre
 
 Teilweise Objekttransparenz wird momentan noch nicht unterstützt."
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // gesture menu
 gesture.useGlobal "Globale Vorgabe nutzen"
 gesture.useGlobal.help "Standardmäßig haben alle Werkzeuge dieselben Pressure-Settings.
@@ -410,7 +413,7 @@ gesture.sizeRejection "Schwelle für maximale Größe"
 gesture.interaction.title "Gesten" 
 gesture.interaction.title.help "Diese Optionen gelten immer global."
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // history
 history "Verlauf"
 history.root "Root"
@@ -488,7 +491,7 @@ history.state.viewAdd "Ansicht $0 hinzugefügt"
 history.state.viewMove "Ansicht $0 Reihenfolge"
 history.state.viewDelete "Ansicht $0 gelöscht"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // interface
 interface "Interface"
 
@@ -546,7 +549,7 @@ interface.cursorStep "Vertikale Abstände"
 interface.panelWidth "Panel-Breite"
 interface.fontScale "Schriftgröße"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // layer sub menu
 layer.action "Aktion"
 layer.name "Name"
@@ -558,7 +561,7 @@ layer.factors "Kanal-Werte"
 layer.offsetFactor "Position"
 layer.colorFactor "Farbe"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // layers menu
 layers.addLayer "Layer hinzufügen"
 layers.addLayerTrial "Die Testversion ist auf 1 Layer je Mesh beschränkt."
@@ -573,7 +576,7 @@ Sie können einen Teil dieser Maske (und damit den Einfluss dieser Ebene) zurüc
 layers.primitive "Ebenen sind für Grundobjekte (Primitives) nicht verfügbar."
 layers.baseSelected "Nichts"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // light sub menu
 light "Licht"
 light.color "Farbe"
@@ -598,7 +601,7 @@ light.shadowNormalBias "Normal-Bias"
 light.visible "Zeigen"
 light.resetPosition "Zentrieren"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // material
 material "Material"
 material.addNew "Hinzufügen"
@@ -646,7 +649,7 @@ material.reflectance.help "Kontrollieren Sie den Grad der Reflexion, den das Mat
 
 In den meisten Fällen sollte der Standardwert verwendet werden (0,5 - was dem Standardwert von 4% reflektiertem Licht bei normalem Winkel entspricht)."
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // menu name (visible on small screen menu are collapsed)
 menu.files "Dateien"
 menu.scene "Szene"
@@ -673,7 +676,7 @@ menu.historySettings "Einstellungen"
 menu.about "Über"
 menu.debug "Debug"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // mesh sub menu
 mesh.action "Aktion"
 mesh.holeClose "Löcher schließen"
@@ -689,7 +692,7 @@ mesh.typeStatic "Statisch"
 mesh.typeMultiresolution "Multiresolution"
 mesh.typeDynamic "Dynamisch"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // painting
 paint.useGlobal "Globales Material"
 paint.useGlobal.help "Wenn diese Option aktiviert ist, ist das ausgewählte Material dasselbe wie bei den anderen Werkzeugen.
@@ -718,7 +721,7 @@ paint.useAlpha.help "Verwenden Sie das Alpha-Set im Stroke-Menu um das Painting 
 paint.useFalloff "Use stroke falloff"
 paint.useFalloff.help "Nutzen Sie das Falloff im Stroke-Menu um das Painting zu beeinflussen."
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // popup (for example tap on a tool, to open edit popup)
 popup.save "Speichern"
 popup.save.confirm "Speichern bestätigen?"
@@ -736,7 +739,7 @@ popup.delete.confirm.yes "JA, löschen"
 input.name "Name"
 input.number "Wert"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // postprocess
 postprocess.mainEnable "Nachbearbeitung (Post)" 
 postprocess.quality "Qualität"
@@ -812,7 +815,7 @@ postprocess.curvatureEnable "Curvature"
 postprocess.curvatureCavity "Cavity" 
 postprocess.curvatureBump "Bump" 
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // primitive (scene menu)
 primitive "Grundformen"
 primitive.box "Box"
@@ -926,7 +929,7 @@ primitive.spline "Spline"
 resource.delete "Löschen"
 resource.import "Import"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // scene
 scene.title "Szene"
 scene.title.help "Wenn Sie das Auswahlkästchen verwenden, halten Sie Ihren Finger gedrückt und ziehen Sie ihn, um andere Objekte einfach auszuwählen."
@@ -936,7 +939,7 @@ scene.voxelResolution "Auflösung"
 scene.subtractionTip "Subtraction  : Mesh ausblenden (Augensymbol)"
 scene.intersectionTip "Intersection : Alle Meshes ausgeblendet"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // settings
 settings.displayTitle "Display Einstellungen"
 // wireframe
@@ -999,7 +1002,7 @@ Außerdem könnte es bei den Brush-Strokes zu visuellen Artefakten kommen."
 settings.partialDrawWarning "Vergessen Sie nicht, diese Option zu deaktivieren, wenn die visuellen Artefakte zu sehr stören!"
 settings.showPainting "Pinting anzeigen"
 settings.lightIcon "Licht-Icon"
-settings.lightIcon.help "Icons für die einzelnen Lichter im Arbeitsbereich anzeigen, so dass Sie die Lichter direkt auswählen und bearbeiten können".
+settings.lightIcon.help "Icons für die einzelnen Lichter im Arbeitsbereich anzeigen, so dass Sie die Lichter direkt auswählen und bearbeiten können"
 settings.holeTitle "Löcher füllen"
 settings.holeNonManifold "Non-Manifold füllen"
 settings.holeNonManifold.help "Versucht, ein non-manifold Loch zu füllen.
@@ -1025,10 +1028,10 @@ settings.multiresLowResVertices.help "Eine geringere Auflösung des Meshes wird 
 Sie können diesen Wert erhöhen, wenn Sie eine höhere Auflösung des Meshes anzeigen möchten."
 // experimental
 settings.experimentalTitle "Experimentell"
-settings.notSaved "Diese Optionen werden nicht in den Einstellungen gespeichert".
+settings.notSaved "Diese Optionen werden nicht in den Einstellungen gespeichert"
 // settings.parallel "Parallel sculpting"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // shading
 shading "Shading"
 // main render mode
@@ -1056,7 +1059,7 @@ shading.matcapRotation.help "Sie können das MatCap drehen, indem Sie 3 Finger h
 shading.matcapGlobal "Globales MatCap verwenden"
 shading.matcapGlobal.help "Deaktivieren Sie diese Option, um ein separates MatCap für dieses Mesh zu verwenden."
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // bottom shortcut buttons (ICON FIT)
 shortcut.voxel "Voxel"
 shortcut.wire "Wire"
@@ -1067,7 +1070,7 @@ shortcut.solo "Solo"
 shortcut.lock "Lock"
 shortcut.persp "Persp"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // stat
 stat.ramScene "Szene"
 stat.vramScene "VRAM Szene"
@@ -1087,7 +1090,7 @@ stat.quads "Quads"
 stat.sceneFaces "Faces in Szene"
 stat.sceneVertices "Vertices in Szene"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // stroke
 stroke "Stroke"
 strokeTitle "Stroke ($0)"
@@ -1132,7 +1135,7 @@ Dies kann nützlich sein, wenn Sie einen Teil einer dünnen Geometrie painten wo
 
 Dies funktioniert auch für das Sculpting, aber es kann zu Artefakten kommen."
 stroke.onlySameSide "Vertices gleicher Ausrichtung"
-stroke.onlySameSide.help "Vertices, die in die entgegengesetzte Richtung der Deformation zeigen, werden ignoriert".
+stroke.onlySameSide.help "Vertices, die in die entgegengesetzte Richtung der Deformation zeigen, werden ignoriert"
 stroke.curveFalloff "Falloff"
 stroke.onlyLasso "Einstellungen nur für das Lasso-Werkzeug aktiv."
 // alpha
@@ -1147,7 +1150,7 @@ stroke.alphaProject.surfaceContinuous "Oberfläche"
 stroke.alphaProject.screenFixed "Screen Project"
 stroke.alphaTiling "Tiling"
 stroke.alphaScale "Scaling"
-stroke.alphaScale.help "Beim Minimalwert liegt das Alpha-Quadrat innerhalb des Werkzeugkreisradius".
+stroke.alphaScale.help "Beim Minimalwert liegt das Alpha-Quadrat innerhalb des Werkzeugkreisradius"
 stroke.alphaMidValue "Mittelwert"
 stroke.alphaMidValue.help "Mittelwert, bei dem keine Verformung auftritt.
 
@@ -1170,7 +1173,7 @@ stroke.strokeTypeGrab "Grab"
 stroke.strokeTypeGrabRadius "Grab - Dynamischer Radius"
 stroke.strokeTypeGrabIntensity "Grab - Dynamische Intensität"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // symmetry
 symmetry "Symmetrie"
 symmetry.enable "Aktiviert"
@@ -1216,13 +1219,13 @@ symmetry.resetDirection "Orientierung"
 // advanced
 symmetry.showLine "Line anzeigen"
 symmetry.showPlane "Plane anzeigen"
-symmetry.editWarning "Symmetriebearbeitung ist experimentell".
+symmetry.editWarning "Symmetriebearbeitung ist experimentell"
 symmetry.edit "Gizmo bearbeiten"
 symmetry.edit.help "Sie können die Symmetrieebene frei festlegen.
 
 Diese Funktion ist ein wenig experimentell und Sie sollten sie vermutlich nicht verwenden."
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // tools icons on the left (ICON FIT)
 tool.dynTopo "DynTopo"
 tool.symmetry "Sym"
@@ -1281,23 +1284,23 @@ tool.shape.closed "Closed"
 tool.sliderRadius "Radius $0"
 tool.sliderIntensity "Stärke $0 %"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // title
 tool.settingsTitle "Werkzeugeinstellungen ($0)"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // tool menu
 tool.noSettings "Dieses Werkzeug hat keine besonderen Einstellmöglichkeiten."
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // clay
 tool.clay.flattenOffset "Flatten Offset"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // crease
 tool.crease.pinchFactor "Pinch Kraft"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // layer
 tool.layer.removeInfluence "Aktuellen Layer Offset verwenden"
 tool.layer.removeInfluence.help "Diese Option ist nur aktiv, wenn ein aktueller Layer ausgewählt ist.
@@ -1305,7 +1308,7 @@ tool.layer.removeInfluence.help "Diese Option ist nur aktiv, wenn ein aktueller 
 Es wird der aktuelle Layer Offset verwendet, um das Displacement über Strokes zu begrenzen."
 tool.layer.noLayerSelected "Diese Option ist nur verfügbar, wenn ein aktueller Layer ausgewählt ist"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // flatten
 tool.flatten.warning "Diese Optionen sind experimentell und könnten zukünftig entfallen!"
 tool.flatten.planeLockOrigin "Plane Origin sperren"
@@ -1314,11 +1317,11 @@ tool.flatten.planeAverageOrigin "Durchschnittlicher Plane Origin"
 tool.flatten.planeAverageNormal "Durchschnittliche Plane Ausrichtung"
 tool.flatten.planeOffset "Plane Offset"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // smooth
 tool.smooth.stickyBorder "Sticky Vertex am Rand"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // paint
 tool.paint "Paint"
 tool.paint.erase "Löschen"
@@ -1326,7 +1329,7 @@ tool.paint.depthFilter "Depth Filter"
 tool.paint.layerFilter "Layer Filter"
 tool.paint.layerFilter.help "Verwenden Sie diese Option, wenn Sie nur den bereits gepainteten Bereich eines Layers erneut painten wollen."
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // masking
 tool.mask.clear "Löschen"
 tool.mask.invert "Umkehren"
@@ -1358,7 +1361,7 @@ Schließt die extrahierte Form mit Hilfe des Dickenwerts.
 -- Layer
 Extrahiert die Layer-Differenz (nur Layer-Untermenü)."
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // matrix (transform / gizmo)
 tool.matrix "Matrix"
 tool.matrix.clone "Klonen"
@@ -1398,12 +1401,12 @@ Das Objekt wird als Ganzes transformiert.
 Symmetrie und Masken werden ignoriert.
 Wenn Sie eine ungleichmäßige Skalierung verwenden, wird der Vertex-Modus erzwungen."
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // transform
 tool.transform.multiTouch "Multi-Touch"
 tool.transform.multiTouch.help "Wenn diese Option deaktiviert ist, können Sie jeweils nur einen Modus (Translate, Rotate, Skalieren) verwenden."
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // gizmo
 tool.gizmo.size "Widget-Größe"
 tool.gizmo.linearRollThreshold "Tangentiales Rollen"
@@ -1413,7 +1416,7 @@ Bei Werten über diesem Schwellenwert wird die kreisförmige Roll-Methode verwen
 
 Wenn Sie die lineare Drehung (Richtung der Tangente) bevorzugen, setzen Sie diesen Wert einfach auf 90°."
 tool.gizmo.autoHide "Ausblenden bei Interaktion"
-tool.gizmo.tap "Pivot Einfach-Tap" 
+tool.gizmo.tap "Pivot Einfach-Tap"
 tool.gizmo.tap.help "Diese Option ist nur im benutzerdefinierten Pivot-Modus wirksam (Auto deaktiviert).
 
 -- Keiner
@@ -1428,19 +1431,19 @@ tool.gizmo.tapNone "Keiner"
 tool.gizmo.tapFirstHit "Erster Treffer"
 tool.gizmo.tapMiddleStab "Mittlerer"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // lathe
 tool.lathe.axis "Achse"
 tool.lathe.axis.fixed "Fixiert"
 tool.lathe.axis.dynamic "Dynamisch"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // tube
 tool.tube.snap "Snapping"
 tool.tube.snap.all "Jeder Punkt"
 tool.tube.snap.startEnd "Start & Ende"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // trim
 tool.hole "Füllen von Löchern"
 tool.hole.fillHoles "Löcher füllen"
@@ -1454,12 +1457,12 @@ tool.hole.threshold "Schwellenwert Epsilon"
 tool.hole.threshold.help "Eine Optimierung dieses Wertes könnte den Algorithmus zum Füllen von Löchern unterstützen."
 tool.hole.smoothing "Loch-Glättung"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // smudge
 tool.smudge.quality "Qualität"
 tool.smudge.quality.help "Es ändert die Auflösung der projizierten Pixel, niedrigere Werte bedeuten schnellere Striche (Strokes)."
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // trim / split / project / selMask
 tool.shape "Shape"
 tool.shape.rectangleSquare "Quadrat"
@@ -1468,11 +1471,11 @@ tool.shape.ellipseCircle "Kreis"
 tool.shape.ellipseCentered "Zentriert"
 tool.shape.lineRotateStep "Rotate Schritt"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // measure
 tool.measure.goldenRatio "Goldenen Schnitt anzeigen"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // topology
 topology "Topologie"
 // multires
@@ -1485,7 +1488,7 @@ Layer sind in jeder Auflösung verfügbar."
 topology.multiresReverse "Reverse"
 topology.multiresReverse.confirm "Konnte keine Basis-Subdivision erstellen.
 
-Die derzeitige Topologie ist wahrscheinlich nicht das Ergebnis einer Subdivision".
+Die derzeitige Topologie ist wahrscheinlich nicht das Ergebnis einer Subdivision"
 topology.multiresSubdivide "Subdivide"
 topology.multiresSubdivideConfirm "Das Mesh wird $0M Vertices aufweisen, sind Sie sicher?"
 topology.multiresDeleteLower "Niedriger löschen"
@@ -1597,7 +1600,7 @@ topology.uvBFFCones.help "Ein höherer Wert verringert die Verzerrung bei komple
 Ein höherer Wert bedeutet aber auch eine längere Berechnungszeit."
 topology.uvDelete "UVs löschen"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // version trial
 version.buyWeb "Die Web-Version ist nur eine Demo"
 version.buyFull "Upgrade auf Vollversion"

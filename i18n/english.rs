@@ -1,6 +1,10 @@
-// comments with "ICON FIT" means < 10 characters
-// arguments with $0 $1 etc
+// Comments are sync from the english version, it's not possible
+// to have language specific comments at the moment.
+language_note ""
 
+// comments with "ICON FIT" means approximately < 10 characters
+
+// ----------------------------------------------
 // general stuffs
 
 // Popup question, confirm? [yes/cancel] [ok/cancel] [delete/cancel]
@@ -26,7 +30,7 @@ noSelectedMesh "No selected mesh."
 // generic warning (typically in menu like layer or material)
 multipleObjectWarning "Multiple meshes are selected, please select only one mesh."
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 
 // when you launch the app and there is missing Nomad/data files
 loading.reprocess "Missing thumbnails, reprocessing files... ($0/$1)
@@ -38,7 +42,7 @@ baseColor "Color"
 roughness "Roughness"
 metalness "Metalness"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // about
 about.minify "Minify UI"
 about.minify.help "You can also tap your screen with 4 fingers, if your device supports it."
@@ -61,7 +65,7 @@ about.instagram "Instagram"
 about.facebook "Facebook"
 about.discord "Discord"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // alert
 alert.hole.nothing "The object has no holes!"
 alert.shape.notVisible "The current mesh is invisible!"
@@ -109,7 +113,7 @@ alert.tip.shapeOrthographic "Consider using orthographic camera if you want to a
 // undo
 alert.state.trial "Undo canceled : trial version"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // background
 background "Background"
 background.settings "Settings" // unused
@@ -129,7 +133,7 @@ background.imageY "Position Y"
 background.imageRotation "Rotation"
 background.imageScale "Scale"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // camera
 camera "Camera"
 // saved views
@@ -172,7 +176,7 @@ camera.doubleTapFocusSelection.help "When double taping on background focus on t
 curve.preset "Preset"
 curve.custom "Custom"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // debug
 debug.uvPrimitive.warning "Disable this option if you don't need UVs (extra memory)."
 debug.uvPrimitive "Keep primitive UVs"
@@ -194,7 +198,7 @@ debug.thumbnails "Make store thumbnails"
 expandList "UI: Expand list"
 expandList.help "Just an UI option for easier list management."
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // file
 file.project.empty "You have no saved project yet!"
 file.project.unsaved "Unsaved changes!"
@@ -203,7 +207,7 @@ file.project.lastManualSave "Preview of the last manual save"
 file.project.trialNoOpen "Trial version: You won't be able to re-open the current project!"
 file.project.trialOnlyOpen "Trial version: you can only re-open your current project!"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // project
 file.project "Project"
 file.project.save "Save"
@@ -347,7 +351,7 @@ file.render.transparent.help "This option can be useful if you want to insert th
 
 Partial object transparency is not supported for now."
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // gesture menu
 gesture.useGlobal "Use global settings"
 gesture.useGlobal.help "By default, the tools share the same pressure settings.
@@ -406,7 +410,7 @@ gesture.sizeRejection "Max size threshold"
 gesture.interaction.title "Gesture" 
 gesture.interaction.title.help "These options are always global."
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // history
 history "History"
 history.root "Root"
@@ -484,7 +488,7 @@ history.state.viewAdd "Add view $0"
 history.state.viewMove "Move view $0"
 history.state.viewDelete "Delete view $0"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // interface
 interface "Interface"
 
@@ -542,7 +546,7 @@ interface.cursorStep "Vertical spacing"
 interface.panelWidth "Panel width"
 interface.fontScale "Font scale"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // layer sub menu
 layer.action "Action"
 layer.name "Name"
@@ -554,7 +558,7 @@ layer.factors "Channel factors"
 layer.offsetFactor "Position"
 layer.colorFactor "Color"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // layers menu
 layers.addLayer "Add layer"
 layers.addLayerTrial "Trial version is limited to 1 layer per mesh."
@@ -569,7 +573,7 @@ You can reset part of this mask (and thus, the layer influence) by using the 'De
 layers.primitive "Layers are unavailable for primitives."
 layers.baseSelected "None"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // light sub menu
 light "Light"
 light.color "Color"
@@ -594,7 +598,7 @@ light.shadowNormalBias "Normal bias"
 light.visible "Show"
 light.resetPosition "Recenter"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // material
 material "Material"
 material.addNew "Add new"
@@ -642,7 +646,7 @@ material.reflectance.help "Control the amount of reflection the material will re
 
 Most of the time, the default value should be used (0.5, which corresponds to the standard 4% reflected light at normal angle)."
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // menu name (visible on small screen menu are collapsed)
 menu.files "Files"
 menu.scene "Scene"
@@ -669,7 +673,7 @@ menu.historySettings "Settings"
 menu.about "About"
 menu.debug "Debug"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // mesh sub menu
 mesh.action "Action"
 mesh.holeClose "Close holes"
@@ -685,7 +689,7 @@ mesh.typeStatic "Static"
 mesh.typeMultiresolution "Multiresolution"
 mesh.typeDynamic "Dynamic"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // painting
 paint.useGlobal "Global material"
 paint.useGlobal.help "If this option is enabled, the selected material will be the same as the other tools.
@@ -712,7 +716,7 @@ paint.useAlpha.help "Using the alpha set in the stroke menu to modulate the pain
 paint.useFalloff "Use stroke falloff"
 paint.useFalloff.help "Using the falloff set in the stroke menu to modulate the painting."
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // popup (for example tap on a tool, to open edit popup)
 popup.save "Save"
 popup.save.confirm "Confirm save?"
@@ -730,7 +734,7 @@ popup.delete.confirm.yes "Yes, delete"
 input.name "Name"
 input.number "Value"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // postprocess
 postprocess.mainEnable "Post Process" 
 postprocess.quality "Quality"
@@ -806,7 +810,7 @@ postprocess.curvatureEnable "Curvature"
 postprocess.curvatureCavity "Cavity" 
 postprocess.curvatureBump "Bump" 
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // primitive (scene menu)
 primitive "Primitive"
 primitive.box "Box"
@@ -920,7 +924,7 @@ primitive.spline "Spline"
 resource.delete "Delete"
 resource.import "Import"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // scene
 scene.title "Scene"
 scene.title.help "When using the selection checkbox, hold and drag your finger to select other objects easily."
@@ -930,7 +934,7 @@ scene.voxelResolution "Resolution"
 scene.subtractionTip "Subtraction  : Hide mesh (eye icon)"
 scene.intersectionTip "Intersection : All meshes hidden"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // settings
 settings.displayTitle "Display settings"
 // wireframe
@@ -1022,7 +1026,7 @@ settings.experimentalTitle "Experimental"
 settings.notSaved "These options are not saved in the settings."
 // settings.parallel "Parallel sculpting"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // shading
 shading "Shading"
 // main render mode
@@ -1050,7 +1054,7 @@ shading.matcapRotation.help "You can rotate the matcap by dragging 3 fingers hor
 shading.matcapGlobal "Use global matcap"
 shading.matcapGlobal.help "Uncheck this option to use a different matcap for this particular mesh."
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // bottom shortcut buttons (ICON FIT)
 shortcut.voxel "Voxel"
 shortcut.wire "Wire"
@@ -1061,7 +1065,7 @@ shortcut.solo "Solo"
 shortcut.lock "Lock"
 shortcut.persp "Persp"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // stat
 stat.ramScene "Scene"
 stat.vramScene "Vram Scene"
@@ -1081,7 +1085,7 @@ stat.quads "Quads"
 stat.sceneFaces "Scene faces"
 stat.sceneVertices "Scene vertices"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // stroke
 stroke "Stroke"
 strokeTitle "Stroke ($0)"
@@ -1164,7 +1168,7 @@ stroke.strokeTypeGrab "Grab"
 stroke.strokeTypeGrabRadius "Grab - dynamic radius"
 stroke.strokeTypeGrabIntensity "Grab - dynamic intensity"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // symmetry
 symmetry "Symmetry"
 symmetry.enable "Enabled"
@@ -1216,7 +1220,7 @@ symmetry.edit.help "You can freely set the symmetry plane.
 
 This feature is a bit experimental and you should probably never use it."
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // tools icons on the left (ICON FIT)
 tool.dynTopo "DynTopo"
 tool.symmetry "Sym"
@@ -1275,23 +1279,23 @@ tool.shape.closed "Closed"
 tool.sliderRadius "Radius $0"
 tool.sliderIntensity "Intensity $0 %"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // title
 tool.settingsTitle "Settings ($0)"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // tool menu
 tool.noSettings "This tool doesn't have any specific settings."
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // clay
 tool.clay.flattenOffset "Flatten offset"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // crease
 tool.crease.pinchFactor "Pinch force"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // layer
 tool.layer.removeInfluence "Use current layer offset"
 tool.layer.removeInfluence.help "This option is only active when there is a current layer selected.
@@ -1299,7 +1303,7 @@ tool.layer.removeInfluence.help "This option is only active when there is a curr
 It will use the current layer offset to limit the displacement over strokes."
 tool.layer.noLayerSelected "This option is only available if a current layer is selected"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // flatten
 tool.flatten.warning "These options are experimental and could be removed in the future!"
 tool.flatten.planeLockOrigin "Lock plane origin"
@@ -1308,11 +1312,11 @@ tool.flatten.planeAverageOrigin "Average plane origin"
 tool.flatten.planeAverageNormal "Average plane direction"
 tool.flatten.planeOffset "Plane offset"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // smooth
 tool.smooth.stickyBorder "Sticky vertex on border"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // paint
 tool.paint "Paint"
 tool.paint.erase "Erase"
@@ -1320,7 +1324,7 @@ tool.paint.depthFilter "Depth filtering"
 tool.paint.layerFilter "Layer filtering"
 tool.paint.layerFilter.help "Use this option if you only want to repaint the already painted area of a layer."
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // masking
 tool.mask.clear "Clear"
 tool.mask.invert "Invert"
@@ -1352,7 +1356,7 @@ Close the extracted shape by using the thickness value.
 -- Layer
 Extract the layer difference (layer sub-menu only)."
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // matrix (transform / gizmo)
 tool.matrix "Matrix"
 tool.matrix.clone "Clone"
@@ -1392,12 +1396,12 @@ The object is transformed as a whole.
 Symmetry and mask are ignored.
 If you use non-uniform scaling, Vertex mode will be forced."
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // transform
 tool.transform.multiTouch "Multi-touch"
 tool.transform.multiTouch.help "If this option is disabled, you can only use one mode (translate, rotate, scale) at a time."
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // gizmo
 tool.gizmo.size "Widget size"
 tool.gizmo.linearRollThreshold "Tangent roll threshold"
@@ -1422,19 +1426,19 @@ tool.gizmo.tapNone "None"
 tool.gizmo.tapFirstHit "First hit"
 tool.gizmo.tapMiddleStab "Middle stab"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // lathe
 tool.lathe.axis "Axis"
 tool.lathe.axis.fixed "Fixed"
 tool.lathe.axis.dynamic "Dynamic"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // tube
 tool.tube.snap "Snapping"
 tool.tube.snap.all "Every point"
 tool.tube.snap.startEnd "Start & End"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // trim
 tool.hole "Hole filling"
 tool.hole.fillHoles "Fill holes"
@@ -1448,12 +1452,12 @@ tool.hole.threshold "Threshold epsilon"
 tool.hole.threshold.help "Tweaking this value might help with the hole filling algorithm."
 tool.hole.smoothing "Hole smoothing"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // smudge
 tool.smudge.quality "Quality"
 tool.smudge.quality.help "It changes the resolution of the projected pixels, lower values means faster strokes."
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // trim / split / project / selMask
 tool.shape "Shape"
 tool.shape.rectangleSquare "Square"
@@ -1462,11 +1466,11 @@ tool.shape.ellipseCircle "Circle"
 tool.shape.ellipseCentered "Centered"
 tool.shape.lineRotateStep "Rotate step"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // measure
 tool.measure.goldenRatio "Show golden ratio"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // topology
 topology "Topology"
 // multires
@@ -1591,7 +1595,7 @@ topology.uvBFFCones.help "Higher value will reduce distortion for complex object
 Higher value will means longer compute time."
 topology.uvDelete "Delete UVs"
 
-// --------------------------------------------------------------------------------------
+// ----------------------------------------------
 // version trial
 version.buyWeb "Web version is only a demo"
 version.buyFull "Upgrade to full version"
