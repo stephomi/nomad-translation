@@ -629,10 +629,19 @@ material.absorptionFactor "Factor"
 material.opacity "Opacity"
 material.alphaMode.opaque "Opaque"
 material.alphaMode.blending "Blending"
+material.alphaMode.blending.help "Make the mesh semi-transparent by tweaking the opacity value.
+
+Note that because of real-time constraints, you can have noticeable visual artifacts if your object has a complex shape."
 material.alphaMode.additive "Additive"
+material.alphaMode.additive.help "Make the mesh semi-transparent by tweaking the opacity value.
+
+This method tends to have less artifacts than the Blending method, but the object will be brighter."
 material.alphaMode.dithering "Dithering"
-material.alphaMode.dithering.help "fagkoithering"
+material.alphaMode.dithering.help "Make the object semi-transparent by discarding some pixels in a random fashion."
 material.alphaMode.refraction "Refraction"
+material.alphaMode.refraction.help "This mode can be used to simulate glass material.
+
+Because of real time constraints, self-refraction or multi-layered refraction is limited."
 // shadows
 material.castShadows "Cast shadows"
 material.receiveShadows "Receive shadows"
@@ -844,7 +853,7 @@ primitive.maxFaces "Max faces"
 primitive.maxFaces.help "The maximum number of faces a primitive can have.
 
 This limit is only active while the primitive is not validated, afterwards the safeguard is gone."
-primitive.linear "Flat subdivision"
+primitive.linear "Linear subdivision"
 primitive.subdivision "Post subdivision"
 
 // common config
@@ -878,7 +887,7 @@ primitive.triplanarPolish "Smoothness"
 primitive.triplanarResetMask "Reset mask"
 primitive.triplanarReproject "Resize mask"
 primitive.triplanarReproject.title "Reproject the plane mask when updating the triplanar settings.
-\
+
 If you uncheck this option, it will revert to the default spherical masks."
 primitive.isolate.all "All"
 primitive.isolate.back "Back"
@@ -1489,7 +1498,8 @@ topology.multiresSubdivideConfirm "The mesh will have $0M vertices, are you sure
 topology.multiresDeleteLower "Delete lower"
 topology.multiresDeleteHigher "Delete higher"
 topology.multiresKeepTriangles "Keep triangles"
-topology.multiresLinear "Flat subdivision"
+topology.multiresLinear "Linear subdivision"
+topology.multiresLinear.help "Simply subdivide the mesh without applying any smoothing"
 // voxel
 topology.voxel.title "Voxel remeshing"
 topology.voxel.title.help "Remeshing by sampling the mesh on a grid.
