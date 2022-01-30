@@ -2,7 +2,12 @@
 // to have language specific comments at the moment.
 language_note "german translation by djblueprint / www.3d-board.de"
 
-// comments with "ICON FIT" means approximately < 10 characters
+// comments with "ICON FIT" should be short, ideally < 10 characters
+
+// When in doubt, leave an empty string, it will fallback to english
+// Some terms should probably be left untranslated
+// For sure: Voxel, Matcap, PBR, Dyntopo
+// Not sure: Roughness/Metalness? Mesh? Sub? tool names? etc
 
 // ----------------------------------------------
 // general stuffs
@@ -11,8 +16,8 @@ language_note "german translation by djblueprint / www.3d-board.de"
 confirm "Bestätigen?"
 yes "Ja"
 ok "OK"
-cancel "Abbrechen"
 delete "Löschen"
+cancel "Abbrechen"
 
 // feature: Auto / Off / On
 on "An"
@@ -1497,7 +1502,7 @@ topology.multiresSubdivideConfirm "Das Mesh wird $0M Vertices aufweisen, sind Si
 topology.multiresDeleteLower "Niedriger löschen"
 topology.multiresDeleteHigher "Höher löschen"
 topology.multiresKeepTriangles "Dreiecke behalten"
-topology.multiresLinear "Flat Subdivision"
+topology.multiresLinear "Linear Subdivision"
 topology.multiresLinear.help ""
 // voxel
 topology.voxel.title "Voxel Remeshing"

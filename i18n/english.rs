@@ -2,7 +2,12 @@
 // to have language specific comments at the moment.
 language_note ""
 
-// comments with "ICON FIT" means approximately < 10 characters
+// comments with "ICON FIT" should be short, ideally < 10 characters
+
+// When in doubt, leave an empty string, it will fallback to english
+// Some terms should probably be left untranslated
+// For sure: Voxel, Matcap, DynTopo, PBR, Dyntopo
+// Not sure: Roughness/Metalness? Mesh? Sub? tool names? etc
 
 // ----------------------------------------------
 // general stuffs
@@ -11,8 +16,8 @@ language_note ""
 confirm "Confirm?"
 yes "Yes"
 ok "Ok"
-cancel "Cancel"
 delete "Delete"
+cancel "Cancel"
 
 // feature: Auto / Off / On
 on "On"
