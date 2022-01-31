@@ -6,7 +6,7 @@ language_note ""
 
 // When in doubt, leave an empty string, it will fallback to english
 // Some terms should probably be left untranslated
-// For sure: Voxel, Matcap, PBR, Dyntopo
+// For sure: Voxel, Matcap, DynTopo, PBR, Dyntopo
 // Not sure: Roughness/Metalness? Mesh? Sub? tool names? etc
 
 // ----------------------------------------------
@@ -258,8 +258,8 @@ file.import.add.confirm "确定添加新文件？"
 
 file.exportSelection "只导出选择部分"
 file.exportSelection.help "只导出当前选择对象，而不是所有场景。"
-file.convertToQuad "Reconstruct quad"
-file.convertToQuad.help "Reconstruct quads from triangles by pairing triangle (if they are adjacent in the files)."
+file.convertToQuad ""
+file.convertToQuad.help ""
 
 // export
 file.export.title "导出"
@@ -839,9 +839,7 @@ primitive.needValidate "基本体需转换为可编辑对象后才可雕刻。"
 primitive.useFloatPanel "快捷编辑浮窗"
 primitive.useFloatPanel.help "在浏览模式下显示编辑基本体的小浮窗。"
 primitive.edit "编辑"
-primitive.edit.help "Allow 3d editing in the viewport.
-
-You can disable this feature if you want to interact with the Gizmo or the Transform tool modifying the primitive."
+primitive.edit.help ""
 
 primitive.mainConfig "范围"
 primitive.topology "拓扑参数"
@@ -859,16 +857,16 @@ primitive.subdivision "细分等级"
 // common config
 primitive.radius "半径尺寸"
 primitive.size "尺寸"
-primitive.sizeX "X"
-primitive.sizeY "Y"
-primitive.sizeZ "Z"
+primitive.sizeX "尺寸 X"
+primitive.sizeY "尺寸 Y"
+primitive.sizeZ "尺寸 Z"
 primitive.division "分段数"
-primitive.divisionX "X"
-primitive.divisionY "Y"
-primitive.divisionZ "Z"
-primitive.angleX "X"
-primitive.angleY "Y"
-primitive.angleZ "Z"
+primitive.divisionX "分段数 X"
+primitive.divisionY "分段数 Y"
+primitive.divisionZ "分段数 Z"
+primitive.angleX "角度 X"
+primitive.angleY "角度 Y"
+primitive.angleZ "角度 Z"
 primitive.constantDensity "固定比例"
 primitive.projectOnSphere "投影在球体上"
 primitive.projectOnSphere.help "将点分布在一个完美的球体上。"

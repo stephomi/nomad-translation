@@ -6,7 +6,7 @@ language_note "german translation by djblueprint / www.3d-board.de"
 
 // When in doubt, leave an empty string, it will fallback to english
 // Some terms should probably be left untranslated
-// For sure: Voxel, Matcap, PBR, Dyntopo
+// For sure: Voxel, Matcap, DynTopo, PBR, Dyntopo
 // Not sure: Roughness/Metalness? Mesh? Sub? tool names? etc
 
 // ----------------------------------------------
