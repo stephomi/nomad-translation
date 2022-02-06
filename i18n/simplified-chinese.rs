@@ -30,9 +30,11 @@ Y "Y"
 Z "Z"
 
 advancedSettings "高级设置"
+
+// generic warning when there is no mesh selected
 noSelectedMesh "对象未选择"
 
-// generic warning (typically in menu like layer or material)
+// generic warning when only one mesh needs to be selected
 multipleObjectWarning "您选择了多个对象，无法修改图层。"
 
 // ----------------------------------------------
@@ -606,9 +608,12 @@ material "材质混合模式"
 material.addNew "添加新材质"
 // if the shading mode is in matcap or unlit
 material.unlitWarning "粗糙度与金属强度在当前渲染模式下不可用。"
+material.unlitReflectanceWarning ""
+material.unlitRefractionWarning ""
 // refraction
 material.ior "折射率"
 material.paintingOverride "表面效果"
+material.paintingOverride.help ""
 material.refractionSurfaceGlossiness "光泽度"
 material.refractionSurfaceGlossiness.help "光泽度可以增强光线打在物体表面上的反射效果。
 
@@ -748,6 +753,7 @@ popup.delete.confirm.yes "确认删除"
 // title when requesting input value through virtual keyboard
 input.name "修改名称"
 input.number "请输入文件名"
+input.hexcolor ""
 
 // ----------------------------------------------
 // postprocess
@@ -773,7 +779,7 @@ postprocess.ssrFactor "强度"
 postprocess.ssrDistanceFading "淡化距离" 
 postprocess.ssrDistanceFading.help "根据反射距离来减弱效果。
 此选项能减弱SSR所产生的伪影。"
-postprocess.ssrUnlitWarning "SSR仅在PBR渲染模式下有效。"
+postprocess.ssrPBRWarning "SSR仅在PBR渲染模式下有效。"
 // ssao
 postprocess.ssaoEnable "环境光遮蔽（AO）" 
 postprocess.ssaoRadius "半径" 
@@ -1063,6 +1069,7 @@ shading.lights.unlitWarning "灯光选项在当前渲染模式下不可用。"
 shading.environment "HDRI"
 shading.environmentImport "导入HDRI"
 shading.environmentExposure "曝光"
+shading.environmentBackgroundBlur ""
 shading.environmentRotation "旋转"
 shading.environmentRotation.help "在屏幕上使用三指水平移动可使环境、灯光与材质捕捉旋转。"
 shading.environmentAttachedToCamera "固定HDRI"
@@ -1320,10 +1327,8 @@ tool.crease.pinchFactor "力度"
 
 // ----------------------------------------------
 // layer
-tool.layer.removeInfluence "Use current layer offset"
-tool.layer.removeInfluence.help "This option is only active when there is a current layer selected.
-
-It will use the current layer offset to limit the displacement over strokes."
+tool.layer.removeInfluence ""
+tool.layer.removeInfluence.help ""
 tool.layer.noLayerSelected "此选项仅在选择图层后可用。"
 
 // ----------------------------------------------
@@ -1337,7 +1342,7 @@ tool.flatten.planeOffset ""
 
 // ----------------------------------------------
 // smooth
-tool.smooth.stickyBorder "Sticky vertex on border"
+tool.smooth.stickyBorder ""
 
 // ----------------------------------------------
 // paint

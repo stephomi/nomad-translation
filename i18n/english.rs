@@ -30,9 +30,11 @@ Y "Y"
 Z "Z"
 
 advancedSettings "Advanced"
+
+// generic warning when there is no mesh selected
 noSelectedMesh "No selected mesh."
 
-// generic warning (typically in menu like layer or material)
+// generic warning when only one mesh needs to be selected
 multipleObjectWarning "Multiple meshes are selected, please select only one mesh."
 
 // ----------------------------------------------
@@ -399,10 +401,10 @@ gesture.pencilAction.ios "Pencil double tap"
 gesture.pencilAction.ios.help "Only active for Apple Pencil 2nd gen."
 
 // history
-gesture.history "Quick gesture"
-gesture.history.help "2-finger tap to undo.
-
-3-finger tap to redo."
+gesture.history "History shortcuts"
+gesture.history.help "- Undo: tap with 2 fingers
+- Redo: tap with 3 fingers
+- Undo/Redo: hold 2/3 fingers down (continuous)"
 
 // size rejection
 gesture.useSizeRejection "Use size rejection"
@@ -609,9 +611,16 @@ material "Material"
 material.addNew "Add new"
 // if the shading mode is in matcap or unlit
 material.unlitWarning "Roughness and metalness will be ignored with the current shading mode."
+material.unlitReflectanceWarning "Reflectance requires PBR shading mode."
+material.unlitRefractionWarning "Refraction requires PBR shading mode."
 // refraction
 material.ior "Index of Refraction"
 material.paintingOverride "Override painting"
+material.paintingOverride.help "There is two roughness at play, the one that drives the surface and the one in the inside.
+
+However there is only one paintable roughness, so the two roughness have the same values.
+
+You can use this slider to override the surface roughness to make more glossy."
 material.refractionSurfaceGlossiness "Surface glossiness"
 material.refractionSurfaceGlossiness.help "- at 0, the surface is using the painted roughness
 - at 1, the surface is completely smooth"
@@ -667,7 +676,7 @@ menu.scene "Scene"
 menu.multires "Multires"
 menu.voxel "Voxel"
 menu.dyntopo "Dyntopo"
-menu.topology "..."
+menu.topology "Deci/UV..."
 menu.primitive "Primitive"
 menu.render "Render"
 menu.material "Material"
@@ -747,6 +756,7 @@ popup.delete.confirm.yes "Yes, delete"
 // title when requesting input value through virtual keyboard
 input.name "Name"
 input.number "Value"
+input.hexcolor "Hex color"
 
 // ----------------------------------------------
 // postprocess
@@ -772,7 +782,7 @@ postprocess.ssrFactor "Strength"
 postprocess.ssrDistanceFading "Distance fading" 
 postprocess.ssrDistanceFading.help "Attenuate the effect according to how far the reflection is.
 It can help in hiding artefacts that the SSR suffers from."
-postprocess.ssrUnlitWarning "SSR is only effective in PBR shading mode."
+postprocess.ssrPBRWarning "SSR requires PBR shading mode."
 // ssao
 postprocess.ssaoEnable "Ambient Occlusion" 
 postprocess.ssaoRadius "Size" 
@@ -1050,11 +1060,12 @@ shading.unlit "Unlit"
 // lights
 shading.lights "Lights"
 shading.lights.addLight "Add light"
-shading.lights.unlitWarning "Lights are ignored in Matcap and Unlit mode."
+shading.lights.unlitWarning "Lights requires PBR shading mode."
 // environment
 shading.environment "Environment"
 shading.environmentImport "Import HDR"
 shading.environmentExposure "Exposure"
+shading.environmentBackgroundBlur "Blur (background)"
 shading.environmentRotation "Rotation"
 shading.environmentRotation.help "You can rotate the environment by dragging 3 fingers horizontally on the viewport."
 shading.environmentAttachedToCamera "Attached to camera"
@@ -1579,12 +1590,12 @@ topology.dynamicUsePressure.help "Use this option if you want the pen pressure i
 // topology.dynamicSettings "Settings - Brush / Global"
 // decimate
 topology.decimate.title "Decimation"
-topology.decimate.title.help "Reduce the number of polygons by trying to keep as much details as possible.
+topology.decimate.title.help "Reduce the number of polygons by trying to keep as many details as possible.
 
 This feature can be useful if you want to export for 3d printing.
-However you should probably not use if you want to continue sculpting on it, as it can produce uneven triangles.
+However you should probably not use it if you want to continue sculpting on it, as it can produce uneven triangles.
 
-Note that masked area won't be decimated."
+Note that the masked area won't be decimated."
 topology.decimate "Decimate"
 topology.decimateTargetFaces "Target triangles"
 topology.decimatePaintWeight "Preserve painting"

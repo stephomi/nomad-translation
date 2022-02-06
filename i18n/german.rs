@@ -30,9 +30,11 @@ Y "Y"
 Z "Z"
 
 advancedSettings "Erweitert"
+
+// generic warning when there is no mesh selected
 noSelectedMesh "Kein Mesh ausgewählt"
 
-// generic warning (typically in menu like layer or material)
+// generic warning when only one mesh needs to be selected
 multipleObjectWarning "Mehrere Meshes sind ausgewählt, bitte nur ein Mesh auswählen."
 
 // ----------------------------------------------
@@ -547,8 +549,8 @@ interface.toolboxHide.help "Aktivieren Sie diese Option, wenn Sie die Toolbox au
 interface.toolboxMaxColumn "Toolbox max. Spalten"
 interface.toolboxResetOrder "Reset Anordn. Tools"
 interface.rounding "Ecken abrunden"
-interface.curveToolSymmetric "Symmetric tool curve widget"
-interface.curveToolSymmetric.help "The widget can be found in the Tool panel under the falloff option."
+interface.curveToolSymmetric ""
+interface.curveToolSymmetric.help ""
 interface.scale "Gesamt-Skalierung"
 interface.cursorStep "Vertikale Abstände"
 interface.panelWidth "Panel-Breite"
@@ -612,9 +614,12 @@ material "Material"
 material.addNew "Hinzufügen"
 // if the shading mode is in matcap or unlit
 material.unlitWarning "Roughness und Metalness werden im aktuellen Shading-Modus irgnoriert."
+material.unlitReflectanceWarning ""
+material.unlitRefractionWarning ""
 // refraction
 material.ior "Lichtbrechungsindex (Refraction)"
 material.paintingOverride "Painting aufheben"
+material.paintingOverride.help ""
 material.refractionSurfaceGlossiness "Oberflächenglanz"
 material.refractionSurfaceGlossiness.help "- bei 0 nutzt die Oberfläche painted Roughness
 - bei 1 ist die Oberfläche völlig glatt"
@@ -746,6 +751,7 @@ popup.delete.confirm.yes "JA, löschen"
 // title when requesting input value through virtual keyboard
 input.name "Name"
 input.number "Wert"
+input.hexcolor ""
 
 // ----------------------------------------------
 // postprocess
@@ -771,7 +777,7 @@ postprocess.ssrFactor "Stärke"
 postprocess.ssrDistanceFading "Distance-Fading" 
 postprocess.ssrDistanceFading.help "Dämpfen Sie die Wirkung je nach Entfernung der Reflexion.
 Es kann helfen, Artefakte zu verbergen, unter denen die SSR leidet."
-postprocess.ssrUnlitWarning "SSR ist nur im PBR-Shading-Modus wirksam."
+postprocess.ssrPBRWarning "SSR ist nur im PBR-Shading-Modus wirksam."
 // ssao
 postprocess.ssaoEnable "Ambient Occlusion (AO)" 
 postprocess.ssaoRadius "Größe" 
@@ -1054,6 +1060,7 @@ shading.lights.unlitWarning "Lichter werden in den Modi MatCap und Unlit generel
 shading.environment "Umgebung"
 shading.environmentImport "HDR importieren"
 shading.environmentExposure "Belichtung"
+shading.environmentBackgroundBlur ""
 shading.environmentRotation "Rotation"
 shading.environmentRotation.help "Sie können die Umgebung drehen, indem Sie 3 Finger horizontal (von links nach rechts oder umgekehrt) auf dem Touchbildschirm bewegen."
 shading.environmentAttachedToCamera "Mit der Kamera verbunden"
