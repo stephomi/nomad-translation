@@ -1,6 +1,6 @@
 // Comments are sync from the english version, it's not possible
 // to have language specific comments at the moment.
-language_note ""
+language_note "志愿汉化：B站 @奥利奥泡面盖，可私信提供意见。"
 
 // comments with "ICON FIT" should be short, ideally < 10 characters
 
@@ -258,8 +258,8 @@ file.import.add.confirm "确定添加新文件？"
 
 file.exportSelection "只导出选择部分"
 file.exportSelection.help "只导出当前选择对象，而不是所有场景。"
-file.convertToQuad ""
-file.convertToQuad.help ""
+file.convertToQuad "转换为四边形网格"
+file.convertToQuad.help "通过将相邻的三角形合并的方式，将模型网格转换为四边形。"
 
 // export
 file.export.title "导出"
@@ -637,13 +637,19 @@ material.absorptionFactor "吸收系数"
 material.opacity "不透明度"
 material.alphaMode.opaque "实心"
 material.alphaMode.blending "正常混合"
-material.alphaMode.blending.help ""
+material.alphaMode.blending.help "可通过调节不透明度的值，以实现不同程度的透明效果。
+
+请注意，由于实时渲染的性能限制，当您的模型形状过于复杂时，可能会出现明显的视觉伪影。"
 material.alphaMode.additive "线性减淡"
-material.alphaMode.additive.help ""
+material.alphaMode.additive.help "可通过调节不透明度的值，以实现不同程度的透明效果。
+
+在此模式下，黑色会变成透明，白色不透明。与正常混合相比，该模式下出现的伪影会变少，但会使对象变亮。"
 material.alphaMode.dithering "抖动"
 material.alphaMode.dithering.help "加入一些噪点使颜色过渡更为平滑。"
 material.alphaMode.refraction "折射"
-material.alphaMode.refraction.help ""
+material.alphaMode.refraction.help "此模式可用于模拟出玻璃材料的质感。
+
+由于实时渲染的性能限制，软件无法实现自折射和多层折射的效果。"
 // shadows
 material.castShadows "投射阴影"
 material.receiveShadows "接收阴影"
@@ -839,7 +845,9 @@ primitive.needValidate "基本体需转换为可编辑对象后才可雕刻。"
 primitive.useFloatPanel "快捷编辑浮窗"
 primitive.useFloatPanel.help "在浏览模式下显示编辑基本体的小浮窗。"
 primitive.edit "编辑"
-primitive.edit.help ""
+primitive.edit.help "可以在软件界面直接修改基本体的参数。
+
+如果您喜欢使用轴向变换或自由变换来调整基本体，可以禁用此功能。"
 
 primitive.mainConfig "范围"
 primitive.topology "拓扑参数"
@@ -1502,7 +1510,7 @@ topology.multiresDeleteLower "删除低模"
 topology.multiresDeleteHigher "删除高模"
 topology.multiresKeepTriangles "保留三角形"
 topology.multiresLinear "平面细分"
-topology.multiresLinear.help ""
+topology.multiresLinear.help "直接细分网格，不应用平滑。"
 // voxel
 topology.voxel.title "体素网格重构"
 topology.voxel.title.help "此功能可重构对象的网格，使其变得更加整齐。
