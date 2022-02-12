@@ -373,9 +373,9 @@ gesture.pressureTitle "Pressure ($0)"
 gesture.pressure.noTool "Dieses Werkzeug verwendet keine Pressure-Settings für den Stift."
 gesture.pressure.noGrab "Grab ignoriert Pressure-Settings."
 gesture.pressure.radius "Radius"
-gesture.pressure.intensity "Stärke" 
+gesture.pressure.intensity "Stärke"
 gesture.pressure.useRadius "Aktiv"
-gesture.pressure.useIntensity "Aktiv" 
+gesture.pressure.useIntensity "Aktiv"
 gesture.pressure.curveRadius "Radius"
 gesture.pressure.curveIntensity "Stärke"
 
@@ -392,7 +392,7 @@ gesture.fingerRadius.help "Bewegen Sie 3 Finger horizontal auf der dem Arbeitsbe
 
 gesture.fingerSmooth "Finger glättet immer"
 gesture.unknownPressure "Unerkannten Pressure zulassen"
-gesture.unknownPressure.help "Aktivieren Sie diese Option, wenn Pressure (Druck) mit Ihrem Stift nicht funktioniert oder wenn Sie einen Pressure für den Finger benötigen." 
+gesture.unknownPressure.help "Aktivieren Sie diese Option, wenn Pressure (Druck) mit Ihrem Stift nicht funktioniert oder wenn Sie einen Pressure für den Finger benötigen."
 
 // pencil
 gesture.pencilAction.none "Nichts"
@@ -417,7 +417,7 @@ gesture.useSizeRejection.help "Die Eingabe auf dem Touchdisplay wird abgelehnt, 
 Funktioniert möglicherweise nicht auf jedem Gerät."
 gesture.sizeRejection "Schwelle für maximale Größe"
 // help
-gesture.interaction.title "Gesten" 
+gesture.interaction.title "Gesten"
 gesture.interaction.title.help "Diese Optionen gelten immer global."
 
 // ----------------------------------------------
@@ -518,7 +518,7 @@ interface.shortcut.cameraSnapFlip.help "Wenn die Kamera bereits eingerastet ist,
 interface.colors "Hauptfarben"
 interface.colorSelect "Widget-Farbe"
 interface.colorBase "Grundfarbe"
-interface.colorBaseTransparent "Panel-Farbe" 
+interface.colorBaseTransparent "Panel-Farbe"
 interface.panelTransparent "Panel transparent"
 interface.blurFactor "Unschärfe"
 
@@ -711,9 +711,9 @@ paint.useGlobal "Globales Material"
 paint.useGlobal.help "Wenn diese Option aktiviert ist, ist das ausgewählte Material dasselbe wie bei den anderen Werkzeugen.
 
 Beachten Sie, dass hier nur die Einstellungen für Roughness, Metalness und Color berücksichtigt werden."
-paint.usePainting "Stroke painting" 
+paint.usePainting "Stroke painting"
 paint.intensity "Paint Stäke"
-paint.paintAll "Füllen" 
+paint.paintAll "Füllen"
 paint.paintAll.help "Wendet das aktuelle Material auf das gesamte Mesh ohne maskierte Bereiche an (Paint all).
 
 Maskierte Bereiche und deaktivierte Kanäle werden berücksichtigt und entsprechend ausgespart!"
@@ -755,7 +755,7 @@ input.hexcolor ""
 
 // ----------------------------------------------
 // postprocess
-postprocess.mainEnable "Nachbearbeitung (Post)" 
+postprocess.mainEnable "Nachbearbeitung (Post)"
 postprocess.quality "Qualität"
 postprocess.quality.help "Aktivieren Sie diese Optionen, um die Qualität auf Kosten der Leistung zu verbessern.
 
@@ -772,36 +772,36 @@ postprocess.fxaaEnable "Anti-Aliasing (FXAA)"
 postprocess.taaEnable "Anti-Aliasing (TAA)"
 postprocess.taaEnable.help "Verringert das Flackern, wenn Sie die Kamera bewegen."
 // ssr
-postprocess.ssrEnable "Reflektion (SSR)" 
-postprocess.ssrFactor "Stärke" 
-postprocess.ssrDistanceFading "Distance-Fading" 
+postprocess.ssrEnable "Reflektion (SSR)"
+postprocess.ssrFactor "Stärke"
+postprocess.ssrDistanceFading "Distance-Fading"
 postprocess.ssrDistanceFading.help "Dämpfen Sie die Wirkung je nach Entfernung der Reflexion.
 Es kann helfen, Artefakte zu verbergen, unter denen die SSR leidet."
 postprocess.ssrPBRWarning "SSR ist nur im PBR-Shading-Modus wirksam."
 // ssao
-postprocess.ssaoEnable "Ambient Occlusion (AO)" 
-postprocess.ssaoRadius "Größe" 
-postprocess.ssaoFactor "Stärke" 
-postprocess.ssaoBias "Wölbungs-Bias" 
+postprocess.ssaoEnable "Ambient Occlusion (AO)"
+postprocess.ssaoRadius "Größe"
+postprocess.ssaoFactor "Stärke"
+postprocess.ssaoBias "Wölbungs-Bias"
 postprocess.ssaoBias.help "Wie empfindlich der Effekt ist, hängt von der Oberflächenwölbung ab."
 // dof
 postprocess.dofEnable "Depth Of Field (DoF)"
-postprocess.dofBlurFar "Ferne Unschärfe" 
+postprocess.dofBlurFar "Ferne Unschärfe"
 postprocess.dofBlurNear "Nahe Unschärfe"
 postprocess.dofFocusTip "Tippen Sie auf ein Objekt, um den Fokuspunkt zu ändern."
 // bloom
-postprocess.bloomEnable "Leuchten (Bloom)" 
-postprocess.bloomIntensity "Stärke" 
-postprocess.bloomRadius "Radius" 
+postprocess.bloomEnable "Leuchten (Bloom)"
+postprocess.bloomIntensity "Stärke"
+postprocess.bloomRadius "Radius"
 postprocess.bloomRadius.help "Wie ausgedehnt das Leuchten ist."
-postprocess.bloomThreshold "Schwellenwert" 
+postprocess.bloomThreshold "Schwellenwert"
 postprocess.bloomThreshold.help "Schwellenwert für die Leuchtkraft (Luminosity), um zu entscheiden, ob ein Pixel das Leuchten (Bloom) emittiert oder nicht.
 Steht der Wert auf 0, leuchtet alles."
 // tone mapping
-postprocess.toneEnable "Tone-Mapping" 
-postprocess.toneExposure "Belichtung" 
-postprocess.toneContrast "Kontrast" 
-postprocess.toneSaturation "Sättigung" 
+postprocess.toneEnable "Tone-Mapping"
+postprocess.toneExposure "Belichtung"
+postprocess.toneContrast "Kontrast"
+postprocess.toneSaturation "Sättigung"
 postprocess.toneMappingNone "None"
 // curve
 postprocess.curveEnable "Color-Grading"
@@ -812,22 +812,22 @@ postprocess.curve.blue "Blau"
 postprocess.curveReset "Kanal neutral"
 postprocess.curveResetAll "Alles neutral"
 // chromatic
-postprocess.chromaticEnable "Chromatische Aberration" 
-postprocess.chromaticFactor "Stärke" 
+postprocess.chromaticEnable "Chromatische Aberration"
+postprocess.chromaticFactor "Stärke"
 // vignette
-postprocess.vignetteEnable "Vignette" 
-postprocess.vignetteSize "Größe" 
-postprocess.vignetteHardness "Ausprägung" 
+postprocess.vignetteEnable "Vignette"
+postprocess.vignetteSize "Größe"
+postprocess.vignetteHardness "Ausprägung"
 // sharpness
-postprocess.sharpnessEnable "Schärfe" 
-postprocess.sharpnessFactor "Stärke" 
+postprocess.sharpnessEnable "Schärfe"
+postprocess.sharpnessFactor "Stärke"
 // grain
-postprocess.grainEnable "Körnung (Grain)" 
-postprocess.grainFactor "Stärke" 
+postprocess.grainEnable "Körnung (Grain)"
+postprocess.grainFactor "Stärke"
 // curvature
-postprocess.curvatureEnable "Curvature" 
-postprocess.curvatureCavity "Cavity" 
-postprocess.curvatureBump "Bump" 
+postprocess.curvatureEnable "Curvature"
+postprocess.curvatureCavity "Cavity"
+postprocess.curvatureBump "Bump"
 
 // ----------------------------------------------
 // primitive (scene menu)
@@ -1154,7 +1154,7 @@ stroke.onlySameSide.help "Vertices, die in die entgegengesetzte Richtung der Def
 stroke.curveFalloff "Falloff"
 stroke.onlyLasso "Einstellungen nur für das Lasso-Werkzeug aktiv."
 // alpha
-stroke.alpha "Alpha" 
+stroke.alpha "Alpha"
 stroke.alphaInvert "Alpha invertieren"
 stroke.alphaWrap "Tiling"
 stroke.alphaWrap.none "Kein"

@@ -367,9 +367,9 @@ gesture.pressureTitle "压感设置 ($0)"
 gesture.pressure.noTool "此工具不适用压感设置。"
 gesture.pressure.noGrab "此工具会忽略压感设置。"
 gesture.pressure.radius "半径"
-gesture.pressure.intensity "强度" 
+gesture.pressure.intensity "强度"
 gesture.pressure.useRadius "启用"
-gesture.pressure.useIntensity "启用" 
+gesture.pressure.useIntensity "启用"
 gesture.pressure.curveRadius "半径"
 gesture.pressure.curveIntensity "强度"
 
@@ -386,7 +386,7 @@ gesture.fingerRadius.help "在屏幕上使用三指垂直移动可调节当前�
 
 gesture.fingerSmooth "将手指用于平滑"
 gesture.unknownPressure "允许未识别的压感"
-gesture.unknownPressure.help "当您的触控笔压感无法使用或者希望使用手指压感时，请勾选此选项。" 
+gesture.unknownPressure.help "当您的触控笔压感无法使用或者希望使用手指压感时，请勾选此选项。"
 
 // pencil
 gesture.pencilAction.none "无"
@@ -411,7 +411,7 @@ gesture.useSizeRejection.help "如果手指与屏幕的接触面积超过设定�
 部分设备可能不支持此选项"
 gesture.sizeRejection "尺寸阈值"
 // help
-gesture.interaction.title "防误触" 
+gesture.interaction.title "防误触"
 gesture.interaction.title.help "以下选项均为全局设置。"
 
 // ----------------------------------------------
@@ -512,7 +512,7 @@ interface.shortcut.cameraSnapFlip.help "当相机处于基本视图时，点击�
 interface.colors "界面颜色"
 interface.colorSelect "主色"
 interface.colorBase "底色"
-interface.colorBaseTransparent "面板颜色" 
+interface.colorBaseTransparent "面板颜色"
 interface.panelTransparent "面板透明度"
 interface.blurFactor "模糊强度"
 
@@ -715,9 +715,9 @@ mesh.typeDynamic "动态模型"
 // painting
 paint.useGlobal "应用全局材料"
 paint.useGlobal.help "如勾选此选项，其他工具的材质也将会与所选材质相同。"
-paint.usePainting "启用绘图" 
+paint.usePainting "启用绘图"
 paint.intensity "画笔强度"
-paint.paintAll "全部上色" 
+paint.paintAll "全部上色"
 paint.paintAll.help "将当前材料应用到所选对象上。"
 paint.paintAllForce "强制全部上色"
 paint.paintAllForce.help "将当前材料应用到所选对象上。
@@ -757,7 +757,7 @@ input.hexcolor ""
 
 // ----------------------------------------------
 // postprocess
-postprocess.mainEnable "后期处理" 
+postprocess.mainEnable "后期处理"
 postprocess.quality "效果质量"
 postprocess.quality.help "该设置可提升部分效果的渲染质量，但可能会影响性能。
 
@@ -774,36 +774,36 @@ postprocess.fxaaEnable "快速抗锯齿（FXAA）"
 postprocess.taaEnable "时间性抗锯齿（TAA）"
 postprocess.taaEnable.help "TAA可减少相机移动时的闪烁，呈现出更加平滑的图像效果。"
 // ssr
-postprocess.ssrEnable "屏幕空间反射（SSR）" 
-postprocess.ssrFactor "强度" 
-postprocess.ssrDistanceFading "淡化距离" 
+postprocess.ssrEnable "屏幕空间反射（SSR）"
+postprocess.ssrFactor "强度"
+postprocess.ssrDistanceFading "淡化距离"
 postprocess.ssrDistanceFading.help "根据反射距离来减弱效果。
 此选项能减弱SSR所产生的伪影。"
 postprocess.ssrPBRWarning "SSR仅在PBR渲染模式下有效。"
 // ssao
-postprocess.ssaoEnable "环境光遮蔽（AO）" 
-postprocess.ssaoRadius "半径" 
-postprocess.ssaoFactor "强度" 
-postprocess.ssaoBias "扩张强度" 
+postprocess.ssaoEnable "环境光遮蔽（AO）"
+postprocess.ssaoRadius "半径"
+postprocess.ssaoFactor "强度"
+postprocess.ssaoBias "扩张强度"
 postprocess.ssaoBias.help "模型表面曲率将会影响效果的强度。"
 // dof
 postprocess.dofEnable "景深"
-postprocess.dofBlurFar "远景模糊" 
+postprocess.dofBlurFar "远景模糊"
 postprocess.dofBlurNear "近景模糊"
 postprocess.dofFocusTip "点击对象表面可以改变焦点。"
 // bloom
-postprocess.bloomEnable "泛光效果" 
-postprocess.bloomIntensity "强度" 
-postprocess.bloomRadius "半径" 
+postprocess.bloomEnable "泛光效果"
+postprocess.bloomIntensity "强度"
+postprocess.bloomRadius "半径"
 postprocess.bloomRadius.help "此参数可调节泛光的宽度。"
-postprocess.bloomThreshold "阈值" 
+postprocess.bloomThreshold "阈值"
 postprocess.bloomThreshold.help "泛光阈值能够判断泛光的光线强度。
 阈值越高，空间里越亮的物体才会产生泛光效果。"
 // tone mapping
-postprocess.toneEnable "色调映射" 
-postprocess.toneExposure "曝光" 
-postprocess.toneContrast "对比度" 
-postprocess.toneSaturation "饱和度" 
+postprocess.toneEnable "色调映射"
+postprocess.toneExposure "曝光"
+postprocess.toneContrast "对比度"
+postprocess.toneSaturation "饱和度"
 postprocess.toneMappingNone "无"
 // curve
 postprocess.curveEnable "曲线"
@@ -814,22 +814,22 @@ postprocess.curve.blue "蓝"
 postprocess.curveReset "重设"
 postprocess.curveResetAll "全部重设"
 // chromatic
-postprocess.chromaticEnable "色彩偏移" 
-postprocess.chromaticFactor "强度" 
+postprocess.chromaticEnable "色彩偏移"
+postprocess.chromaticFactor "强度"
 // vignette
-postprocess.vignetteEnable "晕影" 
-postprocess.vignetteSize "半径" 
-postprocess.vignetteHardness "硬度" 
+postprocess.vignetteEnable "晕影"
+postprocess.vignetteSize "半径"
+postprocess.vignetteHardness "硬度"
 // sharpness
-postprocess.sharpnessEnable "锐化" 
-postprocess.sharpnessFactor "强度" 
+postprocess.sharpnessEnable "锐化"
+postprocess.sharpnessFactor "强度"
 // grain
-postprocess.grainEnable "噪点" 
-postprocess.grainFactor "强度" 
+postprocess.grainEnable "噪点"
+postprocess.grainFactor "强度"
 // curvature
-postprocess.curvatureEnable "曲率描边" 
-postprocess.curvatureCavity "缝隙颜色" 
-postprocess.curvatureBump "凸起颜色" 
+postprocess.curvatureEnable "曲率描边"
+postprocess.curvatureCavity "缝隙颜色"
+postprocess.curvatureBump "凸起颜色"
 
 // ----------------------------------------------
 // primitive (scene menu)
@@ -1165,7 +1165,7 @@ stroke.onlySameSide.help "在修改对象造型时，不移动朝向不同的顶
 stroke.curveFalloff "衰减"
 stroke.onlyLasso "该设置仅对套索工具有效。"
 // alpha
-stroke.alpha "形状" 
+stroke.alpha "形状"
 stroke.alphaInvert "形状反相"
 stroke.alphaWrap "平铺"
 stroke.alphaWrap.none "无"

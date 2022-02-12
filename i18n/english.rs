@@ -370,9 +370,9 @@ gesture.pressureTitle "Pressure ($0)"
 gesture.pressure.noTool "This tool doesn't use pen pressure."
 gesture.pressure.noGrab "Grab stroke type will ignore pressure settings."
 gesture.pressure.radius "Radius"
-gesture.pressure.intensity "Intensity" 
+gesture.pressure.intensity "Intensity"
 gesture.pressure.useRadius "Active"
-gesture.pressure.useIntensity "Active" 
+gesture.pressure.useIntensity "Active"
 gesture.pressure.curveRadius "Radius"
 gesture.pressure.curveIntensity "Intensity"
 
@@ -389,7 +389,7 @@ gesture.fingerRadius.help "Drag 3 fingers vertically to edit the radius."
 
 gesture.fingerSmooth "Finger always smooths"
 gesture.unknownPressure "Allow unrecognized pressure"
-gesture.unknownPressure.help "Check this option if the pressure doesn't work with your pencil or if you need pressure finger." 
+gesture.unknownPressure.help "Check this option if the pressure doesn't work with your pencil or if you need pressure finger."
 
 // pencil
 gesture.pencilAction.none "None"
@@ -414,7 +414,7 @@ gesture.useSizeRejection.help "Reject input if the contact area size larger than
 Might not work on every device."
 gesture.sizeRejection "Max size threshold"
 // help
-gesture.interaction.title "Gesture" 
+gesture.interaction.title "Gesture"
 gesture.interaction.title.help "These options are always global."
 
 // ----------------------------------------------
@@ -515,7 +515,7 @@ interface.shortcut.cameraSnapFlip.help "If the camera is already snapped, the sh
 interface.colors "Main colors"
 interface.colorSelect "Color widget"
 interface.colorBase "Color base"
-interface.colorBaseTransparent "Color panel" 
+interface.colorBaseTransparent "Color panel"
 interface.panelTransparent "Transparent panel"
 interface.blurFactor "Blur strength"
 
@@ -718,9 +718,9 @@ paint.useGlobal "Global material"
 paint.useGlobal.help "If this option is enabled, the selected material will be the same as the other tools.
 
 Note that it only takes into account roughness, metalness and color settings."
-paint.usePainting "Stroke painting" 
+paint.usePainting "Stroke painting"
 paint.intensity "Paint intensity"
-paint.paintAll "Paint all" 
+paint.paintAll "Paint all"
 paint.paintAll.help "Apply the current material to the mesh."
 paint.paintAllForce "Force paint all"
 paint.paintAllForce.help "Apply the current material to the mesh.
@@ -760,7 +760,7 @@ input.hexcolor "Hex color"
 
 // ----------------------------------------------
 // postprocess
-postprocess.mainEnable "Post Process" 
+postprocess.mainEnable "Post Process"
 postprocess.quality "Quality"
 postprocess.quality.help "Activate these options to improve the quality to the detriment of performance.
 
@@ -777,36 +777,36 @@ postprocess.fxaaEnable "Anti-aliasing (FXAA)"
 postprocess.taaEnable "Anti-aliasing (TAA)"
 postprocess.taaEnable.help "Reduces flickering when you are moving the camera."
 // ssr
-postprocess.ssrEnable "Reflection (SSR)" 
-postprocess.ssrFactor "Strength" 
-postprocess.ssrDistanceFading "Distance fading" 
+postprocess.ssrEnable "Reflection (SSR)"
+postprocess.ssrFactor "Strength"
+postprocess.ssrDistanceFading "Distance fading"
 postprocess.ssrDistanceFading.help "Attenuate the effect according to how far the reflection is.
 It can help in hiding artefacts that the SSR suffers from."
 postprocess.ssrPBRWarning "SSR requires PBR shading mode."
 // ssao
-postprocess.ssaoEnable "Ambient Occlusion" 
-postprocess.ssaoRadius "Size" 
-postprocess.ssaoFactor "Strength" 
-postprocess.ssaoBias "Curvature bias" 
+postprocess.ssaoEnable "Ambient Occlusion"
+postprocess.ssaoRadius "Size"
+postprocess.ssaoFactor "Strength"
+postprocess.ssaoBias "Curvature bias"
 postprocess.ssaoBias.help "How sensitive the effect is depending on the surface curvature."
 // dof
 postprocess.dofEnable "Depth Of Field"
-postprocess.dofBlurFar "Far blur" 
+postprocess.dofBlurFar "Far blur"
 postprocess.dofBlurNear "Near blur"
 postprocess.dofFocusTip "Tap an object to change the focus point."
 // bloom
-postprocess.bloomEnable "Bloom" 
-postprocess.bloomIntensity "Intensity" 
-postprocess.bloomRadius "Radius" 
+postprocess.bloomEnable "Bloom"
+postprocess.bloomIntensity "Intensity"
+postprocess.bloomRadius "Radius"
 postprocess.bloomRadius.help "How widespread the bloom is."
-postprocess.bloomThreshold "Threshold" 
+postprocess.bloomThreshold "Threshold"
 postprocess.bloomThreshold.help "Luminosity threshold to decide if a pixel will emit bloom or not.
 If the value is at 0, everything will receive bloom."
 // tone mapping
-postprocess.toneEnable "Tone Mapping" 
-postprocess.toneExposure "Exposure" 
-postprocess.toneContrast "Contrast" 
-postprocess.toneSaturation "Saturation" 
+postprocess.toneEnable "Tone Mapping"
+postprocess.toneExposure "Exposure"
+postprocess.toneContrast "Contrast"
+postprocess.toneSaturation "Saturation"
 postprocess.toneMappingNone "None"
 // curve
 postprocess.curveEnable "Color Grading"
@@ -817,22 +817,22 @@ postprocess.curve.blue "Blue"
 postprocess.curveReset "Reset"
 postprocess.curveResetAll "Reset All"
 // chromatic
-postprocess.chromaticEnable "Chromatic Aberration" 
-postprocess.chromaticFactor "Strength" 
+postprocess.chromaticEnable "Chromatic Aberration"
+postprocess.chromaticFactor "Strength"
 // vignette
-postprocess.vignetteEnable "Vignette" 
-postprocess.vignetteSize "Size" 
-postprocess.vignetteHardness "Hardness" 
+postprocess.vignetteEnable "Vignette"
+postprocess.vignetteSize "Size"
+postprocess.vignetteHardness "Hardness"
 // sharpness
-postprocess.sharpnessEnable "Sharpness" 
-postprocess.sharpnessFactor "Strength" 
+postprocess.sharpnessEnable "Sharpness"
+postprocess.sharpnessFactor "Strength"
 // grain
-postprocess.grainEnable "Grain" 
-postprocess.grainFactor "Strength" 
+postprocess.grainEnable "Grain"
+postprocess.grainFactor "Strength"
 // curvature
-postprocess.curvatureEnable "Curvature" 
-postprocess.curvatureCavity "Cavity" 
-postprocess.curvatureBump "Bump" 
+postprocess.curvatureEnable "Curvature"
+postprocess.curvatureCavity "Cavity"
+postprocess.curvatureBump "Bump"
 
 // ----------------------------------------------
 // primitive (scene menu)
@@ -1159,7 +1159,7 @@ stroke.onlySameSide.help "Ignore vertices that points in the opposite direction 
 stroke.curveFalloff "Falloff"
 stroke.onlyLasso "Settings only active for the lasso tool."
 // alpha
-stroke.alpha "Alpha" 
+stroke.alpha "Alpha"
 stroke.alphaInvert "Invert value"
 stroke.alphaWrap "Tiling"
 stroke.alphaWrap.none "None"
