@@ -1252,6 +1252,7 @@ tool.pinch "擠捏"
 tool.nudge "觸碰"
 tool.stamp "圖章"
 tool.clearLayer "擦除"
+tool.lassoSelect ""
 tool.gizmo "軸向變換"
 tool.gizmo.auto "自動原點"
 tool.gizmo.editPivot "編輯原點"
@@ -1587,6 +1588,11 @@ topology.uvBFF.warning ""
 topology.uvBFFCones ""
 topology.uvBFFCones.help ""
 topology.uvDelete ""
+
+// ----------------------------------------------
+// privacy policy
+privacyPolicy.title ""
+privacyPolicy ""
 
 // ----------------------------------------------
 // version trial

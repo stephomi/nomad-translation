@@ -1279,6 +1279,7 @@ tool.pinch "挤捏"
 tool.nudge "触碰"
 tool.stamp "图章"
 tool.clearLayer "擦除"
+tool.lassoSelect ""
 tool.gizmo "轴向变换"
 tool.gizmo.auto "自动原点"
 tool.gizmo.editPivot "编辑原点"
@@ -1617,6 +1618,11 @@ topology.uvBFF.warning ""
 topology.uvBFFCones ""
 topology.uvBFFCones.help ""
 topology.uvDelete "删除UV"
+
+// ----------------------------------------------
+// privacy policy
+privacyPolicy.title "未收集数据"
+privacyPolicy "开发者不会从此 App 中收集任何数据。"
 
 // ----------------------------------------------
 // version trial

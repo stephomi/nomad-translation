@@ -1269,6 +1269,7 @@ tool.pinch "Pinch"
 tool.nudge "Nudge"
 tool.stamp "Stamp"
 tool.clearLayer "DelLayer"
+tool.lassoSelect ""
 tool.gizmo "Gizmo"
 tool.gizmo.auto "Auto"
 tool.gizmo.editPivot "Pivot"
@@ -1615,6 +1616,11 @@ topology.uvBFFCones.help "Ein höherer Wert verringert die Verzerrung bei komple
 
 Ein höherer Wert bedeutet aber auch eine längere Berechnungszeit."
 topology.uvDelete "UVs löschen"
+
+// ----------------------------------------------
+// privacy policy
+privacyPolicy.title ""
+privacyPolicy ""
 
 // ----------------------------------------------
 // version trial

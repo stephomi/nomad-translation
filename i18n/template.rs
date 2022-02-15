@@ -1103,6 +1103,7 @@ tool.pinch ""
 tool.nudge ""
 tool.stamp ""
 tool.clearLayer ""
+tool.lassoSelect ""
 tool.gizmo ""
 tool.gizmo.auto ""
 tool.gizmo.editPivot ""
@@ -1357,6 +1358,11 @@ topology.uvBFF.warning ""
 topology.uvBFFCones ""
 topology.uvBFFCones.help ""
 topology.uvDelete ""
+
+// ----------------------------------------------
+// privacy policy
+privacyPolicy.title ""
+privacyPolicy ""
 
 // ----------------------------------------------
 // version trial

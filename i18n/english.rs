@@ -1274,6 +1274,7 @@ tool.pinch "Pinch"
 tool.nudge "Nudge"
 tool.stamp "Stamp"
 tool.clearLayer "DelLayer"
+tool.lassoSelect "Select"
 tool.gizmo "Gizmo"
 tool.gizmo.auto "Auto"
 tool.gizmo.editPivot "Pivot"
@@ -1620,6 +1621,11 @@ topology.uvBFFCones.help "Higher value will reduce distortion for complex object
 
 Higher value will means longer compute time."
 topology.uvDelete "Delete UVs"
+
+// ----------------------------------------------
+// privacy policy
+privacyPolicy.title "Privacy Policy"
+privacyPolicy "The developer does not collect any data from this app."
 
 // ----------------------------------------------
 // version trial
