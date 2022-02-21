@@ -1622,7 +1622,8 @@ topology.uvDelete "删除UV"
 // ----------------------------------------------
 // privacy policy
 privacyPolicy.title "未收集数据"
-privacyPolicy "开发者不会从此 App 中收集任何数据。"
+privacyPolicy.reject "不好"
+privacyPolicy "Hexanomad 不会从 Nomad Sculpt 收集任何数据。"
 
 // ----------------------------------------------
 // version trial
