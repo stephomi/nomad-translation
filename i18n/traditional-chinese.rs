@@ -1592,6 +1592,7 @@ topology.uvDelete ""
 // ----------------------------------------------
 // privacy policy
 privacyPolicy.title ""
+privacyPolicy.reject ""
 privacyPolicy ""
 
 // ----------------------------------------------

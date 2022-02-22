@@ -1620,6 +1620,7 @@ topology.uvDelete "UVs löschen"
 // ----------------------------------------------
 // privacy policy
 privacyPolicy.title ""
+privacyPolicy.reject ""
 privacyPolicy ""
 
 // ----------------------------------------------
