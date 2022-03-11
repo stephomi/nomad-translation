@@ -939,8 +939,6 @@ settings.displayTitle "顯示設置"
 settings.wireframeTitle "對象網格設置"
 settings.wireframeDisplay "對象網格"
 settings.wireframeColor "對象網格顏色"
-settings.wireframeUV ""
-settings.wireframeUV.help ""
 settings.debugUV ""
 settings.debugUV.help ""
 // backface
@@ -1032,8 +1030,14 @@ settings.notSaved "這些選項不會在設置中保存。"
 shading "渲染模式"
 // main render mode
 shading.pbr "PBR"
+shading.matcap.help ""
 shading.matcap "材質捕捉"
+shading.matcap.help ""
 shading.unlit "不受光"
+shading.unlit.help ""
+// textures
+shading.textures ""
+shading.textures.help ""
 // lights
 shading.lights "燈光"
 shading.lights.addLight "添加燈光"

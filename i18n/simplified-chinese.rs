@@ -962,14 +962,12 @@ settings.displayTitle "显示设置"
 settings.wireframeTitle "对象网格设置"
 settings.wireframeDisplay "对象网格"
 settings.wireframeColor "对象网格颜色"
-settings.wireframeUV "显示UV"
-settings.wireframeUV.help "开启此选项后，将会显示对象的纹理贴图坐标（UV）。
+settings.debugUV "UV棋盘格"
+settings.debugUV.help "开启此选项后，将会显示对象的纹理贴图坐标（UV）。
+
+默认展示棋盘贴图，可用于判断UV坐标的分布情况。
 
 仅在UV存在时显示。"
-settings.debugUV "UV棋盘格"
-settings.debugUV.help "当模型没有颜色贴图时，默认展示棋盘贴图，可用于判断UV坐标的分布情况。
-
-此选项仅在渲染模式为PBR-UV时有效。"
 // backface
 settings.backfaceTitle "双面显示设置"
 settings.backfaceVisible "双面显示"
@@ -1059,8 +1057,14 @@ settings.notSaved "这些选项不会在设置中保存。"
 shading "渲染模式"
 // main render mode
 shading.pbr "PBR"
+shading.matcap.help ""
 shading.matcap "材质捕捉"
+shading.matcap.help ""
 shading.unlit "不受光"
+shading.unlit.help ""
+// textures
+shading.textures ""
+shading.textures.help ""
 // lights
 shading.lights "灯光"
 shading.lights.addLight "添加灯光"

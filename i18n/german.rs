@@ -960,16 +960,10 @@ settings.displayTitle "Display Einstellungen"
 settings.wireframeTitle "Wireframe"
 settings.wireframeDisplay "Wireframe"
 settings.wireframeColor "Wireframe-Farbe"
-settings.wireframeUV "UV 2D-Wireframe"
-settings.wireframeUV.help "Zeigt die Wireframe-UV im Hintergrund an, wenn das Modell UVs hat.
-
-Beachten Sie, dass bei Aktivierung dieser Option auch die Anzeige der Checkerboard-Textur erzwungen wird.
-
-Diese Option wird nur verwendet, wenn der Shading-Modus PBR-UV ist."
 settings.debugUV "UV-Checkerboard"
-settings.debugUV.help "Anzeige einer Standardtextur für UV-Modelle, die keine Color-Textur haben.
+settings.debugUV.help "Zeigt die Wireframe-UV im Hintergrund an, wenn das Modell UVs hat.
 
-Diese Option wird nur verwendet, wenn der Shading-Modus PBR-UV ist."
+Beachten Sie, dass bei Aktivierung dieser Option auch die Anzeige der Checkerboard-Textur erzwungen wird."
 // backface
 settings.backfaceTitle "Backfaces"
 settings.backfaceVisible "Backface"
@@ -1050,8 +1044,14 @@ settings.notSaved "Diese Optionen werden nicht in den Einstellungen gespeichert"
 shading "Shading"
 // main render mode
 shading.pbr "PBR"
+shading.matcap.help ""
 shading.matcap "MatCap"
+shading.matcap.help ""
 shading.unlit "Unlit"
+shading.unlit.help ""
+// textures
+shading.textures ""
+shading.textures.help ""
 // lights
 shading.lights "Lichter"
 shading.lights.addLight "Licht hinzufügen"

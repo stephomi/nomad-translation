@@ -857,8 +857,6 @@ settings.displayTitle ""
 settings.wireframeTitle ""
 settings.wireframeDisplay ""
 settings.wireframeColor ""
-settings.wireframeUV ""
-settings.wireframeUV.help ""
 settings.debugUV ""
 settings.debugUV.help ""
 // backface
@@ -929,8 +927,14 @@ settings.notSaved ""
 shading ""
 // main render mode
 shading.pbr ""
+shading.matcap.help ""
 shading.matcap ""
+shading.matcap.help ""
 shading.unlit ""
+shading.unlit.help ""
+// textures
+shading.textures ""
+shading.textures.help ""
 // lights
 shading.lights ""
 shading.lights.addLight ""

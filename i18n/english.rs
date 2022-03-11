@@ -965,16 +965,12 @@ settings.displayTitle "Display settings"
 settings.wireframeTitle "Wireframe"
 settings.wireframeDisplay "Wireframe"
 settings.wireframeColor "Wireframe color"
-settings.wireframeUV "UV 2d wireframe"
-settings.wireframeUV.help "Display the wireframe UV in the background, if the model has UVs.
+settings.debugUV "Debug UV"
+settings.debugUV.help "This option is only relevant if the model has UVs.
 
-Note that when this option is enabled, it will also force the display of the checkerboard texture.
+It will display the UV wireframe in the background.
 
-This option is used only if the shading mode is PBR - UV."
-settings.debugUV "UV checkerboard"
-settings.debugUV.help "Display a default texture for UV models that don't have any color texture.
-
-This option is used only if the shading mode is PBR - UV."
+It will also display a colored checkerboard texture on the model."
 // backface
 settings.backfaceTitle "Two sided"
 settings.backfaceVisible "Two sided"
@@ -1054,9 +1050,29 @@ settings.notSaved "These options are not saved in the settings."
 // shading
 shading "Shading"
 // main render mode
-shading.pbr "PBR"
+shading.pbr "Lit (PBR)"
+shading.matcap.help "In this mode you can add lights (with shadows), along with an HDR environment.
+
+You can also paint metalness and roughness, thus allowing a finer control on the look of your material."
 shading.matcap "Matcap"
+shading.matcap.help "Stands for MATerial CAPture, a matcap takes care of both the lighting and material information in a single image.
+
+This is a fast rendering mode, mostly suited for raw sculpting."
 shading.unlit "Unlit"
+shading.unlit.help "Solid color shading mode, without lighting."
+// textures
+shading.textures "Use textures"
+shading.textures.help "At the moment, you cannot create nor edit textures inside Nomad.
+
+But if you import a file with textures in it, it should work.
+
+-- Supported textures --
+Opacity: Lit, Matcap, Unlit
+Normal: Lit, Matcap
+Color: Lit, Unlit
+Emissive: Lit
+Roughness: Lit
+Metalness: Lit"
 // lights
 shading.lights "Lights"
 shading.lights.addLight "Add light"
