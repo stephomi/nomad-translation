@@ -638,21 +638,24 @@ material.absorptionEnable.help "该效果能模拟光线穿过物体时被衰减
 
 最终效果由网格形状结构决定，仅使用网格厚度的近似值。"
 material.absorptionFactor "吸收系数"
-// alpha
+// subsurface
+material.subsurfaceScale ""
+// type
 material.opacity "不透明度"
-material.alphaMode.opaque "实心"
-material.alphaMode.blending "正常混合"
-material.alphaMode.blending.help "可通过调节不透明度的值，以实现不同程度的透明效果。
+material.type.opaque "实心"
+material.type.subsurface ""
+material.type.blending "正常混合"
+material.type.blending.help "可通过调节不透明度的值，以实现不同程度的透明效果。
 
 请注意，由于实时渲染的性能限制，当您的模型形状过于复杂时，可能会出现明显的视觉伪影。"
-material.alphaMode.additive "线性减淡"
-material.alphaMode.additive.help "可通过调节不透明度的值，以实现不同程度的透明效果。
+material.type.additive "线性减淡"
+material.type.additive.help "可通过调节不透明度的值，以实现不同程度的透明效果。
 
 在此模式下，黑色会变成透明，白色不透明。与正常混合相比，该模式下出现的伪影会变少，但会使对象变亮。"
-material.alphaMode.dithering "抖动"
-material.alphaMode.dithering.help "加入一些噪点使颜色过渡更为平滑。"
-material.alphaMode.refraction "折射"
-material.alphaMode.refraction.help "此模式可用于模拟出玻璃材料的质感。
+material.type.dithering "抖动"
+material.type.dithering.help "加入一些噪点使颜色过渡更为平滑。"
+material.type.refraction "折射"
+material.type.refraction.help "此模式可用于模拟出玻璃材料的质感。
 
 由于实时渲染的性能限制，软件无法实现自折射和多层折射的效果。"
 // shadows

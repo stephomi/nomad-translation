@@ -638,17 +638,20 @@ Dünne Teile werden hell, da sie mehr Licht durchlassen, während dicke Bereiche
 
 Der Effekt hängt stark von der Mesh-Geometrie ab, es wird nur eine Annäherung an die Mesh-Dicke verwendet."
 material.absorptionFactor "Faktor"
-// alpha
+// subsurface
+material.subsurfaceScale ""
+// type
 material.opacity "Opacity"
-material.alphaMode.opaque "Opaque"
-material.alphaMode.blending "Blending"
-material.alphaMode.blending.help ""
-material.alphaMode.additive "Additive"
-material.alphaMode.additive.help ""
-material.alphaMode.dithering "Dithering"
-material.alphaMode.dithering.help "Das Dithering (Fehlerdiffusion) ist eine Technik um bei Bildern die Illusion einer größeren Farbtiefe zu erzeugen. Dithering ist eine Art des Rasterns."
-material.alphaMode.refraction "Refraction"
-material.alphaMode.refraction.help ""
+material.type.opaque "Opaque"
+material.type.subsurface ""
+material.type.blending "Blending"
+material.type.blending.help ""
+material.type.additive "Additive"
+material.type.additive.help ""
+material.type.dithering "Dithering"
+material.type.dithering.help "Das Dithering (Fehlerdiffusion) ist eine Technik um bei Bildern die Illusion einer größeren Farbtiefe zu erzeugen. Dithering ist eine Art des Rasterns."
+material.type.refraction "Refraction"
+material.type.refraction.help ""
 // shadows
 material.castShadows "Wirft Schatten"
 material.receiveShadows "Empfängt Schatten"

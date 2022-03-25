@@ -639,21 +639,24 @@ Thin parts will bright as it lets more light pass through, while thick areas wil
 
 The effect heavily depends on the mesh geometry, only an approximation of the mesh thickness is used."
 material.absorptionFactor "Factor"
-// alpha
+// subsurface
+material.subsurfaceScale "Factor"
+// type
 material.opacity "Opacity"
-material.alphaMode.opaque "Opaque"
-material.alphaMode.blending "Blending"
-material.alphaMode.blending.help "Make the mesh semi-transparent by tweaking the opacity value.
+material.type.opaque "Opaque"
+material.type.subsurface "Subsurface"
+material.type.blending "Blending"
+material.type.blending.help "Make the mesh semi-transparent by tweaking the opacity value.
 
 Note that because of real-time constraints, you can have noticeable visual artifacts if your object has a complex shape."
-material.alphaMode.additive "Additive"
-material.alphaMode.additive.help "Make the mesh semi-transparent by tweaking the opacity value.
+material.type.additive "Additive"
+material.type.additive.help "Make the mesh semi-transparent by tweaking the opacity value.
 
 This method tends to have less artifacts than the Blending method, but the object will be brighter."
-material.alphaMode.dithering "Dithering"
-material.alphaMode.dithering.help "Make the object semi-transparent by discarding some pixels in a random fashion."
-material.alphaMode.refraction "Refraction"
-material.alphaMode.refraction.help "This mode can be used to simulate glass material.
+material.type.dithering "Dithering"
+material.type.dithering.help "Make the object semi-transparent by discarding some pixels in a random fashion."
+material.type.refraction "Refraction"
+material.type.refraction.help "This mode can be used to simulate glass material.
 
 Because of real time constraints, self-refraction or multi-layered refraction is limited."
 // shadows
