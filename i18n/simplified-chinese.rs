@@ -608,8 +608,8 @@ material "材质混合模式"
 material.addNew "添加新材质"
 // if the shading mode is in matcap or unlit
 material.unlitWarning "粗糙度与金属强度在当前渲染模式下不可用。"
-material.unlitReflectanceWarning ""
-material.unlitRefractionWarning ""
+material.unlitReflectanceWarning "折射效果仅在PBR渲染模式下可用。"
+material.unlitRefractionWarning "折射效果仅在PBR渲染模式下可用。"
 // refraction
 material.ior "折射率"
 material.paintingOverride "表面效果"
@@ -756,7 +756,7 @@ popup.delete.confirm.yes "确认删除"
 // title when requesting input value through virtual keyboard
 input.name "修改名称"
 input.number "请输入文件名"
-input.hexcolor ""
+input.hexcolor "请输入颜色代码"
 
 // ----------------------------------------------
 // postprocess
@@ -1060,14 +1060,28 @@ settings.notSaved "这些选项不会在设置中保存。"
 shading "渲染模式"
 // main render mode
 shading.pbr "PBR"
-shading.matcap.help ""
+shading.matcap.help "在此模式下，材质的光照信息相对固定。
+
+您可以在此模式下对材质的粗糙度与金属度进行修改，更好地观察当前材质的显示效果。"
 shading.matcap "材质捕捉"
-shading.matcap.help ""
+shading.matcap.help "该模式是将光照，材质等信息都存储在一张贴图上。
+
+该模式光照信息相对固定，对模型干扰较小，适合用于雕塑时观察模型。"
 shading.unlit "不受光"
-shading.unlit.help ""
+shading.unlit.help "该模式下模型只显示纯色，不受任何外界光照影响。"
 // textures
-shading.textures ""
-shading.textures.help ""
+shading.textures "使用贴图"
+shading.textures.help "Nomad目前尚未支持创建或编辑贴图。
+
+但您可以导入包含有贴图的文件。（大部分情况下都是能显示的）
+
+-- 支持的通道贴图 --
+透明贴图：Lit、Matcap、Unlit
+法线贴图：Lit、Matcap
+颜色贴图：Lit、Unlit
+自发光贴图：Lit
+粗糙度贴图：Lit
+金属度贴图：Lit"
 // lights
 shading.lights "灯光"
 shading.lights.addLight "添加灯光"
@@ -1076,7 +1090,7 @@ shading.lights.unlitWarning "灯光选项在当前渲染模式下不可用。"
 shading.environment "HDRI"
 shading.environmentImport "导入HDRI"
 shading.environmentExposure "曝光"
-shading.environmentBackgroundBlur ""
+shading.environmentBackgroundBlur "背景模糊"
 shading.environmentRotation "旋转"
 shading.environmentRotation.help "在屏幕上使用三指水平移动可使环境、灯光与材质捕捉旋转。"
 shading.environmentAttachedToCamera "固定HDRI"
@@ -1286,7 +1300,7 @@ tool.pinch "挤捏"
 tool.nudge "触碰"
 tool.stamp "图章"
 tool.clearLayer "擦除"
-tool.lassoSelect ""
+tool.lassoSelect "套索"
 tool.gizmo "轴向变换"
 tool.gizmo.auto "自动原点"
 tool.gizmo.editPivot "编辑原点"
@@ -1335,7 +1349,7 @@ tool.crease.pinchFactor "力度"
 
 // ----------------------------------------------
 // layer
-tool.layer.removeInfluence ""
+tool.layer.removeInfluence "使用图层偏移"
 tool.layer.removeInfluence.help ""
 tool.layer.noLayerSelected "此选项仅在选择图层后可用。"
 
