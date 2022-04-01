@@ -645,6 +645,7 @@ material.subsurfaceScale "Factor"
 material.opacity "Opacity"
 material.type.opaque "Opaque"
 material.type.subsurface "Subsurface"
+material.type.subsurface.help "To get the best result, you can switch to PBR shading mode and use at least one directional light, ideally with a dim environment."
 material.type.blending "Blending"
 material.type.blending.help "Make the mesh semi-transparent by tweaking the opacity value.
 
@@ -1054,7 +1055,7 @@ settings.notSaved "These options are not saved in the settings."
 shading "Shading"
 // main render mode
 shading.pbr "Lit (PBR)"
-shading.matcap.help "In this mode you can add lights (with shadows), along with an HDR environment.
+shading.pbr.help "In this mode you can add lights (with shadows), along with an HDR environment.
 
 You can also paint metalness and roughness, thus allowing a finer control on the look of your material."
 shading.matcap "Matcap"

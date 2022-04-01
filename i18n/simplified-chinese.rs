@@ -644,6 +644,7 @@ material.subsurfaceScale ""
 material.opacity "不透明度"
 material.type.opaque "实心"
 material.type.subsurface ""
+material.type.subsurface.help ""
 material.type.blending "正常混合"
 material.type.blending.help "可通过调节不透明度的值，以实现不同程度的透明效果。
 
@@ -1060,7 +1061,7 @@ settings.notSaved "这些选项不会在设置中保存。"
 shading "渲染模式"
 // main render mode
 shading.pbr "PBR"
-shading.matcap.help "在此模式下，材质的光照信息相对固定。
+shading.pbr.help "在此模式下，材质的光照信息相对固定。
 
 您可以在此模式下对材质的粗糙度与金属度进行修改，更好地观察当前材质的显示效果。"
 shading.matcap "材质捕捉"
