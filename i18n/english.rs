@@ -123,8 +123,7 @@ alert.state.trial "Undo canceled : trial version"
 // ----------------------------------------------
 // background
 background "Background"
-background.settings "Settings" // unused
-background.color "Color" // unused
+background.color "Color"
 background.environment "Environment"
 background.blur "Blur"
 background.exposure "Exposure"
@@ -583,7 +582,6 @@ layers.baseSelected "None"
 // ----------------------------------------------
 // light sub menu
 light "Light"
-light.color "Color"
 light.intensity "Intensity"
 light.attachment "Attachment"
 light.attachment.fixed "Fixed"
@@ -610,9 +608,10 @@ light.resetPosition "Recenter"
 material "Material"
 material.addNew "Add new"
 // if the shading mode is in matcap or unlit
-material.unlitWarning "Roughness and metalness will be ignored with the current shading mode."
-material.unlitReflectanceWarning "Reflectance requires PBR shading mode."
-material.unlitRefractionWarning "Refraction requires PBR shading mode."
+material.pbrRoughnessMetalnessWarning "Roughness and Metalness requires PBR shading mode."
+material.pbrReflectanceWarning "Reflectance requires PBR shading mode."
+material.pbrRefractionWarning "Refraction requires PBR shading mode."
+material.pbrSubsurfaceWarning "Refraction requires PBR shading mode."
 // refraction
 material.ior "Index of Refraction"
 material.paintingOverride "Override painting"
@@ -968,7 +967,6 @@ settings.displayTitle "Display settings"
 // wireframe
 settings.wireframeTitle "Wireframe"
 settings.wireframeDisplay "Wireframe"
-settings.wireframeColor "Wireframe color"
 settings.debugUV "Debug UV"
 settings.debugUV.help "This option is only relevant if the model has UVs.
 
@@ -985,7 +983,6 @@ settings.backfaceColored "Colored backface"
 settings.outlineTitle "Outline"
 settings.outlineEnable "Outline"
 settings.outlineThickness "Thickness"
-settings.outlineColor "Color"
 // snap cube
 settings.snapCubeTitle "Snap cube"
 settings.snapCubeDisplay "Snap cube"
@@ -1000,12 +997,15 @@ settings.statsAll "Show full scene"
 settings.gridTitle "Grid"
 settings.gridDisplay "Grid"
 settings.gridHeight "Height"
-settings.gridColor "Color"
 // cursor
 settings.cursorWhileSculpting "Show circle while sculpting"
 settings.cursorShowDot "Show small dot"
 settings.cursorShowDot.help "The dot can appear as the camera pivot point or when you are sculpting."
 settings.cursorShowRope "Show rope stabilizer"
+// highlight
+settings.highlightSelectionTitle "Highlight selection"
+settings.highlightSelection "Highlight selected meshes"
+settings.highlightSelection.help "The highlight color is the same as the outline color."
 // other
 settings.renderRatio "Render resolution"
 settings.darkenUnselected "Darken unselected meshes"
@@ -1048,7 +1048,6 @@ You can increase this value if you want to display a higher resolution of the me
 // experimental
 settings.experimentalTitle "Experimental"
 settings.notSaved "These options are not saved in the settings."
-// settings.parallel "Parallel sculpting"
 
 // ----------------------------------------------
 // shading
@@ -1080,7 +1079,7 @@ Metalness: Lit"
 // lights
 shading.lights "Lights"
 shading.lights.addLight "Add light"
-shading.lights.unlitWarning "Lights requires PBR shading mode."
+shading.lights.pbrWarning "Lights requires PBR shading mode."
 // environment
 shading.environment "Environment"
 shading.environmentImport "Import HDR"
@@ -1658,7 +1657,8 @@ version.trialLimit "Trial version:
 - 1 active project only
 - no import/export"
 version.restorePurchase "Restore purchase"
-version.fullFeatures "- Unlimited undo/redo
+version.fullFeatures "- One time purchase
+- Unlimited undo/redo
 - Unlimited layers
 - Save & Load
 - Export & import"

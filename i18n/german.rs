@@ -123,8 +123,7 @@ alert.state.trial "Rückgängig abgebrochen: Sie benutzen die Testversion!"
 // ----------------------------------------------
 // background
 background "Hintergrund"
-background.settings "Einstellungen" // unused
-background.color "Farbe" // unused
+background.color "Farbe"
 background.environment "Umgebung"
 background.blur "Unschärfe"
 background.exposure "Belichtung"
@@ -586,7 +585,6 @@ layers.baseSelected "Nichts"
 // ----------------------------------------------
 // light sub menu
 light "Licht"
-light.color "Farbe"
 light.intensity "Stärke"
 light.attachment "Anordnung"
 light.attachment.fixed "Fixiert"
@@ -613,9 +611,10 @@ light.resetPosition "Zentrieren"
 material "Material"
 material.addNew "Hinzufügen"
 // if the shading mode is in matcap or unlit
-material.unlitWarning "Roughness und Metalness werden im aktuellen Shading-Modus irgnoriert."
-material.unlitReflectanceWarning ""
-material.unlitRefractionWarning ""
+material.pbrRoughnessMetalnessWarning "Roughness und Metalness werden im aktuellen Shading-Modus irgnoriert."
+material.pbrReflectanceWarning ""
+material.pbrRefractionWarning ""
+material.pbrSubsurfaceWarning ""
 // refraction
 material.ior "Lichtbrechungsindex (Refraction)"
 material.paintingOverride "Painting aufheben"
@@ -963,7 +962,6 @@ settings.displayTitle "Display Einstellungen"
 // wireframe
 settings.wireframeTitle "Wireframe"
 settings.wireframeDisplay "Wireframe"
-settings.wireframeColor "Wireframe-Farbe"
 settings.debugUV "UV-Checkerboard"
 settings.debugUV.help "Zeigt die Wireframe-UV im Hintergrund an, wenn das Modell UVs hat.
 
@@ -978,7 +976,6 @@ settings.backfaceColored "Backfaces einfärben"
 settings.outlineTitle "Umriss"
 settings.outlineEnable "Umriss"
 settings.outlineThickness "Stärke"
-settings.outlineColor "Farbe"
 // snap cube
 settings.snapCubeTitle "Ansichten-Würfel"
 settings.snapCubeDisplay "Ansichten-Würfel"
@@ -993,12 +990,15 @@ settings.statsAll "Gesamte Szene anzeigen"
 settings.gridTitle "Raster (Grid)"
 settings.gridDisplay "Raster"
 settings.gridHeight "Höhe"
-settings.gridColor "Farbe"
 // cursor
 settings.cursorWhileSculpting "Kreis anzeigen beim Sculpten"
 settings.cursorShowDot "Kleinen Punkt anzeigen"
 settings.cursorShowDot.help "Der Punkt kann als Kameradrehpunkt erscheinen oder wenn Sie sculpten."
 settings.cursorShowRope "Rope-Stabilisator anzeigen"
+// highlight
+settings.highlightSelectionTitle ""
+settings.highlightSelection ""
+settings.highlightSelection.help ""
 // other
 settings.renderRatio "Render-Auflösung"
 settings.darkenUnselected "Nicht gewählte Meshes abdunkeln"
@@ -1041,7 +1041,6 @@ Sie können diesen Wert erhöhen, wenn Sie eine höhere Auflösung des Meshes an
 // experimental
 settings.experimentalTitle "Experimentell"
 settings.notSaved "Diese Optionen werden nicht in den Einstellungen gespeichert"
-// settings.parallel "Parallel sculpting"
 
 // ----------------------------------------------
 // shading
@@ -1059,7 +1058,7 @@ shading.textures.help ""
 // lights
 shading.lights "Lichter"
 shading.lights.addLight "Licht hinzufügen"
-shading.lights.unlitWarning "Lichter werden in den Modi MatCap und Unlit generell ignoriert."
+shading.lights.pbrWarning "Lichter werden in den Modi MatCap und Unlit generell ignoriert."
 // environment
 shading.environment "Umgebung"
 shading.environmentImport "HDR importieren"

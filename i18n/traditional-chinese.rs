@@ -123,8 +123,7 @@ alert.state.trial "這是試用版本，您無法再撤銷。"
 // ----------------------------------------------
 // background
 background "背景"
-background.settings "設置" // unused
-background.color "顏色" // unused
+background.color "顏色"
 background.environment "環境"
 background.blur "模糊"
 background.exposure "曝光"
@@ -573,7 +572,6 @@ layers.baseSelected "無"
 // ----------------------------------------------
 // light sub menu
 light "光線"
-light.color "顏色"
 light.intensity "強度"
 light.attachment "光照方向"
 light.attachment.fixed "固定"
@@ -600,9 +598,10 @@ light.resetPosition ""
 material "材質混合模式"
 material.addNew "添加新材質"
 // if the shading mode is in matcap or unlit
-material.unlitWarning "粗糙度與金屬強度在當前渲染模式下不可用。"
-material.unlitReflectanceWarning ""
-material.unlitRefractionWarning ""
+material.pbrRoughnessMetalnessWarning "粗糙度與金屬強度在當前渲染模式下不可用。"
+material.pbrReflectanceWarning ""
+material.pbrRefractionWarning ""
+material.pbrSubsurfaceWarning ""
 // refraction
 material.ior "折射率"
 material.paintingOverride "表面效果"
@@ -942,7 +941,6 @@ settings.displayTitle "顯示設置"
 // wireframe
 settings.wireframeTitle "對象網格設置"
 settings.wireframeDisplay "對象網格"
-settings.wireframeColor "對象網格顏色"
 settings.debugUV ""
 settings.debugUV.help ""
 // backface
@@ -959,7 +957,6 @@ settings.backfaceColored "內面著色"
 settings.outlineTitle "輪廓"
 settings.outlineEnable "被選對象輪廓"
 settings.outlineThickness "粗細"
-settings.outlineColor "顏色"
 // snap cube
 settings.snapCubeTitle "方位視圖"
 settings.snapCubeDisplay "方位視圖"
@@ -974,12 +971,15 @@ settings.statsAll "顯示全部"
 settings.gridTitle "世界網格"
 settings.gridDisplay "世界網格"
 settings.gridHeight "高度"
-settings.gridColor "顏色"
 // cursor
 settings.cursorWhileSculpting "雕刻時顯示畫筆"
 settings.cursorShowDot "顯示指針點"
 settings.cursorShowDot.help "指針點會在您移動相機和雕刻時顯示。"
 settings.cursorShowRope "顯示畫筆準星"
+// highlight
+settings.highlightSelectionTitle ""
+settings.highlightSelection ""
+settings.highlightSelection.help ""
 // other
 settings.renderRatio "實時渲染分辨率"
 settings.darkenUnselected "變暗未選對象"
@@ -1027,7 +1027,6 @@ settings.multiresLowResVertices.help "在您移動相機時，模型對象可能
 // experimental
 settings.experimentalTitle "實驗性功能"
 settings.notSaved "這些選項不會在設置中保存。"
-// settings.parallel "Parallel sculpting"
 
 // ----------------------------------------------
 // shading
@@ -1045,7 +1044,7 @@ shading.textures.help ""
 // lights
 shading.lights "燈光"
 shading.lights.addLight "添加燈光"
-shading.lights.unlitWarning "燈光選項在當前渲染模式下不可用。"
+shading.lights.pbrWarning "燈光選項在當前渲染模式下不可用。"
 // environment
 shading.environment "HDRI"
 shading.environmentImport "導入HDRI"

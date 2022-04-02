@@ -123,8 +123,7 @@ alert.state.trial "这是试用版本，您无法再撤销。"
 // ----------------------------------------------
 // background
 background "背景"
-background.settings "设置" // unused
-background.color "颜色" // unused
+background.color "颜色"
 background.environment "环境"
 background.blur "模糊"
 background.exposure "曝光"
@@ -580,7 +579,6 @@ layers.baseSelected "无"
 // ----------------------------------------------
 // light sub menu
 light "光线"
-light.color "颜色"
 light.intensity "强度"
 light.attachment "光照方向"
 light.attachment.fixed "固定"
@@ -607,9 +605,10 @@ light.resetPosition "重设位置"
 material "材质混合模式"
 material.addNew "添加新材质"
 // if the shading mode is in matcap or unlit
-material.unlitWarning "粗糙度与金属强度在当前渲染模式下不可用。"
-material.unlitReflectanceWarning "折射效果仅在PBR渲染模式下可用。"
-material.unlitRefractionWarning "折射效果仅在PBR渲染模式下可用。"
+material.pbrRoughnessMetalnessWarning "粗糙度与金属强度在当前渲染模式下不可用。"
+material.pbrReflectanceWarning "折射效果仅在PBR渲染模式下可用。"
+material.pbrRefractionWarning "折射效果仅在PBR渲染模式下可用。"
+material.pbrSubsurfaceWarning ""
 // refraction
 material.ior "折射率"
 material.paintingOverride "表面效果"
@@ -965,7 +964,6 @@ settings.displayTitle "显示设置"
 // wireframe
 settings.wireframeTitle "对象网格设置"
 settings.wireframeDisplay "对象网格"
-settings.wireframeColor "对象网格颜色"
 settings.debugUV "UV棋盘格"
 settings.debugUV.help "开启此选项后，将会显示对象的纹理贴图坐标（UV）。
 
@@ -986,7 +984,6 @@ settings.backfaceColored "内面着色"
 settings.outlineTitle "轮廓"
 settings.outlineEnable "被选对象轮廓"
 settings.outlineThickness "粗细"
-settings.outlineColor "颜色"
 // snap cube
 settings.snapCubeTitle "方位视图"
 settings.snapCubeDisplay "方位视图"
@@ -1001,12 +998,15 @@ settings.statsAll "显示全部"
 settings.gridTitle "世界网格"
 settings.gridDisplay "世界网格"
 settings.gridHeight "高度"
-settings.gridColor "颜色"
 // cursor
 settings.cursorWhileSculpting "雕刻时显示画笔"
 settings.cursorShowDot "显示指针点"
 settings.cursorShowDot.help "指针点会在您移动相机和雕刻时显示。"
 settings.cursorShowRope "显示画笔准星"
+// highlight
+settings.highlightSelectionTitle ""
+settings.highlightSelection ""
+settings.highlightSelection.help ""
 // other
 settings.renderRatio "实时渲染分辨率"
 settings.darkenUnselected "变暗未选对象"
@@ -1054,7 +1054,6 @@ settings.multiresLowResVertices.help "在您移动相机时，模型对象可能
 // experimental
 settings.experimentalTitle "实验性功能"
 settings.notSaved "这些选项不会在设置中保存。"
-// settings.parallel "Parallel sculpting"
 
 // ----------------------------------------------
 // shading
@@ -1086,7 +1085,7 @@ shading.textures.help "Nomad目前尚未支持创建或编辑贴图。
 // lights
 shading.lights "灯光"
 shading.lights.addLight "添加灯光"
-shading.lights.unlitWarning "灯光选项在当前渲染模式下不可用。"
+shading.lights.pbrWarning "灯光选项在当前渲染模式下不可用。"
 // environment
 shading.environment "HDRI"
 shading.environmentImport "导入HDRI"

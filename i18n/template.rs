@@ -121,8 +121,7 @@ alert.state.trial ""
 // ----------------------------------------------
 // background
 background ""
-background.settings "" // unused
-background.color "" // unused
+background.color ""
 background.environment ""
 background.blur ""
 background.exposure ""
@@ -525,7 +524,6 @@ layers.baseSelected ""
 // ----------------------------------------------
 // light sub menu
 light ""
-light.color ""
 light.intensity ""
 light.attachment ""
 light.attachment.fixed ""
@@ -548,9 +546,10 @@ light.resetPosition ""
 material ""
 material.addNew ""
 // if the shading mode is in matcap or unlit
-material.unlitWarning ""
-material.unlitReflectanceWarning ""
-material.unlitRefractionWarning ""
+material.pbrRoughnessMetalnessWarning ""
+material.pbrReflectanceWarning ""
+material.pbrRefractionWarning ""
+material.pbrSubsurfaceWarning ""
 // refraction
 material.ior ""
 material.paintingOverride ""
@@ -860,7 +859,6 @@ settings.displayTitle ""
 // wireframe
 settings.wireframeTitle ""
 settings.wireframeDisplay ""
-settings.wireframeColor ""
 settings.debugUV ""
 settings.debugUV.help ""
 // backface
@@ -873,7 +871,6 @@ settings.backfaceColored ""
 settings.outlineTitle ""
 settings.outlineEnable ""
 settings.outlineThickness ""
-settings.outlineColor ""
 // snap cube
 settings.snapCubeTitle ""
 settings.snapCubeDisplay ""
@@ -888,12 +885,15 @@ settings.statsAll ""
 settings.gridTitle ""
 settings.gridDisplay ""
 settings.gridHeight ""
-settings.gridColor ""
 // cursor
 settings.cursorWhileSculpting ""
 settings.cursorShowDot ""
 settings.cursorShowDot.help ""
 settings.cursorShowRope ""
+// highlight
+settings.highlightSelectionTitle ""
+settings.highlightSelection ""
+settings.highlightSelection.help ""
 // other
 settings.renderRatio ""
 settings.darkenUnselected ""
@@ -924,7 +924,6 @@ settings.multiresLowResVertices.help ""
 // experimental
 settings.experimentalTitle ""
 settings.notSaved ""
-// settings.parallel "Parallel sculpting"
 
 // ----------------------------------------------
 // shading
@@ -942,7 +941,7 @@ shading.textures.help ""
 // lights
 shading.lights ""
 shading.lights.addLight ""
-shading.lights.unlitWarning ""
+shading.lights.pbrWarning ""
 // environment
 shading.environment ""
 shading.environmentImport ""
