@@ -279,10 +279,14 @@ file.export.normal.help "如想在其他软件上打开该文件，请勾选此�
 file.export.gltf "导出 glTF 2.0"
 file.export.gltfLayer "导出图层"
 file.export.gltfLayer.help "将图层导出为可变体。这是来自官方的特性，能在更多软件上使用。"
-file.export.gltfColor "导出颜色"
-file.export.gltfColor.help "导出的是顶点颜色。这是来自官方的特性，能在更多软件上使用。"
-file.export.gltfExtraPaint "导出其他"
-file.export.gltfExtraPaint.help "将导出粗糙度、金属强度、蒙版和图层绘画。其他软件不会读取该属性。"
+file.export.gltfLayerPaint "导出其他"
+file.export.gltfLayerPaint.help "将导出图层绘画。其他软件不会读取该属性。"
+file.export.gltfLayerNomad ""
+file.export.gltfLayerNomad.help ""
+file.export.gltfColor0 "导出颜色"
+file.export.gltfColor0.help "导出的是顶点颜色。这是来自官方的特性，能在更多软件上使用。"
+file.export.gltfColor1 "导出PBR"
+file.export.gltfColor1.help ""
 
 // obj
 file.export.obj "导出 OBJ 格式"
@@ -291,10 +295,6 @@ file.export.objColorAppend "导出颜色"
 file.export.objColorAppend.help "给顶点添加颜色信息。
 
 只有部分3D软件能够识别。"
-file.export.objColorHexa "十六进制颜色"
-file.export.objColorHexa.help "像ZBrush那样将颜色转换为十六进制。
-
-该属性只有部分3D软件能够识别。"
 
 // stl
 file.export.stl "导出 STL 格式"
@@ -313,8 +313,7 @@ file.settings.title.help "大部分应用的设置都保存在此处（相机界
 - 材质
 - 画笔形状
 - 背景
-- 项目
-"
+- 项目"
 
 // settings
 file.settings.reset "恢复默认设置"
@@ -606,7 +605,7 @@ material "材质混合模式"
 material.addNew "添加新材质"
 // if the shading mode is in matcap or unlit
 material.pbrRoughnessMetalnessWarning "粗糙度与金属强度在当前渲染模式下不可用。"
-material.pbrReflectanceWarning "折射效果仅在PBR渲染模式下可用。"
+material.pbrReflectanceWarning ""
 material.pbrRefractionWarning "折射效果仅在PBR渲染模式下可用。"
 material.pbrSubsurfaceWarning ""
 // refraction
@@ -767,10 +766,12 @@ postprocess.quality.help "该设置可提升部分效果的渲染质量，但可
 仅对以下效果有效：
 - 屏幕空间反射（SSR）
 - 环境光屏蔽（AO）
-- 景深
-"
+- 景深"
 postprocess.maxSamples "最大采样值"
 postprocess.fullResolution "最大实时分辨率"
+postprocess.renderRatio "实时渲染分辨率"
+postprocess.renderRatioWarning ""
+postprocess.renderRatio.help ""
 // fxaa
 postprocess.fxaaEnable "快速抗锯齿（FXAA）"
 // taa
@@ -833,6 +834,12 @@ postprocess.grainFactor "强度"
 postprocess.curvatureEnable "曲率描边"
 postprocess.curvatureCavity "缝隙颜色"
 postprocess.curvatureBump "凸起颜色"
+// pixelart
+postprocess.pixelartEnable ""
+// scanline
+postprocess.scanlineEnable ""
+postprocess.scanlineFactor ""
+postprocess.scanlineSpacing ""
 
 // ----------------------------------------------
 // primitive (scene menu)
@@ -1006,9 +1013,8 @@ settings.cursorShowRope "显示画笔准星"
 // highlight
 settings.highlightSelectionTitle ""
 settings.highlightSelection ""
-settings.highlightSelection.help ""
+settings.highlightDuration ""
 // other
-settings.renderRatio "实时渲染分辨率"
 settings.darkenUnselected "变暗未选对象"
 settings.smoothShading "平滑着色"
 settings.partialDraw "局部雕刻"
@@ -1027,8 +1033,7 @@ settings.holeTitle "填补孔洞"
 settings.holeNonManifold "填补非流形孔洞"
 settings.holeNonManifold.help "应用将会尝试填补非流形孔洞。
 
-此选项不会被保存在设置中。
-"
+此选项不会被保存在设置中。"
 settings.loadGuiSettings "加载项目GUI设置"
 settings.loadGuiSettings.help "当您打开或导入项目文件时，同时加载项目中包含的GUI设置。"
 settings.loadObjKeepGroup "保留 OBJ 顶点组"
@@ -1041,8 +1046,7 @@ settings.loadKeepTopology.help "如您不希望应用破坏导入模型拓扑，
 应用将不会：
 - 重新排序顶点和面
 - 删除重叠顶点和面
-- 移除未使用顶点
-"
+- 移除未使用顶点"
 // multires
 settings.multiresTitle "模型细分"
 settings.multiresMaxVertices "最大顶点数量"

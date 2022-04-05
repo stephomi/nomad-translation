@@ -280,20 +280,23 @@ Nomad always ignore the normals as it will recompute them."
 file.export.gltf "Export glTF 2.0"
 file.export.gltfLayer "Export layers"
 file.export.gltfLayer.help "Export layers as morphs. Officially supported by glTF so it should work on other softwares as well."
-file.export.gltfColor "Export vertex colors"
-file.export.gltfColor.help "Export vertex colors. Officially supported by glTF so it should work on other softwares as well."
-file.export.gltfExtraPaint "Export extra paint"
-file.export.gltfExtraPaint.help "Export roughness, metalness, mask and layer painting. This will be ignored by other softwares."
+file.export.gltfLayerPaint "Export layer paint"
+file.export.gltfLayerPaint.help "Export layer painting. It is usually ignored by other softwares."
+file.export.gltfLayerNomad "Nomad layer encoding"
+file.export.gltfLayerNomad.help "Can make the file smaller by writing paint layer in 8-bit instead of 16-bit.
+
+This encoding only works in Nomad as it will use absolute painting.
+Other softwares will have incorrect result as glTF requires relative encoding."
+file.export.gltfColor0 "Export vertex colors"
+file.export.gltfColor0.help "Export vertex colors. Officially supported by glTF so it should work on other softwares as well."
+file.export.gltfColor1 "Export pbr paint"
+file.export.gltfColor1.help "Export roughness, metalness and mask painting. This will be ignored by other softwares."
 
 // obj
 file.export.obj "Export OBJ"
 file.export.objWarning "Layers and extra painting (roughness metalness and mask) will be lost."
 file.export.objColorAppend "Export vertex colors"
 file.export.objColorAppend.help "Append color information after vertices.
-
-Some 3d softwares will be able to read it but not all of them."
-file.export.objColorHexa "Hexa color"
-file.export.objColorHexa.help "Write color as hexadecimal (zbrush method).
 
 Some 3d softwares will be able to read it but not all of them."
 
@@ -770,10 +773,15 @@ postprocess.quality.help "Activate these options to improve the quality to the d
 It will improve:
 - Reflection
 - Ambient Occlusion
-- Depth Of Field
-"
+- Depth Of Field"
 postprocess.maxSamples "Max samples"
 postprocess.fullResolution "Full Resolution"
+postprocess.renderRatio "Render resolution"
+postprocess.renderRatioWarning "Overriden by the Pixel Art effect."
+postprocess.renderRatio.help "This option impacts the performance a lot.
+It's advised to keep a value lower than x1.25.
+
+This option is not saved in the settings."
 // fxaa
 postprocess.fxaaEnable "Anti-aliasing (FXAA)"
 // taa
@@ -836,6 +844,12 @@ postprocess.grainFactor "Strength"
 postprocess.curvatureEnable "Curvature"
 postprocess.curvatureCavity "Cavity"
 postprocess.curvatureBump "Bump"
+// pixelart
+postprocess.pixelartEnable "Pixel Art"
+// scanline
+postprocess.scanlineEnable "Scanline"
+postprocess.scanlineFactor "Factor"
+postprocess.scanlineSpacing "Spacing"
 
 // ----------------------------------------------
 // primitive (scene menu)
@@ -1005,9 +1019,8 @@ settings.cursorShowRope "Show rope stabilizer"
 // highlight
 settings.highlightSelectionTitle "Highlight selection"
 settings.highlightSelection "Highlight selected meshes"
-settings.highlightSelection.help "The highlight color is the same as the outline color."
+settings.highlightDuration "Duration"
 // other
-settings.renderRatio "Render resolution"
 settings.darkenUnselected "Darken unselected meshes"
 settings.smoothShading "Smooth shading"
 settings.partialDraw "Partial drawing"
@@ -1025,8 +1038,7 @@ settings.lightIcon.help "Display light icons on the canvas so that you can selec
 settings.holeTitle "Hole-filling"
 settings.holeNonManifold "Fill non-manifold"
 settings.holeNonManifold.help "Try to fill non manifold hole.
-This option is not saved in the settings.
-"
+This option is not saved in the settings."
 settings.loadGuiSettings "Keep gui settings (at import)"
 settings.loadGuiSettings.help "When opening or importing a project file, all the gui-related settings embedded in the project will be loaded."
 settings.loadObjKeepGroup "Keep OBJ groups"

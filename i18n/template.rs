@@ -262,18 +262,20 @@ file.export.normal.help ""
 file.export.gltf ""
 file.export.gltfLayer ""
 file.export.gltfLayer.help ""
-file.export.gltfColor ""
-file.export.gltfColor.help ""
-file.export.gltfExtraPaint ""
-file.export.gltfExtraPaint.help ""
+file.export.gltfLayerPaint ""
+file.export.gltfLayerPaint.help ""
+file.export.gltfLayerNomad ""
+file.export.gltfLayerNomad.help ""
+file.export.gltfColor0 ""
+file.export.gltfColor0.help ""
+file.export.gltfColor1 ""
+file.export.gltfColor1.help ""
 
 // obj
 file.export.obj ""
 file.export.objWarning ""
 file.export.objColorAppend ""
 file.export.objColorAppend.help ""
-file.export.objColorHexa ""
-file.export.objColorHexa.help ""
 
 // stl
 file.export.stl ""
@@ -680,6 +682,9 @@ postprocess.quality ""
 postprocess.quality.help ""
 postprocess.maxSamples ""
 postprocess.fullResolution ""
+postprocess.renderRatio ""
+postprocess.renderRatioWarning ""
+postprocess.renderRatio.help ""
 // fxaa
 postprocess.fxaaEnable ""
 // taa
@@ -740,6 +745,12 @@ postprocess.grainFactor ""
 postprocess.curvatureEnable ""
 postprocess.curvatureCavity ""
 postprocess.curvatureBump ""
+// pixelart
+postprocess.pixelartEnable ""
+// scanline
+postprocess.scanlineEnable ""
+postprocess.scanlineFactor ""
+postprocess.scanlineSpacing ""
 
 // ----------------------------------------------
 // primitive (scene menu)
@@ -893,9 +904,8 @@ settings.cursorShowRope ""
 // highlight
 settings.highlightSelectionTitle ""
 settings.highlightSelection ""
-settings.highlightSelection.help ""
+settings.highlightDuration ""
 // other
-settings.renderRatio ""
 settings.darkenUnselected ""
 settings.smoothShading ""
 settings.partialDraw ""

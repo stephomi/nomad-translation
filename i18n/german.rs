@@ -282,20 +282,20 @@ Nomad ignoriert immer die Normale, da es sie neu berechnet."
 file.export.gltf "glTF 2.0 exportieren"
 file.export.gltfLayer "Layer exportieren"
 file.export.gltfLayer.help "Exportieren Sie Ebenen als Morphs. Offiziell von glTF unterstützt, so dass es auch in anderen Programmen funktionieren sollte."
-file.export.gltfColor "Vertex-Farben exportieren"
-file.export.gltfColor.help "Exportieren Sie Vertex-Farben. Offiziell von glTF unterstützt, so dass es auch in anderen Programmen funktionieren sollte."
-file.export.gltfExtraPaint "Zusätzliche Material-Layer exportieren"
-file.export.gltfExtraPaint.help "Exportieren Sie Roughness, Metalness, Masken und Layer-Painting. Dies wird von anderen Programmen als Nomad ignoriert werden."
+file.export.gltfLayerPaint "Zusätzliche Material-Layer exportieren"
+file.export.gltfLayerPaint.help "Exportieren Sie Roughness, Metalness, Masken und Layer-Painting. Dies wird von anderen Programmen als Nomad ignoriert werden."
+file.export.gltfLayerNomad ""
+file.export.gltfLayerNomad.help ""
+file.export.gltfColor0 "Vertex-Farben exportieren"
+file.export.gltfColor0.help "Exportieren Sie Vertex-Farben. Offiziell von glTF unterstützt, so dass es auch in anderen Programmen funktionieren sollte."
+file.export.gltfColor1 ""
+file.export.gltfColor1.help ""
 
 // obj
 file.export.obj "OBJ exportieren"
 file.export.objWarning "Layer und zusätzliches Painting (Roughness, Metalness, Masken) gehen verloren."
 file.export.objColorAppend "Vertex-Farben exportieren"
 file.export.objColorAppend.help "Farbinformationen nach Vertices einfügen.
-
-Einige 3D-Programme können dies importieren, aber nicht alle."
-file.export.objColorHexa "Hexa-Farbe"
-file.export.objColorHexa.help "Farbe als Hexadezimalwert schreiben (zBrush-Methode).
 
 Einige 3D-Programme können dies importieren, aber nicht alle."
 
@@ -765,10 +765,12 @@ postprocess.quality.help "Aktivieren Sie diese Optionen, um die Qualität auf Ko
 It will improve:
 - Reflektionen
 - Ambient Occlusion (AO)
-- Tiefenschärfe (DoF - Depth Of Field)
-"
+- Tiefenschärfe (DoF - Depth Of Field)"
 postprocess.maxSamples "Max. Samples"
 postprocess.fullResolution "Volle Auflösung"
+postprocess.renderRatio "Render-Auflösung"
+postprocess.renderRatioWarning ""
+postprocess.renderRatio.help ""
 // fxaa
 postprocess.fxaaEnable "Anti-Aliasing (FXAA)"
 // taa
@@ -831,6 +833,12 @@ postprocess.grainFactor "Stärke"
 postprocess.curvatureEnable "Curvature"
 postprocess.curvatureCavity "Cavity"
 postprocess.curvatureBump "Bump"
+// pixelart
+postprocess.pixelartEnable ""
+// scanline
+postprocess.scanlineEnable ""
+postprocess.scanlineFactor ""
+postprocess.scanlineSpacing ""
 
 // ----------------------------------------------
 // primitive (scene menu)
@@ -998,9 +1006,8 @@ settings.cursorShowRope "Rope-Stabilisator anzeigen"
 // highlight
 settings.highlightSelectionTitle ""
 settings.highlightSelection ""
-settings.highlightSelection.help ""
+settings.highlightDuration ""
 // other
-settings.renderRatio "Render-Auflösung"
 settings.darkenUnselected "Nicht gewählte Meshes abdunkeln"
 settings.smoothShading "Smooth Shading"
 settings.partialDraw "Partial Drawing"
@@ -1018,8 +1025,7 @@ settings.lightIcon.help "Icons für die einzelnen Lichter im Arbeitsbereich anze
 settings.holeTitle "Löcher füllen"
 settings.holeNonManifold "Non-Manifold füllen"
 settings.holeNonManifold.help "Versucht, ein non-manifold Loch zu füllen.
-Diese Option ist nicht in den Einstellungen gespeichert.
-"
+Diese Option ist nicht in den Einstellungen gespeichert."
 settings.loadGuiSettings "GUI-Einstellungen mitladen (beim Import)"
 settings.loadGuiSettings.help "Beim Öffnen oder Importieren einer Projektdatei werden alle in das Projekt eingebetteten GUI-bezogenen Einstellungen geladen."
 settings.loadObjKeepGroup "OBJ-Gruppen beibehalten"

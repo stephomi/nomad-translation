@@ -274,10 +274,14 @@ file.export.normal.help "如想在其他軟件上打開該文件，請勾選此�
 file.export.gltf "導出 glTF 2.0"
 file.export.gltfLayer "導出圖層"
 file.export.gltfLayer.help "將圖層導出為可變體。這是來自官方的特性，能在更多軟件上使用。"
-file.export.gltfColor "導出顏色"
-file.export.gltfColor.help "導出的是頂點顏色。這是來自官方的特性，能在更多軟件上使用。"
-file.export.gltfExtraPaint "導出其他"
-file.export.gltfExtraPaint.help "將導出粗糙度、金屬強度、蒙版和圖層繪畫。其他軟件不會讀取該屬性。"
+file.export.gltfLayerPaint "導出其他"
+file.export.gltfLayerPaint.help ""
+file.export.gltfLayerNomad ""
+file.export.gltfLayerNomad.help ""
+file.export.gltfColor0 ""
+file.export.gltfColor0.help ""
+file.export.gltfColor1 ""
+file.export.gltfColor1.help ""
 
 // obj
 file.export.obj "導出 OBJ 格式"
@@ -286,10 +290,6 @@ file.export.objColorAppend "導出顏色"
 file.export.objColorAppend.help "給頂點添加顏色信息。
 
 只有部分3D軟件能夠識別。"
-file.export.objColorHexa "十六進制顏色"
-file.export.objColorHexa.help "像ZBrush那樣將顏色轉換為十六進制。
-
-該屬性只有部分3D軟件能夠識別。"
 
 // stl
 file.export.stl "導出 STL 格式"
@@ -308,8 +308,7 @@ file.settings.title.help "大部分應用的設置都保存在此處（相機界
 - 材質
 - 畫筆形狀
 - 背景
-- 項目
-"
+- 項目"
 
 // settings
 file.settings.reset "恢覆默認設置"
@@ -746,10 +745,12 @@ postprocess.quality.help "該設置可提升部分效果的渲染質量，但可
 僅對以下效果有效：
 - 屏幕空間反射（SSR）
 - 環境光屏蔽（AO）
-- 景深
-"
+- 景深"
 postprocess.maxSamples "最大采樣值"
 postprocess.fullResolution "最大實時分辨率"
+postprocess.renderRatio "實時渲染分辨率"
+postprocess.renderRatioWarning ""
+postprocess.renderRatio.help ""
 // fxaa
 postprocess.fxaaEnable "快速抗鋸齒（FXAA）"
 // taa
@@ -812,6 +813,12 @@ postprocess.grainFactor "強度"
 postprocess.curvatureEnable "曲率描邊"
 postprocess.curvatureCavity "縫隙顏色"
 postprocess.curvatureBump "凸起顏色"
+// pixelart
+postprocess.pixelartEnable ""
+// scanline
+postprocess.scanlineEnable ""
+postprocess.scanlineFactor ""
+postprocess.scanlineSpacing ""
 
 // ----------------------------------------------
 // primitive (scene menu)
@@ -979,9 +986,8 @@ settings.cursorShowRope "顯示畫筆準星"
 // highlight
 settings.highlightSelectionTitle ""
 settings.highlightSelection ""
-settings.highlightSelection.help ""
+settings.highlightDuration ""
 // other
-settings.renderRatio "實時渲染分辨率"
 settings.darkenUnselected "變暗未選對象"
 settings.smoothShading "平滑著色"
 settings.partialDraw "局部雕刻"
@@ -1000,8 +1006,7 @@ settings.holeTitle "填補孔洞"
 settings.holeNonManifold "填補非流形孔洞"
 settings.holeNonManifold.help "應用將會嘗試填補非流形孔洞。
 
-此選項不會被保存在設置中。
-"
+此選項不會被保存在設置中。"
 settings.loadGuiSettings "加載項目GUI設置"
 settings.loadGuiSettings.help "當您打開或導入項目文件時，同時加載項目中包含的GUI設置。"
 settings.loadObjKeepGroup ""
@@ -1014,8 +1019,7 @@ settings.loadKeepTopology.help "如您不希望應用破壞導入模型拓撲，
 應用將不會：
 - 重新排序頂點和面
 - 刪除重疊頂點和面
-- 移除未使用頂點
-"
+- 移除未使用頂點"
 // multires
 settings.multiresTitle "模型細分"
 settings.multiresMaxVertices "最大頂點數量"
