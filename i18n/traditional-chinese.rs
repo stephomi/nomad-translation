@@ -112,7 +112,6 @@ alert.rangeWarning "過高的分辨率將會占用大量內存！"
 alert.autoSave.auto "將在 $0s 後自動保存"
 // bottom warning
 alert.warning.needLayer "當前工具僅在活動圖層上可用"
-alert.warning.multiresLost "模型細分將會丟失！"
 alert.warning.paintingHidden "繪畫已被隱藏，請在設置面板里將其打開。"
 alert.warning.noPartialWireframe "打開線框顯示時，局部雕刻將被禁用。"
 // bottom tip
@@ -624,7 +623,9 @@ material.absorptionEnable ""
 material.absorptionEnable.help ""
 material.absorptionFactor ""
 // subsurface
-material.subsurfaceScale ""
+material.subsurfaceDepth ""
+material.translucency ""
+material.translucency.help ""
 // type
 material.opacity "不透明度"
 material.type.opaque "實心"

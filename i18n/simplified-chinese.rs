@@ -112,7 +112,6 @@ alert.rangeWarning "过高的分辨率将会占用大量内存！"
 alert.autoSave.auto "将在 $0s 后自动保存"
 // bottom warning
 alert.warning.needLayer "当前工具仅在活动图层上可用"
-alert.warning.multiresLost "模型细分将会丢失！"
 alert.warning.paintingHidden "绘画已被隐藏，请在设置面板里将其打开。"
 alert.warning.noPartialWireframe "打开线框显示时，局部雕刻将被禁用。"
 // bottom tip
@@ -637,7 +636,9 @@ material.absorptionEnable.help "该效果能模拟光线穿过物体时被衰减
 最终效果由网格形状结构决定，仅使用网格厚度的近似值。"
 material.absorptionFactor "吸收系数"
 // subsurface
-material.subsurfaceScale ""
+material.subsurfaceDepth ""
+material.translucency ""
+material.translucency.help ""
 // type
 material.opacity "不透明度"
 material.type.opaque "实心"

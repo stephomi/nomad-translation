@@ -112,7 +112,6 @@ alert.rangeWarning "Der Detailgrad ist hoch und kann viel Speicherplatz erforder
 alert.autoSave.auto "Automatisches Speichern in... $0s"
 // bottom warning
 alert.warning.needLayer "Das aktuelle Werkzeug erfordert eine aktive Ebene."
-alert.warning.multiresLost "Multiresolution geht verloren."
 alert.warning.paintingHidden "Painting ausgeblendet: Im Einstellungsfenster wieder einblenden."
 alert.warning.noPartialWireframe "Das partielle Zeichnen ist deaktiviert, wenn das Drahtgitter (Wireframe) eingeblendet ist."
 // bottom tip
@@ -638,7 +637,9 @@ Dünne Teile werden hell, da sie mehr Licht durchlassen, während dicke Bereiche
 Der Effekt hängt stark von der Mesh-Geometrie ab, es wird nur eine Annäherung an die Mesh-Dicke verwendet."
 material.absorptionFactor "Faktor"
 // subsurface
-material.subsurfaceScale ""
+material.subsurfaceDepth ""
+material.translucency ""
+material.translucency.help ""
 // type
 material.opacity "Opacity"
 material.type.opaque "Opaque"

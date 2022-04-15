@@ -112,7 +112,6 @@ alert.rangeWarning "The detail value is high and might require lot of memory!"
 alert.autoSave.auto "Autosave in... $0s"
 // bottom warning
 alert.warning.needLayer "The current tool requires an active layer."
-alert.warning.multiresLost "Multiresolution will be lost."
 alert.warning.paintingHidden "Painting hidden: show it again in Settings panel."
 alert.warning.noPartialWireframe "Partial drawing is disabled when wireframe is displayed."
 // bottom tip
@@ -614,7 +613,7 @@ material.addNew "Add new"
 material.pbrRoughnessMetalnessWarning "Roughness and Metalness requires PBR shading mode."
 material.pbrReflectanceWarning "Reflectance requires PBR shading mode."
 material.pbrRefractionWarning "Refraction requires PBR shading mode."
-material.pbrSubsurfaceWarning "Refraction requires PBR shading mode."
+material.pbrSubsurfaceWarning "Subsurface requires PBR shading mode."
 // refraction
 material.ior "Index of Refraction"
 material.paintingOverride "Override painting"
@@ -642,7 +641,9 @@ Thin parts will bright as it lets more light pass through, while thick areas wil
 The effect heavily depends on the mesh geometry, only an approximation of the mesh thickness is used."
 material.absorptionFactor "Factor"
 // subsurface
-material.subsurfaceScale "Factor"
+material.subsurfaceDepth "Depth"
+material.translucency "Translucency"
+material.translucency.help "You need to have a light that casts shadows in order to see translucency."
 // type
 material.opacity "Opacity"
 material.type.opaque "Opaque"
@@ -772,6 +773,7 @@ postprocess.quality.help "Activate these options to improve the quality to the d
 
 It will improve:
 - Reflection
+- Subsurface
 - Ambient Occlusion
 - Depth Of Field"
 postprocess.maxSamples "Max samples"

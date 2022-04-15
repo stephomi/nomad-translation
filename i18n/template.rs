@@ -110,7 +110,6 @@ alert.rangeWarning ""
 alert.autoSave.auto ""
 // bottom warning
 alert.warning.needLayer ""
-alert.warning.multiresLost ""
 alert.warning.paintingHidden ""
 alert.warning.noPartialWireframe ""
 // bottom tip
@@ -567,7 +566,9 @@ material.absorptionEnable ""
 material.absorptionEnable.help ""
 material.absorptionFactor ""
 // subsurface
-material.subsurfaceScale ""
+material.subsurfaceDepth ""
+material.translucency ""
+material.translucency.help ""
 // type
 material.opacity ""
 material.type.opaque ""
