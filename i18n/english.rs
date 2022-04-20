@@ -1,5 +1,6 @@
-// Comments are sync from the english version, it's not possible
-// to have language specific comments at the moment.
+// Comments and entries are sync from the english version, it's not
+// possible to have language specific comments at the moment.
+// You can use this entry to make a specific comment
 language_note ""
 
 // comments with "ICON FIT" should be short, ideally < 10 characters
@@ -502,15 +503,6 @@ interface "Interface"
 
 // bottom buttons
 interface.bottomButtons "Add shortcuts (bottom)..."
-interface.shortcut.voxelRemesh "Voxel remesh"
-interface.shortcut.wireframe "Wireframe"
-interface.shortcut.lockSelection "Lock selection"
-interface.shortcut.lockSelection.help "When enabled, you cannot change the selection by tapping on a mesh."
-interface.shortcut.cameraReset "Camera reset"
-interface.shortcut.cameraSnap "Camera snap"
-interface.shortcut.perspective "Perspective"
-interface.shortcut.cameraSnapFlip "Flip on already snap"
-interface.shortcut.cameraSnapFlip.help "If the camera is already snapped, the shortcut will mirror the view"
 
 // colors
 interface.colors "Main colors"
@@ -867,6 +859,8 @@ primitive.lathe "Lathe"
 primitive.tube "Tube"
 primitive.plane "Plane"
 primitive.triplanar "Triplanar"
+primitive.faceXYZ "Face XYZ"
+primitive.faceXYZ.help "UV-unwrapped base mesh provided by https://texturing.xyz/"
 primitive.needValidate "Primitives should be validated in order to be sculpted."
 
 // for 3d editing in viewport
@@ -929,6 +923,7 @@ primitive.isolate.right "Right"
 primitive.isolate.bottom "Bottom"
 // plane
 primitive.planeSameSize "Same size (square)"
+primitive.planeDisk "Disk"
 // box
 primitive.boxRegular "Same size (cube)"
 // tube
@@ -1012,7 +1007,6 @@ settings.statsAll "Show full scene"
 // grid
 settings.gridTitle "Grid"
 settings.gridDisplay "Grid"
-settings.gridHeight "Height"
 // cursor
 settings.cursorWhileSculpting "Show circle while sculpting"
 settings.cursorShowDot "Show small dot"
@@ -1051,6 +1045,10 @@ settings.loadKeepTopology "Keep topology (at import)"
 settings.loadKeepTopology.help "Use this option if you don't want Nomad to fiddle with the topology of imported mesh.
 
 It will disable vertex/face reordering, removal of vertex/face duplicates and removal of unused vertices."
+settings.loadReverseVertices "Reverse threshold"
+settings.loadReverseVertices.help "In order to use less memory, Nomad doesn't save the lower resolution of a mesh.
+
+However it will rebuild the lower resolution if the number of vertices is lower than this threshold."
 // multires
 settings.multiresTitle "Multiresolution"
 settings.multiresMaxVertices "Max vertices count"
@@ -1114,14 +1112,26 @@ shading.matcapGlobal.help "Uncheck this option to use a different matcap for thi
 
 // ----------------------------------------------
 // bottom shortcut buttons (ICON FIT)
-shortcut.voxel "Voxel"
-shortcut.wire "Wire"
-shortcut.mask "Mask"
-shortcut.reset "Reset"
-shortcut.snap "Snap"
+shortcut.maskVisible "Mask"
 shortcut.solo "Solo"
-shortcut.lock "Lock"
-shortcut.persp "Persp"
+shortcut.voxelRemesh "Voxel"
+shortcut.wireframe "Wire"
+shortcut.cameraReset "Reset"
+shortcut.cameraSnap "Snap"
+shortcut.lockSelection "Lock"
+shortcut.perspective "Persp"
+shortcut.grid "Grid"
+shortcut.uv "uv"
+
+// can be longer (customization name in Interface menu)
+shortcut.voxelRemesh.long "Voxel remesh"
+shortcut.wireframe.long "Wireframe"
+shortcut.cameraReset.long "Camera reset"
+shortcut.cameraSnap.long "Camera snap"
+shortcut.lockSelection.long "Lock selection"
+shortcut.lockSelection.long.help "When enabled, you cannot change the selection by tapping on a mesh."
+shortcut.perspective.long "Perspective"
+shortcut.grid.long "Grid"
 
 // ----------------------------------------------
 // stat
@@ -1654,6 +1664,13 @@ topology.uvBFFCones.help "Higher value will reduce distortion for complex object
 
 Higher value will means longer compute time."
 topology.uvDelete "Delete UVs"
+
+// baking
+topology.bake "Bake Vertex painting"
+topology.bake.help "Transfer the vertex painting to a texture.
+
+Vertex color are resetted in the process."
+topology.bakeResolution "Resolution"
 
 // ----------------------------------------------
 // privacy policy

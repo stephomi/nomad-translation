@@ -1,5 +1,6 @@
-// Comments are sync from the english version, it's not possible
-// to have language specific comments at the moment.
+// Comments and entries are sync from the english version, it's not
+// possible to have language specific comments at the moment.
+// You can use this entry to make a specific comment
 language_note ""
 
 // comments with "ICON FIT" should be short, ideally < 10 characters
@@ -449,15 +450,6 @@ interface ""
 
 // bottom buttons
 interface.bottomButtons ""
-interface.shortcut.voxelRemesh ""
-interface.shortcut.wireframe ""
-interface.shortcut.lockSelection ""
-interface.shortcut.lockSelection.help ""
-interface.shortcut.cameraReset ""
-interface.shortcut.cameraSnap ""
-interface.shortcut.perspective ""
-interface.shortcut.cameraSnapFlip ""
-interface.shortcut.cameraSnapFlip.help ""
 
 // colors
 interface.colors ""
@@ -767,6 +759,8 @@ primitive.lathe ""
 primitive.tube ""
 primitive.plane ""
 primitive.triplanar ""
+primitive.faceXYZ ""
+primitive.faceXYZ.help ""
 primitive.needValidate ""
 
 // for 3d editing in viewport
@@ -817,6 +811,7 @@ primitive.isolate.right ""
 primitive.isolate.bottom ""
 // plane
 primitive.planeSameSize ""
+primitive.planeDisk ""
 // box
 primitive.boxRegular ""
 // tube
@@ -896,7 +891,6 @@ settings.statsAll ""
 // grid
 settings.gridTitle ""
 settings.gridDisplay ""
-settings.gridHeight ""
 // cursor
 settings.cursorWhileSculpting ""
 settings.cursorShowDot ""
@@ -926,6 +920,8 @@ settings.loadMergeLayers ""
 settings.loadSkipTextures ""
 settings.loadKeepTopology ""
 settings.loadKeepTopology.help ""
+settings.loadReverseVertices ""
+settings.loadReverseVertices.help ""
 // multires
 settings.multiresTitle ""
 settings.multiresMaxVertices ""
@@ -971,14 +967,26 @@ shading.matcapGlobal.help ""
 
 // ----------------------------------------------
 // bottom shortcut buttons (ICON FIT)
-shortcut.voxel ""
-shortcut.wire ""
-shortcut.mask ""
-shortcut.reset ""
-shortcut.snap ""
+shortcut.maskVisible ""
 shortcut.solo ""
-shortcut.lock ""
-shortcut.persp ""
+shortcut.voxelRemesh ""
+shortcut.wireframe ""
+shortcut.cameraReset ""
+shortcut.cameraSnap ""
+shortcut.lockSelection ""
+shortcut.perspective ""
+shortcut.grid ""
+shortcut.uv ""
+
+// can be longer (customization name in Interface menu)
+shortcut.voxelRemesh.long ""
+shortcut.wireframe.long ""
+shortcut.cameraReset.long ""
+shortcut.cameraSnap.long ""
+shortcut.lockSelection.long ""
+shortcut.lockSelection.long.help ""
+shortcut.perspective.long ""
+shortcut.grid.long ""
 
 // ----------------------------------------------
 // stat
@@ -1376,6 +1384,11 @@ topology.uvBFF.warning ""
 topology.uvBFFCones ""
 topology.uvBFFCones.help ""
 topology.uvDelete ""
+
+// baking
+topology.bake ""
+topology.bake.help ""
+topology.bakeResolution ""
 
 // ----------------------------------------------
 // privacy policy

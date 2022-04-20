@@ -1,5 +1,6 @@
-// Comments are sync from the english version, it's not possible
-// to have language specific comments at the moment.
+// Comments and entries are sync from the english version, it's not
+// possible to have language specific comments at the moment.
+// You can use this entry to make a specific comment
 language_note "志愿汉化：B站 @奥利奥泡面盖，可私信提供意见。"
 
 // comments with "ICON FIT" should be short, ideally < 10 characters
@@ -495,15 +496,6 @@ interface "界面设置"
 
 // bottom buttons
 interface.bottomButtons "底部快捷方式"
-interface.shortcut.voxelRemesh "体素网格重构"
-interface.shortcut.wireframe "网格开关"
-interface.shortcut.lockSelection "锁定选择"
-interface.shortcut.lockSelection.help "启用后，您无法通过点击方式选择对象。"
-interface.shortcut.cameraReset "重置视图"
-interface.shortcut.cameraSnap "切换视图"
-interface.shortcut.perspective "透视视图"
-interface.shortcut.cameraSnapFlip "翻转基本视图"
-interface.shortcut.cameraSnapFlip.help "当相机处于基本视图时，点击切换视图将会翻转至背面。"
 
 // colors
 interface.colors "界面颜色"
@@ -856,6 +848,8 @@ primitive.lathe "车削"
 primitive.tube "圆管"
 primitive.plane "平面"
 primitive.triplanar "三向投影"
+primitive.faceXYZ ""
+primitive.faceXYZ.help ""
 primitive.needValidate "基本体需转换为可编辑对象后才可雕刻。"
 
 // for 3d editing in viewport
@@ -918,6 +912,7 @@ primitive.isolate.right "右面"
 primitive.isolate.bottom "底面"
 // plane
 primitive.planeSameSize "固定比例（平面）"
+primitive.planeDisk ""
 // box
 primitive.boxRegular "固定比例（立方体）"
 // tube
@@ -1005,7 +1000,6 @@ settings.statsAll "显示全部"
 // grid
 settings.gridTitle "世界网格"
 settings.gridDisplay "世界网格"
-settings.gridHeight "高度"
 // cursor
 settings.cursorWhileSculpting "雕刻时显示画笔"
 settings.cursorShowDot "显示指针点"
@@ -1048,6 +1042,8 @@ settings.loadKeepTopology.help "如您不希望应用破坏导入模型拓扑，
 - 重新排序顶点和面
 - 删除重叠顶点和面
 - 移除未使用顶点"
+settings.loadReverseVertices ""
+settings.loadReverseVertices.help ""
 // multires
 settings.multiresTitle "模型细分"
 settings.multiresMaxVertices "最大顶点数量"
@@ -1111,14 +1107,26 @@ shading.matcapGlobal.help "如果您希望在不同对象上使用不同的材�
 
 // ----------------------------------------------
 // bottom shortcut buttons (ICON FIT)
-shortcut.voxel "重构"
-shortcut.wire "网格"
-shortcut.mask "蒙版"
-shortcut.reset "重设"
-shortcut.snap "切换"
+shortcut.maskVisible "蒙版"
 shortcut.solo "隔离"
-shortcut.lock "锁定"
-shortcut.persp "透视"
+shortcut.voxelRemesh "重构"
+shortcut.wireframe "网格"
+shortcut.cameraReset "重设"
+shortcut.cameraSnap "切换"
+shortcut.lockSelection "锁定"
+shortcut.perspective "透视"
+shortcut.grid "网格"
+shortcut.uv ""
+
+// can be longer (customization name in Interface menu)
+shortcut.voxelRemesh.long "体素网格重构"
+shortcut.wireframe.long "网格开关"
+shortcut.cameraReset.long "重置视图"
+shortcut.cameraSnap.long "切换视图"
+shortcut.lockSelection.long "锁定选择"
+shortcut.lockSelection.long.help "启用后，您无法通过点击方式选择对象。"
+shortcut.perspective.long "透视视图"
+shortcut.grid.long ""
 
 // ----------------------------------------------
 // stat
@@ -1644,6 +1652,11 @@ topology.uvBFF.warning ""
 topology.uvBFFCones ""
 topology.uvBFFCones.help ""
 topology.uvDelete "删除UV"
+
+// baking
+topology.bake ""
+topology.bake.help ""
+topology.bakeResolution ""
 
 // ----------------------------------------------
 // privacy policy

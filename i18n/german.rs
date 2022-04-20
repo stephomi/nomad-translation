@@ -1,5 +1,6 @@
-// Comments are sync from the english version, it's not possible
-// to have language specific comments at the moment.
+// Comments and entries are sync from the english version, it's not
+// possible to have language specific comments at the moment.
+// You can use this entry to make a specific comment
 language_note "german translation by djblueprint / www.3d-board.de"
 
 // comments with "ICON FIT" should be short, ideally < 10 characters
@@ -502,15 +503,6 @@ interface "Interface"
 
 // bottom buttons
 interface.bottomButtons "Shortcuts hinzufügen (unten)..."
-interface.shortcut.voxelRemesh "Voxel Remesh"
-interface.shortcut.wireframe "Wireframe"
-interface.shortcut.lockSelection "Selektion einfrieren"
-interface.shortcut.lockSelection.help "Wenn diese Funktion aktiviert ist, können Sie die Auswahl nicht ändern, indem Sie auf ein Mesh tippen."
-interface.shortcut.cameraReset "Kamera-Reset"
-interface.shortcut.cameraSnap "Kamera-Snap"
-interface.shortcut.perspective "Perspektive"
-interface.shortcut.cameraSnapFlip "Flip bei Snap"
-interface.shortcut.cameraSnapFlip.help "Wenn die Kamera bereits eingerastet ist, kann mit diesem Shortcut die Ansicht gespiegelt werden."
 
 // colors
 interface.colors "Hauptfarben"
@@ -855,6 +847,8 @@ primitive.lathe "Lathe"
 primitive.tube "Tube"
 primitive.plane "Plane"
 primitive.triplanar "Triplanar"
+primitive.faceXYZ ""
+primitive.faceXYZ.help ""
 primitive.needValidate "Grundformen müssen validiert werden, damit sie für das Sculpting bereit sind."
 
 // for 3d editing in viewport
@@ -917,6 +911,7 @@ primitive.isolate.right "Rechts"
 primitive.isolate.bottom "Unten"
 // plane
 primitive.planeSameSize "Gleiche Größe  (quadratisch)"
+primitive.planeDisk ""
 // box
 primitive.boxRegular "Gleiche Größe  (Würfel)"
 // tube
@@ -998,7 +993,6 @@ settings.statsAll "Gesamte Szene anzeigen"
 // grid
 settings.gridTitle "Raster (Grid)"
 settings.gridDisplay "Raster"
-settings.gridHeight "Höhe"
 // cursor
 settings.cursorWhileSculpting "Kreis anzeigen beim Sculpten"
 settings.cursorShowDot "Kleinen Punkt anzeigen"
@@ -1037,6 +1031,8 @@ settings.loadKeepTopology "Topologie beibehalten (beim Import)"
 settings.loadKeepTopology.help "Verwenden Sie diese Option, wenn Sie nicht möchten, dass Nomad die Topologie des importierten Meshes verändert.
 
 Es deaktiviert das Neuanordnen von Vertices/Faces, das Entfernen von Vertex-/Face-Duplikaten und das Entfernen von unbenutzten Vertices."
+settings.loadReverseVertices ""
+settings.loadReverseVertices.help ""
 // multires
 settings.multiresTitle "Multiresolution"
 settings.multiresMaxVertices "Max. Anzahl an Vertices"
@@ -1086,14 +1082,26 @@ shading.matcapGlobal.help "Deaktivieren Sie diese Option, um ein separates MatCa
 
 // ----------------------------------------------
 // bottom shortcut buttons (ICON FIT)
-shortcut.voxel "Voxel"
-shortcut.wire "Wire"
-shortcut.mask "Maske"
-shortcut.reset "Reset"
-shortcut.snap "Snap"
+shortcut.maskVisible "Maske"
 shortcut.solo "Solo"
-shortcut.lock "Lock"
-shortcut.persp "Persp"
+shortcut.voxelRemesh "Voxel"
+shortcut.wireframe "Wire"
+shortcut.cameraReset "Reset"
+shortcut.cameraSnap "Snap"
+shortcut.lockSelection "Lock"
+shortcut.perspective "Persp"
+shortcut.grid "Raster"
+shortcut.uv ""
+
+// can be longer (customization name in Interface menu)
+shortcut.voxelRemesh.long "Voxel Remesh"
+shortcut.wireframe.long "Wireframe"
+shortcut.cameraReset.long "Kamera-Reset"
+shortcut.cameraSnap.long "Kamera-Snap"
+shortcut.lockSelection.long "Selektion einfrieren"
+shortcut.lockSelection.long.help "Wenn diese Funktion aktiviert ist, können Sie die Auswahl nicht ändern, indem Sie auf ein Mesh tippen."
+shortcut.perspective.long "Perspektive"
+shortcut.grid.long ""
 
 // ----------------------------------------------
 // stat
@@ -1626,6 +1634,11 @@ topology.uvBFFCones.help "Ein höherer Wert verringert die Verzerrung bei komple
 
 Ein höherer Wert bedeutet aber auch eine längere Berechnungszeit."
 topology.uvDelete "UVs löschen"
+
+// baking
+topology.bake ""
+topology.bake.help ""
+topology.bakeResolution ""
 
 // ----------------------------------------------
 // privacy policy

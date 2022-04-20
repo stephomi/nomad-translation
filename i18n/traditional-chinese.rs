@@ -1,5 +1,6 @@
-// Comments are sync from the english version, it's not possible
-// to have language specific comments at the moment.
+// Comments and entries are sync from the english version, it's not
+// possible to have language specific comments at the moment.
+// You can use this entry to make a specific comment
 language_note ""
 
 // comments with "ICON FIT" should be short, ideally < 10 characters
@@ -488,15 +489,6 @@ interface "界面設置"
 
 // bottom buttons
 interface.bottomButtons "底部快捷方式"
-interface.shortcut.voxelRemesh "體素網格重構"
-interface.shortcut.wireframe "網格開關"
-interface.shortcut.lockSelection "鎖定選擇"
-interface.shortcut.lockSelection.help "啟用後，您無法通過點擊方式選擇對象。"
-interface.shortcut.cameraReset "重置視圖"
-interface.shortcut.cameraSnap "切換視圖"
-interface.shortcut.perspective "透視視圖"
-interface.shortcut.cameraSnapFlip "翻轉基本視圖"
-interface.shortcut.cameraSnapFlip.help "當相機處於基本視圖時，點擊切換視圖將會翻轉至背面。"
 
 // colors
 interface.colors "界面顏色"
@@ -835,6 +827,8 @@ primitive.lathe "車削"
 primitive.tube "圓管"
 primitive.plane "平面"
 primitive.triplanar "三向投影"
+primitive.faceXYZ ""
+primitive.faceXYZ.help ""
 primitive.needValidate "基本體需轉換為可編輯對象後才可雕刻。"
 
 // for 3d editing in viewport
@@ -895,6 +889,7 @@ primitive.isolate.right "右面"
 primitive.isolate.bottom "底面"
 // plane
 primitive.planeSameSize "固定比例（平面）"
+primitive.planeDisk ""
 // box
 primitive.boxRegular "固定比例（立方體）"
 // tube
@@ -978,7 +973,6 @@ settings.statsAll "顯示全部"
 // grid
 settings.gridTitle "世界網格"
 settings.gridDisplay "世界網格"
-settings.gridHeight "高度"
 // cursor
 settings.cursorWhileSculpting "雕刻時顯示畫筆"
 settings.cursorShowDot "顯示指針點"
@@ -1021,6 +1015,8 @@ settings.loadKeepTopology.help "如您不希望應用破壞導入模型拓撲，
 - 重新排序頂點和面
 - 刪除重疊頂點和面
 - 移除未使用頂點"
+settings.loadReverseVertices ""
+settings.loadReverseVertices.help ""
 // multires
 settings.multiresTitle "模型細分"
 settings.multiresMaxVertices "最大頂點數量"
@@ -1070,14 +1066,26 @@ shading.matcapGlobal.help "如果您希望在不同對象上使用不同的材�
 
 // ----------------------------------------------
 // bottom shortcut buttons (ICON FIT)
-shortcut.voxel "重構"
-shortcut.wire "網格"
-shortcut.mask "蒙版"
-shortcut.reset "重設"
-shortcut.snap "切換"
+shortcut.maskVisible "蒙版"
 shortcut.solo "隔離"
-shortcut.lock "鎖定"
-shortcut.persp "透視"
+shortcut.voxelRemesh "重構"
+shortcut.wireframe "網格"
+shortcut.cameraReset "重設"
+shortcut.cameraSnap "切換"
+shortcut.lockSelection "鎖定"
+shortcut.perspective "透視"
+shortcut.grid "網格"
+shortcut.uv ""
+
+// can be longer (customization name in Interface menu)
+shortcut.voxelRemesh.long "體素網格重構"
+shortcut.wireframe.long "網格開關"
+shortcut.cameraReset.long "重置視圖"
+shortcut.cameraSnap.long "切換視圖"
+shortcut.lockSelection.long "鎖定選擇"
+shortcut.lockSelection.long.help "啟用後，您無法通過點擊方式選擇對象。"
+shortcut.perspective.long "透視視圖"
+shortcut.grid.long ""
 
 // ----------------------------------------------
 // stat
@@ -1600,6 +1608,11 @@ topology.uvBFF.warning ""
 topology.uvBFFCones ""
 topology.uvBFFCones.help ""
 topology.uvDelete ""
+
+// baking
+topology.bake ""
+topology.bake.help ""
+topology.bakeResolution ""
 
 // ----------------------------------------------
 // privacy policy
