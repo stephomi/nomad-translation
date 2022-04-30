@@ -171,12 +171,20 @@ camera.doubleTapMesh "双击对象"
 camera.doubleTapBackground "双击背景"
 camera.doubleTapPivot "双击后改变"
 camera.doubleTapPivot.help "双击后改变坐标视图中心点。"
+camera.airPivot ""
+camera.airPivot.help ""
 camera.autoPivot "平移/缩放后改变"
 camera.autoPivot.help "双指移动相机后，中心点会随之移动。"
 camera.doubleTapFocus "聚焦"
 camera.doubleTapFocus.help "双击物体表面后视图中心将移动至该点。"
 camera.doubleTapFocusSelection "聚焦所选项"
 camera.doubleTapFocusSelection.help "双击背景后相机将会缩放移动至最适合该对象的视图。"
+
+// toolbox context, only a few tools are display in some cases
+// (only visible in expanded toolbox mode)
+context.multiselection ""
+context.triplanar ""
+context.primitive ""
 
 // scene and layer lists
 curve.preset "预设"
@@ -772,10 +780,6 @@ postprocess.taaEnable "时间性抗锯齿（TAA）"
 postprocess.taaEnable.help "TAA可减少相机移动时的闪烁，呈现出更加平滑的图像效果。"
 // ssr
 postprocess.ssrEnable "屏幕空间反射（SSR）"
-postprocess.ssrFactor "强度"
-postprocess.ssrDistanceFading "淡化距离"
-postprocess.ssrDistanceFading.help "根据反射距离来减弱效果。
-此选项能减弱SSR所产生的伪影。"
 postprocess.ssrPBRWarning "SSR仅在PBR渲染模式下有效。"
 // ssao
 postprocess.ssaoEnable "环境光遮蔽（AO）"
@@ -1031,8 +1035,8 @@ settings.holeNonManifold.help "应用将会尝试填补非流形孔洞。
 此选项不会被保存在设置中。"
 settings.loadGuiSettings "加载项目GUI设置"
 settings.loadGuiSettings.help "当您打开或导入项目文件时，同时加载项目中包含的GUI设置。"
-settings.loadObjKeepGroup "保留 OBJ 顶点组"
-settings.loadObjKeepGroup.help "启用该选项后，Nomad 会将 OBJ 文件的各个顶点组拆分为单独的对象。"
+settings.loadObjSplitByGroup "保留 OBJ 顶点组"
+settings.loadObjSplitByGroup.help "启用该选项后，Nomad 会将 OBJ 文件的各个顶点组拆分为单独的对象。"
 settings.loadMergeLayers "导入时合并图层"
 settings.loadSkipTextures "导入时忽略贴图"
 settings.loadKeepTopology "导入时保留拓扑"
@@ -1285,7 +1289,7 @@ symmetry.edit.help "您可以自由改变镜像平面。
 此功能并未完善，请尽量不要使用。"
 
 // ----------------------------------------------
-// tools icons on the left (ICON FIT)
+// tools icons on the left bar (ICON FIT)
 tool.dynTopo "动态网格"
 tool.symmetry "对称"
 tool.mirror "镜像"

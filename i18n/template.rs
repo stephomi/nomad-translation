@@ -169,12 +169,20 @@ camera.doubleTapMesh ""
 camera.doubleTapBackground ""
 camera.doubleTapPivot ""
 camera.doubleTapPivot.help ""
+camera.airPivot ""
+camera.airPivot.help ""
 camera.autoPivot ""
 camera.autoPivot.help ""
 camera.doubleTapFocus ""
 camera.doubleTapFocus.help ""
 camera.doubleTapFocusSelection ""
 camera.doubleTapFocusSelection.help ""
+
+// toolbox context, only a few tools are display in some cases
+// (only visible in expanded toolbox mode)
+context.multiselection ""
+context.triplanar ""
+context.primitive ""
 
 // scene and layer lists
 curve.preset ""
@@ -685,9 +693,6 @@ postprocess.taaEnable ""
 postprocess.taaEnable.help ""
 // ssr
 postprocess.ssrEnable ""
-postprocess.ssrFactor ""
-postprocess.ssrDistanceFading ""
-postprocess.ssrDistanceFading.help ""
 postprocess.ssrPBRWarning ""
 // ssao
 postprocess.ssaoEnable ""
@@ -914,8 +919,8 @@ settings.holeNonManifold ""
 settings.holeNonManifold.help ""
 settings.loadGuiSettings ""
 settings.loadGuiSettings.help ""
-settings.loadObjKeepGroup ""
-settings.loadObjKeepGroup.help ""
+settings.loadObjSplitByGroup ""
+settings.loadObjSplitByGroup.help ""
 settings.loadMergeLayers ""
 settings.loadSkipTextures ""
 settings.loadKeepTopology ""
@@ -1101,7 +1106,7 @@ symmetry.edit ""
 symmetry.edit.help ""
 
 // ----------------------------------------------
-// tools icons on the left (ICON FIT)
+// tools icons on the left bar (ICON FIT)
 tool.dynTopo ""
 tool.symmetry ""
 tool.mirror ""

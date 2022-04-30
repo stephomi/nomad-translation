@@ -171,12 +171,20 @@ camera.doubleTapMesh "雙擊對象"
 camera.doubleTapBackground "雙擊背景"
 camera.doubleTapPivot "雙擊後改變"
 camera.doubleTapPivot.help "雙擊後改變坐標視圖中心點。"
+camera.airPivot ""
+camera.airPivot.help ""
 camera.autoPivot "平移/縮放後改變"
 camera.autoPivot.help "雙指移動相機後，中心點會隨之移動。"
 camera.doubleTapFocus "聚焦"
 camera.doubleTapFocus.help "雙擊物體表面後視圖中心將移動至該點。"
 camera.doubleTapFocusSelection "聚焦所選項"
 camera.doubleTapFocusSelection.help "雙擊背景後相機將會縮放移動至最適合該對象的視圖。"
+
+// toolbox context, only a few tools are display in some cases
+// (only visible in expanded toolbox mode)
+context.multiselection ""
+context.triplanar ""
+context.primitive ""
 
 // scene and layer lists
 curve.preset "預設"
@@ -751,10 +759,6 @@ postprocess.taaEnable "時間性抗鋸齒（TAA）"
 postprocess.taaEnable.help "TAA可減少相機移動時的閃爍，呈現出更加平滑的圖像效果。"
 // ssr
 postprocess.ssrEnable "屏幕空間反射（SSR）"
-postprocess.ssrFactor "強度"
-postprocess.ssrDistanceFading "淡化距離"
-postprocess.ssrDistanceFading.help "根據反射距離來減弱效果。
-此選項能減弱SSR所產生的偽影。"
 postprocess.ssrPBRWarning "SSR僅在PBR渲染模式下有效。"
 // ssao
 postprocess.ssaoEnable "環境光遮蔽（AO）"
@@ -1004,8 +1008,8 @@ settings.holeNonManifold.help "應用將會嘗試填補非流形孔洞。
 此選項不會被保存在設置中。"
 settings.loadGuiSettings "加載項目GUI設置"
 settings.loadGuiSettings.help "當您打開或導入項目文件時，同時加載項目中包含的GUI設置。"
-settings.loadObjKeepGroup ""
-settings.loadObjKeepGroup.help ""
+settings.loadObjSplitByGroup ""
+settings.loadObjSplitByGroup.help ""
 settings.loadMergeLayers "導入時合並圖層"
 settings.loadSkipTextures ""
 settings.loadKeepTopology "導入時保留拓撲"
@@ -1244,7 +1248,7 @@ symmetry.edit.help "您可以自由改變鏡像平面。
 此功能並未完善，請盡量不要使用。"
 
 // ----------------------------------------------
-// tools icons on the left (ICON FIT)
+// tools icons on the left bar (ICON FIT)
 tool.dynTopo "動態網格"
 tool.symmetry "對稱"
 tool.mirror "鏡像"

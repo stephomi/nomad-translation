@@ -171,12 +171,20 @@ camera.doubleTapMesh "Doppel-Tap Mesh"
 camera.doubleTapBackground "Doppel-Tap Hintergrund"
 camera.doubleTapPivot "Update bei Doppel-Tap"
 camera.doubleTapPivot.help "Aktualisieren Sie den Drehpunkt (Pivot) beim doppelten Antippen."
+camera.airPivot ""
+camera.airPivot.help ""
 camera.autoPivot "Bei Kamerabenutzung"
 camera.autoPivot.help "Aktualisieren Sie den Drehpunkt (Pivot), wenn Sie beginnen, mit der Kamera zu hantieren."
 camera.doubleTapFocus "Fokus"
 camera.doubleTapFocus.help "Wenn Sie doppelt auf das Mesh tippen, schwenkt die Kamera und fokussiert auf den ausgewählten Punkt."
 camera.doubleTapFocusSelection "Fokus auf Auswahl"
 camera.doubleTapFocusSelection.help "Wenn Sie doppelt auf den Hintergrund tippen, wird der Fokus auf das ausgewählte Mesh anstatt auf die gesamte Szene gelegt."
+
+// toolbox context, only a few tools are display in some cases
+// (only visible in expanded toolbox mode)
+context.multiselection ""
+context.triplanar ""
+context.primitive ""
 
 // scene and layer lists
 curve.preset "Preset"
@@ -771,10 +779,6 @@ postprocess.taaEnable "Anti-Aliasing (TAA)"
 postprocess.taaEnable.help "Verringert das Flackern, wenn Sie die Kamera bewegen."
 // ssr
 postprocess.ssrEnable "Reflektion (SSR)"
-postprocess.ssrFactor "Stärke"
-postprocess.ssrDistanceFading "Distance-Fading"
-postprocess.ssrDistanceFading.help "Dämpfen Sie die Wirkung je nach Entfernung der Reflexion.
-Es kann helfen, Artefakte zu verbergen, unter denen die SSR leidet."
 postprocess.ssrPBRWarning "SSR ist nur im PBR-Shading-Modus wirksam."
 // ssao
 postprocess.ssaoEnable "Ambient Occlusion (AO)"
@@ -1023,8 +1027,8 @@ settings.holeNonManifold.help "Versucht, ein non-manifold Loch zu füllen.
 Diese Option ist nicht in den Einstellungen gespeichert."
 settings.loadGuiSettings "GUI-Einstellungen mitladen (beim Import)"
 settings.loadGuiSettings.help "Beim Öffnen oder Importieren einer Projektdatei werden alle in das Projekt eingebetteten GUI-bezogenen Einstellungen geladen."
-settings.loadObjKeepGroup "OBJ-Gruppen beibehalten"
-settings.loadObjKeepGroup.help "Wenn diese Option aktiviert ist, teilt Nomad das OBJ in jede Vertex-Gruppe in separate Objekte auf."
+settings.loadObjSplitByGroup "OBJ-Gruppen beibehalten"
+settings.loadObjSplitByGroup.help "Wenn diese Option aktiviert ist, teilt Nomad das OBJ in jede Vertex-Gruppe in separate Objekte auf."
 settings.loadMergeLayers "Layer zusammenführen (beim Import)"
 settings.loadSkipTextures "Texturen überspringen (beim Import)"
 settings.loadKeepTopology "Topologie beibehalten (beim Import)"
@@ -1259,7 +1263,7 @@ symmetry.edit.help "Sie können die Symmetrieebene frei festlegen.
 Diese Funktion ist ein wenig experimentell und Sie sollten sie vermutlich nicht verwenden."
 
 // ----------------------------------------------
-// tools icons on the left (ICON FIT)
+// tools icons on the left bar (ICON FIT)
 tool.dynTopo "DynTopo"
 tool.symmetry "Sym"
 tool.mirror "Mirror"

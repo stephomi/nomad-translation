@@ -170,13 +170,21 @@ camera.pivot "Pivot"
 camera.doubleTapMesh "Double tap on mesh"
 camera.doubleTapBackground "Double tap on background"
 camera.doubleTapPivot "Update on double tap"
-camera.doubleTapPivot.help "Update the rotation pivot when double tapping."
+camera.doubleTapPivot.help "Update the rotation pivot when double tapping on the object surface."
+camera.airPivot "Air pivot"
+camera.airPivot.help "Allow new pivot even when zooming outside the object surface."
 camera.autoPivot "On camera gesture start"
 camera.autoPivot.help "Update the pivot when you start interacting with the camera."
 camera.doubleTapFocus "Focus"
 camera.doubleTapFocus.help "When double tapping on the mesh, the camera will pan and focus on the picked point."
 camera.doubleTapFocusSelection "Focus on selection"
 camera.doubleTapFocusSelection.help "When double taping on background focus on the selected mesh instead of the whole scene."
+
+// toolbox context, only a few tools are display in some cases
+// (only visible in expanded toolbox mode)
+context.multiselection "Multiselection"
+context.triplanar "Triplanar"
+context.primitive "Primitive"
 
 // scene and layer lists
 curve.preset "Preset"
@@ -783,10 +791,6 @@ postprocess.taaEnable "Anti-aliasing (TAA)"
 postprocess.taaEnable.help "Reduces flickering when you are moving the camera."
 // ssr
 postprocess.ssrEnable "Reflection (SSR)"
-postprocess.ssrFactor "Strength"
-postprocess.ssrDistanceFading "Distance fading"
-postprocess.ssrDistanceFading.help "Attenuate the effect according to how far the reflection is.
-It can help in hiding artefacts that the SSR suffers from."
 postprocess.ssrPBRWarning "SSR requires PBR shading mode."
 // ssao
 postprocess.ssaoEnable "Ambient Occlusion"
@@ -1037,8 +1041,8 @@ settings.holeNonManifold.help "Try to fill non manifold hole.
 This option is not saved in the settings."
 settings.loadGuiSettings "Keep gui settings (at import)"
 settings.loadGuiSettings.help "When opening or importing a project file, all the gui-related settings embedded in the project will be loaded."
-settings.loadObjKeepGroup "Keep OBJ groups"
-settings.loadObjKeepGroup.help "When enabled, Nomad will split the OBJ each vertex group into separate objects."
+settings.loadObjSplitByGroup "Split OBJ by groups"
+settings.loadObjSplitByGroup.help "When enabled, Nomad will split the OBJ each vertex group into separate objects."
 settings.loadMergeLayers "Merge Layers (at import)"
 settings.loadSkipTextures "Skip textures (at import)"
 settings.loadKeepTopology "Keep topology (at import)"
@@ -1289,7 +1293,7 @@ symmetry.edit.help "You can freely set the symmetry plane.
 This feature is a bit experimental and you should probably never use it."
 
 // ----------------------------------------------
-// tools icons on the left (ICON FIT)
+// tools icons on the left bar (ICON FIT)
 tool.dynTopo "DynTopo"
 tool.symmetry "Sym"
 tool.mirror "Mirror"
@@ -1573,7 +1577,7 @@ topology.voxelSharp "Keep sharp edges"
 topology.voxelSharp.help "This option is mostly useful for simple primitive boolean operation.
 
 It will introduce distortion in some area due to the points being snapped on the edges."
-topology.voxelSubLevel "Rebuild multires"
+topology.voxelSubLevel "Build multiresolution"
 topology.voxelSubLevel.help "You can rebuild a multiresolution hierarchy from the voxel remesher output.
 
 It will also run faster and use less memory, especially if the voxel detail value is high.
@@ -1607,7 +1611,7 @@ This feature can have a noticeable impact on performance.
 Layers are updated correctly."
 topology.dynamicDetailLevel "Detail"
 topology.dynamicDetailEdge "Detail"
-topology.dynamicDetailMethod "Level of detail based on..."
+topology.dynamicDetailMethod "Detail based on..."
 topology.dynamicDetailMethodZoom "Zoom"
 topology.dynamicDetailMethodRadius "Radius"
 topology.dynamicDetailMethodConstant "Constant"
