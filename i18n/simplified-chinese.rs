@@ -1,6 +1,6 @@
 // Comments and entries are sync from the english version, it's not
 // possible to have language specific comments at the moment.
-// You can use this entry to make a specific comment
+// You can use this entry to make a specific comment.
 language_note "志愿汉化：B站 @奥利奥泡面盖，可私信提供意见。"
 
 // comments with "ICON FIT" should be short, ideally < 10 characters
@@ -30,7 +30,9 @@ X "X"
 Y "Y"
 Z "Z"
 
+// general
 advancedSettings "高级设置"
+notSaved "这些选项不会在设置中保存。"
 
 // generic warning when there is no mesh selected
 noSelectedMesh "对象未选择"
@@ -254,6 +256,8 @@ file.project.autoSave.minutes "自动保存间隔"
 file.project.autoSave.delete "删除自动保存文件"
 file.project.autoSave.delete.confirm "确认删除？"
 
+file.importSettings ""
+
 // import
 file.import.title "从外部导入"
 file.import.title.help "支持导入的格式：
@@ -328,16 +332,6 @@ file.settings.reset "恢复默认设置"
 file.settings.reset.confirm "确定重设所有设置？
 
 项目、画笔形状、材质、HDRI与背景将不会被影响。"
-
-// materials
-file.materials "材质库"
-file.materials.reset "重置为默认"
-file.materials.reset.confirm "确定要重置材质库吗？"
-
-// tools
-file.tools "工具预设"
-file.tools.reset "重置为默认"
-file.tools.reset.confirm "确定要重置材质库吗？"
 
 // render
 file.render "渲染"
@@ -484,7 +478,9 @@ history.state.lightIntensity "调整灯光 $0 强度"
 history.state.lightColor "调整灯光 $0 颜色"
 history.state.lightPosition "调整灯光 $0 位置"
 history.state.lightShadow "调整灯光 $0 阴影"
-history.state.lightBias "调整灯光 $0 阴影偏移"
+history.state.lightShadowType ""
+history.state.lightShadowBias "调整灯光 $0 阴影偏差"
+history.state.lightShadowSoftness ""
 history.state.lightAttachment "调整灯光 $0 定位方式"
 history.state.lightAdd "添加灯光 light $0"
 history.state.lightDelete "删除灯光 $0"
@@ -562,7 +558,6 @@ layer.colorFactor "颜色浓度"
 // ----------------------------------------------
 // layers menu
 layers.addLayer "添加图层"
-layers.addLayerTrial "试用版本只能给每个对象添加一个图层！"
 layers.title "图层"
 layers.title.help "图层能够记录位置偏移和绘画，这对于非线性工作流程来说非常有用。
 例如，通过试验不同的面部表情而不依赖于历史记录来撤消更改。
@@ -594,7 +589,13 @@ light.type.point "点光源"
 light.spotAngle "入射角"
 light.spotSoftness "边缘硬度"
 light.shadowCast "显示阴影"
-light.shadowNormalBias "阴影偏差"
+light.shadowType.shadowMap ""
+light.shadowType.screenspace ""
+light.shadowType.screenspace.help ""
+light.shadowBias "阴影偏差"
+light.shadowSoftness ""
+light.contactShadow ""
+light.contactShadow.help ""
 light.visible "可见性"
 light.resetPosition "重设位置"
 
@@ -770,6 +771,8 @@ postprocess.quality.help "该设置可提升部分效果的渲染质量，但可
 - 景深"
 postprocess.maxSamples "最大采样值"
 postprocess.fullResolution "最大实时分辨率"
+postprocess.accumulateCount ""
+postprocess.accumulateCount.help ""
 postprocess.renderRatio "实时渲染分辨率"
 postprocess.renderRatioWarning ""
 postprocess.renderRatio.help ""
@@ -831,8 +834,8 @@ postprocess.grainFactor "强度"
 postprocess.curvatureEnable "曲率描边"
 postprocess.curvatureCavity "缝隙颜色"
 postprocess.curvatureBump "凸起颜色"
-// pixelart
-postprocess.pixelartEnable ""
+// pixel art
+postprocess.pixelArtEnable ""
 // scanline
 postprocess.scanlineEnable ""
 postprocess.scanlineFactor ""
@@ -1037,9 +1040,9 @@ settings.loadGuiSettings "加载项目GUI设置"
 settings.loadGuiSettings.help "当您打开或导入项目文件时，同时加载项目中包含的GUI设置。"
 settings.loadObjSplitByGroup "保留 OBJ 顶点组"
 settings.loadObjSplitByGroup.help "启用该选项后，Nomad 会将 OBJ 文件的各个顶点组拆分为单独的对象。"
-settings.loadMergeLayers "导入时合并图层"
-settings.loadSkipTextures "导入时忽略贴图"
-settings.loadKeepTopology "导入时保留拓扑"
+settings.loadMergeLayers "合并图层"
+settings.loadSkipTextures "忽略贴图"
+settings.loadKeepTopology "保留拓扑"
 settings.loadKeepTopology.help "如您不希望应用破坏导入模型拓扑，请勾选此选项。
 
 应用将不会：
@@ -1056,9 +1059,6 @@ settings.multiresLowResVertices "最低分辨率阈值"
 settings.multiresLowResVertices.help "在您移动相机时，模型对象可能会以较低分辨率显示。
 
 如您希望显示更高的分辨率，可以增加此值。"
-// experimental
-settings.experimentalTitle "实验性功能"
-settings.notSaved "这些选项不会在设置中保存。"
 
 // ----------------------------------------------
 // shading
@@ -1464,6 +1464,8 @@ tool.matrix.applyMethod.help "- 自动选择：
 // transform
 tool.transform.multiTouch "多点触控"
 tool.transform.multiTouch.help "如果您禁用此选项，则每次都只能使用移动、旋转、缩放一种操作。"
+tool.transform.transformRestrictRotationY ""
+tool.transform.transformRestrictRotationY.help ""
 
 // ----------------------------------------------
 // gizmo
@@ -1672,12 +1674,15 @@ privacyPolicy "Hexanomad 不会从 Nomad Sculpt 收集任何数据。"
 // version trial
 version.buyWeb "该版本仅供演示"
 version.buyFull "购买完整版本"
-version.trialLimit "试用版本限制：
-- 仅允许3次以内的撤销或重做
-- 每个物体仅允许添加一个图层
-- 仅允许启用一个项目
-- 不允许导入和导出"
 version.restorePurchase "恢复购买"
+// version.promoHuawei ""
+
+version.trialHistory "试用版本限制：仅允许4次以内的撤销或重做"
+version.trialLayer "试用版本限制：每个物体仅允许添加一个图层"
+version.trialOneProject "试用版本限制：仅允许启用一个项目"
+version.trialNoImport "试用版本限制：不允许导入"
+version.trialNoExport "试用版本限制：不允许导出"
+
 version.fullFeatures "购买完整版本后您可以：
 - 撤消或重做不受限制
 - 图层数量不受限制

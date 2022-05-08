@@ -1,6 +1,6 @@
 // Comments and entries are sync from the english version, it's not
 // possible to have language specific comments at the moment.
-// You can use this entry to make a specific comment
+// You can use this entry to make a specific comment.
 language_note ""
 
 // comments with "ICON FIT" should be short, ideally < 10 characters
@@ -30,7 +30,9 @@ X ""
 Y ""
 Z ""
 
+// general
 advancedSettings ""
+notSaved ""
 
 // generic warning when there is no mesh selected
 noSelectedMesh ""
@@ -243,6 +245,8 @@ file.project.autoSave.minutes ""
 file.project.autoSave.delete ""
 file.project.autoSave.delete.confirm ""
 
+file.importSettings ""
+
 // import
 file.import.title ""
 file.import.title.help ""
@@ -298,16 +302,6 @@ file.settings.title.help ""
 // settings
 file.settings.reset ""
 file.settings.reset.confirm ""
-
-// materials
-file.materials ""
-file.materials.reset ""
-file.materials.reset.confirm ""
-
-// tools
-file.tools ""
-file.tools.reset ""
-file.tools.reset.confirm ""
 
 // render
 file.render ""
@@ -438,7 +432,9 @@ history.state.lightIntensity ""
 history.state.lightColor ""
 history.state.lightPosition ""
 history.state.lightShadow ""
-history.state.lightBias ""
+history.state.lightShadowType ""
+history.state.lightShadowBias ""
+history.state.lightShadowSoftness ""
 history.state.lightAttachment ""
 history.state.lightAdd ""
 history.state.lightDelete ""
@@ -516,7 +512,6 @@ layer.colorFactor ""
 // ----------------------------------------------
 // layers menu
 layers.addLayer ""
-layers.addLayerTrial ""
 layers.title ""
 layers.title.help ""
 layers.primitive ""
@@ -538,7 +533,13 @@ light.type.point ""
 light.spotAngle ""
 light.spotSoftness ""
 light.shadowCast ""
-light.shadowNormalBias ""
+light.shadowType.shadowMap ""
+light.shadowType.screenspace ""
+light.shadowType.screenspace.help ""
+light.shadowBias ""
+light.shadowSoftness ""
+light.contactShadow ""
+light.contactShadow.help ""
 light.visible ""
 light.resetPosition ""
 
@@ -683,6 +684,8 @@ postprocess.quality ""
 postprocess.quality.help ""
 postprocess.maxSamples ""
 postprocess.fullResolution ""
+postprocess.accumulateCount ""
+postprocess.accumulateCount.help ""
 postprocess.renderRatio ""
 postprocess.renderRatioWarning ""
 postprocess.renderRatio.help ""
@@ -743,8 +746,8 @@ postprocess.grainFactor ""
 postprocess.curvatureEnable ""
 postprocess.curvatureCavity ""
 postprocess.curvatureBump ""
-// pixelart
-postprocess.pixelartEnable ""
+// pixel art
+postprocess.pixelArtEnable ""
 // scanline
 postprocess.scanlineEnable ""
 postprocess.scanlineFactor ""
@@ -933,9 +936,6 @@ settings.multiresMaxVertices ""
 settings.multiresMaxVertices.help ""
 settings.multiresLowResVertices ""
 settings.multiresLowResVertices.help ""
-// experimental
-settings.experimentalTitle ""
-settings.notSaved ""
 
 // ----------------------------------------------
 // shading
@@ -1254,6 +1254,8 @@ tool.matrix.applyMethod.help ""
 // transform
 tool.transform.multiTouch ""
 tool.transform.multiTouch.help ""
+tool.transform.transformRestrictRotationY ""
+tool.transform.transformRestrictRotationY.help ""
 
 // ----------------------------------------------
 // gizmo
@@ -1405,6 +1407,13 @@ privacyPolicy ""
 // version trial
 version.buyWeb ""
 version.buyFull ""
-version.trialLimit ""
 version.restorePurchase ""
+// version.promoHuawei ""
+
+version.trialHistory ""
+version.trialLayer ""
+version.trialOneProject ""
+version.trialNoImport ""
+version.trialNoExport ""
+
 version.fullFeatures ""

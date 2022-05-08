@@ -1,6 +1,6 @@
 // Comments and entries are sync from the english version, it's not
 // possible to have language specific comments at the moment.
-// You can use this entry to make a specific comment
+// You can use this entry to make a specific comment.
 language_note ""
 
 // comments with "ICON FIT" should be short, ideally < 10 characters
@@ -30,7 +30,9 @@ X "X"
 Y "Y"
 Z "Z"
 
+// general
 advancedSettings "Advanced"
+notSaved "These options are not saved in the settings."
 
 // generic warning when there is no mesh selected
 noSelectedMesh "No selected mesh."
@@ -118,7 +120,7 @@ alert.warning.noPartialWireframe "Partial drawing is disabled when wireframe is 
 // bottom tip
 alert.tip.shapeOrthographic "Consider using orthographic camera if you want to avoid perspective frustum distortion when using screen projector."
 // undo
-alert.state.trial "Undo canceled : trial version"
+alert.state.trial "Trial version: undo canceled"
 
 // ----------------------------------------------
 // background
@@ -254,6 +256,8 @@ file.project.autoSave.minutes "Timer popup"
 file.project.autoSave.delete "Discard Auto Save"
 file.project.autoSave.delete.confirm "Confirm?"
 
+file.importSettings "Import options"
+
 // import
 file.import.title "Import"
 file.import.title.help "Supported format:
@@ -332,19 +336,18 @@ At the moment brush settings cannot be saved but custom brush managament is plan
 
 // settings
 file.settings.reset "Reset to default"
-file.settings.reset.confirm "Reset all settings?
+file.settings.reset.confirm "Reset preference settings?
 
-Projects alphas matcaps hdris and backgrounds are not impacted."
+The current scene and lighting will be kept intact.
 
-// materials
-file.materials "Material library"
-file.materials.reset "Reset to default"
-file.materials.reset.confirm "Reset material library?"
-
-// tools
-file.tools "Tools presets"
-file.tools.reset "Reset to default"
-file.tools.reset.confirm "Reset tools library?"
+Also these resources are saved separately and won't be impacted:
+- File projects
+- Matcaps
+- Environments
+- Textures
+- Backgrounds
+- Tool presets
+- Material presets"
 
 // render
 file.render "Render"
@@ -491,7 +494,9 @@ history.state.lightIntensity "Light $0 intensity"
 history.state.lightColor "Light $0 color"
 history.state.lightPosition "Light $0 position"
 history.state.lightShadow "Light $0 shadow"
-history.state.lightBias "Light $0 shadow bias"
+history.state.lightShadowType "Light $0 shadow type"
+history.state.lightShadowBias "Light $0 shadow bias"
+history.state.lightShadowSoftness "Light $0 shadow softness"
 history.state.lightAttachment "Attachment light $0"
 history.state.lightAdd "Add light $0"
 history.state.lightDelete "Delete light $0"
@@ -569,7 +574,6 @@ layer.colorFactor "Color"
 // ----------------------------------------------
 // layers menu
 layers.addLayer "Add layer"
-layers.addLayerTrial "Trial version is limited to 1 layer per mesh."
 layers.title "Layers"
 layers.title.help "Layers can record position offsets and painting, it can be useful for non-linear workflow.
 For example by experimenting different facial expression without relying on the history stack to undo the changes.
@@ -601,7 +605,15 @@ light.type.point "Point"
 light.spotAngle "Cone angle"
 light.spotSoftness "Softness"
 light.shadowCast "Shadow"
-light.shadowNormalBias "Normal bias"
+light.shadowType.shadowMap "Shadow map"
+light.shadowType.screenspace "Screenspace"
+light.shadowType.screenspace.help "Experimental feature, it might be removed in a future release.
+
+This option is meant to be used with the softness shadow feature."
+light.shadowBias "Bias"
+light.shadowSoftness "Softness"
+light.contactShadow "Contact"
+light.contactShadow.help "If auto is selected, only the most dominant light will have contact shadow."
 light.visible "Show"
 light.resetPosition "Recenter"
 
@@ -778,6 +790,20 @@ It will improve:
 - Depth Of Field"
 postprocess.maxSamples "Max samples"
 postprocess.fullResolution "Full Resolution"
+postprocess.accumulateCount "Max frame sampling"
+postprocess.accumulateCount.help "Maximum number of frames to accumulates before the rendering stops.
+
+When the rendering stops, Nomad won't do anything, thus saving battery life.
+
+Many rendering features benefits from frame accumulation, notably:
+- Soft Shadows
+- Reflection
+- Subsurface
+- Ambient Occlusion
+- Depth Of Field
+
+High frame count are only necessary for Soft Shadows.
+Depending on features enabled, Nomad can stops the rendering sooner."
 postprocess.renderRatio "Render resolution"
 postprocess.renderRatioWarning "Overriden by the Pixel Art effect."
 postprocess.renderRatio.help "This option impacts the performance a lot.
@@ -842,8 +868,8 @@ postprocess.grainFactor "Strength"
 postprocess.curvatureEnable "Curvature"
 postprocess.curvatureCavity "Cavity"
 postprocess.curvatureBump "Bump"
-// pixelart
-postprocess.pixelartEnable "Pixel Art"
+// pixel art
+postprocess.pixelArtEnable "Pixel Art"
 // scanline
 postprocess.scanlineEnable "Scanline"
 postprocess.scanlineFactor "Factor"
@@ -973,8 +999,8 @@ scene.title.help "When using the selection checkbox, hold and drag your finger t
 scene.mergeSimple "Simple merge"
 scene.mergeVoxel "Voxel merge"
 scene.voxelResolution "Resolution"
-scene.subtractionTip "Subtraction  : Hide mesh (eye icon)"
-scene.intersectionTip "Intersection : All meshes hidden"
+scene.subtractionTip "Subtraction: Hide mesh (eye icon)"
+scene.intersectionTip "Intersection: All meshes hidden"
 
 // ----------------------------------------------
 // settings
@@ -1039,13 +1065,13 @@ settings.holeTitle "Hole-filling"
 settings.holeNonManifold "Fill non-manifold"
 settings.holeNonManifold.help "Try to fill non manifold hole.
 This option is not saved in the settings."
-settings.loadGuiSettings "Keep gui settings (at import)"
+settings.loadGuiSettings "Keep gui settings"
 settings.loadGuiSettings.help "When opening or importing a project file, all the gui-related settings embedded in the project will be loaded."
 settings.loadObjSplitByGroup "Split OBJ by groups"
-settings.loadObjSplitByGroup.help "When enabled, Nomad will split the OBJ each vertex group into separate objects."
-settings.loadMergeLayers "Merge Layers (at import)"
-settings.loadSkipTextures "Skip textures (at import)"
-settings.loadKeepTopology "Keep topology (at import)"
+settings.loadObjSplitByGroup.help "When enabled, Nomad will split the OBJ groups into separate objects."
+settings.loadMergeLayers "Merge Layers"
+settings.loadSkipTextures "Skip textures"
+settings.loadKeepTopology "Keep topology"
 settings.loadKeepTopology.help "Use this option if you don't want Nomad to fiddle with the topology of imported mesh.
 
 It will disable vertex/face reordering, removal of vertex/face duplicates and removal of unused vertices."
@@ -1061,9 +1087,6 @@ settings.multiresLowResVertices "Low resolution threshold"
 settings.multiresLowResVertices.help "A lower resolution of the mesh can be displayed when you move the camera.
 
 You can increase this value if you want to display a higher resolution of the mesh."
-// experimental
-settings.experimentalTitle "Experimental"
-settings.notSaved "These options are not saved in the settings."
 
 // ----------------------------------------------
 // shading
@@ -1473,6 +1496,8 @@ If you use non-uniform scaling, Vertex mode will be forced."
 // transform
 tool.transform.multiTouch "Multi-touch"
 tool.transform.multiTouch.help "If this option is disabled, you can only use one mode (translate, rotate, scale) at a time."
+tool.transform.transformRestrictRotationY "Y axis rotation"
+tool.transform.transformRestrictRotationY.help "Auto value means the option is active only if Snap is on and the mesh has a custom gizmo pivot."
 
 // ----------------------------------------------
 // gizmo
@@ -1686,12 +1711,15 @@ privacyPolicy "Hexanomad does not collect any data from Nomad Sculpt."
 // version trial
 version.buyWeb "Web version is only a demo"
 version.buyFull "Upgrade to full version"
-version.trialLimit "Trial version:
-- 3 undo/redo possible
-- 1 layer per mesh
-- 1 active project only
-- no import/export"
 version.restorePurchase "Restore purchase"
+// version.promoHuawei ""
+
+version.trialHistory "Trial version: 4 undo/redo possible"
+version.trialLayer "Trial version: 1 layer per mesh"
+version.trialOneProject "Trial version: 1 active project only"
+version.trialNoImport "Trial version: No import"
+version.trialNoExport "Trial version: No export"
+
 version.fullFeatures "- One time purchase
 - Unlimited undo/redo
 - Unlimited layers

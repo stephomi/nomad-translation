@@ -1,6 +1,6 @@
 // Comments and entries are sync from the english version, it's not
 // possible to have language specific comments at the moment.
-// You can use this entry to make a specific comment
+// You can use this entry to make a specific comment.
 language_note "german translation by djblueprint / www.3d-board.de"
 
 // comments with "ICON FIT" should be short, ideally < 10 characters
@@ -30,7 +30,9 @@ X "X"
 Y "Y"
 Z "Z"
 
+// general
 advancedSettings "Erweitert"
+notSaved "Diese Optionen werden nicht in den Einstellungen gespeichert"
 
 // generic warning when there is no mesh selected
 noSelectedMesh "Kein Mesh ausgewählt"
@@ -254,6 +256,8 @@ file.project.autoSave.minutes "Timer Popup"
 file.project.autoSave.delete "AutoSave löschen"
 file.project.autoSave.delete.confirm "Bestätigen?"
 
+file.importSettings ""
+
 // import
 file.import.title "Import"
 file.import.title.help "Unterstützte Formate:
@@ -335,16 +339,6 @@ file.settings.reset "Reset"
 file.settings.reset.confirm "Alle Einstellungen zurücksetzen?
 
 Projekte, Alphas, MatCaps, HDRIs und Hintergründe sind davon nicht betroffen."
-
-// materials
-file.materials "Materialbibliothek"
-file.materials.reset "Reset"
-file.materials.reset.confirm "Materialbibliothek zurücksetzen?"
-
-// tools
-file.tools "Werkzeug-Voreinstellungen"
-file.tools.reset "Reset"
-file.tools.reset.confirm "Werkzeug-Voreinstellungen zurücksetzen?"
 
 // render
 file.render "Render"
@@ -491,7 +485,9 @@ history.state.lightIntensity "Licht $0 Stärke"
 history.state.lightColor "Licht $0 Farbe"
 history.state.lightPosition "Licht $0 Position"
 history.state.lightShadow "Licht $0 Schatten"
-history.state.lightBias "Licht $0 Schatten-Bias"
+history.state.lightShadowType ""
+history.state.lightShadowBias "Licht $0 Schatten-Bias"
+history.state.lightShadowSoftness ""
 history.state.lightAttachment "Licht $0 verbunden"
 history.state.lightAdd "Licht $0 hinzugefügt"
 history.state.lightDelete "Licht $0 gelöscht"
@@ -569,7 +565,6 @@ layer.colorFactor "Farbe"
 // ----------------------------------------------
 // layers menu
 layers.addLayer "Layer hinzufügen"
-layers.addLayerTrial "Die Testversion ist auf 1 Layer je Mesh beschränkt."
 layers.title "Layer"
 layers.title.help "Ebenen (Layer) können Positionsverschiebungen und Painting aufzeichnen, was für einen nicht-linearen Arbeitsablauf nützlich sein kann.
 Zum Beispiel durch das Experimentieren mit verschiedenen Gesichtsausdrücken, ohne sich auf den Verlauf zurückzugreifen, um die Änderungen rückgängig zu machen.
@@ -601,7 +596,13 @@ light.type.point "Punkt"
 light.spotAngle "Winkel Lichtkegel"
 light.spotSoftness "Sanftheit"
 light.shadowCast "Schatten"
-light.shadowNormalBias "Normal-Bias"
+light.shadowType.shadowMap ""
+light.shadowType.screenspace ""
+light.shadowType.screenspace.help ""
+light.shadowBias "Bias"
+light.shadowSoftness ""
+light.contactShadow ""
+light.contactShadow.help ""
 light.visible "Zeigen"
 light.resetPosition "Zentrieren"
 
@@ -769,6 +770,8 @@ It will improve:
 - Tiefenschärfe (DoF - Depth Of Field)"
 postprocess.maxSamples "Max. Samples"
 postprocess.fullResolution "Volle Auflösung"
+postprocess.accumulateCount ""
+postprocess.accumulateCount.help ""
 postprocess.renderRatio "Render-Auflösung"
 postprocess.renderRatioWarning ""
 postprocess.renderRatio.help ""
@@ -830,8 +833,8 @@ postprocess.grainFactor "Stärke"
 postprocess.curvatureEnable "Curvature"
 postprocess.curvatureCavity "Cavity"
 postprocess.curvatureBump "Bump"
-// pixelart
-postprocess.pixelartEnable ""
+// pixel art
+postprocess.pixelArtEnable ""
 // scanline
 postprocess.scanlineEnable ""
 postprocess.scanlineFactor ""
@@ -1025,13 +1028,13 @@ settings.holeTitle "Löcher füllen"
 settings.holeNonManifold "Non-Manifold füllen"
 settings.holeNonManifold.help "Versucht, ein non-manifold Loch zu füllen.
 Diese Option ist nicht in den Einstellungen gespeichert."
-settings.loadGuiSettings "GUI-Einstellungen mitladen (beim Import)"
+settings.loadGuiSettings "GUI-Einstellungen mitladen"
 settings.loadGuiSettings.help "Beim Öffnen oder Importieren einer Projektdatei werden alle in das Projekt eingebetteten GUI-bezogenen Einstellungen geladen."
 settings.loadObjSplitByGroup "OBJ-Gruppen beibehalten"
 settings.loadObjSplitByGroup.help "Wenn diese Option aktiviert ist, teilt Nomad das OBJ in jede Vertex-Gruppe in separate Objekte auf."
-settings.loadMergeLayers "Layer zusammenführen (beim Import)"
-settings.loadSkipTextures "Texturen überspringen (beim Import)"
-settings.loadKeepTopology "Topologie beibehalten (beim Import)"
+settings.loadMergeLayers "Layer zusammenführen"
+settings.loadSkipTextures "Texturen überspringen"
+settings.loadKeepTopology "Topologie beibehalten"
 settings.loadKeepTopology.help "Verwenden Sie diese Option, wenn Sie nicht möchten, dass Nomad die Topologie des importierten Meshes verändert.
 
 Es deaktiviert das Neuanordnen von Vertices/Faces, das Entfernen von Vertex-/Face-Duplikaten und das Entfernen von unbenutzten Vertices."
@@ -1045,9 +1048,6 @@ settings.multiresLowResVertices "Low Resolution Schwelle"
 settings.multiresLowResVertices.help "Eine geringere Auflösung des Meshes wird angezeigt, wenn Sie die Kamera bewegen.
 
 Sie können diesen Wert erhöhen, wenn Sie eine höhere Auflösung des Meshes anzeigen möchten."
-// experimental
-settings.experimentalTitle "Experimentell"
-settings.notSaved "Diese Optionen werden nicht in den Einstellungen gespeichert"
 
 // ----------------------------------------------
 // shading
@@ -1443,6 +1443,8 @@ Wenn Sie eine ungleichmäßige Skalierung verwenden, wird der Vertex-Modus erzwu
 // transform
 tool.transform.multiTouch "Multi-Touch"
 tool.transform.multiTouch.help "Wenn diese Option deaktiviert ist, können Sie jeweils nur einen Modus (Translate, Rotate, Skalieren) verwenden."
+tool.transform.transformRestrictRotationY ""
+tool.transform.transformRestrictRotationY.help ""
 
 // ----------------------------------------------
 // gizmo
@@ -1654,12 +1656,15 @@ privacyPolicy ""
 // version trial
 version.buyWeb "Die Web-Version ist nur eine Demo"
 version.buyFull "Upgrade auf Vollversion"
-version.trialLimit "Test Version:
-- Nur 3 UnDo/Redo möglich
-- Nur 1 Layer pro Mesh
-- Nur 1 aktives Projekt
-- Kein Import/Export"
 version.restorePurchase "Kauf wiederherstellen"
+// version.promoHuawei ""
+
+version.trialHistory "Trial version: Nur 4 UnDo/Redo möglich"
+version.trialLayer "Trial version: Nur 1 Layer pro Mesh"
+version.trialOneProject "Trial version: Nur 1 aktives Projekt"
+version.trialNoImport "Trial version: Kein Import"
+version.trialNoExport "Trial version: Kein Export"
+
 version.fullFeatures "- UnDo/ReDo unbegrenzt
 - Unbegrenzte Layer
 - Speichern  & Laden

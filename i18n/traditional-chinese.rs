@@ -1,6 +1,6 @@
 // Comments and entries are sync from the english version, it's not
 // possible to have language specific comments at the moment.
-// You can use this entry to make a specific comment
+// You can use this entry to make a specific comment.
 language_note ""
 
 // comments with "ICON FIT" should be short, ideally < 10 characters
@@ -30,7 +30,9 @@ X "X"
 Y "Y"
 Z "Z"
 
+// general
 advancedSettings "高級設置"
+notSaved "這些選項不會在設置中保存。"
 
 // generic warning when there is no mesh selected
 noSelectedMesh "對象未選擇"
@@ -251,6 +253,8 @@ file.project.autoSave.minutes "自動保存間隔"
 file.project.autoSave.delete "刪除自動保存文件"
 file.project.autoSave.delete.confirm "確認刪除？"
 
+file.importSettings ""
+
 // import
 file.import.title "從外部導入"
 file.import.title.help "支持導入的格式：
@@ -323,16 +327,6 @@ file.settings.reset "恢覆默認設置"
 file.settings.reset.confirm "確定重設所有設置？
 
 項目、畫筆形狀、材質、HDRI與背景將不會被影響。"
-
-// materials
-file.materials "材質庫"
-file.materials.reset "重置為默認"
-file.materials.reset.confirm "確定要重置材質庫嗎？"
-
-// tools
-file.tools "工具預設"
-file.tools.reset "重置為默認"
-file.tools.reset.confirm "確定要重置材質庫嗎？"
 
 // render
 file.render "渲染"
@@ -477,7 +471,9 @@ history.state.lightIntensity "調整燈光 $0 強度"
 history.state.lightColor "調整燈光 $0 顏色"
 history.state.lightPosition "調整燈光 $0 位置"
 history.state.lightShadow "調整燈光 $0 陰影"
-history.state.lightBias "調整燈光 $0 陰影偏移"
+history.state.lightShadowType ""
+history.state.lightShadowBias "調整燈光 $0 陰影偏差"
+history.state.lightShadowSoftness ""
 history.state.lightAttachment "調整燈光 $0 定位方式"
 history.state.lightAdd "添加燈光 light $0"
 history.state.lightDelete "刪除燈光 $0"
@@ -555,7 +551,6 @@ layer.colorFactor "顏色濃度"
 // ----------------------------------------------
 // layers menu
 layers.addLayer "添加圖層"
-layers.addLayerTrial "試用版本只能給每個對象添加一個圖層！"
 layers.title "圖層"
 layers.title.help "圖層能夠記錄位置偏移和繪畫，這對於非線性工作流程來說非常有用。
 例如，通過試驗不同的面部表情而不依賴於歷史記錄來撤消更改。
@@ -587,7 +582,13 @@ light.type.point "點光源"
 light.spotAngle "入射角"
 light.spotSoftness "邊緣硬度"
 light.shadowCast "顯示陰影"
-light.shadowNormalBias "陰影偏差"
+light.shadowType.shadowMap ""
+light.shadowType.screenspace ""
+light.shadowType.screenspace.help ""
+light.shadowBias "陰影偏差"
+light.shadowSoftness ""
+light.contactShadow ""
+light.contactShadow.help ""
 light.visible ""
 light.resetPosition ""
 
@@ -749,6 +750,8 @@ postprocess.quality.help "該設置可提升部分效果的渲染質量，但可
 - 景深"
 postprocess.maxSamples "最大采樣值"
 postprocess.fullResolution "最大實時分辨率"
+postprocess.accumulateCount ""
+postprocess.accumulateCount.help ""
 postprocess.renderRatio "實時渲染分辨率"
 postprocess.renderRatioWarning ""
 postprocess.renderRatio.help ""
@@ -810,8 +813,8 @@ postprocess.grainFactor "強度"
 postprocess.curvatureEnable "曲率描邊"
 postprocess.curvatureCavity "縫隙顏色"
 postprocess.curvatureBump "凸起顏色"
-// pixelart
-postprocess.pixelartEnable ""
+// pixel art
+postprocess.pixelArtEnable ""
 // scanline
 postprocess.scanlineEnable ""
 postprocess.scanlineFactor ""
@@ -1010,9 +1013,9 @@ settings.loadGuiSettings "加載項目GUI設置"
 settings.loadGuiSettings.help "當您打開或導入項目文件時，同時加載項目中包含的GUI設置。"
 settings.loadObjSplitByGroup ""
 settings.loadObjSplitByGroup.help ""
-settings.loadMergeLayers "導入時合並圖層"
+settings.loadMergeLayers "合並圖層"
 settings.loadSkipTextures ""
-settings.loadKeepTopology "導入時保留拓撲"
+settings.loadKeepTopology "保留拓撲"
 settings.loadKeepTopology.help "如您不希望應用破壞導入模型拓撲，請勾選此選項。
 
 應用將不會：
@@ -1029,9 +1032,6 @@ settings.multiresLowResVertices "最低分辨率閾值"
 settings.multiresLowResVertices.help "在您移動相機時，模型對象可能會以較低分辨率顯示。
 
 如您希望顯示更高的分辨率，可以增加此值。"
-// experimental
-settings.experimentalTitle "實驗性功能"
-settings.notSaved "這些選項不會在設置中保存。"
 
 // ----------------------------------------------
 // shading
@@ -1423,6 +1423,8 @@ tool.matrix.applyMethod.help "- 自動選擇：
 // transform
 tool.transform.multiTouch "多點觸控"
 tool.transform.multiTouch.help "如果您禁用此選項，則每次都只能使用移動、旋轉、縮放一種操作。"
+tool.transform.transformRestrictRotationY ""
+tool.transform.transformRestrictRotationY.help ""
 
 // ----------------------------------------------
 // gizmo
@@ -1628,12 +1630,15 @@ privacyPolicy ""
 // version trial
 version.buyWeb "該版本僅供演示"
 version.buyFull "購買完整版本"
-version.trialLimit "試用版本限制：
-- 僅允許3次以內的撤銷或重做
-- 每個物體僅允許添加一個圖層
-- 僅允許啟用一個項目
-- 不允許導入和導出"
 version.restorePurchase "恢復購買"
+// version.promoHuawei ""
+
+version.trialHistory "試用版本限制：僅允許4次以內的撤銷或重做"
+version.trialLayer "試用版本限制：每個物體僅允許添加一個圖層"
+version.trialOneProject "試用版本限制：僅允許啟用一個項目"
+version.trialNoImport "試用版本限制：不允許導入"
+version.trialNoExport "試用版本限制：不允許導出"
+
 version.fullFeatures "- 撤消或重做不受限制
 - 圖層數量不受限制
 - 允許保存和載入
