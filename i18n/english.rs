@@ -551,7 +551,6 @@ interface.toolboxHide "Auto-hide toolbox"
 interface.toolboxHide.help "Enable this option if you want to hide the toolbox."
 interface.toolboxMaxColumn "Max column toolbox"
 interface.toolboxResetOrder "Reset toolbox order"
-interface.rounding "Rounding"
 interface.curveToolSymmetric "Symmetric tool curve widget"
 interface.curveToolSymmetric.help "The widget can be found in the Tool panel under the falloff option."
 interface.scale "Overall scale"
@@ -990,7 +989,7 @@ primitive.spline "Spline"
 
 // common resources stuffs
 resource.delete "Delete"
-resource.import "Import"
+resource.import "Import..."
 
 // ----------------------------------------------
 // scene
