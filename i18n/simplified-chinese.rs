@@ -926,10 +926,10 @@ primitive.tubeSnapOffset "吸附偏移"
 primitive.tubeSnapOffset.help "当偏移值为1.0时，偏移后的距离即为圆管半径。"
 primitive.tubeThicknessStart "起始半径"
 primitive.tubeThicknessEnd "结束半径"
-// primitive.tubeTwist "Twist"
-// primitive.tubeTwistRotate "Rotation"
-// primitive.tubeTwistRadius "Magnitude"
-// primitive.tubeTwistOffset "Offset"
+primitive.tubeTwist ""
+primitive.tubeTwistRotate ""
+primitive.tubeTwistRadius ""
+primitive.tubeTwistOffset ""
 primitive.tubeSnap "吸附"
 // lathe
 // torus
@@ -1507,9 +1507,6 @@ tool.tube.snap.startEnd "仅端点"
 // trim
 tool.hole "填补孔洞"
 tool.hole.fillHoles "填补孔洞"
-// tool.hole.reproject "Reproject filled holes"
-// tool.hole.reproject.help "Try to reproject the filled hole so that it follows more closely the cut.
-// However, it will only work for rather simple projection."
 tool.hole.bridges "真实裁切"
 tool.hole.bridges.help "启用此选项后。您可以用裁切的方式在物体上打洞。
 裁切效果也会更加接近于您所绘制的形状。"
@@ -1625,9 +1622,6 @@ topology.dynamicQualitySpeed "速度"
 topology.dynamicQualityQuality "性能"
 topology.dynamicUsePressure "同时使用压感"
 topology.dynamicUsePressure.help "启用此选项后，压感也会对对象产生影响。"
-// topology.dynamicBrush "Brush"
-// topology.dynamicGlobal "Global"
-// topology.dynamicSettings "Settings - Brush / Global"
 // decimate
 topology.decimate.title "成型简化"
 topology.decimate.title.help "软件将会减少模型面数，并把模型转换为三角面。

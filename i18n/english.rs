@@ -960,10 +960,10 @@ primitive.tubeSnapOffset "Snap offset"
 primitive.tubeSnapOffset.help "A value of 1.0 is equal to the tube's radius."
 primitive.tubeThicknessStart "Radius start"
 primitive.tubeThicknessEnd "Radius end"
-// primitive.tubeTwist "Twist"
-// primitive.tubeTwistRotate "Rotation"
-// primitive.tubeTwistRadius "Magnitude"
-// primitive.tubeTwistOffset "Offset"
+primitive.tubeTwist "Twist"
+primitive.tubeTwistRotate "Rotation"
+primitive.tubeTwistRadius "Magnitude"
+primitive.tubeTwistOffset "Offset"
 primitive.tubeSnap "Snap"
 // lathe
 // torus
@@ -1539,9 +1539,6 @@ tool.tube.snap.startEnd "Start & End"
 // trim
 tool.hole "Hole filling"
 tool.hole.fillHoles "Fill holes"
-// tool.hole.reproject "Reproject filled holes"
-// tool.hole.reproject.help "Try to reproject the filled hole so that it follows more closely the cut.
-// However, it will only work for rather simple projection."
 tool.hole.bridges "Screen-space boolean"
 tool.hole.bridges.help "If this option is enabled, you can punch holes in the volume.
 The cut slope will also follow more closely the cutting shape."
@@ -1657,9 +1654,6 @@ topology.dynamicQualitySpeed "Speed"
 topology.dynamicQualityQuality "Quality"
 topology.dynamicUsePressure "Use pressure on radius"
 topology.dynamicUsePressure.help "Use this option if you want the pen pressure impact on tool radius to impact the level of detail."
-// topology.dynamicBrush "Brush"
-// topology.dynamicGlobal "Global"
-// topology.dynamicSettings "Settings - Brush / Global"
 // decimate
 topology.decimate.title "Decimation"
 topology.decimate.title.help "Reduce the number of polygons by trying to keep as many details as possible.

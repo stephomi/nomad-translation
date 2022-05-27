@@ -1,6 +1,6 @@
 // Comments and entries are sync from the english version, it's not
 // possible to have language specific comments at the moment.
-// You can use this entry to make a specific comment.
+// You can use this entry to make a specific comment
 language_note ""
 
 // comments with "ICON FIT" should be short, ideally < 10 characters
@@ -30,7 +30,6 @@ X ""
 Y ""
 Z ""
 
-// general
 advancedSettings ""
 notSaved ""
 
@@ -153,7 +152,7 @@ camera.perspective ""
 camera.fov ""
 camera.focal ""
 // orbit
-camera.orbit ""
+camara.orbit ""
 camera.orbit.help ""
 camera.trackball ""
 camera.turntable ""
@@ -161,7 +160,7 @@ camera.turntable ""
 camera.speed ""
 camera.rotation ""
 camera.panning ""
-camera.zooming ""
+camara.zooming ""
 // misc
 camera.resetView ""
 camera.snapView ""
@@ -181,7 +180,7 @@ camera.doubleTapFocusSelection ""
 camera.doubleTapFocusSelection.help ""
 
 // toolbox context, only a few tools are display in some cases
-// (only visible in expanded toolbox mode)
+// (solo visible en el modo de caja de herramientas expandida)
 context.multiselection ""
 context.triplanar ""
 context.primitive ""
@@ -245,8 +244,6 @@ file.project.autoSave.minutes ""
 file.project.autoSave.delete ""
 file.project.autoSave.delete.confirm ""
 
-file.importSettings ""
-
 // import
 file.import.title ""
 file.import.title.help ""
@@ -302,6 +299,16 @@ file.settings.title.help ""
 // settings
 file.settings.reset ""
 file.settings.reset.confirm ""
+
+// materials
+file.materials ""
+file.materials.reset ""
+file.materials.reset.confirm ""
+
+// tools
+file.herramienta ""
+file.tools.reset ""
+file.tools.reset.confirm ""
 
 // render
 file.render ""
@@ -432,9 +439,7 @@ history.state.lightIntensity ""
 history.state.lightColor ""
 history.state.lightPosition ""
 history.state.lightShadow ""
-history.state.lightShadowType ""
 history.state.lightShadowBias ""
-history.state.lightShadowSoftness ""
 history.state.lightAttachment ""
 history.state.lightAdd ""
 history.state.lightDelete ""
@@ -489,6 +494,7 @@ interface.toolboxHide ""
 interface.toolboxHide.help ""
 interface.toolboxMaxColumn ""
 interface.toolboxResetOrder ""
+interface.rounding ""
 interface.curveToolSymmetric ""
 interface.curveToolSymmetric.help ""
 interface.scale ""
@@ -511,6 +517,7 @@ layer.colorFactor ""
 // ----------------------------------------------
 // layers menu
 layers.addLayer ""
+layers.addLayerTrial ""
 layers.title ""
 layers.title.help ""
 layers.primitive ""
@@ -532,13 +539,7 @@ light.type.point ""
 light.spotAngle ""
 light.spotSoftness ""
 light.shadowCast ""
-light.shadowType.shadowMap ""
-light.shadowType.screenspace ""
-light.shadowType.screenspace.help ""
-light.shadowBias ""
-light.shadowSoftness ""
-light.contactShadow ""
-light.contactShadow.help ""
+light.shadowNormalBias ""
 light.visible ""
 light.resetPosition ""
 
@@ -683,8 +684,6 @@ postprocess.quality ""
 postprocess.quality.help ""
 postprocess.maxSamples ""
 postprocess.fullResolution ""
-postprocess.accumulateCount ""
-postprocess.accumulateCount.help ""
 postprocess.renderRatio ""
 postprocess.renderRatioWarning ""
 postprocess.renderRatio.help ""
@@ -745,7 +744,7 @@ postprocess.grainFactor ""
 postprocess.curvatureEnable ""
 postprocess.curvatureCavity ""
 postprocess.curvatureBump ""
-// pixel art
+// pixelart
 postprocess.pixelArtEnable ""
 // scanline
 postprocess.scanlineEnable ""
@@ -826,10 +825,10 @@ primitive.tubeSnapOffset ""
 primitive.tubeSnapOffset.help ""
 primitive.tubeThicknessStart ""
 primitive.tubeThicknessEnd ""
-// primitive.tubeTwist "Twist"
-// primitive.tubeTwistRotate "Rotation"
-// primitive.tubeTwistRadius "Magnitude"
-// primitive.tubeTwistOffset "Offset"
+// primitive.tubeTwist "Giro"
+// primitive.tubeTwistRotate "Rotación"
+// primitive.tubeTwistRadius "Magnitud"
+// primitive.tubeTwistOffset "Desplazamiento"
 primitive.tubeSnap ""
 // lathe
 // torus
@@ -935,6 +934,8 @@ settings.multiresMaxVertices ""
 settings.multiresMaxVertices.help ""
 settings.multiresLowResVertices ""
 settings.multiresLowResVertices.help ""
+// experimental
+settings.experimentalTitle ""
 
 // ----------------------------------------------
 // shading
@@ -1253,8 +1254,6 @@ tool.matrix.applyMethod.help ""
 // transform
 tool.transform.multiTouch ""
 tool.transform.multiTouch.help ""
-tool.transform.transformRestrictRotationY ""
-tool.transform.transformRestrictRotationY.help ""
 
 // ----------------------------------------------
 // gizmo
@@ -1284,9 +1283,9 @@ tool.tube.snap.startEnd ""
 // trim
 tool.hole ""
 tool.hole.fillHoles ""
-// tool.hole.reproject "Reproject filled holes"
-// tool.hole.reproject.help "Try to reproject the filled hole so that it follows more closely the cut.
-// However, it will only work for rather simple projection."
+// tool.hole.reproject "Reproyectar agujeros rellenos"
+// tool.hole.reproject.help "Intenta volver a proyectar el agujero rellenado para que sigas más de cerca el corte.
+// Sin embargo, solo funcionará para una proyección bastante simple."
 tool.hole.bridges ""
 tool.hole.bridges.help ""
 tool.hole.threshold ""
@@ -1364,9 +1363,9 @@ topology.dynamicQualitySpeed ""
 topology.dynamicQualityQuality ""
 topology.dynamicUsePressure ""
 topology.dynamicUsePressure.help ""
-// topology.dynamicBrush "Brush"
+// topology.dynamicBrush "Brocha"
 // topology.dynamicGlobal "Global"
-// topology.dynamicSettings "Settings - Brush / Global"
+// topology.dynamicSettings "Configuración - Brocha / Global"
 // decimate
 topology.decimate.title ""
 topology.decimate.title.help ""
@@ -1376,8 +1375,8 @@ topology.decimatePaintWeight ""
 topology.decimatePaintWeight.help ""
 topology.decimateUniform ""
 topology.decimateUniform.help ""
-// topology.decimatePreserveBorders "Preserve borders"
-// topology.decimatePreserveBorders.help "Do not decimate the border of the mesh.
+// topology.decimatePreserveBorders "Preservar bordes"
+// topology.decimatePreserveBorders.help "No diezmes el borde de la malla.
 
 // This is only relevant for object that are not watertight."
 
@@ -1407,7 +1406,6 @@ privacyPolicy ""
 version.buyWeb ""
 version.buyFull ""
 version.restorePurchase ""
-// version.promoHuawei ""
 
 version.trialHistory ""
 version.trialLayer ""

@@ -925,10 +925,10 @@ primitive.tubeSnapOffset "Snap Offset"
 primitive.tubeSnapOffset.help "Ein Wert von 1,0 entspricht dem Radius des Tubes."
 primitive.tubeThicknessStart "Start-Radius"
 primitive.tubeThicknessEnd "End-Radius"
-// primitive.tubeTwist "Twist"
-// primitive.tubeTwistRotate "Rotation"
-// primitive.tubeTwistRadius "Magnitude"
-// primitive.tubeTwistOffset "Offset"
+primitive.tubeTwist ""
+primitive.tubeTwistRotate ""
+primitive.tubeTwistRadius ""
+primitive.tubeTwistOffset ""
 primitive.tubeSnap "Snap"
 // lathe
 // torus
@@ -1486,9 +1486,6 @@ tool.tube.snap.startEnd "Start & Ende"
 // trim
 tool.hole "Füllen von Löchern"
 tool.hole.fillHoles "Löcher füllen"
-// tool.hole.reproject "Reproject filled holes"
-// tool.hole.reproject.help "Try to reproject the filled hole so that it follows more closely the cut.
-// However, it will only work for rather simple projection."
 tool.hole.bridges "Screen-Space Boolean"
 tool.hole.bridges.help "Wenn diese Option aktiviert ist, können Sie Löcher in das Volumen stechen.
 Auch die Schnittneigung wird sich stärker an der Schnittform orientieren."
@@ -1604,9 +1601,6 @@ topology.dynamicQualitySpeed "Geschwindigkeit"
 topology.dynamicQualityQuality "Qualität"
 topology.dynamicUsePressure "Druck auf Radius anwenden"
 topology.dynamicUsePressure.help "Verwenden Sie diese Option, wenn Sie möchten, dass sich der Stiftdruck (pen pressure) auf den Radius des Werkzeugs auswirkt und die Detailgenauigkeit beeinflusst."
-// topology.dynamicBrush "Brush"
-// topology.dynamicGlobal "Global"
-// topology.dynamicSettings "Settings - Brush / Global"
 // decimate
 topology.decimate.title "Decimation"
 topology.decimate.title.help "Verringert die Anzahl der Polygone, wobei versucht wird, so viele Details wie möglich zu erhalten.

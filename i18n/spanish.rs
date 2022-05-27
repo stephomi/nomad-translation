@@ -1,6 +1,6 @@
 // Comments and entries are sync from the english version, it's not
 // possible to have language specific comments at the moment.
-// You can use this entry to make a specific comment
+// You can use this entry to make a specific comment.
 language_note ""
 
 // comments with "ICON FIT" should be short, ideally < 10 characters
@@ -30,6 +30,7 @@ X "X"
 Y "Y"
 Z "Z"
 
+// general
 advancedSettings "Avanzado"
 notSaved "Estas opciones no se guardan en la configuración."
 
@@ -154,7 +155,7 @@ camera.perspective "Perspectiva"
 camera.fov "Campo de visión vertical"
 camera.focal "distancia focal $0 mm (sensor de 35 mm)"
 // orbit
-camara.orbitar "Modo órbita"
+camera.orbit "Modo órbita"
 camera.orbit.help "La bola de desplazamiento te da más grados de libertad. También puedes rodar la cámara con 2 dedos."
 camera.trackball "Bola de desplazamiento"
 camera.turntable "Placa giratoria"
@@ -162,10 +163,10 @@ camera.turntable "Placa giratoria"
 camera.speed "Velocidad"
 camera.rotation "Rotación"
 camera.panning "Hacer panorámica"
-camara.zoom "Zoom"
+camera.zooming "Zoom"
 // misc
 camera.resetView "Restablecer vista"
-camara.SnapView "Capturar vista"
+camera.snapView "Capturar vista"
 // interaction
 camera.pivot "Pivote"
 camera.doubleTapMesh "Pulsar dos veces en la malla"
@@ -182,7 +183,7 @@ camera.doubleTapFocusSelection "Centrar en la selección"
 camera.doubleTapFocusSelection.help "Al pulsar dos veces en el fondo, céntrate en la malla seleccionada en lugar de en toda la escena."
 
 // toolbox context, only a few tools are display in some cases
-// (solo visible en el modo de caja de herramientas expandida)
+// (only visible in expanded toolbox mode)
 context.multiselection "Multiselección"
 context.triplanar "Triplanar"
 context.primitive "Primitivo"
@@ -254,6 +255,8 @@ file.project.autoSave.popup "Tiempo de espera emergente"
 file.project.autoSave.minutes "Temporizador emergente"
 file.project.autoSave.delete "Descartar auto guardado"
 file.project.autoSave.delete.confirm "¿Confirmar?"
+
+file.importSettings ""
 
 // import
 file.import.title "Importar"
@@ -337,16 +340,6 @@ file.settings.reset.confirm "¿Restablecer todas las configuraciones?
 
 Los proyectos, alfas, matcaps, HDRIs y fondos no se ven afectados."
 
-// materials
-file.materials "Biblioteca de materiales"
-file.materials.reset "Restablecer a predeterminado"
-file.materials.reset.confirm "¿Restablecer la biblioteca de materiales?"
-
-// tools
-file.herramienta "Ajustes prestablecidos de herramientas"
-file.tools.reset "Restablecer a predeterminado"
-file.tools.reset.confirm "¿Restablecer biblioteca de herramientas?"
-
 // render
 file.render "Render"
 file.render.showInterface "Mostrar interfaz"
@@ -412,7 +405,7 @@ gesture.pencilAction.ios "Pulsar dos veces con el lápiz"
 gesture.pencilAction.ios.help "Solo activo para el Apple Pencil de 2.ª gen."
 
 // history
-gesto.historia "Atajos del historial"
+gesture.history "Atajos del historial"
 gesture.history.help "- Deshacer: pulsa con 2 dedos
 - Rehacer: pulsa con 3 dedos
 - Deshacer/Rehacer: mantén 2/3 dedos hacia abajo (continuo)"
@@ -452,10 +445,10 @@ history.state.undo "Deshacer: $0"
 history.state.redo "Rehacer: $0"
 history.state.symmetrySplit "División de simetría"
 history.state.voxelRemesh "Reforzar malla de Voxel"
-historia.estado.Malla de superficie "Reforzar malla de superficie"
+history.state.surfaceRemesh "Reforzar malla de superficie"
 // state multires
 history.state.multiresToDynamic "De multires a dinámico"
-historia.estado.Multinivel "Cambio de resolución"
+history.state.multiresLevel "Cambio de resolución"
 history.state.multiresSubdivide "Subdividir"
 history.state.multiresReverse "Reversión"
 history.state.multiresDeleteLower "Eliminar inferior"
@@ -466,7 +459,7 @@ history.state.meshStaticToDynamic "De estático a dinámico"
 history.state.meshSymmetryUpdate "Actualización de simetría"
 history.state.meshMatrixUpdate "Actualización de matriz"
 history.state.meshVisibility "Visibilidad"
-historia.estado.Material de malla "Cambio de material"
+history.state.meshMaterial "Cambio de material"
 // state scene
 history.state.sceneAddRemove "Escena"
 history.state.sceneMeshOrder "Orden de la malla"
@@ -487,12 +480,14 @@ history.state.layerFactorColor "Factor de color de capa $0"
 history.state.layerFactorRoughness "Factor de rugosidad de capa $0"
 history.state.layerFactorMetalness "Factor de metalicidad de capa $0"
 // state light
-historia.estado.lightVisible "luz $0 visible"
-historia.estado.Intensidad de luz "Intensidad de luz $0"
+history.state.lightVisible "luz $0 visible"
+history.state.lightIntensity "Intensidad de luz $0"
 history.state.lightColor "Color de luz $0"
 history.state.lightPosition "Posición de luz $0"
-historia.estado.Sombra de luz "Sombra de luz $0"
-historia.estado.lightBias "Sesgo de sombra de luz $0"
+history.state.lightShadow "Sombra de luz $0"
+history.state.lightShadowType ""
+history.state.lightShadowBias "Sesgo de sombra de luz $0"
+history.state.lightShadowSoftness ""
 history.state.lightAttachment "Fijación de luz $0"
 history.state.lightAdd "Añadir luz $0"
 history.state.lightDelete "Eliminar luz $0"
@@ -522,7 +517,7 @@ interface.panelTransparent "Panel transparente"
 interface.blurFactor "Fuerza de difuminado"
 
 // color preset
-interfaz.Conjuntos de colores "Ajustes prestablecidos de color"
+interface.colorsPresets "Ajustes prestablecidos de color"
 interface.presetBlurRed "Rojo"
 interface.presetBlurBlue "Azul"
 interface.presetBlurGreen "Verde"
@@ -547,7 +542,6 @@ interface.toolboxHide "Ocultar automáticamente la caja de herramientas"
 interface.toolboxHide.help "Activa esta opción si quieres ocultar la caja de herramientas."
 interface.toolboxMaxColumn "Caja de herramientas de columna máxima"
 interface.toolboxResetOrder "Restablecer el orden de la caja de herramientas"
-interface.rounding "Redondeo"
 interface.curveToolSymmetric "Widget de curva de herramienta simétrica"
 interface.curveToolSymmetric.help "El widget se puede encontrar en el panel de herramientas en la opción de disminución."
 interface.scale "Escala general"
@@ -570,7 +564,6 @@ layer.colorFactor "Color"
 // ----------------------------------------------
 // layers menu
 layers.addLayer "Añadir capa"
-layers.addLayerTrial "La versión de prueba está limitada a 1 capa por malla."
 layers.title "Capas"
 layers.title.help "Las capas pueden registrar desplazamientos de posición y pintura, que puede ser útil para flujos de trabajo no lineales.
 Por ejemplo, se puede experimentar con diferentes expresiones faciales sin depender de la pila de historial para deshacer los cambios.
@@ -602,7 +595,13 @@ light.type.point "Punto"
 light.spotAngle "Ángulo de cono"
 light.spotSoftness "Suavidad"
 light.shadowCast "Sombra"
-light.shadowNormalBias "Sesgo normal"
+light.shadowType.shadowMap ""
+light.shadowType.screenspace ""
+light.shadowType.screenspace.help ""
+light.shadowBias ""
+light.shadowSoftness ""
+light.contactShadow ""
+light.contactShadow.help ""
 light.visible "Mostrar"
 light.resetPosition "Volver a centrar"
 
@@ -752,7 +751,7 @@ paint.useFalloff.help "Usar del set de disminución en el menú trazo para modul
 popup.save "Guardar"
 popup.save.confirm "¿Confirmar guardado?"
 popup.lastSave "Último guardado"
-emergente.lastSave.confirmar "¿Cargar último guardado?"
+popup.lastSave.confirm "¿Cargar último guardado?"
 popup.reset "Restablecer"
 popup.reset.confirm "¿Confirmar restablecido?"
 popup.clone "Clonar"
@@ -779,6 +778,8 @@ Mejorará:
 - Profundidad de campo"
 postprocess.maxSamples "Muestras máx."
 postprocess.fullResolution "Resolución completa"
+postprocess.accumulateCount ""
+postprocess.accumulateCount.help ""
 postprocess.renderRatio "Renderizar resolución"
 postprocess.renderRatioWarning "Anulado por el efecto Pixel Art."
 postprocess.renderRatio.help "Esta opción impacta mucho en el rendimiento.
@@ -843,8 +844,8 @@ postprocess.grainFactor "Fuerza"
 postprocess.curvatureEnable "Curvatura"
 postprocess.curvatureCavity "Cavidad"
 postprocess.curvatureBump "Bump"
-// pixelart
-postprocess.pixelartEnable "Pixel Art"
+// pixel art
+postprocess.pixelArtEnable "Pixel Art"
 // scanline
 postprocess.scanlineEnable "Scanline"
 postprocess.scanlineFactor "Factor"
@@ -936,10 +937,10 @@ primitive.tubeSnapOffset "Capturar desplazamiento"
 primitive.tubeSnapOffset.help "Un valor de 1.0 es igual radio del tubo."
 primitive.tubeThicknessStart "Inicio del radio"
 primitive.tubeThicknessEnd "Fin del radio"
-// primitive.tubeTwist "Giro"
-// primitive.tubeTwistRotate "Rotación"
-// primitive.tubeTwistRadius "Magnitud"
-// primitive.tubeTwistOffset "Desplazamiento"
+primitive.tubeTwist ""
+primitive.tubeTwistRotate ""
+primitive.tubeTwistRadius ""
+primitive.tubeTwistOffset ""
 primitive.tubeSnap "Capturar"
 // lathe
 // torus
@@ -951,7 +952,7 @@ primitive.torusAngleOffset "Desplazamiento de ángulo"
 primitive.cylinderHeight "Altura"
 // cone
 primitive.coneRadius "Radio"
-primitivo.coneHeight "Altura"
+primitive.coneHeight "Altura"
 // hole sub menu (cylinder, tube, etc)
 primitive.hole "Agujero"
 primitive.hasHole "Tiene un agujero"
@@ -1038,7 +1039,7 @@ settings.lightIcon "Iconos de luz"
 settings.lightIcon.help "Muestra los iconos claros en el lienzo para que puedas seleccionarlos y editarlos directamente."
 settings.holeTitle "Relleno de agujero"
 settings.holeNonManifold "Rellenar espacio no topológico"
-configuración.holeNonManifold.ayudar "Intenta llenar el agujero del espacio topológico.
+settings.holeNonManifold.help "Intenta llenar el agujero del espacio topológico.
 Esta opción no se guarda en la configuración."
 settings.loadGuiSettings "Mantener la configuración de la gui (al importar)"
 settings.loadGuiSettings.help "Al abrir o importar un archivo de proyecto, se cargarán todas las configuraciones relacionadas con la gui integradas en el proyecto."
@@ -1062,8 +1063,6 @@ settings.multiresLowResVertices "Umbral de baja resolución"
 settings.multiresLowResVertices.help "Se puede mostrar una resolución más baja de la malla cuando mueve la cámara.
 
 Puedes aumentar este valor si deseas mostrar una resolución más alta de la malla."
-// experimental
-settings.experimentalTitle "Experimental"
 
 // ----------------------------------------------
 // shading
@@ -1208,7 +1207,7 @@ stroke.onlyLasso "La configuración solo está activa para la herramienta lazo."
 // alpha
 stroke.alpha "Alfa"
 stroke.alphaInvert "invertir valor"
-trazo.alphaWrap "Mosaico"
+stroke.alphaWrap "Mosaico"
 stroke.alphaWrap.none "Ninguno"
 stroke.alphaWrap.repeat "Repetir"
 stroke.alphaWrap.mirror "Espejo"
@@ -1320,7 +1319,7 @@ tool.inflate "Inflar"
 tool.pinch "Pellizcar"
 tool.nudge "Posicionar"
 tool.stamp "Tapón"
-herramienta.Capa transparente "Eli. capa"
+tool.clearLayer "Eli. capa"
 tool.lassoSelect "Seleccionar"
 tool.gizmo "Aparato"
 tool.gizmo.auto "Auto"
@@ -1473,6 +1472,8 @@ Si utiliza una escala no uniforme, se forzará el modo de vértice."
 // transform
 tool.transform.multiTouch "Multitáctil"
 tool.transform.multiTouch.help "Si esta opción está deshabilitada, solo puedes usar un modo (traducir, rotar, escalar) a la vez."
+tool.transform.transformRestrictRotationY ""
+tool.transform.transformRestrictRotationY.help ""
 
 // ----------------------------------------------
 // gizmo
@@ -1515,9 +1516,6 @@ tool.tube.snap.startEnd "Iniciar y terminar"
 // trim
 tool.hole "Relleno de agujero"
 tool.hole.fillHoles "Rellenar agujeros"
-// tool.hole.reproject "Reproyectar agujeros rellenos"
-// tool.hole.reproject.help "Intenta volver a proyectar el agujero rellenado para que sigas más de cerca el corte.
-// Sin embargo, solo funcionará para una proyección bastante simple."
 tool.hole.bridges "Espacio de pantalla booleano"
 tool.hole.bridges.help "Si esta opción está habilitada, puedes hacer agujeros en el volumen.
 La pendiente de corte también seguirá más de cerca la forma de corte."
@@ -1572,7 +1570,7 @@ Si el objeto no está cerrado (estanco), se aplicará primero un algoritmo de re
 
 Las capas se vuelven a inyectar después de volver a mallar, pero la calidad se degradará."
 topology.voxelResolution "Resolucion"
-topología.voxelRemesh "Reforza de malla"
+topology.voxelRemesh "Reforza de malla"
 topology.voxelSharp "Mantener bordes nítidos"
 topology.voxelSharp.help "Esta opción es útil principalmente para operaciones booleanas primitivas simples.
 
@@ -1633,11 +1631,8 @@ topology.dynamicQualitySpeed "Velocidad"
 topology.dynamicQualityQuality "Calidad"
 topology.dynamicUsePressure "Aplicar presión sobre el radio"
 topology.dynamicUsePressure.help "Utiliza esta opción si deseas que el impacto de la presión del lápiz en el radio de la herramienta afecte al nivel de detalle."
-// topology.dynamicBrush "Brocha"
-// topology.dynamicGlobal "Global"
-// topology.dynamicSettings "Configuración - Brocha / Global"
 // decimate
-topología.diezmar.titular "Diezmado"
+topology.decimate.title "Diezmado"
 topology.decimate.title.help "Reduce el número de polígonos intentando mantener la mayor cantidad de detalles posible..
 
 Esta función puede ser útil si quieres exportar para una impresión 3D.
@@ -1652,8 +1647,8 @@ topology.decimatePaintWeight.help "Un valor más alto intentará preservar la pi
 Establece este valor en 0 si no te importa la pintura."
 topology.decimateUniform "Caras uniformes"
 topology.decimateUniform.help "Un valor más alto generará triángulos de tamaño similar."
-// topology.decimatePreserveBorders "Preservar bordes"
-// topology.decimatePreserveBorders.help "No diezmes el borde de la malla.
+// topology.decimatePreserveBorders "Preserve borders"
+// topology.decimatePreserveBorders.help "Do not decimate the border of the mesh.
 
 // This is only relevant for object that are not watertight."
 
@@ -1686,12 +1681,15 @@ privacyPolicy "Hexanomad no recopila ningún dato de Nomad Sculpt."
 // version trial
 version.buyWeb "La versión web es solo una demostración"
 version.buyFull "Actualiza a la versión completa"
-version.trialLimit "Versión de prueba:
-- Deshacer/rehacer 3 veces
-- Una capa por malla
-- solo un proyecto activo
-- sin importación / exportación"
 version.restorePurchase "Restaurar compra"
+// version.promoHuawei ""
+
+version.trialHistory "Versión de prueba: Deshacer/rehacer 4 veces"
+version.trialLayer "Versión de prueba: Una capa por malla"
+version.trialOneProject "Versión de prueba: solo un proyecto activo"
+version.trialNoImport "Versión de prueba: sin importación"
+version.trialNoExport "Versión de prueba: sin exportación"
+
 version.fullFeatures "- Compra única
 - Deshacer/rehacer ilimitado
 - Capas ilimitadas
