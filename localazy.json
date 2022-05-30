@@ -1,4 +1,20 @@
 {
+    "transformations": [
+        {
+            "name": "lang_from_file",
+            "source": "${file}",
+            "operations": [
+                "replace: German, de",
+                "replace: Spanish, es",
+                "replace: Simplified Chinese, zh-Hans",
+                "replace: Traditional Chinese, zh-Hant",
+                "removeSuffix : .strings",
+                "removeSuffix : .txt"
+            ]
+        }
+
+    ],
+
     "upload": {
         "files": [
             {
@@ -10,12 +26,37 @@
                 "path": "description",
                 "pattern": "description/English.txt",
                 "type": "text"
+            },
+            {
+                "group": "all",
+                "path": "locales",
+                "pattern": "locales/*.strings",
+                "excludes": [
+                    "locales/English.strings"
+                ],
+                "file": "English.strings",
+                "type": "ios-strings",
+                "lang": "${lang_from_file}",
+                "features": [
+                    "filter_untranslated"
+                ]
+            },
+            {
+                "group": "all",
+                "path": "description",
+                "pattern": "description/*.txt",
+                "excludes": [
+                    "description/English.txt"
+                ],
+                "file": "English.txt",
+                "type": "text",
+                "lang": "${lang_from_file}"
             }
         ],
-
         "deprecate": "file",
-        "filterSource": false,
-        "forceCurrent": true
+        "importAsNew": false,
+        "forceCurrent": true,
+        "filterSource": false
     },
 
     "download": {
