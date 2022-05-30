@@ -25,5 +25,7 @@ Emojis are not supported.
 # upload english
 localazy upload
 # upload all
-localazy upload -c localazy2.json
+localazy upload all
+# download and sync
+localazy download && ./../../build/nomad a
 ```
