@@ -22,10 +22,13 @@ Empty strings `""` will use english as a fallback.
 Emojis are not supported.
 
 ```
-# upload english
-localazy upload
-# upload all
-localazy upload all
-# download and sync
+crowdin download && ./../../build/nomad a
+crowdin upload
+crowdin upload translations --auto-approve-imported --import-eq-suggestions
+```
+
+```
 localazy download && ./../../build/nomad a
+localazy upload
+localazy upload all
 ```
