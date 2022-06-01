@@ -1,8 +1,8 @@
 # About
 
-Translation file for [Nomad Sculpt](https://nomadsculpt.com/]).
+Translation file for [Nomad Sculpt](https://nomadsculpt.com/).
 
-Handled by https://localazy.com/p/nomad
+Handled by https://crowdin.com/project/nomad-sculpt/
 
 # Testing
 
@@ -27,8 +27,10 @@ crowdin upload
 crowdin upload translations --auto-approve-imported --import-eq-suggestions
 ```
 
+<!--
 ```
 localazy download && ./../../build/nomad a
 localazy upload
 localazy upload all
 ```
+-->
