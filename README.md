@@ -22,6 +22,11 @@ Empty strings `""` will use english as a fallback.
 Emojis are not supported.
 
 ```
+opencc -i locales/simplified-chinese.strings -o locales/traditional-chinese.strings -c s2twp
+opencc -i description/simplified-chinese.txt -o description/traditional-chinese.txt -c s2twp
+```
+
+```
 crowdin download && ./../../build/nomad a
 crowdin upload
 crowdin upload translations --auto-approve-imported --import-eq-suggestions
