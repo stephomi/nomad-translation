@@ -23,12 +23,16 @@ item.lastSave.confirm = "要加载上一次保存的文件吗？";
 // Reset an item to its initial value (object, tool, etc)
 item.reset = "重置";
 item.reset.confirm = "确认要重置吗？";
+// Make an item instance, similar to clone but keeps the underlying geometry (Synonym: link? soft clone?)
+item.instance = "";
 // Clone an item (object, tool, etc)
 item.clone = "克隆";
 // Delete an item (object, tool, etc)
 item.delete = "删除";
 item.delete.confirm = "请确认是否删除？";
 item.delete.confirm.yes = "确认删除";
+// Delete an item and link its children to its parent (Synonym: Pop?)
+item.collapse = "";
 // Item visibility (object, layer, etc)
 item.visible = "";
 // Show an item (object, layer, etc)
@@ -64,12 +68,24 @@ loading.reprocess = "正在载入数据，请等待... ($0/$1)
 
 $2";
 
-// Dolor of an object
+// Color of an object
 material.color = "颜色";
-// Defines how blurry or sharp the reflection on a material is
+// Defines how blurry or sharp the reflection on a material is (opposite of glossiness)
 material.roughness = "粗糙度";
+// Defines how blurry or sharp the reflection on a material is (opposite of roughness)
+material.glossiness = "";
 // Whether the material is a metal or not
 material.metalness = "金属强度";
+// How much light a surface will reflect
+material.specular = "";
+// Light that the surface can emit (glow)
+material.emissive = "";
+// Normal map (synonym: detail, bump)
+material.normal = "";
+// Ambient Occlusion (AO)
+material.occlusion = "";
+// Textures, basically images wrapped on models (synonym: Maps, Texture maps)
+material.textures = "";
 
 // Minify
 about.minify = "全屏显示";
@@ -267,6 +283,8 @@ camera.doubleTapFocusSelection.help = "双击背景后相机将会缩放移动�
 
 // Toolbox context (when expanded), multiple objects are selected
 context.multiselection = "";
+// There is 0 nodes/items selected
+context.noSelection = "";
 
 // Curve widget, Preset lets the user chooses between predefined curves
 curve.preset = "预设";
@@ -336,7 +354,7 @@ file.project.delete.confirmActive = "删除 $0？
 这是当前正打开的项目！";
 
 // Auto save section
-file.project.autoSave = "自动保存项目";
+file.project.autoSave = "自动保存";
 file.project.autoSave.confirm = "确定要关闭自动保存吗？";
 file.project.autoSave.help = "每隔一段时间将您的项目另存为一个单独的文件。
 
@@ -383,8 +401,8 @@ file.import.title.help = "支持导入的格式：
 - glTF 2.0 (.glb .gltf)
 - STL (.stl)";
 // The user imports a scene file that will replace the current scene
-file.importOpen = "导入新文件";
-file.importOpen.confirm = "确定导入新文件？";
+file.import.open = "导入新文件";
+file.import.open.confirm = "确定导入新文件？";
 // The user imports a scene file that will be added/appended the current scene
 file.import.add = "添加到场景";
 file.import.add.confirm = "确定添加新文件？";
@@ -393,9 +411,9 @@ file.import.add.confirm = "确定添加新文件？";
 file.export.title = "导出";
 file.export.title.help = "建议导出 glTF 格式，因为它比其他格式支持更多属性。";
 
-// Export the current selected mesh instead of the entire scene
-file.exportSelection = "只导出选择部分";
-file.exportSelection.help = "只导出当前选择对象，而不是所有场景。";
+// Export the current selected objects instead of the entire scene
+file.onlySelection = "只导出选择部分";
+file.onlySelection.help = "只导出当前选择对象，而不是所有场景。";
 // Tries to generate quad (rectangle polygon) from triangles
 file.convertToQuad = "转换为四边形网格";
 file.convertToQuad.help = "通过将相邻的三角形合并的方式，将模型网格转换为四边形。";
@@ -591,6 +609,10 @@ history.rangeProtect.help = "如您在历史记录中做了大量操作，程序
 // When enabled, each time the user undo an operation it will undo the camera position as well
 history.restoreCamera = "恢复相机视角";
 history.restoreCamera.help = "启用该选项后您可以在撤销或重做时同时恢复当时的相机视角。";
+// Undo
+history.undo = "撤销";
+// Redo
+history.redo = "重做";
 // Shown during undo
 history.state.undo = "撤销： $0";
 // Shown during redo
@@ -708,8 +730,10 @@ layers.primitive = "基本体无法添加图层。";
 layers.baseSelected = "无";
 
 light = "光线";
-// Intesity of light
+// Intensity of light
 light.intensity = "强度";
+// Temperature in Kelvin (Alternative way to compute the color of the light)
+light.temperature = "";
 // The attachment of a light defines how it will move when the user moves the camera
 light.attachment = "光照方向";
 // The light will stay still even if the user moves the camera
@@ -730,26 +754,28 @@ light.type.spot = "聚光灯";
 // Point light emits lights everywhere (synonym: omni, omnidirectional)
 light.type.point = "点光源";
 // Cone angle for spot angles
-light.spotAngle = "入射角";
+light.spot.angle = "入射角";
 // Softness of the spot light
-light.spotSoftness = "边缘硬度";
+light.spot.softness = "边缘硬度";
 // Position of the light
 light.position = "";
 // Enable or disable shadows for a light
-light.shadowCast = "显示阴影";
-light.shadowType = "";
+light.shadow.cast = "显示阴影";
+// Point light only works with "screenspace" shadow type (not "shadow map")
+light.shadow.pointTip = "";
+light.shadow.type = "";
 // https://en.wikipedia.org/wiki/Shadow_mapping
-light.shadowType.shadowMap = "";
+light.shadow.type.shadowMap = "";
 // Shadows computed with only the information visible on screen
-light.shadowType.screenspace = "";
-light.shadowType.screenspace.help = "";
+light.shadow.type.screenspace = "";
+light.shadow.type.screenspace.help = "";
 // Adjustment to fix artefacts
-light.shadowBias = "阴影偏差";
+light.shadow.bias = "阴影偏差";
 // How blurry the shadow is
-light.shadowSoftness = "";
+light.shadow.softness = "";
 // Contact shadows are small scale shadows (synonym: cavity shadows... maybe)
-light.contactShadow = "";
-light.contactShadow.help = "";
+light.shadow.contact = "";
+light.shadow.contact.help = "";
 // Activated the light
 light.visible = "可见性";
 // Move the light in front of the camera (but keeps its inner orientation)
@@ -883,6 +909,8 @@ menu.settings = "显示设置";
 // Menu name
 menu.interface = "界面设置";
 // Menu name
+menu.bindings = "";
+// Menu name
 menu.history = "历史记录";
 // Menu name
 menu.historySettings = "历史记录设置";
@@ -913,6 +941,9 @@ mesh.typeStatic = "静态模型";
 mesh.typeMultiresolution = "模型细分";
 // Dynamic topology 
 mesh.typeDynamic = "动态模型";
+
+// Node is an abstract type in the scene, examples of Nodes: Mesh, Light, etc
+node = "";
 
 // Disable this option to have per-tool material settings (instead of shared settings)
 paint.useGlobal = "应用全局材料";
@@ -955,12 +986,7 @@ input.hexcolor = "请输入颜色代码";
 postprocess.mainEnable = "后期处理";
 // Quality vs performance
 postprocess.quality = "效果质量";
-postprocess.quality.help = "该设置可提升部分效果的渲染质量，但可能会影响性能。
-
-仅对以下效果有效：
-- 屏幕空间反射（SSR）
-- 环境光屏蔽（AO）
-- 景深";
+postprocess.quality.help = "该设置可提升部分效果的渲染质量，但可能会影响性能。";
 // More samples means better quality but slower performance
 postprocess.maxSamples = "最大采样值";
 // Full resolution (1:1 resolution) instead of half resolution
@@ -975,9 +1001,13 @@ postprocess.renderRatio.help = "";
 // Temporal Anti-Aliasing (no need to translate "TAA")
 postprocess.taaEnable = "时间性抗锯齿（TAA）";
 postprocess.taaEnable.help = "TAA可减少相机移动时的闪烁，呈现出更加平滑的图像效果。";
-// Screen-space reflection (no need to translate "SSR")
+// Screen-Space Reflection (no need to translate "SSR")
 postprocess.ssrEnable = "屏幕空间反射（SSR）";
 postprocess.ssrEnable.warning = "SSR仅在PBR渲染模式下有效。";
+// Screen-Space Global Illumination (no need to translate "SSGI")
+postprocess.ssgiEnable = "";
+postprocess.ssgiEnable.experimental = "";
+postprocess.ssgiEnable.warning = "";
 // Screen-space ambient occlusion (SSAO)
 // https://en.wikipedia.org/wiki/Ambient_occlusion
 postprocess.ssaoEnable = "环境光遮蔽（AO）";
@@ -1277,17 +1307,24 @@ settings.multires.lowResVertices.help = "在您移动相机时，模型对象可
 
 // The main rendering mode
 shading = "渲染模式";
-// main render mode
+// Main rendering mode (PBR stands for Physically Based Rendering)
 shading.pbr = "PBR";
 shading.pbr.help = "在此模式下，材质的光照信息相对固定。
 
 您可以在此模式下对材质的粗糙度与金属度进行修改，更好地观察当前材质的显示效果。";
+// Fast rendering mode for sculpting purpose (do not translate) 
 shading.matcap = "材质捕捉";
 shading.matcap.help = "该模式是将光照，材质等信息都存储在一张贴图上。
 
 该模式光照信息相对固定，对模型干扰较小，适合用于雕塑时观察模型。";
+// Unlit rendering mode, it simply displays a solid/flat color
 shading.unlit = "不受光";
 shading.unlit.help = "该模式下模型只显示纯色，不受任何外界光照影响。";
+// Helper rendering mode that display a (do not translate)
+shading.id = "";
+shading.id.help = "";
+// Randomize colors
+shading.id.randomize = "";
 shading.textures = "使用贴图";
 shading.textures.help = "Nomad目前尚未支持创建或编辑贴图。
 
@@ -1306,20 +1343,20 @@ shading.lights.addLight = "添加灯光";
 shading.lights.warning = "灯光选项在当前渲染模式下不可用。";
 // Environment based lighting (synonym: HDRI)
 shading.environment = "HDRI";
-shading.environmentImport = "导入HDRI";
-shading.environmentExposure = "曝光";
-shading.environmentBackgroundBlur = "背景模糊";
-shading.environmentRotation = "旋转";
-shading.environmentRotation.help = "在屏幕上使用三指水平移动可使环境、灯光与材质捕捉旋转。";
+shading.environment.import = "导入HDRI";
+shading.environment.exposure = "曝光";
+shading.environment.backgroundBlur = "背景模糊";
+shading.environment.rotation = "旋转";
+shading.environment.rotation.help = "在屏幕上使用三指水平移动可使环境、灯光与材质捕捉旋转。";
 // The environment will always be aligned with the camera (so that the lighting is consistent)
-shading.environmentAttachedToCamera = "固定HDRI";
-shading.environmentAttachedToCamera.help = "启用此选项后，移动相机时将不会移动HDRI。
+shading.environment.attachedToCamera = "固定HDRI";
+shading.environment.attachedToCamera.help = "启用此选项后，移动相机时将不会移动HDRI。
 
 这能让光线保持固定，对于雕刻来说非常有用。";
-shading.matcapRotation = "旋转";
-shading.matcapRotation.help = "在屏幕上使用三指水平移动可使环境、灯光与材质捕捉旋转。";
-shading.matcapGlobal = "使用全局材质捕捉";
-shading.matcapGlobal.help = "如果您希望在不同对象上使用不同的材质捕捉，请取消此选项。";
+shading.matcap.rotation = "旋转";
+shading.matcap.rotation.help = "在屏幕上使用三指水平移动可使环境、灯光与材质捕捉旋转。";
+shading.matcap.global = "使用全局材质捕捉";
+shading.matcap.global.help = "如果您希望在不同对象上使用不同的材质捕捉，请取消此选项。";
 
 // bottom shortcut buttons (should be SHORT)
 shortcut.maskVisible.short = "";
@@ -1951,7 +1988,7 @@ topology.dynamic.quality.quality = "性能";
 // Whether the pencil pressure can impact the level of detail
 topology.dynamic.usePressure = "同时使用压感";
 topology.dynamic.usePressure.help = "启用此选项后，压感也会对对象产生影响。";
-// decimate
+// Decimate
 topology.decimate.title = "成型简化";
 topology.decimate.title.help = "软件将会减少模型面数，并把模型转换为三角面。
 
@@ -1971,11 +2008,16 @@ topology.decimateUniform.help = "该参数值越高，优化输出的三角面�
 
 // Unwrapping means compute UV (texture coordinates), it allows the object to receive on texture (wrap the texturing on the object)
 topology.uv.title = "UV自动展开";
+// UV Unwrapping
 topology.uvAtlas = "展开UV";
+// The operation can be very slow
 topology.uvAtlas.warning = "可能需要等待很长时间。
 仅限于顶点数小于100k的对象。";
+// UV Unwrapping (BFF best left untranslated, stands for Boundary First Flattening)
 topology.uvBFF = "BFF展开";
+// Handles are topological holes (synonym: genus, hole)
 topology.uvBFF.warning = "";
+// Synonym: Point count? Singularity count ?
 topology.uvBFFCones = "";
 topology.uvBFFCones.help = "";
 topology.uvDelete = "删除UV";
@@ -1985,9 +2027,45 @@ topology.bake = "";
 topology.bake.help = "";
 topology.bakeResolution = "";
 
-// privacy policy
+// Reset key-bindings/shortcuts
+binding.reset = "";
+// Same as Color Picker but it pick the material (color, roughness, metalness, etc)
+binding.materialPicker = "";
+// Edit the tool brush size/radius
+binding.editRadius = "";
+// Snap the camera
+binding.viewFront = "";
+// Snap the camera
+binding.viewLeft = "";
+// Snap the camera
+binding.viewTop = "";
+// Move/Translate the view
+binding.panLeft = "";
+// Move/Translate the view
+binding.panRight = "";
+// Move/Translate the view
+binding.panForward = "";
+// Move/Translate the view
+binding.panBackward = "";
+// Snap the view (while rotating)
+binding.snapViewOnRotate = "";
+// Open a Nomad internal project (replace current scene)
+binding.project.open = "";
+// Open a Nomad internal project (add it to the current scene)
+binding.project.add = "";
+// Import an external scene file (replace current scene)
+binding.import.open = "";
+// Import an external scene file (add it to the current scene)
+binding.import.add = "";
+// Select all the objects in the scene
+binding.selectAll = "";
+// Rotate environment and the lighting
+binding.rotateLighting = "";
+
+// Privacy policy
 privacyPolicy.title = "未收集数据";
 privacyPolicy.reject = "不好";
+// Hexanomad is the company name
 privacyPolicy = "Hexanomad 不会从 Nomad Sculpt 收集任何数据。";
 
 // version trial

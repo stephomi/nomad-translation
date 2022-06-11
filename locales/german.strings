@@ -23,12 +23,16 @@ item.lastSave.confirm = "Letzte Speicherung laden?";
 // Reset an item to its initial value (object, tool, etc)
 item.reset = "Reset";
 item.reset.confirm = "Zurücksetzen bestätigen?";
+// Make an item instance, similar to clone but keeps the underlying geometry (Synonym: link? soft clone?)
+item.instance = "";
 // Clone an item (object, tool, etc)
 item.clone = "Klonen";
 // Delete an item (object, tool, etc)
 item.delete = "Löschen";
 item.delete.confirm = "Löschen bestätigen?";
 item.delete.confirm.yes = "JA, löschen";
+// Delete an item and link its children to its parent (Synonym: Pop?)
+item.collapse = "";
 // Item visibility (object, layer, etc)
 item.visible = "";
 // Show an item (object, layer, etc)
@@ -64,12 +68,24 @@ loading.reprocess = "Fehlende Vorschaubilder, erstelle neu... ($0/$1)
 
 $2";
 
-// Dolor of an object
+// Color of an object
 material.color = "Color";
-// Defines how blurry or sharp the reflection on a material is
+// Defines how blurry or sharp the reflection on a material is (opposite of glossiness)
 material.roughness = "Roughness";
+// Defines how blurry or sharp the reflection on a material is (opposite of roughness)
+material.glossiness = "";
 // Whether the material is a metal or not
 material.metalness = "Metalness";
+// How much light a surface will reflect
+material.specular = "";
+// Light that the surface can emit (glow)
+material.emissive = "";
+// Normal map (synonym: detail, bump)
+material.normal = "";
+// Ambient Occlusion (AO)
+material.occlusion = "";
+// Textures, basically images wrapped on models (synonym: Maps, Texture maps)
+material.textures = "";
 
 // Minify
 about.minify = "Menüs ausblenden";
@@ -267,6 +283,8 @@ camera.doubleTapFocusSelection.help = "Wenn Sie doppelt auf den Hintergrund tipp
 
 // Toolbox context (when expanded), multiple objects are selected
 context.multiselection = "";
+// There is 0 nodes/items selected
+context.noSelection = "";
 
 // Curve widget, Preset lets the user chooses between predefined curves
 curve.preset = "Preset";
@@ -380,8 +398,8 @@ file.import.title.help = "Unterstützte Formate:
 - glTF 2.0 (.glb .gltf)
 - STL (.stl)";
 // The user imports a scene file that will replace the current scene
-file.importOpen = "Öffnen";
-file.importOpen.confirm = "Neue Datei importieren?";
+file.import.open = "Öffnen";
+file.import.open.confirm = "Neue Datei importieren?";
 // The user imports a scene file that will be added/appended the current scene
 file.import.add = "Der Szene hinzufügen";
 file.import.add.confirm = "Neue Datei importieren?";
@@ -392,9 +410,9 @@ file.export.title.help = "Wählen Sie den glTF-Export falls möglich. Das glTF-F
 
 Nicht jedes Programm kann allerdings glTF importieren.";
 
-// Export the current selected mesh instead of the entire scene
-file.exportSelection = "Nur Auswahl exportieren";
-file.exportSelection.help = "Exportieren Sie nur das aktuell ausgewählte Mesh anstelle der gesamten Szene.";
+// Export the current selected objects instead of the entire scene
+file.onlySelection = "Nur Auswahl exportieren";
+file.onlySelection.help = "Exportieren Sie nur das aktuell ausgewählte Mesh anstelle der gesamten Szene.";
 // Tries to generate quad (rectangle polygon) from triangles
 file.convertToQuad = "Vierecke wiederherstellen";
 file.convertToQuad.help = "Wiederherstellen von Vierecken aus Dreiecken durch Paarung von Dreiecken (wenn sie in den Dateien benachbart sind).";
@@ -591,6 +609,10 @@ history.rangeProtect.help = "Wenn Sie weit in der Verlaufsliste zurückgehen, wi
 // When enabled, each time the user undo an operation it will undo the camera position as well
 history.restoreCamera = "Reset Kamera";
 history.restoreCamera.help = "Aktivieren Sie diese Option, um die gespeicherte Kamera-Ansicht wiederherzustellen, wenn Sie eine Aktion rückgängig machen/wiederherstellen (UnDo/ReDo).";
+// Undo
+history.undo = "UnDo";
+// Redo
+history.redo = "ReDo";
 // Shown during undo
 history.state.undo = "UnDo: $0";
 // Shown during redo
@@ -708,8 +730,10 @@ layers.primitive = "Ebenen sind für Grundobjekte (Primitives) nicht verfügbar.
 layers.baseSelected = "Nichts";
 
 light = "Licht";
-// Intesity of light
+// Intensity of light
 light.intensity = "Stärke";
+// Temperature in Kelvin (Alternative way to compute the color of the light)
+light.temperature = "";
 // The attachment of a light defines how it will move when the user moves the camera
 light.attachment = "Anordnung";
 // The light will stay still even if the user moves the camera
@@ -730,26 +754,28 @@ light.type.spot = "Spot";
 // Point light emits lights everywhere (synonym: omni, omnidirectional)
 light.type.point = "Punkt";
 // Cone angle for spot angles
-light.spotAngle = "Winkel Lichtkegel";
+light.spot.angle = "Winkel Lichtkegel";
 // Softness of the spot light
-light.spotSoftness = "Sanftheit";
+light.spot.softness = "Sanftheit";
 // Position of the light
 light.position = "";
 // Enable or disable shadows for a light
-light.shadowCast = "Schatten";
-light.shadowType = "";
+light.shadow.cast = "Schatten";
+// Point light only works with "screenspace" shadow type (not "shadow map")
+light.shadow.pointTip = "";
+light.shadow.type = "";
 // https://en.wikipedia.org/wiki/Shadow_mapping
-light.shadowType.shadowMap = "";
+light.shadow.type.shadowMap = "";
 // Shadows computed with only the information visible on screen
-light.shadowType.screenspace = "";
-light.shadowType.screenspace.help = "";
+light.shadow.type.screenspace = "";
+light.shadow.type.screenspace.help = "";
 // Adjustment to fix artefacts
-light.shadowBias = "Bias";
+light.shadow.bias = "Bias";
 // How blurry the shadow is
-light.shadowSoftness = "";
+light.shadow.softness = "";
 // Contact shadows are small scale shadows (synonym: cavity shadows... maybe)
-light.contactShadow = "";
-light.contactShadow.help = "";
+light.shadow.contact = "";
+light.shadow.contact.help = "";
 // Activated the light
 light.visible = "Zeigen";
 // Move the light in front of the camera (but keeps its inner orientation)
@@ -871,6 +897,8 @@ menu.settings = "Einstellungen";
 // Menu name
 menu.interface = "Interface";
 // Menu name
+menu.bindings = "";
+// Menu name
 menu.history = "Verlauf";
 // Menu name
 menu.historySettings = "Einstellungen";
@@ -896,11 +924,14 @@ mesh.triplanar.cubic = "Würfelform erzwingen";
 // Covnert an object to a triplanar primitive
 mesh.triplanar.convert = "Konvertieren";
 // Static object means "static topology"
-mesh.typeStatic = "Statisch";
+mesh.typeStatic = "Mesh";
 // See glossary
 mesh.typeMultiresolution = "Multiresolution";
 // Dynamic topology 
 mesh.typeDynamic = "DynTopo";
+
+// Node is an abstract type in the scene, examples of Nodes: Mesh, Light, etc
+node = "";
 
 // Disable this option to have per-tool material settings (instead of shared settings)
 paint.useGlobal = "Globales Material";
@@ -945,12 +976,7 @@ input.hexcolor = "";
 postprocess.mainEnable = "Nachbearbeitung (Post)";
 // Quality vs performance
 postprocess.quality = "Qualität";
-postprocess.quality.help = "Aktivieren Sie diese Optionen, um die Qualität auf Kosten der Leistung zu verbessern.
-
-It will improve:
-- Reflektionen
-- Ambient Occlusion (AO)
-- Tiefenschärfe (DoF - Depth Of Field)";
+postprocess.quality.help = "Aktivieren Sie diese Optionen, um die Qualität auf Kosten der Leistung zu verbessern.";
 // More samples means better quality but slower performance
 postprocess.maxSamples = "Max. Samples";
 // Full resolution (1:1 resolution) instead of half resolution
@@ -965,9 +991,13 @@ postprocess.renderRatio.help = "";
 // Temporal Anti-Aliasing (no need to translate "TAA")
 postprocess.taaEnable = "Anti-Aliasing (TAA)";
 postprocess.taaEnable.help = "Verringert das Flackern, wenn Sie die Kamera bewegen.";
-// Screen-space reflection (no need to translate "SSR")
+// Screen-Space Reflection (no need to translate "SSR")
 postprocess.ssrEnable = "Reflektion (SSR)";
 postprocess.ssrEnable.warning = "SSR ist nur im PBR-Shading-Modus wirksam.";
+// Screen-Space Global Illumination (no need to translate "SSGI")
+postprocess.ssgiEnable = "";
+postprocess.ssgiEnable.experimental = "";
+postprocess.ssgiEnable.warning = "";
 // Screen-space ambient occlusion (SSAO)
 // https://en.wikipedia.org/wiki/Ambient_occlusion
 postprocess.ssaoEnable = "Ambient Occlusion (AO)";
@@ -1260,13 +1290,20 @@ Sie können diesen Wert erhöhen, wenn Sie eine höhere Auflösung des Meshes an
 
 // The main rendering mode
 shading = "Shading";
-// main render mode
+// Main rendering mode (PBR stands for Physically Based Rendering)
 shading.pbr = "PBR";
 shading.pbr.help = "";
+// Fast rendering mode for sculpting purpose (do not translate) 
 shading.matcap = "MatCap";
 shading.matcap.help = "";
+// Unlit rendering mode, it simply displays a solid/flat color
 shading.unlit = "Unlit";
 shading.unlit.help = "";
+// Helper rendering mode that display a (do not translate)
+shading.id = "";
+shading.id.help = "";
+// Randomize colors
+shading.id.randomize = "";
 shading.textures = "";
 shading.textures.help = "";
 // Lights
@@ -1275,20 +1312,20 @@ shading.lights.addLight = "Licht hinzufügen";
 shading.lights.warning = "Lichter werden in den Modi MatCap und Unlit generell ignoriert.";
 // Environment based lighting (synonym: HDRI)
 shading.environment = "Umgebung";
-shading.environmentImport = "HDR importieren";
-shading.environmentExposure = "Belichtung";
-shading.environmentBackgroundBlur = "";
-shading.environmentRotation = "Rotation";
-shading.environmentRotation.help = "Sie können die Umgebung drehen, indem Sie 3 Finger horizontal (von links nach rechts oder umgekehrt) auf dem Touchbildschirm bewegen.";
+shading.environment.import = "HDR importieren";
+shading.environment.exposure = "Belichtung";
+shading.environment.backgroundBlur = "";
+shading.environment.rotation = "Rotation";
+shading.environment.rotation.help = "Sie können die Umgebung drehen, indem Sie 3 Finger horizontal (von links nach rechts oder umgekehrt) auf dem Touchbildschirm bewegen.";
 // The environment will always be aligned with the camera (so that the lighting is consistent)
-shading.environmentAttachedToCamera = "Mit der Kamera verbunden";
-shading.environmentAttachedToCamera.help = " Verbinden Sie die Umgebung mit der Kamera.
+shading.environment.attachedToCamera = "Mit der Kamera verbunden";
+shading.environment.attachedToCamera.help = " Verbinden Sie die Umgebung mit der Kamera.
 
 Dadurch wird eine gleichmäßige Beleuchtung erzwungen, was für das Sculpting hilfreich sein kann.";
-shading.matcapRotation = "Rotation";
-shading.matcapRotation.help = "Sie können das MatCap drehen, indem Sie 3 Finger horizontal (von links nach rechts oder umgekehrt) auf dem Touchbildschirm bewegen.";
-shading.matcapGlobal = "Globales MatCap verwenden";
-shading.matcapGlobal.help = "Deaktivieren Sie diese Option, um ein separates MatCap für dieses Mesh zu verwenden.";
+shading.matcap.rotation = "Rotation";
+shading.matcap.rotation.help = "Sie können das MatCap drehen, indem Sie 3 Finger horizontal (von links nach rechts oder umgekehrt) auf dem Touchbildschirm bewegen.";
+shading.matcap.global = "Globales MatCap verwenden";
+shading.matcap.global.help = "Deaktivieren Sie diese Option, um ein separates MatCap für dieses Mesh zu verwenden.";
 
 // bottom shortcut buttons (should be SHORT)
 shortcut.maskVisible.short = "";
@@ -1924,7 +1961,7 @@ topology.dynamic.quality.quality = "Qualität";
 // Whether the pencil pressure can impact the level of detail
 topology.dynamic.usePressure = "Druck auf Radius anwenden";
 topology.dynamic.usePressure.help = "Verwenden Sie diese Option, wenn Sie möchten, dass sich der Stiftdruck (pen pressure) auf den Radius des Werkzeugs auswirkt und die Detailgenauigkeit beeinflusst.";
-// decimate
+// Decimate
 topology.decimate.title = "Decimation";
 topology.decimate.title.help = "Verringert die Anzahl der Polygone, wobei versucht wird, so viele Details wie möglich zu erhalten.
 
@@ -1946,10 +1983,15 @@ topology.decimateUniform.help = "Ein höherer Wert führt zur Ausgabe von Dreiec
 
 // Unwrapping means compute UV (texture coordinates), it allows the object to receive on texture (wrap the texturing on the object)
 topology.uv.title = "UV Auto-Unwrap";
+// UV Unwrapping
 topology.uvAtlas = "Unwrap Atlas";
+// The operation can be very slow
 topology.uvAtlas.warning = "Kann sehr langsam sein, Ziel: <100k Vertices!";
+// UV Unwrapping (BFF best left untranslated, stands for Boundary First Flattening)
 topology.uvBFF = "Unwrap BFF";
+// Handles are topological holes (synonym: genus, hole)
 topology.uvBFF.warning = "Es kann zu Überschneidungen kommen, wenn das Mesh Handles aufweist!";
+// Synonym: Point count? Singularity count ?
 topology.uvBFFCones = "Kegel-Anzahl";
 topology.uvBFFCones.help = "Ein höherer Wert verringert die Verzerrung bei komplexen Objekten.
 
@@ -1961,9 +2003,45 @@ topology.bake = "";
 topology.bake.help = "";
 topology.bakeResolution = "";
 
-// privacy policy
+// Reset key-bindings/shortcuts
+binding.reset = "";
+// Same as Color Picker but it pick the material (color, roughness, metalness, etc)
+binding.materialPicker = "";
+// Edit the tool brush size/radius
+binding.editRadius = "";
+// Snap the camera
+binding.viewFront = "";
+// Snap the camera
+binding.viewLeft = "";
+// Snap the camera
+binding.viewTop = "";
+// Move/Translate the view
+binding.panLeft = "";
+// Move/Translate the view
+binding.panRight = "";
+// Move/Translate the view
+binding.panForward = "";
+// Move/Translate the view
+binding.panBackward = "";
+// Snap the view (while rotating)
+binding.snapViewOnRotate = "";
+// Open a Nomad internal project (replace current scene)
+binding.project.open = "";
+// Open a Nomad internal project (add it to the current scene)
+binding.project.add = "";
+// Import an external scene file (replace current scene)
+binding.import.open = "";
+// Import an external scene file (add it to the current scene)
+binding.import.add = "";
+// Select all the objects in the scene
+binding.selectAll = "";
+// Rotate environment and the lighting
+binding.rotateLighting = "";
+
+// Privacy policy
 privacyPolicy.title = "";
 privacyPolicy.reject = "";
+// Hexanomad is the company name
 privacyPolicy = "";
 
 // version trial

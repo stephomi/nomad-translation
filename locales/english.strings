@@ -23,12 +23,16 @@ item.lastSave.confirm = "Load last save?";
 // Reset an item to its initial value (object, tool, etc)
 item.reset = "Reset";
 item.reset.confirm = "Confirm reset?";
+// Make an item instance, similar to clone but keeps the underlying geometry (Synonym: link? soft clone?)
+item.instance = "Instance";
 // Clone an item (object, tool, etc)
 item.clone = "Clone";
 // Delete an item (object, tool, etc)
 item.delete = "Delete";
 item.delete.confirm = "Confirm deletion?";
 item.delete.confirm.yes = "Yes, delete";
+// Delete an item and link its children to its parent (Synonym: Pop?)
+item.collapse = "Collapse";
 // Item visibility (object, layer, etc)
 item.visible = "Visible";
 // Show an item (object, layer, etc)
@@ -64,12 +68,24 @@ loading.reprocess = "Missing thumbnails, reprocessing files... ($0/$1)
 
 $2";
 
-// Dolor of an object
+// Color of an object
 material.color = "Color";
-// Defines how blurry or sharp the reflection on a material is
+// Defines how blurry or sharp the reflection on a material is (opposite of glossiness)
 material.roughness = "Roughness";
+// Defines how blurry or sharp the reflection on a material is (opposite of roughness)
+material.glossiness = "Glossiness";
 // Whether the material is a metal or not
 material.metalness = "Metalness";
+// How much light a surface will reflect
+material.specular = "Specular";
+// Light that the surface can emit (glow)
+material.emissive = "Emissive";
+// Normal map (synonym: detail, bump)
+material.normal = "Normal";
+// Ambient Occlusion (AO)
+material.occlusion = "Occlusion";
+// Textures, basically images wrapped on models (synonym: Maps, Texture maps)
+material.textures = "Textures";
 
 // Minify
 about.minify = "Minify UI";
@@ -267,6 +283,8 @@ camera.doubleTapFocusSelection.help = "When double taping on background focus on
 
 // Toolbox context (when expanded), multiple objects are selected
 context.multiselection = "Multiselection";
+// There is 0 nodes/items selected
+context.noSelection = "No selection";
 
 // Curve widget, Preset lets the user chooses between predefined curves
 curve.preset = "Preset";
@@ -337,7 +355,7 @@ file.project.delete.confirmActive = "Delete $0?
 This is the current active project!";
 
 // Auto save section
-file.project.autoSave = "Project Auto Save";
+file.project.autoSave = "Auto Save";
 file.project.autoSave.confirm = "Disable Auto Save?";
 file.project.autoSave.help = "Save your project in a separate file at regular interval.
 The autoSave file can be found in:
@@ -382,8 +400,8 @@ file.import.title.help = "Supported format:
 - glTF 2.0 (.glb .gltf)
 - STL (.stl)";
 // The user imports a scene file that will replace the current scene
-file.importOpen = "Open";
-file.importOpen.confirm = "Import new file?";
+file.import.open = "Open";
+file.import.open.confirm = "Import new file?";
 // The user imports a scene file that will be added/appended the current scene
 file.import.add = "Add to scene";
 file.import.add.confirm = "Import new file?";
@@ -392,9 +410,9 @@ file.import.add.confirm = "Import new file?";
 file.export.title = "Export";
 file.export.title.help = "If possible favor glTF export as it supports more features than other formats.";
 
-// Export the current selected mesh instead of the entire scene
-file.exportSelection = "Export selection only";
-file.exportSelection.help = "Export the current selected object instead of the entire scene.";
+// Export the current selected objects instead of the entire scene
+file.onlySelection = "Only include selected objects";
+file.onlySelection.help = "Only include the selection, instead of the entire scene.";
 // Tries to generate quad (rectangle polygon) from triangles
 file.convertToQuad = "Reconstruct quad";
 file.convertToQuad.help = "Reconstruct quads from triangles by pairing triangle (if they are adjacent in the files).";
@@ -455,6 +473,7 @@ settings.reset.title.help = "It will reset the app preference settings.
 
 Some resources are saved separately and will NOT be resetted, it includes:
 - Projects
+- Key Bindings
 - Tools Presets
 - HDRs Environments
 - MatCaps
@@ -610,6 +629,10 @@ history.rangeProtect.help = "If you go far in the history, it will prompt a conf
 // When enabled, each time the user undo an operation it will undo the camera position as well
 history.restoreCamera = "Restore camera";
 history.restoreCamera.help = "Enable this option to restore the saved camera viewpoint when you undo/redo an action.";
+// Undo
+history.undo = "Undo";
+// Redo
+history.redo = "Redo";
 // Shown during undo
 history.state.undo = "Undo: $0";
 // Shown during redo
@@ -727,8 +750,10 @@ layers.primitive = "Layers are unavailable for primitives.";
 layers.baseSelected = "None";
 
 light = "Light";
-// Intesity of light
+// Intensity of light
 light.intensity = "Intensity";
+// Temperature in Kelvin (Alternative way to compute the color of the light)
+light.temperature = "Temperature";
 // The attachment of a light defines how it will move when the user moves the camera
 light.attachment = "Attachment";
 // The light will stay still even if the user moves the camera
@@ -749,28 +774,30 @@ light.type.spot = "Spot";
 // Point light emits lights everywhere (synonym: omni, omnidirectional)
 light.type.point = "Point";
 // Cone angle for spot angles
-light.spotAngle = "Cone angle";
+light.spot.angle = "Cone angle";
 // Softness of the spot light
-light.spotSoftness = "Softness";
+light.spot.softness = "Softness";
 // Position of the light
 light.position = "Position";
 // Enable or disable shadows for a light
-light.shadowCast = "Shadow";
-light.shadowType = "Shadow type";
+light.shadow.cast = "Shadow";
+// Point light only works with "screenspace" shadow type (not "shadow map")
+light.shadow.pointTip = "Point light only supports screenspace shadow maps.";
+light.shadow.type = "Shadow type";
 // https://en.wikipedia.org/wiki/Shadow_mapping
-light.shadowType.shadowMap = "Shadow map";
+light.shadow.type.shadowMap = "Shadow map";
 // Shadows computed with only the information visible on screen
-light.shadowType.screenspace = "Screenspace";
-light.shadowType.screenspace.help = "Experimental feature, it might be removed in a future release.
+light.shadow.type.screenspace = "Screenspace";
+light.shadow.type.screenspace.help = "Experimental feature, it might be removed in a future release.
 
 This option is meant to be used with the softness shadow feature.";
 // Adjustment to fix artefacts
-light.shadowBias = "Bias";
+light.shadow.bias = "Bias";
 // How blurry the shadow is
-light.shadowSoftness = "Softness";
+light.shadow.softness = "Softness";
 // Contact shadows are small scale shadows (synonym: cavity shadows... maybe)
-light.contactShadow = "Contact";
-light.contactShadow.help = "If auto is selected, only the most dominant light will have contact shadow.";
+light.shadow.contact = "Contact";
+light.shadow.contact.help = "If auto is selected, only the most dominant light will have contact shadow.";
 // Activated the light
 light.visible = "Show";
 // Move the light in front of the camera (but keeps its inner orientation)
@@ -902,6 +929,8 @@ menu.settings = "Settings";
 // Menu name
 menu.interface = "Interface";
 // Menu name
+menu.bindings = "Bindings";
+// Menu name
 menu.history = "History";
 // Menu name
 menu.historySettings = "Settings";
@@ -927,11 +956,14 @@ mesh.triplanar.cubic = "Force cubic";
 // Covnert an object to a triplanar primitive
 mesh.triplanar.convert = "Convert";
 // Static object means "static topology"
-mesh.typeStatic = "Static";
+mesh.typeStatic = "Mesh";
 // See glossary
 mesh.typeMultiresolution = "Multiresolution";
 // Dynamic topology 
 mesh.typeDynamic = "DynTopo";
+
+// Node is an abstract type in the scene, examples of Nodes: Mesh, Light, etc
+node = "Node";
 
 // Disable this option to have per-tool material settings (instead of shared settings)
 paint.useGlobal = "Global material";
@@ -976,13 +1008,7 @@ input.hexcolor = "New color (hex format)";
 postprocess.mainEnable = "Post Process";
 // Quality vs performance
 postprocess.quality = "Quality";
-postprocess.quality.help = "Activate these options to improve the quality to the detriment of performance.
-
-It will improve:
-- Reflection
-- Subsurface
-- Ambient Occlusion
-- Depth Of Field";
+postprocess.quality.help = "Activate these options to improve the quality to the detriment of performance.";
 // More samples means better quality but slower performance
 postprocess.maxSamples = "Max samples";
 // Full resolution (1:1 resolution) instead of half resolution
@@ -1012,9 +1038,13 @@ This option is not saved in the settings.";
 // Temporal Anti-Aliasing (no need to translate "TAA")
 postprocess.taaEnable = "Anti-aliasing (TAA)";
 postprocess.taaEnable.help = "Reduces flickering when you are moving the camera.";
-// Screen-space reflection (no need to translate "SSR")
+// Screen-Space Reflection (no need to translate "SSR")
 postprocess.ssrEnable = "Reflection (SSR)";
 postprocess.ssrEnable.warning = "SSR requires PBR shading mode.";
+// Screen-Space Global Illumination (no need to translate "SSGI")
+postprocess.ssgiEnable = "Global Illumination (SSGI)";
+postprocess.ssgiEnable.experimental = "Highly experimental!";
+postprocess.ssgiEnable.warning = "SSGI requires PBR shading mode.";
 // Screen-space ambient occlusion (SSAO)
 // https://en.wikipedia.org/wiki/Ambient_occlusion
 postprocess.ssaoEnable = "Ambient Occlusion";
@@ -1309,17 +1339,26 @@ You can increase this value if you want to display a higher resolution of the me
 
 // The main rendering mode
 shading = "Shading";
-// main render mode
+// Main rendering mode (PBR stands for Physically Based Rendering)
 shading.pbr = "Lit (PBR)";
 shading.pbr.help = "In this mode you can add lights (with shadows), along with an HDR environment.
 
 You can also paint metalness and roughness, thus allowing a finer control on the look of your material.";
+// Fast rendering mode for sculpting purpose (do not translate) 
 shading.matcap = "MatCap";
 shading.matcap.help = "Stands for MATerial CAPture, a MatCap takes care of both the lighting and material information in a single image.
 
 This is a fast rendering mode, mostly suited for raw sculpting.";
+// Unlit rendering mode, it simply displays a solid/flat color
 shading.unlit = "Unlit";
 shading.unlit.help = "Solid color shading mode, without lighting.";
+// Helper rendering mode that display a (do not translate)
+shading.id = "ID";
+shading.id.help = "Unlit rendering mode with each objects having a random color assigned.
+
+This is mostly useful when you have many objects in your scene.";
+// Randomize colors
+shading.id.randomize = "Randomize id";
 shading.textures = "Use textures";
 shading.textures.help = "At the moment, you cannot create nor edit textures inside Nomad.
 
@@ -1338,20 +1377,20 @@ shading.lights.addLight = "Add light";
 shading.lights.warning = "Lights requires PBR shading mode.";
 // Environment based lighting (synonym: HDRI)
 shading.environment = "Environment";
-shading.environmentImport = "Import HDR";
-shading.environmentExposure = "Exposure";
-shading.environmentBackgroundBlur = "Blur (background)";
-shading.environmentRotation = "Rotation";
-shading.environmentRotation.help = "You can rotate the environment by dragging 3 fingers horizontally on the viewport.";
+shading.environment.import = "Import HDR";
+shading.environment.exposure = "Exposure";
+shading.environment.backgroundBlur = "Blur (background)";
+shading.environment.rotation = "Rotation";
+shading.environment.rotation.help = "You can rotate the environment by dragging 3 fingers horizontally on the viewport.";
 // The environment will always be aligned with the camera (so that the lighting is consistent)
-shading.environmentAttachedToCamera = "Attached to camera";
-shading.environmentAttachedToCamera.help = "Attach the environment to the camera.
+shading.environment.attachedToCamera = "Attached to camera";
+shading.environment.attachedToCamera.help = "Attach the environment to the camera.
 
 It will force the lighting to be consistent, which can be useful for sculpting purposes.";
-shading.matcapRotation = "Rotation";
-shading.matcapRotation.help = "You can rotate the MatCap by dragging 3 fingers horizontally on the viewport.";
-shading.matcapGlobal = "Use global MatCap";
-shading.matcapGlobal.help = "Uncheck this option to use a different MatCap for this particular mesh.";
+shading.matcap.rotation = "Rotation";
+shading.matcap.rotation.help = "You can rotate the MatCap by dragging 3 fingers horizontally on the viewport.";
+shading.matcap.global = "Use global MatCap";
+shading.matcap.global.help = "Uncheck this option to use a different MatCap for this particular mesh.";
 
 // bottom shortcut buttons (should be SHORT)
 shortcut.maskVisible.short = "Mask";
@@ -1986,7 +2025,7 @@ topology.dynamic.quality.quality = "Quality";
 // Whether the pencil pressure can impact the level of detail
 topology.dynamic.usePressure = "Use pressure on radius";
 topology.dynamic.usePressure.help = "Use this option if you want the pen pressure impact on tool radius to impact the level of detail.";
-// decimate
+// Decimate
 topology.decimate.title = "Decimation";
 topology.decimate.title.help = "Reduce the number of polygons by trying to keep as many details as possible.
 
@@ -2008,10 +2047,15 @@ topology.decimateUniform.help = "Higher value will output triangles with similar
 
 // Unwrapping means compute UV (texture coordinates), it allows the object to receive on texture (wrap the texturing on the object)
 topology.uv.title = "UV Auto-Unwrap";
+// UV Unwrapping
 topology.uvAtlas = "Unwrap Atlas";
+// The operation can be very slow
 topology.uvAtlas.warning = "Can be very slow, target <100k vertices!";
+// UV Unwrapping (BFF best left untranslated, stands for Boundary First Flattening)
 topology.uvBFF = "Unwrap Bff";
+// Handles are topological holes (synonym: genus, hole)
 topology.uvBFF.warning = "Can have overlaps if mesh has handles!";
+// Synonym: Point count? Singularity count ?
 topology.uvBFFCones = "Cone count";
 topology.uvBFFCones.help = "Higher value will reduce distortion for complex objects.
 
@@ -2025,9 +2069,45 @@ topology.bake.help = "Transfer the vertex painting to a texture.
 Vertex color are resetted in the process.";
 topology.bakeResolution = "Resolution";
 
-// privacy policy
+// Reset key-bindings/shortcuts
+binding.reset = "Reset bindings";
+// Same as Color Picker but it pick the material (color, roughness, metalness, etc)
+binding.materialPicker = "Material Picker";
+// Edit the tool brush size/radius
+binding.editRadius = "Edit Tool radius";
+// Snap the camera
+binding.viewFront = "Front View";
+// Snap the camera
+binding.viewLeft = "Left View";
+// Snap the camera
+binding.viewTop = "Top View";
+// Move/Translate the view
+binding.panLeft = "Pan Left (View)";
+// Move/Translate the view
+binding.panRight = "Pan Right (View)";
+// Move/Translate the view
+binding.panForward = "Pan Forward (View)";
+// Move/Translate the view
+binding.panBackward = "Pan Backward (View)";
+// Snap the view (while rotating)
+binding.snapViewOnRotate = "Snap view (while rotating)";
+// Open a Nomad internal project (replace current scene)
+binding.project.open = "Open (project)";
+// Open a Nomad internal project (add it to the current scene)
+binding.project.add = "Add (project)";
+// Import an external scene file (replace current scene)
+binding.import.open = "Open (import)";
+// Import an external scene file (add it to the current scene)
+binding.import.add = "Add (import)";
+// Select all the objects in the scene
+binding.selectAll = "Select All";
+// Rotate environment and the lighting
+binding.rotateLighting = "Rotate lighting";
+
+// Privacy policy
 privacyPolicy.title = "Privacy Policy";
 privacyPolicy.reject = "Reject";
+// Hexanomad is the company name
 privacyPolicy = "Hexanomad does not collect any data from Nomad Sculpt.";
 
 // version trial
