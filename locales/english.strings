@@ -9,6 +9,8 @@ confirm.cancel = "Cancel";
 
 // Name of an item (object, tool, etc)
 item.name = "Name";
+// Add a new item (object, tool, etc)
+item.new = "New";
 // Rename an item (object, tool, etc)
 item.rename = "Rename";
 // Add a new item (object, tool, project, etc)
@@ -25,12 +27,16 @@ item.reset = "Reset";
 item.reset.confirm = "Confirm reset?";
 // Make an item instance, similar to clone but keeps the underlying geometry (Synonym: link? soft clone?)
 item.instance = "Instance";
+// Uninstance the object, make the object real
+item.uninstance = "Un-instance";
 // Clone an item (object, tool, etc)
 item.clone = "Clone";
 // Delete an item (object, tool, etc)
 item.delete = "Delete";
 item.delete.confirm = "Confirm deletion?";
 item.delete.confirm.yes = "Yes, delete";
+// When we delete the item but the image is used somewhere
+item.delete.imageUsed = "Used by the following tools:";
 // Delete an item and link its children to its parent (Synonym: Pop?)
 item.collapse = "Collapse";
 // Item visibility (object, layer, etc)
@@ -47,6 +53,12 @@ item.unselect = "Unselect";
 item.mergeDown = "Merge down";
 // The order of an item in a list
 item.order = "Order";
+// Focus on previous item
+item.previous = "Previous";
+// Focus on next item
+item.next = "Next";
+// The item is locked (either it cannot be selected, edited, or we preserve its details)
+item.lock = "Lock";
 
 // Three-state toggle button (Auto, Off, On)
 toggle.on = "On";
@@ -54,14 +66,6 @@ toggle.on = "On";
 toggle.off = "Off";
 // Three-state toggle button (Auto, Off, On)
 toggle.auto = "Auto";
-
-// Need at least to select one object
-scene.noneButNeedAtLeastOne = "No selected object, please select at least one object.";
-// Need to select one object only
-scene.noneButNeedOne = "No selected object, please select one object.";
-// Need to select one object only
-scene.onlyOneObject = "Multiple objects are selected, please select only one object."
-
 
 // When you launch the app and we need to reprocess some resource thumbnails
 loading.reprocess = "Missing thumbnails, reprocessing files... ($0/$1)
@@ -143,7 +147,10 @@ alert.voxelRemesh.success = "Remeshed!";
 alert.voxelRemesh.empty = "Abort remesh: result mesh has no faces.";
 // Should not happen or very rarely, input here is an object
 alert.voxelRemesh.invalidInput = "Invalid input!";
+// Helper popup to tell the users the object will cloned
 alert.matrix.clone = "The object will be duplicated";
+// Helper popup to tell the users the object will cloned
+alert.matrix.instance = "The object will be instanced";
 // A pivot refers the gizmo 3d position
 alert.gizmo.usePivot = "Use custom pivot.";
 // A pivot refers the gizmo 3d position
@@ -226,8 +233,12 @@ background.imageScale = "Scale";
 camera = "Camera";
 // Copy the views
 camera.updateView = "Update view point?";
+// Add a new camera
 camera.addView = "Add View";
-camera.focusOn = "Focus on";
+// Focus on the camera
+camera.focus = "Focus";
+// Add on the camera camera
+camera.focusOn = "Focus on $0";
 // Camera projection, Orthographic or Perspective
 camera.projection = "Projection";
 // Camera projection, Orthographic or Perspective
@@ -265,6 +276,12 @@ camera.pivot = "Pivot";
 camera.doubleTapMesh = "Double tap on object";
 // When we double tap on the background with the finger/stylus
 camera.doubleTapBackground = "Double tap on background";
+// When we double tap on the background with the finger/stylus
+camera.doubleTapBackgroundFocus.toggle ="Toggle";
+// Focus on the selection
+camera.doubleTapBackgroundFocus.selection ="Selection";
+// Focus on the entire scene
+camera.doubleTapBackgroundFocus.scene ="Scene";
 // When double tapping with the finger/stylus, the camera pivot will be updated
 camera.doubleTapPivot = "Update on double tap";
 camera.doubleTapPivot.help = "Update the rotation pivot when double tapping on the object surface.";
@@ -277,19 +294,18 @@ camera.autoPivot.help = "Update the pivot when you start interacting with the ca
 // Move the camera so that it focus on the intersection point
 camera.doubleTapFocus = "Focus";
 camera.doubleTapFocus.help = "When double tapping on the object, the camera will pan and focus on the picked point.";
-// Move the camera so that it focus on selected objects
-camera.doubleTapFocusSelection = "Focus on selection";
-camera.doubleTapFocusSelection.help = "When double taping on background focus on the selected object instead of the whole scene.";
 
 // Toolbox context (when expanded), multiple objects are selected
 context.multiselection = "Multiselection";
 // There is 0 nodes/items selected
 context.noSelection = "No selection";
 
-// Curve widget, Preset lets the user chooses between predefined curves
+// Curve type, presets lets the user chooses between predefined curves
 curve.preset = "Preset";
-// Curve widget, Custom lets the user edits the curve directly
-curve.custom = "Custom";
+// Curve type, https://en.wikipedia.org/wiki/Centripetal_Catmull%E2%80%93Rom_spline
+curve.catmull = "Catmull-Rom";
+// Curve curve, https://en.wikipedia.org/wiki/Spline_(mathematics)
+curve.spline = "Spline";
 
 // Debug option, the newly created primitives will contains texture coordinates (UVs)
 debug.uvPrimitive = "Keep primitive UVs";
@@ -534,11 +550,6 @@ pressure.radius = "Radius";
 // The stylus pressure will impact the tool intensity (more pressure -> stronger intensity)
 pressure.intensity = "Intensity";
 
-// Gesture section (how we handle stylus, finger)
-gesture.title = "Gesture";
-// Saved in global preference file, it's not linked to a certain tool or project
-gesture.title.help = "These options are always global.";
-
 // Customize whether finger and/or stylus can move the Camera
 gesture.cameraInteraction = "Camera:";
 // Customize whether finger and/or stylus can sculpt on object
@@ -588,7 +599,13 @@ It will allow the following gesture:
 - tap on a masked area to blur the mask
 - tap on an unmasked area to sharpen the mask";
 // Hold the finger on screen to toggle between two tools: Mask and SelMask
-gesture.mask.holdToggle = "Hold to toggle (Mask ↔ SelMask)";
+gesture.mask.longPress = "Long press (Mask ↔ SelMask)";
+// Hold the finger on screen to toggle between two tools: Mask and SelMask
+gesture.mask.longPress.help = "When Mask or SelMask is active, long press finger to toggle between those tools.
+
+If you long press without moving the finger, the new tool will be used as the default mask shortcut.";
+// Indicator that the tool has been set as the new shortcut
+gesture.mask.infoShortcut = "$0 set as mask shortcut."
 
 // Shortcuts to undo/redo
 gesture.history = "History shortcuts";
@@ -674,26 +691,30 @@ interface.blurFactor = "Blur strength";
 // Interface option (color of panels, if the menus are transparent)
 interface.colorBaseTransparent = "Color panel";
 
-// Interface color preset style
+// Interface color style
 interface.preset.title = "Color presets";
-// Interface color preset style
-interface.preset.blurRed = "Red";
-// Interface color preset style
-interface.preset.blurBlue = "Blue";
-// Interface color preset style
-interface.preset.blurGreen = "Green";
-// Interface color preset style
-interface.preset.blurYellow = "Yellow";
-// Interface color preset style
-interface.preset.blackWhite = "Black & White";
-// Interface color preset style
-interface.preset.whiteBlack = "White & Black";
-// Interface color preset style
-interface.preset.lividOrange = "Livid & Orange";
-// Interface color preset style
-interface.preset.cardboard = "Cardboard";
-// Interface color preset style
+// Interface color style
 interface.preset.default = "Default";
+// Interface color style
+interface.preset.orange = "Orange";
+// Interface color style (~red)
+interface.preset.cardinal = "Cardinal";
+// Interface Color style (~pink)
+interface.preset.mulberry = "Mulberry";
+// Interface color style
+interface.preset.brown = "Brown";
+// Interface color style (~green)
+interface.preset.emerald = "Emerald";
+// Interface color style (~blue)
+interface.preset.neon = "Neon";
+// Interface color style
+interface.preset.violet = "Violet";
+// Interface color style
+interface.preset.grey = "Grey";
+// Interface color style
+interface.preset.black = "Black";
+// Interface color style
+interface.preset.white = "White";
 
 // Reset interface settings
 interface.resetAll = "Reset style";
@@ -728,6 +749,16 @@ interface.fontScale = "Font scale";
 
 // (see Glossary for Layer)
 layer = "Layer";
+// (see Glossary for Layer)
+layers.lock = "Keep top layers details";
+// (see Glossary for Layer)
+layers.lock.yes = "Lock the top layers?"
+// (see Glossary for Layer)
+layers.lock.warning = "During sculpting, the deformation coming from the top layers will be ignored.
+
+However the details of these layers will still be visible.
+
+This option only works if the top layers have relatively small scale details.";
 // (see Glossary for Layer)
 layers.addLayer = "Add layer";
 // (see Glossary for Layer)
@@ -782,7 +813,7 @@ light.position = "Position";
 // Enable or disable shadows for a light
 light.shadow.cast = "Shadow";
 // Point light only works with "screenspace" shadow type (not "shadow map")
-light.shadow.pointTip = "Point light only supports screenspace shadow maps.";
+light.shadow.pointTip = "Point light only supports screenspace shadows.";
 light.shadow.type = "Shadow type";
 // https://en.wikipedia.org/wiki/Shadow_mapping
 light.shadow.type.shadowMap = "Shadow map";
@@ -798,8 +829,8 @@ light.shadow.softness = "Softness";
 // Contact shadows are more precise shadows on small distance (synonym: cavity shadows?)
 light.contact = "Contact";
 light.contact.help = "If auto is selected, only the most dominant light will have contact shadow.";
-// Thickness threshold for contact shadows (synonym: threshold, bias)
-light.contact.tolerance = "Tolerance";
+// Thickness threshold for screen-space shadows (synonym: threshold, bias)
+light.shadow.tolerance = "Tolerance";
 // Activated the light
 light.visible = "Show";
 // Move the light in front of the camera (but keeps its inner orientation)
@@ -922,8 +953,10 @@ menu.stroke = "Stroke";
 menu.paint = "Paint";
 // Menu name
 menu.symmetry = "Symmetry";
-// Menu name
+// Menu name (pencil pressure)
 menu.pressure = "Pressure";
+// Menu name
+menu.gesture = "Gesture";
 // Menu name
 menu.layers = "Layers";
 // Menu name
@@ -966,6 +999,8 @@ mesh.typeDynamic = "DynTopo";
 
 // Node is an abstract type in the scene, examples of Nodes: Mesh, Light, etc
 node = "Node";
+// Make the view focused on the selected item
+node.focus = "Focus on item";
 
 // Disable this option to have per-tool material settings (instead of shared settings)
 paint.useGlobal = "Global material";
@@ -1017,19 +1052,20 @@ postprocess.maxSamples = "Max samples";
 postprocess.fullResolution = "Full Resolution";
 // Number of frames that we accumulate (higher value means better quality)
 postprocess.accumulateCount = "Max frame sampling";
-postprocess.accumulateCount.help = "Maximum number of frames to accumulates before the rendering stops.
+postprocess.accumulateCount.help = "Maximum number of frames to accumulate before the rendering stops.
 
 When the rendering stops, Nomad won't do anything, thus saving battery life.
 
 Many rendering features benefits from frame accumulation, notably:
 - Soft Shadows
-- Reflection
-- Subsurface
+- Global Illumination
+- Reflection (SSR)
 - Ambient Occlusion
+- Subsurface
 - Depth Of Field
 
-High frame count are only necessary for Soft Shadows.
-Depending on features enabled, Nomad can stops the rendering sooner.";
+High frame count are mostly necessary for Soft Shadows and Global Illumination.
+Nomad can stops the rendering sooner is the features mentioned aboved are disabled.";
 // The value is a ratio (0.5 means half resolution 2 means twice the resolution)
 postprocess.renderRatio = "Render resolution";
 postprocess.renderRatio.warning = "Overriden by the Pixel Art effect.";
@@ -1047,7 +1083,7 @@ postprocess.ssr.warning = "SSR requires PBR shading mode.";
 postprocess.ssgi = "Global Illumination (SSGI)";
 // Thickness threshold for ssgi tracing algorithm (synonym: threshold, bias)
 postprocess.ssgi.tolerance = "Tolerance";
-postprocess.ssgi.experimental = "Highly experimental!";
+postprocess.ssgi.experimental = "Experimental!";
 postprocess.ssgi.warning = "SSGI requires PBR shading mode.";
 // Screen-space ambient occlusion (SSAO)
 // https://en.wikipedia.org/wiki/Ambient_occlusion
@@ -1123,6 +1159,8 @@ postprocess.curvature.cavity = "Cavity";
 postprocess.curvature.bump = "Bump";
 // https://en.wikipedia.org/wiki/Pixel_art
 postprocess.pixelArt = "Pixel Art";
+// Override frame accumulation feature
+postprocess.pixelArt.allowAccumulate = "Allow frame sampling";
 // Simulate scanline rendering (horizonal line)
 postprocess.scanline = "Scanline";
 postprocess.scanline.factor = "Factor";
@@ -1246,16 +1284,19 @@ primitive.hasHole = "Has hole";
 primitive.radiusSync = "Same radius";
 primitive.radiusStart = "Radius start";
 primitive.radiusEnd = "Radius end";
-// Smooth curve https://en.wikipedia.org/wiki/Spline_(mathematics)
-primitive.spline = "Spline";
+curve.spline = "Spline";
 
 // Import resource (Alpha, Textures, MatCaps, etc)
 resource.import = "Import...";
 
 scene.title = "Scene";
-scene.title.help = "When using the selection checkbox, hold and drag your finger to select other objects easily.";
+scene.title.help = "When using the visible/select buttons, hold and drag your finger to select other objects easily.
+
+You can also long press the visible/select buttons to affect the children as well.";
 // Merge 2 objects without modifying the geometry or the topology
-scene.mergeSimple = "Simple merge";
+scene.join = "Join";
+// Group the selected object with a new created Empty Node as a parent
+scene.group = "Group";
 // Merge/weld 2 objects by recomputing all the topology and creating a new object
 scene.mergeVoxel = "Voxel merge";
 scene.voxelResolution = "Resolution";
@@ -1263,6 +1304,13 @@ scene.voxelResolution = "Resolution";
 scene.subtractionTip = "Subtraction: Hide object (eye icon)";
 // If all the objects are hidden, only the parts where they intersect (collide) will be kep
 scene.intersectionTip = "Intersection: All objects hidden";
+
+// Need at least to select one object
+scene.noneButNeedAtLeastOne = "No selected object, please select at least one object.";
+// Need to select one object only
+scene.noneButNeedOne = "No selected object, please select one object.";
+// Need to select one object only
+scene.onlyOneObject = "Multiple objects are selected, please select only one object."
 
 // General scene display settings
 settings.display.title = "Display settings";
@@ -1326,9 +1374,14 @@ Also it might add visual artefacts during the brush strokes";
 settings.partialDraw.warning = "Do not forget to turn off this option if the visual artefacts are too bothersome!";
 // Disable this option to force a white uniform paint instead of showing the objects painting
 settings.showPainting = "Show painting";
+// Display the empty node icons in the viewport
+settings.emptyIcon = "Node icons";
 // Display the light icons in the viewport
 settings.lightIcon = "Light icons";
-settings.lightIcon.help = "Display light icons on the canvas so that you can select and edit them directly.";
+// Display the camera icons in the viewport
+settings.cameraIcon = "Camera icons";
+// Tooltip
+settings.icon.help = "Display an icon on the canvas so that you can select and edit them directly.";
 // Hole filling settings
 settings.hole = "Hole-filling";
 // Allow the hole filling algorithm to handle non-manifold (non regular topology)
@@ -1716,7 +1769,7 @@ tool.tube = "Tube";
 tool.insert = "Insert";
 // Ideally <10 chars (Flip/Invert/Negate the shape)
 tool.shape.flip = "Flip";
-// Ideally <10 chars (View, do nothing in particular)
+// Ideally <10 chars (No shape selected, same as Camera mode, does nothing in particular)
 tool.shape.view = "View";
 // Ideally <10 chars (Lasso selection)
 tool.shape.lasso = "Lasso";
@@ -1821,8 +1874,6 @@ Extract the layer difference (layer sub-menu only).";
 
 // Transform/Matrix
 tool.matrix = "Matrix";
-// Duplicate/Clone the mesh when interacting with the gizmo
-tool.matrix.clone = "Clone";
 // The target of the transform is either the Matrix or the Vertex of the object
 tool.matrix.apply = "Target";
 // Automatic
@@ -1871,6 +1922,10 @@ tool.transform.transformRestrictRotationY.help = "Auto means the option is activ
 
 // Size of the gizmo
 tool.gizmo.size = "Widget size";
+// When enabled, taping one the gizmo widget will open a numerical input popup
+tool.gizmo.allowInput = "Numerical input";
+tool.gizmo.allowInput.help = "Allow numerical input when taping one of the gizmo widget";
+// Angle threshold
 tool.gizmo.linearRollThreshold = "Tangent roll threshold";
 tool.gizmo.linearRollThreshold.help = "Angle threshold to choose between linear or circular roll method.
 
@@ -1894,17 +1949,8 @@ tool.gizmo.tapNone = "None";
 tool.gizmo.tapFirstHit = "First hit";
 tool.gizmo.tapMiddleStab = "Middle stab";
 
-tool.lathe.axis = "Axis";
-// The lathe generator (line) is fixed on the screen
-tool.lathe.axis.fixed = "Fixed";
-// synonym: Start & End, Custom
-tool.lathe.axis.dynamic = "Dynamic";
-
-tool.tube.snap = "Snapping";
-// Snap everything of the tube on the surface
-tool.tube.snap.all = "Every point";
-// Snap only the first and last control point of the tube on the surface
-tool.tube.snap.startEnd = "Start & End";
+// The lathe generator is a vertical line and cannot be rotated
+tool.lathe.axisFixed = "Fixed";
 
 // Fill the object's hole
 tool.hole = "Hole filling";
@@ -1954,6 +2000,8 @@ topology.multires.reverse.confirm = "Could not create base subdivision.
 The current topology is probably not a result from a subdivision.";
 topology.multires.subdivide = "Subdivide";
 topology.multires.subdivide.confirm = "The mesh will have $0M vertices, are you sure?";
+// Prevents the user from subdivide the object again, a warning is displayed (with a UI link to increase this limit)
+topology.multires.subdivide.limit = "Subdivide limit exceeded, see $0"
 topology.multires.deleteLower = "Delete lower";
 topology.multires.deleteHigher = "Delete higher";
 topology.multires.keepTriangles = "Keep triangles";
@@ -2025,7 +2073,7 @@ topology.dynamic.quality.help = "If you choose Quality, the 2 main differences a
 - refinement is applied before the sculpting operator, you will get less interpolating artefact when painting or sculpting very small details
 - refinement is not applied incrementally, if you sculpt very small details or do quick strokes, the topology will always be correctly refined
 
-For better performance, and if you plan on using this option, you might consider enabling the \"partial drawing\" option in the Settings panel.";
+For better performance, and if you plan on using this option, you might consider enabling the 'partial drawing' option in the Settings panel.";
 topology.dynamic.quality.speed = "Speed";
 topology.dynamic.quality.quality = "Quality";
 // Whether the pencil pressure can impact the level of detail
@@ -2080,7 +2128,9 @@ binding.reset = "Reset bindings";
 // Same as Color Picker but it pick the material (color, roughness, metalness, etc)
 binding.materialPicker = "Material Picker";
 // Edit the tool brush size/radius
-binding.editRadius = "Edit Tool radius";
+binding.editRadius = "Tool Radius";
+// Edit the tool brush size/radius
+binding.editIntensity = "Tool Intensity";
 // Snap the camera
 binding.viewFront = "Front View";
 // Snap the camera
@@ -2095,6 +2145,10 @@ binding.panRight = "Pan Right (View)";
 binding.panForward = "Pan Forward (View)";
 // Move/Translate the view
 binding.panBackward = "Pan Backward (View)";
+// Move/Translate the view
+binding.panUp = "Pan Upward (View)";
+// Move/Translate the view
+binding.panDown = "Pan Downward (View)";
 // Snap the view (while rotating)
 binding.snapViewOnRotate = "Snap view (while rotating)";
 // Open a Nomad internal project (replace current scene)

@@ -9,6 +9,8 @@ confirm.cancel = "取消";
 
 // Name of an item (object, tool, etc)
 item.name = "重新命名";
+// Add a new item (object, tool, etc)
+item.new = "建立";
 // Rename an item (object, tool, etc)
 item.rename = "重新命名";
 // Add a new item (object, tool, project, etc)
@@ -25,12 +27,16 @@ item.reset = "重置";
 item.reset.confirm = "確認要重置嗎？";
 // Make an item instance, similar to clone but keeps the underlying geometry (Synonym: link? soft clone?)
 item.instance = "";
+// Uninstance the object, make the object real
+item.uninstance = "";
 // Clone an item (object, tool, etc)
 item.clone = "克隆";
 // Delete an item (object, tool, etc)
 item.delete = "刪除";
 item.delete.confirm = "請確認是否刪除？";
 item.delete.confirm.yes = "確認刪除";
+// When we delete the item but the image is used somewhere
+item.delete.imageUsed = "";
 // Delete an item and link its children to its parent (Synonym: Pop?)
 item.collapse = "";
 // Item visibility (object, layer, etc)
@@ -47,6 +53,12 @@ item.unselect = "";
 item.mergeDown = "向下合併";
 // The order of an item in a list
 item.order = "";
+// Focus on previous item
+item.previous = "";
+// Focus on next item
+item.next = "";
+// The item is locked (either it cannot be selected, edited, or we preserve its details)
+item.lock = "";
 
 // Three-state toggle button (Auto, Off, On)
 toggle.on = "";
@@ -54,14 +66,6 @@ toggle.on = "";
 toggle.off = "";
 // Three-state toggle button (Auto, Off, On)
 toggle.auto = "";
-
-// Need at least to select one object
-scene.noneButNeedAtLeastOne = "物件未選擇";
-// Need to select one object only
-scene.noneButNeedOne = "";
-// Need to select one object only
-scene.onlyOneObject = "您選擇了多個物件，無法修改圖層。"
-
 
 // When you launch the app and we need to reprocess some resource thumbnails
 loading.reprocess = "正在載入資料，請等待... ($0/$1)
@@ -143,7 +147,10 @@ alert.voxelRemesh.success = "網格重構成功！";
 alert.voxelRemesh.empty = "網格重構失敗，因為結果並未產生面。";
 // Should not happen or very rarely, input here is an object
 alert.voxelRemesh.invalidInput = "輸入無效！";
+// Helper popup to tell the users the object will cloned
 alert.matrix.clone = "將複製此物件";
+// Helper popup to tell the users the object will cloned
+alert.matrix.instance = "";
 // A pivot refers the gizmo 3d position
 alert.gizmo.usePivot = "使用自定義座標原點";
 // A pivot refers the gizmo 3d position
@@ -226,7 +233,11 @@ background.imageScale = "縮放";
 camera = "相機";
 // Copy the views
 camera.updateView = "更新視角？";
+// Add a new camera
 camera.addView = "新增視角";
+// Focus on the camera
+camera.focus = "";
+// Add on the camera camera
 camera.focusOn = "正在觀察";
 // Camera projection, Orthographic or Perspective
 camera.projection = "檢視";
@@ -265,6 +276,12 @@ camera.pivot = "檢視中心點";
 camera.doubleTapMesh = "雙擊物件";
 // When we double tap on the background with the finger/stylus
 camera.doubleTapBackground = "雙擊背景";
+// When we double tap on the background with the finger/stylus
+camera.doubleTapBackgroundFocus.toggle ="";
+// Focus on the selection
+camera.doubleTapBackgroundFocus.selection ="";
+// Focus on the entire scene
+camera.doubleTapBackgroundFocus.scene ="";
 // When double tapping with the finger/stylus, the camera pivot will be updated
 camera.doubleTapPivot = "雙擊後改變";
 camera.doubleTapPivot.help = "雙擊後改變座標檢視中心點。";
@@ -277,19 +294,18 @@ camera.autoPivot.help = "雙指移動相機後，中心點會隨之移動。";
 // Move the camera so that it focus on the intersection point
 camera.doubleTapFocus = "聚焦";
 camera.doubleTapFocus.help = "雙擊物體表面後檢視中心將移動至該點。";
-// Move the camera so that it focus on selected objects
-camera.doubleTapFocusSelection = "聚焦所選項";
-camera.doubleTapFocusSelection.help = "雙擊背景後相機將會縮放移動至最適合該物件的檢視。";
 
 // Toolbox context (when expanded), multiple objects are selected
 context.multiselection = "";
 // There is 0 nodes/items selected
 context.noSelection = "";
 
-// Curve widget, Preset lets the user chooses between predefined curves
+// Curve type, presets lets the user chooses between predefined curves
 curve.preset = "預設";
-// Curve widget, Custom lets the user edits the curve directly
-curve.custom = "自定義";
+// Curve type, https://en.wikipedia.org/wiki/Centripetal_Catmull%E2%80%93Rom_spline
+curve.catmull = "";
+// Curve curve, https://en.wikipedia.org/wiki/Spline_(mathematics)
+curve.spline = "樣條";
 
 // Debug option, the newly created primitives will contains texture coordinates (UVs)
 debug.uvPrimitive = "保留基本體UV";
@@ -519,11 +535,6 @@ pressure.radius = "半徑";
 // The stylus pressure will impact the tool intensity (more pressure -> stronger intensity)
 pressure.intensity = "強度";
 
-// Gesture section (how we handle stylus, finger)
-gesture.title = "防誤觸";
-// Saved in global preference file, it's not linked to a certain tool or project
-gesture.title.help = "以下選項均為全域性設定。";
-
 // Customize whether finger and/or stylus can move the Camera
 gesture.cameraInteraction = "相機移動";
 // Customize whether finger and/or stylus can sculpt on object
@@ -568,7 +579,11 @@ gesture.pencilAction.alt = "新增或減去";
 gesture.mask.oneTap = "";
 gesture.mask.oneTap.help = "";
 // Hold the finger on screen to toggle between two tools: Mask and SelMask
-gesture.mask.holdToggle = "";
+gesture.mask.longPress = "";
+// Hold the finger on screen to toggle between two tools: Mask and SelMask
+gesture.mask.longPress.help = "";
+// Indicator that the tool has been set as the new shortcut
+gesture.mask.infoShortcut = ""
 
 // Shortcuts to undo/redo
 gesture.history = "快捷手勢";
@@ -654,26 +669,30 @@ interface.blurFactor = "模糊強度";
 // Interface option (color of panels, if the menus are transparent)
 interface.colorBaseTransparent = "面板顏色";
 
-// Interface color preset style
+// Interface color style
 interface.preset.title = "介面預設";
-// Interface color preset style
-interface.preset.blurRed = "紅";
-// Interface color preset style
-interface.preset.blurBlue = "藍";
-// Interface color preset style
-interface.preset.blurGreen = "綠";
-// Interface color preset style
-interface.preset.blurYellow = "黃";
-// Interface color preset style
-interface.preset.blackWhite = "黑與白";
-// Interface color preset style
-interface.preset.whiteBlack = "白與黑";
-// Interface color preset style
-interface.preset.lividOrange = "青與橙";
-// Interface color preset style
-interface.preset.cardboard = "紙板";
-// Interface color preset style
+// Interface color style
 interface.preset.default = "預設設定";
+// Interface color style
+interface.preset.orange = "";
+// Interface color style (~red)
+interface.preset.cardinal = "";
+// Interface Color style (~pink)
+interface.preset.mulberry = "";
+// Interface color style
+interface.preset.brown = "";
+// Interface color style (~green)
+interface.preset.emerald = "";
+// Interface color style (~blue)
+interface.preset.neon = "";
+// Interface color style
+interface.preset.violet = "";
+// Interface color style
+interface.preset.grey = "";
+// Interface color style
+interface.preset.black = "黑";
+// Interface color style
+interface.preset.white = "白";
 
 // Reset interface settings
 interface.resetAll = "重置介面設定";
@@ -708,6 +727,12 @@ interface.fontScale = "字型尺寸";
 
 // (see Glossary for Layer)
 layer = "圖層";
+// (see Glossary for Layer)
+layers.lock = "";
+// (see Glossary for Layer)
+layers.lock.yes = ""
+// (see Glossary for Layer)
+layers.lock.warning = "";
 // (see Glossary for Layer)
 layers.addLayer = "新增圖層";
 // (see Glossary for Layer)
@@ -776,8 +801,8 @@ light.shadow.softness = "";
 // Contact shadows are more precise shadows on small distance (synonym: cavity shadows?)
 light.contact = "";
 light.contact.help = "";
-// Thickness threshold for contact shadows (synonym: threshold, bias)
-light.contact.tolerance = "";
+// Thickness threshold for screen-space shadows (synonym: threshold, bias)
+light.shadow.tolerance = "";
 // Activated the light
 light.visible = "可見性";
 // Move the light in front of the camera (but keeps its inner orientation)
@@ -902,8 +927,10 @@ menu.stroke = "筆刷設定";
 menu.paint = "畫筆設定";
 // Menu name
 menu.symmetry = "對稱";
-// Menu name
+// Menu name (pencil pressure)
 menu.pressure = "壓感";
+// Menu name
+menu.gesture = "防誤觸";
 // Menu name
 menu.layers = "圖層";
 // Menu name
@@ -946,6 +973,8 @@ mesh.typeDynamic = "動態模型";
 
 // Node is an abstract type in the scene, examples of Nodes: Mesh, Light, etc
 node = "";
+// Make the view focused on the selected item
+node.focus = "";
 
 // Disable this option to have per-tool material settings (instead of shared settings)
 paint.useGlobal = "應用全域性材料";
@@ -1086,6 +1115,8 @@ postprocess.curvature.cavity = "縫隙顏色";
 postprocess.curvature.bump = "凸起顏色";
 // https://en.wikipedia.org/wiki/Pixel_art
 postprocess.pixelArt = "";
+// Override frame accumulation feature
+postprocess.pixelArt.allowAccumulate = "";
 // Simulate scanline rendering (horizonal line)
 postprocess.scanline = "";
 postprocess.scanline.factor = "";
@@ -1209,8 +1240,7 @@ primitive.hasHole = "新增孔洞";
 primitive.radiusSync = "相同半徑";
 primitive.radiusStart = "底面半徑";
 primitive.radiusEnd = "頂面半徑";
-// Smooth curve https://en.wikipedia.org/wiki/Spline_(mathematics)
-primitive.spline = "樣條";
+curve.spline = "樣條";
 
 // Import resource (Alpha, Textures, MatCaps, etc)
 resource.import = "匯入";
@@ -1218,7 +1248,9 @@ resource.import = "匯入";
 scene.title = "場景";
 scene.title.help = "當場景內有多個物件時，在複選框處上下滑動即可快速選擇多個物件。 ";
 // Merge 2 objects without modifying the geometry or the topology
-scene.mergeSimple = "簡單合併";
+scene.join = "連線";
+// Group the selected object with a new created Empty Node as a parent
+scene.group = "";
 // Merge/weld 2 objects by recomputing all the topology and creating a new object
 scene.mergeVoxel = "體素合併";
 scene.voxelResolution = "解析度";
@@ -1226,6 +1258,13 @@ scene.voxelResolution = "解析度";
 scene.subtractionTip = "相減運算：隱藏減去物件後點擊體素合併。";
 // If all the objects are hidden, only the parts where they intersect (collide) will be kep
 scene.intersectionTip = "相交運算：隱藏所有相關模型後點擊體素合併。";
+
+// Need at least to select one object
+scene.noneButNeedAtLeastOne = "物件未選擇";
+// Need to select one object only
+scene.noneButNeedOne = "";
+// Need to select one object only
+scene.onlyOneObject = "您選擇了多個物件，無法修改圖層。"
 
 // General scene display settings
 settings.display.title = "顯示設定";
@@ -1293,9 +1332,14 @@ settings.partialDraw.help = "功能未完善！
 settings.partialDraw.warning = "如果顯示不正常，請不要忘記關閉此選項！";
 // Disable this option to force a white uniform paint instead of showing the objects painting
 settings.showPainting = "圖層繪畫";
+// Display the empty node icons in the viewport
+settings.emptyIcon = "";
 // Display the light icons in the viewport
 settings.lightIcon = "燈光圖示";
-settings.lightIcon.help = "在螢幕上顯示燈光圖示，這樣您可以直接選擇並編輯燈光。";
+// Display the camera icons in the viewport
+settings.cameraIcon = "";
+// Tooltip
+settings.icon.help = "在螢幕上顯示圖示，這樣您可以直接選擇並編輯燈光。";
 // Hole filling settings
 settings.hole = "填補孔洞";
 // Allow the hole filling algorithm to handle non-manifold (non regular topology)
@@ -1684,7 +1728,7 @@ tool.tube = "圓管";
 tool.insert = "基本體";
 // Ideally <10 chars (Flip/Invert/Negate the shape)
 tool.shape.flip = "翻轉";
-// Ideally <10 chars (View, do nothing in particular)
+// Ideally <10 chars (No shape selected, same as Camera mode, does nothing in particular)
 tool.shape.view = "瀏覽";
 // Ideally <10 chars (Lasso selection)
 tool.shape.lasso = "套索";
@@ -1784,8 +1828,6 @@ tool.mask.closeAction.help = "- 無
 
 // Transform/Matrix
 tool.matrix = "座標";
-// Duplicate/Clone the mesh when interacting with the gizmo
-tool.matrix.clone = "克隆";
 // The target of the transform is either the Matrix or the Vertex of the object
 tool.matrix.apply = "";
 // Automatic
@@ -1834,6 +1876,10 @@ tool.transform.transformRestrictRotationY.help = "";
 
 // Size of the gizmo
 tool.gizmo.size = "部件尺寸";
+// When enabled, taping one the gizmo widget will open a numerical input popup
+tool.gizmo.allowInput = "";
+tool.gizmo.allowInput.help = "";
+// Angle threshold
 tool.gizmo.linearRollThreshold = "線性旋轉閾值";
 tool.gizmo.linearRollThreshold.help = "此引數可影響模型旋轉時的“跟手程度”。
 
@@ -1857,17 +1903,8 @@ tool.gizmo.tapNone = "無";
 tool.gizmo.tapFirstHit = "點選";
 tool.gizmo.tapMiddleStab = "中點";
 
-tool.lathe.axis = "旋轉軸位置";
-// The lathe generator (line) is fixed on the screen
-tool.lathe.axis.fixed = "固定位置";
-// synonym: Start & End, Custom
-tool.lathe.axis.dynamic = "自由移動";
-
-tool.tube.snap = "表面捕捉";
-// Snap everything of the tube on the surface
-tool.tube.snap.all = "整條曲線";
-// Snap only the first and last control point of the tube on the surface
-tool.tube.snap.startEnd = "僅端點";
+// The lathe generator is a vertical line and cannot be rotated
+tool.lathe.axisFixed = "固定位置";
 
 // Fill the object's hole
 tool.hole = "填補孔洞";
@@ -1917,6 +1954,8 @@ topology.multires.reverse.confirm = "無法再進一步簡化模型。
 當前物件的拓撲無法再進一步細分。";
 topology.multires.subdivide = "細分";
 topology.multires.subdivide.confirm = "該物件將會產生 $0M 個頂點，您確定要繼續嗎？";
+// Prevents the user from subdivide the object again, a warning is displayed (with a UI link to increase this limit)
+topology.multires.subdivide.limit = ""
 topology.multires.deleteLower = "刪除低模";
 topology.multires.deleteHigher = "刪除高模";
 topology.multires.keepTriangles = "保留三角形";
@@ -2039,6 +2078,8 @@ binding.reset = "";
 binding.materialPicker = "";
 // Edit the tool brush size/radius
 binding.editRadius = "";
+// Edit the tool brush size/radius
+binding.editIntensity = "";
 // Snap the camera
 binding.viewFront = "";
 // Snap the camera
@@ -2053,6 +2094,10 @@ binding.panRight = "";
 binding.panForward = "";
 // Move/Translate the view
 binding.panBackward = "";
+// Move/Translate the view
+binding.panUp = "";
+// Move/Translate the view
+binding.panDown = "";
 // Snap the view (while rotating)
 binding.snapViewOnRotate = "";
 // Open a Nomad internal project (replace current scene)
