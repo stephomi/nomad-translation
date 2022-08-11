@@ -746,6 +746,15 @@ interface.cursorStep = "Vertical spacing";
 interface.panelWidth = "Panel width";
 // Size of fonts
 interface.fontScale = "Font scale";
+// Inset
+interface.inset.title = "Edge offsets";
+interface.inset.title.help = "You can change theses values only if you have issues interacting with the buttons on the screen edges.
+
+If the slider is disabled, Nomad will use the safe area values returned by the device itself.";
+interface.inset.left = "Left";
+interface.inset.right = "Right";
+interface.inset.bottom = "Bottom";
+interface.inset.top = "Top";
 
 // (see Glossary for Layer)
 layer = "Layer";
@@ -1745,6 +1754,8 @@ tool.gizmo.auto = "Auto";
 tool.gizmo.editPivot = "Pivot";
 // Ideally <10 chars (Snap angle)
 tool.gizmo.rotateSnap = "Snap";
+// Ideally <10 chars (Snap translation)
+tool.gizmo.moveSnap = "Snap";
 // Ideally <10 chars (Local space)
 tool.gizmo.local = "Local";
 // Ideally <10 chars (Rotate, Translate and Scale the object)
@@ -1878,23 +1889,26 @@ tool.matrix = "Matrix";
 tool.matrix.apply = "Target";
 // Automatic
 tool.matrix.apply.auto = "Auto";
-// Vertex/Point of a mesh
-tool.matrix.apply.vertex = "Vertex";
-// Object-level transform (Matrix)
+// Transform the object alone (the children stands still)
 tool.matrix.apply.object = "Object";
+// Auto apply the transform on the vertices
+tool.matrix.apply.vertex = "Vertex";
+// Transform the object and its children
+tool.matrix.apply.group = "Group";
 tool.matrix.apply.help = "-- Auto
-Let Nomad choose between Vertex or Object mode.
-Typically, object is preferred unless symmetry is enabled or if there is masking on the mesh.
+By default, this will work similarly to the Group option.
+If the mesh has masking, or if gizmo symmetry is enabled, it will work the same as Vertex.
 
 -- Vertex
-Vertices are transformed individually.
-Symmetry and mask are taken into account.
-For primitives that are not validated, Object mode is forced.
+Try to apply the transform on the vertices, it won't work on unvalidated primitives.
+Instances will be impacted as well.
 
 -- Object
-The object is transformed as a whole.
-Symmetry and mask are ignored.
-If you use non-uniform scaling, Vertex mode will be forced.";
+Move the object only, ignoring symmetry and masking.
+Only the edited node will move, the children will stand still.
+
+-- Group
+Move the node, ignoring symmetry and masking. The rest of the hierarchy will be transformed as well.";
 // Operation on the mesh
 tool.matrix.action = "Operation";
 tool.matrix.action.help = "-- Move origin

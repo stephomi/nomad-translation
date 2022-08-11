@@ -1,6 +1,10 @@
-# About
+# About /!\
 
 Translation file for [Nomad Sculpt](https://nomadsculpt.com/).
+
+Translation is in progress, and will be done by a translation agency.
+Do not waste time doing it.
+The repository will probably stay public, mostly for per-language 3d technical terms.
 
 # Testing
 
