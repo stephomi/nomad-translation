@@ -37,8 +37,6 @@ item.delete.confirm = "請確認是否刪除？";
 item.delete.confirm.yes = "確認刪除";
 // When we delete the item but the image is used somewhere
 item.delete.imageUsed = "";
-// Remove an item but keep the children (Unlink?)
-item.pop = "";
 // Convert the item type (mesh, light) to a simple Node type
 item.toNode = "";
 // Item visibility (object, layer, etc)
@@ -73,6 +71,7 @@ toggle.auto = "";
 loading.reprocess = "正在載入資料，請等待... ($0/$1)
 
 $2";
+loading.reprocess.cancel = "";
 
 // Color of an object
 material.color = "顏色";
@@ -170,6 +169,8 @@ alert.dynamic.disable = "關閉動態網格";
 alert.colorPicker = "在物件上拖動手指選取一個顏色";
 // Transform mode is when the user can move the reference (image in the background) with its two fingers
 alert.backgroundTransform = "輕點即可退出背景變換";
+// Edit the symmetry plane with the gizmo
+alert.editSymmetry = "";
 alert.view.reset = "重置檢視";
 // Snap the view to the nearest aligned 90° angle
 alert.view.snap = "切換檢視";
@@ -286,11 +287,11 @@ camera.doubleTapMesh = "雙擊物件";
 // When we double tap on the background with the finger/stylus
 camera.doubleTapBackground = "雙擊背景";
 // When we double tap on the background with the finger/stylus
-camera.doubleTapBackgroundFocus.toggle ="";
+camera.doubleTapBackgroundFocus.toggle = "";
 // Focus on the selection
-camera.doubleTapBackgroundFocus.selection ="";
+camera.doubleTapBackgroundFocus.selection = "";
 // Focus on the entire scene
-camera.doubleTapBackgroundFocus.scene ="";
+camera.doubleTapBackgroundFocus.scene = "";
 // When double tapping with the finger/stylus, the camera pivot will be updated
 camera.doubleTapPivot = "雙擊後改變";
 camera.doubleTapPivot.help = "雙擊後改變座標檢視中心點。";
@@ -576,6 +577,7 @@ gesture.fingerRadius.help = "在螢幕上使用三指垂直移動可調節當前
 
 // If this option is enabled, finger inputs on screen will use the smoothing tool
 gesture.fingerSmooth = "將手指用於平滑";
+gesture.fingerSmooth.help = "";
 // If enabled, the pressure will be taken into account even if it's not coming from a recognized stylus
 gesture.unknownPressure = "允許未識別的壓感";
 gesture.unknownPressure.help = "當您的觸控筆壓感無法使用或者希望使用手指壓感時，請勾選此選項。";
@@ -721,6 +723,9 @@ interface.preset.white = "白";
 // Reset interface settings
 interface.resetAll = "重置介面設定";
 interface.resetAll.confirm = "確定要重置介面嗎？";
+// Interface option (main base color)
+interface.iconSupport = "";
+interface.iconSupport.help = "";
 // Interface customization
 interface.flipTop = "整體反轉";
 // Interface customization
@@ -1017,7 +1022,6 @@ paint.paintAll.help = "將當前材料應用到所選物件上。
 // Apply the paint on the object but ignore painting intensity (force full intensity)
 paint.paintAllForce = "強制全部上色";
 paint.strokePainting.title = "畫筆設定";
-paint.layerWarning = "圖層上的通道蒙版不可用。";
 // Brush stroke texture
 paint.texture.title = "貼圖繪製";
 paint.texture.title.help = "將圖片作為繪畫的筆刷,在模型表面繪畫。
@@ -1275,16 +1279,35 @@ scene.title = "場景";
 scene.title.help = "當場景內有多個物件時，在複選框處上下滑動即可快速選擇多個物件。 ";
 // The view will focus on the item when we click on it
 scene.focus = "";
+// Icon size in pixel (min/max)
+scene.iconSize = "";
+// Min size of icon
+scene.iconSize.min = "";
+// Max size of icon
+scene.iconSize.max = "";
+// display hierarchy lines (visibility helper)
+scene.showHierarchy = "";
+scene.showHierarchy.help = "";
+scene.showHierarchyNomadPivot = "";
+scene.showHierarchyNomadPivot.help = "";
+// The view will focus on the item when we click on it
+scene.syncVisible = "";
+scene.syncVisible.help = "";
 // Merge 2 objects without modifying the geometry or the topology
 scene.join = "連線";
 // Group the selected object with a new created Empty Node as a parent
 scene.group = "";
 // Mirror node type, a node that make many copies of its children (mirror symmetry)
 scene.mirror = "";
+// Curve node type, a node that make many copies of its children (along a curve)
+scene.curve = "";
 // Array node type, a node that make many copies of its children (grid repetition pattern)
 scene.array = "";
 // Radial node type, a node that make many copies of its children (radial symmetry)
 scene.radial = "";
+// Nodes that make many copies of its children (type of mirror/curve/array/radial)
+scene.repeaters = "";
+scene.repeaters.help = "";
 // Validate button
 scene.validateGroup = "";
 // If we should join children
@@ -1747,11 +1770,13 @@ tool.stamp = "圖章";
 // Ideally <10 chars (Delete Layer, a tool that can cancel the Layer deformation/paint)
 tool.clearLayer = "擦除";
 // Ideally <10 chars (Select multiple objects with a lasso tool)
-tool.lassoSelect = "套索";
+tool.select = "套索";
 // Ideally <10 chars (Rotate, Translate and Scale the object)
 tool.gizmo = "軸向變換";
-// Ideally <10 chars (Automatic)
+// Ideally <10 chars (Automatic pivot)
 tool.gizmo.auto = "自動原點";
+// Ideally <10 chars (Custom pivot)
+tool.gizmo.custom = "";
 // Ideally <10 chars
 tool.gizmo.editPivot = "編輯原點";
 // Ideally <10 chars (Snap angle)
@@ -1760,6 +1785,8 @@ tool.gizmo.rotateSnap = "角度吸附";
 tool.gizmo.moveSnap = "";
 // Ideally <10 chars (Local space)
 tool.gizmo.local = "軸向";
+// Ideally <10 chars (Local space)
+tool.gizmo.world = "";
 // Ideally <10 chars (Rotate, Translate and Scale the object)
 tool.transform = "自由變換";
 // Ideally <10 chars (Translate the object)
@@ -1917,14 +1944,11 @@ tool.matrix.resetTransform = "重設";
 // Synonym: Apply (transform)
 tool.matrix.bakeTransform = "烘焙";
 
-tool.transform.multiTouch = "多點觸控";
-tool.transform.multiTouch.help = "如果您禁用此選項，則每次都只能使用移動、旋轉、縮放一種操作。";
-tool.transform.transformRestrictRotationY = "";
-tool.transform.transformRestrictRotationY.help = "";
+tool.transform.tip = "";
 
 // Size of the gizmo
 tool.gizmo.size = "部件尺寸";
-// When enabled, taping one the gizmo widget will open a numerical input popup
+// When enabled, tapping one the gizmo widget will open a numerical input popup
 tool.gizmo.allowInput = "";
 tool.gizmo.allowInput.help = "";
 // Angle threshold

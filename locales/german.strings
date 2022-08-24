@@ -37,8 +37,6 @@ item.delete.confirm = "Löschen bestätigen?";
 item.delete.confirm.yes = "JA, löschen";
 // When we delete the item but the image is used somewhere
 item.delete.imageUsed = "";
-// Remove an item but keep the children (Unlink?)
-item.pop = "";
 // Convert the item type (mesh, light) to a simple Node type
 item.toNode = "";
 // Item visibility (object, layer, etc)
@@ -73,6 +71,7 @@ toggle.auto = "";
 loading.reprocess = "Fehlende Vorschaubilder, erstelle neu... ($0/$1)
 
 $2";
+loading.reprocess.cancel = "";
 
 // Color of an object
 material.color = "Color";
@@ -168,6 +167,8 @@ alert.dynamic.disable = "Dynamic Topology ist deaktiviert!";
 alert.colorPicker = "Ziehen Sie Ihren Finger auf das Mesh, um eine Farbe auszuwählen.";
 // Transform mode is when the user can move the reference (image in the background) with its two fingers
 alert.backgroundTransform = "Einfaches Antippen, um den Transformationsmodus zu verlassen.";
+// Edit the symmetry plane with the gizmo
+alert.editSymmetry = "";
 alert.view.reset = "Reset Ansicht";
 // Snap the view to the nearest aligned 90° angle
 alert.view.snap = "Snap-Ansicht";
@@ -284,11 +285,11 @@ camera.doubleTapMesh = "Doppel-Tap Mesh";
 // When we double tap on the background with the finger/stylus
 camera.doubleTapBackground = "Doppel-Tap Hintergrund";
 // When we double tap on the background with the finger/stylus
-camera.doubleTapBackgroundFocus.toggle ="";
+camera.doubleTapBackgroundFocus.toggle = "";
 // Focus on the selection
-camera.doubleTapBackgroundFocus.selection ="";
+camera.doubleTapBackgroundFocus.selection = "";
 // Focus on the entire scene
-camera.doubleTapBackgroundFocus.scene ="";
+camera.doubleTapBackgroundFocus.scene = "";
 // When double tapping with the finger/stylus, the camera pivot will be updated
 camera.doubleTapPivot = "Update bei Doppel-Tap";
 camera.doubleTapPivot.help = "Aktualisieren Sie den Drehpunkt (Pivot) beim doppelten Antippen.";
@@ -574,6 +575,7 @@ gesture.fingerRadius.help = "Bewegen Sie 3 Finger horizontal auf der dem Arbeits
 
 // If this option is enabled, finger inputs on screen will use the smoothing tool
 gesture.fingerSmooth = "Finger glättet immer";
+gesture.fingerSmooth.help = "";
 // If enabled, the pressure will be taken into account even if it's not coming from a recognized stylus
 gesture.unknownPressure = "Unerkannten Pressure zulassen";
 gesture.unknownPressure.help = "Aktivieren Sie diese Option, wenn Pressure (Druck) mit Ihrem Stift nicht funktioniert oder wenn Sie einen Pressure für den Finger benötigen.";
@@ -719,6 +721,9 @@ interface.preset.white = "weiß";
 // Reset interface settings
 interface.resetAll = "Reset Interface";
 interface.resetAll.confirm = "Alle Interface-Einstellungen zurücksetzen?";
+// Interface option (main base color)
+interface.iconSupport = "";
+interface.iconSupport.help = "";
 // Interface customization
 interface.flipTop = "Oben spiegeln";
 // Interface customization
@@ -1005,7 +1010,6 @@ Maskierte Bereiche und deaktivierte Kanäle werden berücksichtigt und entsprech
 // Apply the paint on the object but ignore painting intensity (force full intensity)
 paint.paintAllForce = "Füllen erzwingen";
 paint.strokePainting.title = "Painting";
-paint.layerWarning = "Die Kanalmaskierung wird ignoriert, wenn Sie versuchen, sie auf eine Ebene anzuwenden.";
 // Brush stroke texture
 paint.texture.title = "Textur";
 paint.texture.title.help = "Ein Bild, das den Brush Stroke färbt.
@@ -1263,16 +1267,35 @@ scene.title = "Szene";
 scene.title.help = "Wenn Sie das Auswahlkästchen verwenden, halten Sie Ihren Finger gedrückt und ziehen Sie ihn, um andere Objekte einfach auszuwählen.";
 // The view will focus on the item when we click on it
 scene.focus = "";
+// Icon size in pixel (min/max)
+scene.iconSize = "";
+// Min size of icon
+scene.iconSize.min = "";
+// Max size of icon
+scene.iconSize.max = "";
+// display hierarchy lines (visibility helper)
+scene.showHierarchy = "";
+scene.showHierarchy.help = "";
+scene.showHierarchyNomadPivot = "";
+scene.showHierarchyNomadPivot.help = "";
+// The view will focus on the item when we click on it
+scene.syncVisible = "";
+scene.syncVisible.help = "";
 // Merge 2 objects without modifying the geometry or the topology
 scene.join = "";
 // Group the selected object with a new created Empty Node as a parent
 scene.group = "";
 // Mirror node type, a node that make many copies of its children (mirror symmetry)
 scene.mirror = "";
+// Curve node type, a node that make many copies of its children (along a curve)
+scene.curve = "";
 // Array node type, a node that make many copies of its children (grid repetition pattern)
 scene.array = "";
 // Radial node type, a node that make many copies of its children (radial symmetry)
 scene.radial = "";
+// Nodes that make many copies of its children (type of mirror/curve/array/radial)
+scene.repeaters = "";
+scene.repeaters.help = "";
 // Validate button
 scene.validateGroup = "";
 // If we should join children
@@ -1713,11 +1736,13 @@ tool.stamp = "Stamp";
 // Ideally <10 chars (Delete Layer, a tool that can cancel the Layer deformation/paint)
 tool.clearLayer = "DelLayer";
 // Ideally <10 chars (Select multiple objects with a lasso tool)
-tool.lassoSelect = "";
+tool.select = "";
 // Ideally <10 chars (Rotate, Translate and Scale the object)
 tool.gizmo = "Gizmo";
-// Ideally <10 chars (Automatic)
+// Ideally <10 chars (Automatic pivot)
 tool.gizmo.auto = "Auto";
+// Ideally <10 chars (Custom pivot)
+tool.gizmo.custom = "";
 // Ideally <10 chars
 tool.gizmo.editPivot = "Pivot";
 // Ideally <10 chars (Snap angle)
@@ -1726,6 +1751,8 @@ tool.gizmo.rotateSnap = "Snap";
 tool.gizmo.moveSnap = "";
 // Ideally <10 chars (Local space)
 tool.gizmo.local = "Local";
+// Ideally <10 chars (Local space)
+tool.gizmo.world = "";
 // Ideally <10 chars (Rotate, Translate and Scale the object)
 tool.transform = "Transform";
 // Ideally <10 chars (Translate the object)
@@ -1888,14 +1915,11 @@ tool.matrix.resetTransform = "Reset";
 // Synonym: Apply (transform)
 tool.matrix.bakeTransform = "Backen";
 
-tool.transform.multiTouch = "Multi-Touch";
-tool.transform.multiTouch.help = "Wenn diese Option deaktiviert ist, können Sie jeweils nur einen Modus (Translate, Rotate, Skalieren) verwenden.";
-tool.transform.transformRestrictRotationY = "";
-tool.transform.transformRestrictRotationY.help = "";
+tool.transform.tip = "";
 
 // Size of the gizmo
 tool.gizmo.size = "Widget-Größe";
-// When enabled, taping one the gizmo widget will open a numerical input popup
+// When enabled, tapping one the gizmo widget will open a numerical input popup
 tool.gizmo.allowInput = "";
 tool.gizmo.allowInput.help = "";
 // Angle threshold
