@@ -152,10 +152,6 @@ alert.voxelRemesh.invalidInput = "Invalid input!";
 alert.matrix.clone = "The object will be duplicated";
 // Helper popup to tell the users the object will cloned
 alert.matrix.instance = "The object will be instanced";
-// A pivot refers the gizmo 3d position
-alert.gizmo.usePivot = "Use custom pivot.";
-// A pivot refers the gizmo 3d position
-alert.gizmo.useAuto = "Use automatic pivot.";
 // A pivot refers the gizmo 3d position, this mode means we are moving the pivot
 alert.gizmo.editPivot = "Edit pivot mode.";
 // A pivot refers the gizmo 3d position
@@ -314,6 +310,14 @@ curve.preset = "Preset";
 curve.catmull = "Catmull-Rom";
 // Curve curve, https://en.wikipedia.org/wiki/Spline_(mathematics)
 curve.spline = "Spline";
+// Display the falloff curve in a symmetric way
+curve.symmetric.help = "Display the falloff in a symmetric way.
+
+This option is only a visual cue, it doesn't impact the falloff itself";
+
+// set the desired FPS (frame per second, refresh rate)
+debug.targetFPS = "Target FPS";
+debug.targetFPS.help = "When disabled, the default value means it will sync with the display's refresh rate.";
 
 // Debug option, the newly created primitives will contains texture coordinates (UVs)
 debug.uvPrimitive = "Keep primitive UVs";
@@ -766,9 +770,6 @@ interface.toolboxHide.help = "Enable this option if you want to hide the toolbox
 interface.toolbox.maxColumn = "Max column toolbox";
 // Reset the tool's order in the toolbox
 interface.toolbox.resetOrder = "Reset toolbox order";
-// Mirror the curve in the tool falloff
-interface.curveToolSymmetric = "Symmetrical tool falloff";
-interface.curveToolSymmetric.help = "The widget can be found in the Tool panel under the falloff option.";
 // Scale the interface
 interface.scale = "Overall scale";
 // Spacing between widgets
@@ -815,7 +816,7 @@ For example by experimenting different facial expression without relying on the 
 
 For painting data, layers are sorted in a top-down fashion; so layers on top will mask the lower ones.
 
-You can erase part of the layer (and thus, the layer influence) by using the 'DelLayer' tool.";
+You can erase part of the layer by using the 'DelLayer' tool.";
 layers.primitive = "Layers are unavailable for primitives.";
 // When there is no layer selected (see Glossary for Layer)
 layers.baseSelected = "None";
@@ -1318,7 +1319,6 @@ primitive.hasHole = "Has hole";
 primitive.radiusSync = "Same radius";
 primitive.radiusStart = "Radius start";
 primitive.radiusEnd = "Radius end";
-curve.spline = "Spline";
 
 // Import resource (Alpha, Textures, MatCaps, etc)
 resource.import = "Import...";
@@ -1660,6 +1660,9 @@ stroke.alphaProject.surfaceContinuous = "Surface";
 // Project the alpha onto the surface in the direction of the camera view
 stroke.alphaProject.screenFixed = "Screen project";
 stroke.alphaRotation = "Rotation";
+stroke.alphaRotation.lock.help = "Lock the alpha orientation.
+
+If the rotation is unlocked, the orientation will follow the stroke direction in real-time.";
 // Repeat the image
 stroke.alphaTiling = "Tiling";
 // Scale the image (make it bigger or smaller)
@@ -1821,10 +1824,6 @@ tool.clearLayer = "DelLayer";
 tool.select = "Select";
 // Ideally <10 chars (Rotate, Translate and Scale the object)
 tool.gizmo = "Gizmo";
-// Ideally <10 chars (Automatic pivot)
-tool.gizmo.auto = "Auto";
-// Ideally <10 chars (Custom pivot)
-tool.gizmo.custom = "Custom";
 // Ideally <10 chars
 tool.gizmo.editPivot = "Pivot";
 // Ideally <10 chars (Snap angle)
@@ -2003,6 +2002,8 @@ Apply the matrix to the vertex and reset the matrix. Visually, nothing should ch
 tool.matrix.translation = "Translation";
 tool.matrix.rotation = "Rotation";
 tool.matrix.scale = "Scale";
+// Synonym: skew, https://en.wikipedia.org/wiki/Shear_matrix or https://en.wikipedia.org/wiki/Shear_mapping
+tool.matrix.shear = "Shear";
 tool.matrix.uniformScale = "Uniform scale";
 tool.matrix.uniformScale.help = "Nomad cannot support non-uniform scale as object transform, so it will be applied as a vertex transformation.";
 tool.matrix.moveToOrigin = "Move origin";
@@ -2138,7 +2139,7 @@ topology.surface.method.help = "Behavior of dynamic topology:
 - Subdivision: add detail
 - Decimation: remove detail";
 topology.surface.useMasking = "Protect masked area";
-topology.surface.useMasking.help = "The masked areas will protect the topology from beging changed.";
+topology.surface.useMasking.help = "The masked areas will protect the topology from being changed.";
 topology.surface.extrapolate = "Vertex extrapolation";
 // DynTopo
 topology.dynamic = "Dynamic topology";
