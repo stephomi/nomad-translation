@@ -91,6 +91,16 @@ material.normal = "सामान्य";
 material.occlusion = "बाधा";
 // Textures, basically images wrapped on models (synonym: Maps, Texture maps)
 material.textures = "टेक्स्चर";
+// Textures/Image
+material.texture = "";
+// Texture filtering https://en.wikipedia.org/wiki/Texture_filtering
+material.texture.filter = "";
+// Nearest Filtering (closest sample)
+material.texture.nearest = "";
+// Bilinear Filter
+material.texture.linear = "";
+// Mipmap filtering
+material.texture.mipmap = "";
 
 // Minify
 about.minify = "UI को छोटा करें";
@@ -208,7 +218,7 @@ background = "पृष्ठभूमि";
 background.color = "रंग";
 // The environment (HDRI) will be displayed in the background
 background.environment = "पर्यावरण";
-background.blur = "ब्लर";
+background.blur = "धुंधलापन";
 background.exposure = "अनावृत्ति";
 
 // Image that the artist uses as a reference
@@ -462,12 +472,6 @@ file.export.gltf.layer.help = "परतों को मोर्फ़ के 
 // Whether we include painting of layers in the exported file (see glossary for layer)
 file.export.gltf.layerPaint = "परत पैंट एक्सपोर्ट करें";
 file.export.gltf.layerPaint.help = "परत पेंटिंग निर्यात करें. इसे आमतौर पर अन्य सॉफ्टवेयर द्वारा नजरअंदाज कर दिया जाता है.";
-// Whether the exported layer will use the non-standard Nomad encoding (smaller size)
-file.export.gltf.layerNomad = "Nomad परत एन्कोडिंग";
-file.export.gltf.layerNomad.help = "पेंट परत को 16-बिट की जगह 8-बिट में लिखकर फाइल को छोटा बना सकते हैं.
-
-यह एन्कोडिंग केवल Nomad में काम करती है क्योंकि यह निरपेक्ष पेंटिंग का उपयोग करेगा.
-अन्य सॉफ़्टवेयर के परिणाम गलत होंगे क्योंकि glTF को सापेक्ष एन्कोडिंग की आवश्यकता होती है.";
 // Whether we include the vertex color in the exported file
 file.export.gltf.color0 = "शीर्ष रंग एक्सपोर्ट करें";
 file.export.gltf.color0.help = "शीर्ष रंग एक्सपोर्ट करें. आधिकारिक तौर पर glTF द्वारा समर्थित है, इसलिए इसे अन्य सॉफ्टवेयर पर भी काम करना चाहिए.";
@@ -720,7 +724,7 @@ interface.colorSelect = "रंग विजेट";
 // Interface option (if the menus are transparent or opaque)
 interface.panelTransparent = "पारदर्शी पैनल";
 // Interface option (panel blurriness, if the menus are transparent)
-interface.blurFactor = "ब्लर तीव्रता";
+interface.blurFactor = "धुंधलापन तीव्रता";
 // Interface option (color of panels, if the menus are transparent)
 interface.colorBaseTransparent = "रंग पैनल";
 
@@ -1136,9 +1140,9 @@ postprocess.ssao.bias.help = "सतह की वक्रता के आध�
 // https://en.wikipedia.org/wiki/Depth_of_field
 postprocess.dof = "फ़ील्ड की गहराई";
 // The blur factor behind the focused point
-postprocess.dof.blurFar = "दूर ब्लर";
+postprocess.dof.blurFar = "दूर धुंधलापन";
 // The blur factor in front of the focused point
-postprocess.dof.blurNear = "पास ब्लर";
+postprocess.dof.blurNear = "पास धुंधलापन";
 postprocess.dof.focusTip = "फ़ोकस बिंदु बदलने के लिए किसी वस्तु पर टैप करें.";
 // Bloom (light bleeding)
 // https://en.wikipedia.org/wiki/Bloom_(shader_effect)
@@ -1516,7 +1520,7 @@ shading.lights.warning = "प्रकाश को PBR छायांकन �
 shading.environment = "पर्यावरण";
 shading.environment.import = "HDR इंपोर्ट करें";
 shading.environment.exposure = "अनावृत्ति";
-shading.environment.backgroundBlur = "ब्लर (पृष्ठभूमि)";
+shading.environment.backgroundBlur = "धुंधलापन (पृष्ठभूमि)";
 shading.environment.rotation = "घुमाव";
 shading.environment.rotation.help = "आप व्यूपोर्ट पर 3 उंगलियों को क्षैतिज रूप से घसीटकर पर्यावरण को घुमा सकते हैं.";
 // The environment will always be aligned with the camera (so that the lighting is consistent)
@@ -1931,7 +1935,7 @@ tool.mask.invert = "उलटें";
 // Mask or Unmask a region (leave other region that unconnected intact)
 tool.mask.flipConnected = "मुखौटा उलटें (जुड़ा हुआ)";
 // Blur the painted mask
-tool.mask.blur = "ब्लर";
+tool.mask.blur = "धुंधलापन";
 // Sharpen the edge of the painted mask area
 tool.mask.sharpen = "पैना करें";
 // The thickness of the extracted mesh (from the painted mask)
@@ -2013,7 +2017,6 @@ tool.matrix.scale = "स्केल";
 // Synonym: shear, https://en.wikipedia.org/wiki/Shear_matrix or https://en.wikipedia.org/wiki/Shear_mapping
 tool.matrix.skew = "शीयर";
 tool.matrix.uniformScale = "समरूप पैमाना";
-tool.matrix.uniformScale.help = "Nomad वस्तु रूपांतरण के रूप में असमान पैमाने का समर्थन नहीं कर सकता है, इसलिए इसे एक शीर्ष बिंदु रूपांतरण के रूप में लागू किया जाएगा.";
 tool.matrix.moveToOrigin = "मूल दूसरी जगह ले जाएँ";
 tool.matrix.resetTransform = "रीसेट करें";
 // Synonym: Apply (transform)
