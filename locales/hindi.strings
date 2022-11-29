@@ -93,6 +93,8 @@ material.occlusion = "बाधा";
 material.textures = "टेक्स्चर";
 // Textures/Image
 material.texture = "";
+// A warning indicating that the mesh has no UVs
+material.warningNoUVs = "";
 // Texture filtering https://en.wikipedia.org/wiki/Texture_filtering
 material.texture.filter = "";
 // Nearest Filtering (closest sample)
@@ -107,8 +109,14 @@ about.minify = "UI को छोटा करें";
 about.minify.help = "आप अपनी स्क्रीन को 4 उंगलियों से भी टैप कर सकते हैं, गर आपकी डिवाइस इसे सपोर्ट करती है तो।";
 // Turntable will rotate the whole scene on itself (as it if was on a turntable)
 about.turntable = "टर्नटेबल";
+// Rotation center of the turntable
+about.turntable.pivot = "";
+// Keep current pivot
+about.turntable.pivot.keep = "";
+// Turntable pivot will be at the center of the scene
+about.turntable.pivot.scene = "दृश्य";
 // Make the entire scene turn around (speed of the animation)
-about.turntableSpeed = "टर्नटेबल की गति";
+about.turntable.speed = "टर्नटेबल की गति";
 // Stuffs that I used to make the app
 about.credits = "आभार";
 // Link to open source projects that I used for the app
@@ -135,6 +143,8 @@ about.facebook = "Facebook";
 // Link to the App Discord account
 about.discord = "Discord";
 
+// The user canceled an operation that was running
+alert.aborted = "";
 // Error when an algorithm needs the object to have an hole (usually to fill it)
 alert.hole.nothing = "वस्तु में कोई छेद नहीं है!";
 // Visibility of the object is off (but should be on)
@@ -446,7 +456,6 @@ file.import.add.confirm = "नयी फ़ाइल इंपोर्ट क�
 
 // Export scene file
 file.export.title = "एक्सपोर्ट करें";
-file.export.title.help = "यदि संभव हो तो glTF एक्सपोर्ट का समर्थन करें क्योंकि यह अन्य प्रारुपों की तुलना में अधिक फ़ीचर्स का समर्थन करता है.";
 
 // Export the current selected objects instead of the entire scene
 file.onlySelection = "केवल चयनित वस्तुओं को शामिल करें";
@@ -464,6 +473,15 @@ file.export.normal = "नॉर्मल्स एक्सपोर्ट क�
 file.export.normal.help = "यदि आप फ़ाइल को किसी अन्य सॉफ़्टवेयर में खोलना चाहते हैं तो इस विकल्प को चुनें.
 
 Nomad हमेशा नॉर्मल्स की अनदेखी करता है क्योंकि यह उनकी फिर से गणना करेगा.";
+
+// color space (linear or srgb), do not translate linear/srgb if there is a doubt
+file.export.colorSpace = ""
+file.export.colorSpace.help = "";
+file.export.colorSpace.linear = "";
+file.export.colorSpace.srgb = "";
+
+file.export.nomad = "";
+file.export.nomad.help = "";
 
 file.export.gltf = "glTF 2.0 का निर्यात करें";
 // Whether we include layers in the exported file (see glossary for layer)
@@ -565,6 +583,9 @@ pressure.noGrab = "स्ट्रोक प्रकार 'ग्रैब', �
 pressure.radius = "त्रिज्या";
 // The stylus pressure will impact the tool intensity (more pressure -> stronger intensity)
 pressure.intensity = "तीव्रता";
+// Average pencil pressure event to get smoother result
+pressure.average = "";
+pressure.average.help = "";
 
 // Customize whether finger and/or stylus can move the Camera
 gesture.cameraInteraction = "कैमरा:";
@@ -629,8 +650,8 @@ gesture.mask.longPress = "देर तक दबाना (मुखौटा �
 gesture.mask.longPress.help = "जब मुखौटा या मुखौटाचयन सक्रिय हो, तो उन टूल्स के बीच टॉगल करने के लिए उंगली को लंबे समय तक दबाएं.
 
 यदि आप उंगली को हिलाए बिना देर तक दबाते हैं, तो नया टूल डिफ़ॉल्ट मुखौटा शॉर्टकट के रूप में उपयोग किया जाएगा.";
-// Indicator that the tool has been set as the new shortcut
-gesture.mask.infoShortcut = "$0 मुखौटा शॉर्टकट के रूप में सेट किया गया.";
+// Shortcut customization, choose the action that the shortcut will performan (select tool, etc)
+gesture.shortcut = "शॉर्टकट";
 
 // Shortcuts to undo/redo
 gesture.history = "इतिहास शॉर्टकट";
@@ -966,7 +987,7 @@ material.flipCulling = "विपरीत कलिंग";
 material.reflectance = "परावर्तनीय";
 material.reflectance.help = "गैर-धातु मटीरीयल के लिए मटीरीयल को प्राप्त होने वाले परावर्तन की मात्रा को नियंत्रित करें.
 
-अधिकांश समय, डिफ़ॉल्ट मान का उपयोग किया जाना चाहिए (0.5, जो सामान्य कोण पर मानक 4% परावर्तित प्रकाश से मेल खाता है).";
+अधिकांश समय, डिफ़ॉल्ट मान का उपयोग किया जाना चाहिए (जो सामान्य कोण पर मानक 4% परावर्तित प्रकाश से मेल खाता है).";
 
 // Menu name
 menu.files = "फ़ाइलें";
@@ -1072,7 +1093,7 @@ paint.texture.warningIgnored = "वर्तमान टूल टेक्स�
 paint.useAlpha = "स्ट्रोक अल्फ़ा का उपयोग करें";
 paint.useAlpha.help = "पेंटिंग को मॉड्यूलेट करने के लिए स्ट्रोक मेनू में अल्फा सेट का उपयोग करना.";
 // Whether the Brush Falloff will be used to module painting
-paint.useFalloff = "स्ट्रोक फ़ॉलऑफ़ का उपयोग करें";
+paint.useCurve = "स्ट्रोक फ़ॉलऑफ़ का उपयोग करें";
 paint.useFalloff.help = "पेंटिंग को मॉड्यूलेट करने के लिए स्ट्रोक मेनू में सेट फॉलऑफ़ का उपयोग करना.";
 
 // when the user choose a new item name (through iOS/Android virtual keyboard)
@@ -1720,6 +1741,8 @@ symmetry.radial.title = "व्यासीय";
 symmetry.radialX = "व्यासीय X";
 symmetry.radialY = "व्यासीय Y";
 symmetry.radialZ = "व्यासीय Z";
+// A warning indicating that we limit the number of repetitions ($0 is a number)
+symmetry.limited = "";
 // Synonym: Offset
 symmetry.offset.title = "आफसेट";
 symmetry.offsetX = "आफसेट X";
@@ -1810,6 +1833,8 @@ tool.maskSelector = "मुखौटाचयन";
 tool.smudge = "स्मज़";
 // Ideally <10 chars (Flatten the surface)
 tool.flatten = "चपटा";
+// Ideally <10 chars (Flatten the surface, more strongly than Flatten)
+tool.planar = "";
 // Ideally <10 chars (Flatten the surface by offsetting the surface in the opposite direction)
 tool.flatten.fill = "भरें";
 // Ideally <10 chars (Layer brush)
@@ -2026,6 +2051,8 @@ tool.transform.tip = "मोड स्विच करने के लिए �
 
 // Size of the gizmo
 tool.gizmo.size = "विजेट आकार";
+// If true, there is less spacing between gizmo handlers (rotate, scale, etc)
+tool.gizmo.compact = "";
 // When enabled, tapping one the gizmo widget will open a numerical input popup
 tool.gizmo.allowInput = "संख्यात्मक इनपुट";
 tool.gizmo.allowInput.help = "gizmo विजेट में से किसी एक को टैप करते समय संख्यात्मक इनपुट की अनुमति दें";
@@ -2085,6 +2112,10 @@ tool.shape.lineRotateStep = "घूर्णन चरण";
 
 // Show a yellow dot on the golden ratio point
 tool.measure.goldenRatio = "स्वर्णिम अनुपात दिखायें";
+
+
+// Always display the camera shortcut buttons on the viewport
+tool.view.stickyCamera = "";
 
 // Topology
 topology = "टोपोलॉजी";
@@ -2230,12 +2261,26 @@ topology.bake.title = "शीर्ष पेंटिंग बेक करे
 topology.bake.title.help = "";
 // Bake here means "create texture (from mesh data)"
 topology.bakeSelf = "";
-// Bake here means "create texture (from mesh data)"
+// Bake here means "create texture (from another mesh data)"
 topology.bakeHires = "";
 topology.bakeResolution = "रिज़ोल्यूशन";
+// Cage is a specific term, synonyom: "Bake offset"
+topology.bakeOffset = "";
+
+// project a high resolution mesh details onto another
+topology.reproject.title = "";
+topology.reproject.title.help = "";
+// tweaking value
+topology.reproject.rayBias = "";
+topology.reproject.rayBias.help = "";
+// number of iteration the algorithm will take
+topology.reproject.iterations = "";
 
 // Reset key-bindings/shortcuts
 binding.reset = "बाइंडिंग रीसेट करें";
+// Binding option
+binding.toggleTool = "";
+binding.toggleTool.help = "";
 // Same as Color Picker but it pick the material (color, roughness, metalness, etc)
 binding.materialPicker = "मटीरीयल पिकर";
 // Edit the tool brush size/radius

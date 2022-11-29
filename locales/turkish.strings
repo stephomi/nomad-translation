@@ -93,6 +93,8 @@ material.occlusion = "Emilim";
 material.textures = "Doku";
 // Textures/Image
 material.texture = "";
+// A warning indicating that the mesh has no UVs
+material.warningNoUVs = "";
 // Texture filtering https://en.wikipedia.org/wiki/Texture_filtering
 material.texture.filter = "";
 // Nearest Filtering (closest sample)
@@ -107,8 +109,14 @@ about.minify = "Kullanıcı arayüzünü küçült";
 about.minify.help = "Cihazınız destekliyorsa, ekranınıza 4 parmağınızla da dokunabilirsiniz.";
 // Turntable will rotate the whole scene on itself (as it if was on a turntable)
 about.turntable = "Döner platform";
+// Rotation center of the turntable
+about.turntable.pivot = "";
+// Keep current pivot
+about.turntable.pivot.keep = "";
+// Turntable pivot will be at the center of the scene
+about.turntable.pivot.scene = "Görünüm";
 // Make the entire scene turn around (speed of the animation)
-about.turntableSpeed = "Döner platform hızı";
+about.turntable.speed = "Döner platform hızı";
 // Stuffs that I used to make the app
 about.credits = "Katkıda bulunanlar";
 // Link to open source projects that I used for the app
@@ -135,6 +143,8 @@ about.facebook = "Facebook";
 // Link to the App Discord account
 about.discord = "Uyuşmazlık";
 
+// The user canceled an operation that was running
+alert.aborted = "";
 // Error when an algorithm needs the object to have an hole (usually to fill it)
 alert.hole.nothing = "Nesnenin hiç deliği yok!";
 // Visibility of the object is off (but should be on)
@@ -444,7 +454,6 @@ file.import.add.confirm = "Yeni dosya içeri aktarılsın mı?";
 
 // Export scene file
 file.export.title = "Dışa Aktar";
-file.export.title.help = "Mümkünse, diğer formatlardan daha çok özelliği desteklediği için glTF dışa aktarıma öncelik verin.";
 
 // Export the current selected objects instead of the entire scene
 file.onlySelection = "Sadece seçili nesneleri dâhil et";
@@ -462,6 +471,15 @@ file.export.normal = "Normalleri dışa aktar";
 file.export.normal.help = "Dosyayı diğer yazılımlarda açmak istiyorsanız, bu seçeneği belirleyin.
 
 Tekrardan hesaplayacağı için, Nomad normalleri her zaman göz ardı eder.";
+
+// color space (linear or srgb), do not translate linear/srgb if there is a doubt
+file.export.colorSpace = ""
+file.export.colorSpace.help = "";
+file.export.colorSpace.linear = "";
+file.export.colorSpace.srgb = "";
+
+file.export.nomad = "";
+file.export.nomad.help = "";
 
 file.export.gltf = "glTF 2.0 dışa aktar";
 // Whether we include layers in the exported file (see glossary for layer)
@@ -562,6 +580,9 @@ pressure.noGrab = "Yakalama darbe türü basınç ayarlarını göz ardı eder."
 pressure.radius = "Yarıçap";
 // The stylus pressure will impact the tool intensity (more pressure -> stronger intensity)
 pressure.intensity = "Yoğunluk";
+// Average pencil pressure event to get smoother result
+pressure.average = "";
+pressure.average.help = "";
 
 // Customize whether finger and/or stylus can move the Camera
 gesture.cameraInteraction = "Kamera:";
@@ -626,8 +647,8 @@ gesture.mask.longPress = "Uzun basılı tut (Maske ↔ MaskeSeç)";
 gesture.mask.longPress.help = "Maske veya MaskeSeç etkin olduğunda, bu araçlar arasında geçiş yapmak için parmağınızı uzun basılı tutun.
 
 Parmağınızı hareket ettirmeden uzun basılı tuttuğunuzda, yeni araç varsayılan maske kısayolu olarak kullanılır.";
-// Indicator that the tool has been set as the new shortcut
-gesture.mask.infoShortcut = "$0 maske kısayolu olarak belirlendi.";
+// Shortcut customization, choose the action that the shortcut will performan (select tool, etc)
+gesture.shortcut = "Kısayolu";
 
 // Shortcuts to undo/redo
 gesture.history = "Geçmiş kısayolları";
@@ -962,7 +983,7 @@ material.flipCulling = "Ters culling";
 material.reflectance = "Yansıtıcılık";
 material.reflectance.help = "Malzemenin metalik olmayan malzemelerden alacağı yansıma miktarını kontrol eder.
 
-Çoğunlukla varsayılan değer kullanılmalıdır (normal açıda standart %4 yansıyan ışığa denk gelen 0,5'dir).";
+Çoğunlukla varsayılan değer kullanılmalıdır (normal açıda standart %4 yansıyan ışığa denk gelen).";
 
 // Menu name
 menu.files = "Dosyalar";
@@ -1068,7 +1089,7 @@ paint.texture.warningIgnored = "Geçerli araç dokuları kullanamaz!";
 paint.useAlpha = "Alfa darbesini kullan";
 paint.useAlpha.help = "Boyamayı değiştirmek için darbe menüsünde belirlenmiş alfa kullanılır.";
 // Whether the Brush Falloff will be used to module painting
-paint.useFalloff = "Darbe düşüşü dullan";
+paint.useCurve = "Darbe düşüşü dullan";
 paint.useFalloff.help = "Boyamayı değiştirmek için darbe menüsünde belirlenmiş düşüş kullanılır.";
 
 // when the user choose a new item name (through iOS/Android virtual keyboard)
@@ -1711,6 +1732,8 @@ symmetry.radial.title = "Radyal";
 symmetry.radialX = "Radyal X";
 symmetry.radialY = "Radyal Y";
 symmetry.radialZ = "Radyal Z";
+// A warning indicating that we limit the number of repetitions ($0 is a number)
+symmetry.limited = "";
 // Synonym: Offset
 symmetry.offset.title = "Kaydırma";
 symmetry.offsetX = "Kaydırma X";
@@ -1801,6 +1824,8 @@ tool.maskSelector = "MaskeSeç";
 tool.smudge = "Leke";
 // Ideally <10 chars (Flatten the surface)
 tool.flatten = "Düzleştir";
+// Ideally <10 chars (Flatten the surface, more strongly than Flatten)
+tool.planar = "";
 // Ideally <10 chars (Flatten the surface by offsetting the surface in the opposite direction)
 tool.flatten.fill = "Doldur";
 // Ideally <10 chars (Layer brush)
@@ -2017,6 +2042,8 @@ tool.transform.tip = "";
 
 // Size of the gizmo
 tool.gizmo.size = "Araç boyutu";
+// If true, there is less spacing between gizmo handlers (rotate, scale, etc)
+tool.gizmo.compact = "";
 // When enabled, tapping one the gizmo widget will open a numerical input popup
 tool.gizmo.allowInput = "Sayısal girdi";
 tool.gizmo.allowInput.help = "Gizmo araçlarından birine dokunduğunuzda sayısal girdiye izin verir";
@@ -2076,6 +2103,10 @@ tool.shape.lineRotateStep = "Adımı döndür";
 
 // Show a yellow dot on the golden ratio point
 tool.measure.goldenRatio = "Altın oranı göster";
+
+
+// Always display the camera shortcut buttons on the viewport
+tool.view.stickyCamera = "";
 
 // Topology
 topology = "Topoloji";
@@ -2221,12 +2252,26 @@ topology.bake.title = "Verteks boyamayı aktar";
 topology.bake.title.help = "";
 // Bake here means "create texture (from mesh data)"
 topology.bakeSelf = "";
-// Bake here means "create texture (from mesh data)"
+// Bake here means "create texture (from another mesh data)"
 topology.bakeHires = "";
 topology.bakeResolution = "Çözünürlük";
+// Cage is a specific term, synonyom: "Bake offset"
+topology.bakeOffset = "";
+
+// project a high resolution mesh details onto another
+topology.reproject.title = "";
+topology.reproject.title.help = "";
+// tweaking value
+topology.reproject.rayBias = "";
+topology.reproject.rayBias.help = "";
+// number of iteration the algorithm will take
+topology.reproject.iterations = "";
 
 // Reset key-bindings/shortcuts
 binding.reset = "Atamaları sıfırla";
+// Binding option
+binding.toggleTool = "";
+binding.toggleTool.help = "";
 // Same as Color Picker but it pick the material (color, roughness, metalness, etc)
 binding.materialPicker = "Malzeme Seçici";
 // Edit the tool brush size/radius

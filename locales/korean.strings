@@ -93,6 +93,8 @@ material.occlusion = "오클루전";
 material.textures = "텍스처";
 // Textures/Image
 material.texture = "";
+// A warning indicating that the mesh has no UVs
+material.warningNoUVs = "";
 // Texture filtering https://en.wikipedia.org/wiki/Texture_filtering
 material.texture.filter = "";
 // Nearest Filtering (closest sample)
@@ -107,8 +109,14 @@ about.minify = "인터페이스 축소";
 about.minify.help = "장치가 지원하는 경우 네 손가락으로 화면을 탭할 수도 있습니다.";
 // Turntable will rotate the whole scene on itself (as it if was on a turntable)
 about.turntable = "턴테이블";
+// Rotation center of the turntable
+about.turntable.pivot = "";
+// Keep current pivot
+about.turntable.pivot.keep = "";
+// Turntable pivot will be at the center of the scene
+about.turntable.pivot.scene = "씬";
 // Make the entire scene turn around (speed of the animation)
-about.turntableSpeed = "턴테이블 속도";
+about.turntable.speed = "턴테이블 속도";
 // Stuffs that I used to make the app
 about.credits = "감사의 말";
 // Link to open source projects that I used for the app
@@ -135,6 +143,8 @@ about.facebook = "Facebook";
 // Link to the App Discord account
 about.discord = "Discord";
 
+// The user canceled an operation that was running
+alert.aborted = "";
 // Error when an algorithm needs the object to have an hole (usually to fill it)
 alert.hole.nothing = "오브젝트에 구멍이 없습니다!";
 // Visibility of the object is off (but should be on)
@@ -444,7 +454,6 @@ file.import.add.confirm = "새로운 파일을 가져오시겠습니까?";
 
 // Export scene file
 file.export.title = "익스포트";
-file.export.title.help = "glTF는 다른 형식보다 많은 기능을 지원하므로 가능하면 glTF 익스포트를 우선합니다.";
 
 // Export the current selected objects instead of the entire scene
 file.onlySelection = "선택한 오브젝트만 포함";
@@ -462,6 +471,15 @@ file.export.normal = "노멀 익스포트";
 file.export.normal.help = "다른 소프트웨어에서 파일을 열려면 이 옵션을 선택합니다.
 
 Nomad는 노멀을 다시 계산하므로 항상 무시합니다.";
+
+// color space (linear or srgb), do not translate linear/srgb if there is a doubt
+file.export.colorSpace = ""
+file.export.colorSpace.help = "";
+file.export.colorSpace.linear = "";
+file.export.colorSpace.srgb = "";
+
+file.export.nomad = "";
+file.export.nomad.help = "";
 
 file.export.gltf = "glTF 2.0 익스포트";
 // Whether we include layers in the exported file (see glossary for layer)
@@ -563,6 +581,9 @@ pressure.noGrab = "붙잡기(Grab) 스트로크 유형은 압력 설정을 무�
 pressure.radius = "반지름";
 // The stylus pressure will impact the tool intensity (more pressure -> stronger intensity)
 pressure.intensity = "강도";
+// Average pencil pressure event to get smoother result
+pressure.average = "";
+pressure.average.help = "";
 
 // Customize whether finger and/or stylus can move the Camera
 gesture.cameraInteraction = "카메라:";
@@ -627,8 +648,8 @@ gesture.mask.longPress = "길게 누르기 (마스크 ↔ 마스크 선택자)";
 gesture.mask.longPress.help = "마스크 또는 마스크 선택자가 활성화된 경우 손가락으로 길게 누르면 두 도구 간에 전환이 이뤄집니다.
 
 손가락을 움직이지 않고 길게 누르면, 새 도구가 기본이 되는 마스크 바로 가기로 사용됩니다.";
-// Indicator that the tool has been set as the new shortcut
-gesture.mask.infoShortcut = "$0 도구가 마스크 바로 가기로 설정되었습니다.";
+// Shortcut customization, choose the action that the shortcut will performan (select tool, etc)
+gesture.shortcut = "바로 가기";
 
 // Shortcuts to undo/redo
 gesture.history = "작업 내역 바로 가기";
@@ -961,7 +982,7 @@ material.flipCulling = "컬링 반전";
 material.reflectance = "반사율";
 material.reflectance.help = "비금속 머티리얼에 대해 머티리얼이 받는 반사 양을 제어합니다.
 
-대부분의 경우 기본값을 사용해야 합니다 (0.5, 일반적인 각도에서 표준 4% 반사광에 해당).";
+대부분의 경우 기본값을 사용해야 합니다 (일반적인 각도에서 표준 4% 반사광에 해당).";
 
 // Menu name
 menu.files = "파일";
@@ -1067,7 +1088,7 @@ paint.texture.warningIgnored = "현재 도구는 텍스처를 사용할 수 없�
 paint.useAlpha = "스트로크 알파 사용";
 paint.useAlpha.help = "스트로크 메뉴에 있는 알파 세트를 사용하여 페인팅을 조절할 수 있습니다.";
 // Whether the Brush Falloff will be used to module painting
-paint.useFalloff = "스트로크 폴오프 사용";
+paint.useCurve = "스트로크 폴오프 사용";
 paint.useFalloff.help = "스트로크 메뉴에 있는 폴오프 세트를 사용하여 페인팅을 조절할 수 있습니다.";
 
 // when the user choose a new item name (through iOS/Android virtual keyboard)
@@ -1708,6 +1729,8 @@ symmetry.radial.title = "방사성";
 symmetry.radialX = "방사성 X";
 symmetry.radialY = "방사성 Y";
 symmetry.radialZ = "방사성 Z";
+// A warning indicating that we limit the number of repetitions ($0 is a number)
+symmetry.limited = "";
 // Synonym: Offset
 symmetry.offset.title = "오프셋";
 symmetry.offsetX = "오프셋 X";
@@ -1798,6 +1821,8 @@ tool.maskSelector = "마스크 선택자";
 tool.smudge = "손가락";
 // Ideally <10 chars (Flatten the surface)
 tool.flatten = "병합";
+// Ideally <10 chars (Flatten the surface, more strongly than Flatten)
+tool.planar = "";
 // Ideally <10 chars (Flatten the surface by offsetting the surface in the opposite direction)
 tool.flatten.fill = "채우기";
 // Ideally <10 chars (Layer brush)
@@ -2014,6 +2039,8 @@ tool.transform.tip = "";
 
 // Size of the gizmo
 tool.gizmo.size = "위젯 크기";
+// If true, there is less spacing between gizmo handlers (rotate, scale, etc)
+tool.gizmo.compact = "";
 // When enabled, tapping one the gizmo widget will open a numerical input popup
 tool.gizmo.allowInput = "수치 입력";
 tool.gizmo.allowInput.help = "기즈모 위젯 중 하나를 탭할 때 숫자 입력 허용";
@@ -2073,6 +2100,10 @@ tool.shape.lineRotateStep = "회전 단계";
 
 // Show a yellow dot on the golden ratio point
 tool.measure.goldenRatio = "황금 비율 보기";
+
+
+// Always display the camera shortcut buttons on the viewport
+tool.view.stickyCamera = "";
 
 // Topology
 topology = "토폴로지";
@@ -2218,12 +2249,26 @@ topology.bake.title = "버텍스 페인팅 베이킹";
 topology.bake.title.help = "";
 // Bake here means "create texture (from mesh data)"
 topology.bakeSelf = "";
-// Bake here means "create texture (from mesh data)"
+// Bake here means "create texture (from another mesh data)"
 topology.bakeHires = "";
 topology.bakeResolution = "해상도";
+// Cage is a specific term, synonyom: "Bake offset"
+topology.bakeOffset = "";
+
+// project a high resolution mesh details onto another
+topology.reproject.title = "";
+topology.reproject.title.help = "";
+// tweaking value
+topology.reproject.rayBias = "";
+topology.reproject.rayBias.help = "";
+// number of iteration the algorithm will take
+topology.reproject.iterations = "";
 
 // Reset key-bindings/shortcuts
 binding.reset = "바인딩 초기화";
+// Binding option
+binding.toggleTool = "";
+binding.toggleTool.help = "";
 // Same as Color Picker but it pick the material (color, roughness, metalness, etc)
 binding.materialPicker = "머티리얼 피커";
 // Edit the tool brush size/radius

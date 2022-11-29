@@ -93,6 +93,8 @@ material.occlusion = "環境光遮擋";
 material.textures = "紋理";
 // Textures/Image
 material.texture = "";
+// A warning indicating that the mesh has no UVs
+material.warningNoUVs = "";
 // Texture filtering https://en.wikipedia.org/wiki/Texture_filtering
 material.texture.filter = "";
 // Nearest Filtering (closest sample)
@@ -107,8 +109,14 @@ about.minify = "全屏顯示";
 about.minify.help = "在裝置支援的情況下，可以透過四指觸碰螢幕來開關全屏顯示";
 // Turntable will rotate the whole scene on itself (as it if was on a turntable)
 about.turntable = "旋轉展示";
+// Rotation center of the turntable
+about.turntable.pivot = "";
+// Keep current pivot
+about.turntable.pivot.keep = "";
+// Turntable pivot will be at the center of the scene
+about.turntable.pivot.scene = "場景";
 // Make the entire scene turn around (speed of the animation)
-about.turntableSpeed = "旋轉速度";
+about.turntable.speed = "旋轉速度";
 // Stuffs that I used to make the app
 about.credits = "鳴謝";
 // Link to open source projects that I used for the app
@@ -135,6 +143,8 @@ about.facebook = "Facebook";
 // Link to the App Discord account
 about.discord = "Discord";
 
+// The user canceled an operation that was running
+alert.aborted = "";
 // Error when an algorithm needs the object to have an hole (usually to fill it)
 alert.hole.nothing = "該物件沒有孔洞！";
 // Visibility of the object is off (but should be on)
@@ -445,7 +455,6 @@ file.import.add.confirm = "確定新增新檔案？";
 
 // Export scene file
 file.export.title = "匯出";
-file.export.title.help = "建議匯出 glTF 格式，因為它比其他格式支援更多屬性。";
 
 // Export the current selected objects instead of the entire scene
 file.onlySelection = "只匯出選擇部分";
@@ -462,6 +471,15 @@ file.export.texture.help = "此選項不會把Nomad裡繪製的頂點顏色烘�
 file.export.normal = "匯出法線";
 file.export.normal.help = "如想在其他軟體上開啟該檔案，請勾選此選項。
 Nomad總是忽略法線，因為它將重新計算它們。";
+
+// color space (linear or srgb), do not translate linear/srgb if there is a doubt
+file.export.colorSpace = ""
+file.export.colorSpace.help = "";
+file.export.colorSpace.linear = "";
+file.export.colorSpace.srgb = "";
+
+file.export.nomad = "";
+file.export.nomad.help = "";
 
 file.export.gltf = "匯出 glTF 2.0";
 // Whether we include layers in the exported file (see glossary for layer)
@@ -563,6 +581,9 @@ pressure.noGrab = "此工具會忽略壓感設定。";
 pressure.radius = "半徑";
 // The stylus pressure will impact the tool intensity (more pressure -> stronger intensity)
 pressure.intensity = "強度";
+// Average pencil pressure event to get smoother result
+pressure.average = "";
+pressure.average.help = "";
 
 // Customize whether finger and/or stylus can move the Camera
 gesture.cameraInteraction = "相機移動：";
@@ -627,8 +648,8 @@ gesture.mask.longPress = "長按（切換蒙版和選擇蒙版）";
 gesture.mask.longPress.help = "蒙版或選擇蒙版工具啟用時，長按螢幕可在兩個工具之間切換。
 
 如果您長按螢幕且不移動手指，則該新工具將成為預設的蒙版快捷方式。";
-// Indicator that the tool has been set as the new shortcut
-gesture.mask.infoShortcut = "$0已設為蒙版快捷方式。";
+// Shortcut customization, choose the action that the shortcut will performan (select tool, etc)
+gesture.shortcut = "快捷手";
 
 // Shortcuts to undo/redo
 gesture.history = "快捷手勢";
@@ -969,7 +990,7 @@ material.flipCulling = "翻轉法線";
 material.reflectance = "反射率";
 material.reflectance.help = "該引數能夠控制非金屬材質的高光效果。
 
-大多數情況下，建議將該引數保持為預設值 0.5，即對應 0.04 的基礎反射率。";
+大多數情況下，建議將該引數保持為預設值，即對應 0.04 的基礎反射率。";
 
 // Menu name
 menu.files = "檔案";
@@ -1075,7 +1096,7 @@ paint.texture.warningIgnored = "當前工具無法使用紋理貼圖功能！";
 paint.useAlpha = "使用筆刷alpha";
 paint.useAlpha.help = "使用筆畫選單中的alpha設定來調製繪畫。";
 // Whether the Brush Falloff will be used to module painting
-paint.useFalloff = "使用筆刷衰減";
+paint.useCurve = "使用筆刷衰減";
 paint.useFalloff.help = "使用筆畫選單中的衰減設定來調控繪畫。";
 
 // when the user choose a new item name (through iOS/Android virtual keyboard)
@@ -1719,6 +1740,8 @@ symmetry.radial.title = "徑向";
 symmetry.radialX = "徑向X";
 symmetry.radialY = "徑向Y";
 symmetry.radialZ = "徑向Z";
+// A warning indicating that we limit the number of repetitions ($0 is a number)
+symmetry.limited = "";
 // Synonym: Offset
 symmetry.offset.title = "偏移";
 symmetry.offsetX = "X軸方向偏移";
@@ -1809,6 +1832,8 @@ tool.maskSelector = "選擇蒙版";
 tool.smudge = "塗抹";
 // Ideally <10 chars (Flatten the surface)
 tool.flatten = "剷平";
+// Ideally <10 chars (Flatten the surface, more strongly than Flatten)
+tool.planar = "";
 // Ideally <10 chars (Flatten the surface by offsetting the surface in the opposite direction)
 tool.flatten.fill = "填充";
 // Ideally <10 chars (Layer brush)
@@ -2025,6 +2050,8 @@ tool.transform.tip = "";
 
 // Size of the gizmo
 tool.gizmo.size = "部件尺寸";
+// If true, there is less spacing between gizmo handlers (rotate, scale, etc)
+tool.gizmo.compact = "";
 // When enabled, tapping one the gizmo widget will open a numerical input popup
 tool.gizmo.allowInput = "數值輸入";
 tool.gizmo.allowInput.help = "輕按任一變換工具時允許輸入數值";
@@ -2084,6 +2111,10 @@ tool.shape.lineRotateStep = "旋轉角度";
 
 // Show a yellow dot on the golden ratio point
 tool.measure.goldenRatio = "顯示黃金分割比";
+
+
+// Always display the camera shortcut buttons on the viewport
+tool.view.stickyCamera = "";
 
 // Topology
 topology = "拓撲";
@@ -2231,12 +2262,26 @@ topology.bake.title = "烘焙頂點繪圖";
 topology.bake.title.help = "";
 // Bake here means "create texture (from mesh data)"
 topology.bakeSelf = "";
-// Bake here means "create texture (from mesh data)"
+// Bake here means "create texture (from another mesh data)"
 topology.bakeHires = "";
 topology.bakeResolution = "解析度";
+// Cage is a specific term, synonyom: "Bake offset"
+topology.bakeOffset = "";
+
+// project a high resolution mesh details onto another
+topology.reproject.title = "";
+topology.reproject.title.help = "";
+// tweaking value
+topology.reproject.rayBias = "";
+topology.reproject.rayBias.help = "";
+// number of iteration the algorithm will take
+topology.reproject.iterations = "";
 
 // Reset key-bindings/shortcuts
 binding.reset = "重設鍵位繫結";
+// Binding option
+binding.toggleTool = "";
+binding.toggleTool.help = "";
 // Same as Color Picker but it pick the material (color, roughness, metalness, etc)
 binding.materialPicker = "材質選取器";
 // Edit the tool brush size/radius

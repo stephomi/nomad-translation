@@ -93,6 +93,8 @@ material.occlusion = "แสงเงาระหว่างวัตถุ";
 material.textures = "พื้นผิว";
 // Textures/Image
 material.texture = "";
+// A warning indicating that the mesh has no UVs
+material.warningNoUVs = "";
 // Texture filtering https://en.wikipedia.org/wiki/Texture_filtering
 material.texture.filter = "";
 // Nearest Filtering (closest sample)
@@ -107,8 +109,14 @@ about.minify = "ลดขนาด UI";
 about.minify.help = "คุณสามารถใช้นิ้ว 4 นิ้วแตะหน้าจอ หากอุปกรณ์ของคุณรองรับ";
 // Turntable will rotate the whole scene on itself (as it if was on a turntable)
 about.turntable = "แท่นหมุน";
+// Rotation center of the turntable
+about.turntable.pivot = "";
+// Keep current pivot
+about.turntable.pivot.keep = "";
+// Turntable pivot will be at the center of the scene
+about.turntable.pivot.scene = "ซีน";
 // Make the entire scene turn around (speed of the animation)
-about.turntableSpeed = "ความเร็วแท่นหมุน";
+about.turntable.speed = "ความเร็วแท่นหมุน";
 // Stuffs that I used to make the app
 about.credits = "เครดิต";
 // Link to open source projects that I used for the app
@@ -135,6 +143,8 @@ about.facebook = "Facebook";
 // Link to the App Discord account
 about.discord = "ขัดแย้ง";
 
+// The user canceled an operation that was running
+alert.aborted = "";
 // Error when an algorithm needs the object to have an hole (usually to fill it)
 alert.hole.nothing = "ออบเจ็กต์ไม่มีรู!";
 // Visibility of the object is off (but should be on)
@@ -444,7 +454,6 @@ file.import.add.confirm = "นำเข้าไฟล์ใหม่?";
 
 // Export scene file
 file.export.title = "นำออก";
-file.export.title.help = "หากเป็นไปได้โปรดนำออกเป็น glTF เนื่องจากรองรับคุณสมบัติมากกว่ารูปแบบอื่น";
 
 // Export the current selected objects instead of the entire scene
 file.onlySelection = "รวมเฉพาะออบเจ็กต์ที่เลือก";
@@ -462,6 +471,15 @@ file.export.normal = "นำออกแนวฉาก";
 file.export.normal.help = "เลือกตัวเลือกนี้หากคุณต้องการเปิดไฟล์ในซอฟต์แวร์อื่น
 
 Nomad จะไม่สนใจแนวฉากเหล่านี้เพราะระบบจะคำนวณใหม่";
+
+// color space (linear or srgb), do not translate linear/srgb if there is a doubt
+file.export.colorSpace = ""
+file.export.colorSpace.help = "";
+file.export.colorSpace.linear = "";
+file.export.colorSpace.srgb = "";
+
+file.export.nomad = "";
+file.export.nomad.help = "";
 
 file.export.gltf = "นำออก glTF 2.0";
 // Whether we include layers in the exported file (see glossary for layer)
@@ -563,6 +581,9 @@ pressure.noGrab = "ประเภทของเส้นที่วาดท�
 pressure.radius = "รัศมี";
 // The stylus pressure will impact the tool intensity (more pressure -> stronger intensity)
 pressure.intensity = "ความเข้ม";
+// Average pencil pressure event to get smoother result
+pressure.average = "";
+pressure.average.help = "";
 
 // Customize whether finger and/or stylus can move the Camera
 gesture.cameraInteraction = "กล้อง:";
@@ -627,8 +648,8 @@ gesture.mask.longPress = "กดแช่ (มาส์ก ↔ SelMask)";
 gesture.mask.longPress.help = "เมื่อเปิดใช้งานมาส์ก หรือ SelMask ให้กดนิ้วค้างไว้เพื่อสลับระหว่างเครื่องมือเหล่านั้น
 
 หากคุณกดค้างไว้โดยไม่ขยับนิ้ว เครื่องมือใหม่จะถูกใช้เป็นทางลัดมาสก์เริ่มต้น";
-// Indicator that the tool has been set as the new shortcut
-gesture.mask.infoShortcut = "$0 ตั้งเป็นทางลัดมาสก์";
+// Shortcut customization, choose the action that the shortcut will performan (select tool, etc)
+gesture.shortcut = "ทางลัด";
 
 // Shortcuts to undo/redo
 gesture.history = "ทางลัดรายการเลิกทำและทำซ้ำ";
@@ -963,7 +984,7 @@ material.flipCulling = "การคัดทิ้งส่วนตรงข�
 material.reflectance = "การสะท้อนแสง";
 material.reflectance.help = "ควบคุมปริมาณการสะท้อนที่วัสดุจะได้รับสำหรับวัสดุที่ไม่ใช่โลหะ
 
-ส่วนใหญ่แล้วควรใช้ค่าเริ่มต้น (0.5 ซึ่งสอดคล้องกับมาตรฐานแสงสะท้อน 4% ที่มุมปกติ)";
+ส่วนใหญ่แล้วควรใช้ค่าเริ่มต้น (ซึ่งสอดคล้องกับมาตรฐานแสงสะท้อน 4% ที่มุมปกติ)";
 
 // Menu name
 menu.files = "ไฟล์";
@@ -1069,7 +1090,7 @@ paint.texture.warningIgnored = "เครื่องมือปัจจุบ
 paint.useAlpha = "ใช้เส้นวาดอัลฟ่า";
 paint.useAlpha.help = "ใช้ชุดอัลฟ่าในเมนูการวาดเส้นเพื่อปรับแต่งภาพวาด";
 // Whether the Brush Falloff will be used to module painting
-paint.useFalloff = "ใช้การทำเส้นโค้งลายเส้น";
+paint.useCurve = "ใช้การทำเส้นโค้งลายเส้น";
 paint.useFalloff.help = "ใช้ชุดทำเส้นโค้งในเมนูการวาดเส้นเพื่อปรับแต่งภาพวาด";
 
 // when the user choose a new item name (through iOS/Android virtual keyboard)
@@ -1712,6 +1733,8 @@ symmetry.radial.title = "เรเดียล";
 symmetry.radialX = "เรเดียล X";
 symmetry.radialY = "เรเดียล Y";
 symmetry.radialZ = "เรเดียล Z";
+// A warning indicating that we limit the number of repetitions ($0 is a number)
+symmetry.limited = "";
 // Synonym: Offset
 symmetry.offset.title = "ออฟเซ็ต";
 symmetry.offsetX = "ออฟเซ็ต X";
@@ -1802,6 +1825,8 @@ tool.maskSelector = "SelMask";
 tool.smudge = "เกลี่ย";
 // Ideally <10 chars (Flatten the surface)
 tool.flatten = "ทำให้เรียบ";
+// Ideally <10 chars (Flatten the surface, more strongly than Flatten)
+tool.planar = "";
 // Ideally <10 chars (Flatten the surface by offsetting the surface in the opposite direction)
 tool.flatten.fill = "เติม";
 // Ideally <10 chars (Layer brush)
@@ -2018,6 +2043,8 @@ tool.transform.tip = "";
 
 // Size of the gizmo
 tool.gizmo.size = "ขนาดวิดเจ็ต";
+// If true, there is less spacing between gizmo handlers (rotate, scale, etc)
+tool.gizmo.compact = "";
 // When enabled, tapping one the gizmo widget will open a numerical input popup
 tool.gizmo.allowInput = "อินพุตตัวเลข";
 tool.gizmo.allowInput.help = "อนุญาตให้ป้อนตัวเลขเมื่อบันทึกวิดเจ็ตกิซโม่ตัวใดตัวหนึ่ง";
@@ -2077,6 +2104,10 @@ tool.shape.lineRotateStep = "หมุนสเต็ป";
 
 // Show a yellow dot on the golden ratio point
 tool.measure.goldenRatio = "แสดงอัตราส่วนโกลด์";
+
+
+// Always display the camera shortcut buttons on the viewport
+tool.view.stickyCamera = "";
 
 // Topology
 topology = "โทโพโลยี";
@@ -2222,12 +2253,26 @@ topology.bake.title = "เบคการวาดจุดยอด";
 topology.bake.title.help = "";
 // Bake here means "create texture (from mesh data)"
 topology.bakeSelf = "";
-// Bake here means "create texture (from mesh data)"
+// Bake here means "create texture (from another mesh data)"
 topology.bakeHires = "";
 topology.bakeResolution = "ความละเอียด";
+// Cage is a specific term, synonyom: "Bake offset"
+topology.bakeOffset = "";
+
+// project a high resolution mesh details onto another
+topology.reproject.title = "";
+topology.reproject.title.help = "";
+// tweaking value
+topology.reproject.rayBias = "";
+topology.reproject.rayBias.help = "";
+// number of iteration the algorithm will take
+topology.reproject.iterations = "";
 
 // Reset key-bindings/shortcuts
 binding.reset = "รีเซ็ตการมัดรวม";
+// Binding option
+binding.toggleTool = "";
+binding.toggleTool.help = "";
 // Same as Color Picker but it pick the material (color, roughness, metalness, etc)
 binding.materialPicker = "การเลือกวัสดุ";
 // Edit the tool brush size/radius

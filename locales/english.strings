@@ -93,6 +93,8 @@ material.occlusion = "Occlusion";
 material.textures = "Textures";
 // Textures/Image
 material.texture = "Texture";
+// A warning indicating that the mesh has no UVs
+material.warningNoUVs = "No UVs!";
 // Texture filtering https://en.wikipedia.org/wiki/Texture_filtering
 material.texture.filter = "Filtering";
 // Nearest Filtering (closest sample)
@@ -107,8 +109,14 @@ about.minify = "Minify UI";
 about.minify.help = "You can also tap your screen with 4 fingers, if your device supports it.";
 // Turntable will rotate the whole scene on itself (as it if was on a turntable)
 about.turntable = "Turntable";
+// Rotation center of the turntable
+about.turntable.pivot = "Rotation center";
+// Keep current pivot
+about.turntable.pivot.keep = "Keep current";
+// Turntable pivot will be at the center of the scene
+about.turntable.pivot.scene = "Scene";
 // Make the entire scene turn around (speed of the animation)
-about.turntableSpeed = "Turntable Speed";
+about.turntable.speed = "Turntable Speed";
 // Stuffs that I used to make the app
 about.credits = "Credits";
 // Link to open source projects that I used for the app
@@ -135,6 +143,8 @@ about.facebook = "Facebook";
 // Link to the App Discord account
 about.discord = "Discord";
 
+// The user canceled an operation that was running
+alert.aborted = "Operation aborted!";
 // Error when an algorithm needs the object to have an hole (usually to fill it)
 alert.hole.nothing = "The object has no holes!";
 // Visibility of the object is off (but should be on)
@@ -446,7 +456,6 @@ file.import.add.confirm = "Import new file?";
 
 // Export scene file
 file.export.title = "Export";
-file.export.title.help = "If possible favor glTF export as it supports more features than other formats.";
 
 // Export the current selected objects instead of the entire scene
 file.onlySelection = "Only include selected objects";
@@ -464,6 +473,17 @@ file.export.normal = "Export normals";
 file.export.normal.help = "Check this option if you want to open the file in another softwares.
 
 Nomad always ignore the normals as it will recompute them.";
+
+// color space (linear or srgb), do not translate linear/srgb if there is a doubt
+file.export.colorSpace = "Color Space"
+file.export.colorSpace.help = "Try to toggle this option if the colors seems incorrect.";
+file.export.colorSpace.linear = "Linear";
+file.export.colorSpace.srgb = "sRGB";
+
+file.export.nomad = "Export Nomad";
+file.export.nomad.help = "Nomad Sculpt internal file format.
+
+This format won't load on other softwares, this is mostly for re-import purposes.";
 
 file.export.gltf = "Export glTF 2.0";
 // Whether we include layers in the exported file (see glossary for layer)
@@ -565,6 +585,9 @@ pressure.noGrab = "Grab stroke type will ignore pressure settings.";
 pressure.radius = "Radius";
 // The stylus pressure will impact the tool intensity (more pressure -> stronger intensity)
 pressure.intensity = "Intensity";
+// Average pencil pressure event to get smoother result
+pressure.average = "Pressure smoothing";
+pressure.average.help = "Average the pencil pressure events for smoother results.";
 
 // Customize whether finger and/or stylus can move the Camera
 gesture.cameraInteraction = "Camera:";
@@ -629,8 +652,8 @@ gesture.mask.longPress = "Long press (Mask ↔ SelMask)";
 gesture.mask.longPress.help = "When Mask or SelMask is active, long press finger to toggle between those tools.
 
 If you long press without moving the finger, the new tool will be used as the default mask shortcut.";
-// Indicator that the tool has been set as the new shortcut
-gesture.mask.infoShortcut = "$0 set as mask shortcut.";
+// Shortcut customization, choose the action that the shortcut will performan (select tool, etc)
+gesture.shortcut = "Shortcut";
 
 // Shortcuts to undo/redo
 gesture.history = "History shortcuts";
@@ -967,7 +990,7 @@ material.flipCulling = "Inverse culling";
 material.reflectance = "Reflectance";
 material.reflectance.help = "Control the amount of reflection the material will receive for non-metallic materials.
 
-Most of the time, the default value should be used (0.5, which corresponds to the standard 4% reflected light at normal angle).";
+Most of the time, the default value should be used (which corresponds to the standard 4% reflected light at normal angle).";
 
 // Menu name
 menu.files = "Files";
@@ -1073,7 +1096,7 @@ paint.texture.warningIgnored = "The current tool cannot use textures!";
 paint.useAlpha = "Use stroke alpha";
 paint.useAlpha.help = "Using the alpha set in the stroke menu to modulate the painting.";
 // Whether the Brush Falloff will be used to module painting
-paint.useFalloff = "Use stroke falloff";
+paint.useCurve = "Use stroke falloff";
 paint.useFalloff.help = "Using the falloff set in the stroke menu to modulate the painting.";
 
 // when the user choose a new item name (through iOS/Android virtual keyboard)
@@ -1721,6 +1744,8 @@ symmetry.radial.title = "Radial";
 symmetry.radialX = "Radial X";
 symmetry.radialY = "Radial Y";
 symmetry.radialZ = "Radial Z";
+// A warning indicating that we limit the number of repetitions ($0 is a number)
+symmetry.limited = "Number of repeats limited to $0!";
 // Synonym: Offset
 symmetry.offset.title = "Offset";
 symmetry.offsetX = "Offset X";
@@ -1811,6 +1836,8 @@ tool.maskSelector = "SelMask";
 tool.smudge = "Smudge";
 // Ideally <10 chars (Flatten the surface)
 tool.flatten = "Flatten";
+// Ideally <10 chars (Flatten the surface, more strongly than Flatten)
+tool.planar = "Planar";
 // Ideally <10 chars (Flatten the surface by offsetting the surface in the opposite direction)
 tool.flatten.fill = "Fill";
 // Ideally <10 chars (Layer brush)
@@ -2027,6 +2054,8 @@ tool.transform.tip = "Single tap with second finger to switch mode";
 
 // Size of the gizmo
 tool.gizmo.size = "Widget size";
+// If true, there is less spacing between gizmo handlers (rotate, scale, etc)
+tool.gizmo.compact = "Compact";
 // When enabled, tapping one the gizmo widget will open a numerical input popup
 tool.gizmo.allowInput = "Numerical input";
 tool.gizmo.allowInput.help = "Allow numerical input when tapping one of the gizmo widget";
@@ -2086,6 +2115,10 @@ tool.shape.lineRotateStep = "Rotate step";
 
 // Show a yellow dot on the golden ratio point
 tool.measure.goldenRatio = "Show golden ratio";
+
+
+// Always display the camera shortcut buttons on the viewport
+tool.view.stickyCamera = "Camera shortcut (always)";
 
 // Topology
 topology = "Topology";
@@ -2244,12 +2277,28 @@ You should now have a low-resolution mesh that retains most of the paint and det
 After the operation, vertex colors will be moved in a new disabled layer, so that it gets ignored instead of being multiplied against the colored texture.";
 // Bake here means "create texture (from mesh data)"
 topology.bakeSelf = "From itself";
-// Bake here means "create texture (from mesh data)"
+// Bake here means "create texture (from another mesh data)"
 topology.bakeHires = "From high-res";
 topology.bakeResolution = "Resolution";
+// Cage is a specific term, synonyom: "Bake offset"
+topology.bakeOffset = "Cage offset";
+
+// project a high resolution mesh details onto another
+topology.reproject.title = "Reproject";
+topology.reproject.title.help = "Project sculpted details, painting and layers from the nearest high-resolution mesh in the scene.
+
+This is mostly meant to be used on a high-resolution mesh as well, typically with a clean topology.";
+// tweaking value
+topology.reproject.rayBias = "Ray bias";
+topology.reproject.rayBias.help = "Tells the algorithm to favor ray intersection rather than nearest point intersection.";
+// number of iteration the algorithm will take
+topology.reproject.iterations = "Iterations";
 
 // Reset key-bindings/shortcuts
 binding.reset = "Reset bindings";
+// Binding option
+binding.toggleTool = "Toggle tool shortcuts";
+binding.toggleTool.help = "When using one of the tool shortcuts, the previous tool will be selected if the current shortcut tool is active.";
 // Same as Color Picker but it pick the material (color, roughness, metalness, etc)
 binding.materialPicker = "Material Picker";
 // Edit the tool brush size/radius

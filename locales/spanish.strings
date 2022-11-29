@@ -80,7 +80,7 @@ material.roughness = "Aspereza";
 // Defines how blurry or sharp the reflection on a material is (opposite of roughness)
 material.glossiness = "Brillo";
 // Whether the material is a metal or not
-material.metalness = "Metalicidad";
+material.metalness = "Metálico";
 // How much light a surface will reflect
 material.specular = "Especular";
 // Light that the surface can emit (glow)
@@ -93,6 +93,8 @@ material.occlusion = "Oclusión";
 material.textures = "Texturas";
 // Textures/Image
 material.texture = "";
+// A warning indicating that the mesh has no UVs
+material.warningNoUVs = "";
 // Texture filtering https://en.wikipedia.org/wiki/Texture_filtering
 material.texture.filter = "";
 // Nearest Filtering (closest sample)
@@ -107,8 +109,14 @@ about.minify = "Minimizar la interfaz de usuario";
 about.minify.help = "También puedes pulsar la pantalla con 4 dedos, si el dispositivo lo admite.";
 // Turntable will rotate the whole scene on itself (as it if was on a turntable)
 about.turntable = "Placa giratoria";
+// Rotation center of the turntable
+about.turntable.pivot = "";
+// Keep current pivot
+about.turntable.pivot.keep = "";
+// Turntable pivot will be at the center of the scene
+about.turntable.pivot.scene = "Escena";
 // Make the entire scene turn around (speed of the animation)
-about.turntableSpeed = "Velocidad de la placa giratoria";
+about.turntable.speed = "Velocidad de la placa giratoria";
 // Stuffs that I used to make the app
 about.credits = "Créditos";
 // Link to open source projects that I used for the app
@@ -135,6 +143,8 @@ about.facebook = "Facebook";
 // Link to the App Discord account
 about.discord = "Discord";
 
+// The user canceled an operation that was running
+alert.aborted = "";
 // Error when an algorithm needs the object to have an hole (usually to fill it)
 alert.hole.nothing = "¡El objeto no tiene agujeros!";
 // Visibility of the object is off (but should be on)
@@ -315,7 +325,7 @@ context.multiselection = "Multiselección";
 context.noSelection = "No hay nada seleccionado";
 
 // Curve type, presets lets the user chooses between predefined curves
-curve.preset = "Ajustes prestablecidos";
+curve.preset = "Ajustes predeterminados";
 // Curve type, https://en.wikipedia.org/wiki/Centripetal_Catmull%E2%80%93Rom_spline
 curve.catmull = "Catmull-Rom";
 // Curve curve, https://en.wikipedia.org/wiki/Spline_(mathematics)
@@ -324,7 +334,7 @@ curve.spline = "Spline";
 curve.symmetric.help = "";
 
 // set the desired FPS (frame per second, refresh rate)
-debug.targetFPS = "";
+debug.targetFPS = "FPS del objetivo";
 debug.targetFPS.help = "";
 
 // Debug option, the newly created primitives will contains texture coordinates (UVs)
@@ -444,7 +454,6 @@ file.import.add.confirm = "¿Importar un nuevo archivo?";
 
 // Export scene file
 file.export.title = "Exportar";
-file.export.title.help = "Si es posible, usa la exportación glTF, ya que admite más funciones que otros formatos.";
 
 // Export the current selected objects instead of the entire scene
 file.onlySelection = "Exportar selección únicamente";
@@ -463,6 +472,15 @@ file.export.normal.help = "Marca esta opción si deseas abrir el archivo en otro
 
 Nomad siempre ignora las normales, ya que las volverá a calcular.";
 
+// color space (linear or srgb), do not translate linear/srgb if there is a doubt
+file.export.colorSpace = ""
+file.export.colorSpace.help = "";
+file.export.colorSpace.linear = "";
+file.export.colorSpace.srgb = "";
+
+file.export.nomad = "";
+file.export.nomad.help = "";
+
 file.export.gltf = "Exportar glTF 2.0";
 // Whether we include layers in the exported file (see glossary for layer)
 file.export.gltf.layer = "Exportar capas";
@@ -478,7 +496,7 @@ file.export.gltf.color1 = "Exportar pintura PBR";
 file.export.gltf.color1.help = "Exportar rugosidad, metalidad y pintura de máscaras. Esto será ignorado por otros softwares.";
 
 file.export.obj = "Exportar OBJ";
-file.export.obj.warning = "Se perderán las capas y la pintura adicional (rugosidad, metalicidad y máscara).";
+file.export.obj.warning = "Se perderán las capas y la pintura adicional (rugosidad, metálico y máscara).";
 // Whether we include the vertex color in the exported file
 file.export.obj.colorAppend = "Exportar colores de vértices";
 file.export.obj.colorAppend.help = "Agregar información de color después de los vértices
@@ -486,7 +504,7 @@ file.export.obj.colorAppend.help = "Agregar información de color después de lo
 Algunos softwares 3D podrán leerlo, pero no todos.";
 
 file.export.stl = "Exportar STL";
-file.export.stl.warning = "Se perderán las capas y la pintura pintura (rugosidad, metalicidad y máscara).";
+file.export.stl.warning = "Se perderán las capas y la pintura pintura (rugosidad, metálico y máscara).";
 // Whether we include the vertex color in the exported file
 file.export.stl.color = "Exportar colores de vértices";
 file.export.stl.color.help = "Algunos softwares 3D podrán leerlo, pero no todos.";
@@ -563,6 +581,9 @@ pressure.noGrab = "El tipo de pincel de agarre ignorará los ajustes de presión
 pressure.radius = "Radio";
 // The stylus pressure will impact the tool intensity (more pressure -> stronger intensity)
 pressure.intensity = "Intensidad";
+// Average pencil pressure event to get smoother result
+pressure.average = "";
+pressure.average.help = "";
 
 // Customize whether finger and/or stylus can move the Camera
 gesture.cameraInteraction = "Cámara:";
@@ -627,8 +648,8 @@ gesture.mask.longPress = "Pulsación larga (Máscara ↔ Sel. máscara)";
 gesture.mask.longPress.help = "Cuando está activa Máscara o Sel. máscara, deje pulsado con el dedo para cambiar de una herramienta a otra.
 
 Si deja pulsado sin mover el dedo, la nueva herramienta se usará como atajo predeterminado de máscara.";
-// Indicator that the tool has been set as the new shortcut
-gesture.mask.infoShortcut = "$0 ahora es el atajo de máscara.";
+// Shortcut customization, choose the action that the shortcut will performan (select tool, etc)
+gesture.shortcut = "Atajo";
 
 // Shortcuts to undo/redo
 gesture.history = "Atajos del historial";
@@ -727,7 +748,7 @@ interface.blurFactor = "Fuerza de difuminado";
 interface.colorBaseTransparent = "Panel de control";
 
 // Interface color style
-interface.preset.title = "Ajustes prestablecidos de color";
+interface.preset.title = "Ajustes predeterminados de color";
 // Interface color style (original color of Nomad Sculpt)
 interface.preset.classic = "Clásico";
 // Interface color style
@@ -883,7 +904,7 @@ light.resetPosition = "Volver a centrar";
 // Object's material
 material = "Material";
 // See glossary
-material.pbrRoughnessMetalness.warning = "La rugosidad y la metalicidad requieren el modo de sombreado PBR.";
+material.pbrRoughnessMetalness.warning = "La rugosidad y la metalidad requieren el modo de sombreado PBR.";
 // See glossary
 material.pbrReflectance.warning = "La reflectancia requiere el modo de sombreado PBR.";
 // See glossary
@@ -910,7 +931,7 @@ material.refractionInteriorRoughness.help = "- en 0, el interior está utilizand
 - en 1, el interior es completamente áspero";
 // Set the roughness of the object with a value of 0
 material.paintGlossy = "Pintura brillante";
-material.paintGlossy.help = "Pintará el objeto con una rugosidad y metalicidad de 0, lo que permitirá una refracción nítida.
+material.paintGlossy.help = "Pintará el objeto con una rugosidad y metalidad de 0, lo que permitirá una refracción nítida.
 
 Esto es lo mismo que ir al menú pintar y usar la función pintar todo con el color y el metal desactivados.";
 // Simulate the light being absorbed when it travels through the volume.
@@ -963,7 +984,7 @@ material.flipCulling = "Culling inverso";
 material.reflectance = "Reflectancia";
 material.reflectance.help = "Controla la cantidad de reflexión que recibirá el material para materiales no metálicos
 
-La mayoría de las veces, se debe usar el valor predeterminado (0,5, que corresponde al 4 % de luz reflejada estándar en ángulo normal).";
+La mayoría de las veces, se debe usar el valor predeterminado (que corresponde al 4 % de luz reflejada estándar en ángulo normal).";
 
 // Menu name
 menu.files = "Archivos";
@@ -1042,10 +1063,10 @@ mesh.typeMultiresolution = "Multiresolución";
 mesh.typeDynamic = "DynTopo";
 
 // Disable this option to have per-tool material settings (instead of shared settings)
-paint.useGlobal = "Material globacl";
+paint.useGlobal = "Material global";
 paint.useGlobal.help = "Si esta opción está habilitada, el material seleccionado será el mismo que el de las otras herramientas.
 
-Ten en cuenta que solo toma en cuenta la rugosidad, la metalicidad y los ajustes de color.";
+Ten en cuenta que solo toma en cuenta la rugosidad, la metalidad y los ajustes de color.";
 // The current tool will paint the object if this option is enabled
 paint.usePainting = "Pintura de trazo";
 // Factor/Opacity of paint tool
@@ -1069,7 +1090,7 @@ paint.texture.warningIgnored = "¡La herramienta actual no puede usar texturas!"
 paint.useAlpha = "Usar trazo alfa";
 paint.useAlpha.help = "Uso del conjunto alfa en el menú trazo para modular la pintura.";
 // Whether the Brush Falloff will be used to module painting
-paint.useFalloff = "Utilizar trazo de disminución";
+paint.useCurve = "Utilizar trazo de disminución";
 paint.useFalloff.help = "Usar del set de disminución en el menú trazo para modular la pintura.";
 
 // when the user choose a new item name (through iOS/Android virtual keyboard)
@@ -1200,7 +1221,7 @@ postprocess.pixelArt = "Arte pixelado";
 // Override frame accumulation feature
 postprocess.pixelArt.allowAccumulate = "Permitir muestreo de fotogramas";
 // Simulate scanline rendering (horizonal line)
-postprocess.scanline = "Scanline";
+postprocess.scanline = "Línea de exploración";
 postprocess.scanline.factor = "Factor";
 // Spacing between lines
 postprocess.scanline.spacing = "Espaciado";
@@ -1608,7 +1629,7 @@ stroke.lazySmooth.help = "Promedia la posición de varios punteros para obtener 
 
 Con valores altos, el trazo se retrasará detrás del puntero, pero eventualmente lo alcanzará.";
 // Make the brush stroke lags behind the pointer cursor
-stroke.lazyRadius = "Estabilizador de cuerda perezoso";
+stroke.lazyRadius = "Estabilidad del trazo";
 stroke.lazyRadius.help = "Los trazos se retrasarán detrás de la posición del puntero de acuerdo con una cierta distancia.
 
 Esto se puede usar para dibujar líneas suaves.";
@@ -1710,6 +1731,8 @@ symmetry.radial.title = "Radial";
 symmetry.radialX = "Radial X";
 symmetry.radialY = "Radial Y";
 symmetry.radialZ = "Radial Z";
+// A warning indicating that we limit the number of repetitions ($0 is a number)
+symmetry.limited = "";
 // Synonym: Offset
 symmetry.offset.title = "Desplazamiento";
 symmetry.offsetX = "Desplazamiento X";
@@ -1801,6 +1824,8 @@ tool.maskSelector = "Sel. máscara";
 tool.smudge = "Difuminar";
 // Ideally <10 chars (Flatten the surface)
 tool.flatten = "Aplanar";
+// Ideally <10 chars (Flatten the surface, more strongly than Flatten)
+tool.planar = "";
 // Ideally <10 chars (Flatten the surface by offsetting the surface in the opposite direction)
 tool.flatten.fill = "Rellenar";
 // Ideally <10 chars (Layer brush)
@@ -1887,7 +1912,7 @@ tool.settings = "Configuración";
 tool.settings.none = "Esta herramienta no tiene ninguna configuración específica.";
 
 // Flatten distance offset
-tool.clay.flattenOffset = "Desplazamiento de aplanamiento";
+tool.clay.flattenOffset = "Compensar aplanamiento";
 tool.crease.pinchFactor = "Pellizcar fuerza";
 
 tool.layer.removeInfluence = "Usar desplazamiento de capa actual";
@@ -2017,6 +2042,8 @@ tool.transform.tip = "";
 
 // Size of the gizmo
 tool.gizmo.size = "Tamaño del widget";
+// If true, there is less spacing between gizmo handlers (rotate, scale, etc)
+tool.gizmo.compact = "";
 // When enabled, tapping one the gizmo widget will open a numerical input popup
 tool.gizmo.allowInput = "Entrada numérica";
 tool.gizmo.allowInput.help = "Permite la entrada numérica al tocar uno de los widgets del gizmo";
@@ -2077,6 +2104,10 @@ tool.shape.lineRotateStep = "Girar paso";
 // Show a yellow dot on the golden ratio point
 tool.measure.goldenRatio = "Mostrar radio dorado";
 
+
+// Always display the camera shortcut buttons on the viewport
+tool.view.stickyCamera = "";
+
 // Topology
 topology = "Topología";
 // Synynom: detail value, density
@@ -2115,7 +2146,7 @@ Si el objeto no está cerrado (estanco), se aplicará primero un algoritmo de re
 
 Las capas se vuelven a inyectar después de volver a mallar, pero la calidad se degradará.";
 topology.voxel.resolution = "Resolucion";
-topology.voxel.remesh = "Reforza de malla";
+topology.voxel.remesh = "Refuerzo de malla";
 topology.voxel.sharp = "Mantener bordes nítidos";
 topology.voxel.sharp.help = "Esta opción es útil principalmente para operaciones booleanas primitivas simples.
 
@@ -2188,7 +2219,7 @@ Sin embargo, probablemente no deberías usarlo si quieres seguir esculpiendo en 
 Ten en cuenta que el área enmascarada no se diezmará.";
 // Synonym: Simplify (Decimate reduce the number of triangles/quads while retaining details as much as possible)
 topology.decimate = "Diezmar";
-topology.decimateTargetFaces = "Triángulos objetivos";
+topology.decimateTargetFaces = "Tríangulos del objetivo";
 topology.decimatePaintWeight = "Preservar pintura";
 topology.decimatePaintWeight.help = "Un valor más alto intentará preservar la pintura.
 
@@ -2220,13 +2251,27 @@ topology.bake.title = "ornear pintura de vértices";
 // Bake here means "create texture (from mesh data)"
 topology.bake.title.help = "";
 // Bake here means "create texture (from mesh data)"
-topology.bakeSelf = "";
-// Bake here means "create texture (from mesh data)"
-topology.bakeHires = "";
+topology.bakeSelf = "Desde sí mismo";
+// Bake here means "create texture (from another mesh data)"
+topology.bakeHires = "Desde alta resolución";
 topology.bakeResolution = "Resolucion";
+// Cage is a specific term, synonyom: "Bake offset"
+topology.bakeOffset = "";
+
+// project a high resolution mesh details onto another
+topology.reproject.title = "";
+topology.reproject.title.help = "";
+// tweaking value
+topology.reproject.rayBias = "";
+topology.reproject.rayBias.help = "";
+// number of iteration the algorithm will take
+topology.reproject.iterations = "";
 
 // Reset key-bindings/shortcuts
 binding.reset = "Restablecer atajos";
+// Binding option
+binding.toggleTool = "";
+binding.toggleTool.help = "";
 // Same as Color Picker but it pick the material (color, roughness, metalness, etc)
 binding.materialPicker = "Selector de material";
 // Edit the tool brush size/radius

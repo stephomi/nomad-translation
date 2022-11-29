@@ -93,6 +93,8 @@ material.occlusion = "环境光遮挡";
 material.textures = "纹理";
 // Textures/Image
 material.texture = "";
+// A warning indicating that the mesh has no UVs
+material.warningNoUVs = "";
 // Texture filtering https://en.wikipedia.org/wiki/Texture_filtering
 material.texture.filter = "";
 // Nearest Filtering (closest sample)
@@ -107,8 +109,14 @@ about.minify = "全屏显示";
 about.minify.help = "在设备支持的情况下，可以通过四指触碰屏幕来开关全屏显示";
 // Turntable will rotate the whole scene on itself (as it if was on a turntable)
 about.turntable = "旋转展示";
+// Rotation center of the turntable
+about.turntable.pivot = "";
+// Keep current pivot
+about.turntable.pivot.keep = "";
+// Turntable pivot will be at the center of the scene
+about.turntable.pivot.scene = "场景";
 // Make the entire scene turn around (speed of the animation)
-about.turntableSpeed = "旋转速度";
+about.turntable.speed = "旋转速度";
 // Stuffs that I used to make the app
 about.credits = "鸣谢";
 // Link to open source projects that I used for the app
@@ -135,6 +143,8 @@ about.facebook = "Facebook";
 // Link to the App Discord account
 about.discord = "Discord";
 
+// The user canceled an operation that was running
+alert.aborted = "";
 // Error when an algorithm needs the object to have an hole (usually to fill it)
 alert.hole.nothing = "该对象没有孔洞！";
 // Visibility of the object is off (but should be on)
@@ -445,7 +455,6 @@ file.import.add.confirm = "确定添加新文件？";
 
 // Export scene file
 file.export.title = "导出";
-file.export.title.help = "建议导出 glTF 格式，因为它比其他格式支持更多属性。";
 
 // Export the current selected objects instead of the entire scene
 file.onlySelection = "只导出选择部分";
@@ -462,6 +471,15 @@ file.export.texture.help = "此选项不会把Nomad里绘制的顶点颜色烘�
 file.export.normal = "导出法线";
 file.export.normal.help = "如想在其他软件上打开该文件，请勾选此选项。
 Nomad总是忽略法线，因为它将重新计算它们。";
+
+// color space (linear or srgb), do not translate linear/srgb if there is a doubt
+file.export.colorSpace = ""
+file.export.colorSpace.help = "";
+file.export.colorSpace.linear = "";
+file.export.colorSpace.srgb = "";
+
+file.export.nomad = "";
+file.export.nomad.help = "";
 
 file.export.gltf = "导出 glTF 2.0";
 // Whether we include layers in the exported file (see glossary for layer)
@@ -563,6 +581,9 @@ pressure.noGrab = "此工具会忽略压感设置。";
 pressure.radius = "半径";
 // The stylus pressure will impact the tool intensity (more pressure -> stronger intensity)
 pressure.intensity = "强度";
+// Average pencil pressure event to get smoother result
+pressure.average = "";
+pressure.average.help = "";
 
 // Customize whether finger and/or stylus can move the Camera
 gesture.cameraInteraction = "相机移动：";
@@ -627,8 +648,8 @@ gesture.mask.longPress = "长按（切换蒙版和选择蒙版）";
 gesture.mask.longPress.help = "蒙版或选择蒙版工具启用时，长按屏幕可在两个工具之间切换。
 
 如果您长按屏幕且不移动手指，则该新工具将成为默认的蒙版快捷方式。";
-// Indicator that the tool has been set as the new shortcut
-gesture.mask.infoShortcut = "$0已设为蒙版快捷方式。";
+// Shortcut customization, choose the action that the shortcut will performan (select tool, etc)
+gesture.shortcut = "快捷手";
 
 // Shortcuts to undo/redo
 gesture.history = "快捷手势";
@@ -969,7 +990,7 @@ material.flipCulling = "翻转法线";
 material.reflectance = "反射率";
 material.reflectance.help = "该参数能够控制非金属材质的高光效果。
 
-大多数情况下，建议将该参数保持为默认值 0.5，即对应 0.04 的基础反射率。";
+大多数情况下，建议将该参数保持为默认值，即对应 0.04 的基础反射率。";
 
 // Menu name
 menu.files = "文件";
@@ -1075,7 +1096,7 @@ paint.texture.warningIgnored = "当前工具无法使用纹理贴图功能！";
 paint.useAlpha = "使用笔刷alpha";
 paint.useAlpha.help = "使用笔画菜单中的alpha设置来调制绘画。";
 // Whether the Brush Falloff will be used to module painting
-paint.useFalloff = "使用笔刷衰减";
+paint.useCurve = "使用笔刷衰减";
 paint.useFalloff.help = "使用笔画菜单中的衰减设置来调控绘画。";
 
 // when the user choose a new item name (through iOS/Android virtual keyboard)
@@ -1719,6 +1740,8 @@ symmetry.radial.title = "径向";
 symmetry.radialX = "径向X";
 symmetry.radialY = "径向Y";
 symmetry.radialZ = "径向Z";
+// A warning indicating that we limit the number of repetitions ($0 is a number)
+symmetry.limited = "";
 // Synonym: Offset
 symmetry.offset.title = "偏移";
 symmetry.offsetX = "X轴方向偏移";
@@ -1809,6 +1832,8 @@ tool.maskSelector = "选择蒙版";
 tool.smudge = "涂抹";
 // Ideally <10 chars (Flatten the surface)
 tool.flatten = "铲平";
+// Ideally <10 chars (Flatten the surface, more strongly than Flatten)
+tool.planar = "";
 // Ideally <10 chars (Flatten the surface by offsetting the surface in the opposite direction)
 tool.flatten.fill = "填充";
 // Ideally <10 chars (Layer brush)
@@ -2025,6 +2050,8 @@ tool.transform.tip = "";
 
 // Size of the gizmo
 tool.gizmo.size = "部件尺寸";
+// If true, there is less spacing between gizmo handlers (rotate, scale, etc)
+tool.gizmo.compact = "";
 // When enabled, tapping one the gizmo widget will open a numerical input popup
 tool.gizmo.allowInput = "数值输入";
 tool.gizmo.allowInput.help = "轻按任一变换工具时允许输入数值";
@@ -2084,6 +2111,10 @@ tool.shape.lineRotateStep = "旋转角度";
 
 // Show a yellow dot on the golden ratio point
 tool.measure.goldenRatio = "显示黄金分割比";
+
+
+// Always display the camera shortcut buttons on the viewport
+tool.view.stickyCamera = "";
 
 // Topology
 topology = "拓扑";
@@ -2231,12 +2262,26 @@ topology.bake.title = "烘焙顶点绘图";
 topology.bake.title.help = "";
 // Bake here means "create texture (from mesh data)"
 topology.bakeSelf = "";
-// Bake here means "create texture (from mesh data)"
+// Bake here means "create texture (from another mesh data)"
 topology.bakeHires = "";
 topology.bakeResolution = "分辨率";
+// Cage is a specific term, synonyom: "Bake offset"
+topology.bakeOffset = "";
+
+// project a high resolution mesh details onto another
+topology.reproject.title = "";
+topology.reproject.title.help = "";
+// tweaking value
+topology.reproject.rayBias = "";
+topology.reproject.rayBias.help = "";
+// number of iteration the algorithm will take
+topology.reproject.iterations = "";
 
 // Reset key-bindings/shortcuts
 binding.reset = "重设键位绑定";
+// Binding option
+binding.toggleTool = "";
+binding.toggleTool.help = "";
 // Same as Color Picker but it pick the material (color, roughness, metalness, etc)
 binding.materialPicker = "材质选取器";
 // Edit the tool brush size/radius

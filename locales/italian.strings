@@ -93,6 +93,8 @@ material.occlusion = "Occlusione";
 material.textures = "Texture";
 // Textures/Image
 material.texture = "";
+// A warning indicating that the mesh has no UVs
+material.warningNoUVs = "";
 // Texture filtering https://en.wikipedia.org/wiki/Texture_filtering
 material.texture.filter = "";
 // Nearest Filtering (closest sample)
@@ -107,8 +109,14 @@ about.minify = "Minimizza UI";
 about.minify.help = "Puoi anche toccare lo schermo con 4 dita, se il tuo dispositivo lo supporta.";
 // Turntable will rotate the whole scene on itself (as it if was on a turntable)
 about.turntable = "Piattaforma girevole";
+// Rotation center of the turntable
+about.turntable.pivot = "";
+// Keep current pivot
+about.turntable.pivot.keep = "";
+// Turntable pivot will be at the center of the scene
+about.turntable.pivot.scene = "Scena";
 // Make the entire scene turn around (speed of the animation)
-about.turntableSpeed = "Velocità piattaforma girevole";
+about.turntable.speed = "Velocità piattaforma girevole";
 // Stuffs that I used to make the app
 about.credits = "Riconoscimenti";
 // Link to open source projects that I used for the app
@@ -135,6 +143,8 @@ about.facebook = "Facebook";
 // Link to the App Discord account
 about.discord = "Discord";
 
+// The user canceled an operation that was running
+alert.aborted = "";
 // Error when an algorithm needs the object to have an hole (usually to fill it)
 alert.hole.nothing = "L'oggetto non ha aperture!";
 // Visibility of the object is off (but should be on)
@@ -444,7 +454,6 @@ file.import.add.confirm = "Importare nuovo file?";
 
 // Export scene file
 file.export.title = "Esporta";
-file.export.title.help = "Se possibile, scegli l'esportazione glTF in quanto supporta più funzionalità rispetto ad altri formati.";
 
 // Export the current selected objects instead of the entire scene
 file.onlySelection = "Includi solo oggetti selezionati";
@@ -462,6 +471,15 @@ file.export.normal = "Esporta normali";
 file.export.normal.help = "Selezionare questa opzione se si desidera aprire il file in un altro software.
 
 Nomad ignora sempre le normali poiché le ricalcolerà.";
+
+// color space (linear or srgb), do not translate linear/srgb if there is a doubt
+file.export.colorSpace = ""
+file.export.colorSpace.help = "";
+file.export.colorSpace.linear = "";
+file.export.colorSpace.srgb = "";
+
+file.export.nomad = "";
+file.export.nomad.help = "";
 
 file.export.gltf = "Esporta glTF 2.0";
 // Whether we include layers in the exported file (see glossary for layer)
@@ -563,6 +581,9 @@ pressure.noGrab = "Il tipo di tratto Cattura ignorerà le impostazioni di pressi
 pressure.radius = "Raggio";
 // The stylus pressure will impact the tool intensity (more pressure -> stronger intensity)
 pressure.intensity = "Intensità";
+// Average pencil pressure event to get smoother result
+pressure.average = "";
+pressure.average.help = "";
 
 // Customize whether finger and/or stylus can move the Camera
 gesture.cameraInteraction = "Fotocamera:";
@@ -627,8 +648,8 @@ gesture.mask.longPress = "Pressione lunga (Maschera ↔ SelMaschera)";
 gesture.mask.longPress.help = "Quando Maschera o SelMaschera è attivo, premere a lungo il dito per passare da uno strumento all'altro.
 
 Se premi a lungo senza muovere il dito, il nuovo strumento verrà utilizzato come scorciatoia predefinita per la maschera.";
-// Indicator that the tool has been set as the new shortcut
-gesture.mask.infoShortcut = "$0 impostato come scorciatoia per la maschera.";
+// Shortcut customization, choose the action that the shortcut will performan (select tool, etc)
+gesture.shortcut = "Scorciatoia";
 
 // Shortcuts to undo/redo
 gesture.history = "Cronologia scorciatoie";
@@ -963,7 +984,7 @@ material.flipCulling = "Culling inverso";
 material.reflectance = "Riflettanza";
 material.reflectance.help = "Controlla la quantità di riflessione che il materiale riceve per i materiali non metallici.
 
-Nella maggior parte dei casi, si dovrebbe utilizzare il valore predefinito (0,5, che corrisponde al 4% di luce riflessa ad angolo normale).";
+Nella maggior parte dei casi, si dovrebbe utilizzare il valore predefinito (che corrisponde al 4% di luce riflessa ad angolo normale).";
 
 // Menu name
 menu.files = "File";
@@ -1069,7 +1090,7 @@ paint.texture.warningIgnored = "Lo strumento attuale non può utilizzare texture
 paint.useAlpha = "Usa tratto alfa";
 paint.useAlpha.help = "Utilizzo dell'impostazione alfa nel menu del tratto per modulare la pittura.";
 // Whether the Brush Falloff will be used to module painting
-paint.useFalloff = "Usa decadimento tratto";
+paint.useCurve = "Usa decadimento tratto";
 paint.useFalloff.help = "Utilizzo dell'impostazione decadimento nel menu del tratto per modulare la pittura.";
 
 // when the user choose a new item name (through iOS/Android virtual keyboard)
@@ -1712,6 +1733,8 @@ symmetry.radial.title = "Radiale";
 symmetry.radialX = "Radiale X";
 symmetry.radialY = "Radiale Y";
 symmetry.radialZ = "Radiale Z";
+// A warning indicating that we limit the number of repetitions ($0 is a number)
+symmetry.limited = "";
 // Synonym: Offset
 symmetry.offset.title = "Spostamento";
 symmetry.offsetX = "Spostamento X";
@@ -1802,6 +1825,8 @@ tool.maskSelector = "SelMasch.";
 tool.smudge = "Sfumino";
 // Ideally <10 chars (Flatten the surface)
 tool.flatten = "Appiattisci";
+// Ideally <10 chars (Flatten the surface, more strongly than Flatten)
+tool.planar = "";
 // Ideally <10 chars (Flatten the surface by offsetting the surface in the opposite direction)
 tool.flatten.fill = "Riempi";
 // Ideally <10 chars (Layer brush)
@@ -2018,6 +2043,8 @@ tool.transform.tip = "";
 
 // Size of the gizmo
 tool.gizmo.size = "Dimensione widget";
+// If true, there is less spacing between gizmo handlers (rotate, scale, etc)
+tool.gizmo.compact = "";
 // When enabled, tapping one the gizmo widget will open a numerical input popup
 tool.gizmo.allowInput = "Inserimento numerico";
 tool.gizmo.allowInput.help = "Consente l'input numerico quando si tocca uno dei widget gizmo";
@@ -2077,6 +2104,10 @@ tool.shape.lineRotateStep = "Passo di rotazione";
 
 // Show a yellow dot on the golden ratio point
 tool.measure.goldenRatio = "Mostra sezione aurea";
+
+
+// Always display the camera shortcut buttons on the viewport
+tool.view.stickyCamera = "";
 
 // Topology
 topology = "Topologia";
@@ -2222,12 +2253,26 @@ topology.bake.title = "Trasferisci pittura vertici";
 topology.bake.title.help = "";
 // Bake here means "create texture (from mesh data)"
 topology.bakeSelf = "";
-// Bake here means "create texture (from mesh data)"
+// Bake here means "create texture (from another mesh data)"
 topology.bakeHires = "";
 topology.bakeResolution = "Risoluzione";
+// Cage is a specific term, synonyom: "Bake offset"
+topology.bakeOffset = "";
+
+// project a high resolution mesh details onto another
+topology.reproject.title = "";
+topology.reproject.title.help = "";
+// tweaking value
+topology.reproject.rayBias = "";
+topology.reproject.rayBias.help = "";
+// number of iteration the algorithm will take
+topology.reproject.iterations = "";
 
 // Reset key-bindings/shortcuts
 binding.reset = "Ripristina collegamenti";
+// Binding option
+binding.toggleTool = "";
+binding.toggleTool.help = "";
 // Same as Color Picker but it pick the material (color, roughness, metalness, etc)
 binding.materialPicker = "Selettore materiale";
 // Edit the tool brush size/radius

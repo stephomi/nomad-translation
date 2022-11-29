@@ -93,6 +93,8 @@ material.occlusion = "オクルージョン";
 material.textures = "テクスチャ";
 // Textures/Image
 material.texture = "";
+// A warning indicating that the mesh has no UVs
+material.warningNoUVs = "";
 // Texture filtering https://en.wikipedia.org/wiki/Texture_filtering
 material.texture.filter = "";
 // Nearest Filtering (closest sample)
@@ -107,8 +109,14 @@ about.minify = "UIをMinify";
 about.minify.help = "指4本でスクリーンをタップすることもできます（デバイスがサポートする場合)。";
 // Turntable will rotate the whole scene on itself (as it if was on a turntable)
 about.turntable = "ターンテーブル";
+// Rotation center of the turntable
+about.turntable.pivot = "";
+// Keep current pivot
+about.turntable.pivot.keep = "";
+// Turntable pivot will be at the center of the scene
+about.turntable.pivot.scene = "シーン";
 // Make the entire scene turn around (speed of the animation)
-about.turntableSpeed = "ターンテーブルの速度";
+about.turntable.speed = "ターンテーブルの速度";
 // Stuffs that I used to make the app
 about.credits = "クレジット";
 // Link to open source projects that I used for the app
@@ -135,6 +143,8 @@ about.facebook = "Facebook";
 // Link to the App Discord account
 about.discord = "Discord";
 
+// The user canceled an operation that was running
+alert.aborted = "";
 // Error when an algorithm needs the object to have an hole (usually to fill it)
 alert.hole.nothing = "オブジェクトに穴がありません。";
 // Visibility of the object is off (but should be on)
@@ -444,7 +454,6 @@ file.import.add.confirm = "新しいファイルを読み込みますか？";
 
 // Export scene file
 file.export.title = "書き出す";
-file.export.title.help = "可能であれば、glTFは他のフォーマットよりも多くの機能をサポートするので、glTF書き出しを優先してください。";
 
 // Export the current selected objects instead of the entire scene
 file.onlySelection = "選択中のオブジェクトのみを含める";
@@ -462,6 +471,15 @@ file.export.normal = "法線を書き出す";
 file.export.normal.help = "別のソフトウェアでファイルを開きたい場合は、このオプションをチェックしてください。
 
 Nomadは法線を計算し直すので、必ずそれらを無視します。";
+
+// color space (linear or srgb), do not translate linear/srgb if there is a doubt
+file.export.colorSpace = ""
+file.export.colorSpace.help = "";
+file.export.colorSpace.linear = "";
+file.export.colorSpace.srgb = "";
+
+file.export.nomad = "";
+file.export.nomad.help = "";
 
 file.export.gltf = "glTF 2.0で書き出す";
 // Whether we include layers in the exported file (see glossary for layer)
@@ -563,6 +581,9 @@ pressure.noGrab = "ストロークタイプ、“グラブ”は筆圧設定を�
 pressure.radius = "半径";
 // The stylus pressure will impact the tool intensity (more pressure -> stronger intensity)
 pressure.intensity = "強度";
+// Average pencil pressure event to get smoother result
+pressure.average = "";
+pressure.average.help = "";
 
 // Customize whether finger and/or stylus can move the Camera
 gesture.cameraInteraction = "カメラ:";
@@ -627,8 +648,8 @@ gesture.mask.longPress = "長押し (マスク ↔ SelMask)";
 gesture.mask.longPress.help = "マスクまたはSelMaskが有効な場合、指で長押しするとこれらのツールを切り替えられます。
 
 指を動かさないで長押しすると、新しいツールがデフォルトのマスクショートカットとして使用されます。";
-// Indicator that the tool has been set as the new shortcut
-gesture.mask.infoShortcut = "$0 がマスクショートカットとして設定されました。";
+// Shortcut customization, choose the action that the shortcut will performan (select tool, etc)
+gesture.shortcut = "ショートカット";
 
 // Shortcuts to undo/redo
 gesture.history = "ショートカット履歴";
@@ -963,7 +984,7 @@ material.flipCulling = "カリング反転";
 material.reflectance = "反射率";
 material.reflectance.help = "マテリアルが非メタリックのマテリアルに受け取る反射の量をコントロールします。
 
-大抵の場合、デフォルト値が使用されます (0.5、これは通常の角度で、4% の標準的な反射光に該当します)。";
+大抵の場合、デフォルト値が使用されます (これは通常の角度で、4% の標準的な反射光に該当します)。";
 
 // Menu name
 menu.files = "ファイル";
@@ -1069,7 +1090,7 @@ paint.texture.warningIgnored = "使用中のツールはテクスチャを使用
 paint.useAlpha = "ストロークのアルファを使用";
 paint.useAlpha.help = "ストロークメニューでアルファセットを使用すると、ペイントを調節できます。";
 // Whether the Brush Falloff will be used to module painting
-paint.useFalloff = "ストロークのフォールオフを使用";
+paint.useCurve = "ストロークのフォールオフを使用";
 paint.useFalloff.help = "ストロークメニューでフォールオフセットを使用すると、ペイントを調節できます。";
 
 // when the user choose a new item name (through iOS/Android virtual keyboard)
@@ -1709,6 +1730,8 @@ symmetry.radial.title = "放射状";
 symmetry.radialX = "ラジアル X";
 symmetry.radialY = "ラジアル Y";
 symmetry.radialZ = "ラジアル Z";
+// A warning indicating that we limit the number of repetitions ($0 is a number)
+symmetry.limited = "";
 // Synonym: Offset
 symmetry.offset.title = "オフセット";
 symmetry.offsetX = "オフセット X";
@@ -1799,6 +1822,8 @@ tool.maskSelector = "SelMask";
 tool.smudge = "ぼかし";
 // Ideally <10 chars (Flatten the surface)
 tool.flatten = "フラット化";
+// Ideally <10 chars (Flatten the surface, more strongly than Flatten)
+tool.planar = "";
 // Ideally <10 chars (Flatten the surface by offsetting the surface in the opposite direction)
 tool.flatten.fill = "埋める";
 // Ideally <10 chars (Layer brush)
@@ -2015,6 +2040,8 @@ tool.transform.tip = "";
 
 // Size of the gizmo
 tool.gizmo.size = "ウィジェットのサイズ";
+// If true, there is less spacing between gizmo handlers (rotate, scale, etc)
+tool.gizmo.compact = "";
 // When enabled, tapping one the gizmo widget will open a numerical input popup
 tool.gizmo.allowInput = "数値で入力";
 tool.gizmo.allowInput.help = "Gizmoウィジェットの1つをタップすると、数値で入力できます";
@@ -2074,6 +2101,10 @@ tool.shape.lineRotateStep = "ステップで回転";
 
 // Show a yellow dot on the golden ratio point
 tool.measure.goldenRatio = "黄金比を表示";
+
+
+// Always display the camera shortcut buttons on the viewport
+tool.view.stickyCamera = "";
 
 // Topology
 topology = "トポロジー";
@@ -2219,12 +2250,26 @@ topology.bake.title = "テクスチャー・ベイク";
 topology.bake.title.help = "";
 // Bake here means "create texture (from mesh data)"
 topology.bakeSelf = "";
-// Bake here means "create texture (from mesh data)"
+// Bake here means "create texture (from another mesh data)"
 topology.bakeHires = "";
 topology.bakeResolution = "解像度";
+// Cage is a specific term, synonyom: "Bake offset"
+topology.bakeOffset = "";
+
+// project a high resolution mesh details onto another
+topology.reproject.title = "";
+topology.reproject.title.help = "";
+// tweaking value
+topology.reproject.rayBias = "";
+topology.reproject.rayBias.help = "";
+// number of iteration the algorithm will take
+topology.reproject.iterations = "";
 
 // Reset key-bindings/shortcuts
 binding.reset = "バインドをリセット";
+// Binding option
+binding.toggleTool = "";
+binding.toggleTool.help = "";
 // Same as Color Picker but it pick the material (color, roughness, metalness, etc)
 binding.materialPicker = "マテリアルピッカー";
 // Edit the tool brush size/radius
