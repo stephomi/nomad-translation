@@ -59,6 +59,11 @@ item.previous = "Предыдущий";
 item.next = "Далее";
 // The item is locked (either it cannot be selected, edited, or we preserve its details)
 item.lock = "Блокировать";
+// No item selected
+item.none = "Нет";
+
+// Search something (text entry to filter item)
+search = "Поиск";
 
 // Three-state toggle button (Auto, Off, On)
 toggle.on = "Вкл.";
@@ -147,6 +152,8 @@ about.discord = "Discord";
 alert.aborted = "";
 // Error when an algorithm needs the object to have an hole (usually to fill it)
 alert.hole.nothing = "У объекта нет отверстий!";
+// No operation occured because the mesh is already manifold
+alert.manifold.already = "";
 // Visibility of the object is off (but should be on)
 alert.shape.notVisible = "Текущий объект не виден!";
 // The user tried to trim an object but the selected region didn't touch the object
@@ -414,30 +421,31 @@ file.project.autoSave.minutes = "Таймер всплывающего окна"
 // Delete the current autoSave data
 file.project.autoSave.delete = "Сбросить автосохранение";
 
-// Load interface preference settings when opening a scene file
-file.load.guiSettings = "Сохранить настройки интерфейса";
-file.load.guiSettings.help = "При открытии или импорте файла проекта будут загружены все настройки интерфейса, установленные в проекте.";
-// OBJ have "groups" and "objects", by default groups are ignored, use this option to consider groups as separate objects
-file.load.objSplitByGroup = "Разбить OBJ по группам";
-file.load.objSplitByGroup.help = "При включении этой функции Nomad будет разбивать группы OBJ на отдельные объекты.";
-// Merge all the object layers at when loading a file (deleting them in the process)
-file.load.mergeLayers = "Объединить слои";
-// Ignore the textures present in the file to load
-file.load.skipTextures = "Игнорировать текстуры";
-// Do not fiddle with the object topology when loading the file
-file.load.keepTopology = "Сохранить топологию";
-file.load.keepTopology.help = "Используйте эту функцию, если вы не хотите, чтоб Nomad вносил изменения в топологию импортированного меша.
-
-Это отключит перестройку вершин/граней, удаление дубликатов вершин/граней и удаление неиспользованных вершин.";
-// If the object has more vertices than this value, then we won't attemp to reverse (multiresolution) the object
-file.load.reverseVertices = "Порог инверсии";
-file.load.reverseVertices.help = "Для экономии памяти Nomad не сохраняет низкое разрешение меша.
-
-Низкое разрешение меша будет восстановлено, если количество вершин ниже порогового значения.";
-
+// color space (linear or srgb), do not translate linear/srgb if there is a doubt
+file.colorSpace = ""
+file.colorSpace.help = "";
+file.colorSpace.linear = "";
+file.colorSpace.srgb = "";
 
 // Configure imports option
 file.importSettings = "Настройки импорта";
+
+// Load interface preference settings when opening a scene file
+file.import.guiSettings = "Сохранить настройки интерфейса";
+file.import.guiSettings.help = "При открытии или импорте файла проекта будут загружены все настройки интерфейса, установленные в проекте.";
+// OBJ have "groups" and "objects", by default groups are ignored, use this option to consider groups as separate objects
+file.import.objSplitByGroup = "Разбить OBJ по группам";
+file.import.objSplitByGroup.help = "При включении этой функции Nomad будет разбивать группы OBJ на отдельные объекты.";
+// Merge all the object layers at when loading a file (deleting them in the process)
+file.import.mergeLayers = "Объединить слои";
+// Ignore the textures present in the file to load
+file.import.skipTextures = "Игнорировать текстуры";
+// Do not fiddle with the object topology when loading the file
+file.import.keepTopology = "Сохранить топологию";
+file.import.keepTopology.help = "Используйте эту функцию, если вы не хотите, чтоб Nomad вносил изменения в топологию импортированного меша.
+
+Это отключит перестройку вершин/граней, удаление дубликатов вершин/граней и удаление неиспользованных вершин.";
+
 
 // Import file section
 file.import.title = "Импорт";
@@ -463,42 +471,36 @@ file.convertToQuad = "Восстановление четырехугольни�
 file.convertToQuad.help = "Восстановление четырехугольников из треугольников путем сопряжения треугольников (если они прилегают друг к другу в файлах).";
 
 // Whether we include the textures in the exported file
-file.export.texture = "Экспорт текстур";
+file.export.texture = "Текстур";
 // Baking means transfering/converting
 file.export.texture.help = "Эта функция не позволяет запекать цвета вершин в текстуры.";
 // Whether we include normals vector in the exported file
-file.export.normal = "Экспорт нормалей";
+file.export.normal = "Нормалей";
 file.export.normal.help = "Выберите эту опцию, если вы хотите открыт файл в других программах.
 
 Nomad всегда игнорирует нормали, т. к. они будут вычислены заново.";
-
-// color space (linear or srgb), do not translate linear/srgb if there is a doubt
-file.export.colorSpace = ""
-file.export.colorSpace.help = "";
-file.export.colorSpace.linear = "";
-file.export.colorSpace.srgb = "";
 
 file.export.nomad = "";
 file.export.nomad.help = "";
 
 file.export.gltf = "Экспорт glTF 2.0";
 // Whether we include layers in the exported file (see glossary for layer)
-file.export.gltf.layer = "Экспортировать слои";
+file.export.gltf.layer = "Ировать слои";
 file.export.gltf.layer.help = "Экспорт слоев в качестве морфов. Официально поддерживается glTF и должно работать и в других программах.";
 // Whether we include painting of layers in the exported file (see glossary for layer)
-file.export.gltf.layerPaint = "Экспортировать окрашивание слоев";
+file.export.gltf.layerPaint = "Ировать окрашивание слоев";
 file.export.gltf.layerPaint.help = "Экспорт окрашивания слоев. Обычно игнорируется другими программами.";
 // Whether we include the vertex color in the exported file
-file.export.gltf.color0 = "Экспорт цветов вершин";
+file.export.gltf.color0 = "Цветов вершин";
 file.export.gltf.color0.help = "Экспорт цветов вершин. Официально поддерживается glTF и должно работать и в других программах.";
 // Whether we include the vertex roughness and vertex metalness in the exported file
-file.export.gltf.color1 = "Экспорт окрашивания PBR";
+file.export.gltf.color1 = "Окрашивания PBR";
 file.export.gltf.color1.help = "Экспорт шероховатости, металличности и окрашивания масок. Будет игнорироваться другими программами.";
 
 file.export.obj = "Экспорт obj";
 file.export.obj.warning = "Слои и другое окрашивание (шероховатость, металличность и маски) не будут сохранены.";
 // Whether we include the vertex color in the exported file
-file.export.obj.colorAppend = "Экспорт цветов вершин";
+file.export.obj.colorAppend = "Цветов вершин";
 file.export.obj.colorAppend.help = "Прикрепление цветовой информации к вершинам.
 
 Некоторые 3D-программы смогут прочесть эту информацию, но не все.";
@@ -506,7 +508,7 @@ file.export.obj.colorAppend.help = "Прикрепление цветовой и
 file.export.stl = "Экспорт STL";
 file.export.stl.warning = "Слои и другое окрашивание (шероховатость, металличность и маски) не будут сохранены.";
 // Whether we include the vertex color in the exported file
-file.export.stl.color = "Экспорт цветов вершин";
+file.export.stl.color = "Цветов вершин";
 file.export.stl.color.help = "Некоторые 3D-программы смогут прочесть эту информацию, но не все.";
 file.export.stl.ascii = "По умолчанию используется бинарный формат.
 
@@ -849,7 +851,7 @@ light = "Освещение";
 // Intensity of light
 light.intensity = "Интенсивность";
 // Temperature in Kelvin (Alternative way to compute the color of the light)
-light.temperature = "Температура";
+light.kelvin = "Температура";
 // The attachment of a light defines how it will move when the user moves the camera
 light.attachment = "Привязка";
 // The light will stay still even if the user moves the camera
@@ -865,6 +867,7 @@ light.attachment.help = "-- Закреплено
 light.type = "Тип";
 // Directional light (synonym: sun light)
 light.type.directional = "По направлению";
+light.type.directional.short = "";
 // Spot light emits light in a single direction, restricted by a cone shape.
 light.type.spot = "Узконаправленное освещение";
 // Point light emits lights everywhere (synonym: omni, omnidirectional)
@@ -1344,8 +1347,19 @@ primitive.radiusSync = "Тот же радиус";
 primitive.radiusStart = "Начало радиуса";
 primitive.radiusEnd = "Конец радиуса";
 
+// Singular of Repeaters (Nodes that make many copies of its children (type of mirror/curve/array/radial))
+repeater = "";
+// All the new items will be inserted inside the bound rather than outside
+repeater.array.fitInside = "";
+// The object will follow the curve
+repeater.curve.align = "";
+
 // Import resource (Alpha, Textures, MatCaps, etc)
 resource.import = "Импорт...";
+// iOS Photos gallery
+resource.import.ios.photos = "";
+// iOS Files App
+resource.import.ios.files = "";
 
 scene.title = "Кадр";
 scene.title.help = "При использовании кнопок видимости/выбора, удерживайте и перетаскивайте палец для простого выбора объектов.
@@ -1353,6 +1367,12 @@ scene.title.help = "При использовании кнопок видимо�
 Вы также можете длительно нажать на кнопки видимости/выбора для того, чтобы это касалось и дочерних узлов.";
 // The view will focus on the item when we click on it
 scene.focus = "Фокус на предмете";
+// Add new object on gizmo position
+scene.addOnGizmo = "";
+scene.addOnGizmo.help = "";
+// Select the gizmo tool after adding a new object
+scene.addSelectGizmo = "";
+scene.addSelectGizmo.help = "";
 // Icon size in pixel (min/max)
 scene.iconSize = "";
 // Min size of icon
@@ -1384,8 +1404,6 @@ scene.radial = "Радиально";
 // Nodes that make many copies of its children (type of mirror/curve/array/radial)
 scene.repeaters = "";
 scene.repeaters.help = "";
-// singular of Repeaters (Nodes that make many copies of its children (type of mirror/curve/array/radial))
-repeater = "";
 // Validate button
 scene.validateGroup = "Утвердить";
 // Keep instances in the scene
@@ -1418,6 +1436,12 @@ settings.debugUV.help = "Эта функция играет значение т�
 Она будет отображать каркас UV на фоне.
 
 Она также покажет текстуру на модели, окрашенную в шахматном порядке.";
+// Display the material texture
+settings.debugChannel = "";
+// Display the material texture in the background
+settings.debugChannel.onBackground = "";
+// Display the material texture on the mesh
+settings.debugChannel.onMesh = "";
 // If the object is opened (a simple plane for example), two sided means we'll be able to see if from the two sides of the planes
 settings.twoSided = "Две стороны";
 settings.twoSided.help = "Грани будут видны с двух сторон.";
@@ -1618,9 +1642,9 @@ stroke.useWorldRadius.help = "Эта настройка общая для все
 stroke.useShareRadius = "Общий радиус";
 stroke.useShareRadius.help = "Общий размер радиуса для всех инструментов.";
 // When doing a brush stroke, the spacing is the distance between 2 sculpt operations
-stroke.minSpacing = "Расстояние между штрихами";
+stroke.spacing = "Расстояние между штрихами";
 // Adjust the brush intensity to ensure consistent deformation depending on the stroke spacing.
-stroke.minSpacing.adjustIntensity = "Настроить интенсивность в зависимости от расстояния";
+stroke.spacing.adjust = "Настроить интенсивность в зависимости от расстояния";
 stroke.minSpacingAdjustIntensity.help = "Настройка интенсивности кисти для создания последовательной деформации в зависимости от расстояния между штрихами.";
 stroke.minSpacing.help = "Расстояние между штрихами, связано с радиусом инструментов.
 
@@ -1753,9 +1777,9 @@ symmetry.method.help = "-- Локально
 -- Мир
 Плоскость симметрии закреплена и не будет двигаться.";
 // Local means: in the coordinate of the scene (synonym: absolute)
-symmetry.methodWorld = "Мир";
+symmetry.method.world = "Мир";
 // Local means: in the coordinate of the object (synonym: relative)
-symmetry.methodLocal = "Локально";
+symmetry.method.local = "Локально";
 // Move the object to the other side of the symmetry (mirror it as well)
 symmetry.flip = "Перевернуть объект";
 // Mirror the mesh
@@ -1861,8 +1885,10 @@ tool.gizmo.rotateSnap = "Привязка";
 tool.gizmo.moveSnap = "Привязка";
 // Ideally <10 chars (Local/Relative space)
 tool.gizmo.local = "Локально";
-// Ideally <10 chars (World/Absolute space)
-tool.gizmo.world = "Мир";
+// Ideally <10 chars (Align/Snap the gizmo to world axis)
+tool.gizmo.align = "";
+// Ideally <10 chars (Pin the gizmo, so that it stays in place when switching between objects)
+tool.gizmo.pin = "";
 // Ideally <10 chars (Rotate, Translate and Scale the object)
 tool.transform = "Трансформация";
 // Ideally <10 chars (Translate the object)
@@ -2254,6 +2280,8 @@ topology.bakeHires = "";
 topology.bakeResolution = "Разрешение";
 // Cage is a specific term, synonyom: "Bake offset"
 topology.bakeOffset = "";
+// Bake opacity (from mask data)
+topology.bake.opacityFromMask = "";
 
 // project a high resolution mesh details onto another
 topology.reproject.title = "";
@@ -2263,6 +2291,9 @@ topology.reproject.rayBias = "";
 topology.reproject.rayBias.help = "";
 // number of iteration the algorithm will take
 topology.reproject.iterations = "";
+
+topology.forceManifold = "";
+topology.forceManifold.help = "";
 
 // Reset key-bindings/shortcuts
 binding.reset = "Сбросить привязки";
@@ -2313,6 +2344,11 @@ privacyPolicy.title = "Политика конфиденциальности";
 privacyPolicy.reject = "Отклонить";
 // Hexanomad is the company name
 privacyPolicy = "Hexanomad не собирает данные из Nomad Sculpt.";
+
+// Color disc mode
+widget.color.disc = "";
+// Color square mode
+widget.color.square = "";
 
 // version trial
 version.buyWeb = "Веб-версия — это только демо-версия";

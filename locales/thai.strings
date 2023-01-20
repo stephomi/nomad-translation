@@ -59,6 +59,11 @@ item.previous = "ก่อนหน้า";
 item.next = "ถัดไป";
 // The item is locked (either it cannot be selected, edited, or we preserve its details)
 item.lock = "ล็อค";
+// No item selected
+item.none = "ไม่มี";
+
+// Search something (text entry to filter item)
+search = "ค้นหา";
 
 // Three-state toggle button (Auto, Off, On)
 toggle.on = "เปิด";
@@ -147,6 +152,8 @@ about.discord = "ขัดแย้ง";
 alert.aborted = "";
 // Error when an algorithm needs the object to have an hole (usually to fill it)
 alert.hole.nothing = "ออบเจ็กต์ไม่มีรู!";
+// No operation occured because the mesh is already manifold
+alert.manifold.already = "";
 // Visibility of the object is off (but should be on)
 alert.shape.notVisible = "มองไม่เห็นออบเจ็กต์นี้!";
 // The user tried to trim an object but the selected region didn't touch the object
@@ -414,30 +421,31 @@ file.project.autoSave.minutes = "ป๊อปอัพตัวจับเว�
 // Delete the current autoSave data
 file.project.autoSave.delete = "ลบบันทึกอัตโนมัติ?";
 
-// Load interface preference settings when opening a scene file
-file.load.guiSettings = "เก็บการตั้งค่า gui";
-file.load.guiSettings.help = "เมื่อเปิดหรือนำเข้าไฟล์โปรเจ็กต์ การตั้งค่าที่เกี่ยวข้องกับ gui ทั้งหมดที่ฝังอยู่ในโปรเจ็กต์จะถูกโหลด";
-// OBJ have "groups" and "objects", by default groups are ignored, use this option to consider groups as separate objects
-file.load.objSplitByGroup = "แยก OBJ ตามกลุ่ม";
-file.load.objSplitByGroup.help = "เมื่อเปิดใช้งาน Nomad จะแบ่งกลุ่ม OBJ ออกเป็นอ็อบเจ็กต์แยกกัน";
-// Merge all the object layers at when loading a file (deleting them in the process)
-file.load.mergeLayers = "รวมเลเยอร์";
-// Ignore the textures present in the file to load
-file.load.skipTextures = "ข้ามพื้นผิว";
-// Do not fiddle with the object topology when loading the file
-file.load.keepTopology = "เก็บโทโพโลยี";
-file.load.keepTopology.help = "ใช้ตัวเลือกนี้หากคุณไม่ต้องการให้ Nomad จัดการกับโทโพโลยีของเมชที่นำเข้า
-
-จะปิดใช้งานการจัดลำดับใหม่จุดยอด/เฟส การลบจุดยอด/เฟสที่ซ้ำกัน และการลบจุดยอดที่ไม่ได้ใช้";
-// If the object has more vertices than this value, then we won't attemp to reverse (multiresolution) the object
-file.load.reverseVertices = "เกณฑ์ย้อนกลับ";
-file.load.reverseVertices.help = "เพื่อที่จะใช้หน่วยความจำน้อยลง Nomad จะไม่บันทึกความละเอียดที่ต่ำกว่าของเมช
-
-อย่างไรก็ตาม จะสร้างความละเอียดที่ต่ำกว่าขึ้นใหม่ หากจำนวนจุดยอดที่ต่ำกว่าเกณฑ์นี้";
-
+// color space (linear or srgb), do not translate linear/srgb if there is a doubt
+file.colorSpace = ""
+file.colorSpace.help = "";
+file.colorSpace.linear = "";
+file.colorSpace.srgb = "";
 
 // Configure imports option
 file.importSettings = "นำเข้าตัวเลือก";
+
+// Load interface preference settings when opening a scene file
+file.import.guiSettings = "เก็บการตั้งค่า gui";
+file.import.guiSettings.help = "เมื่อเปิดหรือนำเข้าไฟล์โปรเจ็กต์ การตั้งค่าที่เกี่ยวข้องกับ gui ทั้งหมดที่ฝังอยู่ในโปรเจ็กต์จะถูกโหลด";
+// OBJ have "groups" and "objects", by default groups are ignored, use this option to consider groups as separate objects
+file.import.objSplitByGroup = "แยก OBJ ตามกลุ่ม";
+file.import.objSplitByGroup.help = "เมื่อเปิดใช้งาน Nomad จะแบ่งกลุ่ม OBJ ออกเป็นอ็อบเจ็กต์แยกกัน";
+// Merge all the object layers at when loading a file (deleting them in the process)
+file.import.mergeLayers = "รวมเลเยอร์";
+// Ignore the textures present in the file to load
+file.import.skipTextures = "ข้ามพื้นผิว";
+// Do not fiddle with the object topology when loading the file
+file.import.keepTopology = "เก็บโทโพโลยี";
+file.import.keepTopology.help = "ใช้ตัวเลือกนี้หากคุณไม่ต้องการให้ Nomad จัดการกับโทโพโลยีของเมชที่นำเข้า
+
+จะปิดใช้งานการจัดลำดับใหม่จุดยอด/เฟส การลบจุดยอด/เฟสที่ซ้ำกัน และการลบจุดยอดที่ไม่ได้ใช้";
+
 
 // Import file section
 file.import.title = "นำเข้า";
@@ -463,42 +471,36 @@ file.convertToQuad = "สร้างรูปสี่เหลี่ยมข�
 file.convertToQuad.help = "สร้างรูปสี่เหลี่ยมขึ้นใหม่จากสามเหลี่ยมโดยจับคู่สามเหลี่ยม (หากอยู่ติดกันในไฟล์)";
 
 // Whether we include the textures in the exported file
-file.export.texture = "นำออกพื้นผิว";
+file.export.texture = "พื้นผิว";
 // Baking means transfering/converting
 file.export.texture.help = "ตัวเลือกนี้ไม่เบคสีของจุดยอดลงในพื้นผิว";
 // Whether we include normals vector in the exported file
-file.export.normal = "นำออกแนวฉาก";
+file.export.normal = "แนวฉาก";
 file.export.normal.help = "เลือกตัวเลือกนี้หากคุณต้องการเปิดไฟล์ในซอฟต์แวร์อื่น
 
 Nomad จะไม่สนใจแนวฉากเหล่านี้เพราะระบบจะคำนวณใหม่";
-
-// color space (linear or srgb), do not translate linear/srgb if there is a doubt
-file.export.colorSpace = ""
-file.export.colorSpace.help = "";
-file.export.colorSpace.linear = "";
-file.export.colorSpace.srgb = "";
 
 file.export.nomad = "";
 file.export.nomad.help = "";
 
 file.export.gltf = "นำออก glTF 2.0";
 // Whether we include layers in the exported file (see glossary for layer)
-file.export.gltf.layer = "นำออกเลเยอร์";
+file.export.gltf.layer = "เลเยอร์";
 file.export.gltf.layer.help = "นำออกเลเยอร์เป็นมอร์ฟ รองรับอย่างเป็นทางการโดย glTF ดังนั้นจึงใช้งานได้บนซอฟต์แวร์อื่นด้วยเช่นกัน";
 // Whether we include painting of layers in the exported file (see glossary for layer)
-file.export.gltf.layerPaint = "นำออกการวาดเลเยอร์";
+file.export.gltf.layerPaint = "การวาดเลเยอร์";
 file.export.gltf.layerPaint.help = "นำออกการวาดลงสีเลเยอร์ มักจะถูกละเว้นโดยซอฟต์แวร์อื่น";
 // Whether we include the vertex color in the exported file
-file.export.gltf.color0 = "นำออกสีของวอร์เท็กซ์";
+file.export.gltf.color0 = "สีของวอร์เท็กซ์";
 file.export.gltf.color0.help = "นำออกสีของจุดยอด รองรับอย่างเป็นทางการโดย glTF ดังนั้นจึงใช้งานได้บนซอฟต์แวร์อื่นด้วยเช่นกัน";
 // Whether we include the vertex roughness and vertex metalness in the exported file
-file.export.gltf.color1 = "นำออกการวาด pbr";
+file.export.gltf.color1 = "การวาด pbr";
 file.export.gltf.color1.help = "นำออกความหยาบ ความเป็นโลหะ และการวาดลงสีส่วนที่มาส์ก การดำเนินการนี้จะถูกละเว้นโดยซอฟต์แวร์อื่น";
 
 file.export.obj = "นำออก OBJ";
 file.export.obj.warning = "เลเยอร์และการวาดลงสีเพิ่มเติม (ความหยาบ ความเป็นโลหะและมาส์ก) จะหายไป";
 // Whether we include the vertex color in the exported file
-file.export.obj.colorAppend = "นำออกสีของวอร์เท็กซ์";
+file.export.obj.colorAppend = "สีของวอร์เท็กซ์";
 file.export.obj.colorAppend.help = "ผนวกข้อมูลสีหลังจุดยอด
 
 ซอฟต์แวร์ 3D บางตัวจะสามารถอ่านได้ แต่ไม่ใช่ทั้งหมด";
@@ -506,7 +508,7 @@ file.export.obj.colorAppend.help = "ผนวกข้อมูลสีหล�
 file.export.stl = "นำออก STL";
 file.export.stl.warning = "เลเยอร์และการวาดลงสีเพิ่มเติม (ความหยาบ ความเป็นโลหะและมาส์ก) จะหายไป";
 // Whether we include the vertex color in the exported file
-file.export.stl.color = "นำออกสีของวอร์เท็กซ์";
+file.export.stl.color = "สีของวอร์เท็กซ์";
 file.export.stl.color.help = "ซอฟต์แวร์ 3D บางตัวจะสามารถอ่านได้ แต่ไม่ใช่ทั้งหมด";
 file.export.stl.ascii = "โดยค่าเริ่มต้น ฟอร์แมตจะเป็นแบบไบนารี
 
@@ -849,7 +851,7 @@ light = "แสง";
 // Intensity of light
 light.intensity = "ความเข้ม";
 // Temperature in Kelvin (Alternative way to compute the color of the light)
-light.temperature = "อุณหภูมิ";
+light.kelvin = "อุณหภูมิ";
 // The attachment of a light defines how it will move when the user moves the camera
 light.attachment = "การผนวก";
 // The light will stay still even if the user moves the camera
@@ -865,6 +867,7 @@ light.attachment.help = "-- อยู่กับที่
 light.type = "ชนิด";
 // Directional light (synonym: sun light)
 light.type.directional = "ทิศทาง";
+light.type.directional.short = "";
 // Spot light emits light in a single direction, restricted by a cone shape.
 light.type.spot = "สปอต";
 // Point light emits lights everywhere (synonym: omni, omnidirectional)
@@ -1344,8 +1347,19 @@ primitive.radiusSync = "รัศมีเดียวกัน";
 primitive.radiusStart = "รัศมีเริ่มต้น";
 primitive.radiusEnd = "รัศมีสิ้นสุด";
 
+// Singular of Repeaters (Nodes that make many copies of its children (type of mirror/curve/array/radial))
+repeater = "";
+// All the new items will be inserted inside the bound rather than outside
+repeater.array.fitInside = "";
+// The object will follow the curve
+repeater.curve.align = "";
+
 // Import resource (Alpha, Textures, MatCaps, etc)
 resource.import = "นำเข้า...";
+// iOS Photos gallery
+resource.import.ios.photos = "";
+// iOS Files App
+resource.import.ios.files = "";
 
 scene.title = "ซีน";
 scene.title.help = "เมื่อใช้ปุ่มที่มองเห็น/เลือก ให้กดค้างไว้แล้วลากนิ้วเพื่อเลือกออบเจ็กต์อื่นๆ อย่างง่ายดาย
@@ -1353,6 +1367,12 @@ scene.title.help = "เมื่อใช้ปุ่มที่มองเห
 คุณยังสามารถกดปุ่มที่มองเห็น/เลือกค้างไว้เพื่อให้มีผลกับโหนดลูกได้เช่นกัน";
 // The view will focus on the item when we click on it
 scene.focus = "โฟกัสที่รายการ";
+// Add new object on gizmo position
+scene.addOnGizmo = "";
+scene.addOnGizmo.help = "";
+// Select the gizmo tool after adding a new object
+scene.addSelectGizmo = "";
+scene.addSelectGizmo.help = "";
 // Icon size in pixel (min/max)
 scene.iconSize = "";
 // Min size of icon
@@ -1384,8 +1404,6 @@ scene.radial = "เรเดียล";
 // Nodes that make many copies of its children (type of mirror/curve/array/radial)
 scene.repeaters = "";
 scene.repeaters.help = "";
-// singular of Repeaters (Nodes that make many copies of its children (type of mirror/curve/array/radial))
-repeater = "";
 // Validate button
 scene.validateGroup = "ตรวจสอบ";
 // Keep instances in the scene
@@ -1418,6 +1436,12 @@ settings.debugUV.help = "ตัวเลือกนี้เกี่ยวข�
 จะแสดงโครงร่าง UV ในพื้นหลัง
 
 นอกจากนี้ยังจะแสดงพื้นผิวกระดานหมากรุกสีบนโมเดล";
+// Display the material texture
+settings.debugChannel = "";
+// Display the material texture in the background
+settings.debugChannel.onBackground = "";
+// Display the material texture on the mesh
+settings.debugChannel.onMesh = "";
 // If the object is opened (a simple plane for example), two sided means we'll be able to see if from the two sides of the planes
 settings.twoSided = "สองด้าน";
 settings.twoSided.help = "จะเห็นเฟสได้จากทั้งสองด้าน";
@@ -1618,9 +1642,9 @@ stroke.useWorldRadius.help = "มีการใช้ร่วมกันใ�
 stroke.useShareRadius = "แชร์รัศมี";
 stroke.useShareRadius.help = "แชร์ค่ารัศมีในทุกเครื่องมือ";
 // When doing a brush stroke, the spacing is the distance between 2 sculpt operations
-stroke.minSpacing = "ระยะห่างระหว่างลายเส้น";
+stroke.spacing = "ระยะห่างระหว่างลายเส้น";
 // Adjust the brush intensity to ensure consistent deformation depending on the stroke spacing.
-stroke.minSpacing.adjustIntensity = "ปรับความเข้มของระยะห่าง";
+stroke.spacing.adjust = "ปรับความเข้มของระยะห่าง";
 stroke.minSpacingAdjustIntensity.help = "ปรับความเข้มของแปรงเพื่อให้แน่ใจว่ามีการแปลงรูปที่สม่ำเสมอโดยขึ้นอยู่กับระยะห่างของลายเส้นวาด";
 stroke.minSpacing.help = "ระยะห่างระหว่างแต่ละสโตรก สัมพันธ์กับรัศมีเครื่องมือ
 
@@ -1753,9 +1777,9 @@ symmetry.method.help = "-- โลคอล
 -- เวิลด์
 ระนาบสมมาตรได้รับการแก้ไขและจะไม่เคลื่อนที่";
 // Local means: in the coordinate of the scene (synonym: absolute)
-symmetry.methodWorld = "เวิลด์";
+symmetry.method.world = "เวิลด์";
 // Local means: in the coordinate of the object (synonym: relative)
-symmetry.methodLocal = "โลคอล";
+symmetry.method.local = "โลคอล";
 // Move the object to the other side of the symmetry (mirror it as well)
 symmetry.flip = "พลิกออบเจ็กต์";
 // Mirror the mesh
@@ -1861,8 +1885,10 @@ tool.gizmo.rotateSnap = "สแนป";
 tool.gizmo.moveSnap = "สแนป";
 // Ideally <10 chars (Local/Relative space)
 tool.gizmo.local = "โลคอล";
-// Ideally <10 chars (World/Absolute space)
-tool.gizmo.world = "เวิลด์";
+// Ideally <10 chars (Align/Snap the gizmo to world axis)
+tool.gizmo.align = "";
+// Ideally <10 chars (Pin the gizmo, so that it stays in place when switching between objects)
+tool.gizmo.pin = "";
 // Ideally <10 chars (Rotate, Translate and Scale the object)
 tool.transform = "ปรับแต่ง";
 // Ideally <10 chars (Translate the object)
@@ -2258,6 +2284,8 @@ topology.bakeHires = "";
 topology.bakeResolution = "ความละเอียด";
 // Cage is a specific term, synonyom: "Bake offset"
 topology.bakeOffset = "";
+// Bake opacity (from mask data)
+topology.bake.opacityFromMask = "";
 
 // project a high resolution mesh details onto another
 topology.reproject.title = "";
@@ -2267,6 +2295,9 @@ topology.reproject.rayBias = "";
 topology.reproject.rayBias.help = "";
 // number of iteration the algorithm will take
 topology.reproject.iterations = "";
+
+topology.forceManifold = "";
+topology.forceManifold.help = "";
 
 // Reset key-bindings/shortcuts
 binding.reset = "รีเซ็ตการมัดรวม";
@@ -2317,6 +2348,11 @@ privacyPolicy.title = "นโยบายความเป็นส่วนต
 privacyPolicy.reject = "ปฏิเสธ";
 // Hexanomad is the company name
 privacyPolicy = "Hexanomad ไม่ได้รวบรวมข้อมูลใดๆ จาก Nomad Sculpt";
+
+// Color disc mode
+widget.color.disc = "";
+// Color square mode
+widget.color.square = "";
 
 // version trial
 version.buyWeb = "เวอร์ชันเว็บเป็นเพียงตัวอย่างเท่านั้น";

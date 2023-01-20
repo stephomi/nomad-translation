@@ -59,6 +59,11 @@ item.previous = "पिछला";
 item.next = "अगला";
 // The item is locked (either it cannot be selected, edited, or we preserve its details)
 item.lock = "लॉक करें";
+// No item selected
+item.none = "नहीं";
+
+// Search something (text entry to filter item)
+search = "ढूंढिए";
 
 // Three-state toggle button (Auto, Off, On)
 toggle.on = "चालू";
@@ -147,6 +152,8 @@ about.discord = "Discord";
 alert.aborted = "";
 // Error when an algorithm needs the object to have an hole (usually to fill it)
 alert.hole.nothing = "वस्तु में कोई छेद नहीं है!";
+// No operation occured because the mesh is already manifold
+alert.manifold.already = "";
 // Visibility of the object is off (but should be on)
 alert.shape.notVisible = "वर्तमान वस्तु अदृश्य है!";
 // The user tried to trim an object but the selected region didn't touch the object
@@ -416,30 +423,31 @@ file.project.autoSave.minutes = "टाइमर पॉपअप";
 // Delete the current autoSave data
 file.project.autoSave.delete = "स्वतः सहेजे गए को हटा दें";
 
-// Load interface preference settings when opening a scene file
-file.load.guiSettings = "Gui सेटिंग्स बनाए रखें";
-file.load.guiSettings.help = "प्रोजेक्ट फ़ाइल खोलते या इंपोर्ट करते समय, प्रोजेक्ट में अंत: स्थापित सभी gui-संबंधित सेटिंग्स लोड हो जाएंगी.";
-// OBJ have "groups" and "objects", by default groups are ignored, use this option to consider groups as separate objects
-file.load.objSplitByGroup = "समूहों द्वारा OBJ विभाजित करें";
-file.load.objSplitByGroup.help = "सक्षम होने पर, Nomad OBJ समूहों को अलग-अलग वस्तुओं विभाजित कर देगा.";
-// Merge all the object layers at when loading a file (deleting them in the process)
-file.load.mergeLayers = "परतें मिलाएँ";
-// Ignore the textures present in the file to load
-file.load.skipTextures = "टेक्स्चर छोडें";
-// Do not fiddle with the object topology when loading the file
-file.load.keepTopology = "टोपोलॉजी बनाए रखें";
-file.load.keepTopology.help = "यदि आप नहीं चाहते कि Nomad इंपोर्ट की गयी मेश टोपोलॉजी के साथ छेड़छाड़ करे तो इस विकल्प का उपयोग करें.
-
-यह शीर्ष/फ़लक पुनर्व्यवस्था, शीर्ष/फ़लक डुप्लीकेट को हटाने और अप्रयुक्त शीर्ष को हटाने को अक्षम कर देगा.";
-// If the object has more vertices than this value, then we won't attemp to reverse (multiresolution) the object
-file.load.reverseVertices = "उलटने की सीमा";
-file.load.reverseVertices.help = "कम मेमोरी का उपयोग करने के लिए, Nomad मेश के निचले रिज़ॉल्यूशन को नहीं सहेजता है.
-
-हालाँकि, यह निचले रिज़ॉल्यूशन का पुनर्निर्माण करेगा यदि शीर्ष की संख्या सीमा से कम है.";
-
+// color space (linear or srgb), do not translate linear/srgb if there is a doubt
+file.colorSpace = ""
+file.colorSpace.help = "";
+file.colorSpace.linear = "";
+file.colorSpace.srgb = "";
 
 // Configure imports option
 file.importSettings = "इंपोर्ट विकल्प";
+
+// Load interface preference settings when opening a scene file
+file.import.guiSettings = "Gui सेटिंग्स बनाए रखें";
+file.import.guiSettings.help = "प्रोजेक्ट फ़ाइल खोलते या इंपोर्ट करते समय, प्रोजेक्ट में अंत: स्थापित सभी gui-संबंधित सेटिंग्स लोड हो जाएंगी.";
+// OBJ have "groups" and "objects", by default groups are ignored, use this option to consider groups as separate objects
+file.import.objSplitByGroup = "समूहों द्वारा OBJ विभाजित करें";
+file.import.objSplitByGroup.help = "सक्षम होने पर, Nomad OBJ समूहों को अलग-अलग वस्तुओं विभाजित कर देगा.";
+// Merge all the object layers at when loading a file (deleting them in the process)
+file.import.mergeLayers = "परतें मिलाएँ";
+// Ignore the textures present in the file to load
+file.import.skipTextures = "टेक्स्चर छोडें";
+// Do not fiddle with the object topology when loading the file
+file.import.keepTopology = "टोपोलॉजी बनाए रखें";
+file.import.keepTopology.help = "यदि आप नहीं चाहते कि Nomad इंपोर्ट की गयी मेश टोपोलॉजी के साथ छेड़छाड़ करे तो इस विकल्प का उपयोग करें.
+
+यह शीर्ष/फ़लक पुनर्व्यवस्था, शीर्ष/फ़लक डुप्लीकेट को हटाने और अप्रयुक्त शीर्ष को हटाने को अक्षम कर देगा.";
+
 
 // Import file section
 file.import.title = "इंपोर्ट करें";
@@ -465,42 +473,36 @@ file.convertToQuad = "च्तुष्कोण पुनर्निर्म
 file.convertToQuad.help = "त्रिभुजों की जोडी बनाकर च्तुष्कोणों का पुनर्निर्माण करें (यदि वे फाइलों में आसन्न हैं).";
 
 // Whether we include the textures in the exported file
-file.export.texture = "टेक्स्चर एक्सपोर्ट करें";
+file.export.texture = "टेक्स्चर";
 // Baking means transfering/converting
 file.export.texture.help = "यह विकल्प शीर्ष रंगों को टेक्स्चर में बेक नहीं करता है.";
 // Whether we include normals vector in the exported file
-file.export.normal = "नॉर्मल्स एक्सपोर्ट करें";
+file.export.normal = "नॉर्मल्स";
 file.export.normal.help = "यदि आप फ़ाइल को किसी अन्य सॉफ़्टवेयर में खोलना चाहते हैं तो इस विकल्प को चुनें.
 
 Nomad हमेशा नॉर्मल्स की अनदेखी करता है क्योंकि यह उनकी फिर से गणना करेगा.";
-
-// color space (linear or srgb), do not translate linear/srgb if there is a doubt
-file.export.colorSpace = ""
-file.export.colorSpace.help = "";
-file.export.colorSpace.linear = "";
-file.export.colorSpace.srgb = "";
 
 file.export.nomad = "";
 file.export.nomad.help = "";
 
 file.export.gltf = "glTF 2.0 का निर्यात करें";
 // Whether we include layers in the exported file (see glossary for layer)
-file.export.gltf.layer = "परतें एक्सपोर्ट करें";
+file.export.gltf.layer = "परतें";
 file.export.gltf.layer.help = "परतों को मोर्फ़ के रूप में निर्यात करें. आधिकारिक तौर पर glTF द्वारा समर्थित है, इसलिए इसे अन्य सॉफ्टवेयर पर भी काम करना चाहिए.";
 // Whether we include painting of layers in the exported file (see glossary for layer)
-file.export.gltf.layerPaint = "परत पैंट एक्सपोर्ट करें";
+file.export.gltf.layerPaint = "परत पैंट";
 file.export.gltf.layerPaint.help = "परत पेंटिंग निर्यात करें. इसे आमतौर पर अन्य सॉफ्टवेयर द्वारा नजरअंदाज कर दिया जाता है.";
 // Whether we include the vertex color in the exported file
-file.export.gltf.color0 = "शीर्ष रंग एक्सपोर्ट करें";
+file.export.gltf.color0 = "शीर्ष रंग";
 file.export.gltf.color0.help = "शीर्ष रंग एक्सपोर्ट करें. आधिकारिक तौर पर glTF द्वारा समर्थित है, इसलिए इसे अन्य सॉफ्टवेयर पर भी काम करना चाहिए.";
 // Whether we include the vertex roughness and vertex metalness in the exported file
-file.export.gltf.color1 = "pbr पैंट एक्सपोर्ट करें";
+file.export.gltf.color1 = "pbr पैंट";
 file.export.gltf.color1.help = "खुरदरापन, धातुपन और मुखौटा पेंटिंग निर्यात करें. इसे अन्य सॉफ़्टवेयर द्वारा अनदेखा कर दिया जाएगा.";
 
 file.export.obj = "OBJ एक्सपोर्ट करें";
 file.export.obj.warning = "परतें और अतिरिक्त पेंटिंग (खुरदरापन धातुपन और मुखौटा) खो जाएँगे.";
 // Whether we include the vertex color in the exported file
-file.export.obj.colorAppend = "शीर्ष रंग एक्सपोर्ट करें";
+file.export.obj.colorAppend = "शीर्ष रंग";
 file.export.obj.colorAppend.help = "रंग की जानकारी शीर्षों के बाद जोड़ें.
 
 कुछ 3डी सॉफ्टवेयर इसे पढ़ सकेंगे लेकिन सभी नहीं.";
@@ -508,7 +510,7 @@ file.export.obj.colorAppend.help = "रंग की जानकारी श�
 file.export.stl = "STL एक्सपोर्ट करें";
 file.export.stl.warning = "परतें और अतिरिक्त पेंटिंग (खुरदरापन धातुपन और मुखौटा) खो जाएँगे.";
 // Whether we include the vertex color in the exported file
-file.export.stl.color = "शीर्ष रंग एक्सपोर्ट करें";
+file.export.stl.color = "शीर्ष रंग";
 file.export.stl.color.help = "कुछ 3डी सॉफ्टवेयर इसे पढ़ सकेंगे लेकिन सभी नहीं.";
 file.export.stl.ascii = "डिफ़ॉल्ट रूप से प्रारुप बाइनरी है.
 
@@ -852,7 +854,7 @@ light = "प्रकाश";
 // Intensity of light
 light.intensity = "तीव्रता";
 // Temperature in Kelvin (Alternative way to compute the color of the light)
-light.temperature = "तापमान";
+light.kelvin = "तापमान";
 // The attachment of a light defines how it will move when the user moves the camera
 light.attachment = "अटैचमेंट";
 // The light will stay still even if the user moves the camera
@@ -868,6 +870,7 @@ light.attachment.help = "-- निर्धारित
 light.type = "प्रकार";
 // Directional light (synonym: sun light)
 light.type.directional = "दिशात्मक";
+light.type.directional.short = "";
 // Spot light emits light in a single direction, restricted by a cone shape.
 light.type.spot = "स्पॉट";
 // Point light emits lights everywhere (synonym: omni, omnidirectional)
@@ -1347,8 +1350,19 @@ primitive.radiusSync = "समान त्रिज्या";
 primitive.radiusStart = "त्रिज्या प्रारंभ";
 primitive.radiusEnd = "त्रिज्या अंत";
 
+// Singular of Repeaters (Nodes that make many copies of its children (type of mirror/curve/array/radial))
+repeater = "पुनरावर्तक";
+// All the new items will be inserted inside the bound rather than outside
+repeater.array.fitInside = "";
+// The object will follow the curve
+repeater.curve.align = "";
+
 // Import resource (Alpha, Textures, MatCaps, etc)
 resource.import = "इंपोर्ट करें...";
+// iOS Photos gallery
+resource.import.ios.photos = "";
+// iOS Files App
+resource.import.ios.files = "";
 
 scene.title = "दृश्य";
 scene.title.help = "दृश्यमान/चयन बटनों का उपयोग करते समय, अन्य वस्तुओं को आसानी से चुनने के लिए अपनी उंगली को रखें और घसीटें.
@@ -1356,6 +1370,12 @@ scene.title.help = "दृश्यमान/चयन बटनों का �
 आप बच्चों को भी प्रभावित करने के लिए दृश्यमान/चयन बटनों को देर तक दबा सकते हैं.";
 // The view will focus on the item when we click on it
 scene.focus = "आइटम पर फ़ोकस करें";
+// Add new object on gizmo position
+scene.addOnGizmo = "";
+scene.addOnGizmo.help = "";
+// Select the gizmo tool after adding a new object
+scene.addSelectGizmo = "";
+scene.addSelectGizmo.help = "";
 // Icon size in pixel (min/max)
 scene.iconSize = "आइकॉन साइज़";
 // Min size of icon
@@ -1390,8 +1410,6 @@ scene.radial = "व्यासीय";
 // Nodes that make many copies of its children (type of mirror/curve/array/radial)
 scene.repeaters = "पुनरावर्तक";
 scene.repeaters.help = "पुनरावर्तक नोड जो दृश्य पदानुक्रम में इसके नीचे किसी भी ज्यामिति के द्रष्टांत बनाते हैं।";
-// singular of Repeaters (Nodes that make many copies of its children (type of mirror/curve/array/radial))
-repeater = "पुनरावर्तक";
 // Validate button
 scene.validateGroup = "सत्यापित करें";
 // Keep instances in the scene
@@ -1424,6 +1442,12 @@ settings.debugUV.help = "यह विकल्प केवल तभी प्
 यह पृष्ठभूमि में UV वायरफ्रेम प्रदर्शित करेगा.
 
 यह मॉडल पर रंगीन चेकरबोर्ड बनावट भी प्रदर्शित करेगा.";
+// Display the material texture
+settings.debugChannel = "";
+// Display the material texture in the background
+settings.debugChannel.onBackground = "";
+// Display the material texture on the mesh
+settings.debugChannel.onMesh = "";
 // If the object is opened (a simple plane for example), two sided means we'll be able to see if from the two sides of the planes
 settings.twoSided = "दो तरफा";
 settings.twoSided.help = "दोनों तरफ से फलक नजर आएंगे.";
@@ -1624,9 +1648,9 @@ stroke.useWorldRadius.help = "यह सभी टूल्स के बीच 
 stroke.useShareRadius = "त्रिज्या साझा करें";
 stroke.useShareRadius.help = "प्रत्येक टूल के साथ त्रिज्या मान साझा करें.";
 // When doing a brush stroke, the spacing is the distance between 2 sculpt operations
-stroke.minSpacing = "स्ट्रोक अंतराल";
+stroke.spacing = "स्ट्रोक अंतराल";
 // Adjust the brush intensity to ensure consistent deformation depending on the stroke spacing.
-stroke.minSpacing.adjustIntensity = "अंतराल तीव्रता समायोजित करें";
+stroke.spacing.adjust = "अंतराल तीव्रता समायोजित करें";
 stroke.minSpacingAdjustIntensity.help = "स्ट्रोक अंतराल के आधार पर सुसंगत विरूपण सुनिश्चित करने के लिए ब्रश की तीव्रता को समायोजित करें.";
 stroke.minSpacing.help = "टूल त्रिज्या के सापेक्ष प्रत्येक स्ट्रोक के बीच की दूरी.
 
@@ -1761,9 +1785,9 @@ symmetry.method.help = "-- स्थानीय
 -- विश्व
 सममिति फलक स्थिर है और गति नहीं करेगा.";
 // Local means: in the coordinate of the scene (synonym: absolute)
-symmetry.methodWorld = "विश्व";
+symmetry.method.world = "विश्व";
 // Local means: in the coordinate of the object (synonym: relative)
-symmetry.methodLocal = "स्थानीय";
+symmetry.method.local = "स्थानीय";
 // Move the object to the other side of the symmetry (mirror it as well)
 symmetry.flip = "वस्तु पलटें";
 // Mirror the mesh
@@ -1869,8 +1893,10 @@ tool.gizmo.rotateSnap = "स्नैप";
 tool.gizmo.moveSnap = "स्नैप";
 // Ideally <10 chars (Local/Relative space)
 tool.gizmo.local = "स्थानीय";
-// Ideally <10 chars (World/Absolute space)
-tool.gizmo.world = "विश्व";
+// Ideally <10 chars (Align/Snap the gizmo to world axis)
+tool.gizmo.align = "";
+// Ideally <10 chars (Pin the gizmo, so that it stays in place when switching between objects)
+tool.gizmo.pin = "";
 // Ideally <10 chars (Rotate, Translate and Scale the object)
 tool.transform = "रूपांतरण";
 // Ideally <10 chars (Translate the object)
@@ -2266,6 +2292,8 @@ topology.bakeHires = "";
 topology.bakeResolution = "रिज़ोल्यूशन";
 // Cage is a specific term, synonyom: "Bake offset"
 topology.bakeOffset = "";
+// Bake opacity (from mask data)
+topology.bake.opacityFromMask = "";
 
 // project a high resolution mesh details onto another
 topology.reproject.title = "";
@@ -2275,6 +2303,9 @@ topology.reproject.rayBias = "";
 topology.reproject.rayBias.help = "";
 // number of iteration the algorithm will take
 topology.reproject.iterations = "";
+
+topology.forceManifold = "";
+topology.forceManifold.help = "";
 
 // Reset key-bindings/shortcuts
 binding.reset = "बाइंडिंग रीसेट करें";
@@ -2325,6 +2356,11 @@ privacyPolicy.title = "गोपनीयता नीति";
 privacyPolicy.reject = "अस्वीकृति";
 // Hexanomad is the company name
 privacyPolicy = "Hexanomad Nomad मूर्तिकला से कोई डेटा एकत्र नहीं करता है.";
+
+// Color disc mode
+widget.color.disc = "";
+// Color square mode
+widget.color.square = "";
 
 // version trial
 version.buyWeb = "वेब संस्करण केवल एक डेमो है";

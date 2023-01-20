@@ -59,6 +59,11 @@ item.previous = "이전";
 item.next = "다음";
 // The item is locked (either it cannot be selected, edited, or we preserve its details)
 item.lock = "잠금";
+// No item selected
+item.none = "없음";
+
+// Search something (text entry to filter item)
+search = "검색";
 
 // Three-state toggle button (Auto, Off, On)
 toggle.on = "켬";
@@ -147,6 +152,8 @@ about.discord = "Discord";
 alert.aborted = "";
 // Error when an algorithm needs the object to have an hole (usually to fill it)
 alert.hole.nothing = "오브젝트에 구멍이 없습니다!";
+// No operation occured because the mesh is already manifold
+alert.manifold.already = "";
 // Visibility of the object is off (but should be on)
 alert.shape.notVisible = "현재 오브젝트가 보이지 않습니다!";
 // The user tried to trim an object but the selected region didn't touch the object
@@ -414,30 +421,31 @@ file.project.autoSave.minutes = "타이머 팝업";
 // Delete the current autoSave data
 file.project.autoSave.delete = "자동 저장 취소";
 
-// Load interface preference settings when opening a scene file
-file.load.guiSettings = "GUI 설정 유지하기";
-file.load.guiSettings.help = "프로젝트 파일을 열거나 임포트할 때 프로젝트에 포함된 GUI 관련 설정을 모두 불러옵니다.";
-// OBJ have "groups" and "objects", by default groups are ignored, use this option to consider groups as separate objects
-file.load.objSplitByGroup = "OBJ를 그룹으로 분할";
-file.load.objSplitByGroup.help = "활성화되면 Nomad는 OBJ 그룹을 별도의 객체로 분할합니다.";
-// Merge all the object layers at when loading a file (deleting them in the process)
-file.load.mergeLayers = "레이어 병합";
-// Ignore the textures present in the file to load
-file.load.skipTextures = "텍스처 건너뛰기";
-// Do not fiddle with the object topology when loading the file
-file.load.keepTopology = "토폴로지 유지하기";
-file.load.keepTopology.help = "Nomad로 불러온 메시 토폴로지를 건드리지 않으려면 이 옵션을 사용하십시오.
-
-이렇게 하면 버텍스/면 재정렬, 버텍스/면 복제본 제거, 사용하지 않는 버텍스 제거가 비활성화됩니다.";
-// If the object has more vertices than this value, then we won't attemp to reverse (multiresolution) the object
-file.load.reverseVertices = "반전 임계값";
-file.load.reverseVertices.help = "메모리 사용량을 줄이기 위해 Nomad는 저해상도 메시를 저장하지 않습니다.
-
-그러나 버텍스 수가 이 임계값보다 낮으면 저해상도를 다시 빌드합니다.";
-
+// color space (linear or srgb), do not translate linear/srgb if there is a doubt
+file.colorSpace = ""
+file.colorSpace.help = "";
+file.colorSpace.linear = "";
+file.colorSpace.srgb = "";
 
 // Configure imports option
 file.importSettings = "임포트 옵션";
+
+// Load interface preference settings when opening a scene file
+file.import.guiSettings = "GUI 설정 유지하기";
+file.import.guiSettings.help = "프로젝트 파일을 열거나 임포트할 때 프로젝트에 포함된 GUI 관련 설정을 모두 불러옵니다.";
+// OBJ have "groups" and "objects", by default groups are ignored, use this option to consider groups as separate objects
+file.import.objSplitByGroup = "OBJ를 그룹으로 분할";
+file.import.objSplitByGroup.help = "활성화되면 Nomad는 OBJ 그룹을 별도의 객체로 분할합니다.";
+// Merge all the object layers at when loading a file (deleting them in the process)
+file.import.mergeLayers = "레이어 병합";
+// Ignore the textures present in the file to load
+file.import.skipTextures = "텍스처 건너뛰기";
+// Do not fiddle with the object topology when loading the file
+file.import.keepTopology = "토폴로지 유지하기";
+file.import.keepTopology.help = "Nomad로 불러온 메시 토폴로지를 건드리지 않으려면 이 옵션을 사용하십시오.
+
+이렇게 하면 버텍스/면 재정렬, 버텍스/면 복제본 제거, 사용하지 않는 버텍스 제거가 비활성화됩니다.";
+
 
 // Import file section
 file.import.title = "임포트";
@@ -463,42 +471,36 @@ file.convertToQuad = "사각형 재구성";
 file.convertToQuad.help = "삼각형의 짝을 짓는 방식으로 삼각형으로부터 사각형을 재구성합니다 (파일 안에서 인접한 경우).";
 
 // Whether we include the textures in the exported file
-file.export.texture = "텍스처 익스포트";
+file.export.texture = "텍스처";
 // Baking means transfering/converting
 file.export.texture.help = "이 옵션은 버텍스 색상을 텍스처로 베이킹하지 않습니다.";
 // Whether we include normals vector in the exported file
-file.export.normal = "노멀 익스포트";
+file.export.normal = "노멀";
 file.export.normal.help = "다른 소프트웨어에서 파일을 열려면 이 옵션을 선택합니다.
 
 Nomad는 노멀을 다시 계산하므로 항상 무시합니다.";
-
-// color space (linear or srgb), do not translate linear/srgb if there is a doubt
-file.export.colorSpace = ""
-file.export.colorSpace.help = "";
-file.export.colorSpace.linear = "";
-file.export.colorSpace.srgb = "";
 
 file.export.nomad = "";
 file.export.nomad.help = "";
 
 file.export.gltf = "glTF 2.0 익스포트";
 // Whether we include layers in the exported file (see glossary for layer)
-file.export.gltf.layer = "레이어 익스포트";
+file.export.gltf.layer = "레이어";
 file.export.gltf.layer.help = "레이어를 모프(morph)로 내보냅니다. glTF에서 공식적으로 지원하므로 다른 소프트웨어에서도 작동합니다.";
 // Whether we include painting of layers in the exported file (see glossary for layer)
-file.export.gltf.layerPaint = "레이어 페인트 익스포트";
+file.export.gltf.layerPaint = "레이어 페인트";
 file.export.gltf.layerPaint.help = "레이어 페인팅을 내보냅니다. 일반적으로 다른 소프트웨어에서는 무시됩니다.";
 // Whether we include the vertex color in the exported file
-file.export.gltf.color0 = "버텍스 색상 익스포트";
+file.export.gltf.color0 = "버텍스 색상";
 file.export.gltf.color0.help = "버텍스 색상을 내보냅니다. glTF에서 공식적으로 지원하므로 다른 소프트웨어에서도 작동합니다.";
 // Whether we include the vertex roughness and vertex metalness in the exported file
-file.export.gltf.color1 = "PBR 페인트 익스포트";
+file.export.gltf.color1 = "PBR 페인트";
 file.export.gltf.color1.help = "러프니스와 메탈릭, 마스크 페인팅을 내보냅니다. 다른 소프트웨어에서는 무시됩니다.";
 
 file.export.obj = "OBJ 익스포트";
 file.export.obj.warning = "레이어 및 추가 페인팅 정보(러프니스, 메탈릭, 마스크)가 손실됩니다.";
 // Whether we include the vertex color in the exported file
-file.export.obj.colorAppend = "버텍스 색상 내보내기";
+file.export.obj.colorAppend = "버텍스 색상";
 file.export.obj.colorAppend.help = "버텍스에 색상 정보를 덧붙입니다.
 
 해당 정보는 일부 3D 소프트웨어에서 읽을 수 있지만, 호환되지 않는 소프트웨어도 있습니다.";
@@ -506,7 +508,7 @@ file.export.obj.colorAppend.help = "버텍스에 색상 정보를 덧붙입니�
 file.export.stl = "STL 익스포트";
 file.export.stl.warning = "레이어 및 추가 페인트(러프니스, 메탈릭, 마스크)가 손실됩니다.";
 // Whether we include the vertex color in the exported file
-file.export.stl.color = "버텍스 색상 내보내기";
+file.export.stl.color = "버텍스 색상";
 file.export.stl.color.help = "일부 3D 소프트웨어에서 열 수 있지만, 모든 소프트웨어에서 지원되는 것은 아닙니다.";
 file.export.stl.ascii = "기본 포맷은 바이너리입니다.
 
@@ -847,7 +849,7 @@ light = "광원";
 // Intensity of light
 light.intensity = "강도";
 // Temperature in Kelvin (Alternative way to compute the color of the light)
-light.temperature = "온도";
+light.kelvin = "온도";
 // The attachment of a light defines how it will move when the user moves the camera
 light.attachment = "어태치먼트";
 // The light will stay still even if the user moves the camera
@@ -863,6 +865,7 @@ light.attachment.help = "-- 고정
 light.type = "유형";
 // Directional light (synonym: sun light)
 light.type.directional = "방향성";
+light.type.directional.short = "";
 // Spot light emits light in a single direction, restricted by a cone shape.
 light.type.spot = "스폿";
 // Point light emits lights everywhere (synonym: omni, omnidirectional)
@@ -1342,8 +1345,19 @@ primitive.radiusSync = "동일한 반지름";
 primitive.radiusStart = "반지름 시작";
 primitive.radiusEnd = "반지름 종료";
 
+// Singular of Repeaters (Nodes that make many copies of its children (type of mirror/curve/array/radial))
+repeater = "";
+// All the new items will be inserted inside the bound rather than outside
+repeater.array.fitInside = "";
+// The object will follow the curve
+repeater.curve.align = "";
+
 // Import resource (Alpha, Textures, MatCaps, etc)
 resource.import = "임포트...";
+// iOS Photos gallery
+resource.import.ios.photos = "";
+// iOS Files App
+resource.import.ios.files = "";
 
 scene.title = "씬";
 scene.title.help = "보이기/선택 버튼을 사용할 때 손가락을 누른 상태로 드래그하면 다른 객체를 쉽게 선택할 수 있습니다.
@@ -1351,6 +1365,12 @@ scene.title.help = "보이기/선택 버튼을 사용할 때 손가락을 누른
 또한 보이기/선택 버튼을 길게 누르면 자식에게도 영향을 줄 수 있습니다.";
 // The view will focus on the item when we click on it
 scene.focus = "항목에 포커스 맞춤";
+// Add new object on gizmo position
+scene.addOnGizmo = "";
+scene.addOnGizmo.help = "";
+// Select the gizmo tool after adding a new object
+scene.addSelectGizmo = "";
+scene.addSelectGizmo.help = "";
 // Icon size in pixel (min/max)
 scene.iconSize = "";
 // Min size of icon
@@ -1382,8 +1402,6 @@ scene.radial = "방사성";
 // Nodes that make many copies of its children (type of mirror/curve/array/radial)
 scene.repeaters = "";
 scene.repeaters.help = "";
-// singular of Repeaters (Nodes that make many copies of its children (type of mirror/curve/array/radial))
-repeater = "";
 // Validate button
 scene.validateGroup = "검증";
 // Keep instances in the scene
@@ -1416,6 +1434,12 @@ settings.debugUV.help = "이 옵션은 모델에 UV가 있는 경우에만 적�
 배경에 UV 와이어프레임이 표시됩니다.
 
 또한 모델에 색상이 있는 체커보드 텍스처를 표시합니다.";
+// Display the material texture
+settings.debugChannel = "";
+// Display the material texture in the background
+settings.debugChannel.onBackground = "";
+// Display the material texture on the mesh
+settings.debugChannel.onMesh = "";
 // If the object is opened (a simple plane for example), two sided means we'll be able to see if from the two sides of the planes
 settings.twoSided = "양면";
 settings.twoSided.help = "면은 양쪽에서 볼 수 있습니다.";
@@ -1614,9 +1638,9 @@ stroke.useWorldRadius.help = "이 설정은 모든 도구에서 공유됩니다.
 stroke.useShareRadius = "공유 반지름";
 stroke.useShareRadius.help = "모든 도구에서 반지름 값을 공유합니다.";
 // When doing a brush stroke, the spacing is the distance between 2 sculpt operations
-stroke.minSpacing = "스트로크 간격";
+stroke.spacing = "스트로크 간격";
 // Adjust the brush intensity to ensure consistent deformation depending on the stroke spacing.
-stroke.minSpacing.adjustIntensity = "간격 강도 조정";
+stroke.spacing.adjust = "간격 강도 조정";
 stroke.minSpacingAdjustIntensity.help = "스트로크 간격에 따른 일관된 변형을 유지하기 위해 브러시 강도를 조정하세요.";
 stroke.minSpacing.help = "도구 반지름을 기준으로 한 스트로크 사이의 간격입니다.
 
@@ -1749,9 +1773,9 @@ symmetry.method.help = "- 로컬
 - 전역
 대칭 평면이 고정되어 이동하지 않습니다.";
 // Local means: in the coordinate of the scene (synonym: absolute)
-symmetry.methodWorld = "세계";
+symmetry.method.world = "세계";
 // Local means: in the coordinate of the object (synonym: relative)
-symmetry.methodLocal = "로컬";
+symmetry.method.local = "로컬";
 // Move the object to the other side of the symmetry (mirror it as well)
 symmetry.flip = "오브젝트 뒤집기";
 // Mirror the mesh
@@ -1857,8 +1881,10 @@ tool.gizmo.rotateSnap = "스냅";
 tool.gizmo.moveSnap = "스냅";
 // Ideally <10 chars (Local/Relative space)
 tool.gizmo.local = "로컬";
-// Ideally <10 chars (World/Absolute space)
-tool.gizmo.world = "세계";
+// Ideally <10 chars (Align/Snap the gizmo to world axis)
+tool.gizmo.align = "";
+// Ideally <10 chars (Pin the gizmo, so that it stays in place when switching between objects)
+tool.gizmo.pin = "";
 // Ideally <10 chars (Rotate, Translate and Scale the object)
 tool.transform = "변형";
 // Ideally <10 chars (Translate the object)
@@ -2254,6 +2280,8 @@ topology.bakeHires = "";
 topology.bakeResolution = "해상도";
 // Cage is a specific term, synonyom: "Bake offset"
 topology.bakeOffset = "";
+// Bake opacity (from mask data)
+topology.bake.opacityFromMask = "";
 
 // project a high resolution mesh details onto another
 topology.reproject.title = "";
@@ -2263,6 +2291,9 @@ topology.reproject.rayBias = "";
 topology.reproject.rayBias.help = "";
 // number of iteration the algorithm will take
 topology.reproject.iterations = "";
+
+topology.forceManifold = "";
+topology.forceManifold.help = "";
 
 // Reset key-bindings/shortcuts
 binding.reset = "바인딩 초기화";
@@ -2313,6 +2344,11 @@ privacyPolicy.title = "개인 정보 보호 정책";
 privacyPolicy.reject = "거부";
 // Hexanomad is the company name
 privacyPolicy = "Hexanomad는 Nomad Sculpt로부터 어떠한 데이터도 수집하지 않습니다.";
+
+// Color disc mode
+widget.color.disc = "";
+// Color square mode
+widget.color.square = "";
 
 // version trial
 version.buyWeb = "웹 버전은 데모 목적으로만 사용할 수 있습니다";

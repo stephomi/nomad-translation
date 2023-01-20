@@ -59,6 +59,11 @@ item.previous = "Önceki";
 item.next = "Sonraki";
 // The item is locked (either it cannot be selected, edited, or we preserve its details)
 item.lock = "Kilitle";
+// No item selected
+item.none = "Yok";
+
+// Search something (text entry to filter item)
+search = "Arama";
 
 // Three-state toggle button (Auto, Off, On)
 toggle.on = "Açık";
@@ -147,6 +152,8 @@ about.discord = "Uyuşmazlık";
 alert.aborted = "";
 // Error when an algorithm needs the object to have an hole (usually to fill it)
 alert.hole.nothing = "Nesnenin hiç deliği yok!";
+// No operation occured because the mesh is already manifold
+alert.manifold.already = "";
 // Visibility of the object is off (but should be on)
 alert.shape.notVisible = "Geçerli nesne görülemez!";
 // The user tried to trim an object but the selected region didn't touch the object
@@ -414,30 +421,31 @@ file.project.autoSave.minutes = "Zamanlayıcı açılır pencere";
 // Delete the current autoSave data
 file.project.autoSave.delete = "Otomatik kaydı sil";
 
-// Load interface preference settings when opening a scene file
-file.load.guiSettings = "Grafik kullanıcı arayüzü ayarlarını koru";
-file.load.guiSettings.help = "Bir proje dosyasını açarken veya içeri aktarırken, projede gömülü olan grafik kullanıcı arayüzüne ilişkin tüm ayarlar yüklenir.";
-// OBJ have "groups" and "objects", by default groups are ignored, use this option to consider groups as separate objects
-file.load.objSplitByGroup = "OBJ'leri gruplara ayır";
-file.load.objSplitByGroup.help = "Etkinleştirildiğinde, Nomad OBJ gruplarını ayrı nesnelere ayırır.";
-// Merge all the object layers at when loading a file (deleting them in the process)
-file.load.mergeLayers = "Katmanları Birleştir";
-// Ignore the textures present in the file to load
-file.load.skipTextures = "Dokuları atla";
-// Do not fiddle with the object topology when loading the file
-file.load.keepTopology = "Topolojiyi koru";
-file.load.keepTopology.help = "Nomad'ın içeri aktarılan ağ örgüsünün topolojisinde değişiklik yapmasını istemiyorsanız, bu seçeneği kullanın.
-
-Verteks/yüz yeniden sıralanması, verteks/yüz kopyalarının kaldırılması ve kullanılmayan vertekslerin kaldırılması devre dışı kalır.";
-// If the object has more vertices than this value, then we won't attemp to reverse (multiresolution) the object
-file.load.reverseVertices = "Eşiği tersine çevir";
-file.load.reverseVertices.help = "Daha az bellek kullanabilmek için Nomad ağ örgüsünün daha düşük çözünürlüğünü kaydetmez.
-
-Ancak, verteks sayısı bu eşiğin altındaysa, düşük çözünürlüğü tekrar oluşturur.";
-
+// color space (linear or srgb), do not translate linear/srgb if there is a doubt
+file.colorSpace = ""
+file.colorSpace.help = "";
+file.colorSpace.linear = "";
+file.colorSpace.srgb = "";
 
 // Configure imports option
 file.importSettings = "İçe aktarma seçenekleri";
+
+// Load interface preference settings when opening a scene file
+file.import.guiSettings = "Grafik kullanıcı arayüzü ayarlarını koru";
+file.import.guiSettings.help = "Bir proje dosyasını açarken veya içeri aktarırken, projede gömülü olan grafik kullanıcı arayüzüne ilişkin tüm ayarlar yüklenir.";
+// OBJ have "groups" and "objects", by default groups are ignored, use this option to consider groups as separate objects
+file.import.objSplitByGroup = "OBJ'leri gruplara ayır";
+file.import.objSplitByGroup.help = "Etkinleştirildiğinde, Nomad OBJ gruplarını ayrı nesnelere ayırır.";
+// Merge all the object layers at when loading a file (deleting them in the process)
+file.import.mergeLayers = "Katmanları Birleştir";
+// Ignore the textures present in the file to load
+file.import.skipTextures = "Dokuları atla";
+// Do not fiddle with the object topology when loading the file
+file.import.keepTopology = "Topolojiyi koru";
+file.import.keepTopology.help = "Nomad'ın içeri aktarılan ağ örgüsünün topolojisinde değişiklik yapmasını istemiyorsanız, bu seçeneği kullanın.
+
+Verteks/yüz yeniden sıralanması, verteks/yüz kopyalarının kaldırılması ve kullanılmayan vertekslerin kaldırılması devre dışı kalır.";
+
 
 // Import file section
 file.import.title = "İçe aktar";
@@ -463,42 +471,36 @@ file.convertToQuad = "Dörtgen oluştur";
 file.convertToQuad.help = "Üçgenleri eşleştirerek (dosyalarda yan yana iseler), üçgenlerden dörtgenler oluşturur.";
 
 // Whether we include the textures in the exported file
-file.export.texture = "Dokuları dışa aktar";
+file.export.texture = "Dokuları";
 // Baking means transfering/converting
 file.export.texture.help = "Bu seçenek verteks renklerini dokulara dönüştürmez.";
 // Whether we include normals vector in the exported file
-file.export.normal = "Normalleri dışa aktar";
+file.export.normal = "Normalleri";
 file.export.normal.help = "Dosyayı diğer yazılımlarda açmak istiyorsanız, bu seçeneği belirleyin.
 
 Tekrardan hesaplayacağı için, Nomad normalleri her zaman göz ardı eder.";
-
-// color space (linear or srgb), do not translate linear/srgb if there is a doubt
-file.export.colorSpace = ""
-file.export.colorSpace.help = "";
-file.export.colorSpace.linear = "";
-file.export.colorSpace.srgb = "";
 
 file.export.nomad = "";
 file.export.nomad.help = "";
 
 file.export.gltf = "glTF 2.0 dışa aktar";
 // Whether we include layers in the exported file (see glossary for layer)
-file.export.gltf.layer = "Katmanları dışa aktar";
+file.export.gltf.layer = "Katmanları";
 file.export.gltf.layer.help = "Katmanları biçimler olarak dışa aktarır. glTF tarafından resmi olarak desteklenir, dolayısıyla diğer yazılımlarda da çalışması gerekir.";
 // Whether we include painting of layers in the exported file (see glossary for layer)
-file.export.gltf.layerPaint = "Katman boyamasını dışa aktar";
+file.export.gltf.layerPaint = "Katman boyamasını";
 file.export.gltf.layerPaint.help = "Katman boyamayı dışa aktarır. Diğer yazılımlar tarafından genellikle göz ardı edilir.";
 // Whether we include the vertex color in the exported file
-file.export.gltf.color0 = "Verteks renklerini dışa aktar";
+file.export.gltf.color0 = "Verteks renklerini";
 file.export.gltf.color0.help = "Verteks renklerini dışa aktarır. glTF tarafından resmî olarak desteklenir, dolayısıyla diğer yazılımlarda da çalışması gerekir.";
 // Whether we include the vertex roughness and vertex metalness in the exported file
-file.export.gltf.color1 = "pbr boyamasını dışa aktar";
+file.export.gltf.color1 = "pbr boyamasını";
 file.export.gltf.color1.help = "Pürüzlük, metaliklik seviyesi ve maske boyamayı dışa aktarır. Bu diğer yazılımlar tarafından göz ardı edilir.";
 
 file.export.obj = "OBJ dışa aktar";
 file.export.obj.warning = "Katmanlar ve ekstra boyama (pürüzlük ve metaliklik seviyesi ve maske) kaybolur.";
 // Whether we include the vertex color in the exported file
-file.export.obj.colorAppend = "Verteks renklerini dışa aktar";
+file.export.obj.colorAppend = "Verteks renklerini";
 file.export.obj.colorAppend.help = "Vertekslere renk bilgilerini ekler.
 
 Bazı 3D yazılımları bunu okuyabilir, ama hepsi okuyamaz.";
@@ -506,7 +508,7 @@ Bazı 3D yazılımları bunu okuyabilir, ama hepsi okuyamaz.";
 file.export.stl = "STL dışa aktar";
 file.export.stl.warning = "Katmanlar ve ekstra boyama (pürüzlük ve metaliklik seviyesi ve maske) kaybolur.";
 // Whether we include the vertex color in the exported file
-file.export.stl.color = "Verteks renklerini dışa aktar";
+file.export.stl.color = "Verteks renklerini";
 file.export.stl.color.help = "Bazı 3D yazılımları bunu okuyabilir, ama hepsi okuyamaz.";
 file.export.stl.ascii = "Format varsayılan olarak ikilidir.
 
@@ -848,7 +850,7 @@ light = "Işık";
 // Intensity of light
 light.intensity = "Yoğunluk";
 // Temperature in Kelvin (Alternative way to compute the color of the light)
-light.temperature = "Sıcaklık";
+light.kelvin = "Sıcaklık";
 // The attachment of a light defines how it will move when the user moves the camera
 light.attachment = "İliştirme";
 // The light will stay still even if the user moves the camera
@@ -864,6 +866,7 @@ Işığın yönlendirilmesi kamera görünümüne göre olur.";
 light.type = "Tip";
 // Directional light (synonym: sun light)
 light.type.directional = "Yönsel";
+light.type.directional.short = "";
 // Spot light emits light in a single direction, restricted by a cone shape.
 light.type.spot = "Spot";
 // Point light emits lights everywhere (synonym: omni, omnidirectional)
@@ -1343,8 +1346,19 @@ primitive.radiusSync = "Aynı yarıçap";
 primitive.radiusStart = "Yarıçap başlangıcı";
 primitive.radiusEnd = "Yarıçap sonu";
 
+// Singular of Repeaters (Nodes that make many copies of its children (type of mirror/curve/array/radial))
+repeater = "";
+// All the new items will be inserted inside the bound rather than outside
+repeater.array.fitInside = "";
+// The object will follow the curve
+repeater.curve.align = "";
+
 // Import resource (Alpha, Textures, MatCaps, etc)
 resource.import = "İçe aktar...";
+// iOS Photos gallery
+resource.import.ios.photos = "";
+// iOS Files App
+resource.import.ios.files = "";
 
 scene.title = "Görünüm";
 scene.title.help = "Görülebilir/seç düğmelerini kullanırken, diğer nesneleri kolayca seçebilmek için parmağınızı basılı tutun ve sürükleyin.
@@ -1352,6 +1366,12 @@ scene.title.help = "Görülebilir/seç düğmelerini kullanırken, diğer nesnel
 Ayrıca görülebilir/seç düğmelerini basılı tutarak da alt öğeleri dâhil edebilirsiniz.";
 // The view will focus on the item when we click on it
 scene.focus = "Öğeye odaklan";
+// Add new object on gizmo position
+scene.addOnGizmo = "";
+scene.addOnGizmo.help = "";
+// Select the gizmo tool after adding a new object
+scene.addSelectGizmo = "";
+scene.addSelectGizmo.help = "";
 // Icon size in pixel (min/max)
 scene.iconSize = "";
 // Min size of icon
@@ -1383,8 +1403,6 @@ scene.radial = "Radyal";
 // Nodes that make many copies of its children (type of mirror/curve/array/radial)
 scene.repeaters = "";
 scene.repeaters.help = "";
-// singular of Repeaters (Nodes that make many copies of its children (type of mirror/curve/array/radial))
-repeater = "";
 // Validate button
 scene.validateGroup = "Doğrula";
 // Keep instances in the scene
@@ -1417,6 +1435,12 @@ settings.debugUV.help = "Bu seçenek sadece modelde UV'ler varsa geçerlidir.
 Arka planda UV genel taslağını görüntüler.
 
 Ayrıca modelde de renkli bir dama tahtası yapısı görüntülenir.";
+// Display the material texture
+settings.debugChannel = "";
+// Display the material texture in the background
+settings.debugChannel.onBackground = "";
+// Display the material texture on the mesh
+settings.debugChannel.onMesh = "";
 // If the object is opened (a simple plane for example), two sided means we'll be able to see if from the two sides of the planes
 settings.twoSided = "İki taraflı";
 settings.twoSided.help = "Yüzler her iki taraftan da görülebilir.";
@@ -1617,9 +1641,9 @@ stroke.useWorldRadius.help = "Bu tüm araçlarla paylaşılır.";
 stroke.useShareRadius = "Yarıçapı paylaş";
 stroke.useShareRadius.help = "Yarıçap değerini tüm araçlara paylaşır.";
 // When doing a brush stroke, the spacing is the distance between 2 sculpt operations
-stroke.minSpacing = "Darbe aralığı";
+stroke.spacing = "Darbe aralığı";
 // Adjust the brush intensity to ensure consistent deformation depending on the stroke spacing.
-stroke.minSpacing.adjustIntensity = "Aralık yoğunluğunu ayarla";
+stroke.spacing.adjust = "Aralık yoğunluğunu ayarla";
 stroke.minSpacingAdjustIntensity.help = "Darbe aralığına bağlı olarak, tutarlı bir deformasyon sağlayabilmek için fırça yoğunluğunu ayarlar.";
 stroke.minSpacing.help = "Araç yarıçapına göre her darbe arasındaki boşluk.
 
@@ -1752,9 +1776,9 @@ Dönüştürme araçlarından birini (Gizmo veya Dönüştürme) kullandığın�
 -- Dünya
 Simetri düzlemi sabitlenir ve hareket etmez.";
 // Local means: in the coordinate of the scene (synonym: absolute)
-symmetry.methodWorld = "Dünya";
+symmetry.method.world = "Dünya";
 // Local means: in the coordinate of the object (synonym: relative)
-symmetry.methodLocal = "Yerel";
+symmetry.method.local = "Yerel";
 // Move the object to the other side of the symmetry (mirror it as well)
 symmetry.flip = "Nesneyi ters çevir";
 // Mirror the mesh
@@ -1860,8 +1884,10 @@ tool.gizmo.rotateSnap = "Yasla";
 tool.gizmo.moveSnap = "Yasla";
 // Ideally <10 chars (Local/Relative space)
 tool.gizmo.local = "Yerel";
-// Ideally <10 chars (World/Absolute space)
-tool.gizmo.world = "Dünya";
+// Ideally <10 chars (Align/Snap the gizmo to world axis)
+tool.gizmo.align = "";
+// Ideally <10 chars (Pin the gizmo, so that it stays in place when switching between objects)
+tool.gizmo.pin = "";
 // Ideally <10 chars (Rotate, Translate and Scale the object)
 tool.transform = "Dönüştür";
 // Ideally <10 chars (Translate the object)
@@ -2257,6 +2283,8 @@ topology.bakeHires = "";
 topology.bakeResolution = "Çözünürlük";
 // Cage is a specific term, synonyom: "Bake offset"
 topology.bakeOffset = "";
+// Bake opacity (from mask data)
+topology.bake.opacityFromMask = "";
 
 // project a high resolution mesh details onto another
 topology.reproject.title = "";
@@ -2266,6 +2294,9 @@ topology.reproject.rayBias = "";
 topology.reproject.rayBias.help = "";
 // number of iteration the algorithm will take
 topology.reproject.iterations = "";
+
+topology.forceManifold = "";
+topology.forceManifold.help = "";
 
 // Reset key-bindings/shortcuts
 binding.reset = "Atamaları sıfırla";
@@ -2316,6 +2347,11 @@ privacyPolicy.title = "Gizlilik Politikası";
 privacyPolicy.reject = "Reddet";
 // Hexanomad is the company name
 privacyPolicy = "Hexanomad Nomad Sculpt'tan hiçbir veri toplamaz.";
+
+// Color disc mode
+widget.color.disc = "";
+// Color square mode
+widget.color.square = "";
 
 // version trial
 version.buyWeb = "Web versiyonu sadece bir demodur";
