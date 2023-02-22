@@ -7,6 +7,17 @@ confirm.ok = "ОК";
 // Cancel something after being asked (Question? [answer, cancel])
 confirm.cancel = "Отмена";
 
+// common
+position.top = "Верх";
+position.right = "Право";
+position.left = "Лево";
+position.bottom = "Низ";
+position.center = "Центрование";
+direction.up = "Верх";
+direction.right = "Право";
+direction.left = "Лево";
+direction.down = "Низ";
+
 // Name of an item (object, tool, etc)
 item.name = "Имя";
 // Add a new item (object, tool, etc)
@@ -192,9 +203,6 @@ alert.colorPicker = "Проведите пальцем по объекту дл�
 alert.backgroundTransform = "Простое нажатие позволяет выйти из режима трансформации.";
 // Edit the symmetry plane with the gizmo
 alert.editSymmetry = "";
-alert.view.reset = "Сбросить просмотр";
-// Snap the view to the nearest aligned 90° angle
-alert.view.snap = "Привязать просмотр";
 // Show the painted mask on the mesh
 alert.mask.show = "Показать маску";
 // Hide the painted mask on the mesh
@@ -340,7 +348,7 @@ curve.spline = "Сплайн";
 // Display the falloff curve in a symmetric way
 curve.symmetric.help = "";
 
-// set the desired FPS (frame per second, refresh rate)
+// Set the desired FPS (frame per second, refresh rate)
 debug.targetFPS = "";
 debug.targetFPS.help = "";
 
@@ -724,6 +732,15 @@ history.state.meshDynamicToStatic = "Дин.топ. в статику";
 // Shown during undo/redo (mesh type conversion)
 history.state.meshStaticToDynamic = "Статика в дин.топ.";
 
+// Debugging/Inspect object material (view channel separately color, roughness, normal, uv, etc)
+inspector = "";
+// Inspector but SHORT
+inspector.short = "";
+// Display the material channel on the background
+inspector.onBackground = "";
+// Display the material channel on the mesh
+inspector.onMesh = "";
+
 // Interface customization
 interface = "Интерфейс";
 
@@ -768,7 +785,7 @@ interface.preset.neon = "Neon";
 // Interface color style
 interface.preset.violet = "Фиолетовый";
 // Interface color style
-interface.preset.grey = "Серый";
+interface.preset.gray = "Серый";
 // Interface color style
 interface.preset.black = "Черный";
 // Interface color style
@@ -809,10 +826,6 @@ interface.inset.title = "Смещения ребер";
 interface.inset.title.help = "Вы можете изменить эти значения только в том случае, если у вас возникают проблемы при работе с кнопками на краях экрана.
 
 Если слайдер отключен, Nomad будет использовать значения безопасных областей самого устройства.";
-interface.inset.left = "Лево";
-interface.inset.right = "Право";
-interface.inset.bottom = "Низ";
-interface.inset.top = "Верх";
 
 // (see Glossary for Layer)
 layer = "Слой";
@@ -850,8 +863,10 @@ layers.baseSelected = "Нет";
 light = "Освещение";
 // Intensity of light
 light.intensity = "Интенсивность";
+// Kelvin (the temperature unit)
+light.kelvin = "";
 // Temperature in Kelvin (Alternative way to compute the color of the light)
-light.kelvin = "Температура";
+light.temperature = "Температура";
 // The attachment of a light defines how it will move when the user moves the camera
 light.attachment = "Привязка";
 // The light will stay still even if the user moves the camera
@@ -1018,6 +1033,12 @@ menu.tool = "Инструмент";
 // Menu name
 menu.stroke = "Штрих";
 // Menu name
+menu.alpha = "Альфа";
+// Menu name
+menu.filter = "";
+// Menu name
+menu.falloff = "Спад";
+// Menu name
 menu.paint = "Рисовать";
 // Menu name
 menu.symmetry = "Симметрия";
@@ -1083,18 +1104,17 @@ paint.paintAll.help = "Применить текущий материал к о�
 paint.paintAllForce = "Принудительно окрасить все";
 paint.strokePainting.title = "Краски";
 // Brush stroke texture
-paint.texture.title = "Текстура";
-paint.texture.title.help = "Изображение, которое окрасит штрихи кисти.
-
-Примечание: его настройки плитки и масштабирования будут такими же, как и у альфы.";
 paint.texture.warningEnable = "Окрашивание штрихов необходимо включить для проекции текстур (галочка вверху)!";
 paint.texture.warningIgnored = "Текущий инструмент не может использовать текстуры!";
-// Whether the Brush Alpha will be used to module painting
+// Whether the Brush Alpha will be used to modulate painting intensity
 paint.useAlpha = "Использовать альфа-штрихи";
 paint.useAlpha.help = "Использование альфа-набора в меню штрихов для оптимизации окрашивания.";
-// Whether the Brush Falloff will be used to module painting
+// Whether the Brush Falloff will be used to modulate painting intensity
 paint.useCurve = "Использовать спад штрихов";
 paint.useFalloff.help = "Использование спад-набора в меню штрихов для оптимизации окрашивания.";
+// Whether the Brush Randomize will be used to modulate painting intensity
+paint.useJitter = "";
+paint.useJitter.help = "";
 
 // when the user choose a new item name (through iOS/Android virtual keyboard)
 input.name = "Новое имя";
@@ -1429,13 +1449,6 @@ scene.onlyOneObject = "Несколько объектов выбрано, вы�
 settings.display.title = "Настройки отображения";
 // Wireframe (show triangles and quad edges)
 settings.wireframe = "Каркас";
-// Display UV
-settings.debugUV = "Отладка UV";
-settings.debugUV.help = "Эта функция играет значение только в том случае, если у объекта есть UV.
-
-Она будет отображать каркас UV на фоне.
-
-Она также покажет текстуру на модели, окрашенную в шахматном порядке.";
 // Display the material texture
 settings.debugChannel = "";
 // Display the material texture in the background
@@ -1460,6 +1473,9 @@ settings.snapCube = "Привязка куба";
 settings.snapCube.bottom = "Низ";
 // Move the navigation cube on the left side of the screen
 settings.snapCube.left = "Налево";
+// Alignment (can be auto/on/off)
+settings.snapCube.align = "";
+settings.snapCube.align.help = "";
 // Stats (information logs about the scene displayed on screen)
 settings.stats = "Статистика";
 settings.stats.right = "Направо";
@@ -1573,36 +1589,33 @@ shading.matcap.global = "Использовать глобальный Матк�
 shading.matcap.global.help = "Отключите эту функцию, если вы хотите использовать другой Маткап для этого меша.";
 
 // bottom shortcut buttons (should be SHORT)
+shortcut.maskVisible = "Маска";
 shortcut.maskVisible.short = "Маска";
-shortcut.maskVisible.long = "Маска";
 // bottom shortcut buttons (should be SHORT)
+shortcut.solo = "Соло";
 shortcut.solo.short = "Соло";
-shortcut.solo.long = "Соло";
 // bottom shortcut buttons (should be SHORT)
+shortcut.voxelRemesh = "Воксельная перестройка меша";
 shortcut.voxelRemesh.short = "Воксель";
-shortcut.voxelRemesh.long = "Воксельная перестройка меша";
 // bottom shortcut buttons (should be SHORT)
+shortcut.wireframe = "Каркас";
 shortcut.wireframe.short = "Каркас";
-shortcut.wireframe.long = "Каркас";
 // bottom shortcut buttons (should be SHORT)
+shortcut.cameraReset = "Сброс камеры";
 shortcut.cameraReset.short = "Сбросить";
-shortcut.cameraReset.long = "Сброс камеры";
 // bottom shortcut buttons (should be SHORT)
+shortcut.cameraSnap = "Привязка камеры";
 shortcut.cameraSnap.short = "Привязка";
-shortcut.cameraSnap.long = "Привязка камеры";
 // bottom shortcut buttons (should be SHORT)
+shortcut.lockSelection = "Блокировка выделения";
 shortcut.lockSelection.short = "Блокировать";
-shortcut.lockSelection.long = "Блокировка выделения";
-shortcut.lockSelection.long.help = "При включении вы не сможете изменить выбор при нажатии на меш.";
+shortcut.lockSelection.help = "При включении вы не сможете изменить выбор при нажатии на меш.";
 // bottom shortcut buttons (should be SHORT)
+shortcut.perspective = "Перспектива";
 shortcut.perspective.short = "Персп.";
-shortcut.perspective.long = "Перспектива";
 // bottom shortcut buttons (should be SHORT)
+shortcut.grid = "Сетка";
 shortcut.grid.short = "Сетка";
-shortcut.grid.long = "Сетка";
-// bottom shortcut buttons (should be SHORT)
-shortcut.uv.short = "uv";
-shortcut.uv.long = "uv";
 
 // Memory taken by the scene
 stat.ramScene = "Кадр";
@@ -1676,25 +1689,25 @@ stroke.accumulate.help = "Если эта функция включена, вы 
 // The tool can use DynTopo
 stroke.useDynamicTopology = "Разрешить использование динамической топологии";
 // Only sculpt the part that are linked topologically
-stroke.connectedTopology = "Топология закрепленного";
-stroke.connectedTopology.help = "Эта функция будет скульптурировать только те вершины, которые закреплены на выбранной поверхности.
+stroke.connected = "Топология закрепленного";
+stroke.connected.help = "Эта функция будет скульптурировать только те вершины, которые закреплены на выбранной поверхности.
 
 Она чаще всего используется с инструментом \"Перемещение\", например, если вы хотите переместить только ту часть, которая пересекается с другой частью.";
 // Only sculpt the vertex that points toward the camera
-stroke.onlyFrontFace = "Только вершины на лицевой поверхности";
-stroke.onlyFrontFace.help = "Эта функция будет игнорировать вершины на обратной стороне.
+stroke.culling = "Только вершины на лицевой поверхности";
+stroke.culling.help = "Эта функция будет игнорировать вершины на обратной стороне.
 
 Она особо пригодится в том случае, если вы хотите окрасить часть тонкой геометрии, не затрагивая другую часть.
 
 Эта функция также применяется для скульптурирования, но могут возникнуть помехи.";
 // Only sculpt the vertex that points toward the direction of the deformation
-stroke.onlySameSide = "Только вершины на одной стороне";
-stroke.onlySameSide.help = "Игнорировать вершины, указывающие в обратную сторону от деформации.";
+stroke.sameSide = "Только вершины на одной стороне";
+stroke.sameSide.help = "Игнорировать вершины, указывающие в обратную сторону от деформации.";
 // Module the intensity of the sculpting operation by using a falloff curve
-stroke.curveFalloff = "Спад";
+menu.falloff = "Спад";
 stroke.onlyLasso = "Настройки активны только для инструмента \"Лассо\".";
 // Alpha
-stroke.alpha = "Альфа";
+menu.alpha = "Альфа";
 // Invert the pixel (black <-> white)
 stroke.alphaInvert = "Инверсия пикселей";
 // Repeat the alpha image (pattern)
@@ -1705,11 +1718,11 @@ stroke.alphaWrap.none = "Нет";
 stroke.alphaWrap.repeat = "Повторение";
 // Repeat the alpha in a mirrored (seamless tiling)
 stroke.alphaWrap.mirror = "Отзеркаливание";
-stroke.alphaProject = "Метод";
+stroke.alphaFetch = "Метод";
 // Project the alpha perpendicularly onto the surface
-stroke.alphaProject.surfaceContinuous = "Поверхность";
+stroke.alphaFetch.surface = "Поверхность";
 // Project the alpha onto the surface in the direction of the camera view
-stroke.alphaProject.screenFixed = "Проектирование на экран";
+stroke.alphaFetch.screen = "Проектирование на экран";
 stroke.alphaRotation = "Поворот";
 stroke.alphaRotation.lock.help = "";
 // Repeat the image
@@ -1732,8 +1745,8 @@ stroke.alphaMidValue.help = "Среднее значение, при котор�
 (Среднее значение = 1)
 - Черный: негативное смещение
 - Белый: нет смещения";
-// Stroke type
-stroke.strokeType = "Тип штриха";
+// Synonymous: Scatter/Jitter/Randomize
+stroke.jitter = "";
 // Sculpt and paint along the brush stroke at regular spacing
 stroke.strokeTypeDot = "Точка";
 // Sculpt continuously
@@ -1930,10 +1943,10 @@ tool.shape.line = "Линия";
 // Ideally <10 chars (Whether a shape is closed or not, a tube is open, a torus is closed)
 tool.shape.closed = "Закрыт";
 
-// Popup when editing the vertical sliders on the left
-tool.slider.radius = "Радиус $0";
-// Popup when editing the vertical sliders on the left
-tool.slider.intensity = "Интенсивность $0 %";
+// Radius of the tool (size)
+tool.radius = "Радиус";
+// Intensity of the tool (force)
+tool.intensity = "Интенсивность";
 
 tool.settings = "Параметры";
 tool.settings.none = "У этого инструмента нет особых настроек.";
@@ -2083,7 +2096,7 @@ tool.gizmo.linearRollThreshold.help = "Настройте на определе�
 Если вы предпочитаете линейный поворот (в сторону тангенса), установите значение на 90°.";
 // Partially hide/fade the gizmo when we interact with it
 tool.gizmo.autoHide = "Скрывать при взаимодействии";
-tool.gizmo.tap = "Перемещение уникальной оси одним касанием";
+tool.gizmo.tap = "одним касанием";
 tool.gizmo.tap.help = "Эта функция эффективна только в режиме уникальной оси (отключена по умолчанию).
 
 -- Нет
@@ -2094,9 +2107,10 @@ tool.gizmo.tap.help = "Эта функция эффективна только �
 
 -- Средняя величина
 Перенос гизмо в середину между первыми двумя пересечениями.";
-tool.gizmo.tapNone = "Нет";
-tool.gizmo.tapFirstHit = "Первое касание";
-tool.gizmo.tapMiddleStab = "Средняя величина";
+tool.gizmo.tap.none = "Нет";
+tool.gizmo.tap.align = "";
+tool.gizmo.tap.first = "Первое касание";
+tool.gizmo.tap.medial = "Средняя величина";
 
 // The lathe generator is a vertical line and cannot be rotated
 tool.lathe.axisFixed = "Закреплено";

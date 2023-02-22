@@ -7,6 +7,17 @@ confirm.ok = "好";
 // Cancel something after being asked (Question? [answer, cancel])
 confirm.cancel = "取消";
 
+// common
+position.top = "頂部";
+position.right = "右側";
+position.left = "左側";
+position.bottom = "底部";
+position.center = "中心";
+direction.up = "頂部";
+direction.right = "右側";
+direction.left = "左側";
+direction.down = "底部";
+
 // Name of an item (object, tool, etc)
 item.name = "重新命名";
 // Add a new item (object, tool, etc)
@@ -192,9 +203,6 @@ alert.colorPicker = "用手指在物件上拖動選擇一個顏色";
 alert.backgroundTransform = "輕點即可退出切換模式";
 // Edit the symmetry plane with the gizmo
 alert.editSymmetry = "";
-alert.view.reset = "重置檢視";
-// Snap the view to the nearest aligned 90° angle
-alert.view.snap = "旋轉檢視";
 // Show the painted mask on the mesh
 alert.mask.show = "顯示遮罩";
 // Hide the painted mask on the mesh
@@ -340,7 +348,7 @@ curve.spline = "樣條";
 // Display the falloff curve in a symmetric way
 curve.symmetric.help = "";
 
-// set the desired FPS (frame per second, refresh rate)
+// Set the desired FPS (frame per second, refresh rate)
 debug.targetFPS = "";
 debug.targetFPS.help = "";
 
@@ -724,6 +732,15 @@ history.state.meshDynamicToStatic = "動態網格轉為靜態網格";
 // Shown during undo/redo (mesh type conversion)
 history.state.meshStaticToDynamic = "靜態網格轉為動態網格";
 
+// Debugging/Inspect object material (view channel separately color, roughness, normal, uv, etc)
+inspector = "";
+// Inspector but SHORT
+inspector.short = "";
+// Display the material channel on the background
+inspector.onBackground = "";
+// Display the material channel on the mesh
+inspector.onMesh = "";
+
 // Interface customization
 interface = "介面設定";
 
@@ -768,7 +785,7 @@ interface.preset.neon = "霓虹藍";
 // Interface color style
 interface.preset.violet = "羅蘭紫";
 // Interface color style
-interface.preset.grey = "灰色";
+interface.preset.gray = "灰色";
 // Interface color style
 interface.preset.black = "黑";
 // Interface color style
@@ -809,10 +826,6 @@ interface.inset.title = "邊偏移";
 interface.inset.title.help = "只有螢幕邊緣的按鈕存在問題時，您才可以更改這些值。
 
 如果滑塊已停用，Nomad將使用裝置本身返回有效區域值。";
-interface.inset.left = "左側";
-interface.inset.right = "右側";
-interface.inset.bottom = "底部";
-interface.inset.top = "頂部";
 
 // (see Glossary for Layer)
 layer = "圖層";
@@ -850,8 +863,10 @@ layers.baseSelected = "無";
 light = "光線";
 // Intensity of light
 light.intensity = "強度";
+// Kelvin (the temperature unit)
+light.kelvin = "";
 // Temperature in Kelvin (Alternative way to compute the color of the light)
-light.kelvin = "色溫";
+light.temperature = "色溫";
 // The attachment of a light defines how it will move when the user moves the camera
 light.attachment = "光照方向";
 // The light will stay still even if the user moves the camera
@@ -1024,6 +1039,12 @@ menu.tool = "工具";
 // Menu name
 menu.stroke = "筆刷";
 // Menu name
+menu.alpha = "Alpha";
+// Menu name
+menu.filter = "";
+// Menu name
+menu.falloff = "衰減";
+// Menu name
 menu.paint = "繪畫";
 // Menu name
 menu.symmetry = "對稱";
@@ -1089,18 +1110,17 @@ paint.paintAll.help = "將當前材質應用到所選物件上。
 paint.paintAllForce = "強制全部上色";
 paint.strokePainting.title = "上漆";
 // Brush stroke texture
-paint.texture.title = "紋理貼圖";
-paint.texture.title.help = "將圖片作為繪畫的筆刷。
-
-注意，它將共享alpha的平鋪和比例設定。";
 paint.texture.warningEnable = "您需要先勾選選單頂部的“紋理貼圖”後才能使用貼圖繪製功能！";
 paint.texture.warningIgnored = "當前工具無法使用紋理貼圖功能！";
-// Whether the Brush Alpha will be used to module painting
+// Whether the Brush Alpha will be used to modulate painting intensity
 paint.useAlpha = "使用筆刷alpha";
 paint.useAlpha.help = "使用筆畫選單中的alpha設定來調製繪畫。";
-// Whether the Brush Falloff will be used to module painting
+// Whether the Brush Falloff will be used to modulate painting intensity
 paint.useCurve = "使用筆刷衰減";
 paint.useFalloff.help = "使用筆畫選單中的衰減設定來調控繪畫。";
+// Whether the Brush Randomize will be used to modulate painting intensity
+paint.useJitter = "";
+paint.useJitter.help = "";
 
 // when the user choose a new item name (through iOS/Android virtual keyboard)
 input.name = "請輸入新名稱";
@@ -1435,13 +1455,6 @@ scene.onlyOneObject = "您選擇了多個物件，無法修改圖層。";
 settings.display.title = "顯示設定";
 // Wireframe (show triangles and quad edges)
 settings.wireframe = "物件網格";
-// Display UV
-settings.debugUV = "除錯UV";
-settings.debugUV.help = "這個選項只有在模型有UV時才有意義。
-
-它將在背景中顯示UV線框。
-
-它還會在模型上顯示一個彩色的棋盤式紋理。";
 // Display the material texture
 settings.debugChannel = "";
 // Display the material texture in the background
@@ -1466,6 +1479,9 @@ settings.snapCube = "方位檢視";
 settings.snapCube.bottom = "置於底部";
 // Move the navigation cube on the left side of the screen
 settings.snapCube.left = "置於左側";
+// Alignment (can be auto/on/off)
+settings.snapCube.align = "";
+settings.snapCube.align.help = "";
 // Stats (information logs about the scene displayed on screen)
 settings.stats = "顯示場景狀態";
 settings.stats.right = "置於右側";
@@ -1580,36 +1596,33 @@ shading.matcap.global = "使用全域性材質捕捉";
 shading.matcap.global.help = "如果您希望在不同物件上使用不同的材質捕捉，請取消此選項。";
 
 // bottom shortcut buttons (should be SHORT)
+shortcut.maskVisible = "蒙版";
 shortcut.maskVisible.short = "蒙版";
-shortcut.maskVisible.long = "蒙版";
 // bottom shortcut buttons (should be SHORT)
+shortcut.solo = "單放軌道";
 shortcut.solo.short = "單放";
-shortcut.solo.long = "單放軌道";
 // bottom shortcut buttons (should be SHORT)
+shortcut.voxelRemesh = "體素網格重構";
 shortcut.voxelRemesh.short = "體素";
-shortcut.voxelRemesh.long = "體素網格重構";
 // bottom shortcut buttons (should be SHORT)
+shortcut.wireframe = "網格開關";
 shortcut.wireframe.short = "線框";
-shortcut.wireframe.long = "網格開關";
 // bottom shortcut buttons (should be SHORT)
+shortcut.cameraReset = "重置檢視";
 shortcut.cameraReset.short = "重設對稱中心";
-shortcut.cameraReset.long = "重置檢視";
 // bottom shortcut buttons (should be SHORT)
+shortcut.cameraSnap = "切換檢視";
 shortcut.cameraSnap.short = "切換";
-shortcut.cameraSnap.long = "切換檢視";
 // bottom shortcut buttons (should be SHORT)
+shortcut.lockSelection = "鎖定選項";
 shortcut.lockSelection.short = "鎖定";
-shortcut.lockSelection.long = "鎖定選項";
-shortcut.lockSelection.long.help = "啟用後，您無法透過點選方式選擇物件。";
+shortcut.lockSelection.help = "啟用後，您無法透過點選方式選擇物件。";
 // bottom shortcut buttons (should be SHORT)
+shortcut.perspective = "透視檢視";
 shortcut.perspective.short = "透視";
-shortcut.perspective.long = "透視檢視";
 // bottom shortcut buttons (should be SHORT)
+shortcut.grid = "世界網格";
 shortcut.grid.short = "世界網格";
-shortcut.grid.long = "世界網格";
-// bottom shortcut buttons (should be SHORT)
-shortcut.uv.short = "UV";
-shortcut.uv.long = "UV";
 
 // Memory taken by the scene
 stat.ramScene = "場景";
@@ -1683,25 +1696,25 @@ stroke.accumulate.help = "如啟用此選項，則每個筆畫可新增或減去
 // The tool can use DynTopo
 stroke.useDynamicTopology = "允許動態網格";
 // Only sculpt the part that are linked topologically
-stroke.connectedTopology = "連線拓撲";
-stroke.connectedTopology.help = "啟用此選項後，畫筆將會只雕刻連線到所選表面的頂點。
+stroke.connected = "連線拓撲";
+stroke.connected.help = "啟用此選項後，畫筆將會只雕刻連線到所選表面的頂點。
 
 此選項一般適用於移動工具, 例如專門移動與另一零件自相交的零件。 ";
 // Only sculpt the vertex that points toward the camera
-stroke.onlyFrontFace = "隻影響物件表面";
-stroke.onlyFrontFace.help = "開啟此選項後，應用會忽略對“背面”的操作。
+stroke.culling = "隻影響物件表面";
+stroke.culling.help = "開啟此選項後，應用會忽略對“背面”的操作。
 
 該功能可幫助您在不影響另一側的情況下在幾何平面上繪畫。
 
 該選項也可用於雕刻，但您可能會遇到一些不便。";
 // Only sculpt the vertex that points toward the direction of the deformation
-stroke.onlySameSide = "只移動同向頂點";
-stroke.onlySameSide.help = "在修改物件造型時，不移動朝向不同的頂點。";
+stroke.sameSide = "只移動同向頂點";
+stroke.sameSide.help = "在修改物件造型時，不移動朝向不同的頂點。";
 // Module the intensity of the sculpting operation by using a falloff curve
-stroke.curveFalloff = "衰減";
+menu.falloff = "衰減";
 stroke.onlyLasso = "該設定僅對套索工具有效。";
 // Alpha
-stroke.alpha = "Alpha";
+menu.alpha = "Alpha";
 // Invert the pixel (black <-> white)
 stroke.alphaInvert = "反轉畫素";
 // Repeat the alpha image (pattern)
@@ -1712,11 +1725,11 @@ stroke.alphaWrap.none = "無";
 stroke.alphaWrap.repeat = "重複";
 // Repeat the alpha in a mirrored (seamless tiling)
 stroke.alphaWrap.mirror = "映象";
-stroke.alphaProject = "平鋪模式";
+stroke.alphaFetch = "平鋪模式";
 // Project the alpha perpendicularly onto the surface
-stroke.alphaProject.surfaceContinuous = "表面連續";
+stroke.alphaFetch.surface = "表面連續";
 // Project the alpha onto the surface in the direction of the camera view
-stroke.alphaProject.screenFixed = "螢幕投影";
+stroke.alphaFetch.screen = "螢幕投影";
 stroke.alphaRotation = "旋轉";
 stroke.alphaRotation.lock.help = "";
 // Repeat the image
@@ -1739,8 +1752,8 @@ stroke.alphaMidValue.help = "不發生變形的中間值。
 當中間值為1時：
 - 黑色：下凹
 - 白色：無變化";
-// Stroke type
-stroke.strokeType = "筆刷型別";
+// Synonymous: Scatter/Jitter/Randomize
+stroke.jitter = "";
 // Sculpt and paint along the brush stroke at regular spacing
 stroke.strokeTypeDot = "點";
 // Sculpt continuously
@@ -1937,10 +1950,10 @@ tool.shape.line = "直線";
 // Ideally <10 chars (Whether a shape is closed or not, a tube is open, a torus is closed)
 tool.shape.closed = "閉合";
 
-// Popup when editing the vertical sliders on the left
-tool.slider.radius = "半徑 $0";
-// Popup when editing the vertical sliders on the left
-tool.slider.intensity = "強度 $0 %";
+// Radius of the tool (size)
+tool.radius = "半徑";
+// Intensity of the tool (force)
+tool.intensity = "強度";
 
 tool.settings = "設定";
 tool.settings.none = "該工具無特殊設定。";
@@ -2101,9 +2114,10 @@ tool.gizmo.tap.help = "此選項僅在自定義座標原點模式下有效（預
 
 - 平均
 將在圓點座標設定在前兩次點選直線的中點。";
-tool.gizmo.tapNone = "無";
-tool.gizmo.tapFirstHit = "點選";
-tool.gizmo.tapMiddleStab = "中點";
+tool.gizmo.tap.none = "無";
+tool.gizmo.tap.align = "";
+tool.gizmo.tap.first = "點選";
+tool.gizmo.tap.medial = "中點";
 
 // The lathe generator is a vertical line and cannot be rotated
 tool.lathe.axisFixed = "固定位置";

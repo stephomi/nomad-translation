@@ -7,6 +7,17 @@ confirm.ok = "확인";
 // Cancel something after being asked (Question? [answer, cancel])
 confirm.cancel = "취소";
 
+// common
+position.top = "위";
+position.right = "오른쪽";
+position.left = "왼쪽";
+position.bottom = "아래";
+position.center = "가운데 정렬";
+direction.up = "위";
+direction.right = "오른쪽";
+direction.left = "왼쪽";
+direction.down = "아래";
+
 // Name of an item (object, tool, etc)
 item.name = "이름";
 // Add a new item (object, tool, etc)
@@ -192,9 +203,6 @@ alert.colorPicker = "오브젝트를 손가락으로 드래그하여 색상을 �
 alert.backgroundTransform = "가볍게 탭하여 트랜스폼 모드를 종료합니다.";
 // Edit the symmetry plane with the gizmo
 alert.editSymmetry = "";
-alert.view.reset = "뷰 초기화";
-// Snap the view to the nearest aligned 90° angle
-alert.view.snap = "스냅 뷰";
 // Show the painted mask on the mesh
 alert.mask.show = "마스크 보기";
 // Hide the painted mask on the mesh
@@ -340,7 +348,7 @@ curve.spline = "스플라인 곡선";
 // Display the falloff curve in a symmetric way
 curve.symmetric.help = "";
 
-// set the desired FPS (frame per second, refresh rate)
+// Set the desired FPS (frame per second, refresh rate)
 debug.targetFPS = "";
 debug.targetFPS.help = "";
 
@@ -722,6 +730,15 @@ history.state.meshDynamicToStatic = "동적 토폴로지에서 정적 메시로"
 // Shown during undo/redo (mesh type conversion)
 history.state.meshStaticToDynamic = "정적 메시에서 동적 토폴로지로";
 
+// Debugging/Inspect object material (view channel separately color, roughness, normal, uv, etc)
+inspector = "";
+// Inspector but SHORT
+inspector.short = "";
+// Display the material channel on the background
+inspector.onBackground = "";
+// Display the material channel on the mesh
+inspector.onMesh = "";
+
 // Interface customization
 interface = "인터페이스";
 
@@ -766,7 +783,7 @@ interface.preset.neon = "Neon";
 // Interface color style
 interface.preset.violet = "보라색";
 // Interface color style
-interface.preset.grey = "회색";
+interface.preset.gray = "회색";
 // Interface color style
 interface.preset.black = "검은색";
 // Interface color style
@@ -807,10 +824,6 @@ interface.inset.title = "변 오프셋";
 interface.inset.title.help = "화면 가장자리에 있는 버튼과 상호 작용하는 데 문제가 있는 경우에 한하여 이 값을 변경할 수 있습니다.
 
 슬라이더가 비활성화된 경우, Nomad는 장치 자체에서 반환된 안전 영역 값을 사용합니다.";
-interface.inset.left = "왼쪽";
-interface.inset.right = "오른쪽";
-interface.inset.bottom = "아래";
-interface.inset.top = "위";
 
 // (see Glossary for Layer)
 layer = "레이어";
@@ -848,8 +861,10 @@ layers.baseSelected = "없음";
 light = "광원";
 // Intensity of light
 light.intensity = "강도";
+// Kelvin (the temperature unit)
+light.kelvin = "";
 // Temperature in Kelvin (Alternative way to compute the color of the light)
-light.kelvin = "온도";
+light.temperature = "온도";
 // The attachment of a light defines how it will move when the user moves the camera
 light.attachment = "어태치먼트";
 // The light will stay still even if the user moves the camera
@@ -1016,6 +1031,12 @@ menu.tool = "도구";
 // Menu name
 menu.stroke = "스트로크";
 // Menu name
+menu.alpha = "알파";
+// Menu name
+menu.filter = "";
+// Menu name
+menu.falloff = "폴오프";
+// Menu name
 menu.paint = "페인트";
 // Menu name
 menu.symmetry = "대칭";
@@ -1081,18 +1102,17 @@ paint.paintAll.help = "현재 머티리얼을 오브젝트에 적용합니다.
 paint.paintAllForce = "강제로 모두 칠하기";
 paint.strokePainting.title = "페인팅";
 // Brush stroke texture
-paint.texture.title = "텍스처";
-paint.texture.title.help = "브러시 스트로크에 적용되는 이미지입니다.
-
-알파 타일링과 스케일 설정을 공유하므로 주의하십시오.";
 paint.texture.warningEnable = "텍스처 투영을 허용하려면 스트로크 페인팅을 활성화해야 합니다 (상단의 체크상자)!";
 paint.texture.warningIgnored = "현재 도구는 텍스처를 사용할 수 없습니다!";
-// Whether the Brush Alpha will be used to module painting
+// Whether the Brush Alpha will be used to modulate painting intensity
 paint.useAlpha = "스트로크 알파 사용";
 paint.useAlpha.help = "스트로크 메뉴에 있는 알파 세트를 사용하여 페인팅을 조절할 수 있습니다.";
-// Whether the Brush Falloff will be used to module painting
+// Whether the Brush Falloff will be used to modulate painting intensity
 paint.useCurve = "스트로크 폴오프 사용";
 paint.useFalloff.help = "스트로크 메뉴에 있는 폴오프 세트를 사용하여 페인팅을 조절할 수 있습니다.";
+// Whether the Brush Randomize will be used to modulate painting intensity
+paint.useJitter = "";
+paint.useJitter.help = "";
 
 // when the user choose a new item name (through iOS/Android virtual keyboard)
 input.name = "새로운 이름";
@@ -1427,13 +1447,6 @@ scene.onlyOneObject = "복수의 오브젝트가 선택되어 있습니다. 단 
 settings.display.title = "디스플레이 설정";
 // Wireframe (show triangles and quad edges)
 settings.wireframe = "와이어프레임";
-// Display UV
-settings.debugUV = "UV 디버그";
-settings.debugUV.help = "이 옵션은 모델에 UV가 있는 경우에만 적용됩니다.
-
-배경에 UV 와이어프레임이 표시됩니다.
-
-또한 모델에 색상이 있는 체커보드 텍스처를 표시합니다.";
 // Display the material texture
 settings.debugChannel = "";
 // Display the material texture in the background
@@ -1458,6 +1471,9 @@ settings.snapCube = "스냅 큐브";
 settings.snapCube.bottom = "아래";
 // Move the navigation cube on the left side of the screen
 settings.snapCube.left = "왼쪽";
+// Alignment (can be auto/on/off)
+settings.snapCube.align = "";
+settings.snapCube.align.help = "";
 // Stats (information logs about the scene displayed on screen)
 settings.stats = "통계";
 settings.stats.right = "오른쪽";
@@ -1569,36 +1585,33 @@ shading.matcap.global = "전역 MatCap 사용";
 shading.matcap.global.help = "특정 메시에 다른 MatCap을 사용하려면 이 옵션의 체크를 해제하십시오.";
 
 // bottom shortcut buttons (should be SHORT)
+shortcut.maskVisible = "마스크";
 shortcut.maskVisible.short = "마스크";
-shortcut.maskVisible.long = "마스크";
 // bottom shortcut buttons (should be SHORT)
+shortcut.solo = "솔로";
 shortcut.solo.short = "솔로";
-shortcut.solo.long = "솔로";
 // bottom shortcut buttons (should be SHORT)
+shortcut.voxelRemesh = "복셀 리메시";
 shortcut.voxelRemesh.short = "복셀";
-shortcut.voxelRemesh.long = "복셀 리메시";
 // bottom shortcut buttons (should be SHORT)
+shortcut.wireframe = "와이어프레임";
 shortcut.wireframe.short = "와이어";
-shortcut.wireframe.long = "와이어프레임";
 // bottom shortcut buttons (should be SHORT)
+shortcut.cameraReset = "카메라 초기화";
 shortcut.cameraReset.short = "초기화";
-shortcut.cameraReset.long = "카메라 초기화";
 // bottom shortcut buttons (should be SHORT)
+shortcut.cameraSnap = "카메라 스냅";
 shortcut.cameraSnap.short = "스냅";
-shortcut.cameraSnap.long = "카메라 스냅";
 // bottom shortcut buttons (should be SHORT)
+shortcut.lockSelection = "선택 잠금";
 shortcut.lockSelection.short = "잠금";
-shortcut.lockSelection.long = "선택 잠금";
-shortcut.lockSelection.long.help = "활성화되면 메시를 탭하더라도 선택 항목을 변경할 수 없습니다.";
+shortcut.lockSelection.help = "활성화되면 메시를 탭하더라도 선택 항목을 변경할 수 없습니다.";
 // bottom shortcut buttons (should be SHORT)
+shortcut.perspective = "원근";
 shortcut.perspective.short = "원근";
-shortcut.perspective.long = "원근";
 // bottom shortcut buttons (should be SHORT)
+shortcut.grid = "격자";
 shortcut.grid.short = "격자";
-shortcut.grid.long = "격자";
-// bottom shortcut buttons (should be SHORT)
-shortcut.uv.short = "UV";
-shortcut.uv.long = "UV";
 
 // Memory taken by the scene
 stat.ramScene = "씬";
@@ -1672,25 +1685,25 @@ stroke.accumulate.help = "이 옵션이 활성화되면 스트로크당 추가/�
 // The tool can use DynTopo
 stroke.useDynamicTopology = "동적 토폴로지 허용";
 // Only sculpt the part that are linked topologically
-stroke.connectedTopology = "연결된 토폴로지";
-stroke.connectedTopology.help = "이 옵션은 선택된 표면과 연결되어 있는 버텍스만 스컬프팅합니다.
+stroke.connected = "연결된 토폴로지";
+stroke.connected.help = "이 옵션은 선택된 표면과 연결되어 있는 버텍스만 스컬프팅합니다.
 
 이 옵션은 일반적으로 '이동' 도구를 위해 사용됩니다. 예를 들어, 다른 부분과 자가 교차하는 부분만 이동하고 싶은 경우 등입니다.";
 // Only sculpt the vertex that points toward the camera
-stroke.onlyFrontFace = "정면을 향하는 버텍스만";
-stroke.onlyFrontFace.help = "이 옵션은 뒷면을 바라보는 버텍스를 무시합니다.
+stroke.culling = "정면을 향하는 버텍스만";
+stroke.culling.help = "이 옵션은 뒷면을 바라보는 버텍스를 무시합니다.
 
 다른 면에 영향을 주지 않고 얇은 형상의 일부를 페인팅하려는 경우 유용할 수 있습니다.
 
 스컬프팅에도 효과가 있지만 눈에 띄는 아티팩트가 발생할 수 있습니다.";
 // Only sculpt the vertex that points toward the direction of the deformation
-stroke.onlySameSide = "같은 면에 있는 버텍스만";
-stroke.onlySameSide.help = "변형하려는 방향의 반대를 가리키는 버텍스는 무시합니다.";
+stroke.sameSide = "같은 면에 있는 버텍스만";
+stroke.sameSide.help = "변형하려는 방향의 반대를 가리키는 버텍스는 무시합니다.";
 // Module the intensity of the sculpting operation by using a falloff curve
-stroke.curveFalloff = "폴오프";
+menu.falloff = "폴오프";
 stroke.onlyLasso = "이 설정은 올가미 도구에만 적용됩니다.";
 // Alpha
-stroke.alpha = "알파";
+menu.alpha = "알파";
 // Invert the pixel (black <-> white)
 stroke.alphaInvert = "픽셀 반전";
 // Repeat the alpha image (pattern)
@@ -1701,11 +1714,11 @@ stroke.alphaWrap.none = "없음";
 stroke.alphaWrap.repeat = "반복";
 // Repeat the alpha in a mirrored (seamless tiling)
 stroke.alphaWrap.mirror = "거울";
-stroke.alphaProject = "방법";
+stroke.alphaFetch = "방법";
 // Project the alpha perpendicularly onto the surface
-stroke.alphaProject.surfaceContinuous = "표면";
+stroke.alphaFetch.surface = "표면";
 // Project the alpha onto the surface in the direction of the camera view
-stroke.alphaProject.screenFixed = "스크린 투시";
+stroke.alphaFetch.screen = "스크린 투시";
 stroke.alphaRotation = "회전";
 stroke.alphaRotation.lock.help = "";
 // Repeat the image
@@ -1728,8 +1741,8 @@ stroke.alphaMidValue.help = "변형을 일으키지 않는 중간값.
 (중간값 = 1)
 - 검은색: 음수의 변위
 - 흰색: 변위 없음";
-// Stroke type
-stroke.strokeType = "스트로크 유형";
+// Synonymous: Scatter/Jitter/Randomize
+stroke.jitter = "";
 // Sculpt and paint along the brush stroke at regular spacing
 stroke.strokeTypeDot = "점";
 // Sculpt continuously
@@ -1926,10 +1939,10 @@ tool.shape.line = "선";
 // Ideally <10 chars (Whether a shape is closed or not, a tube is open, a torus is closed)
 tool.shape.closed = "닫힘";
 
-// Popup when editing the vertical sliders on the left
-tool.slider.radius = "반지름 $0";
-// Popup when editing the vertical sliders on the left
-tool.slider.intensity = "강도 $0%";
+// Radius of the tool (size)
+tool.radius = "반지름";
+// Intensity of the tool (force)
+tool.intensity = "강도";
 
 tool.settings = "설정";
 tool.settings.none = "이 도구에는 특정 설정이 없습니다.";
@@ -2079,7 +2092,7 @@ tool.gizmo.linearRollThreshold.help = "선형 또는 원형 롤 방법을 선택
 선형 롤(탄젠트의 방향)을 선호하는 경우, 이 값을 90°로 설정하기만 하면 됩니다.";
 // Partially hide/fade the gizmo when we interact with it
 tool.gizmo.autoHide = "상호작용 중일 때 가리기";
-tool.gizmo.tap = "한 번의 탭으로 커스텀 피벗 이동하기";
+tool.gizmo.tap = "탭 한 번";
 tool.gizmo.tap.help = "이 옵션은 커스텀 피벗 모드에서만 유효합니다 ('자동'이 비활성화된 경우).
 
 - 없음
@@ -2090,9 +2103,10 @@ tool.gizmo.tap.help = "이 옵션은 커스텀 피벗 모드에서만 유효합�
 
 - 중간점
 처음 두 교차점의 평균 위치로 기즈모를 이동합니다.";
-tool.gizmo.tapNone = "없음";
-tool.gizmo.tapFirstHit = "첫 교차점";
-tool.gizmo.tapMiddleStab = "중간점";
+tool.gizmo.tap.none = "없음";
+tool.gizmo.tap.align = "";
+tool.gizmo.tap.first = "첫 교차점";
+tool.gizmo.tap.medial = "중간점";
 
 // The lathe generator is a vertical line and cannot be rotated
 tool.lathe.axisFixed = "고정";

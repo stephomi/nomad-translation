@@ -7,6 +7,17 @@ confirm.ok = "OK";
 // Cancel something after being asked (Question? [answer, cancel])
 confirm.cancel = "Annuler";
 
+// common
+position.top = "Haut";
+position.right = "Droite";
+position.left = "Gauche";
+position.bottom = "Bas";
+position.center = "Centré";
+direction.up = "Haut";
+direction.right = "Droite";
+direction.left = "Gauche";
+direction.down = "Bas";
+
 // Name of an item (object, tool, etc)
 item.name = "Nom";
 // Add a new item (object, tool, etc)
@@ -192,9 +203,6 @@ alert.colorPicker = "Faites glisser votre doigt sur l'objet pour sélectionner u
 alert.backgroundTransform = "Appuyez une fois pour quitter le mode Transformation.";
 // Edit the symmetry plane with the gizmo
 alert.editSymmetry = "";
-alert.view.reset = "Réinitialiser la vue";
-// Snap the view to the nearest aligned 90° angle
-alert.view.snap = "Caler la vue";
 // Show the painted mask on the mesh
 alert.mask.show = "Afficher le masque";
 // Hide the painted mask on the mesh
@@ -295,12 +303,12 @@ camera.speed.zooming = "Zoom";
 // Reset camera position
 camera.resetView = "Réinitialiser la vue";
 // Align the view (snap to nearest 90° angle)
-camera.snapView = "Caler la vue";
+camera.snapView = "Vue alignée";
 // Warning (camera is snapped and it switched to orthographic)
-camera.snapOrthographic.warning = "La caméra est calée (orthographique)";
+camera.snapOrthographic.warning = "Caméra est alignée (orthographique)";
 // Switch to orthographic view when the view is snapped
-camera.snapOrthographic = "Calage orthographique";
-camera.snapOrthographic.help = "Cette option fonctionne également lorsque le cube de calage est utilisé dans l'angle.";
+camera.snapOrthographic = "Alignment orthographique";
+camera.snapOrthographic.help = "Cette option fonctionne également lorsque le cube d'alignment est utilisé.";
 // The Camera pivot is the point around which the camera rotates
 camera.pivot = "Pivot";
 // When we double tap on the object with the finger/stylus
@@ -340,7 +348,7 @@ curve.spline = "Spline";
 // Display the falloff curve in a symmetric way
 curve.symmetric.help = "";
 
-// set the desired FPS (frame per second, refresh rate)
+// Set the desired FPS (frame per second, refresh rate)
 debug.targetFPS = "";
 debug.targetFPS.help = "";
 
@@ -724,6 +732,15 @@ history.state.meshDynamicToStatic = "TopoDyn vers Statique";
 // Shown during undo/redo (mesh type conversion)
 history.state.meshStaticToDynamic = "Statique vers TopoDyn";
 
+// Debugging/Inspect object material (view channel separately color, roughness, normal, uv, etc)
+inspector = "";
+// Inspector but SHORT
+inspector.short = "";
+// Display the material channel on the background
+inspector.onBackground = "";
+// Display the material channel on the mesh
+inspector.onMesh = "";
+
 // Interface customization
 interface = "Interface";
 
@@ -768,7 +785,7 @@ interface.preset.neon = "Néon";
 // Interface color style
 interface.preset.violet = "Violet";
 // Interface color style
-interface.preset.grey = "Gris";
+interface.preset.gray = "Gris";
 // Interface color style
 interface.preset.black = "Noir";
 // Interface color style
@@ -809,10 +826,6 @@ interface.inset.title = "Décalages des bords";
 interface.inset.title.help = "Ne modifiez ces valeurs que si vous rencontrez des difficultés pour interagir avec les boutons situés sur les bords de l'écran.
 
 Si le curseur est désactivé, Nomad utilisera les valeurs de zone de sécurité renvoyées par le périphérique lui-même.";
-interface.inset.left = "Gauche";
-interface.inset.right = "Droite";
-interface.inset.bottom = "Bas";
-interface.inset.top = "Haut";
 
 // (see Glossary for Layer)
 layer = "Calque";
@@ -850,8 +863,10 @@ layers.baseSelected = "Aucun";
 light = "Lumière";
 // Intensity of light
 light.intensity = "Intensité";
+// Kelvin (the temperature unit)
+light.kelvin = "";
 // Temperature in Kelvin (Alternative way to compute the color of the light)
-light.kelvin = "Température";
+light.temperature = "Température";
 // The attachment of a light defines how it will move when the user moves the camera
 light.attachment = "Fixation";
 // The light will stay still even if the user moves the camera
@@ -1018,6 +1033,12 @@ menu.tool = "Outil";
 // Menu name
 menu.stroke = "Trait";
 // Menu name
+menu.alpha = "Alpha";
+// Menu name
+menu.filter = "";
+// Menu name
+menu.falloff = "Atténuation";
+// Menu name
 menu.paint = "Peinture";
 // Menu name
 menu.symmetry = "Symétrie";
@@ -1083,18 +1104,17 @@ La zone masquée et les canaux désactivés ne seront pas peints.";
 paint.paintAllForce = "Tout peindre de force";
 paint.strokePainting.title = "Peinture";
 // Brush stroke texture
-paint.texture.title = "Texture";
-paint.texture.title.help = "Image qui colorisera votre trait de pinceau. 
-
-Elle reprendra les réglages de mosaïque et de mise à l'échelle de l'alpha.";
 paint.texture.warningEnable = "Pour que la projection de texture puisse fonctionner, vous devez activer la peinture du trait (voir la case en haut) !";
 paint.texture.warningIgnored = "L'outil en cours ne peut pas utiliser de textures !";
-// Whether the Brush Alpha will be used to module painting
+// Whether the Brush Alpha will be used to modulate painting intensity
 paint.useAlpha = "Utiliser l'alpha du trait";
 paint.useAlpha.help = "Utilisez les valeurs alpha du menu Trait pour moduler la peinture.";
-// Whether the Brush Falloff will be used to module painting
+// Whether the Brush Falloff will be used to modulate painting intensity
 paint.useCurve = "Utiliser l'atténuation des traits";
 paint.useFalloff.help = "Utilisez les valeurs d'atténuation du menu Trait pour moduler la peinture.";
+// Whether the Brush Randomize will be used to modulate painting intensity
+paint.useJitter = "";
+paint.useJitter.help = "";
 
 // when the user choose a new item name (through iOS/Android virtual keyboard)
 input.name = "Nouveau nom";
@@ -1238,7 +1258,7 @@ primitive.icosahedron = "Icosaèdre";
 primitive.cylinder = "Cylindre";
 primitive.cone = "Cône";
 primitive.torus = "Tore";
-primitive.lathe = "Tournage";
+primitive.lathe = "Tour";
 primitive.tube = "Tube";
 primitive.plane = "Plan";
 primitive.triplanar = "Triplanaire";
@@ -1291,7 +1311,7 @@ primitive.angleZ = "Angle Z";
 primitive.constantDensity = "Densité constante";
 // Make sure the shape is perfectly spherical
 primitive.projectOnSphere = "Projeter sur une sphère";
-primitive.projectOnSphere.help = "Permet de caler les points sur une sphère parfaite.";
+primitive.projectOnSphere.help = "Permet d'aligner les points sur une sphère parfaite.";
 
 // triplanar
 primitive.triplanar.title = "Triplanaire";
@@ -1330,7 +1350,7 @@ primitive.tubeTwist = "Torsion";
 primitive.tubeTwistRotate = "Rotation";
 primitive.tubeTwistRadius = "Amplitude";
 primitive.tubeTwistOffset = "Décalage";
-primitive.tubeSnap = "Caler";
+primitive.tubeSnap = "Aligner";
 primitive.torusRadiusOuter = "Rayon extérieur";
 primitive.torusRadiusInner = "Rayon intérieur";
 primitive.torusAngle = "Angle";
@@ -1429,13 +1449,6 @@ scene.onlyOneObject = "Plusieurs objets sont sélectionnés, veuillez ne sélect
 settings.display.title = "Réglages d'affichage";
 // Wireframe (show triangles and quad edges)
 settings.wireframe = "Filaire";
-// Display UV
-settings.debugUV = "Déboguer les UV";
-settings.debugUV.help = "Cette option n'est pertinente que si le modèle comporte des UV.
-
-Elle affiche le filaire UV en arrière-plan.
-
-Elle affiche également une texture de damier colorée sur le modèle.";
 // Display the material texture
 settings.debugChannel = "";
 // Display the material texture in the background
@@ -1455,11 +1468,14 @@ settings.outline = "Contour";
 settings.outline.help = "Les objets sélectionnés seront entourés.";
 settings.outline.thickness = "Épaisseur";
 // Navigation cube (easy to snap/align the view)
-settings.snapCube = "Cube de calage";
+settings.snapCube = "Cube d'alignement";
 // Move the navigation cube to the bottom of the screen
-settings.snapCube.bottom = "Bas";
+settings.snapCube.bottom = "En bas";
 // Move the navigation cube on the left side of the screen
-settings.snapCube.left = "Gauche";
+settings.snapCube.left = "A gauche";
+// Alignment (can be auto/on/off)
+settings.snapCube.align = "";
+settings.snapCube.align.help = "";
 // Stats (information logs about the scene displayed on screen)
 settings.stats = "Statistiques";
 settings.stats.right = "Droite";
@@ -1573,36 +1589,33 @@ shading.matcap.global = "Utiliser un MatCap général";
 shading.matcap.global.help = "Décochez cette option si vous souhaitez utiliser un autre MatCap pour ce maillage particulier.";
 
 // bottom shortcut buttons (should be SHORT)
+shortcut.maskVisible = "Masquer";
 shortcut.maskVisible.short = "Masquer";
-shortcut.maskVisible.long = "Masquer";
 // bottom shortcut buttons (should be SHORT)
+shortcut.solo = "Solo";
 shortcut.solo.short = "Solo";
-shortcut.solo.long = "Solo";
 // bottom shortcut buttons (should be SHORT)
+shortcut.voxelRemesh = "Remaillage des voxels";
 shortcut.voxelRemesh.short = "Voxel";
-shortcut.voxelRemesh.long = "Remaillage des voxels";
 // bottom shortcut buttons (should be SHORT)
+shortcut.wireframe = "Filaire";
 shortcut.wireframe.short = "Fil";
-shortcut.wireframe.long = "Filaire";
 // bottom shortcut buttons (should be SHORT)
+shortcut.cameraReset = "Réinitialisation de la caméra";
 shortcut.cameraReset.short = "Réinitialiser";
-shortcut.cameraReset.long = "Réinitialisation de la caméra";
 // bottom shortcut buttons (should be SHORT)
-shortcut.cameraSnap.short = "Caler";
-shortcut.cameraSnap.long = "Calage de caméra";
+shortcut.cameraSnap = "Calage de caméra";
+shortcut.cameraSnap.short = "Aligner";
 // bottom shortcut buttons (should be SHORT)
+shortcut.lockSelection = "Verrouiller la sélection";
 shortcut.lockSelection.short = "Verrouiller";
-shortcut.lockSelection.long = "Verrouiller la sélection";
-shortcut.lockSelection.long.help = "Quand cette option est activée, vous ne pouvez pas modifier la sélection en appuyant sur un maillage.";
+shortcut.lockSelection.help = "Quand cette option est activée, vous ne pouvez pas modifier la sélection en appuyant sur un maillage.";
 // bottom shortcut buttons (should be SHORT)
+shortcut.perspective = "Perspective";
 shortcut.perspective.short = "Persp";
-shortcut.perspective.long = "Perspective";
 // bottom shortcut buttons (should be SHORT)
+shortcut.grid = "Grille";
 shortcut.grid.short = "Grille";
-shortcut.grid.long = "Grille";
-// bottom shortcut buttons (should be SHORT)
-shortcut.uv.short = "uv";
-shortcut.uv.long = "uv";
 
 // Memory taken by the scene
 stat.ramScene = "Scène";
@@ -1662,8 +1675,8 @@ Cette fonction peut être utilisée pour tracer des lignes lisses.";
 // It is not a per-tool settings
 stroke.globalSettings = "Ce réglage est général";
 // Start the brush stroke from the last sculpted position to ensure there is no discontinuity
-stroke.snapRadius = "Rayon de calage";
-stroke.snapRadius.help = "Caler le tracé si le pointeur se trouve près du dernier tracé enregistré.
+stroke.snapRadius = "Rayon d'alignment'";
+stroke.snapRadius.help = "Aligner le tracé si le pointeur se trouve près du dernier tracé enregistré.
 
 Cette fonction peut être utile lorsque vous dessinez de longs traits continus tout en faisant des pauses fréquentes.";
 // offset between the cursor and the brush stroke (for fat finger on small screen)
@@ -1676,25 +1689,25 @@ stroke.accumulate.help = "Si cette option est activée, vous pouvez ajouter/supp
 // The tool can use DynTopo
 stroke.useDynamicTopology = "Autoriser la topologie dynamique";
 // Only sculpt the part that are linked topologically
-stroke.connectedTopology = "Topologie connectée";
-stroke.connectedTopology.help = "Cette option sculptera uniquement les sommets reliés à la surface sélectionnée.
+stroke.connected = "Topologie connectée";
+stroke.connected.help = "Cette option sculptera uniquement les sommets reliés à la surface sélectionnée.
 
 Elle s'utilise généralement avec l'outil Déplacer, par exemple si vous voulez déplacer seulement une pièce qui s'entrecroise avec une autre pièce.";
 // Only sculpt the vertex that points toward the camera
-stroke.onlyFrontFace = "Sommet orienté vers l'avant uniquement";
-stroke.onlyFrontFace.help = "Cette option ignore les sommets de la face arrière.
+stroke.culling = "Sommet orienté vers l'avant uniquement";
+stroke.culling.help = "Cette option ignore les sommets de la face arrière.
 
 Elle peut être utile si vous voulez peindre une partie d'une géométrie mince sans toucher à l'autre côté.
 
 Elle fonctionne également pour la sculpture, mais risque de générer quelques artefacts.";
 // Only sculpt the vertex that points toward the direction of the deformation
-stroke.onlySameSide = "Sommet du même côté uniquement";
-stroke.onlySameSide.help = "Ignorez les sommets qui sont dans la direction opposée à la déformation.";
+stroke.sameSide = "Sommet du même côté uniquement";
+stroke.sameSide.help = "Ignorez les sommets qui sont dans la direction opposée à la déformation.";
 // Module the intensity of the sculpting operation by using a falloff curve
-stroke.curveFalloff = "Atténuation";
+menu.falloff = "Atténuation";
 stroke.onlyLasso = "Réglages actifs uniquement pour l'outil Lasso.";
 // Alpha
-stroke.alpha = "Alpha";
+menu.alpha = "Alpha";
 // Invert the pixel (black <-> white)
 stroke.alphaInvert = "Inverser les pixels";
 // Repeat the alpha image (pattern)
@@ -1705,11 +1718,11 @@ stroke.alphaWrap.none = "Aucun";
 stroke.alphaWrap.repeat = "Répéter";
 // Repeat the alpha in a mirrored (seamless tiling)
 stroke.alphaWrap.mirror = "Miroir";
-stroke.alphaProject = "Méthode";
+stroke.alphaFetch = "Méthode";
 // Project the alpha perpendicularly onto the surface
-stroke.alphaProject.surfaceContinuous = "Surface";
+stroke.alphaFetch.surface = "Surface";
 // Project the alpha onto the surface in the direction of the camera view
-stroke.alphaProject.screenFixed = "Projet vers l'écran";
+stroke.alphaFetch.screen = "Projet vers l'écran";
 stroke.alphaRotation = "Rotation";
 stroke.alphaRotation.lock.help = "";
 // Repeat the image
@@ -1732,8 +1745,8 @@ stroke.alphaMidValue.help = "Valeur intermédiaire à laquelle aucune déformati
 (Valeur moyenne = 1)
 - Noir : déplacement négatif
 - Blanc : pas de déplacement";
-// Stroke type
-stroke.strokeType = "Type de trait";
+// Synonymous: Scatter/Jitter/Randomize
+stroke.jitter = "";
 // Sculpt and paint along the brush stroke at regular spacing
 stroke.strokeTypeDot = "Point";
 // Sculpt continuously
@@ -1862,7 +1875,7 @@ tool.trim = "Découper";
 // Ideally <10 chars (Cut part of the mesh cleanly into two separate meshes)
 tool.split = "Scinder";
 // Ideally <10 chars (Project part of the object onto a curve)
-tool.project = "Projet";
+tool.project = "Projeter";
 // Ideally <10 chars
 tool.inflate = "Gonfler";
 // Ideally <10 chars
@@ -1904,7 +1917,7 @@ tool.measure = "Mesurer";
 // Ideally <10 chars (View tool, do nothing in particular)
 tool.view = "Vue";
 // Ideally <10 chars (Revolving surface along a line)
-tool.lathe = "Tournage";
+tool.lathe = "Tour";
 // Ideally <10 chars (Revolving surface along a curve)
 tool.tube = "Tube";
 // Ideally <10 chars (Insert object into the scene)
@@ -1930,10 +1943,10 @@ tool.shape.line = "Ligne";
 // Ideally <10 chars (Whether a shape is closed or not, a tube is open, a torus is closed)
 tool.shape.closed = "Fermé";
 
-// Popup when editing the vertical sliders on the left
-tool.slider.radius = "Rayon $0";
-// Popup when editing the vertical sliders on the left
-tool.slider.intensity = "Intensité $0";
+// Radius of the tool (size)
+tool.radius = "Rayon";
+// Intensity of the tool (force)
+tool.intensity = "Intensité";
 
 tool.settings = "Réglages";
 tool.settings.none = "Cet outil n'a pas de réglages spécifiques.";
@@ -2083,20 +2096,24 @@ Au-delà de ce seuil, le roulis sera circulaire.
 Si vous préférez utiliser le roulis linéaire (direction de la tangente), réglez cette valeur à 90°.";
 // Partially hide/fade the gizmo when we interact with it
 tool.gizmo.autoHide = "Masquer lors des interactions";
-tool.gizmo.tap = "Déplacer le pivot personnalisé lors d'un appui simple";
-tool.gizmo.tap.help = "Cette option ne fonctionne qu'en mode de pivot personnalisé (option Auto désactivée).
+tool.gizmo.tap = "Appui simple";
+tool.gizmo.tap.help = "Cette option ne fonctionne qu'en mode de pivot personnalisé.
 
 -- Aucun
 Rien ne se passe lorsque vous appuyez sur le maillage.
+
+-- Aligner
+Déplace le gizmo sur la première intersection et aligne le gizmo suivant la normale de la surface.
 
 -- Premier coup
 Déplace le gizmo sur la première intersection.
 
 -- Mi-chemin
 Déplace le gizmo sur la moyenne des deux premières intersections.";
-tool.gizmo.tapNone = "Aucun";
-tool.gizmo.tapFirstHit = "Premier coup";
-tool.gizmo.tapMiddleStab = "Mi-chemin";
+tool.gizmo.tap.none = "Aucun";
+tool.gizmo.tap.align = "Aligner";
+tool.gizmo.tap.first = "Premier coup";
+tool.gizmo.tap.medial = "Mi-chemin";
 
 // The lathe generator is a vertical line and cannot be rotated
 tool.lathe.axisFixed = "Fixe";
@@ -2120,11 +2137,11 @@ tool.shape = "Forme";
 // Force the rectangle selection to be a square
 tool.shape.rectangleSquare = "Carré";
 // The selection rectangle will be centered around the cursor
-tool.shape.rectangleCentered = "Centrée";
+tool.shape.rectangleCentered = "Centré";
 // Force the ellipse selection to be a circle
 tool.shape.ellipseCircle = "Cercle";
 // The selection ellipse will be centered around the cursor
-tool.shape.ellipseCentered = "Centrée";
+tool.shape.ellipseCentered = "Centré";
 // Rotate by step (angle value)
 tool.shape.lineRotateStep = "Rotation par pas";
 
@@ -2177,7 +2194,7 @@ topology.voxel.remesh = "Remailler";
 topology.voxel.sharp = "Conserver des arêtes vives";
 topology.voxel.sharp.help = "Cette option est surtout utile pour les opérations booléennes simples sur les primitives.
 
-Elle génère une distorsion dans certaines zones, car les points sont calés sur les arêtes.";
+Elle génère une distorsion dans certaines zones, car les points sont alignés sur les arêtes.";
 topology.voxel.subLevel = "Construire une multirésolution";
 topology.voxel.subLevel.help = "Vous pouvez reconstruire une hiérarchie multirésolution à partir du résultat obtenu après remaillage des voxels. 
 
@@ -2329,7 +2346,7 @@ binding.panUp = "Panoramique haut (vue)";
 // Move/Translate the view
 binding.panDown = "Panoramique bas (vue)";
 // Snap the view (while rotating)
-binding.snapViewOnRotate = "Caler la vue (pendant la rotation)";
+binding.snapViewOnRotate = "Aligner la vue (pendant la rotation)";
 // Open a Nomad internal project (replace current scene)
 binding.project.open = "Ouvrir (projet)";
 // Open a Nomad internal project (add it to the current scene)

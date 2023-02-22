@@ -7,6 +7,17 @@ confirm.ok = "Tamam";
 // Cancel something after being asked (Question? [answer, cancel])
 confirm.cancel = "Vazgeç";
 
+// common
+position.top = "Üst";
+position.right = "Sağ";
+position.left = "Sol";
+position.bottom = "Alt";
+position.center = "Ortalanmış";
+direction.up = "Üst";
+direction.right = "Sağ";
+direction.left = "Sol";
+direction.down = "Alt";
+
 // Name of an item (object, tool, etc)
 item.name = "İsim";
 // Add a new item (object, tool, etc)
@@ -192,9 +203,6 @@ alert.colorPicker = "Bir renk seçmek için parmağınızı nesnenin üzerinde s
 alert.backgroundTransform = "Dönüştürme modundan çıkmak için basitçe dokun.";
 // Edit the symmetry plane with the gizmo
 alert.editSymmetry = "";
-alert.view.reset = "Görünümü sıfırla";
-// Snap the view to the nearest aligned 90° angle
-alert.view.snap = "Görünümü yasla";
 // Show the painted mask on the mesh
 alert.mask.show = "Maskeyi göster";
 // Hide the painted mask on the mesh
@@ -340,7 +348,7 @@ curve.spline = "Spline";
 // Display the falloff curve in a symmetric way
 curve.symmetric.help = "";
 
-// set the desired FPS (frame per second, refresh rate)
+// Set the desired FPS (frame per second, refresh rate)
 debug.targetFPS = "";
 debug.targetFPS.help = "";
 
@@ -636,7 +644,7 @@ gesture.pencilAction.none = "Yok";
 gesture.pencilAction.alt = "Ekle/Çıkar";
 
 // Enable Mask gesture by tapping once on the screen
-gesture.mask.oneTap = "Tek dokunmalı kısayollar";
+gesture.mask.oneTap = "Tek dokunmalı";
 gesture.mask.oneTap.help = "Ekrana bir kez dokunduğunuzda, Maske düğmesi kısayolunu basılı tutmaya gerek kalmadan maske kısayoluna izin verir.
 
 Aşağıdaki hareketlere olanak sağlar:
@@ -723,6 +731,15 @@ history.state.meshDynamicToStatic = "DinTopo'dan Statiğe";
 // Shown during undo/redo (mesh type conversion)
 history.state.meshStaticToDynamic = "Statikten DinTopo'ya";
 
+// Debugging/Inspect object material (view channel separately color, roughness, normal, uv, etc)
+inspector = "";
+// Inspector but SHORT
+inspector.short = "";
+// Display the material channel on the background
+inspector.onBackground = "";
+// Display the material channel on the mesh
+inspector.onMesh = "";
+
 // Interface customization
 interface = "Arayüz";
 
@@ -767,7 +784,7 @@ interface.preset.neon = "Neon";
 // Interface color style
 interface.preset.violet = "Mor";
 // Interface color style
-interface.preset.grey = "Gri";
+interface.preset.gray = "Gri";
 // Interface color style
 interface.preset.black = "Siyah";
 // Interface color style
@@ -808,10 +825,6 @@ interface.inset.title = "Kenardan kaydırmalar";
 interface.inset.title.help = "Bu değerleri, sadece ekran kenarlarındaki düğmeleri kullanırken sorun yaşıyorsanız değiştirebilirsiniz.
 
 Kaydırıcı devre dışıysa, Nomad cihazın kendisinden gelen güvenli bölge değerlerini kullanır.";
-interface.inset.left = "Sol";
-interface.inset.right = "Sağ";
-interface.inset.bottom = "Alt";
-interface.inset.top = "Üst";
 
 // (see Glossary for Layer)
 layer = "Katman";
@@ -849,8 +862,10 @@ layers.baseSelected = "Yok";
 light = "Işık";
 // Intensity of light
 light.intensity = "Yoğunluk";
+// Kelvin (the temperature unit)
+light.kelvin = "";
 // Temperature in Kelvin (Alternative way to compute the color of the light)
-light.kelvin = "Sıcaklık";
+light.temperature = "Sıcaklık";
 // The attachment of a light defines how it will move when the user moves the camera
 light.attachment = "İliştirme";
 // The light will stay still even if the user moves the camera
@@ -1017,6 +1032,12 @@ menu.tool = "Araç";
 // Menu name
 menu.stroke = "Darbe";
 // Menu name
+menu.alpha = "Alfa";
+// Menu name
+menu.filter = "";
+// Menu name
+menu.falloff = "Düşüş";
+// Menu name
 menu.paint = "Boya";
 // Menu name
 menu.symmetry = "Simetri";
@@ -1082,18 +1103,17 @@ Maskelenmiş alan ve devre dışı bırakılmış kanallar boyanmaz.";
 paint.paintAllForce = "Tümünü boyamayı zorla";
 paint.strokePainting.title = "Boyama";
 // Brush stroke texture
-paint.texture.title = "Doku";
-paint.texture.title.help = "Fırça darbenizi renklendiren bir görüntüdür.
-
-Alfanın desenini ve ölçek ayarlarını paylaşacağı unutulmamalıdır.";
 paint.texture.warningEnable = "Doku projeksiyonuna izin vermek için darbe boyamanın etkinleştirilmesi gerekir (onay kutusu yukarıda)!";
 paint.texture.warningIgnored = "Geçerli araç dokuları kullanamaz!";
-// Whether the Brush Alpha will be used to module painting
+// Whether the Brush Alpha will be used to modulate painting intensity
 paint.useAlpha = "Alfa darbesini kullan";
 paint.useAlpha.help = "Boyamayı değiştirmek için darbe menüsünde belirlenmiş alfa kullanılır.";
-// Whether the Brush Falloff will be used to module painting
+// Whether the Brush Falloff will be used to modulate painting intensity
 paint.useCurve = "Darbe düşüşü dullan";
 paint.useFalloff.help = "Boyamayı değiştirmek için darbe menüsünde belirlenmiş düşüş kullanılır.";
+// Whether the Brush Randomize will be used to modulate painting intensity
+paint.useJitter = "";
+paint.useJitter.help = "";
 
 // when the user choose a new item name (through iOS/Android virtual keyboard)
 input.name = "Yeni ad";
@@ -1428,13 +1448,6 @@ scene.onlyOneObject = "Birden çok nesne seçili, lütfen bir nesne seçin.";
 settings.display.title = "Ekran ayarları";
 // Wireframe (show triangles and quad edges)
 settings.wireframe = "Genel taslak";
-// Display UV
-settings.debugUV = "UV ayıkla";
-settings.debugUV.help = "Bu seçenek sadece modelde UV'ler varsa geçerlidir.
-
-Arka planda UV genel taslağını görüntüler.
-
-Ayrıca modelde de renkli bir dama tahtası yapısı görüntülenir.";
 // Display the material texture
 settings.debugChannel = "";
 // Display the material texture in the background
@@ -1459,6 +1472,9 @@ settings.snapCube = "Yaslama küpü";
 settings.snapCube.bottom = "Alt";
 // Move the navigation cube on the left side of the screen
 settings.snapCube.left = "Sol";
+// Alignment (can be auto/on/off)
+settings.snapCube.align = "";
+settings.snapCube.align.help = "";
 // Stats (information logs about the scene displayed on screen)
 settings.stats = "İstatistik";
 settings.stats.right = "Sağ";
@@ -1572,36 +1588,33 @@ shading.matcap.global = "Global MatCap kullan";
 shading.matcap.global.help = "Belirli bir ağ örgüsünde farklı bir MatCap kullanmak için bu seçeneğin işaretini kaldırın.";
 
 // bottom shortcut buttons (should be SHORT)
+shortcut.maskVisible = "Maskele";
 shortcut.maskVisible.short = "Maskele";
-shortcut.maskVisible.long = "Maskele";
 // bottom shortcut buttons (should be SHORT)
+shortcut.solo = "Solo";
 shortcut.solo.short = "Solo";
-shortcut.solo.long = "Solo";
 // bottom shortcut buttons (should be SHORT)
+shortcut.voxelRemesh = "Voksel yeniden ağ örgülendirme";
 shortcut.voxelRemesh.short = "Voksel";
-shortcut.voxelRemesh.long = "Voksel yeniden ağ örgülendirme";
 // bottom shortcut buttons (should be SHORT)
+shortcut.wireframe = "Genel taslak";
 shortcut.wireframe.short = "Taslak";
-shortcut.wireframe.long = "Genel taslak";
 // bottom shortcut buttons (should be SHORT)
+shortcut.cameraReset = "Kamera sıfırla";
 shortcut.cameraReset.short = "Sıfırla";
-shortcut.cameraReset.long = "Kamera sıfırla";
 // bottom shortcut buttons (should be SHORT)
+shortcut.cameraSnap = "Kamerayı yasla";
 shortcut.cameraSnap.short = "Yasla";
-shortcut.cameraSnap.long = "Kamerayı yasla";
 // bottom shortcut buttons (should be SHORT)
+shortcut.lockSelection = "Seçimi kilitle";
 shortcut.lockSelection.short = "Kilitle";
-shortcut.lockSelection.long = "Seçimi kilitle";
-shortcut.lockSelection.long.help = "Etkinleştirildiğinde, bir ağ örgüsüne dokunarak seçimi değiştiremezsiniz.";
+shortcut.lockSelection.help = "Etkinleştirildiğinde, bir ağ örgüsüne dokunarak seçimi değiştiremezsiniz.";
 // bottom shortcut buttons (should be SHORT)
+shortcut.perspective = "Perspektif";
 shortcut.perspective.short = "Persp";
-shortcut.perspective.long = "Perspektif";
 // bottom shortcut buttons (should be SHORT)
+shortcut.grid = "Izgara";
 shortcut.grid.short = "Izgara";
-shortcut.grid.long = "Izgara";
-// bottom shortcut buttons (should be SHORT)
-shortcut.uv.short = "UV";
-shortcut.uv.long = "UV";
 
 // Memory taken by the scene
 stat.ramScene = "Görünüm";
@@ -1675,25 +1688,25 @@ stroke.accumulate.help = "Bu seçenek etkinleştirildiğinde, darbe başına ekl
 // The tool can use DynTopo
 stroke.useDynamicTopology = "Dinamik topolojiye izin ver";
 // Only sculpt the part that are linked topologically
-stroke.connectedTopology = "Bağlı topoloji";
-stroke.connectedTopology.help = "Bu seçenek, sadece seçilmiş yüzeye bağlı olan verteksleri şekillendirir.
+stroke.connected = "Bağlı topoloji";
+stroke.connected.help = "Bu seçenek, sadece seçilmiş yüzeye bağlı olan verteksleri şekillendirir.
 
 Bu genellikle Hareket aracında kullanılır, örneğin sadece kendi başka bir kısımla çakışan bir kısmı hareket ettirmek istediğinizde olduğu gibi.";
 // Only sculpt the vertex that points toward the camera
-stroke.onlyFrontFace = "Sadece öne bakan verteks";
-stroke.onlyFrontFace.help = "Bu seçenekte arkaya bakan verteksler göz ardı edilir.
+stroke.culling = "Sadece öne bakan verteks";
+stroke.culling.help = "Bu seçenekte arkaya bakan verteksler göz ardı edilir.
 
 Bir ince geometrinin bir kısmını diğer tarafa etki etmeden boyamak istiyorsanız, bu faydalı olabilir.
 
 Şekillendirmede de kullanılabilir, ama bazı artifaktlar deneyimleyebilirsiniz.";
 // Only sculpt the vertex that points toward the direction of the deformation
-stroke.onlySameSide = "Sadece aynı taraftaki verteks";
-stroke.onlySameSide.help = "Deformasyonun ters yönündeki verteksler göz ardı edilir.";
+stroke.sameSide = "Sadece aynı taraftaki verteks";
+stroke.sameSide.help = "Deformasyonun ters yönündeki verteksler göz ardı edilir.";
 // Module the intensity of the sculpting operation by using a falloff curve
-stroke.curveFalloff = "Düşüş";
+menu.falloff = "Düşüş";
 stroke.onlyLasso = "Sadece lasso aracı için etkin olan ayarlar.";
 // Alpha
-stroke.alpha = "Alfa";
+menu.alpha = "Alfa";
 // Invert the pixel (black <-> white)
 stroke.alphaInvert = "Pikselleri tersine çevir";
 // Repeat the alpha image (pattern)
@@ -1704,11 +1717,11 @@ stroke.alphaWrap.none = "Yok";
 stroke.alphaWrap.repeat = "Tekrarla";
 // Repeat the alpha in a mirrored (seamless tiling)
 stroke.alphaWrap.mirror = "Aynala";
-stroke.alphaProject = "Yöntem";
+stroke.alphaFetch = "Yöntem";
 // Project the alpha perpendicularly onto the surface
-stroke.alphaProject.surfaceContinuous = "Yüzey";
+stroke.alphaFetch.surface = "Yüzey";
 // Project the alpha onto the surface in the direction of the camera view
-stroke.alphaProject.screenFixed = "Ekran projeksiyonu";
+stroke.alphaFetch.screen = "Ekran projeksiyonu";
 stroke.alphaRotation = "Döndürme";
 stroke.alphaRotation.lock.help = "";
 // Repeat the image
@@ -1731,8 +1744,8 @@ stroke.alphaMidValue.help = "Deformasyon oluşmayan orta nokta değeri.
 (Orta değer = 1)
 -Siyah: negatif yer değiştirme 
 -Beyaz: yer değiştirme yok";
-// Stroke type
-stroke.strokeType = "Darbe türü";
+// Synonymous: Scatter/Jitter/Randomize
+stroke.jitter = "";
 // Sculpt and paint along the brush stroke at regular spacing
 stroke.strokeTypeDot = "Nokta";
 // Sculpt continuously
@@ -1929,10 +1942,10 @@ tool.shape.line = "Çizgi";
 // Ideally <10 chars (Whether a shape is closed or not, a tube is open, a torus is closed)
 tool.shape.closed = "Kapalı";
 
-// Popup when editing the vertical sliders on the left
-tool.slider.radius = "Yarıçap $0";
-// Popup when editing the vertical sliders on the left
-tool.slider.intensity = "Yoğunluk % $0";
+// Radius of the tool (size)
+tool.radius = "Yarıçap";
+// Intensity of the tool (force)
+tool.intensity = "Yoğunluk";
 
 tool.settings = "Ayarlar";
 tool.settings.none = "Bu aracın hiçbir belirli ayarı yok.";
@@ -2093,9 +2106,10 @@ Gizmoyu ilk kesişmeye hareket ettirir.
 
 -- Ortaya batırma
 Gizmoyu ilk iki kesişmenin ortalamasına götürür.";
-tool.gizmo.tapNone = "Yok";
-tool.gizmo.tapFirstHit = "İlk vuruş";
-tool.gizmo.tapMiddleStab = "Ortaya batırma";
+tool.gizmo.tap.none = "Yok";
+tool.gizmo.tap.align = "";
+tool.gizmo.tap.first = "İlk vuruş";
+tool.gizmo.tap.medial = "Ortaya batırma";
 
 // The lathe generator is a vertical line and cannot be rotated
 tool.lathe.axisFixed = "Sabit";

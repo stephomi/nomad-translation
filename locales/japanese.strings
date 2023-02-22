@@ -7,6 +7,17 @@ confirm.ok = "OK";
 // Cancel something after being asked (Question? [answer, cancel])
 confirm.cancel = "キャンセル";
 
+// common
+position.top = "上";
+position.right = "右";
+position.left = "左";
+position.bottom = "下";
+position.center = "中央揃え";
+direction.up = "上";
+direction.right = "右";
+direction.left = "左";
+direction.down = "下";
+
 // Name of an item (object, tool, etc)
 item.name = "名前";
 // Add a new item (object, tool, etc)
@@ -192,9 +203,6 @@ alert.colorPicker = "指をオブジェクトにドラッグして、カラー�
 alert.backgroundTransform = "変換モードを終了するには、タップしてください。";
 // Edit the symmetry plane with the gizmo
 alert.editSymmetry = "";
-alert.view.reset = "ビューをリセット";
-// Snap the view to the nearest aligned 90° angle
-alert.view.snap = "スナップビュー";
 // Show the painted mask on the mesh
 alert.mask.show = "マスクを表示";
 // Hide the painted mask on the mesh
@@ -340,7 +348,7 @@ curve.spline = "スプライン曲線";
 // Display the falloff curve in a symmetric way
 curve.symmetric.help = "";
 
-// set the desired FPS (frame per second, refresh rate)
+// Set the desired FPS (frame per second, refresh rate)
 debug.targetFPS = "";
 debug.targetFPS.help = "";
 
@@ -724,6 +732,15 @@ history.state.meshDynamicToStatic = "DynTopoから静的";
 // Shown during undo/redo (mesh type conversion)
 history.state.meshStaticToDynamic = "静的からDynTopo";
 
+// Debugging/Inspect object material (view channel separately color, roughness, normal, uv, etc)
+inspector = "";
+// Inspector but SHORT
+inspector.short = "";
+// Display the material channel on the background
+inspector.onBackground = "";
+// Display the material channel on the mesh
+inspector.onMesh = "";
+
 // Interface customization
 interface = "インターフェース";
 
@@ -768,7 +785,7 @@ interface.preset.neon = "ネオン";
 // Interface color style
 interface.preset.violet = "バイオレット";
 // Interface color style
-interface.preset.grey = "グレイ";
+interface.preset.gray = "グレイ";
 // Interface color style
 interface.preset.black = "ブラック";
 // Interface color style
@@ -809,10 +826,6 @@ interface.inset.title = "画面の端のオフセット";
 interface.inset.title.help = "画面の端のボタン操作に問題がある場合のみ、これらの値を変更することを検討してください。
 
 スライダーが無効の場合、Nomadはデバイスそのものによる安全なエリアの値を使用します。";
-interface.inset.left = "左";
-interface.inset.right = "右";
-interface.inset.bottom = "下";
-interface.inset.top = "上";
 
 // (see Glossary for Layer)
 layer = "レイヤー";
@@ -850,8 +863,10 @@ layers.baseSelected = "なし";
 light = "ライト";
 // Intensity of light
 light.intensity = "強度";
+// Kelvin (the temperature unit)
+light.kelvin = "";
 // Temperature in Kelvin (Alternative way to compute the color of the light)
-light.kelvin = "色温度";
+light.temperature = "色温度";
 // The attachment of a light defines how it will move when the user moves the camera
 light.attachment = "カメラ";
 // The light will stay still even if the user moves the camera
@@ -1018,6 +1033,12 @@ menu.tool = "ツール";
 // Menu name
 menu.stroke = "ストローク";
 // Menu name
+menu.alpha = "アルファ";
+// Menu name
+menu.filter = "";
+// Menu name
+menu.falloff = "フォールオフ";
+// Menu name
 menu.paint = "ペイント";
 // Menu name
 menu.symmetry = "対称";
@@ -1083,18 +1104,17 @@ paint.paintAll.help = "現在のマテリアルをオブジェクトに適用で
 paint.paintAllForce = "すべてを強制的にペイント";
 paint.strokePainting.title = "ペイント";
 // Brush stroke texture
-paint.texture.title = "テクスチャ";
-paint.texture.title.help = "ブラシストロークを色付けするイメージ。
-
-これはアルファのタイリングと比率の設定を共有しますので、注意してください。";
 paint.texture.warningEnable = "テクスチャのプロジェクションを許可するには、ストロークペイントを有効にする必要があります (一番上のチェックボックス)！";
 paint.texture.warningIgnored = "使用中のツールはテクスチャを使用できません！";
-// Whether the Brush Alpha will be used to module painting
+// Whether the Brush Alpha will be used to modulate painting intensity
 paint.useAlpha = "ストロークのアルファを使用";
 paint.useAlpha.help = "ストロークメニューでアルファセットを使用すると、ペイントを調節できます。";
-// Whether the Brush Falloff will be used to module painting
+// Whether the Brush Falloff will be used to modulate painting intensity
 paint.useCurve = "ストロークのフォールオフを使用";
 paint.useFalloff.help = "ストロークメニューでフォールオフセットを使用すると、ペイントを調節できます。";
+// Whether the Brush Randomize will be used to modulate painting intensity
+paint.useJitter = "";
+paint.useJitter.help = "";
 
 // when the user choose a new item name (through iOS/Android virtual keyboard)
 input.name = "新しい名前";
@@ -1428,13 +1448,6 @@ scene.onlyOneObject = "複数のオブジェクトが選択されています。
 settings.display.title = "表示設定";
 // Wireframe (show triangles and quad edges)
 settings.wireframe = "ワイヤーフレーム";
-// Display UV
-settings.debugUV = "UVのデバッグ";
-settings.debugUV.help = "このオプションはモデルにUVがある場合のみ適用されます。
-
-背景にUVワイヤーフレームを表示します。
-
-また、モデルに色のついたチェッカーボードのテクスチャも表示します。";
 // Display the material texture
 settings.debugChannel = "";
 // Display the material texture in the background
@@ -1459,6 +1472,9 @@ settings.snapCube = "方向キューブ";
 settings.snapCube.bottom = "下";
 // Move the navigation cube on the left side of the screen
 settings.snapCube.left = "左";
+// Alignment (can be auto/on/off)
+settings.snapCube.align = "";
+settings.snapCube.align.help = "";
 // Stats (information logs about the scene displayed on screen)
 settings.stats = "統計情報";
 settings.stats.right = "右";
@@ -1570,36 +1586,33 @@ shading.matcap.global = "グローバルMatCapを使用";
 shading.matcap.global.help = "この特定のメッシュに異なるMatCapを使用するには、このオプションをチェックしないでください。";
 
 // bottom shortcut buttons (should be SHORT)
+shortcut.maskVisible = "マスク";
 shortcut.maskVisible.short = "マスク";
-shortcut.maskVisible.long = "マスク";
 // bottom shortcut buttons (should be SHORT)
+shortcut.solo = "ソロ";
 shortcut.solo.short = "ソロ";
-shortcut.solo.long = "ソロ";
 // bottom shortcut buttons (should be SHORT)
+shortcut.voxelRemesh = "ボクセルのリメッシュ";
 shortcut.voxelRemesh.short = "ボクセル";
-shortcut.voxelRemesh.long = "ボクセルのリメッシュ";
 // bottom shortcut buttons (should be SHORT)
+shortcut.wireframe = "ワイヤーフレーム";
 shortcut.wireframe.short = "ワイヤー";
-shortcut.wireframe.long = "ワイヤーフレーム";
 // bottom shortcut buttons (should be SHORT)
+shortcut.cameraReset = "カメラのリセット";
 shortcut.cameraReset.short = "リセット";
-shortcut.cameraReset.long = "カメラのリセット";
 // bottom shortcut buttons (should be SHORT)
+shortcut.cameraSnap = "カメラのスナップ";
 shortcut.cameraSnap.short = "スナップ";
-shortcut.cameraSnap.long = "カメラのスナップ";
 // bottom shortcut buttons (should be SHORT)
+shortcut.lockSelection = "選択部分をロック";
 shortcut.lockSelection.short = "ロック";
-shortcut.lockSelection.long = "選択部分をロック";
-shortcut.lockSelection.long.help = "有効な場合、メッシュをタップしても選択部分を変更できません。";
+shortcut.lockSelection.help = "有効な場合、メッシュをタップしても選択部分を変更できません。";
 // bottom shortcut buttons (should be SHORT)
+shortcut.perspective = "遠近法";
 shortcut.perspective.short = "遠近";
-shortcut.perspective.long = "遠近法";
 // bottom shortcut buttons (should be SHORT)
+shortcut.grid = "グリッド";
 shortcut.grid.short = "グリッド";
-shortcut.grid.long = "グリッド";
-// bottom shortcut buttons (should be SHORT)
-shortcut.uv.short = "UV";
-shortcut.uv.long = "UV";
 
 // Memory taken by the scene
 stat.ramScene = "シーン";
@@ -1673,25 +1686,25 @@ stroke.accumulate.help = "このオプションが有効な場合、ストロー
 // The tool can use DynTopo
 stroke.useDynamicTopology = "ダイナミックトポロジーを許可";
 // Only sculpt the part that are linked topologically
-stroke.connectedTopology = "トポロジー接続";
-stroke.connectedTopology.help = "このオプションは選択中のサーフェスにリンクされた頂点のみをスカルプトします。
+stroke.connected = "トポロジー接続";
+stroke.connected.help = "このオプションは選択中のサーフェスにリンクされた頂点のみをスカルプトします。
 
 これは一般的に“移動”ツールに使用されます。例えば、別のパーツと自己交差する部分だけを移動したい場合などです。";
 // Only sculpt the vertex that points toward the camera
-stroke.onlyFrontFace = "正面を向いている頂点のみ";
-stroke.onlyFrontFace.help = "このオプションは背面を向いている頂点は無視します。
+stroke.culling = "正面を向いている頂点のみ";
+stroke.culling.help = "このオプションは背面を向いている頂点は無視します。
 
 他の側面に影響を与えないで薄いジオメトリの一部をペイントしたい場合、便利です。
 
 スカルプトにも利用できますが、アーティファクトが発生する可能性があります。";
 // Only sculpt the vertex that points toward the direction of the deformation
-stroke.onlySameSide = "同じ側面の頂点のみ";
-stroke.onlySameSide.help = "デフォーメーションの反対方向を指す頂点を無視します。";
+stroke.sameSide = "同じ側面の頂点のみ";
+stroke.sameSide.help = "デフォーメーションの反対方向を指す頂点を無視します。";
 // Module the intensity of the sculpting operation by using a falloff curve
-stroke.curveFalloff = "フォールオフ";
+menu.falloff = "フォールオフ";
 stroke.onlyLasso = "設定は投げなわツールにのみ有効です。";
 // Alpha
-stroke.alpha = "アルファ";
+menu.alpha = "アルファ";
 // Invert the pixel (black <-> white)
 stroke.alphaInvert = "ピクセルを反転";
 // Repeat the alpha image (pattern)
@@ -1702,11 +1715,11 @@ stroke.alphaWrap.none = "なし";
 stroke.alphaWrap.repeat = "繰り返す";
 // Repeat the alpha in a mirrored (seamless tiling)
 stroke.alphaWrap.mirror = "ミラー";
-stroke.alphaProject = "方法";
+stroke.alphaFetch = "方法";
 // Project the alpha perpendicularly onto the surface
-stroke.alphaProject.surfaceContinuous = "サーフェス";
+stroke.alphaFetch.surface = "サーフェス";
 // Project the alpha onto the surface in the direction of the camera view
-stroke.alphaProject.screenFixed = "スクリーンプロジェクト";
+stroke.alphaFetch.screen = "スクリーンプロジェクト";
 stroke.alphaRotation = "回転";
 stroke.alphaRotation.lock.help = "";
 // Repeat the image
@@ -1729,8 +1742,8 @@ stroke.alphaMidValue.help = "デフォーメーションを起こさない中間
 (中間値 = 1)
 - ブラック: 負のディスプレイスメント
 - ホワイト: ディスプレイスメントなし";
-// Stroke type
-stroke.strokeType = "ストロークのタイプ";
+// Synonymous: Scatter/Jitter/Randomize
+stroke.jitter = "";
 // Sculpt and paint along the brush stroke at regular spacing
 stroke.strokeTypeDot = "ドット";
 // Sculpt continuously
@@ -1927,10 +1940,10 @@ tool.shape.line = "線";
 // Ideally <10 chars (Whether a shape is closed or not, a tube is open, a torus is closed)
 tool.shape.closed = "閉じています";
 
-// Popup when editing the vertical sliders on the left
-tool.slider.radius = "半径 $0";
-// Popup when editing the vertical sliders on the left
-tool.slider.intensity = "強度 $0 %";
+// Radius of the tool (size)
+tool.radius = "半径";
+// Intensity of the tool (force)
+tool.intensity = "強度";
 
 tool.settings = "設定";
 tool.settings.none = "このツールには特定の設定がありません。";
@@ -2080,7 +2093,7 @@ tool.gizmo.linearRollThreshold.help = "線形または円形どちらかの回�
 線形の回転 (タンジェントの方向) を優先したい場合は、単純にこの値を90°に設定してください。";
 // Partially hide/fade the gizmo when we interact with it
 tool.gizmo.autoHide = "操作時に隠す";
-tool.gizmo.tap = "タップを1回するとカスタム回転軸が移動します。";
+tool.gizmo.tap = "シングルタップ";
 tool.gizmo.tap.help = "このオプションはカスタム回転軸モードでのみ有効です (“自動”が無効の場合)。
 
 -- なし
@@ -2091,9 +2104,10 @@ tool.gizmo.tap.help = "このオプションはカスタム回転軸モードで
 
 -- 中間点
 最初の2つの交点を平均した場所でGizmoを移動します。";
-tool.gizmo.tapNone = "なし";
-tool.gizmo.tapFirstHit = "最初の交点";
-tool.gizmo.tapMiddleStab = "中間点";
+tool.gizmo.tap.none = "なし";
+tool.gizmo.tap.align = "";
+tool.gizmo.tap.first = "最初の交点";
+tool.gizmo.tap.medial = "中間点";
 
 // The lathe generator is a vertical line and cannot be rotated
 tool.lathe.axisFixed = "固定";

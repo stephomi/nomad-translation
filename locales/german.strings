@@ -7,6 +7,17 @@ confirm.ok = "OK";
 // Cancel something after being asked (Question? [answer, cancel])
 confirm.cancel = "Abbrechen";
 
+// common
+position.top = "Oben";
+position.right = "Rechts";
+position.left = "Links";
+position.bottom = "Unten";
+position.center = "Zentriert";
+direction.up = "Oben";
+direction.right = "Rechts";
+direction.left = "Links";
+direction.down = "Unten";
+
 // Name of an item (object, tool, etc)
 item.name = "Name";
 // Add a new item (object, tool, etc)
@@ -192,9 +203,6 @@ alert.colorPicker = "Ziehen Sie Ihren Finger auf das Mesh, um eine Farbe auszuw�
 alert.backgroundTransform = "Einfaches Antippen, um den Transformationsmodus zu verlassen.";
 // Edit the symmetry plane with the gizmo
 alert.editSymmetry = "";
-alert.view.reset = "Reset Ansicht";
-// Snap the view to the nearest aligned 90° angle
-alert.view.snap = "Snap-Ansicht";
 // Show the painted mask on the mesh
 alert.mask.show = "Maske anzeigen";
 // Hide the painted mask on the mesh
@@ -340,7 +348,7 @@ curve.spline = "Spline";
 // Display the falloff curve in a symmetric way
 curve.symmetric.help = "";
 
-// set the desired FPS (frame per second, refresh rate)
+// Set the desired FPS (frame per second, refresh rate)
 debug.targetFPS = "";
 debug.targetFPS.help = "";
 
@@ -724,6 +732,15 @@ history.state.meshDynamicToStatic = "DynTopo zu Statisch";
 // Shown during undo/redo (mesh type conversion)
 history.state.meshStaticToDynamic = "Statisch zu DynTopo";
 
+// Debugging/Inspect object material (view channel separately color, roughness, normal, uv, etc)
+inspector = "";
+// Inspector but SHORT
+inspector.short = "";
+// Display the material channel on the background
+inspector.onBackground = "";
+// Display the material channel on the mesh
+inspector.onMesh = "";
+
 // Interface customization
 interface = "Oberfläche";
 
@@ -768,7 +785,7 @@ interface.preset.neon = "Neon";
 // Interface color style
 interface.preset.violet = "Violett";
 // Interface color style
-interface.preset.grey = "Grau";
+interface.preset.gray = "Grau";
 // Interface color style
 interface.preset.black = "Schwarz";
 // Interface color style
@@ -809,10 +826,6 @@ interface.inset.title = "Randabstand";
 interface.inset.title.help = "Ändere diese Werte nur, wenn du Schwierigkeiten hast, die Tasten am Bildschirmrand zu bedienen.
 
 Wenn der Regler deaktiviert ist, nutzt Nomad die vom Gerät selbst bereitgestellten sicheren Werte für den Bildschirmbereich.";
-interface.inset.left = "Links";
-interface.inset.right = "Rechts";
-interface.inset.bottom = "Unten";
-interface.inset.top = "Oben";
 
 // (see Glossary for Layer)
 layer = "Ebene";
@@ -850,8 +863,10 @@ layers.baseSelected = "Nichts";
 light = "Licht";
 // Intensity of light
 light.intensity = "Stärke";
+// Kelvin (the temperature unit)
+light.kelvin = "";
 // Temperature in Kelvin (Alternative way to compute the color of the light)
-light.kelvin = "Temperatur";
+light.temperature = "Temperatur";
 // The attachment of a light defines how it will move when the user moves the camera
 light.attachment = "Anordnung";
 // The light will stay still even if the user moves the camera
@@ -1018,6 +1033,12 @@ menu.tool = "Werkzeug";
 // Menu name
 menu.stroke = "Strich";
 // Menu name
+menu.alpha = "Alpha";
+// Menu name
+menu.filter = "";
+// Menu name
+menu.falloff = "Falloff";
+// Menu name
 menu.paint = "Zeichnen";
 // Menu name
 menu.symmetry = "Symmetrie";
@@ -1083,18 +1104,17 @@ Maskierte Bereiche und deaktivierte Kanäle werden berücksichtigt und entsprech
 paint.paintAllForce = "Füllen erzwingen";
 paint.strokePainting.title = "Malen";
 // Brush stroke texture
-paint.texture.title = "Textur";
-paint.texture.title.help = "Ein Bild, das den Brush Stroke färbt.
-
-Beachten Sie, dass Tiling und Skalierung des Alphas genutzt werden.";
 paint.texture.warningEnable = "Stroke Painting muss aktiviert sein, um Texturprojektion zu ermöglichen (Kontrollkästchen oben)!";
 paint.texture.warningIgnored = "Das aktuelle Werkzeug kann keine Texturen verwenden!";
-// Whether the Brush Alpha will be used to module painting
+// Whether the Brush Alpha will be used to modulate painting intensity
 paint.useAlpha = "Stroke Alpha benutzen";
 paint.useAlpha.help = "Verwenden Sie das Alpha-Set im Stroke-Menu um das Painting zu beeinflussen.";
-// Whether the Brush Falloff will be used to module painting
+// Whether the Brush Falloff will be used to modulate painting intensity
 paint.useCurve = "Strich-Falloff verwenden";
 paint.useFalloff.help = "Nutzen Sie das Falloff im Stroke-Menu um das Painting zu beeinflussen.";
+// Whether the Brush Randomize will be used to modulate painting intensity
+paint.useJitter = "";
+paint.useJitter.help = "";
 
 // when the user choose a new item name (through iOS/Android virtual keyboard)
 input.name = "Name";
@@ -1427,11 +1447,6 @@ scene.onlyOneObject = "Mehrere Meshes sind ausgewählt, bitte nur ein Mesh ausw�
 settings.display.title = "Display Einstellungen";
 // Wireframe (show triangles and quad edges)
 settings.wireframe = "Drahtgitter";
-// Display UV
-settings.debugUV = "UV-Checkerboard";
-settings.debugUV.help = "Zeigt die Wireframe-UV im Hintergrund an, wenn das Modell UVs hat.
-
-Beachten Sie, dass bei Aktivierung dieser Option auch die Anzeige der Checkerboard-Textur erzwungen wird.";
 // Display the material texture
 settings.debugChannel = "";
 // Display the material texture in the background
@@ -1456,6 +1471,9 @@ settings.snapCube = "Ansichten-Würfel";
 settings.snapCube.bottom = "Unten";
 // Move the navigation cube on the left side of the screen
 settings.snapCube.left = "Links";
+// Alignment (can be auto/on/off)
+settings.snapCube.align = "";
+settings.snapCube.align.help = "";
 // Stats (information logs about the scene displayed on screen)
 settings.stats = "Statistik";
 settings.stats.right = "Rechts";
@@ -1569,36 +1587,33 @@ shading.matcap.global = "Globales MatCap verwenden";
 shading.matcap.global.help = "Deaktivieren Sie diese Option, um ein separates MatCap für dieses Mesh zu verwenden.";
 
 // bottom shortcut buttons (should be SHORT)
+shortcut.maskVisible = "Maskieren";
 shortcut.maskVisible.short = "Maskieren";
-shortcut.maskVisible.long = "Maskieren";
 // bottom shortcut buttons (should be SHORT)
+shortcut.solo = "Solo";
 shortcut.solo.short = "Solo";
-shortcut.solo.long = "Solo";
 // bottom shortcut buttons (should be SHORT)
+shortcut.voxelRemesh = "Voxel Remesh";
 shortcut.voxelRemesh.short = "Voxel";
-shortcut.voxelRemesh.long = "Voxel Remesh";
 // bottom shortcut buttons (should be SHORT)
+shortcut.wireframe = "Drahtgitter";
 shortcut.wireframe.short = "Draht";
-shortcut.wireframe.long = "Drahtgitter";
 // bottom shortcut buttons (should be SHORT)
+shortcut.cameraReset = "Kamera-Reset";
 shortcut.cameraReset.short = "Kanal neutral";
-shortcut.cameraReset.long = "Kamera-Reset";
 // bottom shortcut buttons (should be SHORT)
+shortcut.cameraSnap = "Kamera-Snap";
 shortcut.cameraSnap.short = "Sicht";
-shortcut.cameraSnap.long = "Kamera-Snap";
 // bottom shortcut buttons (should be SHORT)
+shortcut.lockSelection = "Selektion einfrieren";
 shortcut.lockSelection.short = "Sperren";
-shortcut.lockSelection.long = "Selektion einfrieren";
-shortcut.lockSelection.long.help = "Wenn diese Funktion aktiviert ist, können Sie die Auswahl nicht ändern, indem Sie auf ein Mesh tippen.";
+shortcut.lockSelection.help = "Wenn diese Funktion aktiviert ist, können Sie die Auswahl nicht ändern, indem Sie auf ein Mesh tippen.";
 // bottom shortcut buttons (should be SHORT)
+shortcut.perspective = "Perspektive";
 shortcut.perspective.short = "Persp";
-shortcut.perspective.long = "Perspektive";
 // bottom shortcut buttons (should be SHORT)
+shortcut.grid = "Raster";
 shortcut.grid.short = "Raster";
-shortcut.grid.long = "Raster";
-// bottom shortcut buttons (should be SHORT)
-shortcut.uv.short = "UV";
-shortcut.uv.long = "UV";
 
 // Memory taken by the scene
 stat.ramScene = "Szene";
@@ -1672,25 +1687,25 @@ stroke.accumulate.help = "Wenn diese Option aktiviert ist, gibt es keine Begrenz
 // The tool can use DynTopo
 stroke.useDynamicTopology = "Dynamic Topology erlauben";
 // Only sculpt the part that are linked topologically
-stroke.connectedTopology = "Connected Topology";
-stroke.connectedTopology.help = "Mit dieser Option werden nur die Vertices gesculptet, die mit der ausgewählten Oberfläche verbunden sind.
+stroke.connected = "Connected Topology";
+stroke.connected.help = "Mit dieser Option werden nur die Vertices gesculptet, die mit der ausgewählten Oberfläche verbunden sind.
 
 Dies wird in der Regel für das Move-Werkzeug verwendet, zum Beispiel, wenn Sie ausschließlich ein Teil verschieben möchten, das sich mit einem anderen Teil überschneidet.";
 // Only sculpt the vertex that points toward the camera
-stroke.onlyFrontFace = "Nur Front-Facing Vertex";
-stroke.onlyFrontFace.help = "Diese Option ignoriert Back Face Vertices.
+stroke.culling = "Nur Front-Facing Vertex";
+stroke.culling.help = "Diese Option ignoriert Back Face Vertices.
 
 Dies kann nützlich sein, wenn Sie einen Teil einer dünnen Geometrie painten wollen, ohne die andere Seite zu beeinträchtigen.
 
 Dies funktioniert auch für das Sculpting, aber es kann zu Artefakten kommen.";
 // Only sculpt the vertex that points toward the direction of the deformation
-stroke.onlySameSide = "Vertices gleicher Ausrichtung";
-stroke.onlySameSide.help = "Vertices, die in die entgegengesetzte Richtung der Deformation zeigen, werden ignoriert";
+stroke.sameSide = "Vertices gleicher Ausrichtung";
+stroke.sameSide.help = "Vertices, die in die entgegengesetzte Richtung der Deformation zeigen, werden ignoriert";
 // Module the intensity of the sculpting operation by using a falloff curve
-stroke.curveFalloff = "Falloff";
+menu.falloff = "Falloff";
 stroke.onlyLasso = "Einstellungen nur für das Lasso-Werkzeug aktiv.";
 // Alpha
-stroke.alpha = "Alpha";
+menu.alpha = "Alpha";
 // Invert the pixel (black <-> white)
 stroke.alphaInvert = "Alpha invertieren";
 // Repeat the alpha image (pattern)
@@ -1701,11 +1716,11 @@ stroke.alphaWrap.none = "Kein";
 stroke.alphaWrap.repeat = "Wiederholen";
 // Repeat the alpha in a mirrored (seamless tiling)
 stroke.alphaWrap.mirror = "Spiegeln";
-stroke.alphaProject = "Methode";
+stroke.alphaFetch = "Methode";
 // Project the alpha perpendicularly onto the surface
-stroke.alphaProject.surfaceContinuous = "Oberfläche";
+stroke.alphaFetch.surface = "Oberfläche";
 // Project the alpha onto the surface in the direction of the camera view
-stroke.alphaProject.screenFixed = "Screen Project";
+stroke.alphaFetch.screen = "Screen Project";
 stroke.alphaRotation = "Rotation";
 stroke.alphaRotation.lock.help = "";
 // Repeat the image
@@ -1728,8 +1743,8 @@ stroke.alphaMidValue.help = "Mittelwert, bei dem keine Verformung auftritt.
 (Mittelwert = 1)
 - Schwarz: Negatives Displacement
 - Weiß: Kein Displacement";
-// Stroke type
-stroke.strokeType = "Stroke Typen";
+// Synonymous: Scatter/Jitter/Randomize
+stroke.jitter = "";
 // Sculpt and paint along the brush stroke at regular spacing
 stroke.strokeTypeDot = "Punkt";
 // Sculpt continuously
@@ -1927,10 +1942,10 @@ tool.shape.line = "Linie";
 // Ideally <10 chars (Whether a shape is closed or not, a tube is open, a torus is closed)
 tool.shape.closed = "Geschl.";
 
-// Popup when editing the vertical sliders on the left
-tool.slider.radius = "Radius $0";
-// Popup when editing the vertical sliders on the left
-tool.slider.intensity = "Stärke $0 %";
+// Radius of the tool (size)
+tool.radius = "Radius";
+// Intensity of the tool (force)
+tool.intensity = "Stärke";
 
 tool.settings = "Werkzeugeinstellungen";
 tool.settings.none = "Dieses Werkzeug hat keine besonderen Einstellmöglichkeiten.";
@@ -2080,7 +2095,7 @@ Bei Werten über diesem Schwellenwert wird die kreisförmige Roll-Methode verwen
 Wenn Sie die lineare Drehung (Richtung der Tangente) bevorzugen, setzen Sie diesen Wert einfach auf 90°.";
 // Partially hide/fade the gizmo when we interact with it
 tool.gizmo.autoHide = "Ausblenden bei Interaktion";
-tool.gizmo.tap = "Pivot Einfach-Tap";
+tool.gizmo.tap = "Einfach-Tap";
 tool.gizmo.tap.help = "Diese Option ist nur im benutzerdefinierten Pivot-Modus wirksam (Auto deaktiviert).
 
 -- Keiner
@@ -2091,9 +2106,10 @@ Bewegt das Gizmo auf die erste Schnittstelle.
 
 -- Mittlerer
 Bewegt das Gizmo auf den Durchschnitt der ersten beiden Schnittpunkte.";
-tool.gizmo.tapNone = "Keiner";
-tool.gizmo.tapFirstHit = "Erster Treffer";
-tool.gizmo.tapMiddleStab = "Mittlerer";
+tool.gizmo.tap.none = "Keiner";
+tool.gizmo.tap.align = "";
+tool.gizmo.tap.first = "Erster Treffer";
+tool.gizmo.tap.medial = "Mittlerer";
 
 // The lathe generator is a vertical line and cannot be rotated
 tool.lathe.axisFixed = "Fixiert";
