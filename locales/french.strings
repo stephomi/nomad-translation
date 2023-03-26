@@ -7,6 +7,8 @@ confirm.ok = "OK";
 // Cancel something after being asked (Question? [answer, cancel])
 confirm.cancel = "Annuler";
 
+experimental = "";
+
 // common
 position.top = "Haut";
 position.right = "Droite";
@@ -519,6 +521,8 @@ file.export.obj.colorAppend = "Couleurs des sommets";
 file.export.obj.colorAppend.help = "Permet d'ajouter les informations de couleur après les sommets.
 
 Certains logiciels 3D pourront lire ces informations, mais pas tous.";
+file.export.obj.colorHexa = "";
+file.export.obj.colorHexa.help = "";
 
 file.export.stl = "Exporter en STL";
 file.export.stl.warning = "Les calques et la peinture supplémentaire (rugosité, métallité et masque) seront perdus.";
@@ -602,24 +606,20 @@ pressure.intensity = "Intensité";
 pressure.average = "";
 pressure.average.help = "";
 
-// Customize whether finger and/or stylus can move the Camera
-gesture.cameraInteraction = "Caméra :";
-// Customize whether finger and/or stylus can sculpt on object
-gesture.sculptInteraction = "Sculpter :";
-// Both the finger and the stylus can perform a certain action (move camera, sculpt, etc)
-gesture.interaction.fingerAndStylus = "Doigt et stylet";
-// Only the finger can perform a certain action (move camera, sculpt, etc)
-gesture.interaction.finger = "Doigt";
-// Only the stylus can perform a certain action (move camera, sculpt, etc)
-gesture.interaction.stylus = "Stylet";
-// Disable the action
-gesture.interaction.none = "Aucun";
-// Allow the action for any inputs
-gesture.interaction.any = "Tout";
+// list of inputs allowing camera interaction
+gesture.camera = "Caméra";
+// list of inputs allowing sculpting interaction
+gesture.sculpt = "Sculpter";
+// Finger/Touch input
+gesture.finger = "Doigt";
+// Stylus/Pencil
+gesture.stylus = "Stylet";
+// Mouse/Trackpad
+gesture.mouse = "";
 
 // long press to pick the color/material under the cursor
-gesture.materialPicking = "Sélection de matériau";
-gesture.materialPicking.help = "Pour déclencher le sélecteur de couleur/matériau, appuyez de façon prolongée sur la zone de travail.
+gesture.dropper = "Sélection de matériau";
+gesture.dropper.help = "Pour déclencher le sélecteur de couleur/matériau, appuyez de façon prolongée sur la zone de travail.
 
 Le sélecteur ne s'affiche que si la peinture est activée pour le pinceau actuel.";
 
@@ -661,10 +661,11 @@ Vous pourrez effectuer les gestes suivants :
 - Appuyez sur une zone non masquée pour accentuer le masque.";
 // Hold the finger on screen to toggle between two tools: Mask and SelMask
 gesture.mask.longPress = "Appui long (Masque ↔ MasqueSél)";
-// Hold the finger on screen to toggle between two tools: Mask and SelMask
-gesture.mask.longPress.help = "Quand l'outil Masque ou l'outil MasqueSél est actif, appuyez de façon prolongée avec le doigt pour alterner entre ces outils.
+gesture.mask.holdStroke = "Trait";
+gesture.mask.holdStroke.help = "";
+gesture.mask.holdIdle = "Outil";
+gesture.mask.holdIdle.help = "";
 
-Si vous appuyez de façon prolongée sans déplacer votre doigt, le nouvel outil sera utilisé comme raccourci de masque par défaut.";
 // Shortcut customization, choose the action that the shortcut will performan (select tool, etc)
 gesture.shortcut = "Raccourci";
 
@@ -1065,11 +1066,11 @@ menu.about = "À propos";
 menu.debug = "Débogage";
 
 // Operation on the object (action)
-mesh.action = "Opération";
+mesh.holes = "Trous";
 // If the object has holes, the algorithm will close them
-mesh.holeClose = "Boucher les trous";
+mesh.holes.close = "Boucher les trous";
 // Says how dense (number of triangles) the algorithm will use in order to fill holes
-mesh.holeDetail = "Détail";
+mesh.holes.detail = "Détail";
 // If the mesh has disconnected parts, it will be split/separated into objects
 mesh.separate = "Séparer";
 // When converting the object to a triplanar primitive, some object features will be lost
@@ -1488,11 +1489,14 @@ settings.stats.all = "Afficher la scène complète";
 // Grid
 settings.grid = "Grille";
 // Cursor
+settings.cursor.title = "";
 settings.cursor.whileSculpting = "Afficher un cercle pendant la sculpture";
 // A small indicator dot
 settings.cursor.showDot = "Afficher le petit point";
 settings.cursor.showDot.help = "Le point peut s'afficher comme point de pivot de la caméra ou quand vous sculptez.";
 settings.cursor.showRope = "Afficher le stabilisateur de corde";
+settings.cursor.indicator = "";
+settings.cursor.indicator.help = "";
 // Highlight (the object glows when we select it)
 settings.highlight.selection = "Mettre la sélection en surbrillance";
 // Highlight settings
@@ -1705,22 +1709,34 @@ stroke.culling.help = "Cette option ignore les sommets de la face arrière.
 Elle peut être utile si vous voulez peindre une partie d'une géométrie mince sans toucher à l'autre côté.
 
 Elle fonctionne également pour la sculpture, mais risque de générer quelques artefacts.";
+// Infinite depth, move everything under the circle, disregarding depth
+stroke.silhouette = "";
 // Only sculpt the vertex that points toward the direction of the deformation
 stroke.sameSide = "Sommet du même côté uniquement";
 stroke.sameSide.help = "Ignorez les sommets qui sont dans la direction opposée à la déformation.";
 stroke.onlyLasso = "Réglages actifs uniquement pour l'outil Lasso.";
 
 // Here sampling refers to the app gathering information under the mouse
-stroke.sampling = "";
-stroke.sampling.help = "";
+stroke.area = "";
+stroke.area.help = "";
 // Sampling radius size (percent)
-stroke.sampling.normal.radius = "";
+stroke.area.normal.radius = "";
 // Sampling radius size (percent)
-stroke.sampling.point.radius = "";
+stroke.area.point.radius = "";
 // Sampling averaging
-stroke.sampling.normal.average = "";
+stroke.area.normal.average = "";
 // Sampling averaging
-stroke.sampling.point.average = "";
+stroke.area.point.average = "";
+// Keep sharp edges
+stroke.keepSharp = "Conserver des arêtes vives";
+stroke.keepSharp.help = ""
+
+// Only paint the part of the mesh above a certain height
+stroke.depthFilter = "Filtrage par profondeur";
+stroke.depthFilter.help = "";
+stroke.depthFilter.max = "";
+stroke.depthFilter.min = "";
+stroke.depthFilter.offset = "";
 
 // Module the intensity of the sculpting operation by using a falloff curve
 menu.falloff = "Atténuation";
@@ -1766,15 +1782,15 @@ stroke.alphaMidValue.help = "Valeur intermédiaire à laquelle aucune déformati
 // Synonymous: Scatter/Jitter/Randomize
 stroke.jitter = "";
 // Sculpt and paint along the brush stroke at regular spacing
-stroke.strokeTypeDot = "Point";
+stroke.type.dot = "Point";
 // Sculpt continuously
-stroke.strokeTypeDrag = "Glisser";
+stroke.type.drag = "Glisser";
 // Lock a region and move it around
-stroke.strokeTypeGrab = "Capturer";
+stroke.type.grab = "Capturer";
 // Lock a point of interest and sculpt it by changing the tool radius
-stroke.strokeTypeGrabRadius = "Capturer - Rayon dynamique";
+stroke.type.grabRadius = "Capturer - Rayon dynamique";
 // Lock a region and sculpt it by changing the tool intensity
-stroke.strokeTypeGrabIntensity = "Capturer - Intensité dynamique";
+stroke.type.grabIntensity = "Capturer - Intensité dynamique";
 
 // Symmetry
 symmetry = "Symétrie";
@@ -1979,10 +1995,8 @@ tool.layer.removeInfluence.help = "Cette option n'est active que lorsqu'un calqu
 Elle utilise les données du calque pour limiter le déplacement sur les traits.";
 tool.layer.noLayerSelected = "Cette option n'est disponible que si un calque est sélectionné";
 
-tool.flatten.warning = "Ces options sont expérimentales et peuvent à tout moment être supprimées !";
 tool.flatten.planeLockOrigin = "Verrouiller l'origine du plan";
 tool.flatten.planeLockNormal = "Verrouiller la direction du plan";
-tool.flatten.planeOffset = "Décalage du plan";
 
 // Option for Tube, Lathe and Insert tool
 tool.syncInstance = "";
@@ -1994,8 +2008,6 @@ tool.smooth.stickyBorder = "Sommet collant sur la bordure";
 tool.paint = "Peinture";
 // Erase the painting
 tool.paint.erase = "Effacer";
-// Only paint the part of the mesh above a certain height
-tool.paint.depthFilter = "Filtrage par profondeur";
 // Only paint the part of the mesh that was already painted in the layer (repainting)
 tool.paint.layerFilter = "Filtrage par calque";
 tool.paint.layerFilter.help = "Utilisez cette option si vous souhaitez uniquement repeindre la zone déjà peinte d'un calque.";
@@ -2010,31 +2022,31 @@ tool.mask.flipConnected = "Inverser le masque (connecté)";
 tool.mask.blur = "Flou";
 // Sharpen the edge of the painted mask area
 tool.mask.sharpen = "Netteté";
-// The thickness of the extracted mesh (from the painted mask)
-tool.mask.thickness = "Épaisseur de la coque";
-// Smooth the border of the extracted mesh (from the painted mask)
+// Smooth the extracted mesh (from the painted mask)
 tool.mask.polish = "Lissage des bordures";
-// Extract a new mesh from the painteed mask and carve/emboss the base mesh
-tool.mask.engraveEmboss = "Graver/Creuser";
+// Only smooth the border of the extracted mesh
+tool.mask.polishOnlyBorder = "";
+// topology of extracted mesh
+tool.mask.autoDivision = "";
+tool.mask.division = "";
+// The thickness of the extracted mesh (from the painted mask)
+tool.mask.thickness = "Épaisseur";
+// The extracted mesh has the same height everyone
+tool.mask.heightMask = "";
+tool.mask.heightMask.help = "";
+// Carve the mask into the surface
+tool.mask.carve = "Creuser";
 // Extract a new mesh from the painted mask
 tool.mask.extract = "Extraire";
 // Extract two new mesh from the painted mask and from the unmasked area
 tool.mask.split = "Scinder";
 // How should we close the topology of the extracted object
-tool.mask.closeMask = "Action de fermeture (avec masque) :";
+tool.mask.split.mask = "Action de fermeture (avec masque) :";
 // How should we close the topology of the extracted object
-tool.mask.closeUnmask = "Action de fermeture (sans masque) :";
+tool.mask.split.unmask = "Action de fermeture (sans masque) :";
 // How should we close the topology of the extracted object
-tool.mask.closeAction = "Action de fermeture :";
-// Do not close the mesh (leave it open)
-tool.mask.closeActionNone = "Aucune";
-// Close the mesh with a hole-filling algorithm
-tool.mask.closeActionFill = "Remplir";
-// Close the mesh by adding a thickness on the surface
-tool.mask.closeActionShell = "Coque";
-// Close the mesh by using the layer data as a difference thickness
-tool.mask.closeActionLayer = "Calque";
-tool.mask.closeAction.help = "-- Aucune
+tool.mask.action = "Action de fermeture :";
+tool.mask.action.help = "-- Aucune
 Extraire simplement la pièce et laisser la pièce extraite ouverte.
 
 -- Remplir
@@ -2046,6 +2058,14 @@ Fermer la forme extraite en utilisant la valeur d'épaisseur.
 
 -- Couche
 Extraire la différence entre les calques (sous-menu Calque uniquement).";
+// Do not close the mesh (leave it open)
+tool.mask.action.none = "Aucune";
+// Close the mesh with a hole-filling algorithm
+tool.mask.action.fill = "Remplir";
+// Close the mesh by adding a thickness on the surface
+tool.mask.action.shell = "Coque";
+// Close the mesh by using the layer data as a difference thickness
+tool.mask.action.layer = "Calque";
 
 // Transform/Matrix
 tool.matrix = "Matrice";
@@ -2150,6 +2170,8 @@ tool.smudge.quality.help = "Cette option modifie la résolution des pixels proje
 
 // Shape for the tools: Trim / Split / Project / SelMask
 tool.shape = "Forme";
+// Auto-validate the drawn shape
+tool.shape.autoValidate = "";
 // Force the rectangle selection to be a square
 tool.shape.rectangleSquare = "Carré";
 // The selection rectangle will be centered around the cursor
@@ -2342,6 +2364,8 @@ topology.reproject.iterations = "";
 topology.reproject.relax = "";
 topology.reproject.relax.help = "";
 
+topology.manifold = "";
+topology.nonManifold = "";
 topology.manifold.clean = "";
 topology.manifold.title = "";
 topology.manifold.title.help = "";
@@ -2417,3 +2441,5 @@ version.fullFeatures = "- Achat définitif
 - Calques illimités
 - Enregistrement et chargement
 - Exportation et importation";
+
+meta.colon = " : ";

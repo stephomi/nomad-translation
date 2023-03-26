@@ -7,6 +7,8 @@ confirm.ok = "好";
 // Cancel something after being asked (Question? [answer, cancel])
 confirm.cancel = "取消";
 
+experimental = "";
+
 // common
 position.top = "顶部";
 position.right = "右侧";
@@ -519,6 +521,8 @@ file.export.obj.colorAppend = "顶点颜色";
 file.export.obj.colorAppend.help = "给顶点添加颜色信息。
 
 只有部分3D软件能够识别。";
+file.export.obj.colorHexa = "";
+file.export.obj.colorHexa.help = "";
 
 file.export.stl = "导出STL格式";
 file.export.stl.warning = "图层和额外的绘画（粗糙度、金属强度和蒙版）将会丢失。";
@@ -602,24 +606,20 @@ pressure.intensity = "强度";
 pressure.average = "";
 pressure.average.help = "";
 
-// Customize whether finger and/or stylus can move the Camera
-gesture.cameraInteraction = "相机移动：";
-// Customize whether finger and/or stylus can sculpt on object
-gesture.sculptInteraction = "雕刻：";
-// Both the finger and the stylus can perform a certain action (move camera, sculpt, etc)
-gesture.interaction.fingerAndStylus = "手指与触控笔";
-// Only the finger can perform a certain action (move camera, sculpt, etc)
-gesture.interaction.finger = "手指";
-// Only the stylus can perform a certain action (move camera, sculpt, etc)
-gesture.interaction.stylus = "触控笔";
-// Disable the action
-gesture.interaction.none = "无";
-// Allow the action for any inputs
-gesture.interaction.any = "任何";
+// list of inputs allowing camera interaction
+gesture.camera = "相机移动";
+// list of inputs allowing sculpting interaction
+gesture.sculpt = "雕刻";
+// Finger/Touch input
+gesture.finger = "手指";
+// Stylus/Pencil
+gesture.stylus = "触控笔";
+// Mouse/Trackpad
+gesture.mouse = "";
 
 // long press to pick the color/material under the cursor
-gesture.materialPicking = "选取材质";
-gesture.materialPicking.help = "颜色/材料选择器可以通过在画布上长按来打开。
+gesture.dropper = "选取材质";
+gesture.dropper.help = "颜色/材料选择器可以通过在画布上长按来打开。
 
 请注意，只有在当前画笔启用了绘画功能的情况下，它才能发挥作用。";
 
@@ -661,10 +661,11 @@ gesture.mask.oneTap.help = "轻点屏幕一下就能启用蒙版快捷方式，�
 - 点击非蒙版区域以锐化此蒙版";
 // Hold the finger on screen to toggle between two tools: Mask and SelMask
 gesture.mask.longPress = "长按（切换蒙版和选择蒙版）";
-// Hold the finger on screen to toggle between two tools: Mask and SelMask
-gesture.mask.longPress.help = "蒙版或选择蒙版工具启用时，长按屏幕可在两个工具之间切换。
+gesture.mask.holdStroke = "笔刷";
+gesture.mask.holdStroke.help = "";
+gesture.mask.holdIdle = "工具";
+gesture.mask.holdIdle.help = "";
 
-如果您长按屏幕且不移动手指，则该新工具将成为默认的蒙版快捷方式。";
 // Shortcut customization, choose the action that the shortcut will performan (select tool, etc)
 gesture.shortcut = "快捷手";
 
@@ -1071,11 +1072,11 @@ menu.about = "关于";
 menu.debug = "调试";
 
 // Operation on the object (action)
-mesh.action = "操作";
+mesh.holes = "孔洞";
 // If the object has holes, the algorithm will close them
-mesh.holeClose = "封闭孔洞";
+mesh.holes.close = "封闭孔洞";
 // Says how dense (number of triangles) the algorithm will use in order to fill holes
-mesh.holeDetail = "细节";
+mesh.holes.detail = "细节";
 // If the mesh has disconnected parts, it will be split/separated into objects
 mesh.separate = "分离";
 // When converting the object to a triplanar primitive, some object features will be lost
@@ -1494,11 +1495,14 @@ settings.stats.all = "显示全部";
 // Grid
 settings.grid = "网格";
 // Cursor
+settings.cursor.title = "";
 settings.cursor.whileSculpting = "雕刻时显示圆圈";
 // A small indicator dot
 settings.cursor.showDot = "显示指示点";
 settings.cursor.showDot.help = "指示点会在您移动相机和雕刻时显示。";
 settings.cursor.showRope = "显示画笔准星";
+settings.cursor.indicator = "";
+settings.cursor.indicator.help = "";
 // Highlight (the object glows when we select it)
 settings.highlight.selection = "高亮选择对象";
 // Highlight settings
@@ -1712,22 +1716,34 @@ stroke.culling.help = "打开此选项后，应用会忽略对“背面”的操
 该功能可帮助您在不影响另一侧的情况下在几何平面上绘画。
 
 该选项也可用于雕刻，但您可能会遇到一些不便。";
+// Infinite depth, move everything under the circle, disregarding depth
+stroke.silhouette = "";
 // Only sculpt the vertex that points toward the direction of the deformation
 stroke.sameSide = "只移动同向顶点";
 stroke.sameSide.help = "在修改对象造型时，不移动朝向不同的顶点。";
 stroke.onlyLasso = "该设置仅对套索工具有效。";
 
 // Here sampling refers to the app gathering information under the mouse
-stroke.sampling = "";
-stroke.sampling.help = "";
+stroke.area = "";
+stroke.area.help = "";
 // Sampling radius size (percent)
-stroke.sampling.normal.radius = "";
+stroke.area.normal.radius = "";
 // Sampling radius size (percent)
-stroke.sampling.point.radius = "";
+stroke.area.point.radius = "";
 // Sampling averaging
-stroke.sampling.normal.average = "";
+stroke.area.normal.average = "";
 // Sampling averaging
-stroke.sampling.point.average = "";
+stroke.area.point.average = "";
+// Keep sharp edges
+stroke.keepSharp = "保留硬边";
+stroke.keepSharp.help = ""
+
+// Only paint the part of the mesh above a certain height
+stroke.depthFilter = "深度限定";
+stroke.depthFilter.help = "";
+stroke.depthFilter.max = "";
+stroke.depthFilter.min = "";
+stroke.depthFilter.offset = "";
 
 // Module the intensity of the sculpting operation by using a falloff curve
 menu.falloff = "衰减";
@@ -1773,15 +1789,15 @@ stroke.alphaMidValue.help = "不发生变形的中间值。
 // Synonymous: Scatter/Jitter/Randomize
 stroke.jitter = "";
 // Sculpt and paint along the brush stroke at regular spacing
-stroke.strokeTypeDot = "点";
+stroke.type.dot = "点";
 // Sculpt continuously
-stroke.strokeTypeDrag = "拖拽";
+stroke.type.drag = "拖拽";
 // Lock a region and move it around
-stroke.strokeTypeGrab = "抓取";
+stroke.type.grab = "抓取";
 // Lock a point of interest and sculpt it by changing the tool radius
-stroke.strokeTypeGrabRadius = "抓取 - 可调半径";
+stroke.type.grabRadius = "抓取 - 可调半径";
 // Lock a region and sculpt it by changing the tool intensity
-stroke.strokeTypeGrabIntensity = "抓取 - 可调强度";
+stroke.type.grabIntensity = "抓取 - 可调强度";
 
 // Symmetry
 symmetry = "对称";
@@ -1986,10 +2002,8 @@ tool.layer.removeInfluence.help = "仅当选中图层时此功能才能启用。
 该选项会用图层数据来限制画笔置换。";
 tool.layer.noLayerSelected = "此选项仅在选择图层后可用。";
 
-tool.flatten.warning = "以下均为实验性功能，在之后版本可能会被移除。";
 tool.flatten.planeLockOrigin = "锁定平面原点";
 tool.flatten.planeLockNormal = "锁定平面方向";
-tool.flatten.planeOffset = "平面偏移";
 
 // Option for Tube, Lathe and Insert tool
 tool.syncInstance = "";
@@ -2001,8 +2015,6 @@ tool.smooth.stickyBorder = "边线粘性顶点";
 tool.paint = "绘画";
 // Erase the painting
 tool.paint.erase = "橡皮";
-// Only paint the part of the mesh above a certain height
-tool.paint.depthFilter = "深度限定";
 // Only paint the part of the mesh that was already painted in the layer (repainting)
 tool.paint.layerFilter = "图层限定";
 tool.paint.layerFilter.help = "启用该选项后，您只能够在已经有绘画的图层上进行二次绘画。";
@@ -2017,31 +2029,31 @@ tool.mask.flipConnected = "反转已连接区域";
 tool.mask.blur = "模糊";
 // Sharpen the edge of the painted mask area
 tool.mask.sharpen = "锐化";
-// The thickness of the extracted mesh (from the painted mask)
-tool.mask.thickness = "抽壳厚度";
-// Smooth the border of the extracted mesh (from the painted mask)
+// Smooth the extracted mesh (from the painted mask)
 tool.mask.polish = "平滑边界";
-// Extract a new mesh from the painteed mask and carve/emboss the base mesh
-tool.mask.engraveEmboss = "雕刻/压花";
+// Only smooth the border of the extracted mesh
+tool.mask.polishOnlyBorder = "";
+// topology of extracted mesh
+tool.mask.autoDivision = "";
+tool.mask.division = "";
+// The thickness of the extracted mesh (from the painted mask)
+tool.mask.thickness = "厚度";
+// The extracted mesh has the same height everyone
+tool.mask.heightMask = "";
+tool.mask.heightMask.help = "";
+// Carve the mask into the surface
+tool.mask.carve = "雕刻";
 // Extract a new mesh from the painted mask
 tool.mask.extract = "抽壳";
 // Extract two new mesh from the painted mask and from the unmasked area
 tool.mask.split = "分离";
 // How should we close the topology of the extracted object
-tool.mask.closeMask = "关闭操作（蒙版区域）：";
+tool.mask.split.mask = "关闭操作（蒙版区域）：";
 // How should we close the topology of the extracted object
-tool.mask.closeUnmask = "关闭操作（非蒙版区域）：";
+tool.mask.split.unmask = "关闭操作（非蒙版区域）：";
 // How should we close the topology of the extracted object
-tool.mask.closeAction = "关闭操作：";
-// Do not close the mesh (leave it open)
-tool.mask.closeActionNone = "无";
-// Close the mesh with a hole-filling algorithm
-tool.mask.closeActionFill = "填补";
-// Close the mesh by adding a thickness on the surface
-tool.mask.closeActionShell = "抽壳";
-// Close the mesh by using the layer data as a difference thickness
-tool.mask.closeActionLayer = "层";
-tool.mask.closeAction.help = "- 无
+tool.mask.action = "关闭操作：";
+tool.mask.action.help = "- 无
 仅分离蒙版区域，并且不封闭对象。
 
 - 填补
@@ -2053,6 +2065,14 @@ tool.mask.closeAction.help = "- 无
 
 - 图层
 提取图层差异（仅限图层子菜单）。";
+// Do not close the mesh (leave it open)
+tool.mask.action.none = "无";
+// Close the mesh with a hole-filling algorithm
+tool.mask.action.fill = "填补";
+// Close the mesh by adding a thickness on the surface
+tool.mask.action.shell = "抽壳";
+// Close the mesh by using the layer data as a difference thickness
+tool.mask.action.layer = "层";
 
 // Transform/Matrix
 tool.matrix = "坐标";
@@ -2154,6 +2174,8 @@ tool.smudge.quality.help = "此选项可改变投影的分辨率，将该值调�
 
 // Shape for the tools: Trim / Split / Project / SelMask
 tool.shape = "形状";
+// Auto-validate the drawn shape
+tool.shape.autoValidate = "";
 // Force the rectangle selection to be a square
 tool.shape.rectangleSquare = "正方形";
 // The selection rectangle will be centered around the cursor
@@ -2348,6 +2370,8 @@ topology.reproject.iterations = "";
 topology.reproject.relax = "";
 topology.reproject.relax.help = "";
 
+topology.manifold = "";
+topology.nonManifold = "";
 topology.manifold.clean = "";
 topology.manifold.title = "";
 topology.manifold.title.help = "";
@@ -2423,3 +2447,5 @@ version.fullFeatures = "购买完整版本后您可以：
 - 图层数量不受限制
 - 允许保存和载入
 - 可以导入和导出文件";
+
+meta.colon = "：";

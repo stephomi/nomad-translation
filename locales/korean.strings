@@ -7,6 +7,8 @@ confirm.ok = "확인";
 // Cancel something after being asked (Question? [answer, cancel])
 confirm.cancel = "취소";
 
+experimental = "";
+
 // common
 position.top = "위";
 position.right = "오른쪽";
@@ -519,6 +521,8 @@ file.export.obj.colorAppend = "버텍스 색상";
 file.export.obj.colorAppend.help = "버텍스에 색상 정보를 덧붙입니다.
 
 해당 정보는 일부 3D 소프트웨어에서 읽을 수 있지만, 호환되지 않는 소프트웨어도 있습니다.";
+file.export.obj.colorHexa = "";
+file.export.obj.colorHexa.help = "";
 
 file.export.stl = "STL 익스포트";
 file.export.stl.warning = "레이어 및 추가 페인트(러프니스, 메탈릭, 마스크)가 손실됩니다.";
@@ -602,24 +606,20 @@ pressure.intensity = "강도";
 pressure.average = "";
 pressure.average.help = "";
 
-// Customize whether finger and/or stylus can move the Camera
-gesture.cameraInteraction = "카메라:";
-// Customize whether finger and/or stylus can sculpt on object
-gesture.sculptInteraction = "스컬프팅:";
-// Both the finger and the stylus can perform a certain action (move camera, sculpt, etc)
-gesture.interaction.fingerAndStylus = "손가락 및 스타일러스";
-// Only the finger can perform a certain action (move camera, sculpt, etc)
-gesture.interaction.finger = "손가락";
-// Only the stylus can perform a certain action (move camera, sculpt, etc)
-gesture.interaction.stylus = "스타일러스";
-// Disable the action
-gesture.interaction.none = "없음";
-// Allow the action for any inputs
-gesture.interaction.any = "모든 입력";
+// list of inputs allowing camera interaction
+gesture.camera = "카메라";
+// list of inputs allowing sculpting interaction
+gesture.sculpt = "스컬프팅";
+// Finger/Touch input
+gesture.finger = "손가락";
+// Stylus/Pencil
+gesture.stylus = "스타일러스";
+// Mouse/Trackpad
+gesture.mouse = "";
 
 // long press to pick the color/material under the cursor
-gesture.materialPicking = "머티리얼 선택";
-gesture.materialPicking.help = "버스를 길게 누르면 색상/머티리얼 피커가 표시됩니다.
+gesture.dropper = "머티리얼 선택";
+gesture.dropper.help = "버스를 길게 누르면 색상/머티리얼 피커가 표시됩니다.
 
 현재 사용하는 브러시에 페인트가 활성화된 경우에만 작동합니다.";
 
@@ -661,10 +661,11 @@ gesture.mask.oneTap.help = "씬을 한 번 탭하면 마스크 바로 가기가 
 - 마스크되지 않은 영역을 탭하여 마스크를 선명하게";
 // Hold the finger on screen to toggle between two tools: Mask and SelMask
 gesture.mask.longPress = "길게 누르기 (마스크 ↔ 마스크 선택자)";
-// Hold the finger on screen to toggle between two tools: Mask and SelMask
-gesture.mask.longPress.help = "마스크 또는 마스크 선택자가 활성화된 경우 손가락으로 길게 누르면 두 도구 간에 전환이 이뤄집니다.
+gesture.mask.holdStroke = "스트로크";
+gesture.mask.holdStroke.help = "";
+gesture.mask.holdIdle = "도구";
+gesture.mask.holdIdle.help = "";
 
-손가락을 움직이지 않고 길게 누르면, 새 도구가 기본이 되는 마스크 바로 가기로 사용됩니다.";
 // Shortcut customization, choose the action that the shortcut will performan (select tool, etc)
 gesture.shortcut = "바로 가기";
 
@@ -1063,11 +1064,11 @@ menu.about = "정보";
 menu.debug = "디버그";
 
 // Operation on the object (action)
-mesh.action = "작동";
+mesh.holes = "구멍";
 // If the object has holes, the algorithm will close them
-mesh.holeClose = "구멍 닫기";
+mesh.holes.close = "구멍 닫기";
 // Says how dense (number of triangles) the algorithm will use in order to fill holes
-mesh.holeDetail = "디테일";
+mesh.holes.detail = "디테일";
 // If the mesh has disconnected parts, it will be split/separated into objects
 mesh.separate = "분리";
 // When converting the object to a triplanar primitive, some object features will be lost
@@ -1486,11 +1487,14 @@ settings.stats.all = "전체 씬 보기";
 // Grid
 settings.grid = "격자";
 // Cursor
+settings.cursor.title = "";
 settings.cursor.whileSculpting = "스컬프팅하는 동안 원 표시";
 // A small indicator dot
 settings.cursor.showDot = "작은 점 보기";
 settings.cursor.showDot.help = "카메라 피벗 포인트를 표시하거나 스컬프팅 중에 점이 표시될 수 있습니다.";
 settings.cursor.showRope = "로프 스태빌라이저 보기";
+settings.cursor.indicator = "";
+settings.cursor.indicator.help = "";
 // Highlight (the object glows when we select it)
 settings.highlight.selection = "선택 영역 강조";
 // Highlight settings
@@ -1701,22 +1705,34 @@ stroke.culling.help = "이 옵션은 뒷면을 바라보는 버텍스를 무시�
 다른 면에 영향을 주지 않고 얇은 형상의 일부를 페인팅하려는 경우 유용할 수 있습니다.
 
 스컬프팅에도 효과가 있지만 눈에 띄는 아티팩트가 발생할 수 있습니다.";
+// Infinite depth, move everything under the circle, disregarding depth
+stroke.silhouette = "";
 // Only sculpt the vertex that points toward the direction of the deformation
 stroke.sameSide = "같은 면에 있는 버텍스만";
 stroke.sameSide.help = "변형하려는 방향의 반대를 가리키는 버텍스는 무시합니다.";
 stroke.onlyLasso = "이 설정은 올가미 도구에만 적용됩니다.";
 
 // Here sampling refers to the app gathering information under the mouse
-stroke.sampling = "";
-stroke.sampling.help = "";
+stroke.area = "";
+stroke.area.help = "";
 // Sampling radius size (percent)
-stroke.sampling.normal.radius = "";
+stroke.area.normal.radius = "";
 // Sampling radius size (percent)
-stroke.sampling.point.radius = "";
+stroke.area.point.radius = "";
 // Sampling averaging
-stroke.sampling.normal.average = "";
+stroke.area.normal.average = "";
 // Sampling averaging
-stroke.sampling.point.average = "";
+stroke.area.point.average = "";
+// Keep sharp edges
+stroke.keepSharp = "날카로운 변 유지";
+stroke.keepSharp.help = ""
+
+// Only paint the part of the mesh above a certain height
+stroke.depthFilter = "깊이 필터링";
+stroke.depthFilter.help = "";
+stroke.depthFilter.max = "";
+stroke.depthFilter.min = "";
+stroke.depthFilter.offset = "";
 
 // Module the intensity of the sculpting operation by using a falloff curve
 menu.falloff = "폴오프";
@@ -1762,15 +1778,15 @@ stroke.alphaMidValue.help = "변형을 일으키지 않는 중간값.
 // Synonymous: Scatter/Jitter/Randomize
 stroke.jitter = "";
 // Sculpt and paint along the brush stroke at regular spacing
-stroke.strokeTypeDot = "점";
+stroke.type.dot = "점";
 // Sculpt continuously
-stroke.strokeTypeDrag = "끌기";
+stroke.type.drag = "끌기";
 // Lock a region and move it around
-stroke.strokeTypeGrab = "붙잡기";
+stroke.type.grab = "붙잡기";
 // Lock a point of interest and sculpt it by changing the tool radius
-stroke.strokeTypeGrabRadius = "붙잡기 - 동적 반지름";
+stroke.type.grabRadius = "붙잡기 - 동적 반지름";
 // Lock a region and sculpt it by changing the tool intensity
-stroke.strokeTypeGrabIntensity = "붙잡기 - 유동적인 강도";
+stroke.type.grabIntensity = "붙잡기 - 유동적인 강도";
 
 // Symmetry
 symmetry = "대칭";
@@ -1975,10 +1991,8 @@ tool.layer.removeInfluence.help = "이 옵션은 선택한 레이어가 있는 �
 레이어 데이터를 사용하여 스트로크에 대한 변위를 제한합니다.";
 tool.layer.noLayerSelected = "이 옵션은 선택한 레이어가 있는 경우에만 사용 가능";
 
-tool.flatten.warning = "이러한 옵션은 실험적으로 제공되며 향후 제거될 수 있습니다!";
 tool.flatten.planeLockOrigin = "평면 원점 잠금";
 tool.flatten.planeLockNormal = "평면 방향 잠금";
-tool.flatten.planeOffset = "평면 오프셋";
 
 // Option for Tube, Lathe and Insert tool
 tool.syncInstance = "";
@@ -1990,8 +2004,6 @@ tool.smooth.stickyBorder = "버텍스를 테두리에 고정";
 tool.paint = "페인트";
 // Erase the painting
 tool.paint.erase = "지우기";
-// Only paint the part of the mesh above a certain height
-tool.paint.depthFilter = "깊이 필터링";
 // Only paint the part of the mesh that was already painted in the layer (repainting)
 tool.paint.layerFilter = "레이어 필터링";
 tool.paint.layerFilter.help = "레이어의 이미 칠해진 영역을 다시 칠하려는 경우에만 이 옵션을 사용하십시오.";
@@ -2006,31 +2018,31 @@ tool.mask.flipConnected = "연결 뒤집기";
 tool.mask.blur = "흐림 효과";
 // Sharpen the edge of the painted mask area
 tool.mask.sharpen = "선명 효과";
-// The thickness of the extracted mesh (from the painted mask)
-tool.mask.thickness = "셸 두께";
-// Smooth the border of the extracted mesh (from the painted mask)
+// Smooth the extracted mesh (from the painted mask)
 tool.mask.polish = "테두리 평활도";
-// Extract a new mesh from the painteed mask and carve/emboss the base mesh
-tool.mask.engraveEmboss = "조각 / 엠보싱";
+// Only smooth the border of the extracted mesh
+tool.mask.polishOnlyBorder = "";
+// topology of extracted mesh
+tool.mask.autoDivision = "";
+tool.mask.division = "";
+// The thickness of the extracted mesh (from the painted mask)
+tool.mask.thickness = "두께";
+// The extracted mesh has the same height everyone
+tool.mask.heightMask = "";
+tool.mask.heightMask.help = "";
+// Carve the mask into the surface
+tool.mask.carve = "조각";
 // Extract a new mesh from the painted mask
 tool.mask.extract = "추출";
 // Extract two new mesh from the painted mask and from the unmasked area
 tool.mask.split = "분할";
 // How should we close the topology of the extracted object
-tool.mask.closeMask = "닫기 동작 (마스킹 영역):";
+tool.mask.split.mask = "닫기 동작 (마스킹 영역):";
 // How should we close the topology of the extracted object
-tool.mask.closeUnmask = "닫기 동작 (마스킹 되지 않은 영역):";
+tool.mask.split.unmask = "닫기 동작 (마스킹 되지 않은 영역):";
 // How should we close the topology of the extracted object
-tool.mask.closeAction = "닫기 동작:";
-// Do not close the mesh (leave it open)
-tool.mask.closeActionNone = "없음";
-// Close the mesh with a hole-filling algorithm
-tool.mask.closeActionFill = "채우기";
-// Close the mesh by adding a thickness on the surface
-tool.mask.closeActionShell = "셸";
-// Close the mesh by using the layer data as a difference thickness
-tool.mask.closeActionLayer = "레이어";
-tool.mask.closeAction.help = "-- 없음
+tool.mask.action = "닫기 동작:";
+tool.mask.action.help = "-- 없음
 일부분을 추출하고 추출된 부분을 열린 상태로 유지합니다.
 
 -- 채우기
@@ -2042,6 +2054,14 @@ tool.mask.closeAction.help = "-- 없음
 
 -- 레이어
 레이어 차이를 추출합니다 (레이어 하위 메뉴만 해당).";
+// Do not close the mesh (leave it open)
+tool.mask.action.none = "없음";
+// Close the mesh with a hole-filling algorithm
+tool.mask.action.fill = "채우기";
+// Close the mesh by adding a thickness on the surface
+tool.mask.action.shell = "셸";
+// Close the mesh by using the layer data as a difference thickness
+tool.mask.action.layer = "레이어";
 
 // Transform/Matrix
 tool.matrix = "매트릭스";
@@ -2143,6 +2163,8 @@ tool.smudge.quality.help = "투영된 픽셀의 해상도를 변경하며, 값�
 
 // Shape for the tools: Trim / Split / Project / SelMask
 tool.shape = "모양";
+// Auto-validate the drawn shape
+tool.shape.autoValidate = "";
 // Force the rectangle selection to be a square
 tool.shape.rectangleSquare = "사각형";
 // The selection rectangle will be centered around the cursor
@@ -2335,6 +2357,8 @@ topology.reproject.iterations = "";
 topology.reproject.relax = "";
 topology.reproject.relax.help = "";
 
+topology.manifold = "";
+topology.nonManifold = "";
 topology.manifold.clean = "";
 topology.manifold.title = "";
 topology.manifold.title.help = "";
@@ -2410,3 +2434,5 @@ version.fullFeatures = "- 일회성 구매
 - 무제한 레이어
 - 저장 및 불러오기
 - 익스포트 및 임포트";
+
+meta.colon = "";

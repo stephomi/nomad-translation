@@ -7,6 +7,8 @@ confirm.ok = "OK";
 // Cancel something after being asked (Question? [answer, cancel])
 confirm.cancel = "キャンセル";
 
+experimental = "";
+
 // common
 position.top = "上";
 position.right = "右";
@@ -519,6 +521,8 @@ file.export.obj.colorAppend = "頂点カラー";
 file.export.obj.colorAppend.help = "頂点の後にカラーの情報を追加します。
 
 これを読み取れる3Dソフトウェアもありますが、読み取れないソフトウェアもあります。";
+file.export.obj.colorHexa = "";
+file.export.obj.colorHexa.help = "";
 
 file.export.stl = "STLを書き出す";
 file.export.stl.warning = "レイヤーとその他のペイント (粗さ、メタリック、マスク) は喪失します。";
@@ -602,24 +606,20 @@ pressure.intensity = "強度";
 pressure.average = "";
 pressure.average.help = "";
 
-// Customize whether finger and/or stylus can move the Camera
-gesture.cameraInteraction = "カメラ:";
-// Customize whether finger and/or stylus can sculpt on object
-gesture.sculptInteraction = "スカルプト:";
-// Both the finger and the stylus can perform a certain action (move camera, sculpt, etc)
-gesture.interaction.fingerAndStylus = "指とスタイラス";
-// Only the finger can perform a certain action (move camera, sculpt, etc)
-gesture.interaction.finger = "指";
-// Only the stylus can perform a certain action (move camera, sculpt, etc)
-gesture.interaction.stylus = "スタイラス";
-// Disable the action
-gesture.interaction.none = "なし";
-// Allow the action for any inputs
-gesture.interaction.any = "すべて";
+// list of inputs allowing camera interaction
+gesture.camera = "カメラ";
+// list of inputs allowing sculpting interaction
+gesture.sculpt = "スカルプト";
+// Finger/Touch input
+gesture.finger = "指";
+// Stylus/Pencil
+gesture.stylus = "スタイラス";
+// Mouse/Trackpad
+gesture.mouse = "";
 
 // long press to pick the color/material under the cursor
-gesture.materialPicking = "マテリアルの選択";
-gesture.materialPicking.help = "キャンバスを長押しすると、カラー/マテリアルピッカーが表示されます。
+gesture.dropper = "マテリアルの選択";
+gesture.dropper.help = "キャンバスを長押しすると、カラー/マテリアルピッカーが表示されます。
 
 現在のブラシのペイントが有効な場合にのみ動作します。";
 
@@ -661,10 +661,11 @@ gesture.mask.oneTap.help = "画面を1度タップしてマスクのショート
 - マスクされていないエリアをタップして、マスクをシャープにする";
 // Hold the finger on screen to toggle between two tools: Mask and SelMask
 gesture.mask.longPress = "長押し (マスク ↔ SelMask)";
-// Hold the finger on screen to toggle between two tools: Mask and SelMask
-gesture.mask.longPress.help = "マスクまたはSelMaskが有効な場合、指で長押しするとこれらのツールを切り替えられます。
+gesture.mask.holdStroke = "ストローク";
+gesture.mask.holdStroke.help = "";
+gesture.mask.holdIdle = "ツール";
+gesture.mask.holdIdle.help = "";
 
-指を動かさないで長押しすると、新しいツールがデフォルトのマスクショートカットとして使用されます。";
 // Shortcut customization, choose the action that the shortcut will performan (select tool, etc)
 gesture.shortcut = "ショートカット";
 
@@ -1065,11 +1066,11 @@ menu.about = "情報";
 menu.debug = "デバッグ";
 
 // Operation on the object (action)
-mesh.action = "操作";
+mesh.holes = "穴";
 // If the object has holes, the algorithm will close them
-mesh.holeClose = "穴を閉じる";
+mesh.holes.close = "穴を閉じる";
 // Says how dense (number of triangles) the algorithm will use in order to fill holes
-mesh.holeDetail = "ディテール";
+mesh.holes.detail = "ディテール";
 // If the mesh has disconnected parts, it will be split/separated into objects
 mesh.separate = "分離";
 // When converting the object to a triplanar primitive, some object features will be lost
@@ -1487,11 +1488,14 @@ settings.stats.all = "シーン全体を表示";
 // Grid
 settings.grid = "グリッド";
 // Cursor
+settings.cursor.title = "";
 settings.cursor.whileSculpting = "スカルプト中、円を表示";
 // A small indicator dot
 settings.cursor.showDot = "小さなドットを表示";
 settings.cursor.showDot.help = "ドットは、カメラの回転軸のポイントとして、またはスカルプト中に表示されます。";
 settings.cursor.showRope = "手ぶれ補正ロープを表示";
+settings.cursor.indicator = "";
+settings.cursor.indicator.help = "";
 // Highlight (the object glows when we select it)
 settings.highlight.selection = "選択部分をハイライト";
 // Highlight settings
@@ -1702,22 +1706,34 @@ stroke.culling.help = "このオプションは背面を向いている頂点は
 他の側面に影響を与えないで薄いジオメトリの一部をペイントしたい場合、便利です。
 
 スカルプトにも利用できますが、アーティファクトが発生する可能性があります。";
+// Infinite depth, move everything under the circle, disregarding depth
+stroke.silhouette = "";
 // Only sculpt the vertex that points toward the direction of the deformation
 stroke.sameSide = "同じ側面の頂点のみ";
 stroke.sameSide.help = "デフォーメーションの反対方向を指す頂点を無視します。";
 stroke.onlyLasso = "設定は投げなわツールにのみ有効です。";
 
 // Here sampling refers to the app gathering information under the mouse
-stroke.sampling = "";
-stroke.sampling.help = "";
+stroke.area = "";
+stroke.area.help = "";
 // Sampling radius size (percent)
-stroke.sampling.normal.radius = "";
+stroke.area.normal.radius = "";
 // Sampling radius size (percent)
-stroke.sampling.point.radius = "";
+stroke.area.point.radius = "";
 // Sampling averaging
-stroke.sampling.normal.average = "";
+stroke.area.normal.average = "";
 // Sampling averaging
-stroke.sampling.point.average = "";
+stroke.area.point.average = "";
+// Keep sharp edges
+stroke.keepSharp = "シャープなエッジを残す";
+stroke.keepSharp.help = ""
+
+// Only paint the part of the mesh above a certain height
+stroke.depthFilter = "深度のフィルタリング";
+stroke.depthFilter.help = "";
+stroke.depthFilter.max = "";
+stroke.depthFilter.min = "";
+stroke.depthFilter.offset = "";
 
 // Module the intensity of the sculpting operation by using a falloff curve
 menu.falloff = "フォールオフ";
@@ -1763,15 +1779,15 @@ stroke.alphaMidValue.help = "デフォーメーションを起こさない中間
 // Synonymous: Scatter/Jitter/Randomize
 stroke.jitter = "";
 // Sculpt and paint along the brush stroke at regular spacing
-stroke.strokeTypeDot = "ドット";
+stroke.type.dot = "ドット";
 // Sculpt continuously
-stroke.strokeTypeDrag = "ドラッグ";
+stroke.type.drag = "ドラッグ";
 // Lock a region and move it around
-stroke.strokeTypeGrab = "グラブ";
+stroke.type.grab = "グラブ";
 // Lock a point of interest and sculpt it by changing the tool radius
-stroke.strokeTypeGrabRadius = "グラブ - 動的な半径";
+stroke.type.grabRadius = "グラブ - 動的な半径";
 // Lock a region and sculpt it by changing the tool intensity
-stroke.strokeTypeGrabIntensity = "グラブ - 動的な強度";
+stroke.type.grabIntensity = "グラブ - 動的な強度";
 
 // Symmetry
 symmetry = "対称";
@@ -1976,10 +1992,8 @@ tool.layer.removeInfluence.help = "このオプションはレイヤーが選択
 レイヤーのデータを使用して、ストローク上のディスプレイスメントを制限します。";
 tool.layer.noLayerSelected = "このオプションはレイヤーが選択されている場合のみ利用できます";
 
-tool.flatten.warning = "これらのオプションは実験的で、今後削除される可能性があります！";
 tool.flatten.planeLockOrigin = "平面の原点をロック";
 tool.flatten.planeLockNormal = "平面の方向をロック";
-tool.flatten.planeOffset = "平面のオフセット";
 
 // Option for Tube, Lathe and Insert tool
 tool.syncInstance = "";
@@ -1991,8 +2005,6 @@ tool.smooth.stickyBorder = "ボーダーの頂点を接着";
 tool.paint = "ペイント";
 // Erase the painting
 tool.paint.erase = "消しゴム";
-// Only paint the part of the mesh above a certain height
-tool.paint.depthFilter = "深度のフィルタリング";
 // Only paint the part of the mesh that was already painted in the layer (repainting)
 tool.paint.layerFilter = "レイヤーのフィルタリング";
 tool.paint.layerFilter.help = "レイヤーのすでにペイントされている部分をペイントし直したい場合のみ、このオプションを使用してください。";
@@ -2007,31 +2019,31 @@ tool.mask.flipConnected = "接続部分を反転";
 tool.mask.blur = "ブラー";
 // Sharpen the edge of the painted mask area
 tool.mask.sharpen = "シャープ";
-// The thickness of the extracted mesh (from the painted mask)
-tool.mask.thickness = "シェルの厚さ";
-// Smooth the border of the extracted mesh (from the painted mask)
+// Smooth the extracted mesh (from the painted mask)
 tool.mask.polish = "ボーダーのスムージング";
-// Extract a new mesh from the painteed mask and carve/emboss the base mesh
-tool.mask.engraveEmboss = "浮き出し / 浮き彫り";
+// Only smooth the border of the extracted mesh
+tool.mask.polishOnlyBorder = "";
+// topology of extracted mesh
+tool.mask.autoDivision = "";
+tool.mask.division = "";
+// The thickness of the extracted mesh (from the painted mask)
+tool.mask.thickness = "太さ";
+// The extracted mesh has the same height everyone
+tool.mask.heightMask = "";
+tool.mask.heightMask.help = "";
+// Carve the mask into the surface
+tool.mask.carve = "浮き出し";
 // Extract a new mesh from the painted mask
 tool.mask.extract = "取り出す";
 // Extract two new mesh from the painted mask and from the unmasked area
 tool.mask.split = "分割";
 // How should we close the topology of the extracted object
-tool.mask.closeMask = "閉じるアクション (マスクあり):";
+tool.mask.split.mask = "閉じるアクション (マスクあり):";
 // How should we close the topology of the extracted object
-tool.mask.closeUnmask = "閉じるアクション (マスクなし):";
+tool.mask.split.unmask = "閉じるアクション (マスクなし):";
 // How should we close the topology of the extracted object
-tool.mask.closeAction = "閉じるアクション:";
-// Do not close the mesh (leave it open)
-tool.mask.closeActionNone = "なし";
-// Close the mesh with a hole-filling algorithm
-tool.mask.closeActionFill = "埋める";
-// Close the mesh by adding a thickness on the surface
-tool.mask.closeActionShell = "シェル";
-// Close the mesh by using the layer data as a difference thickness
-tool.mask.closeActionLayer = "レイヤー";
-tool.mask.closeAction.help = "-- なし
+tool.mask.action = "閉じるアクション:";
+tool.mask.action.help = "-- なし
 単純に部分を取り出し、取り出した部分を開けたままにします。
 
 -- 埋める
@@ -2043,6 +2055,14 @@ tool.mask.closeAction.help = "-- なし
 
 -- レイヤー
 レイヤーの差を取り出します (レイヤーのサブメニューのみ)。";
+// Do not close the mesh (leave it open)
+tool.mask.action.none = "なし";
+// Close the mesh with a hole-filling algorithm
+tool.mask.action.fill = "埋める";
+// Close the mesh by adding a thickness on the surface
+tool.mask.action.shell = "シェル";
+// Close the mesh by using the layer data as a difference thickness
+tool.mask.action.layer = "レイヤー";
 
 // Transform/Matrix
 tool.matrix = "マトリクス";
@@ -2144,6 +2164,8 @@ tool.smudge.quality.help = "プロジェクトされたピクセルの解像度�
 
 // Shape for the tools: Trim / Split / Project / SelMask
 tool.shape = "シェイプ";
+// Auto-validate the drawn shape
+tool.shape.autoValidate = "";
 // Force the rectangle selection to be a square
 tool.shape.rectangleSquare = "スクエア";
 // The selection rectangle will be centered around the cursor
@@ -2336,6 +2358,8 @@ topology.reproject.iterations = "";
 topology.reproject.relax = "";
 topology.reproject.relax.help = "";
 
+topology.manifold = "";
+topology.nonManifold = "";
 topology.manifold.clean = "";
 topology.manifold.title = "";
 topology.manifold.title.help = "";
@@ -2411,3 +2435,5 @@ version.fullFeatures = "- 一括購入
 - 無制限のレイヤー
 - 保存 & 読み込み
 - 書き出し & 読み込み";
+
+meta.colon = "";

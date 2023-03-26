@@ -7,6 +7,8 @@ confirm.ok = "ตกลง";
 // Cancel something after being asked (Question? [answer, cancel])
 confirm.cancel = "ยกเลิก";
 
+experimental = "";
+
 // common
 position.top = "บน";
 position.right = "ขวา";
@@ -519,6 +521,8 @@ file.export.obj.colorAppend = "สีของวอร์เท็กซ์";
 file.export.obj.colorAppend.help = "ผนวกข้อมูลสีหลังจุดยอด
 
 ซอฟต์แวร์ 3D บางตัวจะสามารถอ่านได้ แต่ไม่ใช่ทั้งหมด";
+file.export.obj.colorHexa = "";
+file.export.obj.colorHexa.help = "";
 
 file.export.stl = "นำออก STL";
 file.export.stl.warning = "เลเยอร์และการวาดลงสีเพิ่มเติม (ความหยาบ ความเป็นโลหะและมาส์ก) จะหายไป";
@@ -602,24 +606,20 @@ pressure.intensity = "ความเข้ม";
 pressure.average = "";
 pressure.average.help = "";
 
-// Customize whether finger and/or stylus can move the Camera
-gesture.cameraInteraction = "กล้อง:";
-// Customize whether finger and/or stylus can sculpt on object
-gesture.sculptInteraction = "แกะสลัก";
-// Both the finger and the stylus can perform a certain action (move camera, sculpt, etc)
-gesture.interaction.fingerAndStylus = "นิ้วและสไตลัส";
-// Only the finger can perform a certain action (move camera, sculpt, etc)
-gesture.interaction.finger = "นิ้ว";
-// Only the stylus can perform a certain action (move camera, sculpt, etc)
-gesture.interaction.stylus = "สไตลัส";
-// Disable the action
-gesture.interaction.none = "ไม่มี";
-// Allow the action for any inputs
-gesture.interaction.any = "ได้หมด";
+// list of inputs allowing camera interaction
+gesture.camera = "กล้อง";
+// list of inputs allowing sculpting interaction
+gesture.sculpt = "แกะสลัก";
+// Finger/Touch input
+gesture.finger = "นิ้ว";
+// Stylus/Pencil
+gesture.stylus = "สไตลัส";
+// Mouse/Trackpad
+gesture.mouse = "";
 
 // long press to pick the color/material under the cursor
-gesture.materialPicking = "การเลือกวัสดุ";
-gesture.materialPicking.help = "การเลือกสี/วัสดุสามารถเปิดใช้งานได้ด้วยการกดค้างบนแคนวาส
+gesture.dropper = "การเลือกวัสดุ";
+gesture.dropper.help = "การเลือกสี/วัสดุสามารถเปิดใช้งานได้ด้วยการกดค้างบนแคนวาส
 
 โปรดทราบว่าใช้งานได้เฉพาะเมื่อแปรงปัจจุบันเปิดใช้งานการระบายสี";
 
@@ -661,10 +661,11 @@ gesture.mask.oneTap.help = "เปิดใช้ทางลัดมาส์�
 - แตะที่พื่นที่ไม่ได้มาส์กเพื่อทำให้ส่วนที่มาส์กชัดเจนขึ้น";
 // Hold the finger on screen to toggle between two tools: Mask and SelMask
 gesture.mask.longPress = "กดแช่ (มาส์ก ↔ SelMask)";
-// Hold the finger on screen to toggle between two tools: Mask and SelMask
-gesture.mask.longPress.help = "เมื่อเปิดใช้งานมาส์ก หรือ SelMask ให้กดนิ้วค้างไว้เพื่อสลับระหว่างเครื่องมือเหล่านั้น
+gesture.mask.holdStroke = "วาดเส้น";
+gesture.mask.holdStroke.help = "";
+gesture.mask.holdIdle = "เครื่องมือ";
+gesture.mask.holdIdle.help = "";
 
-หากคุณกดค้างไว้โดยไม่ขยับนิ้ว เครื่องมือใหม่จะถูกใช้เป็นทางลัดมาสก์เริ่มต้น";
 // Shortcut customization, choose the action that the shortcut will performan (select tool, etc)
 gesture.shortcut = "ทางลัด";
 
@@ -1065,11 +1066,11 @@ menu.about = "เกี่ยวกับ";
 menu.debug = "แก้จุดบกพร่อง";
 
 // Operation on the object (action)
-mesh.action = "การทำงาน";
+mesh.holes = "รู";
 // If the object has holes, the algorithm will close them
-mesh.holeClose = "ปิดรู";
+mesh.holes.close = "ปิดรู";
 // Says how dense (number of triangles) the algorithm will use in order to fill holes
-mesh.holeDetail = "รายละเอียด";
+mesh.holes.detail = "รายละเอียด";
 // If the mesh has disconnected parts, it will be split/separated into objects
 mesh.separate = "แยก";
 // When converting the object to a triplanar primitive, some object features will be lost
@@ -1488,11 +1489,14 @@ settings.stats.all = "แสดงหน้าจอเต็ม";
 // Grid
 settings.grid = "เส้นตาราง";
 // Cursor
+settings.cursor.title = "";
 settings.cursor.whileSculpting = "แสดงวงกลมขณะแกะสลัก";
 // A small indicator dot
 settings.cursor.showDot = "แสดงจุดเล็ก";
 settings.cursor.showDot.help = "จุดสามารถปรากฏเป็นจุดหมุนของกล้องหรือเมื่อคุณกำลังแกะสลัก";
 settings.cursor.showRope = "แสดงเชือกกันโคลง";
+settings.cursor.indicator = "";
+settings.cursor.indicator.help = "";
 // Highlight (the object glows when we select it)
 settings.highlight.selection = "ไฮไลท์การเลือก";
 // Highlight settings
@@ -1705,22 +1709,34 @@ stroke.culling.help = "ตัวเลือกนี้จะละเว้น
 อาจมีประโยชน์หากคุณต้องการทาสีบางๆ บนส่วนหนึ่งของรูปทรงเรขาคณิตโดยจะไม่กระทบอีกด้านหนึ่ง
 
 และยังใช้งานได้สำหรับการแกะสลัก แต่คุณอาจพบสิ่งแปลกปลอมบางอย่าง";
+// Infinite depth, move everything under the circle, disregarding depth
+stroke.silhouette = "";
 // Only sculpt the vertex that points toward the direction of the deformation
 stroke.sameSide = "จุดยอดขนาดเดียวกันเท่านั้น";
 stroke.sameSide.help = "ละเว้นจุดยอดที่ชี้ไปในทิศทางตรงกันข้ามกับดีฟอร์เมชัน";
 stroke.onlyLasso = "การตั้งค่านี้จะเปิดใช้งานเฉพาะเครื่องมือลัสโซ";
 
 // Here sampling refers to the app gathering information under the mouse
-stroke.sampling = "";
-stroke.sampling.help = "";
+stroke.area = "";
+stroke.area.help = "";
 // Sampling radius size (percent)
-stroke.sampling.normal.radius = "";
+stroke.area.normal.radius = "";
 // Sampling radius size (percent)
-stroke.sampling.point.radius = "";
+stroke.area.point.radius = "";
 // Sampling averaging
-stroke.sampling.normal.average = "";
+stroke.area.normal.average = "";
 // Sampling averaging
-stroke.sampling.point.average = "";
+stroke.area.point.average = "";
+// Keep sharp edges
+stroke.keepSharp = "รักษาขอบคมไว้";
+stroke.keepSharp.help = ""
+
+// Only paint the part of the mesh above a certain height
+stroke.depthFilter = "การกรองความลึก";
+stroke.depthFilter.help = "";
+stroke.depthFilter.max = "";
+stroke.depthFilter.min = "";
+stroke.depthFilter.offset = "";
 
 // Module the intensity of the sculpting operation by using a falloff curve
 menu.falloff = "สร้างเส้นโค้ง";
@@ -1766,15 +1782,15 @@ stroke.alphaMidValue.help = "ค่าจุดกึ่งกลางที่
 // Synonymous: Scatter/Jitter/Randomize
 stroke.jitter = "";
 // Sculpt and paint along the brush stroke at regular spacing
-stroke.strokeTypeDot = "จุด";
+stroke.type.dot = "จุด";
 // Sculpt continuously
-stroke.strokeTypeDrag = "ลาก";
+stroke.type.drag = "ลาก";
 // Lock a region and move it around
-stroke.strokeTypeGrab = "คว้า";
+stroke.type.grab = "คว้า";
 // Lock a point of interest and sculpt it by changing the tool radius
-stroke.strokeTypeGrabRadius = "คว้า - รัศมีไดนามิก";
+stroke.type.grabRadius = "คว้า - รัศมีไดนามิก";
 // Lock a region and sculpt it by changing the tool intensity
-stroke.strokeTypeGrabIntensity = "คว้า - ความเข้มแบบไดนามิก";
+stroke.type.grabIntensity = "คว้า - ความเข้มแบบไดนามิก";
 
 // Symmetry
 symmetry = "สมมาตร";
@@ -1979,10 +1995,8 @@ tool.layer.removeInfluence.help = "ตัวเลือกนี้จะใช
 จะใช้ข้อมูลเลเยอร์เพื่อจำกัดการเคลื่อนเกินไปนอกเส้นวาด";
 tool.layer.noLayerSelected = "ตัวเลือกนี้จะใช้ได้ก็ต่อเมื่อได้เลือกเลเยอร์ไว้";
 
-tool.flatten.warning = "ตัวเลือกเหล่านี้เป็นแบบทดลองและสามารถลบออกได้ในอนาคต!";
 tool.flatten.planeLockOrigin = "ล็อคกำเนิดระนาบ";
 tool.flatten.planeLockNormal = "ล็อคทิศทางระนาบ";
-tool.flatten.planeOffset = "ออฟเซ็ตของระนาบ";
 
 // Option for Tube, Lathe and Insert tool
 tool.syncInstance = "";
@@ -1994,8 +2008,6 @@ tool.smooth.stickyBorder = "จุดยอดอยู่กับที่บ�
 tool.paint = "ลงสี";
 // Erase the painting
 tool.paint.erase = "ลบ";
-// Only paint the part of the mesh above a certain height
-tool.paint.depthFilter = "การกรองความลึก";
 // Only paint the part of the mesh that was already painted in the layer (repainting)
 tool.paint.layerFilter = "การกรองเลเยอร์";
 tool.paint.layerFilter.help = "ใช้ตัวเลือกนี้หากคุณต้องการทาสีใหม่อีกบนพื้นที่ที่ลงสีแล้วของเลเยอร์เท่านั้น";
@@ -2010,31 +2022,31 @@ tool.mask.flipConnected = "พลิกที่เชื่อมโยงก�
 tool.mask.blur = "เบลอ";
 // Sharpen the edge of the painted mask area
 tool.mask.sharpen = "ความคมชัด";
-// The thickness of the extracted mesh (from the painted mask)
-tool.mask.thickness = "ความหนาของเปลือก";
-// Smooth the border of the extracted mesh (from the painted mask)
+// Smooth the extracted mesh (from the painted mask)
 tool.mask.polish = "ความเรียบของขอบ";
-// Extract a new mesh from the painteed mask and carve/emboss the base mesh
-tool.mask.engraveEmboss = "แกะสลัก / นูน";
+// Only smooth the border of the extracted mesh
+tool.mask.polishOnlyBorder = "";
+// topology of extracted mesh
+tool.mask.autoDivision = "";
+tool.mask.division = "";
+// The thickness of the extracted mesh (from the painted mask)
+tool.mask.thickness = "ความหนา";
+// The extracted mesh has the same height everyone
+tool.mask.heightMask = "";
+tool.mask.heightMask.help = "";
+// Carve the mask into the surface
+tool.mask.carve = "แกะสลัก";
 // Extract a new mesh from the painted mask
 tool.mask.extract = "สกัด";
 // Extract two new mesh from the painted mask and from the unmasked area
 tool.mask.split = "แยก";
 // How should we close the topology of the extracted object
-tool.mask.closeMask = "การดำเนินการปิด (มาส์ก)";
+tool.mask.split.mask = "การดำเนินการปิด (มาส์ก)";
 // How should we close the topology of the extracted object
-tool.mask.closeUnmask = "การดำเนินการปิด (ไม่มาส์ก)";
+tool.mask.split.unmask = "การดำเนินการปิด (ไม่มาส์ก)";
 // How should we close the topology of the extracted object
-tool.mask.closeAction = "การดำเนินการปิด";
-// Do not close the mesh (leave it open)
-tool.mask.closeActionNone = "ไม่มี";
-// Close the mesh with a hole-filling algorithm
-tool.mask.closeActionFill = "เติม";
-// Close the mesh by adding a thickness on the surface
-tool.mask.closeActionShell = "เปลือก";
-// Close the mesh by using the layer data as a difference thickness
-tool.mask.closeActionLayer = "เลเยอร์";
-tool.mask.closeAction.help = "-- ไม่มี
+tool.mask.action = "การดำเนินการปิด";
+tool.mask.action.help = "-- ไม่มี
 เพียงสกัดส่วนนี้แล้วปล่อยให้ส่วนที่สกัดออกมาเปิดออก
 
 -- เติม
@@ -2046,6 +2058,14 @@ tool.mask.closeAction.help = "-- ไม่มี
 
 -- เลเยอร์
 แยกความแตกต่างของเลเยอร์ (เฉพาะเมนูย่อยของเลเยอร์)";
+// Do not close the mesh (leave it open)
+tool.mask.action.none = "ไม่มี";
+// Close the mesh with a hole-filling algorithm
+tool.mask.action.fill = "เติม";
+// Close the mesh by adding a thickness on the surface
+tool.mask.action.shell = "เปลือก";
+// Close the mesh by using the layer data as a difference thickness
+tool.mask.action.layer = "เลเยอร์";
 
 // Transform/Matrix
 tool.matrix = "แมทริกซ์";
@@ -2147,6 +2167,8 @@ tool.smudge.quality.help = "จะเปลี่ยนความละเอ�
 
 // Shape for the tools: Trim / Split / Project / SelMask
 tool.shape = "รูปร่าง";
+// Auto-validate the drawn shape
+tool.shape.autoValidate = "";
 // Force the rectangle selection to be a square
 tool.shape.rectangleSquare = "สี่เหลี่ยม";
 // The selection rectangle will be centered around the cursor
@@ -2339,6 +2361,8 @@ topology.reproject.iterations = "";
 topology.reproject.relax = "";
 topology.reproject.relax.help = "";
 
+topology.manifold = "";
+topology.nonManifold = "";
 topology.manifold.clean = "";
 topology.manifold.title = "";
 topology.manifold.title.help = "";
@@ -2414,3 +2438,5 @@ version.fullFeatures = "- ซื้อครั้งเดียว
 - ไม่จำกัดเลเยอร์
 - บันทึกและโหลด
 - นำออกนำเข้า";
+
+meta.colon = "";

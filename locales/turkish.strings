@@ -7,6 +7,8 @@ confirm.ok = "Tamam";
 // Cancel something after being asked (Question? [answer, cancel])
 confirm.cancel = "Vazgeç";
 
+experimental = "";
+
 // common
 position.top = "Üst";
 position.right = "Sağ";
@@ -519,6 +521,8 @@ file.export.obj.colorAppend = "Verteks renklerini";
 file.export.obj.colorAppend.help = "Vertekslere renk bilgilerini ekler.
 
 Bazı 3D yazılımları bunu okuyabilir, ama hepsi okuyamaz.";
+file.export.obj.colorHexa = "";
+file.export.obj.colorHexa.help = "";
 
 file.export.stl = "STL dışa aktar";
 file.export.stl.warning = "Katmanlar ve ekstra boyama (pürüzlük ve metaliklik seviyesi ve maske) kaybolur.";
@@ -601,24 +605,20 @@ pressure.intensity = "Yoğunluk";
 pressure.average = "";
 pressure.average.help = "";
 
-// Customize whether finger and/or stylus can move the Camera
-gesture.cameraInteraction = "Kamera:";
-// Customize whether finger and/or stylus can sculpt on object
-gesture.sculptInteraction = "Şekillendir:";
-// Both the finger and the stylus can perform a certain action (move camera, sculpt, etc)
-gesture.interaction.fingerAndStylus = "Parmak ve Stylus";
-// Only the finger can perform a certain action (move camera, sculpt, etc)
-gesture.interaction.finger = "Parmak";
-// Only the stylus can perform a certain action (move camera, sculpt, etc)
-gesture.interaction.stylus = "Stylus";
-// Disable the action
-gesture.interaction.none = "Yok";
-// Allow the action for any inputs
-gesture.interaction.any = "Herhangi biri";
+// list of inputs allowing camera interaction
+gesture.camera = "Kamera";
+// list of inputs allowing sculpting interaction
+gesture.sculpt = "Şekillendir";
+// Finger/Touch input
+gesture.finger = "Parmak";
+// Stylus/Pencil
+gesture.stylus = "Stylus";
+// Mouse/Trackpad
+gesture.mouse = "";
 
 // long press to pick the color/material under the cursor
-gesture.materialPicking = "Malzeme seçimi";
-gesture.materialPicking.help = "Kanvasın üzerine uzun basılı tutarak, renk/malzeme seçici başlatılabilir.
+gesture.dropper = "Malzeme seçimi";
+gesture.dropper.help = "Kanvasın üzerine uzun basılı tutarak, renk/malzeme seçici başlatılabilir.
 
 Yalnız bunun sadece geçerli fırçada boyamanın etkin olması durumunda çalışacağı unutulmamalıdır.";
 
@@ -660,10 +660,11 @@ Aşağıdaki hareketlere olanak sağlar:
 - maskeyi netleştirmek için maskelenmemiş alana dokunun";
 // Hold the finger on screen to toggle between two tools: Mask and SelMask
 gesture.mask.longPress = "Uzun basılı tut (Maske ↔ MaskeSeç)";
-// Hold the finger on screen to toggle between two tools: Mask and SelMask
-gesture.mask.longPress.help = "Maske veya MaskeSeç etkin olduğunda, bu araçlar arasında geçiş yapmak için parmağınızı uzun basılı tutun.
+gesture.mask.holdStroke = "Darbe";
+gesture.mask.holdStroke.help = "";
+gesture.mask.holdIdle = "Araç";
+gesture.mask.holdIdle.help = "";
 
-Parmağınızı hareket ettirmeden uzun basılı tuttuğunuzda, yeni araç varsayılan maske kısayolu olarak kullanılır.";
 // Shortcut customization, choose the action that the shortcut will performan (select tool, etc)
 gesture.shortcut = "Kısayolu";
 
@@ -1064,11 +1065,11 @@ menu.about = "Hakkında";
 menu.debug = "Ayıkla";
 
 // Operation on the object (action)
-mesh.action = "İşlem";
+mesh.holes = "Delikleri";
 // If the object has holes, the algorithm will close them
-mesh.holeClose = "Delikleri kapat";
+mesh.holes.close = "Delikleri kapat";
 // Says how dense (number of triangles) the algorithm will use in order to fill holes
-mesh.holeDetail = "Detay";
+mesh.holes.detail = "Detay";
 // If the mesh has disconnected parts, it will be split/separated into objects
 mesh.separate = "Ayır";
 // When converting the object to a triplanar primitive, some object features will be lost
@@ -1487,11 +1488,14 @@ settings.stats.all = "Tam görünüm göster";
 // Grid
 settings.grid = "Izgara";
 // Cursor
+settings.cursor.title = "";
 settings.cursor.whileSculpting = "Şekillendirirken daireyi göster";
 // A small indicator dot
 settings.cursor.showDot = "Küçük noktayı göster";
 settings.cursor.showDot.help = "Nokta kamera eksen noktası olarak veya siz şekillendirme yaparken görünebilir.";
 settings.cursor.showRope = "Dengeleyici ipi göster";
+settings.cursor.indicator = "";
+settings.cursor.indicator.help = "";
 // Highlight (the object glows when we select it)
 settings.highlight.selection = "Seçimi vurgula";
 // Highlight settings
@@ -1704,22 +1708,34 @@ stroke.culling.help = "Bu seçenekte arkaya bakan verteksler göz ardı edilir.
 Bir ince geometrinin bir kısmını diğer tarafa etki etmeden boyamak istiyorsanız, bu faydalı olabilir.
 
 Şekillendirmede de kullanılabilir, ama bazı artifaktlar deneyimleyebilirsiniz.";
+// Infinite depth, move everything under the circle, disregarding depth
+stroke.silhouette = "";
 // Only sculpt the vertex that points toward the direction of the deformation
 stroke.sameSide = "Sadece aynı taraftaki verteks";
 stroke.sameSide.help = "Deformasyonun ters yönündeki verteksler göz ardı edilir.";
 stroke.onlyLasso = "Sadece lasso aracı için etkin olan ayarlar.";
 
 // Here sampling refers to the app gathering information under the mouse
-stroke.sampling = "";
-stroke.sampling.help = "";
+stroke.area = "";
+stroke.area.help = "";
 // Sampling radius size (percent)
-stroke.sampling.normal.radius = "";
+stroke.area.normal.radius = "";
 // Sampling radius size (percent)
-stroke.sampling.point.radius = "";
+stroke.area.point.radius = "";
 // Sampling averaging
-stroke.sampling.normal.average = "";
+stroke.area.normal.average = "";
 // Sampling averaging
-stroke.sampling.point.average = "";
+stroke.area.point.average = "";
+// Keep sharp edges
+stroke.keepSharp = "Keskin kenarları koru";
+stroke.keepSharp.help = ""
+
+// Only paint the part of the mesh above a certain height
+stroke.depthFilter = "Derinlik filtreleme";
+stroke.depthFilter.help = "";
+stroke.depthFilter.max = "";
+stroke.depthFilter.min = "";
+stroke.depthFilter.offset = "";
 
 // Module the intensity of the sculpting operation by using a falloff curve
 menu.falloff = "Düşüş";
@@ -1765,15 +1781,15 @@ stroke.alphaMidValue.help = "Deformasyon oluşmayan orta nokta değeri.
 // Synonymous: Scatter/Jitter/Randomize
 stroke.jitter = "";
 // Sculpt and paint along the brush stroke at regular spacing
-stroke.strokeTypeDot = "Nokta";
+stroke.type.dot = "Nokta";
 // Sculpt continuously
-stroke.strokeTypeDrag = "Sürükle";
+stroke.type.drag = "Sürükle";
 // Lock a region and move it around
-stroke.strokeTypeGrab = "Yakala";
+stroke.type.grab = "Yakala";
 // Lock a point of interest and sculpt it by changing the tool radius
-stroke.strokeTypeGrabRadius = "Yakala - dinamik yarıçap";
+stroke.type.grabRadius = "Yakala - dinamik yarıçap";
 // Lock a region and sculpt it by changing the tool intensity
-stroke.strokeTypeGrabIntensity = "Yakala - dinamik yoğunluk";
+stroke.type.grabIntensity = "Yakala - dinamik yoğunluk";
 
 // Symmetry
 symmetry = "Simetri";
@@ -1978,10 +1994,8 @@ tool.layer.removeInfluence.help = "Bu seçenek sadece seçili bir katman olduğu
 Darbeler üzerinde yer değiştirmeyi kısıtlamak için katman verilerini kullanır.";
 tool.layer.noLayerSelected = "Bu seçenek sadece bir katman seçili ise kullanılabilir";
 
-tool.flatten.warning = "Bu seçenekler deneyseldir ve ileride kaldırılabilir!";
 tool.flatten.planeLockOrigin = "Düzlem kökenini kilitle";
 tool.flatten.planeLockNormal = "Düzlem yönünü kilitle";
-tool.flatten.planeOffset = "Düzlem kaydırma";
 
 // Option for Tube, Lathe and Insert tool
 tool.syncInstance = "";
@@ -1993,8 +2007,6 @@ tool.smooth.stickyBorder = "Sınırda yapışkan verteks";
 tool.paint = "Boya";
 // Erase the painting
 tool.paint.erase = "Sil";
-// Only paint the part of the mesh above a certain height
-tool.paint.depthFilter = "Derinlik filtreleme";
 // Only paint the part of the mesh that was already painted in the layer (repainting)
 tool.paint.layerFilter = "Katman filtreleme";
 tool.paint.layerFilter.help = "Bu seçeneği sadece bir katmanın daha önceden boyanmış bir alanını yeniden boyamak istediğinizde kullanın.";
@@ -2009,31 +2021,31 @@ tool.mask.flipConnected = "Bağlı olanı ters çevir";
 tool.mask.blur = "Bulanıklık";
 // Sharpen the edge of the painted mask area
 tool.mask.sharpen = "Keskinleştir";
-// The thickness of the extracted mesh (from the painted mask)
-tool.mask.thickness = "Kabuk kalınlığı";
-// Smooth the border of the extracted mesh (from the painted mask)
+// Smooth the extracted mesh (from the painted mask)
 tool.mask.polish = "Sınırın düzlüğü";
-// Extract a new mesh from the painteed mask and carve/emboss the base mesh
-tool.mask.engraveEmboss = "Oyma/Kabartma";
+// Only smooth the border of the extracted mesh
+tool.mask.polishOnlyBorder = "";
+// topology of extracted mesh
+tool.mask.autoDivision = "";
+tool.mask.division = "";
+// The thickness of the extracted mesh (from the painted mask)
+tool.mask.thickness = "Kalınlık";
+// The extracted mesh has the same height everyone
+tool.mask.heightMask = "";
+tool.mask.heightMask.help = "";
+// Carve the mask into the surface
+tool.mask.carve = "Oyma";
 // Extract a new mesh from the painted mask
 tool.mask.extract = "Çıkar";
 // Extract two new mesh from the painted mask and from the unmasked area
 tool.mask.split = "Ayır";
 // How should we close the topology of the extracted object
-tool.mask.closeMask = "Kapatma eylemi (maskelenmiş):";
+tool.mask.split.mask = "Kapatma eylemi (maskelenmiş):";
 // How should we close the topology of the extracted object
-tool.mask.closeUnmask = "Kapatma eylemi (maskelenmemiş):";
+tool.mask.split.unmask = "Kapatma eylemi (maskelenmemiş):";
 // How should we close the topology of the extracted object
-tool.mask.closeAction = "Kapatma eylemi:";
-// Do not close the mesh (leave it open)
-tool.mask.closeActionNone = "Yok";
-// Close the mesh with a hole-filling algorithm
-tool.mask.closeActionFill = "Doldur";
-// Close the mesh by adding a thickness on the surface
-tool.mask.closeActionShell = "Kabuk";
-// Close the mesh by using the layer data as a difference thickness
-tool.mask.closeActionLayer = "Katman";
-tool.mask.closeAction.help = "-- Yok
+tool.mask.action = "Kapatma eylemi:";
+tool.mask.action.help = "-- Yok
 Sadece o kısmı çıkar ve çıkarılan kısmın açılmasına izin ver.
 
 -- Doldur
@@ -2045,6 +2057,14 @@ Kalınlık değerini kullanarak çıkarılan biçimi kapat.
 
 -- Katman
 Katman farkını çıkar (sadece katman alt menüsü).";
+// Do not close the mesh (leave it open)
+tool.mask.action.none = "Yok";
+// Close the mesh with a hole-filling algorithm
+tool.mask.action.fill = "Doldur";
+// Close the mesh by adding a thickness on the surface
+tool.mask.action.shell = "Kabuk";
+// Close the mesh by using the layer data as a difference thickness
+tool.mask.action.layer = "Katman";
 
 // Transform/Matrix
 tool.matrix = "Matris";
@@ -2146,6 +2166,8 @@ tool.smudge.quality.help = "Yansıtılan piksellerin çözünürlüğünü deği
 
 // Shape for the tools: Trim / Split / Project / SelMask
 tool.shape = "Biçim";
+// Auto-validate the drawn shape
+tool.shape.autoValidate = "";
 // Force the rectangle selection to be a square
 tool.shape.rectangleSquare = "Kare";
 // The selection rectangle will be centered around the cursor
@@ -2338,6 +2360,8 @@ topology.reproject.iterations = "";
 topology.reproject.relax = "";
 topology.reproject.relax.help = "";
 
+topology.manifold = "";
+topology.nonManifold = "";
 topology.manifold.clean = "";
 topology.manifold.title = "";
 topology.manifold.title.help = "";
@@ -2413,3 +2437,5 @@ version.fullFeatures = "- Tek sefer satın alma
 - Sınırsız katman
 - Kaydetme ve yükleme
 - İçe ve dışa aktarma";
+
+meta.colon = "";

@@ -7,6 +7,8 @@ confirm.ok = "ठीक";
 // Cancel something after being asked (Question? [answer, cancel])
 confirm.cancel = "रद्द करें";
 
+experimental = "";
+
 // common
 position.top = "ऊपर";
 position.right = "दायाँ";
@@ -521,6 +523,8 @@ file.export.obj.colorAppend = "शीर्ष रंग";
 file.export.obj.colorAppend.help = "रंग की जानकारी शीर्षों के बाद जोड़ें.
 
 कुछ 3डी सॉफ्टवेयर इसे पढ़ सकेंगे लेकिन सभी नहीं.";
+file.export.obj.colorHexa = "";
+file.export.obj.colorHexa.help = "";
 
 file.export.stl = "STL एक्सपोर्ट करें";
 file.export.stl.warning = "परतें और अतिरिक्त पेंटिंग (खुरदरापन धातुपन और मुखौटा) खो जाएँगे.";
@@ -604,24 +608,20 @@ pressure.intensity = "तीव्रता";
 pressure.average = "";
 pressure.average.help = "";
 
-// Customize whether finger and/or stylus can move the Camera
-gesture.cameraInteraction = "कैमरा:";
-// Customize whether finger and/or stylus can sculpt on object
-gesture.sculptInteraction = "गढ़ें:";
-// Both the finger and the stylus can perform a certain action (move camera, sculpt, etc)
-gesture.interaction.fingerAndStylus = "उंगली और स्टाइलस";
-// Only the finger can perform a certain action (move camera, sculpt, etc)
-gesture.interaction.finger = "उंगली";
-// Only the stylus can perform a certain action (move camera, sculpt, etc)
-gesture.interaction.stylus = "स्टाइलस";
-// Disable the action
-gesture.interaction.none = "नहीं";
-// Allow the action for any inputs
-gesture.interaction.any = "कोई भी";
+// list of inputs allowing camera interaction
+gesture.camera = "कैमरा";
+// list of inputs allowing sculpting interaction
+gesture.sculpt = "गढ़ें";
+// Finger/Touch input
+gesture.finger = "उंगली";
+// Stylus/Pencil
+gesture.stylus = "स्टाइलस";
+// Mouse/Trackpad
+gesture.mouse = "";
 
 // long press to pick the color/material under the cursor
-gesture.materialPicking = "मटीरीयल चुनाव";
-gesture.materialPicking.help = "कैनवस पर लंबे समय तक दबाकर रंग/मटीरीयल पिकर को ट्रिगर किया जा सकता है.
+gesture.dropper = "मटीरीयल चुनाव";
+gesture.dropper.help = "कैनवस पर लंबे समय तक दबाकर रंग/मटीरीयल पिकर को ट्रिगर किया जा सकता है.
 
 ध्यान दें कि यह केवल तभी काम करता है जब वर्तमान ब्रश में पेंटिंग सक्षम हो.";
 
@@ -663,10 +663,11 @@ gesture.mask.oneTap.help = "मुखौटा बटन शॉर्टकट �
 - मुखौटा को पैना करने के लिए बिना मुखौटा वाली जगह पर टैप करें";
 // Hold the finger on screen to toggle between two tools: Mask and SelMask
 gesture.mask.longPress = "देर तक दबाना (मुखौटा ↔ मुखौटाचयन)";
-// Hold the finger on screen to toggle between two tools: Mask and SelMask
-gesture.mask.longPress.help = "जब मुखौटा या मुखौटाचयन सक्रिय हो, तो उन टूल्स के बीच टॉगल करने के लिए उंगली को लंबे समय तक दबाएं.
+gesture.mask.holdStroke = "स्ट्रोक";
+gesture.mask.holdStroke.help = "";
+gesture.mask.holdIdle = "टूल";
+gesture.mask.holdIdle.help = "";
 
-यदि आप उंगली को हिलाए बिना देर तक दबाते हैं, तो नया टूल डिफ़ॉल्ट मुखौटा शॉर्टकट के रूप में उपयोग किया जाएगा.";
 // Shortcut customization, choose the action that the shortcut will performan (select tool, etc)
 gesture.shortcut = "शॉर्टकट";
 
@@ -1068,11 +1069,11 @@ menu.about = "जानकारी";
 menu.debug = "डीबग";
 
 // Operation on the object (action)
-mesh.action = "ऑपरेशन";
+mesh.holes = "छेद";
 // If the object has holes, the algorithm will close them
-mesh.holeClose = "छेद बंद करें";
+mesh.holes.close = "छेद बंद करें";
 // Says how dense (number of triangles) the algorithm will use in order to fill holes
-mesh.holeDetail = "विवरण";
+mesh.holes.detail = "विवरण";
 // If the mesh has disconnected parts, it will be split/separated into objects
 mesh.separate = "अलग करें";
 // When converting the object to a triplanar primitive, some object features will be lost
@@ -1494,11 +1495,14 @@ settings.stats.all = "पूरा दृश्य दिखाएँ";
 // Grid
 settings.grid = "जाल";
 // Cursor
+settings.cursor.title = "";
 settings.cursor.whileSculpting = "गढ़ने के दौरान वृत दिखाएँ";
 // A small indicator dot
 settings.cursor.showDot = "छोटा बिंदु दिखाएँ";
 settings.cursor.showDot.help = "बिंदु, कैमरा धुरी बिंदु के रूप में या जब आप गढ़ाई कर रहे हों तो दिखाई दे सकता है.";
 settings.cursor.showRope = "रस्सी स्थायीकारक दिखाएं";
+settings.cursor.indicator = "";
+settings.cursor.indicator.help = "";
 // Highlight (the object glows when we select it)
 settings.highlight.selection = "चयन हाईलाइट करें";
 // Highlight settings
@@ -1711,22 +1715,34 @@ stroke.culling.help = "यह विकल्प पीछे की ओर म�
 यह उपयोगी हो सकता है यदि आप दूसरे पक्ष को प्रभावित किए बिना एक पतली ज्यामिति के हिस्से को पेंट करना चाहते हैं.
 
 यह गढ़ाई के लिए भी काम करता है लेकिन आपको कुछ अनचाही कलाकृतियाँ दिख सकती हैं.";
+// Infinite depth, move everything under the circle, disregarding depth
+stroke.silhouette = "";
 // Only sculpt the vertex that points toward the direction of the deformation
 stroke.sameSide = "उसी तरफ़ का शीर्ष बिंदु";
 stroke.sameSide.help = "विरूपण की विपरीत दिशा में इंगित करने वाले शीर्ष बिंदुओं को अनदेखा करें.";
 stroke.onlyLasso = "सेटिंग्ज़ केवल लासो टूल के लिए सक्रिय हैं.";
 
 // Here sampling refers to the app gathering information under the mouse
-stroke.sampling = "";
-stroke.sampling.help = "";
+stroke.area = "";
+stroke.area.help = "";
 // Sampling radius size (percent)
-stroke.sampling.normal.radius = "";
+stroke.area.normal.radius = "";
 // Sampling radius size (percent)
-stroke.sampling.point.radius = "";
+stroke.area.point.radius = "";
 // Sampling averaging
-stroke.sampling.normal.average = "";
+stroke.area.normal.average = "";
 // Sampling averaging
-stroke.sampling.point.average = "";
+stroke.area.point.average = "";
+// Keep sharp edges
+stroke.keepSharp = "नुकीले किनारे बनाए रखें";
+stroke.keepSharp.help = ""
+
+// Only paint the part of the mesh above a certain height
+stroke.depthFilter = "डेप्थ फ़िल्टरिंग";
+stroke.depthFilter.help = "";
+stroke.depthFilter.max = "";
+stroke.depthFilter.min = "";
+stroke.depthFilter.offset = "";
 
 // Module the intensity of the sculpting operation by using a falloff curve
 menu.falloff = "फ़ॉलऑफ़";
@@ -1774,15 +1790,15 @@ stroke.alphaMidValue.help = "मध्य-बिंदु मान जिस �
 // Synonymous: Scatter/Jitter/Randomize
 stroke.jitter = "";
 // Sculpt and paint along the brush stroke at regular spacing
-stroke.strokeTypeDot = "बिंदु";
+stroke.type.dot = "बिंदु";
 // Sculpt continuously
-stroke.strokeTypeDrag = "घसीट";
+stroke.type.drag = "घसीट";
 // Lock a region and move it around
-stroke.strokeTypeGrab = "ग्रैब";
+stroke.type.grab = "ग्रैब";
 // Lock a point of interest and sculpt it by changing the tool radius
-stroke.strokeTypeGrabRadius = "ग्रैब - डायनामिक त्रिज्या";
+stroke.type.grabRadius = "ग्रैब - डायनामिक त्रिज्या";
 // Lock a region and sculpt it by changing the tool intensity
-stroke.strokeTypeGrabIntensity = "ग्रैब - डायनामिक तीव्रता";
+stroke.type.grabIntensity = "ग्रैब - डायनामिक तीव्रता";
 
 // Symmetry
 symmetry = "सममिति";
@@ -1987,10 +2003,8 @@ tool.layer.removeInfluence.help = "यह विकल्प केवल तभ
 यह स्ट्रोक पर विस्थापन को सीमित करने के लिए परत डेटा का उपयोग करेगा.";
 tool.layer.noLayerSelected = "यह विकल्प केवल तभी उपलब्ध होता है यदि एक परत चयनित हो";
 
-tool.flatten.warning = "ये विकल्प प्रायोगिक हैं और भविष्य में इन्हें हटाया जा सकता है!";
 tool.flatten.planeLockOrigin = "समतल का मूल लॉक करें";
 tool.flatten.planeLockNormal = "समतल की दिशा लॉक करें";
-tool.flatten.planeOffset = "समतल आफसेट";
 
 // Option for Tube, Lathe and Insert tool
 tool.syncInstance = "सिंक करें";
@@ -2002,8 +2016,6 @@ tool.smooth.stickyBorder = "सीमा पर चिपक़ु शीर्�
 tool.paint = "पेंट";
 // Erase the painting
 tool.paint.erase = "मिटाएँ";
-// Only paint the part of the mesh above a certain height
-tool.paint.depthFilter = "डेप्थ फ़िल्टरिंग";
 // Only paint the part of the mesh that was already painted in the layer (repainting)
 tool.paint.layerFilter = "परत फ़िल्टरिंग";
 tool.paint.layerFilter.help = "इस विकल्प का उपयोग करें यदि आप एक परत के पहले से पेंट किये गये क्षेत्र को फिर से केवल रंगना चाहते हैं.";
@@ -2018,31 +2030,31 @@ tool.mask.flipConnected = "मुखौटा उलटें (जुड़ा �
 tool.mask.blur = "धुंधलापन";
 // Sharpen the edge of the painted mask area
 tool.mask.sharpen = "पैना करें";
-// The thickness of the extracted mesh (from the painted mask)
-tool.mask.thickness = "आवरण मोटाई";
-// Smooth the border of the extracted mesh (from the painted mask)
+// Smooth the extracted mesh (from the painted mask)
 tool.mask.polish = "सीमा चिकनाई";
-// Extract a new mesh from the painteed mask and carve/emboss the base mesh
-tool.mask.engraveEmboss = "उत्कीर्ण / उभरी नक़्क़ाशी";
+// Only smooth the border of the extracted mesh
+tool.mask.polishOnlyBorder = "";
+// topology of extracted mesh
+tool.mask.autoDivision = "";
+tool.mask.division = "";
+// The thickness of the extracted mesh (from the painted mask)
+tool.mask.thickness = "मोटाई";
+// The extracted mesh has the same height everyone
+tool.mask.heightMask = "";
+tool.mask.heightMask.help = "";
+// Carve the mask into the surface
+tool.mask.carve = "उत्कीर्ण";
 // Extract a new mesh from the painted mask
 tool.mask.extract = "विसंकुचन";
 // Extract two new mesh from the painted mask and from the unmasked area
 tool.mask.split = "विभाजन";
 // How should we close the topology of the extracted object
-tool.mask.closeMask = "बंद करने की क्रिया (मुखौटा लगाएँ):";
+tool.mask.split.mask = "बंद करने की क्रिया (मुखौटा लगाएँ):";
 // How should we close the topology of the extracted object
-tool.mask.closeUnmask = "बंद करने की क्रिया (मुखौटा हटाएँ):";
+tool.mask.split.unmask = "बंद करने की क्रिया (मुखौटा हटाएँ):";
 // How should we close the topology of the extracted object
-tool.mask.closeAction = "बंद करने की क्रिया:";
-// Do not close the mesh (leave it open)
-tool.mask.closeActionNone = "नहीं";
-// Close the mesh with a hole-filling algorithm
-tool.mask.closeActionFill = "भरें";
-// Close the mesh by adding a thickness on the surface
-tool.mask.closeActionShell = "आवरण";
-// Close the mesh by using the layer data as a difference thickness
-tool.mask.closeActionLayer = "परत";
-tool.mask.closeAction.help = "-- कुछ भी नहीं
+tool.mask.action = "बंद करने की क्रिया:";
+tool.mask.action.help = "-- कुछ भी नहीं
 बस उस हिस्से को निकालें और निकाले गए हिस्से को खुलने दें.
 
 -- भरें
@@ -2054,6 +2066,14 @@ tool.mask.closeAction.help = "-- कुछ भी नहीं
 
 -- परत
 परत अंतर निकालें (केवल परत उप-मेनू).";
+// Do not close the mesh (leave it open)
+tool.mask.action.none = "नहीं";
+// Close the mesh with a hole-filling algorithm
+tool.mask.action.fill = "भरें";
+// Close the mesh by adding a thickness on the surface
+tool.mask.action.shell = "आवरण";
+// Close the mesh by using the layer data as a difference thickness
+tool.mask.action.layer = "परत";
 
 // Transform/Matrix
 tool.matrix = "मैट्रिक्स";
@@ -2155,6 +2175,8 @@ tool.smudge.quality.help = "यह प्रक्षेपित पिक्�
 
 // Shape for the tools: Trim / Split / Project / SelMask
 tool.shape = "आकृति";
+// Auto-validate the drawn shape
+tool.shape.autoValidate = "";
 // Force the rectangle selection to be a square
 tool.shape.rectangleSquare = "चौकोर";
 // The selection rectangle will be centered around the cursor
@@ -2347,6 +2369,8 @@ topology.reproject.iterations = "";
 topology.reproject.relax = "";
 topology.reproject.relax.help = "";
 
+topology.manifold = "";
+topology.nonManifold = "";
 topology.manifold.clean = "";
 topology.manifold.title = "";
 topology.manifold.title.help = "";
@@ -2422,3 +2446,5 @@ version.fullFeatures = "- एक मुश्त खरीद
 - असीमित परतें
 - सहेजें और लोड करें
 - एक्सपोर्ट और इंपोर्ट";
+
+meta.colon = "";
