@@ -26,6 +26,8 @@ item.new = "新規";
 item.rename = "名前を変更";
 // Add a new item (object, tool, project, etc)
 item.add = "追加";
+// Update an item image with a new image (synonym: Update)
+item.replace = "";
 // Save an item (object, tool, etc)
 item.save = "保存";
 item.save.confirm = "保存しますか？";
@@ -366,6 +368,11 @@ debug.uvBFF = "BFF UVを追加";
 debug.uvBFF.help = "代替のラップ解除方法 (Boundary First Flattening) を追加します。
 
 BFFは、メッシュトポロジーがディスクまたは球と異なる場合、オーバーラップを生成します。 ご注意ください。";
+
+debug.quadriflow = "";
+debug.quadriflow.help = "";
+
+
 // Debug option, display an window with some debugging logs
 debug.logs = "ログ";
 // Debug option, overrides the rendering to display the depth buffer
@@ -393,7 +400,7 @@ file.project = "プロジェクト";
 file.project.save = "保存";
 // E.g: Save "my_project"?
 file.project.save.confirm = "$0を保存しますか？";
-// Save to another project (either new one or overriding existing one)
+// Overwrite another project
 file.project.saveAs = "別名で保存";
 // E.g: Overwrite "my_other_project"?
 file.project.saveAs.confirm = "$0を上書きしますか？";
@@ -725,12 +732,6 @@ history.state.voxelRemesh = "ボクセルのリメッシュ";
 history.state.surfaceRemesh = "サーフェスのリメッシュ";
 // Shown during undo/redo
 history.state.multiresLevel = "解像度の変更";
-// Shown during undo/redo
-history.state.multiresToDynamic = "マルチレゾからDynTopo";
-// Shown during undo/redo (mesh type conversion)
-history.state.meshDynamicToStatic = "DynTopoから静的";
-// Shown during undo/redo (mesh type conversion)
-history.state.meshStaticToDynamic = "静的からDynTopo";
 
 // Debugging/Inspect object material (view channel separately color, roughness, normal, uv, etc)
 inspector = "";
@@ -1014,8 +1015,8 @@ menu.multires = "マルチレゾ";
 menu.voxel = "ボクセル";
 // Menu name
 menu.dynTopo = "DynTopo";
-// Menu name
-menu.topology = "デシメイト/UV...";
+// Menu name (Synonym: Misc, Other)
+menu.topology = "";
 // Menu name
 menu.primitive = "プリミティブ";
 // Menu name
@@ -1080,11 +1081,11 @@ mesh.triplanar.cubic = "強制的に立方体を作成";
 // Covnert an object to a triplanar primitive
 mesh.triplanar.convert = "変換";
 // Static object means "static topology"
-mesh.typeStatic = "メッシュ";
+mesh.static = "メッシュ";
 // See glossary
-mesh.typeMultiresolution = "マルチレゾリューション";
+mesh.multires = "マルチレゾリューション";
 // Dynamic topology
-mesh.typeDynamic = "DynTopo";
+mesh.dynamic = "DynTopo";
 
 // Disable this option to have per-tool material settings (instead of shared settings)
 paint.useGlobal = "グローバルマテリアル";
@@ -1212,7 +1213,6 @@ postprocess.curve.luminance = "メイン";
 postprocess.curve.red = "レッド";
 postprocess.curve.green = "グリーン";
 postprocess.curve.blue = "ブルー";
-postprocess.curve.reset = "リセット";
 // Reset color grading curves
 postprocess.curve.resetAll = "すべてをリセット";
 // https://en.wikipedia.org/wiki/Chromatic_aberration
@@ -1365,6 +1365,8 @@ primitive.hasHole = "穴があります";
 primitive.radiusSync = "同じ半径";
 primitive.radiusStart = "半径の始点";
 primitive.radiusEnd = "半径の終点";
+// Curve profile (synonym: profile, curve)
+primitive.profile = "";
 
 // Singular of Repeaters (Nodes that make many copies of its children (type of mirror/curve/array/radial))
 repeater = "";
@@ -1472,6 +1474,9 @@ settings.snapCube = "方向キューブ";
 settings.snapCube.bottom = "下";
 // Move the navigation cube on the left side of the screen
 settings.snapCube.left = "左";
+// Flip the camera (rotate 180° to see the other side)
+settings.snapCube.flip = "";
+settings.snapCube.flip.help = "";
 // Alignment (can be auto/on/off)
 settings.snapCube.align = "";
 settings.snapCube.align.help = "";
@@ -1700,9 +1705,22 @@ stroke.culling.help = "このオプションは背面を向いている頂点は
 // Only sculpt the vertex that points toward the direction of the deformation
 stroke.sameSide = "同じ側面の頂点のみ";
 stroke.sameSide.help = "デフォーメーションの反対方向を指す頂点を無視します。";
+stroke.onlyLasso = "設定は投げなわツールにのみ有効です。";
+
+// Here sampling refers to the app gathering information under the mouse
+stroke.sampling = "";
+stroke.sampling.help = "";
+// Sampling radius size (percent)
+stroke.sampling.normal.radius = "";
+// Sampling radius size (percent)
+stroke.sampling.point.radius = "";
+// Sampling averaging
+stroke.sampling.normal.average = "";
+// Sampling averaging
+stroke.sampling.point.average = "";
+
 // Module the intensity of the sculpting operation by using a falloff curve
 menu.falloff = "フォールオフ";
-stroke.onlyLasso = "設定は投げなわツールにのみ有効です。";
 // Alpha
 menu.alpha = "アルファ";
 // Invert the pixel (black <-> white)
@@ -1961,8 +1979,6 @@ tool.layer.noLayerSelected = "このオプションはレイヤーが選択さ�
 tool.flatten.warning = "これらのオプションは実験的で、今後削除される可能性があります！";
 tool.flatten.planeLockOrigin = "平面の原点をロック";
 tool.flatten.planeLockNormal = "平面の方向をロック";
-tool.flatten.planeAverageOrigin = "平面の原点を平均する";
-tool.flatten.planeAverageNormal = "平面の方向を平均";
 tool.flatten.planeOffset = "平面のオフセット";
 
 // Option for Tube, Lathe and Insert tool
@@ -2105,7 +2121,7 @@ tool.gizmo.tap.help = "このオプションはカスタム回転軸モードで
 -- 中間点
 最初の2つの交点を平均した場所でGizmoを移動します。";
 tool.gizmo.tap.none = "なし";
-tool.gizmo.tap.align = "";
+tool.gizmo.tap.normal = "標準";
 tool.gizmo.tap.first = "最初の交点";
 tool.gizmo.tap.medial = "中間点";
 
@@ -2176,6 +2192,8 @@ topology.multires.down = "";
 // Synonym: Flat subdivision
 topology.multires.linear = "線分割";
 topology.multires.linear.help = "スムージングを適用しないでメッシュを単純に分割します。";
+// Create a new object by recomputing a new topology
+topology.remesh = "リメッシュ";
 // Create a new object by recomputing a new topology, by using voxels (see Glossary)
 topology.voxel = "ボクセルをリメッシュ";
 topology.voxel.help = "グリッドでメッシュをサンプリングすることでリメッシュします。
@@ -2184,7 +2202,6 @@ topology.voxel.help = "グリッドでメッシュをサンプリングするこ
 
 レイヤーはリメッシュの後、再度プロジェクトされますが、クオリティは下がります。";
 topology.voxel.resolution = "解像度";
-topology.voxel.remesh = "リメッシュ";
 topology.voxel.sharp = "シャープなエッジを残す";
 topology.voxel.sharp.help = "このオプションは単純なプリミティブのブーリアンの操作で特に便利です。
 
@@ -2257,7 +2274,6 @@ topology.decimate.title.help = "ディテールをできるだけ多く残した
 注意：マスク部分はデシメイトされません。 ";
 // Synonym: Simplify (Decimate reduce the number of triangles/quads while retaining details as much as possible)
 topology.decimate = "デシメイト";
-topology.decimateTargetFaces = "ターゲットの三角形";
 topology.decimatePaintWeight = "ペイントを保持";
 topology.decimatePaintWeight.help = "値が高いほどペイントの保持を試みます。
 
@@ -2266,32 +2282,42 @@ topology.decimateUniform = "面を均一化";
 topology.decimateUniform.help = "値が高いほど、同じようなサイズの三角形を出力します。";
 topology.decimatePreserveBorders = "";
 topology.decimatePreserveBorders.help = "";
+// Target a certain number of triangles, faces and vertices
+topology.target.triangles = "ターゲットの三角形";
+topology.target.faces = "";
+topology.target.quads = "";
+topology.target.points = "";
+// Quad remesher
+topology.qremesh = "";
+topology.qremesh.angle = "";
+topology.qremesh.border = "";
+topology.qremesh.onlyQuad = "";
+topology.qremesh.hole = "";
+topology.qremesh.hole.help = ""
 
-// Unwrapping means compute UV (texture coordinates), it allows the object to receive on texture (wrap the texturing on the object)
-topology.uv.title = "UV自動展開";
-// UV Unwrapping
-topology.uvAtlas = "Atlasを展開";
+// Unwrapping means compute UV (texture coordinates), with uvs you can appliy (wrap) a texture onto the model
+topology.uv.title = "UV展開";
+// UV Unwrap but as a Verb
+topology.uv.unwrap = "展開";
 // The operation can be very slow
-topology.uvAtlas.warning = "非常に低くすることが可能です。ターゲット <100k 頂点！";
-// UV Unwrapping (BFF best left untranslated, stands for Boundary First Flattening)
-topology.uvBFF = "Bffを展開";
+topology.uv.atlas.warning = "非常に低くすることが可能です。ターゲット <100k 頂点！";
 // Handles are topological holes (synonym: genus, hole)
-topology.uvBFF.warning = "メッシュにハンドルがある場合、オーバーラップを持てます！";
+topology.uv.bff.warning = "メッシュにハンドルがある場合、オーバーラップを持てます！";
 // Synonym: Point count? Singularity count ?
-topology.uvBFFCones = "円錐の数";
-topology.uvBFFCones.help = "値が高いほど、複雑なオブジェクトの歪みを軽減します。
+topology.uv.bff.cones = "円錐の数";
+topology.uv.bff.help = "値が高いほど、複雑なオブジェクトの歪みを軽減します。
 
 値が高いと計算にかかる時間は長くなります。";
-topology.uvDelete = "UVを削除";
+topology.uv.delete = "UVを削除";
 
 // Transfer the vertex painting in the texture, bake means "create texture (from mesh data)"
-topology.bake.title = "テクスチャー・ベイク";
+topology.bake.title = "ベイク";
 // Bake here means "create texture (from mesh data)"
 topology.bake.title.help = "";
 // Bake here means "create texture (from mesh data)"
 topology.bakeSelf = "";
 // Bake here means "create texture (from another mesh data)"
-topology.bakeHires = "";
+topology.bakeOther = "";
 topology.bakeResolution = "解像度";
 // Cage is a specific term, synonyom: "Bake offset"
 topology.bakeOffset = "";
@@ -2304,11 +2330,15 @@ topology.reproject.title.help = "";
 // tweaking value
 topology.reproject.rayBias = "";
 topology.reproject.rayBias.help = "";
+topology.reproject.normalOffset = "";
 // number of iteration the algorithm will take
 topology.reproject.iterations = "";
+topology.reproject.relax = "";
+topology.reproject.relax.help = "";
 
-topology.forceManifold = "";
-topology.forceManifold.help = "";
+topology.manifold.clean = "";
+topology.manifold.title = "";
+topology.manifold.title.help = "";
 
 // Reset key-bindings/shortcuts
 binding.reset = "バインドをリセット";

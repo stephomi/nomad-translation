@@ -26,6 +26,8 @@ item.new = "Yeni";
 item.rename = "Yeniden Adlandır";
 // Add a new item (object, tool, project, etc)
 item.add = "Ekle";
+// Update an item image with a new image (synonym: Update)
+item.replace = "";
 // Save an item (object, tool, etc)
 item.save = "Kaydet";
 item.save.confirm = "Kaydedilsin mi?";
@@ -366,6 +368,11 @@ debug.uvBFF = "BFF UV'leri ekle";
 debug.uvBFF.help = "Alternatif hesaplama yöntemi ekler (boundary first flattening - BFF).
 
 Ağ örgüsü topolojiniz disk ya da küreden farklıysa, BFF'in çakışmalar oluşturacağı unutulmamalıdır.";
+
+debug.quadriflow = "";
+debug.quadriflow.help = "";
+
+
 // Debug option, display an window with some debugging logs
 debug.logs = "Günlük kayıtları";
 // Debug option, overrides the rendering to display the depth buffer
@@ -393,7 +400,7 @@ file.project = "Proje";
 file.project.save = "Kaydet";
 // E.g: Save "my_project"?
 file.project.save.confirm = "$0 kaydedilsin mi?";
-// Save to another project (either new one or overriding existing one)
+// Overwrite another project
 file.project.saveAs = "Farklı kaydet";
 // E.g: Overwrite "my_other_project"?
 file.project.saveAs.confirm = "$0 üstüne yazılsın mı?";
@@ -724,12 +731,6 @@ history.state.voxelRemesh = "Voksel yeniden ağ örgülendirme";
 history.state.surfaceRemesh = "Yüzey yeniden ağ örgülendirme";
 // Shown during undo/redo
 history.state.multiresLevel = "Çözünürlük değişimi";
-// Shown during undo/redo
-history.state.multiresToDynamic = "Çoklu Çözünürlükten DinTopo'ya";
-// Shown during undo/redo (mesh type conversion)
-history.state.meshDynamicToStatic = "DinTopo'dan Statiğe";
-// Shown during undo/redo (mesh type conversion)
-history.state.meshStaticToDynamic = "Statikten DinTopo'ya";
 
 // Debugging/Inspect object material (view channel separately color, roughness, normal, uv, etc)
 inspector = "";
@@ -1013,8 +1014,8 @@ menu.multires = "Çoklu Çözünürlük";
 menu.voxel = "Voksel";
 // Menu name
 menu.dynTopo = "DinTopo";
-// Menu name
-menu.topology = "Azalt/UV...";
+// Menu name (Synonym: Misc, Other)
+menu.topology = "";
 // Menu name
 menu.primitive = "Primitif";
 // Menu name
@@ -1079,11 +1080,11 @@ mesh.triplanar.cubic = "Küpe zorla";
 // Covnert an object to a triplanar primitive
 mesh.triplanar.convert = "Dönüştür";
 // Static object means "static topology"
-mesh.typeStatic = "Doku Örgüsü";
+mesh.static = "Doku Örgüsü";
 // See glossary
-mesh.typeMultiresolution = "Çoklu Çözünürlük";
+mesh.multires = "Çoklu Çözünürlük";
 // Dynamic topology
-mesh.typeDynamic = "DinTopo";
+mesh.dynamic = "DinTopo";
 
 // Disable this option to have per-tool material settings (instead of shared settings)
 paint.useGlobal = "Global malzeme";
@@ -1212,7 +1213,6 @@ postprocess.curve.luminance = "Ana";
 postprocess.curve.red = "Kırmızı";
 postprocess.curve.green = "Yeşil";
 postprocess.curve.blue = "Mavi";
-postprocess.curve.reset = "Sıfırla";
 // Reset color grading curves
 postprocess.curve.resetAll = "Tümünü Sıfırla";
 // https://en.wikipedia.org/wiki/Chromatic_aberration
@@ -1365,6 +1365,8 @@ primitive.hasHole = "Deliği var";
 primitive.radiusSync = "Aynı yarıçap";
 primitive.radiusStart = "Yarıçap başlangıcı";
 primitive.radiusEnd = "Yarıçap sonu";
+// Curve profile (synonym: profile, curve)
+primitive.profile = "";
 
 // Singular of Repeaters (Nodes that make many copies of its children (type of mirror/curve/array/radial))
 repeater = "";
@@ -1472,6 +1474,9 @@ settings.snapCube = "Yaslama küpü";
 settings.snapCube.bottom = "Alt";
 // Move the navigation cube on the left side of the screen
 settings.snapCube.left = "Sol";
+// Flip the camera (rotate 180° to see the other side)
+settings.snapCube.flip = "";
+settings.snapCube.flip.help = "";
 // Alignment (can be auto/on/off)
 settings.snapCube.align = "";
 settings.snapCube.align.help = "";
@@ -1702,9 +1707,22 @@ Bir ince geometrinin bir kısmını diğer tarafa etki etmeden boyamak istiyorsa
 // Only sculpt the vertex that points toward the direction of the deformation
 stroke.sameSide = "Sadece aynı taraftaki verteks";
 stroke.sameSide.help = "Deformasyonun ters yönündeki verteksler göz ardı edilir.";
+stroke.onlyLasso = "Sadece lasso aracı için etkin olan ayarlar.";
+
+// Here sampling refers to the app gathering information under the mouse
+stroke.sampling = "";
+stroke.sampling.help = "";
+// Sampling radius size (percent)
+stroke.sampling.normal.radius = "";
+// Sampling radius size (percent)
+stroke.sampling.point.radius = "";
+// Sampling averaging
+stroke.sampling.normal.average = "";
+// Sampling averaging
+stroke.sampling.point.average = "";
+
 // Module the intensity of the sculpting operation by using a falloff curve
 menu.falloff = "Düşüş";
-stroke.onlyLasso = "Sadece lasso aracı için etkin olan ayarlar.";
 // Alpha
 menu.alpha = "Alfa";
 // Invert the pixel (black <-> white)
@@ -1963,8 +1981,6 @@ tool.layer.noLayerSelected = "Bu seçenek sadece bir katman seçili ise kullanı
 tool.flatten.warning = "Bu seçenekler deneyseldir ve ileride kaldırılabilir!";
 tool.flatten.planeLockOrigin = "Düzlem kökenini kilitle";
 tool.flatten.planeLockNormal = "Düzlem yönünü kilitle";
-tool.flatten.planeAverageOrigin = "Düzlem kökenini ortala";
-tool.flatten.planeAverageNormal = "Düzlem yönünü ortala";
 tool.flatten.planeOffset = "Düzlem kaydırma";
 
 // Option for Tube, Lathe and Insert tool
@@ -2107,7 +2123,7 @@ Gizmoyu ilk kesişmeye hareket ettirir.
 -- Ortaya batırma
 Gizmoyu ilk iki kesişmenin ortalamasına götürür.";
 tool.gizmo.tap.none = "Yok";
-tool.gizmo.tap.align = "";
+tool.gizmo.tap.normal = "Normal";
 tool.gizmo.tap.first = "İlk vuruş";
 tool.gizmo.tap.medial = "Ortaya batırma";
 
@@ -2178,6 +2194,8 @@ topology.multires.down = "";
 // Synonym: Flat subdivision
 topology.multires.linear = "Lineer altbölümleme";
 topology.multires.linear.help = "Hiçbir düzleştirme uygulamadan sadece ağ örgüsünü alt bölümlere ayırır";
+// Create a new object by recomputing a new topology
+topology.remesh = "Yeniden ağ örgülendirme";
 // Create a new object by recomputing a new topology, by using voxels (see Glossary)
 topology.voxel = "Voksel yeniden ağ örgülendirme";
 topology.voxel.help = "Ağ örgüsünü bir ızgaraya örnekleyerek yeniden ağ örgülendirme.
@@ -2186,7 +2204,6 @@ Nesne kapalı (su geçirmez) değilse, önce bir delik doldurma algoritması uyg
 
 Yeniden ağ örgülendirmeden sonra katmanlar yeniden yansıtılır, ama kalite düşer.";
 topology.voxel.resolution = "Çözünürlük";
-topology.voxel.remesh = "Yeniden ağ örgülendirme";
 topology.voxel.sharp = "Keskin kenarları koru";
 topology.voxel.sharp.help = "Bu seçenek en çok basit primitif boolean işlemleri için faydalıdır.
 
@@ -2259,7 +2276,6 @@ Ancak, şekillendirmeye devam etmek istiyorsanız, eşit olmayan üçgenler orta
 Maskelenmiş alanda azaltım olmayacağı unutulmamalıdır.";
 // Synonym: Simplify (Decimate reduce the number of triangles/quads while retaining details as much as possible)
 topology.decimate = "Azalt";
-topology.decimateTargetFaces = "Hedef üçgenler";
 topology.decimatePaintWeight = "Boyamayı koru";
 topology.decimatePaintWeight.help = "Daha yüksek değer boyamayı korumaya çalışır.
 
@@ -2268,32 +2284,42 @@ topology.decimateUniform = "Tek tip yüzler";
 topology.decimateUniform.help = "Daha yüksek değerler benzer boyutlarda üçgenler çıkarır.";
 topology.decimatePreserveBorders = "";
 topology.decimatePreserveBorders.help = "";
+// Target a certain number of triangles, faces and vertices
+topology.target.triangles = "Hedef üçgenler";
+topology.target.faces = "";
+topology.target.quads = "";
+topology.target.points = "";
+// Quad remesher
+topology.qremesh = "";
+topology.qremesh.angle = "";
+topology.qremesh.border = "";
+topology.qremesh.onlyQuad = "";
+topology.qremesh.hole = "";
+topology.qremesh.hole.help = ""
 
-// Unwrapping means compute UV (texture coordinates), it allows the object to receive on texture (wrap the texturing on the object)
-topology.uv.title = "UV Otomatik hesapla";
-// UV Unwrapping
-topology.uvAtlas = "UV (Atlas) hesapla";
+// Unwrapping means compute UV (texture coordinates), with uvs you can appliy (wrap) a texture onto the model
+topology.uv.title = "UV hesapla";
+// UV Unwrap but as a Verb
+topology.uv.unwrap = "Hesapla";
 // The operation can be very slow
-topology.uvAtlas.warning = "Çok yavaş olabilir, hedef < 100k verteks!";
-// UV Unwrapping (BFF best left untranslated, stands for Boundary First Flattening)
-topology.uvBFF = "Bff hesapla";
+topology.uv.atlas.warning = "Çok yavaş olabilir, hedef < 100k verteks!";
 // Handles are topological holes (synonym: genus, hole)
-topology.uvBFF.warning = "Ağ örgüsünün tutma yerleri varsa, örtüşmeler olabilir!";
+topology.uv.bff.warning = "Ağ örgüsünün tutma yerleri varsa, örtüşmeler olabilir!";
 // Synonym: Point count? Singularity count ?
-topology.uvBFFCones = "Koni sayısı";
-topology.uvBFFCones.help = "Daha yüksek değer karmaşık nesnelerde bozulmayı azaltır.
+topology.uv.bff.cones = "Koni sayısı";
+topology.uv.bff.help = "Daha yüksek değer karmaşık nesnelerde bozulmayı azaltır.
 
 Daha yüksek değerlerde hesaplama süresi daha uzun olur.";
-topology.uvDelete = "UV'leri sil";
+topology.uv.delete = "UV'leri sil";
 
 // Transfer the vertex painting in the texture, bake means "create texture (from mesh data)"
-topology.bake.title = "Verteks boyamayı aktar";
+topology.bake.title = "Pişir";
 // Bake here means "create texture (from mesh data)"
 topology.bake.title.help = "";
 // Bake here means "create texture (from mesh data)"
 topology.bakeSelf = "";
 // Bake here means "create texture (from another mesh data)"
-topology.bakeHires = "";
+topology.bakeOther = "";
 topology.bakeResolution = "Çözünürlük";
 // Cage is a specific term, synonyom: "Bake offset"
 topology.bakeOffset = "";
@@ -2306,11 +2332,15 @@ topology.reproject.title.help = "";
 // tweaking value
 topology.reproject.rayBias = "";
 topology.reproject.rayBias.help = "";
+topology.reproject.normalOffset = "";
 // number of iteration the algorithm will take
 topology.reproject.iterations = "";
+topology.reproject.relax = "";
+topology.reproject.relax.help = "";
 
-topology.forceManifold = "";
-topology.forceManifold.help = "";
+topology.manifold.clean = "";
+topology.manifold.title = "";
+topology.manifold.title.help = "";
 
 // Reset key-bindings/shortcuts
 binding.reset = "Atamaları sıfırla";

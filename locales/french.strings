@@ -26,6 +26,8 @@ item.new = "Nouveau";
 item.rename = "Renommer";
 // Add a new item (object, tool, project, etc)
 item.add = "Ajouter";
+// Update an item image with a new image (synonym: Update)
+item.replace = "";
 // Save an item (object, tool, etc)
 item.save = "Enregistrer";
 item.save.confirm = "Confirmer l'enregistrement ?";
@@ -366,6 +368,11 @@ debug.uvBFF = "Ajouter des UV BFF";
 debug.uvBFF.help = "Ajoutez une autre méthode de dépliage (Boundary First Flattening).
 
 Notez que BFF produira des chevauchements si la topologie de votre maillage n'est ni un disque ni une sphère.";
+
+debug.quadriflow = "";
+debug.quadriflow.help = "";
+
+
 // Debug option, display an window with some debugging logs
 debug.logs = "Logs";
 // Debug option, overrides the rendering to display the depth buffer
@@ -393,7 +400,7 @@ file.project = "Projet";
 file.project.save = "Enregistrer";
 // E.g: Save "my_project"?
 file.project.save.confirm = "Enregistrer $0 ?";
-// Save to another project (either new one or overriding existing one)
+// Overwrite another project
 file.project.saveAs = "Enregistrer sous";
 // E.g: Overwrite "my_other_project"?
 file.project.saveAs.confirm = "Remplacer $0 ?";
@@ -725,12 +732,6 @@ history.state.voxelRemesh = "Remaillage des voxels";
 history.state.surfaceRemesh = "Remaillage de surface";
 // Shown during undo/redo
 history.state.multiresLevel = "Changement de résolution";
-// Shown during undo/redo
-history.state.multiresToDynamic = "Multirésolution vers topologie dynamique";
-// Shown during undo/redo (mesh type conversion)
-history.state.meshDynamicToStatic = "TopoDyn vers Statique";
-// Shown during undo/redo (mesh type conversion)
-history.state.meshStaticToDynamic = "Statique vers TopoDyn";
 
 // Debugging/Inspect object material (view channel separately color, roughness, normal, uv, etc)
 inspector = "";
@@ -1013,9 +1014,9 @@ menu.multires = "Multirésolution";
 // Menu name
 menu.voxel = "Voxel";
 // Menu name
-menu.dynTopo = "TopoDyn";
-// Menu name
-menu.topology = "Déci/UV...";
+menu.dynTopo = "DynTopo";
+// Menu name (Synonym: Misc, Other)
+menu.topology = "";
 // Menu name
 menu.primitive = "Primitive";
 // Menu name
@@ -1080,11 +1081,11 @@ mesh.triplanar.cubic = "Mettre en cube";
 // Covnert an object to a triplanar primitive
 mesh.triplanar.convert = "Convertir";
 // Static object means "static topology"
-mesh.typeStatic = "Maillage";
+mesh.static = "Maillage";
 // See glossary
-mesh.typeMultiresolution = "Multirésolution";
+mesh.multires = "Multirés";
 // Dynamic topology
-mesh.typeDynamic = "TopoDyn";
+mesh.dynamic = "DynTopo";
 
 // Disable this option to have per-tool material settings (instead of shared settings)
 paint.useGlobal = "Matériau général";
@@ -1213,7 +1214,6 @@ postprocess.curve.luminance = "Principale";
 postprocess.curve.red = "Rouge";
 postprocess.curve.green = "Vert";
 postprocess.curve.blue = "Bleu";
-postprocess.curve.reset = "Réinitialiser";
 // Reset color grading curves
 postprocess.curve.resetAll = "Tout réinitialiser";
 // https://en.wikipedia.org/wiki/Chromatic_aberration
@@ -1366,6 +1366,8 @@ primitive.hasHole = "Comporte un trou";
 primitive.radiusSync = "Même rayon";
 primitive.radiusStart = "Début du rayon";
 primitive.radiusEnd = "Fin du rayon";
+// Curve profile (synonym: profile, curve)
+primitive.profile = "";
 
 // Singular of Repeaters (Nodes that make many copies of its children (type of mirror/curve/array/radial))
 repeater = "";
@@ -1473,6 +1475,9 @@ settings.snapCube = "Cube d'alignement";
 settings.snapCube.bottom = "En bas";
 // Move the navigation cube on the left side of the screen
 settings.snapCube.left = "A gauche";
+// Flip the camera (rotate 180° to see the other side)
+settings.snapCube.flip = "";
+settings.snapCube.flip.help = "";
 // Alignment (can be auto/on/off)
 settings.snapCube.align = "";
 settings.snapCube.align.help = "";
@@ -1703,9 +1708,22 @@ Elle fonctionne également pour la sculpture, mais risque de générer quelques 
 // Only sculpt the vertex that points toward the direction of the deformation
 stroke.sameSide = "Sommet du même côté uniquement";
 stroke.sameSide.help = "Ignorez les sommets qui sont dans la direction opposée à la déformation.";
+stroke.onlyLasso = "Réglages actifs uniquement pour l'outil Lasso.";
+
+// Here sampling refers to the app gathering information under the mouse
+stroke.sampling = "";
+stroke.sampling.help = "";
+// Sampling radius size (percent)
+stroke.sampling.normal.radius = "";
+// Sampling radius size (percent)
+stroke.sampling.point.radius = "";
+// Sampling averaging
+stroke.sampling.normal.average = "";
+// Sampling averaging
+stroke.sampling.point.average = "";
+
 // Module the intensity of the sculpting operation by using a falloff curve
 menu.falloff = "Atténuation";
-stroke.onlyLasso = "Réglages actifs uniquement pour l'outil Lasso.";
 // Alpha
 menu.alpha = "Alpha";
 // Invert the pixel (black <-> white)
@@ -1831,7 +1849,7 @@ symmetry.edit.help = "Vous pouvez définir librement le plan de symétrie.
 Cette fonctionnalité est expérimentale et nous vous déconseillons de l'utiliser.";
 
 // Ideally <10 chars
-tool.dynTopo = "TopoDyn";
+tool.dynTopo = "DynTopo";
 // Ideally <10 chars (Symmetry)
 tool.symmetry = "Sym";
 // Ideally <10 chars (Mirror primitive)
@@ -1845,7 +1863,7 @@ tool.brush = "Pinceau";
 // Ideally <10 chars
 tool.move = "Déplacer";
 // Ideally <10 chars (Normal vector, perpendicular to surface)
-tool.move.normal = "Normal";
+tool.move.normal = "Normale";
 // Ideally <10 chars
 tool.drag = "Glisser";
 // Ideally <10 chars (Smooth the surface by erasing the details)
@@ -1964,8 +1982,6 @@ tool.layer.noLayerSelected = "Cette option n'est disponible que si un calque est
 tool.flatten.warning = "Ces options sont expérimentales et peuvent à tout moment être supprimées !";
 tool.flatten.planeLockOrigin = "Verrouiller l'origine du plan";
 tool.flatten.planeLockNormal = "Verrouiller la direction du plan";
-tool.flatten.planeAverageOrigin = "Faire la moyenne de l'origine du plan";
-tool.flatten.planeAverageNormal = "Faire la moyenne de la direction du plan";
 tool.flatten.planeOffset = "Décalage du plan";
 
 // Option for Tube, Lathe and Insert tool
@@ -2111,7 +2127,7 @@ Déplace le gizmo sur la première intersection.
 -- Mi-chemin
 Déplace le gizmo sur la moyenne des deux premières intersections.";
 tool.gizmo.tap.none = "Aucun";
-tool.gizmo.tap.align = "Aligner";
+tool.gizmo.tap.normal = "Normale";
 tool.gizmo.tap.first = "Premier coup";
 tool.gizmo.tap.medial = "Mi-chemin";
 
@@ -2182,6 +2198,8 @@ topology.multires.down = "";
 // Synonym: Flat subdivision
 topology.multires.linear = "Subdivision linéaire";
 topology.multires.linear.help = "Subdivisez simplement le maillage sans appliquer de lissage.";
+// Create a new object by recomputing a new topology
+topology.remesh = "Remailler";
 // Create a new object by recomputing a new topology, by using voxels (see Glossary)
 topology.voxel = "Remaillage des voxels";
 topology.voxel.help = "Remaillage par échantillonnage du maillage sur une grille.
@@ -2190,7 +2208,6 @@ Si l'objet n'est pas fermé (étanche), un algorithme de remplissage de trou ser
 
 Les calques sont reprojetés après le remaillage, mais la qualité sera dégradée.";
 topology.voxel.resolution = "Résolution";
-topology.voxel.remesh = "Remailler";
 topology.voxel.sharp = "Conserver des arêtes vives";
 topology.voxel.sharp.help = "Cette option est surtout utile pour les opérations booléennes simples sur les primitives.
 
@@ -2263,7 +2280,6 @@ Nous vous déconseillons en revanche de l'utiliser si vous voulez continuer à m
 Notez que la zone masquée ne sera pas décimée.";
 // Synonym: Simplify (Decimate reduce the number of triangles/quads while retaining details as much as possible)
 topology.decimate = "Décimer";
-topology.decimateTargetFaces = "Triangles cibles";
 topology.decimatePaintWeight = "Préserver la peinture";
 topology.decimatePaintWeight.help = "Saisissez une valeur élevée pour essayer de préserver la peinture.
 
@@ -2272,32 +2288,42 @@ topology.decimateUniform = "Faces uniformes";
 topology.decimateUniform.help = "Saisissez une valeur élevée pour générer des triangles de même taille.";
 topology.decimatePreserveBorders = "";
 topology.decimatePreserveBorders.help = "";
+// Target a certain number of triangles, faces and vertices
+topology.target.triangles = "Triangles cibles";
+topology.target.faces = "";
+topology.target.quads = "";
+topology.target.points = "";
+// Quad remesher
+topology.qremesh = "";
+topology.qremesh.angle = "";
+topology.qremesh.border = "";
+topology.qremesh.onlyQuad = "";
+topology.qremesh.hole = "";
+topology.qremesh.hole.help = ""
 
-// Unwrapping means compute UV (texture coordinates), it allows the object to receive on texture (wrap the texturing on the object)
-topology.uv.title = "Dépliage auto UV";
-// UV Unwrapping
-topology.uvAtlas = "Dépliage Atlas";
+// Unwrapping means compute UV (texture coordinates), with uvs you can appliy (wrap) a texture onto the model
+topology.uv.title = "Dépliage UV";
+// UV Unwrap but as a Verb
+topology.uv.unwrap = "Déplier";
 // The operation can be very slow
-topology.uvAtlas.warning = "L'opération peut être très lente, ciblez moins de 100 000 sommets !";
-// UV Unwrapping (BFF best left untranslated, stands for Boundary First Flattening)
-topology.uvBFF = "Dépliage BFF";
+topology.uv.atlas.warning = "L'opération peut être très lente, ciblez moins de 100 000 sommets !";
 // Handles are topological holes (synonym: genus, hole)
-topology.uvBFF.warning = "Des chevauchements peuvent se produire si le maillage comporte des poignées !";
+topology.uv.bff.warning = "Des chevauchements peuvent se produire si le maillage comporte des poignées !";
 // Synonym: Point count? Singularity count ?
-topology.uvBFFCones = "Nombre de cônes";
-topology.uvBFFCones.help = "Saisissez une valeur élevée pour limiter la distorsion des objets complexes.
+topology.uv.bff.cones = "Nombre de cônes";
+topology.uv.bff.help = "Saisissez une valeur élevée pour limiter la distorsion des objets complexes.
 
 Plus la valeur est élevée, plus le temps de calcul sera long.";
-topology.uvDelete = "Supprimer les UV";
+topology.uv.delete = "Supprimer les UV";
 
 // Transfer the vertex painting in the texture, bake means "create texture (from mesh data)"
-topology.bake.title = "Peinture -> Texture";
+topology.bake.title = "Appliquer";
 // Bake here means "create texture (from mesh data)"
 topology.bake.title.help = "";
 // Bake here means "create texture (from mesh data)"
 topology.bakeSelf = "";
 // Bake here means "create texture (from another mesh data)"
-topology.bakeHires = "";
+topology.bakeOther = "";
 topology.bakeResolution = "Résolution";
 // Cage is a specific term, synonyom: "Bake offset"
 topology.bakeOffset = "";
@@ -2310,11 +2336,15 @@ topology.reproject.title.help = "";
 // tweaking value
 topology.reproject.rayBias = "";
 topology.reproject.rayBias.help = "";
+topology.reproject.normalOffset = "";
 // number of iteration the algorithm will take
 topology.reproject.iterations = "";
+topology.reproject.relax = "";
+topology.reproject.relax.help = "";
 
-topology.forceManifold = "";
-topology.forceManifold.help = "";
+topology.manifold.clean = "";
+topology.manifold.title = "";
+topology.manifold.title.help = "";
 
 // Reset key-bindings/shortcuts
 binding.reset = "Réinitialiser les raccourcis";

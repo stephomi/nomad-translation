@@ -26,6 +26,8 @@ item.new = "Создать";
 item.rename = "Переименовать";
 // Add a new item (object, tool, project, etc)
 item.add = "Добавить";
+// Update an item image with a new image (synonym: Update)
+item.replace = "";
 // Save an item (object, tool, etc)
 item.save = "Сохранить";
 item.save.confirm = "Подтвердить сохранение?";
@@ -366,6 +368,11 @@ debug.uvBFF = "Добавить BFF UV";
 debug.uvBFF.help = "Добавить альтернативный метод развертки (BFF).
 
 Примечание: BFF создаст перекрытия, если топология меша отличается от диска или сферы.";
+
+debug.quadriflow = "";
+debug.quadriflow.help = "";
+
+
 // Debug option, display an window with some debugging logs
 debug.logs = "Журнал";
 // Debug option, overrides the rendering to display the depth buffer
@@ -393,7 +400,7 @@ file.project = "Проект";
 file.project.save = "Сохранить";
 // E.g: Save "my_project"?
 file.project.save.confirm = "Сохранить $0?";
-// Save to another project (either new one or overriding existing one)
+// Overwrite another project
 file.project.saveAs = "Сохранить как";
 // E.g: Overwrite "my_other_project"?
 file.project.saveAs.confirm = "Перезаписать $0?";
@@ -725,12 +732,6 @@ history.state.voxelRemesh = "Воксельная перестройка меш�
 history.state.surfaceRemesh = "Поверхностная перестройка меша";
 // Shown during undo/redo
 history.state.multiresLevel = "Изменение разрешения";
-// Shown during undo/redo
-history.state.multiresToDynamic = "Мультиразрешение в дин.топ.";
-// Shown during undo/redo (mesh type conversion)
-history.state.meshDynamicToStatic = "Дин.топ. в статику";
-// Shown during undo/redo (mesh type conversion)
-history.state.meshStaticToDynamic = "Статика в дин.топ.";
 
 // Debugging/Inspect object material (view channel separately color, roughness, normal, uv, etc)
 inspector = "";
@@ -1014,8 +1015,8 @@ menu.multires = "Мультиразрешение";
 menu.voxel = "Воксель";
 // Menu name
 menu.dynTopo = "Дин. топ.";
-// Menu name
-menu.topology = "Упрощ./UV...";
+// Menu name (Synonym: Misc, Other)
+menu.topology = "";
 // Menu name
 menu.primitive = "Примитивы";
 // Menu name
@@ -1080,11 +1081,11 @@ mesh.triplanar.cubic = "Принудительно создать куб";
 // Covnert an object to a triplanar primitive
 mesh.triplanar.convert = "Конвертировать";
 // Static object means "static topology"
-mesh.typeStatic = "Меш";
+mesh.static = "Меш";
 // See glossary
-mesh.typeMultiresolution = "Мультиразрешение";
+mesh.multires = "Мультиразрешение";
 // Dynamic topology
-mesh.typeDynamic = "Дин. топ.";
+mesh.dynamic = "Дин. топ.";
 
 // Disable this option to have per-tool material settings (instead of shared settings)
 paint.useGlobal = "Глобальный материал";
@@ -1213,7 +1214,6 @@ postprocess.curve.luminance = "Основная";
 postprocess.curve.red = "Красный";
 postprocess.curve.green = "Зеленый";
 postprocess.curve.blue = "Синий";
-postprocess.curve.reset = "Сбросить";
 // Reset color grading curves
 postprocess.curve.resetAll = "Сбросить все";
 // https://en.wikipedia.org/wiki/Chromatic_aberration
@@ -1366,6 +1366,8 @@ primitive.hasHole = "Есть дырка";
 primitive.radiusSync = "Тот же радиус";
 primitive.radiusStart = "Начало радиуса";
 primitive.radiusEnd = "Конец радиуса";
+// Curve profile (synonym: profile, curve)
+primitive.profile = "";
 
 // Singular of Repeaters (Nodes that make many copies of its children (type of mirror/curve/array/radial))
 repeater = "";
@@ -1473,6 +1475,9 @@ settings.snapCube = "Привязка куба";
 settings.snapCube.bottom = "Низ";
 // Move the navigation cube on the left side of the screen
 settings.snapCube.left = "Налево";
+// Flip the camera (rotate 180° to see the other side)
+settings.snapCube.flip = "";
+settings.snapCube.flip.help = "";
 // Alignment (can be auto/on/off)
 settings.snapCube.align = "";
 settings.snapCube.align.help = "";
@@ -1703,9 +1708,22 @@ stroke.culling.help = "Эта функция будет игнорировать
 // Only sculpt the vertex that points toward the direction of the deformation
 stroke.sameSide = "Только вершины на одной стороне";
 stroke.sameSide.help = "Игнорировать вершины, указывающие в обратную сторону от деформации.";
+stroke.onlyLasso = "Настройки активны только для инструмента \"Лассо\".";
+
+// Here sampling refers to the app gathering information under the mouse
+stroke.sampling = "";
+stroke.sampling.help = "";
+// Sampling radius size (percent)
+stroke.sampling.normal.radius = "";
+// Sampling radius size (percent)
+stroke.sampling.point.radius = "";
+// Sampling averaging
+stroke.sampling.normal.average = "";
+// Sampling averaging
+stroke.sampling.point.average = "";
+
 // Module the intensity of the sculpting operation by using a falloff curve
 menu.falloff = "Спад";
-stroke.onlyLasso = "Настройки активны только для инструмента \"Лассо\".";
 // Alpha
 menu.alpha = "Альфа";
 // Invert the pixel (black <-> white)
@@ -1964,8 +1982,6 @@ tool.layer.noLayerSelected = "Эта функция доступна тольк�
 tool.flatten.warning = "Эти функции экспериментальны и могут быть удалены в будущем!";
 tool.flatten.planeLockOrigin = "Закрепить опорную точку плоскости";
 tool.flatten.planeLockNormal = "Закрепить направление плоскости";
-tool.flatten.planeAverageOrigin = "Средняя опорная точка плоскости";
-tool.flatten.planeAverageNormal = "Среднее направление плоскости";
 tool.flatten.planeOffset = "Смещение плоскости";
 
 // Option for Tube, Lathe and Insert tool
@@ -2108,7 +2124,7 @@ tool.gizmo.tap.help = "Эта функция эффективна только �
 -- Средняя величина
 Перенос гизмо в середину между первыми двумя пересечениями.";
 tool.gizmo.tap.none = "Нет";
-tool.gizmo.tap.align = "";
+tool.gizmo.tap.normal = "Обычное";
 tool.gizmo.tap.first = "Первое касание";
 tool.gizmo.tap.medial = "Средняя величина";
 
@@ -2179,6 +2195,8 @@ topology.multires.down = "";
 // Synonym: Flat subdivision
 topology.multires.linear = "Линейное подразделение";
 topology.multires.linear.help = "Простое подразделение меша без применения сглаживания";
+// Create a new object by recomputing a new topology
+topology.remesh = "Перестройка меша";
 // Create a new object by recomputing a new topology, by using voxels (see Glossary)
 topology.voxel = "Воксельная перестройка сетки";
 topology.voxel.help = "Перестройка меша путем взятия образца меша с сетки.
@@ -2187,7 +2205,6 @@ topology.voxel.help = "Перестройка меша путем взятия �
 
 Слои будут заново спроектированы после перестройки меша, но качество ухудшится.";
 topology.voxel.resolution = "Разрешение";
-topology.voxel.remesh = "Перестройка меша";
 topology.voxel.sharp = "Сохранение острых ребер";
 topology.voxel.sharp.help = "Эта функция наиболее полезна для простых примитивных операций Boolean.
 
@@ -2256,7 +2273,6 @@ topology.decimate.title.help = "Уменьшите количество поли
 Примечание: зоны маски не будут упрощены.";
 // Synonym: Simplify (Decimate reduce the number of triangles/quads while retaining details as much as possible)
 topology.decimate = "Упростить";
-topology.decimateTargetFaces = "Целевые треугольники";
 topology.decimatePaintWeight = "Сохранить окрашивание";
 topology.decimatePaintWeight.help = "При высоком значении программа попытается сохранить окрашивание.
 
@@ -2265,32 +2281,42 @@ topology.decimateUniform = "Однородные грани";
 topology.decimateUniform.help = "Более высокие значения будут выдавать треугольники подобного размера.";
 topology.decimatePreserveBorders = "";
 topology.decimatePreserveBorders.help = "";
+// Target a certain number of triangles, faces and vertices
+topology.target.triangles = "Целевые треугольники";
+topology.target.faces = "";
+topology.target.quads = "";
+topology.target.points = "";
+// Quad remesher
+topology.qremesh = "";
+topology.qremesh.angle = "";
+topology.qremesh.border = "";
+topology.qremesh.onlyQuad = "";
+topology.qremesh.hole = "";
+topology.qremesh.hole.help = ""
 
-// Unwrapping means compute UV (texture coordinates), it allows the object to receive on texture (wrap the texturing on the object)
-topology.uv.title = "Автоматическая развертка";
-// UV Unwrapping
-topology.uvAtlas = "Развертка";
+// Unwrapping means compute UV (texture coordinates), with uvs you can appliy (wrap) a texture onto the model
+topology.uv.title = "UV-развертка";
+// UV Unwrap but as a Verb
+topology.uv.unwrap = "Развернуть";
 // The operation can be very slow
-topology.uvAtlas.warning = "Может занять большое количество времени, у цели <100т вершин!";
-// UV Unwrapping (BFF best left untranslated, stands for Boundary First Flattening)
-topology.uvBFF = "Развертка BFF";
+topology.uv.atlas.warning = "Может занять большое количество времени, у цели <100т вершин!";
 // Handles are topological holes (synonym: genus, hole)
-topology.uvBFF.warning = "Если в меше есть отверстия, может возникнуть перекрытие!";
+topology.uv.bff.warning = "Если в меше есть отверстия, может возникнуть перекрытие!";
 // Synonym: Point count? Singularity count ?
-topology.uvBFFCones = "Количество конусов";
-topology.uvBFFCones.help = "Более высокое значение уменьшит искажение сложных объектов.
+topology.uv.bff.cones = "Количество конусов";
+topology.uv.bff.help = "Более высокое значение уменьшит искажение сложных объектов.
 
 Более высокое значение повысит время обработки.";
-topology.uvDelete = "Удалить UV";
+topology.uv.delete = "Удалить UV";
 
 // Transfer the vertex painting in the texture, bake means "create texture (from mesh data)"
-topology.bake.title = "Запекание раскрашивания вершин";
+topology.bake.title = "Запекание";
 // Bake here means "create texture (from mesh data)"
 topology.bake.title.help = "";
 // Bake here means "create texture (from mesh data)"
 topology.bakeSelf = "";
 // Bake here means "create texture (from another mesh data)"
-topology.bakeHires = "";
+topology.bakeOther = "";
 topology.bakeResolution = "Разрешение";
 // Cage is a specific term, synonyom: "Bake offset"
 topology.bakeOffset = "";
@@ -2303,11 +2329,15 @@ topology.reproject.title.help = "";
 // tweaking value
 topology.reproject.rayBias = "";
 topology.reproject.rayBias.help = "";
+topology.reproject.normalOffset = "";
 // number of iteration the algorithm will take
 topology.reproject.iterations = "";
+topology.reproject.relax = "";
+topology.reproject.relax.help = "";
 
-topology.forceManifold = "";
-topology.forceManifold.help = "";
+topology.manifold.clean = "";
+topology.manifold.title = "";
+topology.manifold.title.help = "";
 
 // Reset key-bindings/shortcuts
 binding.reset = "Сбросить привязки";

@@ -26,6 +26,8 @@ item.new = "신규";
 item.rename = "이름변경";
 // Add a new item (object, tool, project, etc)
 item.add = "추가";
+// Update an item image with a new image (synonym: Update)
+item.replace = "";
 // Save an item (object, tool, etc)
 item.save = "저장";
 item.save.confirm = "저장하시겠습니까?";
@@ -366,6 +368,11 @@ debug.uvBFF = "BFF UV 추가";
 debug.uvBFF.help = "대체 언랩 방법(BFF, Boundary First Flattening)을 추가합니다.
 
 메시 토폴로지가 원반 또는 구체와 다른 경우 BFF에 의해 중첩이 발생하니 주의해주십시오.";
+
+debug.quadriflow = "";
+debug.quadriflow.help = "";
+
+
 // Debug option, display an window with some debugging logs
 debug.logs = "로그";
 // Debug option, overrides the rendering to display the depth buffer
@@ -393,7 +400,7 @@ file.project = "프로젝트";
 file.project.save = "저장";
 // E.g: Save "my_project"?
 file.project.save.confirm = "$0 항목을 저장하시겠습니까?";
-// Save to another project (either new one or overriding existing one)
+// Overwrite another project
 file.project.saveAs = "다음으로 저장";
 // E.g: Overwrite "my_other_project"?
 file.project.saveAs.confirm = "$0 항목을 덮어쓰시겠습니까?";
@@ -723,12 +730,6 @@ history.state.voxelRemesh = "복셀 리메시";
 history.state.surfaceRemesh = "표면 리메시";
 // Shown during undo/redo
 history.state.multiresLevel = "해상도 변경";
-// Shown during undo/redo
-history.state.multiresToDynamic = "다중해상도에서 동적 토폴로지로";
-// Shown during undo/redo (mesh type conversion)
-history.state.meshDynamicToStatic = "동적 토폴로지에서 정적 메시로";
-// Shown during undo/redo (mesh type conversion)
-history.state.meshStaticToDynamic = "정적 메시에서 동적 토폴로지로";
 
 // Debugging/Inspect object material (view channel separately color, roughness, normal, uv, etc)
 inspector = "";
@@ -1012,8 +1013,8 @@ menu.multires = "다중해상도";
 menu.voxel = "복셀";
 // Menu name
 menu.dynTopo = "동적 토폴로지";
-// Menu name
-menu.topology = "데시메이트/UV...";
+// Menu name (Synonym: Misc, Other)
+menu.topology = "";
 // Menu name
 menu.primitive = "프리미티브";
 // Menu name
@@ -1078,11 +1079,11 @@ mesh.triplanar.cubic = "큐빅 강제 적용";
 // Covnert an object to a triplanar primitive
 mesh.triplanar.convert = "변환";
 // Static object means "static topology"
-mesh.typeStatic = "메시";
+mesh.static = "메시";
 // See glossary
-mesh.typeMultiresolution = "다중해상도";
+mesh.multires = "다중해상도";
 // Dynamic topology
-mesh.typeDynamic = "동적 토폴로지";
+mesh.dynamic = "동적 토폴로지";
 
 // Disable this option to have per-tool material settings (instead of shared settings)
 paint.useGlobal = "전역 머티리얼";
@@ -1211,7 +1212,6 @@ postprocess.curve.luminance = "메인";
 postprocess.curve.red = "빨강";
 postprocess.curve.green = "초록";
 postprocess.curve.blue = "파랑";
-postprocess.curve.reset = "초기화";
 // Reset color grading curves
 postprocess.curve.resetAll = "모두 초기화";
 // https://en.wikipedia.org/wiki/Chromatic_aberration
@@ -1364,6 +1364,8 @@ primitive.hasHole = "구멍 있음";
 primitive.radiusSync = "동일한 반지름";
 primitive.radiusStart = "반지름 시작";
 primitive.radiusEnd = "반지름 종료";
+// Curve profile (synonym: profile, curve)
+primitive.profile = "";
 
 // Singular of Repeaters (Nodes that make many copies of its children (type of mirror/curve/array/radial))
 repeater = "";
@@ -1471,6 +1473,9 @@ settings.snapCube = "스냅 큐브";
 settings.snapCube.bottom = "아래";
 // Move the navigation cube on the left side of the screen
 settings.snapCube.left = "왼쪽";
+// Flip the camera (rotate 180° to see the other side)
+settings.snapCube.flip = "";
+settings.snapCube.flip.help = "";
 // Alignment (can be auto/on/off)
 settings.snapCube.align = "";
 settings.snapCube.align.help = "";
@@ -1699,9 +1704,22 @@ stroke.culling.help = "이 옵션은 뒷면을 바라보는 버텍스를 무시�
 // Only sculpt the vertex that points toward the direction of the deformation
 stroke.sameSide = "같은 면에 있는 버텍스만";
 stroke.sameSide.help = "변형하려는 방향의 반대를 가리키는 버텍스는 무시합니다.";
+stroke.onlyLasso = "이 설정은 올가미 도구에만 적용됩니다.";
+
+// Here sampling refers to the app gathering information under the mouse
+stroke.sampling = "";
+stroke.sampling.help = "";
+// Sampling radius size (percent)
+stroke.sampling.normal.radius = "";
+// Sampling radius size (percent)
+stroke.sampling.point.radius = "";
+// Sampling averaging
+stroke.sampling.normal.average = "";
+// Sampling averaging
+stroke.sampling.point.average = "";
+
 // Module the intensity of the sculpting operation by using a falloff curve
 menu.falloff = "폴오프";
-stroke.onlyLasso = "이 설정은 올가미 도구에만 적용됩니다.";
 // Alpha
 menu.alpha = "알파";
 // Invert the pixel (black <-> white)
@@ -1960,8 +1978,6 @@ tool.layer.noLayerSelected = "이 옵션은 선택한 레이어가 있는 경우
 tool.flatten.warning = "이러한 옵션은 실험적으로 제공되며 향후 제거될 수 있습니다!";
 tool.flatten.planeLockOrigin = "평면 원점 잠금";
 tool.flatten.planeLockNormal = "평면 방향 잠금";
-tool.flatten.planeAverageOrigin = "평면 원점 평균";
-tool.flatten.planeAverageNormal = "평면 방향 평균";
 tool.flatten.planeOffset = "평면 오프셋";
 
 // Option for Tube, Lathe and Insert tool
@@ -2104,7 +2120,7 @@ tool.gizmo.tap.help = "이 옵션은 커스텀 피벗 모드에서만 유효합�
 - 중간점
 처음 두 교차점의 평균 위치로 기즈모를 이동합니다.";
 tool.gizmo.tap.none = "없음";
-tool.gizmo.tap.align = "";
+tool.gizmo.tap.normal = "보통";
 tool.gizmo.tap.first = "첫 교차점";
 tool.gizmo.tap.medial = "중간점";
 
@@ -2175,6 +2191,8 @@ topology.multires.down = "";
 // Synonym: Flat subdivision
 topology.multires.linear = "직선 서브디비전";
 topology.multires.linear.help = "스무딩 적용 없이 메시를 더 잘게 세분화합니다.";
+// Create a new object by recomputing a new topology
+topology.remesh = "리메시";
 // Create a new object by recomputing a new topology, by using voxels (see Glossary)
 topology.voxel = "복셀 리메싱";
 topology.voxel.help = "그리드 위에 메시를 샘플링하여 리메싱합니다.
@@ -2183,7 +2201,6 @@ topology.voxel.help = "그리드 위에 메시를 샘플링하여 리메싱합�
 
 레이어는 리메시 후 다시 투영되지만 품질이 저하됩니다.";
 topology.voxel.resolution = "해상도";
-topology.voxel.remesh = "리메시";
 topology.voxel.sharp = "날카로운 변 유지";
 topology.voxel.sharp.help = "이 옵션은 주로 단순한 프리미티브 부울 연산에 유용합니다. 
 
@@ -2256,7 +2273,6 @@ topology.decimate.title.help = "가능한 디테일을 최대한 유지하면서
 마스크 영역은 제거되지 않습니다.";
 // Synonym: Simplify (Decimate reduce the number of triangles/quads while retaining details as much as possible)
 topology.decimate = "데시메이트";
-topology.decimateTargetFaces = "목표 삼각형";
 topology.decimatePaintWeight = "패인팅 보존";
 topology.decimatePaintWeight.help = "값이 높을수록 페인팅을 보존하려는 성향이 강합니다.
 
@@ -2265,32 +2281,42 @@ topology.decimateUniform = "균일한 면";
 topology.decimateUniform.help = "값이 높을수록 출력되는 삼각형의 크기가 비슷해집니다.";
 topology.decimatePreserveBorders = "";
 topology.decimatePreserveBorders.help = "";
+// Target a certain number of triangles, faces and vertices
+topology.target.triangles = "목표 삼각형";
+topology.target.faces = "";
+topology.target.quads = "";
+topology.target.points = "";
+// Quad remesher
+topology.qremesh = "";
+topology.qremesh.angle = "";
+topology.qremesh.border = "";
+topology.qremesh.onlyQuad = "";
+topology.qremesh.hole = "";
+topology.qremesh.hole.help = ""
 
-// Unwrapping means compute UV (texture coordinates), it allows the object to receive on texture (wrap the texturing on the object)
-topology.uv.title = "UV 자동 언랩";
-// UV Unwrapping
-topology.uvAtlas = "아틀라스 언랩";
+// Unwrapping means compute UV (texture coordinates), with uvs you can appliy (wrap) a texture onto the model
+topology.uv.title = "UV 언랩";
+// UV Unwrap but as a Verb
+topology.uv.unwrap = "언랩";
 // The operation can be very slow
-topology.uvAtlas.warning = "매우 느릴 수 있습니다. 버텍스 10만 개 이하를 목표로 하세요!";
-// UV Unwrapping (BFF best left untranslated, stands for Boundary First Flattening)
-topology.uvBFF = "Bff 언랩";
+topology.uv.atlas.warning = "매우 느릴 수 있습니다. 버텍스 10만 개 이하를 목표로 하세요!";
 // Handles are topological holes (synonym: genus, hole)
-topology.uvBFF.warning = "메시에 핸들이 있으면 겹칠 수 있습니다!";
+topology.uv.bff.warning = "메시에 핸들이 있으면 겹칠 수 있습니다!";
 // Synonym: Point count? Singularity count ?
-topology.uvBFFCones = "원뿔 카운트";
-topology.uvBFFCones.help = "값이 높을수록 형태가 복잡한 오브젝트의 왜곡 현상이 줄어듭니다.
+topology.uv.bff.cones = "원뿔 카운트";
+topology.uv.bff.help = "값이 높을수록 형태가 복잡한 오브젝트의 왜곡 현상이 줄어듭니다.
 
 값이 높을수록 연산 시간이 길어집니다.";
-topology.uvDelete = "UV 삭제";
+topology.uv.delete = "UV 삭제";
 
 // Transfer the vertex painting in the texture, bake means "create texture (from mesh data)"
-topology.bake.title = "버텍스 페인팅 베이킹";
+topology.bake.title = "베이크";
 // Bake here means "create texture (from mesh data)"
 topology.bake.title.help = "";
 // Bake here means "create texture (from mesh data)"
 topology.bakeSelf = "";
 // Bake here means "create texture (from another mesh data)"
-topology.bakeHires = "";
+topology.bakeOther = "";
 topology.bakeResolution = "해상도";
 // Cage is a specific term, synonyom: "Bake offset"
 topology.bakeOffset = "";
@@ -2303,11 +2329,15 @@ topology.reproject.title.help = "";
 // tweaking value
 topology.reproject.rayBias = "";
 topology.reproject.rayBias.help = "";
+topology.reproject.normalOffset = "";
 // number of iteration the algorithm will take
 topology.reproject.iterations = "";
+topology.reproject.relax = "";
+topology.reproject.relax.help = "";
 
-topology.forceManifold = "";
-topology.forceManifold.help = "";
+topology.manifold.clean = "";
+topology.manifold.title = "";
+topology.manifold.title.help = "";
 
 // Reset key-bindings/shortcuts
 binding.reset = "바인딩 초기화";

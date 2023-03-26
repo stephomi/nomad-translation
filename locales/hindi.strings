@@ -26,6 +26,8 @@ item.new = "नया";
 item.rename = "नाम बदलें";
 // Add a new item (object, tool, project, etc)
 item.add = "जोड़ें";
+// Update an item image with a new image (synonym: Update)
+item.replace = "";
 // Save an item (object, tool, etc)
 item.save = "सहेजें";
 item.save.confirm = "सहेजें?";
@@ -368,6 +370,11 @@ debug.uvBFF = "BFF UVs जोड़ें";
 debug.uvBFF.help = "एक वैकल्पिक अनावृत विधि जोड़ें (बाउंड्री फ़र्स्ट फ़्लेटनिंग).
 
 ध्यान दें कि यदि आपका मेश टोपोलॉजी डिस्क या गोले से अलग है तो BFF ओवरलैप उत्पन्न करेगा.";
+
+debug.quadriflow = "";
+debug.quadriflow.help = "";
+
+
 // Debug option, display an window with some debugging logs
 debug.logs = "लॉग्स";
 // Debug option, overrides the rendering to display the depth buffer
@@ -395,7 +402,7 @@ file.project = "प्रोजेक्ट";
 file.project.save = "सहेजें";
 // E.g: Save "my_project"?
 file.project.save.confirm = "$0 को सहेजें?";
-// Save to another project (either new one or overriding existing one)
+// Overwrite another project
 file.project.saveAs = "इस रूप में सहेजें";
 // E.g: Overwrite "my_other_project"?
 file.project.saveAs.confirm = "$0 को ओवरराइट करें?";
@@ -727,12 +734,6 @@ history.state.voxelRemesh = "वॉक्सेल रीमेश";
 history.state.surfaceRemesh = "सतह रीमेश";
 // Shown during undo/redo
 history.state.multiresLevel = "रिज़ोल्यूशन परिवर्तन";
-// Shown during undo/redo
-history.state.multiresToDynamic = "मल्टीरिज़ोल्यूशन से डायनामिकटोपोलॉजी";
-// Shown during undo/redo (mesh type conversion)
-history.state.meshDynamicToStatic = "डायनामिकटोपोलॉजी से स्थैतिक";
-// Shown during undo/redo (mesh type conversion)
-history.state.meshStaticToDynamic = "स्थैतिक से डायनामिकटोपोलॉजी";
 
 // Debugging/Inspect object material (view channel separately color, roughness, normal, uv, etc)
 inspector = "";
@@ -1017,8 +1018,8 @@ menu.multires = "मल्टीरिज़ोल्यूशन";
 menu.voxel = "वॉक्सेल";
 // Menu name
 menu.dynTopo = "डायनामिकटोपोलॉजी";
-// Menu name
-menu.topology = "डेशीमेशन/UV...";
+// Menu name (Synonym: Misc, Other)
+menu.topology = "";
 // Menu name
 menu.primitive = "पूर्वग";
 // Menu name
@@ -1083,11 +1084,11 @@ mesh.triplanar.cubic = "घन लागू करें";
 // Covnert an object to a triplanar primitive
 mesh.triplanar.convert = "बदलें";
 // Static object means "static topology"
-mesh.typeStatic = "जाली";
+mesh.static = "जाली";
 // See glossary
-mesh.typeMultiresolution = "मल्टी-रिजॉल्यूशन";
+mesh.multires = "मल्टी-रिजॉल्यूशन";
 // Dynamic topology
-mesh.typeDynamic = "डायनामिक टोपोलॉजी";
+mesh.dynamic = "डायनामिक टोपोलॉजी";
 
 // Disable this option to have per-tool material settings (instead of shared settings)
 paint.useGlobal = "वैश्विक मटीरीयल";
@@ -1216,7 +1217,6 @@ postprocess.curve.luminance = "मुख्य";
 postprocess.curve.red = "लाल";
 postprocess.curve.green = "हरा";
 postprocess.curve.blue = "नीला";
-postprocess.curve.reset = "रीसेट करें";
 // Reset color grading curves
 postprocess.curve.resetAll = "सभी रीसेट करें";
 // https://en.wikipedia.org/wiki/Chromatic_aberration
@@ -1369,6 +1369,8 @@ primitive.hasHole = "छेद है";
 primitive.radiusSync = "समान त्रिज्या";
 primitive.radiusStart = "त्रिज्या प्रारंभ";
 primitive.radiusEnd = "त्रिज्या अंत";
+// Curve profile (synonym: profile, curve)
+primitive.profile = "";
 
 // Singular of Repeaters (Nodes that make many copies of its children (type of mirror/curve/array/radial))
 repeater = "पुनरावर्तक";
@@ -1479,6 +1481,9 @@ settings.snapCube = "घन स्नैप करें";
 settings.snapCube.bottom = "निचला";
 // Move the navigation cube on the left side of the screen
 settings.snapCube.left = "बायाँ";
+// Flip the camera (rotate 180° to see the other side)
+settings.snapCube.flip = "";
+settings.snapCube.flip.help = "";
 // Alignment (can be auto/on/off)
 settings.snapCube.align = "";
 settings.snapCube.align.help = "";
@@ -1709,9 +1714,22 @@ stroke.culling.help = "यह विकल्प पीछे की ओर म�
 // Only sculpt the vertex that points toward the direction of the deformation
 stroke.sameSide = "उसी तरफ़ का शीर्ष बिंदु";
 stroke.sameSide.help = "विरूपण की विपरीत दिशा में इंगित करने वाले शीर्ष बिंदुओं को अनदेखा करें.";
+stroke.onlyLasso = "सेटिंग्ज़ केवल लासो टूल के लिए सक्रिय हैं.";
+
+// Here sampling refers to the app gathering information under the mouse
+stroke.sampling = "";
+stroke.sampling.help = "";
+// Sampling radius size (percent)
+stroke.sampling.normal.radius = "";
+// Sampling radius size (percent)
+stroke.sampling.point.radius = "";
+// Sampling averaging
+stroke.sampling.normal.average = "";
+// Sampling averaging
+stroke.sampling.point.average = "";
+
 // Module the intensity of the sculpting operation by using a falloff curve
 menu.falloff = "फ़ॉलऑफ़";
-stroke.onlyLasso = "सेटिंग्ज़ केवल लासो टूल के लिए सक्रिय हैं.";
 // Alpha
 menu.alpha = "अल्फ़ा";
 // Invert the pixel (black <-> white)
@@ -1972,8 +1990,6 @@ tool.layer.noLayerSelected = "यह विकल्प केवल तभी �
 tool.flatten.warning = "ये विकल्प प्रायोगिक हैं और भविष्य में इन्हें हटाया जा सकता है!";
 tool.flatten.planeLockOrigin = "समतल का मूल लॉक करें";
 tool.flatten.planeLockNormal = "समतल की दिशा लॉक करें";
-tool.flatten.planeAverageOrigin = "समतल के मूल को औसत करें";
-tool.flatten.planeAverageNormal = "समतल की दिशा को औसत करें";
 tool.flatten.planeOffset = "समतल आफसेट";
 
 // Option for Tube, Lathe and Insert tool
@@ -2116,7 +2132,7 @@ tool.gizmo.tap.help = "यह विकल्प केवल कस्टम �
 -- मध्य काट
 पहले दो प्रतिच्छेदनों के औसत पर गिज़्मो को आगे ले जाएँ.";
 tool.gizmo.tap.none = "नहीं";
-tool.gizmo.tap.align = "";
+tool.gizmo.tap.normal = "सामान्य";
 tool.gizmo.tap.first = "पहला हिट";
 tool.gizmo.tap.medial = "मध्य काट";
 
@@ -2187,6 +2203,8 @@ topology.multires.down = "बहुस्तरीय स्तर ←";
 // Synonym: Flat subdivision
 topology.multires.linear = "रैखिक उपखंड";
 topology.multires.linear.help = "बिना किसी चिकनािंग के बस मेश का प्रतिभाग करें";
+// Create a new object by recomputing a new topology
+topology.remesh = "रीमेश";
 // Create a new object by recomputing a new topology, by using voxels (see Glossary)
 topology.voxel = "वॉक्सेल रीमेशिंग";
 topology.voxel.help = "जाल पर मेश का नमूना लेकर रीमेशिंग करना.
@@ -2195,7 +2213,6 @@ topology.voxel.help = "जाल पर मेश का नमूना ले�
 
 रीमेशिंग के बाद परतों को फिर से प्रक्षेपित किया जाता है लेकिन गुणवत्ता खराब हो जाएगी.";
 topology.voxel.resolution = "रिज़ोल्यूशन";
-topology.voxel.remesh = "रीमेश";
 topology.voxel.sharp = "नुकीले किनारे बनाए रखें";
 topology.voxel.sharp.help = "यह विकल्प ज्यादातर सरल पूर्वग बूलियन ऑपरेशन के लिए उपयोगी है.
 
@@ -2268,7 +2285,6 @@ topology.decimate.title.help = "अधिक से अधिक विवरण
 ध्यान दें कि मुखौटा किया गया क्षेत्र नष्ट नहीं किया जाएगा.";
 // Synonym: Simplify (Decimate reduce the number of triangles/quads while retaining details as much as possible)
 topology.decimate = "डेशीमेट";
-topology.decimateTargetFaces = "लक्ष्य त्रिभुज";
 topology.decimatePaintWeight = "पेंटिंग परिरक्षित करें";
 topology.decimatePaintWeight.help = "उच्च मान पेंटिंग को परिरक्षित करने का प्रयास करेगा.
 
@@ -2277,32 +2293,42 @@ topology.decimateUniform = "समरूप फलक";
 topology.decimateUniform.help = "उच्च मान समान आकार वाले त्रिभुजों का उत्पादन करेगा.";
 topology.decimatePreserveBorders = "सीमाओं को सुरक्षित रखें";
 topology.decimatePreserveBorders.help = "मेश की सीमा को नष्ट न करें।";
+// Target a certain number of triangles, faces and vertices
+topology.target.triangles = "लक्ष्य त्रिभुज";
+topology.target.faces = "";
+topology.target.quads = "";
+topology.target.points = "";
+// Quad remesher
+topology.qremesh = "";
+topology.qremesh.angle = "";
+topology.qremesh.border = "";
+topology.qremesh.onlyQuad = "";
+topology.qremesh.hole = "";
+topology.qremesh.hole.help = ""
 
-// Unwrapping means compute UV (texture coordinates), it allows the object to receive on texture (wrap the texturing on the object)
-topology.uv.title = "UV स्वतः अनावृत";
-// UV Unwrapping
-topology.uvAtlas = "एटलस अनावृत करें";
+// Unwrapping means compute UV (texture coordinates), with uvs you can appliy (wrap) a texture onto the model
+topology.uv.title = "UV अनावृत";
+// UV Unwrap but as a Verb
+topology.uv.unwrap = "अनावृत";
 // The operation can be very slow
-topology.uvAtlas.warning = "बहुत धीमा हो सकता है, 100k से कम शीर्ष का लक्ष्य रखें!";
-// UV Unwrapping (BFF best left untranslated, stands for Boundary First Flattening)
-topology.uvBFF = "अनावृत Bff";
+topology.uv.atlas.warning = "बहुत धीमा हो सकता है, 100k से कम शीर्ष का लक्ष्य रखें!";
 // Handles are topological holes (synonym: genus, hole)
-topology.uvBFF.warning = "यदि मेश में हैंडल हैं तो ओवरलैप हो सकते हैं!";
+topology.uv.bff.warning = "यदि मेश में हैंडल हैं तो ओवरलैप हो सकते हैं!";
 // Synonym: Point count? Singularity count ?
-topology.uvBFFCones = "शंकु गणना";
-topology.uvBFFCones.help = "उच्च मान जटिल वस्तुओं के लिए विकृति को कम करेगा.
+topology.uv.bff.cones = "शंकु गणना";
+topology.uv.bff.help = "उच्च मान जटिल वस्तुओं के लिए विकृति को कम करेगा.
 
 उच्च मान का अर्थ होगा अधिक गणना समय.";
-topology.uvDelete = "UV डिलीट करें";
+topology.uv.delete = "UV डिलीट करें";
 
 // Transfer the vertex painting in the texture, bake means "create texture (from mesh data)"
-topology.bake.title = "शीर्ष पेंटिंग बेक करें";
+topology.bake.title = "बेक";
 // Bake here means "create texture (from mesh data)"
 topology.bake.title.help = "";
 // Bake here means "create texture (from mesh data)"
 topology.bakeSelf = "";
 // Bake here means "create texture (from another mesh data)"
-topology.bakeHires = "";
+topology.bakeOther = "";
 topology.bakeResolution = "रिज़ोल्यूशन";
 // Cage is a specific term, synonyom: "Bake offset"
 topology.bakeOffset = "";
@@ -2315,11 +2341,15 @@ topology.reproject.title.help = "";
 // tweaking value
 topology.reproject.rayBias = "";
 topology.reproject.rayBias.help = "";
+topology.reproject.normalOffset = "";
 // number of iteration the algorithm will take
 topology.reproject.iterations = "";
+topology.reproject.relax = "";
+topology.reproject.relax.help = "";
 
-topology.forceManifold = "";
-topology.forceManifold.help = "";
+topology.manifold.clean = "";
+topology.manifold.title = "";
+topology.manifold.title.help = "";
 
 // Reset key-bindings/shortcuts
 binding.reset = "बाइंडिंग रीसेट करें";

@@ -26,6 +26,8 @@ item.new = "建立";
 item.rename = "重新命名";
 // Add a new item (object, tool, project, etc)
 item.add = "新增";
+// Update an item image with a new image (synonym: Update)
+item.replace = "";
 // Save an item (object, tool, etc)
 item.save = "儲存";
 item.save.confirm = "確認儲存 $0？";
@@ -364,6 +366,11 @@ debug.uvBFF = "啟用BFF UV";
 debug.uvBFF.help = "使用BFF演算法來展平UV。
 
 請注意，如果物件的拓撲網格與正方體或球體有很大差別的話，結果有可能會產生重疊。";
+
+debug.quadriflow = "";
+debug.quadriflow.help = "";
+
+
 // Debug option, display an window with some debugging logs
 debug.logs = "除錯日誌";
 // Debug option, overrides the rendering to display the depth buffer
@@ -391,7 +398,7 @@ file.project = "專案";
 file.project.save = "儲存";
 // E.g: Save "my_project"?
 file.project.save.confirm = "確認儲存 $0？";
-// Save to another project (either new one or overriding existing one)
+// Overwrite another project
 file.project.saveAs = "另存為";
 // E.g: Overwrite "my_other_project"?
 file.project.saveAs.confirm = "確認覆蓋 $0？";
@@ -725,12 +732,6 @@ history.state.voxelRemesh = "體素網格重構";
 history.state.surfaceRemesh = "表面網格重構";
 // Shown during undo/redo
 history.state.multiresLevel = "改變解析度";
-// Shown during undo/redo
-history.state.multiresToDynamic = "模型細分轉為動態網格";
-// Shown during undo/redo (mesh type conversion)
-history.state.meshDynamicToStatic = "動態網格轉為靜態網格";
-// Shown during undo/redo (mesh type conversion)
-history.state.meshStaticToDynamic = "靜態網格轉為動態網格";
 
 // Debugging/Inspect object material (view channel separately color, roughness, normal, uv, etc)
 inspector = "";
@@ -1020,8 +1021,8 @@ menu.multires = "多重網格";
 menu.voxel = "體素";
 // Menu name
 menu.dynTopo = "動態網格";
-// Menu name
-menu.topology = "拓撲";
+// Menu name (Synonym: Misc, Other)
+menu.topology = "";
 // Menu name
 menu.primitive = "基本體";
 // Menu name
@@ -1086,11 +1087,11 @@ mesh.triplanar.cubic = "強制轉換為立方體";
 // Covnert an object to a triplanar primitive
 mesh.triplanar.convert = "轉換";
 // Static object means "static topology"
-mesh.typeStatic = "靜態模型";
+mesh.static = "靜態模型";
 // See glossary
-mesh.typeMultiresolution = "多解析度";
+mesh.multires = "多解析度";
 // Dynamic topology
-mesh.typeDynamic = "動態模型";
+mesh.dynamic = "動態模型";
 
 // Disable this option to have per-tool material settings (instead of shared settings)
 paint.useGlobal = "應用全域性材料";
@@ -1219,7 +1220,6 @@ postprocess.curve.luminance = "主要";
 postprocess.curve.red = "紅";
 postprocess.curve.green = "綠";
 postprocess.curve.blue = "藍";
-postprocess.curve.reset = "重置";
 // Reset color grading curves
 postprocess.curve.resetAll = "全部重置";
 // https://en.wikipedia.org/wiki/Chromatic_aberration
@@ -1372,6 +1372,8 @@ primitive.hasHole = "打洞";
 primitive.radiusSync = "相同半徑";
 primitive.radiusStart = "起始半徑";
 primitive.radiusEnd = "結束半徑";
+// Curve profile (synonym: profile, curve)
+primitive.profile = "";
 
 // Singular of Repeaters (Nodes that make many copies of its children (type of mirror/curve/array/radial))
 repeater = "";
@@ -1479,6 +1481,9 @@ settings.snapCube = "方位檢視";
 settings.snapCube.bottom = "置於底部";
 // Move the navigation cube on the left side of the screen
 settings.snapCube.left = "置於左側";
+// Flip the camera (rotate 180° to see the other side)
+settings.snapCube.flip = "";
+settings.snapCube.flip.help = "";
 // Alignment (can be auto/on/off)
 settings.snapCube.align = "";
 settings.snapCube.align.help = "";
@@ -1710,9 +1715,22 @@ stroke.culling.help = "開啟此選項後，應用會忽略對“背面”的操
 // Only sculpt the vertex that points toward the direction of the deformation
 stroke.sameSide = "只移動同向頂點";
 stroke.sameSide.help = "在修改物件造型時，不移動朝向不同的頂點。";
+stroke.onlyLasso = "該設定僅對套索工具有效。";
+
+// Here sampling refers to the app gathering information under the mouse
+stroke.sampling = "";
+stroke.sampling.help = "";
+// Sampling radius size (percent)
+stroke.sampling.normal.radius = "";
+// Sampling radius size (percent)
+stroke.sampling.point.radius = "";
+// Sampling averaging
+stroke.sampling.normal.average = "";
+// Sampling averaging
+stroke.sampling.point.average = "";
+
 // Module the intensity of the sculpting operation by using a falloff curve
 menu.falloff = "衰減";
-stroke.onlyLasso = "該設定僅對套索工具有效。";
 // Alpha
 menu.alpha = "Alpha";
 // Invert the pixel (black <-> white)
@@ -1971,8 +1989,6 @@ tool.layer.noLayerSelected = "此選項僅在選擇圖層後可用。";
 tool.flatten.warning = "以下均為實驗性功能，在之後版本可能會被移除。";
 tool.flatten.planeLockOrigin = "鎖定平面原點";
 tool.flatten.planeLockNormal = "鎖定平面方向";
-tool.flatten.planeAverageOrigin = "平均平面原點";
-tool.flatten.planeAverageNormal = "平均平面方向";
 tool.flatten.planeOffset = "平面偏移";
 
 // Option for Tube, Lathe and Insert tool
@@ -2115,7 +2131,7 @@ tool.gizmo.tap.help = "此選項僅在自定義座標原點模式下有效（預
 - 平均
 將在圓點座標設定在前兩次點選直線的中點。";
 tool.gizmo.tap.none = "無";
-tool.gizmo.tap.align = "";
+tool.gizmo.tap.normal = "法線方向";
 tool.gizmo.tap.first = "點選";
 tool.gizmo.tap.medial = "中點";
 
@@ -2186,6 +2202,8 @@ topology.multires.down = "";
 // Synonym: Flat subdivision
 topology.multires.linear = "平面細分";
 topology.multires.linear.help = "直接細分網格，不應用平滑。";
+// Create a new object by recomputing a new topology
+topology.remesh = "重構";
 // Create a new object by recomputing a new topology, by using voxels (see Glossary)
 topology.voxel = "體素網格重構";
 topology.voxel.help = "此功能可重構物件的網格，使其變得更加整齊。
@@ -2194,7 +2212,6 @@ topology.voxel.help = "此功能可重構物件的網格，使其變得更加整
 
 圖層在應用後會重新投影，但質量會受到影響。";
 topology.voxel.resolution = "解析度";
-topology.voxel.remesh = "重構";
 topology.voxel.sharp = "保留硬邊";
 topology.voxel.sharp.help = "該功能主要用於幾何構造比較簡單的物件。
 
@@ -2268,7 +2285,6 @@ topology.decimate.title.help = "減少多邊形的數量，儘量保留更多的
 注意，蒙版區域不會被切除。";
 // Synonym: Simplify (Decimate reduce the number of triangles/quads while retaining details as much as possible)
 topology.decimate = "網格簡化";
-topology.decimateTargetFaces = "目標面數";
 topology.decimatePaintWeight = "儲存繪畫";
 topology.decimatePaintWeight.help = "較高的數值可以對繪畫的細節邊緣有所保護。
 
@@ -2277,33 +2293,43 @@ topology.decimateUniform = "網格均勻化";
 topology.decimateUniform.help = "該引數值越高，最佳化輸出的三角面就越統一。";
 topology.decimatePreserveBorders = "";
 topology.decimatePreserveBorders.help = "";
+// Target a certain number of triangles, faces and vertices
+topology.target.triangles = "目標面數";
+topology.target.faces = "";
+topology.target.quads = "";
+topology.target.points = "";
+// Quad remesher
+topology.qremesh = "";
+topology.qremesh.angle = "";
+topology.qremesh.border = "";
+topology.qremesh.onlyQuad = "";
+topology.qremesh.hole = "";
+topology.qremesh.hole.help = ""
 
-// Unwrapping means compute UV (texture coordinates), it allows the object to receive on texture (wrap the texturing on the object)
-topology.uv.title = "UV自動展開";
-// UV Unwrapping
-topology.uvAtlas = "展開UV";
+// Unwrapping means compute UV (texture coordinates), with uvs you can appliy (wrap) a texture onto the model
+topology.uv.title = "UV展開";
+// UV Unwrap but as a Verb
+topology.uv.unwrap = "展開";
 // The operation can be very slow
-topology.uvAtlas.warning = "可能需要等待很長時間。
+topology.uv.atlas.warning = "可能需要等待很長時間。
 僅限於頂點數小於100k的物件。";
-// UV Unwrapping (BFF best left untranslated, stands for Boundary First Flattening)
-topology.uvBFF = "BFF展開";
 // Handles are topological holes (synonym: genus, hole)
-topology.uvBFF.warning = "如果網格有孔時可以有重疊！";
+topology.uv.bff.warning = "如果網格有孔時可以有重疊！";
 // Synonym: Point count? Singularity count ?
-topology.uvBFFCones = "錐體數量";
-topology.uvBFFCones.help = "數值越高，複雜物件失真越小。
+topology.uv.bff.cones = "錐體數量";
+topology.uv.bff.help = "數值越高，複雜物件失真越小。
 
 數值越高，需要計算的時間越長。";
-topology.uvDelete = "刪除UV";
+topology.uv.delete = "刪除UV";
 
 // Transfer the vertex painting in the texture, bake means "create texture (from mesh data)"
-topology.bake.title = "烘焙頂點繪圖";
+topology.bake.title = "烘焙";
 // Bake here means "create texture (from mesh data)"
 topology.bake.title.help = "";
 // Bake here means "create texture (from mesh data)"
 topology.bakeSelf = "";
 // Bake here means "create texture (from another mesh data)"
-topology.bakeHires = "";
+topology.bakeOther = "";
 topology.bakeResolution = "解析度";
 // Cage is a specific term, synonyom: "Bake offset"
 topology.bakeOffset = "";
@@ -2316,11 +2342,15 @@ topology.reproject.title.help = "";
 // tweaking value
 topology.reproject.rayBias = "";
 topology.reproject.rayBias.help = "";
+topology.reproject.normalOffset = "";
 // number of iteration the algorithm will take
 topology.reproject.iterations = "";
+topology.reproject.relax = "";
+topology.reproject.relax.help = "";
 
-topology.forceManifold = "";
-topology.forceManifold.help = "";
+topology.manifold.clean = "";
+topology.manifold.title = "";
+topology.manifold.title.help = "";
 
 // Reset key-bindings/shortcuts
 binding.reset = "重設鍵位繫結";

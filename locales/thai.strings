@@ -26,6 +26,8 @@ item.new = "ใหม่";
 item.rename = "เปลี่ยนชื่อ";
 // Add a new item (object, tool, project, etc)
 item.add = "เพิ่ม";
+// Update an item image with a new image (synonym: Update)
+item.replace = "";
 // Save an item (object, tool, etc)
 item.save = "บันทึก";
 item.save.confirm = "ยืนยันการบันทึก?";
@@ -366,6 +368,11 @@ debug.uvBFF = "เพิ่ม BFF UVs";
 debug.uvBFF.help = "เพิ่มวิธีการคำนวนแบบอื่น (ทำให้ขอบแบนก่อน)
 
 โปรดทราบว่า BFF จะทับซ้อนกันหากโครงสร้างหรือโทโพโลยีของเมชของคุณแตกต่างจากดิสก์หรือสเฟียร์";
+
+debug.quadriflow = "";
+debug.quadriflow.help = "";
+
+
 // Debug option, display an window with some debugging logs
 debug.logs = "บันทึก";
 // Debug option, overrides the rendering to display the depth buffer
@@ -393,7 +400,7 @@ file.project = "โปรเจ็กต์";
 file.project.save = "บันทึก";
 // E.g: Save "my_project"?
 file.project.save.confirm = "บันทึก$0?";
-// Save to another project (either new one or overriding existing one)
+// Overwrite another project
 file.project.saveAs = "บันทึกเป็น";
 // E.g: Overwrite "my_other_project"?
 file.project.saveAs.confirm = "เขียนทับ $0 หรือไม่?";
@@ -725,12 +732,6 @@ history.state.voxelRemesh = "รีเมชว็อกเซล";
 history.state.surfaceRemesh = "รีเมชพื้นผิว";
 // Shown during undo/redo
 history.state.multiresLevel = "การเปลี่ยนแปลงของความละเอียด";
-// Shown during undo/redo
-history.state.multiresToDynamic = "ความละเอียดหลายระดับที่ DynTopo";
-// Shown during undo/redo (mesh type conversion)
-history.state.meshDynamicToStatic = "DynTopo ที่คงที่";
-// Shown during undo/redo (mesh type conversion)
-history.state.meshStaticToDynamic = "ที่คงที่ไปยัง DynTopo";
 
 // Debugging/Inspect object material (view channel separately color, roughness, normal, uv, etc)
 inspector = "";
@@ -1014,8 +1015,8 @@ menu.multires = "ความละเอียดหลายระดับ";
 menu.voxel = "ว็อกเซล";
 // Menu name
 menu.dynTopo = "DynTopo";
-// Menu name
-menu.topology = "Deci/UV...";
+// Menu name (Synonym: Misc, Other)
+menu.topology = "";
 // Menu name
 menu.primitive = "รูปทรงพื้นฐาน";
 // Menu name
@@ -1080,11 +1081,11 @@ mesh.triplanar.cubic = "บังคับลูกบาศก์";
 // Covnert an object to a triplanar primitive
 mesh.triplanar.convert = "แปลง";
 // Static object means "static topology"
-mesh.typeStatic = "ตาราง";
+mesh.static = "ตาราง";
 // See glossary
-mesh.typeMultiresolution = "ความละเอียดหลายระดับ";
+mesh.multires = "ความละเอียดหลายระดับ";
 // Dynamic topology
-mesh.typeDynamic = "DynTopo";
+mesh.dynamic = "DynTopo";
 
 // Disable this option to have per-tool material settings (instead of shared settings)
 paint.useGlobal = "วัสดุทั้งหมด";
@@ -1213,7 +1214,6 @@ postprocess.curve.luminance = "หลัก";
 postprocess.curve.red = "แดง";
 postprocess.curve.green = "เขียว";
 postprocess.curve.blue = "น้ำเงิน";
-postprocess.curve.reset = "รีเซ็ต";
 // Reset color grading curves
 postprocess.curve.resetAll = "รีเซ็ตทั้งหมด";
 // https://en.wikipedia.org/wiki/Chromatic_aberration
@@ -1366,6 +1366,8 @@ primitive.hasHole = "มีรู";
 primitive.radiusSync = "รัศมีเดียวกัน";
 primitive.radiusStart = "รัศมีเริ่มต้น";
 primitive.radiusEnd = "รัศมีสิ้นสุด";
+// Curve profile (synonym: profile, curve)
+primitive.profile = "";
 
 // Singular of Repeaters (Nodes that make many copies of its children (type of mirror/curve/array/radial))
 repeater = "";
@@ -1473,6 +1475,9 @@ settings.snapCube = "สแนปลูกบาศก์";
 settings.snapCube.bottom = "ด้านล่าง";
 // Move the navigation cube on the left side of the screen
 settings.snapCube.left = "ซ้าย";
+// Flip the camera (rotate 180° to see the other side)
+settings.snapCube.flip = "";
+settings.snapCube.flip.help = "";
 // Alignment (can be auto/on/off)
 settings.snapCube.align = "";
 settings.snapCube.align.help = "";
@@ -1703,9 +1708,22 @@ stroke.culling.help = "ตัวเลือกนี้จะละเว้น
 // Only sculpt the vertex that points toward the direction of the deformation
 stroke.sameSide = "จุดยอดขนาดเดียวกันเท่านั้น";
 stroke.sameSide.help = "ละเว้นจุดยอดที่ชี้ไปในทิศทางตรงกันข้ามกับดีฟอร์เมชัน";
+stroke.onlyLasso = "การตั้งค่านี้จะเปิดใช้งานเฉพาะเครื่องมือลัสโซ";
+
+// Here sampling refers to the app gathering information under the mouse
+stroke.sampling = "";
+stroke.sampling.help = "";
+// Sampling radius size (percent)
+stroke.sampling.normal.radius = "";
+// Sampling radius size (percent)
+stroke.sampling.point.radius = "";
+// Sampling averaging
+stroke.sampling.normal.average = "";
+// Sampling averaging
+stroke.sampling.point.average = "";
+
 // Module the intensity of the sculpting operation by using a falloff curve
 menu.falloff = "สร้างเส้นโค้ง";
-stroke.onlyLasso = "การตั้งค่านี้จะเปิดใช้งานเฉพาะเครื่องมือลัสโซ";
 // Alpha
 menu.alpha = "อัลฟ่า";
 // Invert the pixel (black <-> white)
@@ -1964,8 +1982,6 @@ tool.layer.noLayerSelected = "ตัวเลือกนี้จะใช้�
 tool.flatten.warning = "ตัวเลือกเหล่านี้เป็นแบบทดลองและสามารถลบออกได้ในอนาคต!";
 tool.flatten.planeLockOrigin = "ล็อคกำเนิดระนาบ";
 tool.flatten.planeLockNormal = "ล็อคทิศทางระนาบ";
-tool.flatten.planeAverageOrigin = "ต้นทางระนาบโดยเฉลี่ย";
-tool.flatten.planeAverageNormal = "ทิศทางระนาบโดยเฉลี่ย";
 tool.flatten.planeOffset = "ออฟเซ็ตของระนาบ";
 
 // Option for Tube, Lathe and Insert tool
@@ -2108,7 +2124,7 @@ tool.gizmo.tap.help = "ตัวเลือกนี้มีผลเฉพา
 -- จิ้มกึ่งกลาง
 ย้ายกิซโม่ไปโดยใช้ค่าเฉลี่ยของสองอินเตอร์เซ็กชั่นแรก";
 tool.gizmo.tap.none = "ไม่มี";
-tool.gizmo.tap.align = "";
+tool.gizmo.tap.normal = "ปกติ";
 tool.gizmo.tap.first = "การตีครั้งที่หนึ่ง";
 tool.gizmo.tap.medial = "สแต็ปกลาง";
 
@@ -2179,6 +2195,8 @@ topology.multires.down = "";
 // Synonym: Flat subdivision
 topology.multires.linear = "ซับดิวิชันเชิงเส้น";
 topology.multires.linear.help = "เพียงแบ่งเมชออกโดยไม่ต้องปรับให้เรียบ";
+// Create a new object by recomputing a new topology
+topology.remesh = "รีเมช";
 // Create a new object by recomputing a new topology, by using voxels (see Glossary)
 topology.voxel = "การรีเมชว็อกเซล";
 topology.voxel.help = "การรีเมชโดยการสุ่มตัวอย่างเมชบนกริด
@@ -2187,7 +2205,6 @@ topology.voxel.help = "การรีเมชโดยการสุ่มต
 
 เลเยอร์ถูกฉายซ้ำหลังจากรีเมช แต่คุณภาพจะลดลง";
 topology.voxel.resolution = "ความละเอียด";
-topology.voxel.remesh = "รีเมช";
 topology.voxel.sharp = "รักษาขอบคมไว้";
 topology.voxel.sharp.help = "ตัวเลือกนี้มีประโยชน์ส่วนใหญ่สำหรับการทำบูลีนที่รูปทรงพื้นฐานอย่างง่ายๆ
 
@@ -2260,7 +2277,6 @@ topology.decimate.title.help = "ลดจำนวนรูปหลายเห
 โปรดทราบว่าพื้นที่ที่มาส์กไว้จะไม่ถูกทำลาย";
 // Synonym: Simplify (Decimate reduce the number of triangles/quads while retaining details as much as possible)
 topology.decimate = "ลบล้าง";
-topology.decimateTargetFaces = "สามเหลี่ยมเป้าหมาย";
 topology.decimatePaintWeight = "รักษาภาพวาด";
 topology.decimatePaintWeight.help = "ค่าที่สูงขึ้นจะพยายามรักษาภาพวาด
 
@@ -2269,32 +2285,42 @@ topology.decimateUniform = "เฟสที่ทำให้เหมือน�
 topology.decimateUniform.help = "ค่าที่สูงกว่าจะทำให้เกิดรูปสามเหลี่ยมที่มีขนาดใกล้เคียงกัน";
 topology.decimatePreserveBorders = "";
 topology.decimatePreserveBorders.help = "";
+// Target a certain number of triangles, faces and vertices
+topology.target.triangles = "สามเหลี่ยมเป้าหมาย";
+topology.target.faces = "";
+topology.target.quads = "";
+topology.target.points = "";
+// Quad remesher
+topology.qremesh = "";
+topology.qremesh.angle = "";
+topology.qremesh.border = "";
+topology.qremesh.onlyQuad = "";
+topology.qremesh.hole = "";
+topology.qremesh.hole.help = ""
 
-// Unwrapping means compute UV (texture coordinates), it allows the object to receive on texture (wrap the texturing on the object)
-topology.uv.title = "คำนวน UV อัตโนมัติ";
-// UV Unwrapping
-topology.uvAtlas = "คำนวนแอทลาส";
+// Unwrapping means compute UV (texture coordinates), with uvs you can appliy (wrap) a texture onto the model
+topology.uv.title = "คำนวน UV";
+// UV Unwrap but as a Verb
+topology.uv.unwrap = "คำนวน";
 // The operation can be very slow
-topology.uvAtlas.warning = "อาจช้ามาก กำหนดเป้าหมาย <100k จุดยอด";
-// UV Unwrapping (BFF best left untranslated, stands for Boundary First Flattening)
-topology.uvBFF = "คำนวน Bff";
+topology.uv.atlas.warning = "อาจช้ามาก กำหนดเป้าหมาย <100k จุดยอด";
 // Handles are topological holes (synonym: genus, hole)
-topology.uvBFF.warning = "ทับซ้อนกันได้ถ้าถ้าเมชมีแฮนเดิ้ล!";
+topology.uv.bff.warning = "ทับซ้อนกันได้ถ้าถ้าเมชมีแฮนเดิ้ล!";
 // Synonym: Point count? Singularity count ?
-topology.uvBFFCones = "จำนวนโคน";
-topology.uvBFFCones.help = "ค่าที่สูงขึ้นจะลดการบิดเบือนของวัตถุที่ซับซ้อน
+topology.uv.bff.cones = "จำนวนโคน";
+topology.uv.bff.help = "ค่าที่สูงขึ้นจะลดการบิดเบือนของวัตถุที่ซับซ้อน
 
 ค่าที่สูงขึ้นหมายถึงเวลาประมวลผลนานขึ้น";
-topology.uvDelete = "ลบ UVs";
+topology.uv.delete = "ลบ UVs";
 
 // Transfer the vertex painting in the texture, bake means "create texture (from mesh data)"
-topology.bake.title = "เบคการวาดจุดยอด";
+topology.bake.title = "เบค";
 // Bake here means "create texture (from mesh data)"
 topology.bake.title.help = "";
 // Bake here means "create texture (from mesh data)"
 topology.bakeSelf = "";
 // Bake here means "create texture (from another mesh data)"
-topology.bakeHires = "";
+topology.bakeOther = "";
 topology.bakeResolution = "ความละเอียด";
 // Cage is a specific term, synonyom: "Bake offset"
 topology.bakeOffset = "";
@@ -2307,11 +2333,15 @@ topology.reproject.title.help = "";
 // tweaking value
 topology.reproject.rayBias = "";
 topology.reproject.rayBias.help = "";
+topology.reproject.normalOffset = "";
 // number of iteration the algorithm will take
 topology.reproject.iterations = "";
+topology.reproject.relax = "";
+topology.reproject.relax.help = "";
 
-topology.forceManifold = "";
-topology.forceManifold.help = "";
+topology.manifold.clean = "";
+topology.manifold.title = "";
+topology.manifold.title.help = "";
 
 // Reset key-bindings/shortcuts
 binding.reset = "รีเซ็ตการมัดรวม";
