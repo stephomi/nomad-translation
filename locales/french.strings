@@ -7,6 +7,7 @@ confirm.ok = "OK";
 // Cancel something after being asked (Question? [answer, cancel])
 confirm.cancel = "Annuler";
 
+// Experimental feature
 experimental = "";
 
 // common
@@ -92,6 +93,12 @@ loading.reprocess = "Miniatures manquantes, retraitement des fichiers… ($0/$1)
 
 $2";
 loading.reprocess.cancel = "";
+
+access.title = "";
+access.window = "";
+access.pinch = "";
+access.drag = "";
+access.roll = "";
 
 // Color of an object
 material.color = "Couleur";
@@ -345,10 +352,15 @@ context.noSelection = "Aucune sélection";
 
 // Curve type, presets lets the user chooses between predefined curves
 curve.preset = "Préréglage";
+// Quick curve x side shift
+curve.shift = "";
 // Curve type, https://en.wikipedia.org/wiki/Centripetal_Catmull%E2%80%93Rom_spline
 curve.catmull = "Catmull-Rom";
 // Curve curve, https://en.wikipedia.org/wiki/Spline_(mathematics)
 curve.spline = "Spline";
+// Regular spaced sampling
+curve.uniform = "";
+curve.uniform.help = "";
 // Display the falloff curve in a symmetric way
 curve.symmetric.help = "";
 
@@ -1495,8 +1507,10 @@ settings.cursor.whileSculpting = "Afficher un cercle pendant la sculpture";
 settings.cursor.showDot = "Afficher le petit point";
 settings.cursor.showDot.help = "Le point peut s'afficher comme point de pivot de la caméra ou quand vous sculptez.";
 settings.cursor.showRope = "Afficher le stabilisateur de corde";
-settings.cursor.indicator = "";
-settings.cursor.indicator.help = "";
+// indicator
+settings.indicator.title = "";
+settings.indicator.title.help = "";
+settings.indicator.size = "";
 // Highlight (the object glows when we select it)
 settings.highlight.selection = "Mettre la sélection en surbrillance";
 // Highlight settings
@@ -1711,6 +1725,9 @@ Elle peut être utile si vous voulez peindre une partie d'une géométrie mince 
 Elle fonctionne également pour la sculpture, mais risque de générer quelques artefacts.";
 // Infinite depth, move everything under the circle, disregarding depth
 stroke.silhouette = "";
+stroke.silhouette.view = "";
+stroke.silhouette.snapped = "";
+stroke.silhouette.closest = "";
 // Only sculpt the vertex that points toward the direction of the deformation
 stroke.sameSide = "Sommet du même côté uniquement";
 stroke.sameSide.help = "Ignorez les sommets qui sont dans la direction opposée à la déformation.";
@@ -1728,7 +1745,7 @@ stroke.area.normal.average = "";
 // Sampling averaging
 stroke.area.point.average = "";
 // Keep sharp edges
-stroke.keepSharp = "Conserver des arêtes vives";
+stroke.keepSharp = "Conserver les arêtes";
 stroke.keepSharp.help = ""
 
 // Only paint the part of the mesh above a certain height
@@ -1985,8 +2002,6 @@ tool.intensity = "Intensité";
 tool.settings = "Réglages";
 tool.settings.none = "Cet outil n'a pas de réglages spécifiques.";
 
-// Flatten distance offset
-tool.clay.flattenOffset = "Décalage d'aplatissement";
 tool.crease.pinchFactor = "Force de pincement";
 
 tool.layer.removeInfluence = "Utiliser les données du calque";
@@ -2022,18 +2037,20 @@ tool.mask.flipConnected = "Inverser le masque (connecté)";
 tool.mask.blur = "Flou";
 // Sharpen the edge of the painted mask area
 tool.mask.sharpen = "Netteté";
-// Smooth the extracted mesh (from the painted mask)
-tool.mask.polish = "Lissage des bordures";
-// Only smooth the border of the extracted mesh
-tool.mask.polishOnlyBorder = "";
+// Smoothing strategy
+tool.mask.polish.all = "";
+tool.mask.polish.sharp = "";
+tool.mask.polish.border = "";
+// Smooth the border in a way that it matches completely with its dual
+tool.mask.polish.syncBorder = "";
 // topology of extracted mesh
 tool.mask.autoDivision = "";
 tool.mask.division = "";
 // The thickness of the extracted mesh (from the painted mask)
 tool.mask.thickness = "Épaisseur";
-// The extracted mesh has the same height everyone
-tool.mask.heightMask = "";
-tool.mask.heightMask.help = "";
+// The extracted mesh has the same height everywhere
+tool.mask.thicknessUniform = "";
+tool.mask.thicknessUniform.help = "";
 // Carve the mask into the surface
 tool.mask.carve = "Creuser";
 // Extract a new mesh from the painted mask
@@ -2230,7 +2247,7 @@ Si l'objet n'est pas fermé (étanche), un algorithme de remplissage de trou ser
 
 Les calques sont reprojetés après le remaillage, mais la qualité sera dégradée.";
 topology.voxel.resolution = "Résolution";
-topology.voxel.sharp = "Conserver des arêtes vives";
+topology.voxel.sharp = "Conserver les arêtes";
 topology.voxel.sharp.help = "Cette option est surtout utile pour les opérations booléennes simples sur les primitives.
 
 Elle génère une distorsion dans certaines zones, car les points sont alignés sur les arêtes.";
@@ -2349,6 +2366,7 @@ topology.bakeOther = "";
 topology.bakeResolution = "Résolution";
 // Cage is a specific term, synonyom: "Bake offset"
 topology.bakeOffset = "";
+topology.bakeRadius = "";
 // Bake opacity (from mask data)
 topology.bake.opacityFromMask = "";
 

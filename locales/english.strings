@@ -7,6 +7,7 @@ confirm.ok = "Ok";
 // Cancel something after being asked (Question? [answer, cancel])
 confirm.cancel = "Cancel";
 
+// Experimental feature
 experimental = "Experimental!";
 
 // common
@@ -92,6 +93,12 @@ loading.reprocess = "Missing thumbnails, reprocessing files... ($0/$1)
 
 $2";
 loading.reprocess.cancel = "Skip thumbnails generation?";
+
+access.title = "Accessibility";
+access.window = "Assistive window";
+access.pinch = "Pinch";
+access.drag = "Drag";
+access.roll = "Roll";
 
 // Color of an object
 material.color = "Color";
@@ -345,10 +352,17 @@ context.noSelection = "No selection";
 
 // Curve type, presets lets the user chooses between predefined curves
 curve.preset = "Preset";
+// Quick curve x side shift
+curve.shift = "Shift";
 // Curve type, https://en.wikipedia.org/wiki/Centripetal_Catmull%E2%80%93Rom_spline
 curve.catmull = "Catmull-Rom";
 // Curve curve, https://en.wikipedia.org/wiki/Spline_(mathematics)
 curve.spline = "Spline";
+// Regular spaced sampling
+curve.uniform = "Uniform";
+curve.uniform.help = "The curve will be sampled at regular spacing, to ensure uniform density.
+
+You can disable this option to control a bit the edge loops by adding new control points on the curve.";
 // Display the falloff curve in a symmetric way
 curve.symmetric.help = "Display the falloff in a symmetric way.
 
@@ -1510,8 +1524,10 @@ settings.cursor.whileSculpting = "Show circle while sculpting";
 settings.cursor.showDot = "Show small dot";
 settings.cursor.showDot.help = "The dot can appear as the camera pivot point or when you are sculpting.";
 settings.cursor.showRope = "Show rope stabilizer";
-settings.cursor.indicator = "Indicator size";
-settings.cursor.indicator.help = "This option is mostly for tutorials while capturing screen.";
+// indicator
+settings.indicator.title = "Indicator";
+settings.indicator.title.help = "Visual indicator for screen-capturing or tutorials purposes.";
+settings.indicator.size = "size";
 // Highlight (the object glows when we select it)
 settings.highlight.selection = "Highlight selection";
 // Highlight settings
@@ -1726,6 +1742,9 @@ It can be useful if you want to paint part of a thin geometry without impacting 
 It also works for sculpting but you might experience some artefacts.";
 // Infinite depth, move everything under the circle, disregarding depth
 stroke.silhouette = "Silhouette";
+stroke.silhouette.view = "View";
+stroke.silhouette.snapped = "If snapped";
+stroke.silhouette.closest = "Closest";
 // Only sculpt the vertex that points toward the direction of the deformation
 stroke.sameSide = "Same-side vertex only";
 stroke.sameSide.help = "Ignore vertices that points in the opposite direction of the deformation.";
@@ -1865,7 +1884,7 @@ Radial symmetry will be ignored.
 If the topology can't be kept because it is not considered symmetrical, you'll get the option to enforce the mirroring.";
 symmetry.mirrorLeftToRight = "Left to Right";
 symmetry.mirrorRightToLeft = "Right to Left";
-symmetry.mirrorFail = "Failed to apply symmetry.
+symmetry.mirrorFail = "Failed to detect symmetry.
 
 Do you want to enforce symmetry by mirroring the mesh?";
 symmetry.mirrorUseMasking = "Protect masked area";
@@ -2012,8 +2031,6 @@ tool.intensity = "Intensity";
 tool.settings = "Settings";
 tool.settings.none = "This tool doesn't have any specific settings.";
 
-// Flatten distance offset
-tool.clay.flattenOffset = "Flatten offset";
 tool.crease.pinchFactor = "Pinch force";
 
 tool.layer.removeInfluence = "Use layer data";
@@ -2049,18 +2066,20 @@ tool.mask.flipConnected = "Invert mask (connected)";
 tool.mask.blur = "Blur";
 // Sharpen the edge of the painted mask area
 tool.mask.sharpen = "Sharpen";
-// Smooth the extracted mesh (from the painted mask)
-tool.mask.polish = "Border smoothness";
-// Only smooth the border of the extracted mesh
-tool.mask.polishOnlyBorder = "Smooth borders only";
+// Smoothing strategy
+tool.mask.polish.all = "All";
+tool.mask.polish.sharp = "Sharp border";
+tool.mask.polish.border = "Borders only";
+// Smooth the border in a way that it matches completely with its dual
+tool.mask.polish.syncBorder = "Sync border";
 // topology of extracted mesh
 tool.mask.autoDivision = "Auto Edge-loop (side)";
 tool.mask.division = "Edge loop (side)";
 // The thickness of the extracted mesh (from the painted mask)
 tool.mask.thickness = "Thickness";
-// The extracted mesh has the same height everyone
-tool.mask.heightMask = "Height mask";
-tool.mask.heightMask.help = "Use this option if you want the mask intensity to modulate the thickness value.";
+// The extracted mesh has the same height everywhere
+tool.mask.thicknessUniform = "Uniform thickness";
+tool.mask.thicknessUniform.help = "If this option is disabled, the mask intensity will drive the height of the extracted surface.";
 // Carve the mask into the surface
 tool.mask.carve = "Carve";
 // Extract a new mesh from the painted mask
@@ -2393,6 +2412,7 @@ topology.bakeOther = "From high-res";
 topology.bakeResolution = "Resolution";
 // Cage is a specific term, synonyom: "Bake offset"
 topology.bakeOffset = "Cage offset";
+topology.bakeRadius = "Cage radius";
 // Bake opacity (from mask data)
 topology.bake.opacityFromMask = "Mask -> Opacity";
 
@@ -2403,7 +2423,11 @@ topology.reproject.title.help = "Project sculpted details, painting and layers f
 This is mostly meant to be used on a high-resolution mesh as well, typically with a clean topology.";
 // tweaking value
 topology.reproject.rayBias = "Ray bias";
-topology.reproject.rayBias.help = "Tells the algorithm to favor ray intersection rather than nearest point intersection.";
+topology.reproject.rayBias.help = "Two methods are used for reprojection:
+- nearest: the closest point on the surface
+- ray: intersection point through the normal direction
+
+Higher bias values will favor ray intersection instead of nearest surface.";
 topology.reproject.normalOffset = "Normal offset";
 // number of iteration the algorithm will take
 topology.reproject.iterations = "Iterations";
