@@ -8,7 +8,7 @@ confirm.ok = "ОК";
 confirm.cancel = "Отмена";
 
 // Experimental feature
-experimental = "";
+experimental = "Экспериментальная функция!";
 
 // common
 position.top = "Верх";
@@ -42,11 +42,11 @@ item.lastSave.confirm = "Загрузить последнее сохранен�
 item.reset = "Сбросить";
 item.reset.confirm = "Подтвердить сброс?";
 // Make an item instance, similar to clone but keeps the underlying geometry (Synonym: link? soft clone?)
-item.instance = "Создать метку экземпляра";
+item.instance = "Создать";
 // Uninstance the object, make the object real
-item.uninstance = "Снять метку экземпляра";
+item.uninstance = "Снять";
 // Clone an item (object, tool, etc)
-item.clone = "Клонирование";
+item.clone = "Копировать";
 // Delete an item (object, tool, etc)
 item.delete = "Удалить";
 item.delete.confirm = "Подтвердить удаление?";
@@ -229,9 +229,9 @@ alert.selection.showAll = "Показать все";
 // Project quick saving
 alert.quickSave = "Сохранение...";
 // Painting on the object was hidden but the user did paint the object
-alert.forceShowPainting.fill = "Функция 'Показать окрашивание' активирована, функция [Окрасить все] использована.";
+alert.forceShowPainting.fill = "Функция `Показать окрашивание` активирована, функция [Окрасить все] использована.";
 // Painting on the object was hidden but the user started to paint on the object
-alert.forceShowPainting.tool = "Функция 'Показать окрашивание' активирована, объект был окрашен.";
+alert.forceShowPainting.tool = "Функция `Показать окрашивание` активирована, объект был окрашен.";
 // See Glossary (Multiresolution)
 alert.multiresLost = "Мультиразрешение не будет сохранено!";
 // The user is starting an operation that can lead to a crash
@@ -358,11 +358,20 @@ curve.shift = "";
 curve.catmull = "Катмалла-Рома";
 // Curve curve, https://en.wikipedia.org/wiki/Spline_(mathematics)
 curve.spline = "Сплайн";
+curve.bspline = "";
+curve.precision = "";
 // Regular spaced sampling
 curve.uniform = "";
 curve.uniform.help = "";
 // Display the falloff curve in a symmetric way
 curve.symmetric.help = "";
+curve.radius = "Радиус";
+curve.twist = "Скручивание";
+curve.spiral = "";
+curve.spiral.twist = "";
+curve.spiral.scale = "Масштаб";
+curve.spiral.radius = "Радиус";
+curve.spiral.angle = "Сдвиг угла";
 
 // Set the desired FPS (frame per second, refresh rate)
 debug.targetFPS = "";
@@ -1179,7 +1188,6 @@ postprocess.ssr.warning = "Для SSR необходим режим затене
 postprocess.ssgi = "Глобальное освещение (SSGI)";
 // Thickness threshold for ssgi tracing algorithm (synonym: threshold, bias)
 postprocess.ssgi.tolerance = "Допуск";
-postprocess.ssgi.experimental = "Экспериментальная функция!";
 postprocess.ssgi.warning = "Для SSGI необходим режим затенения PBR.";
 // Screen-space ambient occlusion (SSAO)
 // https://en.wikipedia.org/wiki/Ambient_occlusion
@@ -1306,6 +1314,10 @@ primitive.subdivision = "Последующее подразделение";
 
 // Radius (of a sphere, torus, etc)
 primitive.radius = "Радиус";
+// Make sure the two end-point of a primitive (cylinder, tube, etc) have the same size
+primitive.radius.sync = "Тот же радиус";
+primitive.radius.start = "Начало радиуса";
+primitive.radius.end = "Конец радиуса";
 // Size (of cube x dimension)
 primitive.size = "Размер";
 primitive.sizeX = "Размер X";
@@ -1355,14 +1367,6 @@ primitive.boxRegular = "Одинаковый размер (куб)";
 // Distance to the snapping point
 primitive.tubeSnapOffset = "Сдвиг привязки";
 primitive.tubeSnapOffset.help = "Значение 1.0равно радиусу трубы.";
-// Radius of the tube (starting end-point of the tube)
-primitive.tubeThicknessStart = "Начало радиуса";
-// Radius of the tube (ending end-point of the tube)
-primitive.tubeThicknessEnd = "Конец радиуса";
-primitive.tubeTwist = "Скручивание";
-primitive.tubeTwistRotate = "Поворот";
-primitive.tubeTwistRadius = "Величина";
-primitive.tubeTwistOffset = "Сдвиг";
 primitive.tubeSnap = "Привязка";
 primitive.torusRadiusOuter = "Внешний радиус";
 primitive.torusRadiusInner = "Внутренний радиус";
@@ -1375,12 +1379,9 @@ primitive.coneHeight = "Высота";
 primitive.hole = "Дырки";
 // Make a hole in the primtive to make it hollow
 primitive.hasHole = "Есть дырка";
-// Make sure the two end-point of a primitive (cylinder, tube, etc) have the same size
-primitive.radiusSync = "Тот же радиус";
-primitive.radiusStart = "Начало радиуса";
-primitive.radiusEnd = "Конец радиуса";
 // Curve profile (synonym: profile, curve)
 primitive.profile = "";
+primitive.profile.viewport = "";
 
 // Singular of Repeaters (Nodes that make many copies of its children (type of mirror/curve/array/radial))
 repeater = "";
@@ -1459,6 +1460,9 @@ scene.noneButNeedAtLeastOne = "Нет выбранного объекта, вы�
 scene.noneButNeedOne = "Нет выбранного объекта, выберите один объект.";
 // Need to select one object only
 scene.onlyOneObject = "Несколько объектов выбрано, выберите один объект.";
+// Boolean operation
+scene.boolean = "Boolean";
+scene.boolean.help = ""
 
 // General scene display settings
 settings.display.title = "Настройки отображения";
@@ -1715,7 +1719,7 @@ stroke.useDynamicTopology = "Разрешить использование ди�
 stroke.connected = "Топология закрепленного";
 stroke.connected.help = "Эта функция будет скульптурировать только те вершины, которые закреплены на выбранной поверхности.
 
-Она чаще всего используется с инструментом 'Перемещение', например, если вы хотите переместить только ту часть, которая пересекается с другой частью.";
+Она чаще всего используется с инструментом `Перемещение`, например, если вы хотите переместить только ту часть, которая пересекается с другой частью.";
 // Only sculpt the vertex that points toward the camera
 stroke.culling = "Только вершины на лицевой поверхности";
 stroke.culling.help = "Эта функция будет игнорировать вершины на обратной стороне.
@@ -1731,7 +1735,7 @@ stroke.silhouette.closest = "";
 // Only sculpt the vertex that points toward the direction of the deformation
 stroke.sameSide = "Только вершины на одной стороне";
 stroke.sameSide.help = "Игнорировать вершины, указывающие в обратную сторону от деформации.";
-stroke.onlyLasso = "Настройки активны только для инструмента 'Лассо'.";
+stroke.onlyLasso = "Настройки активны только для инструмента `Лассо`.";
 
 // Here sampling refers to the app gathering information under the mouse
 stroke.area = "";
@@ -1755,10 +1759,6 @@ stroke.depthFilter.max = "";
 stroke.depthFilter.min = "";
 stroke.depthFilter.offset = "";
 
-// Module the intensity of the sculpting operation by using a falloff curve
-menu.falloff = "Спад";
-// Alpha
-menu.alpha = "Альфа";
 // Invert the pixel (black <-> white)
 stroke.alphaInvert = "Инверсия пикселей";
 // Repeat the alpha image (pattern)
@@ -1808,6 +1808,11 @@ stroke.type.grab = "Движение";
 stroke.type.grabRadius = "Движение - динамический радиус";
 // Lock a region and sculpt it by changing the tool intensity
 stroke.type.grabIntensity = "Движение - динамическая интенсивность";
+
+stroke.falloffProject = "";
+stroke.falloffProject.help = "";
+stroke.falloffProject.sphere = "";
+stroke.falloffProject.circle = "";
 
 // Symmetry
 symmetry = "Симметрия";
@@ -2003,6 +2008,7 @@ tool.settings = "Параметры";
 tool.settings.none = "У этого инструмента нет особых настроек.";
 
 tool.crease.pinchFactor = "Сила щипка";
+tool.crease.offsetFactor = "";
 
 tool.layer.removeInfluence = "Использовать данные слоев";
 tool.layer.removeInfluence.help = "Эта функция активна только при выбранном слое.
@@ -2019,6 +2025,8 @@ tool.syncInstance.message = "";
 
 // The vertex on the border of the mesh will stay still even if we try to smooth the border
 tool.smooth.stickyBorder = "Прикрепленные вершины по краям";
+tool.smooth.stable = "";
+tool.smooth.stable.help = "";
 
 tool.paint = "Рисовать";
 // Erase the painting
@@ -2087,16 +2095,16 @@ tool.mask.action.layer = "Слой";
 // Transform/Matrix
 tool.matrix = "Матрица";
 // The target of the transform is either the Matrix or the Vertex of the object
-tool.matrix.apply = "Цель";
+tool.matrix.target = "Цель";
 // Automatic
-tool.matrix.apply.auto = "Авто";
+tool.matrix.target.auto = "Авто";
 // Transform the object alone (the children stands still)
-tool.matrix.apply.object = "Объект";
+tool.matrix.target.object = "Объект";
 // Auto apply the transform on the vertices
-tool.matrix.apply.vertex = "Вершина";
+tool.matrix.target.vertex = "Вершина";
 // Transform the object and its children
-tool.matrix.apply.group = "Группа";
-tool.matrix.apply.help = "-- Авто
+tool.matrix.target.group = "Группа";
+tool.matrix.target.help = "-- Авто
 При стандартных настройках будет работать подобно групповому варианту.
 Если у меша есть маски или же включена симметрия гизмо, эта функция будет работать как вершины.
 
@@ -2172,6 +2180,9 @@ tool.lathe.axisFixed = "Закреплено";
 tool.hole = "Заполнение дырок";
 tool.hole.fillHoles = "Заполнить дырки";
 // synonym: Alternative method
+tool.hole.method.fill = "";
+tool.hole.method.screen = "";
+tool.hole.method.boolean = "Boolean";
 tool.hole.bridges = "Boolean по размеру экрана";
 tool.hole.bridges.help = "Включение этой функции позволяет создавать дырки в объеме.
 Откос выемки будет ближе к форме вырезания.";
@@ -2287,16 +2298,16 @@ topology.dynamic.method.help = "-- Масштабирование
 Детализация зависит от близости к поверхности.
 
 -- Радиус
-Инструмент 'Радиус' определяет количество деталей.
+Инструмент `Радиус` определяет количество деталей.
 
 -- Постоянная
 Деталь закреплена, а значение детализации связано со слайдером вокселей.";
 topology.dynamic.quality = "Предпочтение...";
-topology.dynamic.quality.help = "Если вы выбираете опцию 'Качество', два основных различия:
+topology.dynamic.quality.help = "Если вы выбираете опцию `Качество`, два основных различия:
 - улучшение применяется до скульптурирования, результатом является меньшее количество интерполирующих артефактов при окрашивании или скульптурировании очень мелких деталей
 - улучшение не применяется пошагово, при скульптурировании очень мелких деталей или быстрых штрихах топология будет корректно улучшаться
 
-Для улучшения работы и при использовании этой функции рекомендуется включить функцию 'Частичное рисование' в панели настроек.";
+Для улучшения работы и при использовании этой функции рекомендуется включить функцию `Частичное рисование` в панели настроек.";
 topology.dynamic.quality.speed = "Скорость";
 topology.dynamic.quality.quality = "Качество";
 // Whether the pencil pressure can impact the level of detail
@@ -2378,6 +2389,7 @@ topology.reproject.relax.help = "";
 topology.manifold = "";
 topology.nonManifold = "";
 topology.manifold.clean = "";
+topology.manifold.collapse = "";
 topology.manifold.title = "";
 topology.manifold.title.help = "";
 

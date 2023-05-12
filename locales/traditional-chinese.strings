@@ -8,7 +8,7 @@ confirm.ok = "好";
 confirm.cancel = "取消";
 
 // Experimental feature
-experimental = "";
+experimental = "實驗性功能！";
 
 // common
 position.top = "頂部";
@@ -357,12 +357,21 @@ curve.shift = "";
 // Curve type, https://en.wikipedia.org/wiki/Centripetal_Catmull%E2%80%93Rom_spline
 curve.catmull = "Catmull-Rom";
 // Curve curve, https://en.wikipedia.org/wiki/Spline_(mathematics)
-curve.spline = "樣條";
+curve.spline = "B樣條";
+curve.bspline = "";
+curve.precision = "";
 // Regular spaced sampling
 curve.uniform = "";
 curve.uniform.help = "";
 // Display the falloff curve in a symmetric way
 curve.symmetric.help = "";
+curve.radius = "半徑";
+curve.twist = "扭曲";
+curve.spiral = "";
+curve.spiral.twist = "";
+curve.spiral.scale = "縮放";
+curve.spiral.radius = "半徑";
+curve.spiral.angle = "角度偏移";
 
 // Set the desired FPS (frame per second, refresh rate)
 debug.targetFPS = "";
@@ -869,7 +878,7 @@ layers.title.help = "圖層能夠記錄位置偏移和繪畫，這對於非線�
 
 對於繪畫資料，圖層是從上到下排序的，所以上方的圖層會遮蓋下方的圖層。
 
-您可以使用'DelLayer '工具來擦除當前圖層上的繪畫蒙版。";
+您可以使用`DelLayer` 工具來擦除當前圖層上的繪畫蒙版。";
 layers.primitive = "基本體無法新增圖層。";
 // When there is no layer selected (see Glossary for Layer)
 layers.baseSelected = "無";
@@ -1185,7 +1194,6 @@ postprocess.ssr.warning = "SSR僅在PBR渲染模式下有效。";
 postprocess.ssgi = "全域性光照(SSGI)";
 // Thickness threshold for ssgi tracing algorithm (synonym: threshold, bias)
 postprocess.ssgi.tolerance = "容差";
-postprocess.ssgi.experimental = "實驗性功能！";
 postprocess.ssgi.warning = "SSGI僅在PBR著色模式下可用。";
 // Screen-space ambient occlusion (SSAO)
 // https://en.wikipedia.org/wiki/Ambient_occlusion
@@ -1312,6 +1320,10 @@ primitive.subdivision = "後期細分";
 
 // Radius (of a sphere, torus, etc)
 primitive.radius = "半徑";
+// Make sure the two end-point of a primitive (cylinder, tube, etc) have the same size
+primitive.radius.sync = "相同半徑";
+primitive.radius.start = "起始半徑";
+primitive.radius.end = "結束半徑";
 // Size (of cube x dimension)
 primitive.size = "尺寸";
 primitive.sizeX = "尺寸 X";
@@ -1361,14 +1373,6 @@ primitive.boxRegular = "固定比例（立方體）";
 // Distance to the snapping point
 primitive.tubeSnapOffset = "吸附偏移";
 primitive.tubeSnapOffset.help = "當偏移值為1.0時，偏移後的距離即為圓管半徑。";
-// Radius of the tube (starting end-point of the tube)
-primitive.tubeThicknessStart = "起始半徑";
-// Radius of the tube (ending end-point of the tube)
-primitive.tubeThicknessEnd = "結束半徑";
-primitive.tubeTwist = "扭曲";
-primitive.tubeTwistRotate = "旋轉";
-primitive.tubeTwistRadius = "幅度";
-primitive.tubeTwistOffset = "偏移";
 primitive.tubeSnap = "吸附";
 primitive.torusRadiusOuter = "外圈半徑";
 primitive.torusRadiusInner = "內圈半徑";
@@ -1381,12 +1385,9 @@ primitive.coneHeight = "高度";
 primitive.hole = "孔洞";
 // Make a hole in the primtive to make it hollow
 primitive.hasHole = "打洞";
-// Make sure the two end-point of a primitive (cylinder, tube, etc) have the same size
-primitive.radiusSync = "相同半徑";
-primitive.radiusStart = "起始半徑";
-primitive.radiusEnd = "結束半徑";
 // Curve profile (synonym: profile, curve)
 primitive.profile = "";
+primitive.profile.viewport = "";
 
 // Singular of Repeaters (Nodes that make many copies of its children (type of mirror/curve/array/radial))
 repeater = "";
@@ -1465,6 +1466,9 @@ scene.noneButNeedAtLeastOne = "物件未選擇";
 scene.noneButNeedOne = "未選中任何物件，請至少選中一個物件。";
 // Need to select one object only
 scene.onlyOneObject = "您選擇了多個物件，無法修改圖層。";
+// Boolean operation
+scene.boolean = "布林";
+scene.boolean.help = ""
 
 // General scene display settings
 settings.display.title = "顯示設定";
@@ -1762,10 +1766,6 @@ stroke.depthFilter.max = "";
 stroke.depthFilter.min = "";
 stroke.depthFilter.offset = "";
 
-// Module the intensity of the sculpting operation by using a falloff curve
-menu.falloff = "衰減";
-// Alpha
-menu.alpha = "Alpha";
 // Invert the pixel (black <-> white)
 stroke.alphaInvert = "反轉畫素";
 // Repeat the alpha image (pattern)
@@ -1815,6 +1815,11 @@ stroke.type.grab = "抓取";
 stroke.type.grabRadius = "抓取 - 可調半徑";
 // Lock a region and sculpt it by changing the tool intensity
 stroke.type.grabIntensity = "抓取 - 可調強度";
+
+stroke.falloffProject = "";
+stroke.falloffProject.help = "";
+stroke.falloffProject.sphere = "";
+stroke.falloffProject.circle = "";
 
 // Symmetry
 symmetry = "對稱";
@@ -2010,6 +2015,7 @@ tool.settings = "設定";
 tool.settings.none = "該工具無特殊設定。";
 
 tool.crease.pinchFactor = "力度";
+tool.crease.offsetFactor = "";
 
 tool.layer.removeInfluence = "使用圖層偏移";
 tool.layer.removeInfluence.help = "僅當選中圖層時此功能才能啟用。
@@ -2026,6 +2032,8 @@ tool.syncInstance.message = "";
 
 // The vertex on the border of the mesh will stay still even if we try to smooth the border
 tool.smooth.stickyBorder = "邊線粘性頂點";
+tool.smooth.stable = "";
+tool.smooth.stable.help = "";
 
 tool.paint = "繪畫";
 // Erase the painting
@@ -2094,16 +2102,16 @@ tool.mask.action.layer = "層";
 // Transform/Matrix
 tool.matrix = "座標";
 // The target of the transform is either the Matrix or the Vertex of the object
-tool.matrix.apply = "目標";
+tool.matrix.target = "目標";
 // Automatic
-tool.matrix.apply.auto = "自動選擇";
+tool.matrix.target.auto = "自動選擇";
 // Transform the object alone (the children stands still)
-tool.matrix.apply.object = "基於物件";
+tool.matrix.target.object = "基於物件";
 // Auto apply the transform on the vertices
-tool.matrix.apply.vertex = "基於頂點";
+tool.matrix.target.vertex = "基於頂點";
 // Transform the object and its children
-tool.matrix.apply.group = "組";
-tool.matrix.apply.help = "-- 自動
+tool.matrix.target.group = "組";
+tool.matrix.target.help = "-- 自動
 預設情況下，這和“組合”選項類似。
 如果網格已有蒙版，或者啟用了變換工具對稱，這會和“頂點”效果相似。
 
@@ -2179,6 +2187,9 @@ tool.lathe.axisFixed = "固定位置";
 tool.hole = "孔洞填補";
 tool.hole.fillHoles = "填補孔洞";
 // synonym: Alternative method
+tool.hole.method.fill = "";
+tool.hole.method.screen = "";
+tool.hole.method.boolean = "布林";
 tool.hole.bridges = "螢幕空間的布林值";
 tool.hole.bridges.help = "啟用此選項後。您可以用裁切的方式在物體上打洞。
 裁切效果也會更加接近於您所繪製的形狀。";
@@ -2391,6 +2402,7 @@ topology.reproject.relax.help = "";
 topology.manifold = "";
 topology.nonManifold = "";
 topology.manifold.clean = "";
+topology.manifold.collapse = "";
 topology.manifold.title = "";
 topology.manifold.title.help = "";
 

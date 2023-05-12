@@ -358,6 +358,8 @@ curve.shift = "Shift";
 curve.catmull = "Catmull-Rom";
 // Curve curve, https://en.wikipedia.org/wiki/Spline_(mathematics)
 curve.spline = "Spline";
+curve.bspline = "B-spline";
+curve.precision = "Accuracy";
 // Regular spaced sampling
 curve.uniform = "Uniform";
 curve.uniform.help = "The curve will be sampled at regular spacing, to ensure uniform density.
@@ -367,6 +369,13 @@ You can disable this option to control a bit the edge loops by adding new contro
 curve.symmetric.help = "Display the falloff in a symmetric way.
 
 This option is only a visual cue, it doesn't impact the falloff itself";
+curve.radius = "Radius";
+curve.twist = "Twist";
+curve.spiral = "Spiral";
+curve.spiral.twist = "Twist angle";
+curve.spiral.scale = "Scale";
+curve.spiral.radius = "Radius";
+curve.spiral.angle = "Angle offset";
 
 // Set the desired FPS (frame per second, refresh rate)
 debug.targetFPS = "Target FPS";
@@ -881,7 +890,7 @@ For example by experimenting different facial expression without relying on the 
 
 For painting data, layers are sorted in a top-down fashion; so layers on top will mask the lower ones.
 
-You can erase part of the layer by using the 'DelLayer' tool.";
+You can erase part of the layer by using the `DelLayer` tool.";
 layers.primitive = "Layers are unavailable for primitives.";
 // When there is no layer selected (see Glossary for Layer)
 layers.baseSelected = "None";
@@ -1191,7 +1200,6 @@ postprocess.ssr.warning = "SSR requires PBR shading mode.";
 postprocess.ssgi = "Global Illumination (SSGI)";
 // Thickness threshold for ssgi tracing algorithm (synonym: threshold, bias)
 postprocess.ssgi.tolerance = "Tolerance";
-postprocess.ssgi.experimental = "Experimental!";
 postprocess.ssgi.warning = "SSGI requires PBR shading mode.";
 // Screen-space ambient occlusion (SSAO)
 // https://en.wikipedia.org/wiki/Ambient_occlusion
@@ -1318,6 +1326,10 @@ primitive.subdivision = "Post subdivision";
 
 // Radius (of a sphere, torus, etc)
 primitive.radius = "Radius";
+// Make sure the two end-point of a primitive (cylinder, tube, etc) have the same size
+primitive.radius.sync = "Same radius";
+primitive.radius.start = "Radius start";
+primitive.radius.end = "Radius end";
 // Size (of cube x dimension)
 primitive.size = "Size";
 primitive.sizeX = "Size X";
@@ -1346,7 +1358,7 @@ If you interact with the division or size sliders, the painting information will
 
 You should probably disable symmetry as it might not function as you would expect.
 
-You can use the 'Topologically connected' option in the mask panel to paint a plane impacting the other planes.";
+You can use the `Topologically connected option in the mask panel to paint a plane impacting the other planes.";
 // Make sure the box is a regular cube (same 3 dimension)
 primitive.triplanarSameSize = "Same size (cube)";
 primitive.triplanarPolish = "Smoothness";
@@ -1367,14 +1379,6 @@ primitive.boxRegular = "Same size (cube)";
 // Distance to the snapping point
 primitive.tubeSnapOffset = "Snap offset";
 primitive.tubeSnapOffset.help = "A value of 1.0 is equal to the tube's radius.";
-// Radius of the tube (starting end-point of the tube)
-primitive.tubeThicknessStart = "Radius start";
-// Radius of the tube (ending end-point of the tube)
-primitive.tubeThicknessEnd = "Radius end";
-primitive.tubeTwist = "Twist";
-primitive.tubeTwistRotate = "Rotation";
-primitive.tubeTwistRadius = "Magnitude";
-primitive.tubeTwistOffset = "Offset";
 primitive.tubeSnap = "Snap";
 primitive.torusRadiusOuter = "Outer radius";
 primitive.torusRadiusInner = "Inner radius";
@@ -1387,12 +1391,9 @@ primitive.coneHeight = "Height";
 primitive.hole = "Hole";
 // Make a hole in the primtive to make it hollow
 primitive.hasHole = "Has hole";
-// Make sure the two end-point of a primitive (cylinder, tube, etc) have the same size
-primitive.radiusSync = "Same radius";
-primitive.radiusStart = "Radius start";
-primitive.radiusEnd = "Radius end";
 // Curve profile (synonym: profile, curve)
 primitive.profile = "Profile";
+primitive.profile.viewport = "Show in viewport";
 
 // Singular of Repeaters (Nodes that make many copies of its children (type of mirror/curve/array/radial))
 repeater = "Repeater";
@@ -1474,6 +1475,13 @@ scene.noneButNeedAtLeastOne = "No selected object, please select at least one ob
 scene.noneButNeedOne = "No selected object, please select one object.";
 // Need to select one object only
 scene.onlyOneObject = "Multiple objects are selected, please select only one object.";
+// Boolean operation
+scene.boolean = "Boolean";
+scene.boolean.help = "Merge, subtract or intersect objects by performing a boolean operation.
+
+The operation can fail if some objects are not manifold or not watertight.
+
+If the boolean fails, you can always use the voxel remesher on the problematic object to ensure it's a watertight manifold."
 
 // General scene display settings
 settings.display.title = "Display settings";
@@ -1526,7 +1534,7 @@ settings.cursor.showDot.help = "The dot can appear as the camera pivot point or 
 settings.cursor.showRope = "Show rope stabilizer";
 // indicator
 settings.indicator.title = "Indicator";
-settings.indicator.title.help = "Visual indicator for screen-capturing or tutorials purposes.";
+settings.indicator.title.help = "Display a visual indicator (tutorials, screen capture, etc).";
 settings.indicator.size = "size";
 // Highlight (the object glows when we select it)
 settings.highlight.selection = "Highlight selection";
@@ -1777,15 +1785,11 @@ This option can be useful for flatten-based tool, or if you want to color a plan
 stroke.depthFilter = "Depth masking";
 stroke.depthFilter.help = "Exclude points that are above or below a certain distance of the computed plane (Area sampling).
 
-As an example, it can be used paint bumps or cavities only.";
+As an example, it can be used to paint bumps or cavities.";
 stroke.depthFilter.max = "Top area";
 stroke.depthFilter.min = "Bottom area";
 stroke.depthFilter.offset = "Height offset";
 
-// Module the intensity of the sculpting operation by using a falloff curve
-menu.falloff = "Falloff";
-// Alpha
-menu.alpha = "Alpha";
 // Invert the pixel (black <-> white)
 stroke.alphaInvert = "Invert pixels";
 // Repeat the alpha image (pattern)
@@ -1837,6 +1841,16 @@ stroke.type.grab = "Grab";
 stroke.type.grabRadius = "Lock + radius";
 // Lock a region and sculpt it by changing the tool intensity
 stroke.type.grabIntensity = "Lock + intensity";
+
+stroke.falloffProject = "Influence";
+stroke.falloffProject.help = "-- Sphere (3d)
+Influence is computed by taking the distance from the vertex to the brush's center.
+
+-- Circle (2d)
+The vertex is first projected on the area plane, before taking its distance to the brush's center.
+This is similar to how alphas are sampled.";
+stroke.falloffProject.sphere = "Sphere";
+stroke.falloffProject.circle = "Circle";
 
 // Symmetry
 symmetry = "Symmetry";
@@ -2031,7 +2045,8 @@ tool.intensity = "Intensity";
 tool.settings = "Settings";
 tool.settings.none = "This tool doesn't have any specific settings.";
 
-tool.crease.pinchFactor = "Pinch force";
+tool.crease.pinchFactor = "Pinch factor";
+tool.crease.offsetFactor = "Offset factor";
 
 tool.layer.removeInfluence = "Use layer data";
 tool.layer.removeInfluence.help = "This option is only active when there is a layer selected.
@@ -2048,6 +2063,10 @@ tool.syncInstance.message = "The new object will be added on all other instances
 
 // The vertex on the border of the mesh will stay still even if we try to smooth the border
 tool.smooth.stickyBorder = "Sticky vertex on border";
+tool.smooth.stable = "Stable smoothing";
+tool.smooth.stable.help = "Tries to make the smoothing topology independent.
+
+This mode works best with varying topology density and with high smoothing intensity value.";
 
 tool.paint = "Paint";
 // Erase the painting
@@ -2116,16 +2135,16 @@ tool.mask.action.layer = "Layer";
 // Transform/Matrix
 tool.matrix = "Matrix";
 // The target of the transform is either the Matrix or the Vertex of the object
-tool.matrix.apply = "Target";
+tool.matrix.target = "Target";
 // Automatic
-tool.matrix.apply.auto = "Auto";
+tool.matrix.target.auto = "Auto";
 // Transform the object alone (the children stands still)
-tool.matrix.apply.object = "Object";
+tool.matrix.target.object = "Object";
 // Auto apply the transform on the vertices
-tool.matrix.apply.vertex = "Vertex";
+tool.matrix.target.vertex = "Vertex";
 // Transform the object and its children
-tool.matrix.apply.group = "Group";
-tool.matrix.apply.help = "-- Auto
+tool.matrix.target.group = "Group";
+tool.matrix.target.help = "-- Auto
 By default, this will work similarly to the Group option.
 If the mesh has masking, or if gizmo symmetry is enabled, it will work the same as Vertex.
 
@@ -2204,6 +2223,9 @@ tool.lathe.axisFixed = "Fixed";
 tool.hole = "Hole filling";
 tool.hole.fillHoles = "Fill holes";
 // synonym: Alternative method
+tool.hole.method.fill = "Fill";
+tool.hole.method.screen = "Legacy";
+tool.hole.method.boolean = "Boolean";
 tool.hole.bridges = "Screen-space boolean";
 tool.hole.bridges.help = "If this option is enabled, you can punch holes in the volume.
 The cut slope will also follow more closely the cutting shape.";
@@ -2332,7 +2354,7 @@ topology.dynamic.quality.help = "If you choose Quality, the 2 main differences a
 - refinement is applied before the sculpting operator, you will get less interpolating artefact when painting or sculpting very small details
 - refinement is not applied incrementally, if you sculpt very small details or do quick strokes, the topology will always be correctly refined
 
-For better performance, and if you plan on using this option on high poly mesh, you might consider enabling the 'partial drawing' option in the Settings panel.";
+For better performance, and if you plan on using this option on high poly mesh, you might consider enabling the partial drawing` option in the Settings panel.";
 topology.dynamic.quality.speed = "Speed";
 topology.dynamic.quality.quality = "Quality";
 // Whether the pencil pressure can impact the level of detail
@@ -2394,7 +2416,7 @@ topology.bake.title.help = "Texture baking will create textures by projecting ot
 Here is the typical workflow for baking:
 - You have a mesh with fine details and painting
 - Clone it
-- Decimate it (set 'Preserve painting' to 0!)
+- Decimate it (set `Preserve painting` to 0!)
 - UV unwrap it
 - Bake it!
 
@@ -2418,7 +2440,7 @@ topology.bake.opacityFromMask = "Mask -> Opacity";
 
 // project a high resolution mesh details onto another
 topology.reproject.title = "Reproject";
-topology.reproject.title.help = "Project sculpted details, painting and layers from the nearest high-resolution mesh in the scene.
+topology.reproject.title.help = "Project sculpted details, painting and layers from the nearest visible objects.
 
 This is mostly meant to be used on a high-resolution mesh as well, typically with a clean topology.";
 // tweaking value
@@ -2437,6 +2459,7 @@ topology.reproject.relax.help = "Relax should be prefered when the mesh is low p
 topology.manifold = "Manifold";
 topology.nonManifold = "Non-manifold";
 topology.manifold.clean = "Clean";
+topology.manifold.collapse = "Delete small faces";
 topology.manifold.title = "Force Manifold";
 topology.manifold.title.help = "Tries to clean non manifold edge.
 

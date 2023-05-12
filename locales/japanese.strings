@@ -8,7 +8,7 @@ confirm.ok = "OK";
 confirm.cancel = "キャンセル";
 
 // Experimental feature
-experimental = "";
+experimental = "実験的！";
 
 // common
 position.top = "上";
@@ -358,11 +358,20 @@ curve.shift = "";
 curve.catmull = "Catmull-Rom";
 // Curve curve, https://en.wikipedia.org/wiki/Spline_(mathematics)
 curve.spline = "スプライン曲線";
+curve.bspline = "";
+curve.precision = "";
 // Regular spaced sampling
 curve.uniform = "";
 curve.uniform.help = "";
 // Display the falloff curve in a symmetric way
 curve.symmetric.help = "";
+curve.radius = "半径";
+curve.twist = "ツイスト";
+curve.spiral = "";
+curve.spiral.twist = "";
+curve.spiral.scale = "比率";
+curve.spiral.radius = "半径";
+curve.spiral.angle = "角度のオフセット";
 
 // Set the desired FPS (frame per second, refresh rate)
 debug.targetFPS = "";
@@ -1179,7 +1188,6 @@ postprocess.ssr.warning = "SSRにはPBRシェーディングモードが必要�
 postprocess.ssgi = "グローバルイルミネーション (SSGI)";
 // Thickness threshold for ssgi tracing algorithm (synonym: threshold, bias)
 postprocess.ssgi.tolerance = "許容値";
-postprocess.ssgi.experimental = "実験的！";
 postprocess.ssgi.warning = "SSGIにはPBRシェーディングモードが必要です。";
 // Screen-space ambient occlusion (SSAO)
 // https://en.wikipedia.org/wiki/Ambient_occlusion
@@ -1305,6 +1313,10 @@ primitive.subdivision = "ポスト分割";
 
 // Radius (of a sphere, torus, etc)
 primitive.radius = "半径";
+// Make sure the two end-point of a primitive (cylinder, tube, etc) have the same size
+primitive.radius.sync = "同じ半径";
+primitive.radius.start = "半径の始点";
+primitive.radius.end = "半径の終点";
 // Size (of cube x dimension)
 primitive.size = "サイズ";
 primitive.sizeX = "サイズ X";
@@ -1354,14 +1366,6 @@ primitive.boxRegular = "同じサイズ (立方体)";
 // Distance to the snapping point
 primitive.tubeSnapOffset = "スナップのオフセット";
 primitive.tubeSnapOffset.help = "値 1.0 はチューブの半径に等しいです。";
-// Radius of the tube (starting end-point of the tube)
-primitive.tubeThicknessStart = "半径の始点";
-// Radius of the tube (ending end-point of the tube)
-primitive.tubeThicknessEnd = "半径の終点";
-primitive.tubeTwist = "ツイスト";
-primitive.tubeTwistRotate = "回転";
-primitive.tubeTwistRadius = "大きさ";
-primitive.tubeTwistOffset = "オフセット";
 primitive.tubeSnap = "スナップ";
 primitive.torusRadiusOuter = "外周半径";
 primitive.torusRadiusInner = "内径";
@@ -1374,12 +1378,9 @@ primitive.coneHeight = "高さ";
 primitive.hole = "穴";
 // Make a hole in the primtive to make it hollow
 primitive.hasHole = "穴があります";
-// Make sure the two end-point of a primitive (cylinder, tube, etc) have the same size
-primitive.radiusSync = "同じ半径";
-primitive.radiusStart = "半径の始点";
-primitive.radiusEnd = "半径の終点";
 // Curve profile (synonym: profile, curve)
 primitive.profile = "";
+primitive.profile.viewport = "";
 
 // Singular of Repeaters (Nodes that make many copies of its children (type of mirror/curve/array/radial))
 repeater = "";
@@ -1458,6 +1459,9 @@ scene.noneButNeedAtLeastOne = "オブジェクトが選択されていません�
 scene.noneButNeedOne = "オブジェクトが選択されていません。オブジェクトを1つ選択してください。";
 // Need to select one object only
 scene.onlyOneObject = "複数のオブジェクトが選択されています。1つだけ選択してください。";
+// Boolean operation
+scene.boolean = "ブーリアン";
+scene.boolean.help = ""
 
 // General scene display settings
 settings.display.title = "表示設定";
@@ -1752,10 +1756,6 @@ stroke.depthFilter.max = "";
 stroke.depthFilter.min = "";
 stroke.depthFilter.offset = "";
 
-// Module the intensity of the sculpting operation by using a falloff curve
-menu.falloff = "フォールオフ";
-// Alpha
-menu.alpha = "アルファ";
 // Invert the pixel (black <-> white)
 stroke.alphaInvert = "ピクセルを反転";
 // Repeat the alpha image (pattern)
@@ -1805,6 +1805,11 @@ stroke.type.grab = "グラブ";
 stroke.type.grabRadius = "グラブ - 動的な半径";
 // Lock a region and sculpt it by changing the tool intensity
 stroke.type.grabIntensity = "グラブ - 動的な強度";
+
+stroke.falloffProject = "";
+stroke.falloffProject.help = "";
+stroke.falloffProject.sphere = "";
+stroke.falloffProject.circle = "";
 
 // Symmetry
 symmetry = "対称";
@@ -2000,6 +2005,7 @@ tool.settings = "設定";
 tool.settings.none = "このツールには特定の設定がありません。";
 
 tool.crease.pinchFactor = "ピンチの強度";
+tool.crease.offsetFactor = "";
 
 tool.layer.removeInfluence = "レイヤーのデータを使用";
 tool.layer.removeInfluence.help = "このオプションはレイヤーが選択されている場合のみ有効です。
@@ -2016,6 +2022,8 @@ tool.syncInstance.message = "";
 
 // The vertex on the border of the mesh will stay still even if we try to smooth the border
 tool.smooth.stickyBorder = "ボーダーの頂点を接着";
+tool.smooth.stable = "";
+tool.smooth.stable.help = "";
 
 tool.paint = "ペイント";
 // Erase the painting
@@ -2084,16 +2092,16 @@ tool.mask.action.layer = "レイヤー";
 // Transform/Matrix
 tool.matrix = "マトリクス";
 // The target of the transform is either the Matrix or the Vertex of the object
-tool.matrix.apply = "ターゲット";
+tool.matrix.target = "ターゲット";
 // Automatic
-tool.matrix.apply.auto = "自動";
+tool.matrix.target.auto = "自動";
 // Transform the object alone (the children stands still)
-tool.matrix.apply.object = "オブジェクト";
+tool.matrix.target.object = "オブジェクト";
 // Auto apply the transform on the vertices
-tool.matrix.apply.vertex = "頂点";
+tool.matrix.target.vertex = "頂点";
 // Transform the object and its children
-tool.matrix.apply.group = "グループ";
-tool.matrix.apply.help = "-- 自動
+tool.matrix.target.group = "グループ";
+tool.matrix.target.help = "-- 自動
 デフォルトで、このオプションは“グループ”オプションと似た動作をします。
 メッシュにマスキングされている場合、またはGizmo対称が有効な場合、 “頂点”と同じ動作をします。
 
@@ -2169,6 +2177,9 @@ tool.lathe.axisFixed = "固定";
 tool.hole = "穴埋め";
 tool.hole.fillHoles = "穴を埋める";
 // synonym: Alternative method
+tool.hole.method.fill = "";
+tool.hole.method.screen = "";
+tool.hole.method.boolean = "ブーリアン";
 tool.hole.bridges = "画面空間のブーリアン";
 tool.hole.bridges.help = "このオプションを有効にすると、体積に穴を開けられます。
 カットしたスロープも、カットしている形状によりピッタリと追跡します。";
@@ -2379,6 +2390,7 @@ topology.reproject.relax.help = "";
 topology.manifold = "";
 topology.nonManifold = "";
 topology.manifold.clean = "";
+topology.manifold.collapse = "";
 topology.manifold.title = "";
 topology.manifold.title.help = "";
 

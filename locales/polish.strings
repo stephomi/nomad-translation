@@ -8,7 +8,7 @@ confirm.ok = "OK";
 confirm.cancel = "Anuluj";
 
 // Experimental feature
-experimental = "";
+experimental = "Funkcja eksperymentalna!";
 
 // common
 position.top = "Góra";
@@ -358,11 +358,20 @@ curve.shift = "";
 curve.catmull = "Catmull-Rom";
 // Curve curve, https://en.wikipedia.org/wiki/Spline_(mathematics)
 curve.spline = "Splajn";
+curve.bspline = "";
+curve.precision = "";
 // Regular spaced sampling
 curve.uniform = "";
 curve.uniform.help = "";
 // Display the falloff curve in a symmetric way
 curve.symmetric.help = "";
+curve.radius = "Promień";
+curve.twist = "Skręt";
+curve.spiral = "";
+curve.spiral.twist = "";
+curve.spiral.scale = "Skala";
+curve.spiral.radius = "Promień";
+curve.spiral.angle = "Przesunięcie kąta";
 
 // Set the desired FPS (frame per second, refresh rate)
 debug.targetFPS = "";
@@ -1179,7 +1188,6 @@ postprocess.ssr.warning = "Opcja SSR wymaga trybu cieniowania PBR.";
 postprocess.ssgi = "Globalne oświetlenie (SSGI)";
 // Thickness threshold for ssgi tracing algorithm (synonym: threshold, bias)
 postprocess.ssgi.tolerance = "Tolerancja";
-postprocess.ssgi.experimental = "Funkcja eksperymentalna!";
 postprocess.ssgi.warning = "Opcja SSGI wymaga trybu cieniowania PBR.";
 // Screen-space ambient occlusion (SSAO)
 // https://en.wikipedia.org/wiki/Ambient_occlusion
@@ -1306,6 +1314,10 @@ primitive.subdivision = "Podział następczy";
 
 // Radius (of a sphere, torus, etc)
 primitive.radius = "Promień";
+// Make sure the two end-point of a primitive (cylinder, tube, etc) have the same size
+primitive.radius.sync = "Ten sam promień";
+primitive.radius.start = "Początek promienia";
+primitive.radius.end = "Koniec promienia";
 // Size (of cube x dimension)
 primitive.size = "Rozmiar";
 primitive.sizeX = "Rozmiar X";
@@ -1355,14 +1367,6 @@ primitive.boxRegular = "Ten sam rozmiar (sześcian)";
 // Distance to the snapping point
 primitive.tubeSnapOffset = "Przesunięcie przyciągania";
 primitive.tubeSnapOffset.help = "Wartość 1,0 jest równa promieniowi rury.";
-// Radius of the tube (starting end-point of the tube)
-primitive.tubeThicknessStart = "Początek promienia";
-// Radius of the tube (ending end-point of the tube)
-primitive.tubeThicknessEnd = "Koniec promienia";
-primitive.tubeTwist = "Skręt";
-primitive.tubeTwistRotate = "Obrót";
-primitive.tubeTwistRadius = "Wielkość";
-primitive.tubeTwistOffset = "Przesunięcie";
 primitive.tubeSnap = "Przyciągnij";
 primitive.torusRadiusOuter = "Zewnętrzny promień";
 primitive.torusRadiusInner = "Wewnętrzny promień";
@@ -1375,12 +1379,9 @@ primitive.coneHeight = "Wysokość";
 primitive.hole = "Otwór";
 // Make a hole in the primtive to make it hollow
 primitive.hasHole = "Ma otwór";
-// Make sure the two end-point of a primitive (cylinder, tube, etc) have the same size
-primitive.radiusSync = "Ten sam promień";
-primitive.radiusStart = "Początek promienia";
-primitive.radiusEnd = "Koniec promienia";
 // Curve profile (synonym: profile, curve)
 primitive.profile = "";
+primitive.profile.viewport = "";
 
 // Singular of Repeaters (Nodes that make many copies of its children (type of mirror/curve/array/radial))
 repeater = "";
@@ -1459,6 +1460,9 @@ scene.noneButNeedAtLeastOne = "Brak zaznaczonych obiektów, zaznacz co najmniej 
 scene.noneButNeedOne = "Brak zaznaczonych obiektów, zaznacz jeden obiekt.";
 // Need to select one object only
 scene.onlyOneObject = "Zaznaczono wiele obiektów, zaznacz tylko jeden obiekt.";
+// Boolean operation
+scene.boolean = "Boolean";
+scene.boolean.help = ""
 
 // General scene display settings
 settings.display.title = "Ustawienia wyświetlania";
@@ -1755,10 +1759,6 @@ stroke.depthFilter.max = "";
 stroke.depthFilter.min = "";
 stroke.depthFilter.offset = "";
 
-// Module the intensity of the sculpting operation by using a falloff curve
-menu.falloff = "Zanikanie";
-// Alpha
-menu.alpha = "Alfa";
 // Invert the pixel (black <-> white)
 stroke.alphaInvert = "Odwróć piksele";
 // Repeat the alpha image (pattern)
@@ -1808,6 +1808,11 @@ stroke.type.grab = "Przechwyć";
 stroke.type.grabRadius = "Przechwytywanie – dynamiczny promień";
 // Lock a region and sculpt it by changing the tool intensity
 stroke.type.grabIntensity = "Przechwytywanie – dynamiczna intensywność";
+
+stroke.falloffProject = "";
+stroke.falloffProject.help = "";
+stroke.falloffProject.sphere = "";
+stroke.falloffProject.circle = "";
 
 // Symmetry
 symmetry = "Symetria";
@@ -2003,6 +2008,7 @@ tool.settings = "Ustawienia";
 tool.settings.none = "To narzędzie nie ma żadnych konkretnych ustawień.";
 
 tool.crease.pinchFactor = "Siła ściskania";
+tool.crease.offsetFactor = "";
 
 tool.layer.removeInfluence = "Użyj danych warstwy";
 tool.layer.removeInfluence.help = "Ta opcja jest aktywna tylko wtedy, gdy jest zaznaczona warstwa.
@@ -2019,6 +2025,8 @@ tool.syncInstance.message = "";
 
 // The vertex on the border of the mesh will stay still even if we try to smooth the border
 tool.smooth.stickyBorder = "Lepki wierzchołek na granicy";
+tool.smooth.stable = "";
+tool.smooth.stable.help = "";
 
 tool.paint = "Farba";
 // Erase the painting
@@ -2087,16 +2095,16 @@ tool.mask.action.layer = "Warstwa";
 // Transform/Matrix
 tool.matrix = "Macierz";
 // The target of the transform is either the Matrix or the Vertex of the object
-tool.matrix.apply = "Cel";
+tool.matrix.target = "Cel";
 // Automatic
-tool.matrix.apply.auto = "Auto";
+tool.matrix.target.auto = "Auto";
 // Transform the object alone (the children stands still)
-tool.matrix.apply.object = "Obiekt";
+tool.matrix.target.object = "Obiekt";
 // Auto apply the transform on the vertices
-tool.matrix.apply.vertex = "Wierzchołek";
+tool.matrix.target.vertex = "Wierzchołek";
 // Transform the object and its children
-tool.matrix.apply.group = "Grupuj";
-tool.matrix.apply.help = "-- Auto
+tool.matrix.target.group = "Grupuj";
+tool.matrix.target.help = "-- Auto
 Domyślnie będzie to działać podobnie do opcji Grupa.
 Jeśli siatka ma maskowanie lub jeśli symetria gizmo jest włączona, będzie to działać tak samo jak Wierzchołek.
 
@@ -2172,6 +2180,9 @@ tool.lathe.axisFixed = "Stałe";
 tool.hole = "Wypełnianie otworów";
 tool.hole.fillHoles = "Wypełnij otwory";
 // synonym: Alternative method
+tool.hole.method.fill = "";
+tool.hole.method.screen = "";
+tool.hole.method.boolean = "Boolean";
 tool.hole.bridges = "Wartość logiczna dla przestrzeni na ekranie";
 tool.hole.bridges.help = "Jeśli ta opcja jest włączona, można wykrawać otwory w objętości.
 Nachylenie cięcia będzie również bardziej zbliżone do kształtu cięcia.";
@@ -2382,6 +2393,7 @@ topology.reproject.relax.help = "";
 topology.manifold = "";
 topology.nonManifold = "";
 topology.manifold.clean = "";
+topology.manifold.collapse = "";
 topology.manifold.title = "";
 topology.manifold.title.help = "";
 

@@ -8,7 +8,7 @@ confirm.ok = "Aceptar";
 confirm.cancel = "Cancelar";
 
 // Experimental feature
-experimental = "";
+experimental = "¡Experimental!";
 
 // common
 position.top = "Superior";
@@ -42,9 +42,9 @@ item.lastSave.confirm = "¿Cargar último guardado?";
 item.reset = "Restablecer";
 item.reset.confirm = "¿Confirmar restablecido?";
 // Make an item instance, similar to clone but keeps the underlying geometry (Synonym: link? soft clone?)
-item.instance = "Crear instancia";
+item.instance = "Instanciar";
 // Uninstance the object, make the object real
-item.uninstance = "Anular instancia";
+item.uninstance = "Des-instanciar";
 // Clone an item (object, tool, etc)
 item.clone = "Clonar";
 // Delete an item (object, tool, etc)
@@ -358,11 +358,20 @@ curve.shift = "";
 curve.catmull = "Catmull-Rom";
 // Curve curve, https://en.wikipedia.org/wiki/Spline_(mathematics)
 curve.spline = "Spline";
+curve.bspline = "";
+curve.precision = "";
 // Regular spaced sampling
 curve.uniform = "";
 curve.uniform.help = "";
 // Display the falloff curve in a symmetric way
 curve.symmetric.help = "";
+curve.radius = "Radio";
+curve.twist = "Retorcer";
+curve.spiral = "";
+curve.spiral.twist = "";
+curve.spiral.scale = "Escala";
+curve.spiral.radius = "Radio";
+curve.spiral.angle = "Desplazamiento de ángulo";
 
 // Set the desired FPS (frame per second, refresh rate)
 debug.targetFPS = "FPS del objetivo";
@@ -869,7 +878,7 @@ Por ejemplo, se puede experimentar con diferentes expresiones faciales sin depen
 
 Para pintar datos, las capas se ordenan de arriba hacia abajo; por lo tanto, las capas superiores enmascararán las inferiores.
 
-Puedes restablecer parte de esta máscara (y, por lo tanto, la influencia de la capa) utilizando la herramienta 'DelLayer'.";
+Puedes restablecer parte de esta máscara (y, por lo tanto, la influencia de la capa) utilizando la herramienta `DelLayer`.";
 layers.primitive = "Las capas no están disponibles para las primitivas.";
 // When there is no layer selected (see Glossary for Layer)
 layers.baseSelected = "Ninguno";
@@ -1179,7 +1188,6 @@ postprocess.ssr.warning = "SSR requiere el modo de sombreado PBR.";
 postprocess.ssgi = "Iluminación global (SSGI)";
 // Thickness threshold for ssgi tracing algorithm (synonym: threshold, bias)
 postprocess.ssgi.tolerance = "Tolerancia";
-postprocess.ssgi.experimental = "¡Experimental!";
 postprocess.ssgi.warning = "SSGI requiere el modo de sombreado PBR.";
 // Screen-space ambient occlusion (SSAO)
 // https://en.wikipedia.org/wiki/Ambient_occlusion
@@ -1306,6 +1314,10 @@ primitive.subdivision = "Postsubdivisión";
 
 // Radius (of a sphere, torus, etc)
 primitive.radius = "Radio";
+// Make sure the two end-point of a primitive (cylinder, tube, etc) have the same size
+primitive.radius.sync = "El mismo radio";
+primitive.radius.start = "Inicio del radio";
+primitive.radius.end = "Fin del radio";
 // Size (of cube x dimension)
 primitive.size = "Tamaño";
 primitive.sizeX = "Tamaño X";
@@ -1334,7 +1346,7 @@ Si interactúas con los controles deslizantes de división o tamaño, la informa
 
 Probablemente deberías deshabilitar la simetría, ya que podría no funcionar como cabría esperar.
 
-Puedes usar la opción 'Conectado topológicamente' en el panel máscara para pintar un plano que impacte en los otros planos.";
+Puedes usar la opción `Conectado topológicamente` en el panel máscara para pintar un plano que impacte en los otros planos.";
 // Make sure the box is a regular cube (same 3 dimension)
 primitive.triplanarSameSize = "Mismo tamaño (cubo)";
 primitive.triplanarPolish = "Suavidad";
@@ -1355,14 +1367,6 @@ primitive.boxRegular = "Mismo tamaño (cuba)";
 // Distance to the snapping point
 primitive.tubeSnapOffset = "Capturar desplazamiento";
 primitive.tubeSnapOffset.help = "Un valor de 1.0 es igual radio del tubo.";
-// Radius of the tube (starting end-point of the tube)
-primitive.tubeThicknessStart = "Inicio del radio";
-// Radius of the tube (ending end-point of the tube)
-primitive.tubeThicknessEnd = "Fin del radio";
-primitive.tubeTwist = "Retorcer";
-primitive.tubeTwistRotate = "Rotación";
-primitive.tubeTwistRadius = "Magnitud";
-primitive.tubeTwistOffset = "Desplazamiento";
 primitive.tubeSnap = "Capturar";
 primitive.torusRadiusOuter = "Radio exterior";
 primitive.torusRadiusInner = "Radio interior";
@@ -1375,12 +1379,9 @@ primitive.coneHeight = "Altura";
 primitive.hole = "Agujero";
 // Make a hole in the primtive to make it hollow
 primitive.hasHole = "Tiene un agujero";
-// Make sure the two end-point of a primitive (cylinder, tube, etc) have the same size
-primitive.radiusSync = "El mismo radio";
-primitive.radiusStart = "Inicio del radio";
-primitive.radiusEnd = "Fin del radio";
 // Curve profile (synonym: profile, curve)
 primitive.profile = "";
+primitive.profile.viewport = "";
 
 // Singular of Repeaters (Nodes that make many copies of its children (type of mirror/curve/array/radial))
 repeater = "";
@@ -1457,6 +1458,9 @@ scene.noneButNeedAtLeastOne = "No hay malla seleccionada.";
 scene.noneButNeedOne = "No hay objetos seleccionados, seleccione uno.";
 // Need to select one object only
 scene.onlyOneObject = "Se seleccionaron varias mallas, selecciona solo una malla.";
+// Boolean operation
+scene.boolean = "Booleano";
+scene.boolean.help = ""
 
 // General scene display settings
 settings.display.title = "Configuración de pantalla";
@@ -1753,10 +1757,6 @@ stroke.depthFilter.max = "";
 stroke.depthFilter.min = "";
 stroke.depthFilter.offset = "";
 
-// Module the intensity of the sculpting operation by using a falloff curve
-menu.falloff = "Disminución";
-// Alpha
-menu.alpha = "Alfa";
 // Invert the pixel (black <-> white)
 stroke.alphaInvert = "invertir valor";
 // Repeat the alpha image (pattern)
@@ -1806,6 +1806,11 @@ stroke.type.grab = "Agarre";
 stroke.type.grabRadius = "Agarre - radio dinámico";
 // Lock a region and sculpt it by changing the tool intensity
 stroke.type.grabIntensity = "Agarre - intensidad dinámica";
+
+stroke.falloffProject = "";
+stroke.falloffProject.help = "";
+stroke.falloffProject.sphere = "";
+stroke.falloffProject.circle = "";
 
 // Symmetry
 symmetry = "Simetría";
@@ -2002,6 +2007,7 @@ tool.settings = "Configuración";
 tool.settings.none = "Esta herramienta no tiene ninguna configuración específica.";
 
 tool.crease.pinchFactor = "Pellizcar fuerza";
+tool.crease.offsetFactor = "";
 
 tool.layer.removeInfluence = "Usar desplazamiento de capa actual";
 tool.layer.removeInfluence.help = "Esta opción solo está activa cuando hay una capa actual seleccionada.
@@ -2018,6 +2024,8 @@ tool.syncInstance.message = "";
 
 // The vertex on the border of the mesh will stay still even if we try to smooth the border
 tool.smooth.stickyBorder = "Vértice pegajoso  en el borde";
+tool.smooth.stable = "";
+tool.smooth.stable.help = "";
 
 tool.paint = "Pintura";
 // Erase the painting
@@ -2086,16 +2094,16 @@ tool.mask.action.layer = "Capa";
 // Transform/Matrix
 tool.matrix = "Matriz";
 // The target of the transform is either the Matrix or the Vertex of the object
-tool.matrix.apply = "Objetivo";
+tool.matrix.target = "Objetivo";
 // Automatic
-tool.matrix.apply.auto = "Automático";
+tool.matrix.target.auto = "Automático";
 // Transform the object alone (the children stands still)
-tool.matrix.apply.object = "Objeto";
+tool.matrix.target.object = "Objeto";
 // Auto apply the transform on the vertices
-tool.matrix.apply.vertex = "Vértice";
+tool.matrix.target.vertex = "Vértice";
 // Transform the object and its children
-tool.matrix.apply.group = "Agrupar";
-tool.matrix.apply.help = "-- Automático
+tool.matrix.target.group = "Agrupar";
+tool.matrix.target.help = "-- Automático
 De forma predeterminada, esto funciona de forma parecida a la opción Grupo.
 Si la malla tiene una máscara o si se ha activado la simetría con el gizmo, funcionará igual que la opción Vértice.
 
@@ -2171,6 +2179,9 @@ tool.lathe.axisFixed = "Fijado";
 tool.hole = "Relleno de agujero";
 tool.hole.fillHoles = "Rellenar agujeros";
 // synonym: Alternative method
+tool.hole.method.fill = "";
+tool.hole.method.screen = "";
+tool.hole.method.boolean = "Booleano";
 tool.hole.bridges = "Espacio de pantalla booleano";
 tool.hole.bridges.help = "Si esta opción está habilitada, puedes hacer agujeros en el volumen.
 La pendiente de corte también seguirá más de cerca la forma de corte.";
@@ -2299,7 +2310,7 @@ topology.dynamic.quality.help = "Si eliges la calidad, las dos diferencias princ
 - el refinamiento se aplica antes que el operador de escultura, obtendrá menos artefactos de interpolación al pintar o esculpir detalles muy pequeños
 - el refinamiento no se aplica de forma incremental, si esculpe detalles muy pequeños o realiza trazos rápidos, la topología siempre se refinará correctamente
 
-Para un mejor rendimiento, y si planea usar esta opción, puedes considerar habilitar la opción 'dibujo parcial' en el panel de configuración.";
+Para un mejor rendimiento, y si planea usar esta opción, puedes considerar habilitar la opción `dibujo parcial` en el panel de configuración.";
 topology.dynamic.quality.speed = "Velocidad";
 topology.dynamic.quality.quality = "Calidad";
 // Whether the pencil pressure can impact the level of detail
@@ -2381,6 +2392,7 @@ topology.reproject.relax.help = "";
 topology.manifold = "";
 topology.nonManifold = "";
 topology.manifold.clean = "";
+topology.manifold.collapse = "";
 topology.manifold.title = "";
 topology.manifold.title.help = "";
 

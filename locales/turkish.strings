@@ -8,7 +8,7 @@ confirm.ok = "Tamam";
 confirm.cancel = "Vazgeç";
 
 // Experimental feature
-experimental = "";
+experimental = "Deneysel!";
 
 // common
 position.top = "Üst";
@@ -42,9 +42,9 @@ item.lastSave.confirm = "Son kayıt yüklensin mi?";
 item.reset = "Sıfırla";
 item.reset.confirm = "Sıfırlansın mı?";
 // Make an item instance, similar to clone but keeps the underlying geometry (Synonym: link? soft clone?)
-item.instance = "Örneğini oluştur";
+item.instance = "Örneklendirmek";
 // Uninstance the object, make the object real
-item.uninstance = "Gerçeğe dönüştür";
+item.uninstance = "Örneklemeyi kaldır";
 // Clone an item (object, tool, etc)
 item.clone = "Klonlama";
 // Delete an item (object, tool, etc)
@@ -358,11 +358,20 @@ curve.shift = "";
 curve.catmull = "Catmull-Rom";
 // Curve curve, https://en.wikipedia.org/wiki/Spline_(mathematics)
 curve.spline = "Spline";
+curve.bspline = "";
+curve.precision = "";
 // Regular spaced sampling
 curve.uniform = "";
 curve.uniform.help = "";
 // Display the falloff curve in a symmetric way
 curve.symmetric.help = "";
+curve.radius = "Yarıçap";
+curve.twist = "Kıvır";
+curve.spiral = "";
+curve.spiral.twist = "";
+curve.spiral.scale = "Ölçek";
+curve.spiral.radius = "Yarıçap";
+curve.spiral.angle = "Açı kaydırma";
 
 // Set the desired FPS (frame per second, refresh rate)
 debug.targetFPS = "";
@@ -1178,7 +1187,6 @@ postprocess.ssr.warning = "SSR için PBR gölgeleme modu gereklidir.";
 postprocess.ssgi = "Küresel Aydınlanma (SSGI)";
 // Thickness threshold for ssgi tracing algorithm (synonym: threshold, bias)
 postprocess.ssgi.tolerance = "Tolerans";
-postprocess.ssgi.experimental = "Deneysel!";
 postprocess.ssgi.warning = "SSGI için PBR gölgeleme modu gereklidir.";
 // Screen-space ambient occlusion (SSAO)
 // https://en.wikipedia.org/wiki/Ambient_occlusion
@@ -1305,6 +1313,10 @@ primitive.subdivision = "İşlem sonrası altbölümleme";
 
 // Radius (of a sphere, torus, etc)
 primitive.radius = "Yarıçap";
+// Make sure the two end-point of a primitive (cylinder, tube, etc) have the same size
+primitive.radius.sync = "Aynı yarıçap";
+primitive.radius.start = "Yarıçap başlangıcı";
+primitive.radius.end = "Yarıçap sonu";
 // Size (of cube x dimension)
 primitive.size = "Büyüklük";
 primitive.sizeX = "X Büyüklüğü";
@@ -1333,7 +1345,7 @@ Bölüm veya büyüklük kaydırıcılarıyla etkileşime girerseniz, boyama bil
 
 Beklediğiniz şekilde çalışmayacağından, simetriyi devre dışı bırakmanız gerekebilir.
 
-Diğer düzlemleri etkileyen bir düzlemi boyamak için maske panelinde 'Topolojik bağlantılı' seçeneğini kullanabilirsiniz.";
+Diğer düzlemleri etkileyen bir düzlemi boyamak için maske panelinde `Topolojik bağlantılı` seçeneğini kullanabilirsiniz.";
 // Make sure the box is a regular cube (same 3 dimension)
 primitive.triplanarSameSize = "Aynı büyüklük (küp)";
 primitive.triplanarPolish = "Düzleştirme seviyesi";
@@ -1354,14 +1366,6 @@ primitive.boxRegular = "Aynı büyüklük (küp)";
 // Distance to the snapping point
 primitive.tubeSnapOffset = "Mesafeyi kaydır";
 primitive.tubeSnapOffset.help = "1,0 değeri tüpün yarıçapına eşittir.";
-// Radius of the tube (starting end-point of the tube)
-primitive.tubeThicknessStart = "Yarıçap başlangıcı";
-// Radius of the tube (ending end-point of the tube)
-primitive.tubeThicknessEnd = "Yarıçap sonu";
-primitive.tubeTwist = "Kıvır";
-primitive.tubeTwistRotate = "Döndürme";
-primitive.tubeTwistRadius = "Büyüklük";
-primitive.tubeTwistOffset = "Kaydırma";
 primitive.tubeSnap = "Yasla";
 primitive.torusRadiusOuter = "Dış yarıçap";
 primitive.torusRadiusInner = "İç yarıçap";
@@ -1374,12 +1378,9 @@ primitive.coneHeight = "Yükseklik";
 primitive.hole = "Delik";
 // Make a hole in the primtive to make it hollow
 primitive.hasHole = "Deliği var";
-// Make sure the two end-point of a primitive (cylinder, tube, etc) have the same size
-primitive.radiusSync = "Aynı yarıçap";
-primitive.radiusStart = "Yarıçap başlangıcı";
-primitive.radiusEnd = "Yarıçap sonu";
 // Curve profile (synonym: profile, curve)
 primitive.profile = "";
+primitive.profile.viewport = "";
 
 // Singular of Repeaters (Nodes that make many copies of its children (type of mirror/curve/array/radial))
 repeater = "";
@@ -1458,6 +1459,9 @@ scene.noneButNeedAtLeastOne = "Hiçbir nesne seçili değil, lütfen en az bir n
 scene.noneButNeedOne = "Hiçbir nesne seçili değil, lütfen bir nesne seçin.";
 // Need to select one object only
 scene.onlyOneObject = "Birden çok nesne seçili, lütfen bir nesne seçin.";
+// Boolean operation
+scene.boolean = "Boolean";
+scene.boolean.help = ""
 
 // General scene display settings
 settings.display.title = "Ekran ayarları";
@@ -1754,10 +1758,6 @@ stroke.depthFilter.max = "";
 stroke.depthFilter.min = "";
 stroke.depthFilter.offset = "";
 
-// Module the intensity of the sculpting operation by using a falloff curve
-menu.falloff = "Düşüş";
-// Alpha
-menu.alpha = "Alfa";
 // Invert the pixel (black <-> white)
 stroke.alphaInvert = "Pikselleri tersine çevir";
 // Repeat the alpha image (pattern)
@@ -1807,6 +1807,11 @@ stroke.type.grab = "Yakala";
 stroke.type.grabRadius = "Yakala - dinamik yarıçap";
 // Lock a region and sculpt it by changing the tool intensity
 stroke.type.grabIntensity = "Yakala - dinamik yoğunluk";
+
+stroke.falloffProject = "";
+stroke.falloffProject.help = "";
+stroke.falloffProject.sphere = "";
+stroke.falloffProject.circle = "";
 
 // Symmetry
 symmetry = "Simetri";
@@ -2002,6 +2007,7 @@ tool.settings = "Ayarlar";
 tool.settings.none = "Bu aracın hiçbir belirli ayarı yok.";
 
 tool.crease.pinchFactor = "Kıstırma gücü";
+tool.crease.offsetFactor = "";
 
 tool.layer.removeInfluence = "Katman verilerini kullan";
 tool.layer.removeInfluence.help = "Bu seçenek sadece seçili bir katman olduğunda etkindir.
@@ -2018,6 +2024,8 @@ tool.syncInstance.message = "";
 
 // The vertex on the border of the mesh will stay still even if we try to smooth the border
 tool.smooth.stickyBorder = "Sınırda yapışkan verteks";
+tool.smooth.stable = "";
+tool.smooth.stable.help = "";
 
 tool.paint = "Boya";
 // Erase the painting
@@ -2086,16 +2094,16 @@ tool.mask.action.layer = "Katman";
 // Transform/Matrix
 tool.matrix = "Matris";
 // The target of the transform is either the Matrix or the Vertex of the object
-tool.matrix.apply = "Hedef";
+tool.matrix.target = "Hedef";
 // Automatic
-tool.matrix.apply.auto = "Otomatik";
+tool.matrix.target.auto = "Otomatik";
 // Transform the object alone (the children stands still)
-tool.matrix.apply.object = "Nesne";
+tool.matrix.target.object = "Nesne";
 // Auto apply the transform on the vertices
-tool.matrix.apply.vertex = "Verteks";
+tool.matrix.target.vertex = "Verteks";
 // Transform the object and its children
-tool.matrix.apply.group = "Topluluk";
-tool.matrix.apply.help = "-- Otomatik
+tool.matrix.target.group = "Topluluk";
+tool.matrix.target.help = "-- Otomatik
 Varsayılan olarak, bu Grup seçeneğine benzer şekilde çalışır.
 Ağ örgüsünde maskeleme varsa, ya da gizmo simetrisi etkinse, verteksle aynı şekilde çalışır.
 
@@ -2171,6 +2179,9 @@ tool.lathe.axisFixed = "Sabit";
 tool.hole = "Delik doldurma";
 tool.hole.fillHoles = "Delikleri doldur";
 // synonym: Alternative method
+tool.hole.method.fill = "";
+tool.hole.method.screen = "";
+tool.hole.method.boolean = "Boolean";
 tool.hole.bridges = "Ekrana sabitli boolean";
 tool.hole.bridges.help = "Bu seçenek etkinse, hacimde delikler açabilirsiniz.
 Kesim eğimi de kesim şekline daha yakın olur.";
@@ -2299,7 +2310,7 @@ topology.dynamic.quality.help = "Kaliteyi seçerseniz, 2 temel farklılık şunl
 - Rötuş, şekillendirme operatöründen daha önce uygulanır, çok küçük detayları boyarken veya şekillendirirken daha az interpolasyon artifaktı alırsınız
 - Rötuş aşamalı olarak uygulanmaz, çok küçük detayları şekillendiriyorsanız veya hızlı darbeler yapıyorsanız, topoloji her zaman doğru şekilde rötuşlanır
 
-Daha iyi performans için ve bu seçeneği kullanmayı planlıyorsanız, Ayarlar panelinden 'kısmi çizim' seçeneğini etkinleştirmeyi düşünebilirsiniz.";
+Daha iyi performans için ve bu seçeneği kullanmayı planlıyorsanız, Ayarlar panelinden `kısmi çizim` seçeneğini etkinleştirmeyi düşünebilirsiniz.";
 topology.dynamic.quality.speed = "Hız";
 topology.dynamic.quality.quality = "Kalite";
 // Whether the pencil pressure can impact the level of detail
@@ -2381,6 +2392,7 @@ topology.reproject.relax.help = "";
 topology.manifold = "";
 topology.nonManifold = "";
 topology.manifold.clean = "";
+topology.manifold.collapse = "";
 topology.manifold.title = "";
 topology.manifold.title.help = "";
 

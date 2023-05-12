@@ -8,7 +8,7 @@ confirm.ok = "Ok";
 confirm.cancel = "Annulla";
 
 // Experimental feature
-experimental = "";
+experimental = "Sperimentale!";
 
 // common
 position.top = "Alto";
@@ -358,11 +358,20 @@ curve.shift = "";
 curve.catmull = "Catmull-Rom";
 // Curve curve, https://en.wikipedia.org/wiki/Spline_(mathematics)
 curve.spline = "Spline";
+curve.bspline = "";
+curve.precision = "";
 // Regular spaced sampling
 curve.uniform = "";
 curve.uniform.help = "";
 // Display the falloff curve in a symmetric way
 curve.symmetric.help = "";
+curve.radius = "Raggio";
+curve.twist = "Torsione";
+curve.spiral = "";
+curve.spiral.twist = "";
+curve.spiral.scale = "Dimensione";
+curve.spiral.radius = "Raggio";
+curve.spiral.angle = "Spostamento angolo";
 
 // Set the desired FPS (frame per second, refresh rate)
 debug.targetFPS = "";
@@ -869,7 +878,7 @@ Per esempio, sperimentando diverse espressioni facciali senza fare affidamento s
 
 Per i dati di pittura, i livelli sono ordinati dall'alto verso il basso; quindi i livelli in alto maschereranno quelli inferiori.
 
-Si può cancellare parte del livello (e quindi l'influenza del livello) utilizzando lo strumento 'DelLayer'.";
+Si può cancellare parte del livello (e quindi l'influenza del livello) utilizzando lo strumento `DelLayer`.";
 layers.primitive = "I livelli non sono disponibili per le primitive.";
 // When there is no layer selected (see Glossary for Layer)
 layers.baseSelected = "Nessuno";
@@ -1179,7 +1188,6 @@ postprocess.ssr.warning = "SSR richiede la modalità di shading PBR.";
 postprocess.ssgi = "Illuminazione globale (SSGI)";
 // Thickness threshold for ssgi tracing algorithm (synonym: threshold, bias)
 postprocess.ssgi.tolerance = "Tolleranza";
-postprocess.ssgi.experimental = "Sperimentale!";
 postprocess.ssgi.warning = "SSGI richiede la modalità di shading PBR.";
 // Screen-space ambient occlusion (SSAO)
 // https://en.wikipedia.org/wiki/Ambient_occlusion
@@ -1306,6 +1314,10 @@ primitive.subdivision = "Post-suddivisione";
 
 // Radius (of a sphere, torus, etc)
 primitive.radius = "Raggio";
+// Make sure the two end-point of a primitive (cylinder, tube, etc) have the same size
+primitive.radius.sync = "Stesso raggio";
+primitive.radius.start = "Inizio raggio";
+primitive.radius.end = "Fine raggio";
 // Size (of cube x dimension)
 primitive.size = "Dimensioni";
 primitive.sizeX = "Dimensione X";
@@ -1334,7 +1346,7 @@ Se si interagisce con i cursori di divisione o di dimensione, le informazioni di
 
 Probabilmente si dovrebbe disabilitare la simmetria perché potrebbe non funzionare come ci si aspetterebbe.
 
-È possibile utilizzare l'opzione 'Topologicamente collegato' nel pannello delle maschera per dipingere un piano che influisca sugli altri piani.";
+È possibile utilizzare l'opzione `Topologicamente collegato` nel pannello delle maschera per dipingere un piano che influisca sugli altri piani.";
 // Make sure the box is a regular cube (same 3 dimension)
 primitive.triplanarSameSize = "Stessa dimensione (cubo)";
 primitive.triplanarPolish = "Levigatezza";
@@ -1355,14 +1367,6 @@ primitive.boxRegular = "Stessa dimensione (cubo)";
 // Distance to the snapping point
 primitive.tubeSnapOffset = "Spostamento aggancio";
 primitive.tubeSnapOffset.help = "Un valore di 1.0 è uguale al raggio del tubo.";
-// Radius of the tube (starting end-point of the tube)
-primitive.tubeThicknessStart = "Inizio raggio";
-// Radius of the tube (ending end-point of the tube)
-primitive.tubeThicknessEnd = "Fine raggio";
-primitive.tubeTwist = "Torsione";
-primitive.tubeTwistRotate = "Rotazione";
-primitive.tubeTwistRadius = "Grandezza";
-primitive.tubeTwistOffset = "Spostamento";
 primitive.tubeSnap = "Aggancio";
 primitive.torusRadiusOuter = "Raggio esterno";
 primitive.torusRadiusInner = "Raggio interno";
@@ -1375,12 +1379,9 @@ primitive.coneHeight = "Altezza";
 primitive.hole = "Apertura";
 // Make a hole in the primtive to make it hollow
 primitive.hasHole = "Ha un'apertura";
-// Make sure the two end-point of a primitive (cylinder, tube, etc) have the same size
-primitive.radiusSync = "Stesso raggio";
-primitive.radiusStart = "Inizio raggio";
-primitive.radiusEnd = "Fine raggio";
 // Curve profile (synonym: profile, curve)
 primitive.profile = "";
+primitive.profile.viewport = "";
 
 // Singular of Repeaters (Nodes that make many copies of its children (type of mirror/curve/array/radial))
 repeater = "";
@@ -1459,6 +1460,9 @@ scene.noneButNeedAtLeastOne = "Nessun oggetto selezionato, seleziona almeno un o
 scene.noneButNeedOne = "Nessun oggetto selezionato, seleziona un oggetto.";
 // Need to select one object only
 scene.onlyOneObject = "Sono selezionati più oggetti, seleziona un solo oggetto.";
+// Boolean operation
+scene.boolean = "Booleano";
+scene.boolean.help = ""
 
 // General scene display settings
 settings.display.title = "Impostazioni visualizzazione";
@@ -1755,10 +1759,6 @@ stroke.depthFilter.max = "";
 stroke.depthFilter.min = "";
 stroke.depthFilter.offset = "";
 
-// Module the intensity of the sculpting operation by using a falloff curve
-menu.falloff = "Decadimento";
-// Alpha
-menu.alpha = "Alfa";
 // Invert the pixel (black <-> white)
 stroke.alphaInvert = "Inverti pixel";
 // Repeat the alpha image (pattern)
@@ -1808,6 +1808,11 @@ stroke.type.grab = "Cattura";
 stroke.type.grabRadius = "Cattura - raggio dinamico";
 // Lock a region and sculpt it by changing the tool intensity
 stroke.type.grabIntensity = "Cattura - intensità dinamica";
+
+stroke.falloffProject = "";
+stroke.falloffProject.help = "";
+stroke.falloffProject.sphere = "";
+stroke.falloffProject.circle = "";
 
 // Symmetry
 symmetry = "Simmetria";
@@ -2003,6 +2008,7 @@ tool.settings = "Impostazioni";
 tool.settings.none = "Questo strumento non ha impostazioni specifiche.";
 
 tool.crease.pinchFactor = "Intensità piega";
+tool.crease.offsetFactor = "";
 
 tool.layer.removeInfluence = "Utilizza dati del livello";
 tool.layer.removeInfluence.help = "Questa opzione è attiva solo quando è selezionato un livello.
@@ -2019,6 +2025,8 @@ tool.syncInstance.message = "";
 
 // The vertex on the border of the mesh will stay still even if we try to smooth the border
 tool.smooth.stickyBorder = "Vertice fisso sul bordo";
+tool.smooth.stable = "";
+tool.smooth.stable.help = "";
 
 tool.paint = "Pittura";
 // Erase the painting
@@ -2087,16 +2095,16 @@ tool.mask.action.layer = "Livello";
 // Transform/Matrix
 tool.matrix = "Matrice";
 // The target of the transform is either the Matrix or the Vertex of the object
-tool.matrix.apply = "Target";
+tool.matrix.target = "Target";
 // Automatic
-tool.matrix.apply.auto = "Auto";
+tool.matrix.target.auto = "Auto";
 // Transform the object alone (the children stands still)
-tool.matrix.apply.object = "Oggetto";
+tool.matrix.target.object = "Oggetto";
 // Auto apply the transform on the vertices
-tool.matrix.apply.vertex = "Vertice";
+tool.matrix.target.vertex = "Vertice";
 // Transform the object and its children
-tool.matrix.apply.group = "Gruppo";
-tool.matrix.apply.help = "-- Auto
+tool.matrix.target.group = "Gruppo";
+tool.matrix.target.help = "-- Auto
 Per impostazione predefinita, funziona in modo simile all'opzione Gruppo.
 Se la mesh ha una mascheratura o se la simmetria del gizmo è abilitata, funzionerà come Vertice.
 
@@ -2172,6 +2180,9 @@ tool.lathe.axisFixed = "Fisso";
 tool.hole = "Riempimento aperture";
 tool.hole.fillHoles = "Riempi aperture";
 // synonym: Alternative method
+tool.hole.method.fill = "";
+tool.hole.method.screen = "";
+tool.hole.method.boolean = "Booleano";
 tool.hole.bridges = "Booleano dello spazio dello schermo";
 tool.hole.bridges.help = "Se questa opzione è attivata, è possibile praticare aperture nel volume.
 La pendenza del taglio seguirà più da vicino la forma di taglio.";
@@ -2300,7 +2311,7 @@ topology.dynamic.quality.help = "Se si sceglie Qualità, le 2 differenze princip
 - il raffinamento viene applicato prima dell'operatore di scultura, in modo da ottenere meno artefatti di interpolazione quando si dipingono o scolpiscono dettagli molto piccoli
 - il raffinamento non viene applicato in modo incrementale; se si scolpiscono dettagli molto piccoli o si eseguono pennellate rapide, la topologia sarà sempre raffinata correttamente
 
-Per ottenere prestazioni migliori, e se si intende utilizzare questa opzione, si potrebbe considerare di attivare l'opzione 'disegno parziale' nel pannello Impostazioni.";
+Per ottenere prestazioni migliori, e se si intende utilizzare questa opzione, si potrebbe considerare di attivare l'opzione `disegno parziale` nel pannello Impostazioni.";
 topology.dynamic.quality.speed = "Velocità";
 topology.dynamic.quality.quality = "Qualità";
 // Whether the pencil pressure can impact the level of detail
@@ -2382,6 +2393,7 @@ topology.reproject.relax.help = "";
 topology.manifold = "";
 topology.nonManifold = "";
 topology.manifold.clean = "";
+topology.manifold.collapse = "";
 topology.manifold.title = "";
 topology.manifold.title.help = "";
 

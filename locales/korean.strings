@@ -8,7 +8,7 @@ confirm.ok = "확인";
 confirm.cancel = "취소";
 
 // Experimental feature
-experimental = "";
+experimental = "실험적!";
 
 // common
 position.top = "위";
@@ -247,7 +247,7 @@ alert.noPartialWireframe = "와이어프레임을 표시하면 부분 드로잉�
 // The user has selected a tool that is more intuitive to use when the camera is in orthographic mode
 alert.shapeOrthographic = "화면 투시를 사용할 때 원근감 왜곡을 방지히려면 카메라 설정을 직교 방식으로 전환하는 것이 좋습니다.";
 // Trial version has a limited number of undo
-alert.state.trial = "평가판: '실행 취소'가 취소됨";
+alert.state.trial = "평가판: `실행 취소`가 취소됨";
 
 background = "배경";
 // A flat color will be displayed in the background of the scene
@@ -358,11 +358,20 @@ curve.shift = "";
 curve.catmull = "Catmull-Rom";
 // Curve curve, https://en.wikipedia.org/wiki/Spline_(mathematics)
 curve.spline = "스플라인 곡선";
+curve.bspline = "";
+curve.precision = "";
 // Regular spaced sampling
 curve.uniform = "";
 curve.uniform.help = "";
 // Display the falloff curve in a symmetric way
 curve.symmetric.help = "";
+curve.radius = "반지름";
+curve.twist = "뒤틀림";
+curve.spiral = "";
+curve.spiral.twist = "";
+curve.spiral.scale = "비율";
+curve.spiral.radius = "반지름";
+curve.spiral.angle = "각도 오프셋";
 
 // Set the desired FPS (frame per second, refresh rate)
 debug.targetFPS = "";
@@ -867,7 +876,7 @@ layers.title.help = "레이어는 위치 오프셋 값과 페인팅을 기록할
 
 페인팅 데이터의 경우 레이어가 탑다운 형식으로 위에서 아래로 정렬됩니다. 즉, 위에 있는 레이어가 아래 있는 레이어를 가립니다.
 
-'DelLayer' 도구를 사용하면 레이어의 일부(따라서 레이어의 영향)를 지우는 것도 가능합니다.";
+`DelLayer` 도구를 사용하면 레이어의 일부(따라서 레이어의 영향)를 지우는 것도 가능합니다.";
 layers.primitive = "레이어는 프리미티브에 사용할 수 없습니다.";
 // When there is no layer selected (see Glossary for Layer)
 layers.baseSelected = "없음";
@@ -963,7 +972,7 @@ material.refractionInteriorRoughness.help = "- 0인 경우, 내부에 칠해진 
 material.paintGlossy = "페인트 광택";
 material.paintGlossy.help = "러프니스와 메탈릭이 '0'인 상태에서 오브젝트를 칠하여 날카로운 굴절을 허용합니다.
 
-이는 페인팅 메뉴로 이동하여 색상 및 메탈릭을 비활성화한 상태로 '모두 칠하기' 기능을 사용하는 것과 동일합니다.";
+이는 페인팅 메뉴로 이동하여 색상 및 메탈릭을 비활성화한 상태로 `모두 칠하기` 기능을 사용하는 것과 동일합니다.";
 // Simulate the light being absorbed when it travels through the volume.
 material.absorptionEnable = "흡수";
 material.absorptionEnable.help = "볼륨을 통과할 때 흡수되는 빛을 시뮬레이션합니다.
@@ -1177,7 +1186,6 @@ postprocess.ssr.warning = "SSR은 PBR 셰이딩 모드를 요구합니다.";
 postprocess.ssgi = "전역 조명 (SSGI)";
 // Thickness threshold for ssgi tracing algorithm (synonym: threshold, bias)
 postprocess.ssgi.tolerance = "허용 오차";
-postprocess.ssgi.experimental = "실험적!";
 postprocess.ssgi.warning = "SSGI는 PBR 셰이딩 모드를 요구합니다.";
 // Screen-space ambient occlusion (SSAO)
 // https://en.wikipedia.org/wiki/Ambient_occlusion
@@ -1304,6 +1312,10 @@ primitive.subdivision = "포스트 서비디비전";
 
 // Radius (of a sphere, torus, etc)
 primitive.radius = "반지름";
+// Make sure the two end-point of a primitive (cylinder, tube, etc) have the same size
+primitive.radius.sync = "동일한 반지름";
+primitive.radius.start = "반지름 시작";
+primitive.radius.end = "반지름 종료";
 // Size (of cube x dimension)
 primitive.size = "크기";
 primitive.sizeX = "크기 X";
@@ -1332,7 +1344,7 @@ primitive.triplanar.title.help = "트라이플레이너는 3개의 평면으로�
 
 대칭은 예상대로 작동하지 않을 수 있으므로 사용하지 않는 것이 좋습니다.
 
-마스크 패널에서 '토폴로지 연결' 옵션을 사용하면 다른 평면에 영향을 주는 평면을 그릴 수 있습니다.";
+마스크 패널에서 `토폴로지 연결` 옵션을 사용하면 다른 평면에 영향을 주는 평면을 그릴 수 있습니다.";
 // Make sure the box is a regular cube (same 3 dimension)
 primitive.triplanarSameSize = "같은 크기 (정육면체)";
 primitive.triplanarPolish = "평활도";
@@ -1353,14 +1365,6 @@ primitive.boxRegular = "같은 크기 (정육면체)";
 // Distance to the snapping point
 primitive.tubeSnapOffset = "스냅 오프셋";
 primitive.tubeSnapOffset.help = "값 '1.0'은 튜브의 반지름과 같습니다.";
-// Radius of the tube (starting end-point of the tube)
-primitive.tubeThicknessStart = "반지름 시작";
-// Radius of the tube (ending end-point of the tube)
-primitive.tubeThicknessEnd = "반지름 종료";
-primitive.tubeTwist = "뒤틀림";
-primitive.tubeTwistRotate = "회전";
-primitive.tubeTwistRadius = "세기";
-primitive.tubeTwistOffset = "오프셋";
 primitive.tubeSnap = "스냅";
 primitive.torusRadiusOuter = "외부 원 반지름";
 primitive.torusRadiusInner = "내부 원 반지름";
@@ -1373,12 +1377,9 @@ primitive.coneHeight = "높이";
 primitive.hole = "구멍";
 // Make a hole in the primtive to make it hollow
 primitive.hasHole = "구멍 있음";
-// Make sure the two end-point of a primitive (cylinder, tube, etc) have the same size
-primitive.radiusSync = "동일한 반지름";
-primitive.radiusStart = "반지름 시작";
-primitive.radiusEnd = "반지름 종료";
 // Curve profile (synonym: profile, curve)
 primitive.profile = "";
+primitive.profile.viewport = "";
 
 // Singular of Repeaters (Nodes that make many copies of its children (type of mirror/curve/array/radial))
 repeater = "";
@@ -1457,6 +1458,9 @@ scene.noneButNeedAtLeastOne = "선택한 오브젝트가 없습니다. 최소한
 scene.noneButNeedOne = "선택한 오브젝트가 없습니다. 최소한 하나의 오브젝트를 선택하십시오.";
 // Need to select one object only
 scene.onlyOneObject = "복수의 오브젝트가 선택되어 있습니다. 단 하나의 오브젝트만 선택하십시오.";
+// Boolean operation
+scene.boolean = "부울";
+scene.boolean.help = ""
 
 // General scene display settings
 settings.display.title = "디스플레이 설정";
@@ -1711,7 +1715,7 @@ stroke.useDynamicTopology = "동적 토폴로지 허용";
 stroke.connected = "연결된 토폴로지";
 stroke.connected.help = "이 옵션은 선택된 표면과 연결되어 있는 버텍스만 스컬프팅합니다.
 
-이 옵션은 일반적으로 '이동' 도구를 위해 사용됩니다. 예를 들어, 다른 부분과 자가 교차하는 부분만 이동하고 싶은 경우 등입니다.";
+이 옵션은 일반적으로 `이동` 도구를 위해 사용됩니다. 예를 들어, 다른 부분과 자가 교차하는 부분만 이동하고 싶은 경우 등입니다.";
 // Only sculpt the vertex that points toward the camera
 stroke.culling = "정면을 향하는 버텍스만";
 stroke.culling.help = "이 옵션은 뒷면을 바라보는 버텍스를 무시합니다.
@@ -1751,10 +1755,6 @@ stroke.depthFilter.max = "";
 stroke.depthFilter.min = "";
 stroke.depthFilter.offset = "";
 
-// Module the intensity of the sculpting operation by using a falloff curve
-menu.falloff = "폴오프";
-// Alpha
-menu.alpha = "알파";
 // Invert the pixel (black <-> white)
 stroke.alphaInvert = "픽셀 반전";
 // Repeat the alpha image (pattern)
@@ -1804,6 +1804,11 @@ stroke.type.grab = "붙잡기";
 stroke.type.grabRadius = "붙잡기 - 동적 반지름";
 // Lock a region and sculpt it by changing the tool intensity
 stroke.type.grabIntensity = "붙잡기 - 유동적인 강도";
+
+stroke.falloffProject = "";
+stroke.falloffProject.help = "";
+stroke.falloffProject.sphere = "";
+stroke.falloffProject.circle = "";
 
 // Symmetry
 symmetry = "대칭";
@@ -1999,6 +2004,7 @@ tool.settings = "설정";
 tool.settings.none = "이 도구에는 특정 설정이 없습니다.";
 
 tool.crease.pinchFactor = "핀치 강도";
+tool.crease.offsetFactor = "";
 
 tool.layer.removeInfluence = "레이어 데이터 사용";
 tool.layer.removeInfluence.help = "이 옵션은 선택한 레이어가 있는 경우에만 활성화됩니다.
@@ -2015,6 +2021,8 @@ tool.syncInstance.message = "";
 
 // The vertex on the border of the mesh will stay still even if we try to smooth the border
 tool.smooth.stickyBorder = "버텍스를 테두리에 고정";
+tool.smooth.stable = "";
+tool.smooth.stable.help = "";
 
 tool.paint = "페인트";
 // Erase the painting
@@ -2083,16 +2091,16 @@ tool.mask.action.layer = "레이어";
 // Transform/Matrix
 tool.matrix = "매트릭스";
 // The target of the transform is either the Matrix or the Vertex of the object
-tool.matrix.apply = "목표";
+tool.matrix.target = "목표";
 // Automatic
-tool.matrix.apply.auto = "자동";
+tool.matrix.target.auto = "자동";
 // Transform the object alone (the children stands still)
-tool.matrix.apply.object = "오브젝트";
+tool.matrix.target.object = "오브젝트";
 // Auto apply the transform on the vertices
-tool.matrix.apply.vertex = "버텍스";
+tool.matrix.target.vertex = "버텍스";
 // Transform the object and its children
-tool.matrix.apply.group = "그룹";
-tool.matrix.apply.help = "- 자동
+tool.matrix.target.group = "그룹";
+tool.matrix.target.help = "- 자동
 기본적으로 이 옵션은 그룹 옵션과 비슷하게 동작합니다.
 메시에 마스킹되어 있거나 기즈모 대칭이 활성화되어 경우, 버텍스와 같은 방식으로 작동합니다.
 
@@ -2168,6 +2176,9 @@ tool.lathe.axisFixed = "고정";
 tool.hole = "구멍 채우기";
 tool.hole.fillHoles = "구멍 채우기";
 // synonym: Alternative method
+tool.hole.method.fill = "";
+tool.hole.method.screen = "";
+tool.hole.method.boolean = "부울";
 tool.hole.bridges = "화면 공간 부울";
 tool.hole.bridges.help = "이 옵션이 활성화되면 볼륨에 구멍을 뚫을 수 있습니다.
 또한 절단 경사도 역시 절단한 형태를 더 가깝게 따릅니다.";
@@ -2296,7 +2307,7 @@ topology.dynamic.quality.help = "'품질'을 선택하는 경우 두 가지 주�
 - 세분화가 스컬프팅 연산자보다 먼저 적용되므로 매우 디테일한 부분을 스컬프팅하거나 페인팅할 때 보간 아티팩트가 적게 발생합니다.
 - 세분화는 점진적으로 적용되지 않습니다. 매우 디테일한 부분을 스컬프팅하거나 브러시 스트로크 작업을 할 때도 토폴로지가 항상 올바르게 세분화됩니다.
 
-더 나은 성능을 위해 이 옵션을 사용하려는 경우 설정 패널에서 '부분 그리기' 옵션을 켜는 것도 하나의 방법입니다.";
+더 나은 성능을 위해 이 옵션을 사용하려는 경우 설정 패널에서 `부분 그리기` 옵션을 켜는 것도 하나의 방법입니다.";
 topology.dynamic.quality.speed = "속도";
 topology.dynamic.quality.quality = "품질";
 // Whether the pencil pressure can impact the level of detail
@@ -2378,6 +2389,7 @@ topology.reproject.relax.help = "";
 topology.manifold = "";
 topology.nonManifold = "";
 topology.manifold.clean = "";
+topology.manifold.collapse = "";
 topology.manifold.title = "";
 topology.manifold.title.help = "";
 
