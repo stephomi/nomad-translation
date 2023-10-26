@@ -176,6 +176,8 @@ about.instagram = "Instagram";
 about.facebook = "Facebook";
 // Link to the App Discord account
 about.discord = "Discord";
+// Link to the App Threads account
+about.threads = "Threads";
 
 // The user canceled an operation that was running
 alert.aborted = "Operation aborted!";
@@ -210,6 +212,7 @@ alert.matrix.clone = "The object will be duplicated";
 alert.matrix.instance = "The object will be instanced";
 // A pivot refers the gizmo 3d position, this mode means we are moving the pivot
 alert.gizmo.editPivot = "Edit pivot mode.";
+alert.mask.full = "Mask = 100%!";
 // A pivot refers the gizmo 3d position
 alert.gizmo.editObject = "Edit object mode.";
 // See Glossary (DynTopo)
@@ -248,7 +251,7 @@ alert.autoSave.auto = "Autosave in... $0s";
 // The selected object doesn't have any layers
 alert.needLayer = "The current tool requires an active layer.";
 // The user decides to hide the painting on the objects
-alert.paintingHidden = "Painting hidden: show it again in Settings panel.";
+alert.paintingHidden = "Painting is hidden!";
 // The selected object doesn't have any layers
 alert.noPartialWireframe = "Partial drawing is disabled when wireframe is displayed.";
 // The user has selected a tool that is more intuitive to use when the camera is in orthographic mode
@@ -498,10 +501,7 @@ It will disable vertex/face reordering, removal of vertex/face duplicates and re
 
 // Import file section
 file.import.title = "Import";
-file.import.title.help = "Supported format:
-- Wavefront (.obj)
-- glTF 2.0 (.glb .gltf)
-- STL (.stl)";
+file.import.title.help = "Supported format:";
 // The user imports a scene file that will replace the current scene
 file.import.open = "Open";
 file.import.open.confirm = "Import new file?";
@@ -511,6 +511,10 @@ file.import.add.confirm = "Import new file?";
 
 // Export scene file
 file.export.title = "Export";
+
+file.select.all = "All";
+file.select.visible = "Visible";
+file.select.selected = "Selected";
 
 // Export the current selected objects instead of the entire scene
 file.onlySelection = "Only include selected objects";
@@ -561,13 +565,18 @@ file.export.obj.colorHexa = "Hexa colors";
 file.export.obj.colorHexa.help = "An alternative way to encode color. It also support mask data.";
 
 file.export.stl = "Export STL";
-file.export.stl.warning = "Layers and extra painting (roughness metalness and mask) will be lost.";
+file.export.stl.warning = "Layers and extra painting (roughness, metalness, etc) will be lost.";
 // Whether we include the vertex color in the exported file
 file.export.stl.color = "Vertex colors";
 file.export.stl.color.help = "Some 3d softwares will be able to read it but not all of them.";
-file.export.stl.ascii = "By default the format is binary.
 
-You can choose to export to text format (ASCII) but the file will be bigger.";
+file.export.ply = "Export STL";
+file.export.ply.warning = "Layers and extra painting (roughness, metalness, etc) will be lost.";
+// Whether we include the vertex color in the exported file
+file.export.ply.color0 = "Vertex colors";
+
+file.export.ply.color1 = "PBR paint";
+file.export.ply.color1.help = "Export roughness, metalness and mask painting. This will be ignored by other softwares.";
 
 // Advanced settings
 settings.advanced = "Advanced";
@@ -929,10 +938,19 @@ light.type = "Type";
 // Directional light (synonym: sun light)
 light.type.directional = "Directional";
 light.type.directional.short = "Sun";
+// Directional light (synonym: sun light)
+light.type.environment = "Environment";
+light.type.environment.short = "HDRI";
 // Spot light emits light in a single direction, restricted by a cone shape.
 light.type.spot = "Spot";
+light.type.spot.short = "Spot";
 // Point light emits lights everywhere (synonym: omni, omnidirectional)
 light.type.point = "Point";
+light.type.point.short = "Point";
+// For directional light (angle jitter)
+light.angle = "Angle";
+// For point/spot light (offset jitter)
+light.size = "Size";
 // Cone angle for spot angles
 light.spot.angle = "Cone angle";
 // Softness of the spot light
@@ -1157,7 +1175,7 @@ paint.useAlpha = "Use stroke alpha";
 paint.useAlpha.help = "Use the tool alpha to modulate the painting intensity.";
 // Whether the Brush Falloff will be used to modulate painting intensity
 paint.useCurve = "Use stroke falloff";
-paint.useFalloff.help = "Use the tool falloff to modulate the painting intensity.";
+paint.useCurve.help = "Use the tool falloff to modulate the painting intensity.";
 // Whether the Brush Randomize will be used to modulate painting intensity
 paint.useJitter = "Use stroke randomize";
 paint.useJitter.help = "Use the tool randomization to modulate the painting intensity.";
@@ -1282,6 +1300,8 @@ postprocess.grain = "Grain";
 postprocess.grain.factor = "Strength";
 // Accentuate the edges of the model
 postprocess.curvature = "Curvature";
+// main strength of curvatre
+postprocess.curvature.factor = "Factor";
 // Color/Strength of concave curvature
 postprocess.curvature.cavity = "Cavity";
 // Color/Strength of convex curvature
@@ -1911,8 +1931,6 @@ symmetry.mirror.help = "Try to re-apply the symmetry without impacting the topol
 Radial symmetry will be ignored.
 
 If the topology can't be kept because it is not considered symmetrical, you'll get the option to enforce the mirroring.";
-symmetry.mirrorLeftToRight = "Left to Right";
-symmetry.mirrorRightToLeft = "Right to Left";
 symmetry.mirrorFail = "Failed to detect symmetry.
 
 Do you want to enforce symmetry by mirroring the mesh?";
@@ -1920,6 +1938,10 @@ symmetry.mirrorUseMasking = "Protect masked area";
 symmetry.mirrorUseMasking.help = "Keep masked area intact.
 
 This option will be ignored with non-symmetric topology (or disconnected surface, like a pair of eyes).";
+symmetry.apply = "Mirror
+(keep topology)";
+symmetry.splitMirror = "Split & Mirror
+(new topology)";
 // Reset the symmetry plane position
 symmetry.reset = "Reset";
 // Reset the symmetry plane positon to the object center
@@ -2025,6 +2047,11 @@ tool.transform.snap = "Snap";
 tool.measure = "Measure";
 // Ideally <10 chars (Lattice, deformer)
 tool.lattice = "Lattice";
+// Ideally <10 chars (FaceGroup)
+tool.faceGroup = "Face Group";
+tool.faceGroup.autoPick = "Auto-pick";
+// Ideally <10 chars (Hide)
+tool.hide = "Hide";
 // Ideally <10 chars (View tool, do nothing in particular)
 tool.view = "View";
 // Ideally <10 chars (Revolving surface along a line)
@@ -2376,7 +2403,8 @@ topology.dynamic.quality.speed = "Speed";
 topology.dynamic.quality.quality = "Quality";
 // Whether the pencil pressure can impact the level of detail
 topology.dynamic.usePressure = "Use pressure on radius";
-topology.dynamic.usePressure.help = "Use this option if you want the pen pressure impact on tool radius to impact the level of detail.";
+topology.dynamic.usePressure.help = "Use this option if you want the pen pressure on tool radius to impact the level of detail.";
+topology.dynamic.useFalloff = "Use stroke falloff";
 // Decimate
 topology.decimate.title = "Decimation";
 topology.decimate.title.help = "Reduce the number of polygons by trying to keep as many details as possible.
@@ -2488,7 +2516,9 @@ binding.reset = "Reset bindings";
 binding.toggleTool = "Toggle tool shortcuts";
 binding.toggleTool.help = "When using one of the tool shortcuts, the previous tool will be selected if the current shortcut tool is active.";
 // Same as Color Picker but it pick the material (color, roughness, metalness, etc)
-binding.materialPicker = "Material Picker";
+binding.pickMaterial = "Pick Material";
+// Same as Color Picker but it pick the material (color, roughness, metalness, etc)
+binding.pickFaceGroup = "Pick Face Group";
 // Edit the tool brush size/radius
 binding.editRadius = "Tool Radius";
 // Edit the tool brush size/radius

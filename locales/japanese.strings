@@ -176,6 +176,8 @@ about.instagram = "Instagram";
 about.facebook = "Facebook";
 // Link to the App Discord account
 about.discord = "Discord";
+// Link to the App Threads account
+about.threads = "";
 
 // The user canceled an operation that was running
 alert.aborted = "";
@@ -210,6 +212,7 @@ alert.matrix.clone = "オブジェクトは複製されます";
 alert.matrix.instance = "オブジェクトはインスタンス化されます";
 // A pivot refers the gizmo 3d position, this mode means we are moving the pivot
 alert.gizmo.editPivot = "回転軸モードを編集してください。";
+alert.mask.full = "マスク = 100%!";
 // A pivot refers the gizmo 3d position
 alert.gizmo.editObject = "オブジェクトモードを編集してください。";
 // See Glossary (DynTopo)
@@ -248,7 +251,7 @@ alert.autoSave.auto = "自動保存... $0s後";
 // The selected object doesn't have any layers
 alert.needLayer = "使用中のツールはアクティブなレイヤーが必要です。";
 // The user decides to hide the painting on the objects
-alert.paintingHidden = "ペイントが非表示です: “設定”パネルからもう一度表示できます。";
+alert.paintingHidden = "ペイントが非表示です!";
 // The selected object doesn't have any layers
 alert.noPartialWireframe = "ワイヤーフレームが表示されている場合、部分的な描画は無効です。";
 // The user has selected a tool that is more intuitive to use when the camera is in orthographic mode
@@ -494,10 +497,7 @@ file.import.keepTopology.help = "Nomadに読み込んだメッシュのトポロ
 
 // Import file section
 file.import.title = "読み込む";
-file.import.title.help = "対応フォーマット:
-- Wavefront (.obj)
-- glTF 2.0 (.glb .gltf)
-- STL (.stl)";
+file.import.title.help = "対応フォーマット:";
 // The user imports a scene file that will replace the current scene
 file.import.open = "開く";
 file.import.open.confirm = "新しいファイルを読み込みますか？";
@@ -507,6 +507,10 @@ file.import.add.confirm = "新しいファイルを読み込みますか？";
 
 // Export scene file
 file.export.title = "書き出す";
+
+file.select.all = "";
+file.select.visible = "";
+file.select.selected = "";
 
 // Export the current selected objects instead of the entire scene
 file.onlySelection = "選択中のオブジェクトのみを含める";
@@ -557,9 +561,14 @@ file.export.stl.warning = "レイヤーとその他のペイント (粗さ、メ
 // Whether we include the vertex color in the exported file
 file.export.stl.color = "頂点カラー";
 file.export.stl.color.help = "それを読み出せる3Dソフトウェアもありますが、すべてのソフトウェアができるとは限りません。";
-file.export.stl.ascii = "デフォルトで、フォーマットはバイナリです。
 
-テキストフォーマット (ASCII) に書き出す選択もできますが、ファイルサイズが大きくなります。";
+file.export.ply = "STLを書き出す";
+file.export.ply.warning = "レイヤーとその他のペイント (粗さ、メタリック、マスク) は喪失します。";
+// Whether we include the vertex color in the exported file
+file.export.ply.color0 = "頂点カラー";
+
+file.export.ply.color1 = "PBRペイント";
+file.export.ply.color1.help = "粗さ、メタリック、およびマスクペイントを書き出します。これは他のソフトウェアに無視されます。";
 
 // Advanced settings
 settings.advanced = "高度な機能";
@@ -917,10 +926,19 @@ light.type = "タイプ";
 // Directional light (synonym: sun light)
 light.type.directional = "方向的";
 light.type.directional.short = "";
+// Directional light (synonym: sun light)
+light.type.environment = "環境";
+light.type.environment.short = "";
 // Spot light emits light in a single direction, restricted by a cone shape.
 light.type.spot = "スポットライト";
+light.type.spot.short = "スポットライト";
 // Point light emits lights everywhere (synonym: omni, omnidirectional)
 light.type.point = "ポイント";
+light.type.point.short = "ポイント";
+// For directional light (angle jitter)
+light.angle = "アングル";
+// For point/spot light (offset jitter)
+light.size = "サイズ";
 // Cone angle for spot angles
 light.spot.angle = "円錐の角度";
 // Softness of the spot light
@@ -1145,7 +1163,7 @@ paint.useAlpha = "ストロークのアルファを使用";
 paint.useAlpha.help = "ストロークメニューでアルファセットを使用すると、ペイントを調節できます。";
 // Whether the Brush Falloff will be used to modulate painting intensity
 paint.useCurve = "ストロークのフォールオフを使用";
-paint.useFalloff.help = "ストロークメニューでフォールオフセットを使用すると、ペイントを調節できます。";
+paint.useCurve.help = "ストロークメニューでフォールオフセットを使用すると、ペイントを調節できます。";
 // Whether the Brush Randomize will be used to modulate painting intensity
 paint.useJitter = "";
 paint.useJitter.help = "";
@@ -1269,6 +1287,8 @@ postprocess.grain = "グレイン";
 postprocess.grain.factor = "強さ";
 // Accentuate the edges of the model
 postprocess.curvature = "曲率";
+// main strength of curvatre
+postprocess.curvature.factor = "要素";
 // Color/Strength of concave curvature
 postprocess.curvature.cavity = "キャビティ";
 // Color/Strength of convex curvature
@@ -1870,8 +1890,6 @@ symmetry.mirror.help = "トポロジーに影響を与えないで対称を再�
 放射状の対称は無視されます。
 
 トポロジーが対称でないと認識されたため残せない場合は、ミラーリングを強制実行するオプションが提示されます。";
-symmetry.mirrorLeftToRight = "左から右";
-symmetry.mirrorRightToLeft = "右から左";
 symmetry.mirrorFail = "対称を適用できませんでした。
 
 メッシュをミラーリングすることで対称を強制実行しますか？";
@@ -1879,6 +1897,8 @@ symmetry.mirrorUseMasking = "マスクの部分を保護";
 symmetry.mirrorUseMasking.help = "マスク部分をそのまま残します。
 
 このオプションは非対称のトポロジー (または、一対の目のような、繋がっていないサーフェス) では無視されます。";
+symmetry.apply = "";
+symmetry.splitMirror = "";
 // Reset the symmetry plane position
 symmetry.reset = "リセット";
 // Reset the symmetry plane positon to the object center
@@ -1984,6 +2004,11 @@ tool.transform.snap = "スナップ";
 tool.measure = "計測";
 // Ideally <10 chars (Lattice, deformer)
 tool.lattice = "";
+// Ideally <10 chars (FaceGroup)
+tool.faceGroup = "";
+tool.faceGroup.autoPick = "";
+// Ideally <10 chars (Hide)
+tool.hide = "隠す";
 // Ideally <10 chars (View tool, do nothing in particular)
 tool.view = "表示";
 // Ideally <10 chars (Revolving surface along a line)
@@ -2331,6 +2356,7 @@ topology.dynamic.quality.quality = "クオリティ";
 // Whether the pencil pressure can impact the level of detail
 topology.dynamic.usePressure = "半径に筆圧を使用";
 topology.dynamic.usePressure.help = "筆圧をツールの半径に影響させ、ディテールのレベルに影響を与えたい場合、このオプションを使用してください。";
+topology.dynamic.useFalloff = "";
 // Decimate
 topology.decimate.title = "デシメーション";
 topology.decimate.title.help = "ディテールをできるだけ多く残したままポリゴン数を減らします。
@@ -2417,7 +2443,9 @@ binding.reset = "バインドをリセット";
 binding.toggleTool = "";
 binding.toggleTool.help = "";
 // Same as Color Picker but it pick the material (color, roughness, metalness, etc)
-binding.materialPicker = "マテリアルピッカー";
+binding.pickMaterial = "マテリアルピッカー";
+// Same as Color Picker but it pick the material (color, roughness, metalness, etc)
+binding.pickFaceGroup = "";
 // Edit the tool brush size/radius
 binding.editRadius = "ツールの半径";
 // Edit the tool brush size/radius

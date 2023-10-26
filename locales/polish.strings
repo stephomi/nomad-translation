@@ -176,6 +176,8 @@ about.instagram = "Instagram";
 about.facebook = "Facebook";
 // Link to the App Discord account
 about.discord = "Discord";
+// Link to the App Threads account
+about.threads = "";
 
 // The user canceled an operation that was running
 alert.aborted = "";
@@ -210,6 +212,7 @@ alert.matrix.clone = "Obiekt zostanie zduplikowany";
 alert.matrix.instance = "Zostanie utworzona instancja obiektu";
 // A pivot refers the gizmo 3d position, this mode means we are moving the pivot
 alert.gizmo.editPivot = "Edytuj tryb punktu obrotu.";
+alert.mask.full = "Maska = 100%!";
 // A pivot refers the gizmo 3d position
 alert.gizmo.editObject = "Edytuj tryb obiektu.";
 // See Glossary (DynTopo)
@@ -248,7 +251,7 @@ alert.autoSave.auto = "Automatyczny zapis za... $0s";
 // The selected object doesn't have any layers
 alert.needLayer = "Bieżące narzędzie wymaga aktywnej warstwy.";
 // The user decides to hide the painting on the objects
-alert.paintingHidden = "Malowanie ukryte: pokaż je ponownie w panelu Ustawienia.";
+alert.paintingHidden = "Malowanie ukryte!";
 // The selected object doesn't have any layers
 alert.noPartialWireframe = "Częściowy rysunek jest wyłączony, gdy wyświetlany jest szkielet.";
 // The user has selected a tool that is more intuitive to use when the camera is in orthographic mode
@@ -494,10 +497,7 @@ Wyłączy ona zmianę kolejności wierzchołków/powierzchni, usuwanie duplikat�
 
 // Import file section
 file.import.title = "Importuj";
-file.import.title.help = "Obsługiwany format:
-- Wavefront (.obj)
-- glTF 2.0 (.glb .gltf)
-- STL (.stl)";
+file.import.title.help = "Obsługiwany format:";
 // The user imports a scene file that will replace the current scene
 file.import.open = "Otwórz";
 file.import.open.confirm = "Zaimportować nowy plik?";
@@ -507,6 +507,10 @@ file.import.add.confirm = "Zaimportować nowy plik?";
 
 // Export scene file
 file.export.title = "Eksportuj";
+
+file.select.all = "";
+file.select.visible = "";
+file.select.selected = "";
 
 // Export the current selected objects instead of the entire scene
 file.onlySelection = "Dołącz tylko zaznaczone obiekty";
@@ -557,9 +561,14 @@ file.export.stl.warning = "Warstwy i dodatkowe malowanie (chropowatość, metali
 // Whether we include the vertex color in the exported file
 file.export.stl.color = "Kolory wierzchołków";
 file.export.stl.color.help = "Niektóre programy 3D będą w stanie to odczytać, ale nie wszystkie.";
-file.export.stl.ascii = "Domyślny format to binarny.
 
-Możesz wybrać eksport do formatu tekstowego (ASCII), ale plik będzie większy.";
+file.export.ply = "Eksportuj STL";
+file.export.ply.warning = "Warstwy i dodatkowe malowanie (chropowatość, metaliczność i maski) zostaną utracone.";
+// Whether we include the vertex color in the exported file
+file.export.ply.color0 = "Kolory wierzchołków";
+
+file.export.ply.color1 = "Malowanie PBR";
+file.export.ply.color1.help = "Eksportuj chropowatość, metaliczność i malowanie masek. Będzie to ignorowane przez inne programy.";
 
 // Advanced settings
 settings.advanced = "Zaawansowane";
@@ -917,10 +926,19 @@ light.type = "Typ";
 // Directional light (synonym: sun light)
 light.type.directional = "Kierunkowe";
 light.type.directional.short = "";
+// Directional light (synonym: sun light)
+light.type.environment = "Środowisko";
+light.type.environment.short = "";
 // Spot light emits light in a single direction, restricted by a cone shape.
 light.type.spot = "Punktowe";
+light.type.spot.short = "Punktowe";
 // Point light emits lights everywhere (synonym: omni, omnidirectional)
 light.type.point = "Wielokierunkowe";
+light.type.point.short = "Wielokierunkowe";
+// For directional light (angle jitter)
+light.angle = "Kąt";
+// For point/spot light (offset jitter)
+light.size = "Rozmiar";
 // Cone angle for spot angles
 light.spot.angle = "Kąt stożkowy";
 // Softness of the spot light
@@ -1145,7 +1163,7 @@ paint.useAlpha = "Użyj alfy pociągnięć";
 paint.useAlpha.help = "Użycie zestawu alfa w menu pociągnięć do modulowania obrazu.";
 // Whether the Brush Falloff will be used to modulate painting intensity
 paint.useCurve = "Użyj zanikania pociągnięcia";
-paint.useFalloff.help = "Użycie zestawu zanikania w menu pociągnięć do modulowania obrazu.";
+paint.useCurve.help = "Użycie zestawu zanikania w menu pociągnięć do modulowania obrazu.";
 // Whether the Brush Randomize will be used to modulate painting intensity
 paint.useJitter = "";
 paint.useJitter.help = "";
@@ -1270,6 +1288,8 @@ postprocess.grain = "Tekstura";
 postprocess.grain.factor = "Siła";
 // Accentuate the edges of the model
 postprocess.curvature = "Krzywizna";
+// main strength of curvatre
+postprocess.curvature.factor = "Współczynnik";
 // Color/Strength of concave curvature
 postprocess.curvature.cavity = "Wgłębienie";
 // Color/Strength of convex curvature
@@ -1873,8 +1893,6 @@ symmetry.mirror.help = "Spróbuj ponownie zastosować symetrię bez wpływu na t
 Symetria radialna będzie ignorowana.
 
 Jeśli topologia nie może być zachowana, ponieważ nie jest uważana za symetryczną, otrzymasz opcję wymuszenia odbicia lustrzanego.";
-symmetry.mirrorLeftToRight = "Od lewej do prawej";
-symmetry.mirrorRightToLeft = "Od prawej do lewej";
 symmetry.mirrorFail = "Nie udało się zastosować symetrii.
 
 Czy chcesz wymusić symetrię poprzez odbicie lustrzane siatki?";
@@ -1882,6 +1900,8 @@ symmetry.mirrorUseMasking = "Chroń zamaskowany obszar";
 symmetry.mirrorUseMasking.help = "Zachowaj zamaskowany obszar w stanie nienaruszonym.
 
 Ta opcja będzie ignorowana w przypadku niesymetrycznej topologii (lub rozłącznej powierzchni, jak para oczu).";
+symmetry.apply = "";
+symmetry.splitMirror = "";
 // Reset the symmetry plane position
 symmetry.reset = "Wyzeruj";
 // Reset the symmetry plane positon to the object center
@@ -1987,6 +2007,11 @@ tool.transform.snap = "Przyciągnij";
 tool.measure = "Zmierz";
 // Ideally <10 chars (Lattice, deformer)
 tool.lattice = "";
+// Ideally <10 chars (FaceGroup)
+tool.faceGroup = "";
+tool.faceGroup.autoPick = "";
+// Ideally <10 chars (Hide)
+tool.hide = "Ukryj";
 // Ideally <10 chars (View tool, do nothing in particular)
 tool.view = "Wyświetl";
 // Ideally <10 chars (Revolving surface along a line)
@@ -2334,6 +2359,7 @@ topology.dynamic.quality.quality = "Jakość";
 // Whether the pencil pressure can impact the level of detail
 topology.dynamic.usePressure = "Użyj nacisku dla promienia";
 topology.dynamic.usePressure.help = "Użyj tej opcji, jeśli chcesz, aby nacisk pióra na promień narzędzia miał wpływ na poziom szczegółowości.";
+topology.dynamic.useFalloff = "";
 // Decimate
 topology.decimate.title = "Upraszczanie";
 topology.decimate.title.help = "Zmniejsz liczbę wielokątów, starając się zachować jak najwięcej szczegółów.
@@ -2420,7 +2446,9 @@ binding.reset = "Resetuj powiązania";
 binding.toggleTool = "";
 binding.toggleTool.help = "";
 // Same as Color Picker but it pick the material (color, roughness, metalness, etc)
-binding.materialPicker = "Selektor materiału";
+binding.pickMaterial = "Selektor materiału";
+// Same as Color Picker but it pick the material (color, roughness, metalness, etc)
+binding.pickFaceGroup = "";
 // Edit the tool brush size/radius
 binding.editRadius = "Promień narzędzia";
 // Edit the tool brush size/radius

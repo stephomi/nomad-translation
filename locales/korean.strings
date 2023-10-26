@@ -176,6 +176,8 @@ about.instagram = "Instagram";
 about.facebook = "Facebook";
 // Link to the App Discord account
 about.discord = "Discord";
+// Link to the App Threads account
+about.threads = "";
 
 // The user canceled an operation that was running
 alert.aborted = "";
@@ -210,6 +212,7 @@ alert.matrix.clone = "오브젝트가 복제됩니다";
 alert.matrix.instance = "오브젝트가 인스턴스화됩니다";
 // A pivot refers the gizmo 3d position, this mode means we are moving the pivot
 alert.gizmo.editPivot = "피벗 모드 편집.";
+alert.mask.full = "마스크 = 100%!";
 // A pivot refers the gizmo 3d position
 alert.gizmo.editObject = "오브젝트 모드 편집.";
 // See Glossary (DynTopo)
@@ -248,7 +251,7 @@ alert.autoSave.auto = "$0초 후 자동저장";
 // The selected object doesn't have any layers
 alert.needLayer = "현재 도구는 활성화된 레이어를 요구합니다.";
 // The user decides to hide the painting on the objects
-alert.paintingHidden = "페인팅 숨김: 설정 패널에서 다시 볼 수 있습니다.";
+alert.paintingHidden = "페인팅 숨김!";
 // The selected object doesn't have any layers
 alert.noPartialWireframe = "와이어프레임을 표시하면 부분 드로잉이 비활성화됩니다.";
 // The user has selected a tool that is more intuitive to use when the camera is in orthographic mode
@@ -494,10 +497,7 @@ file.import.keepTopology.help = "Nomad로 불러온 메시 토폴로지를 건�
 
 // Import file section
 file.import.title = "임포트";
-file.import.title.help = "지원 포맷:
-- Wavefront (.obj)
-- glTF 2.0 (.glb .gltf)
-- STL (.stl)";
+file.import.title.help = "지원 포맷:";
 // The user imports a scene file that will replace the current scene
 file.import.open = "열기";
 file.import.open.confirm = "새로운 파일을 가져오시겠습니까?";
@@ -507,6 +507,10 @@ file.import.add.confirm = "새로운 파일을 가져오시겠습니까?";
 
 // Export scene file
 file.export.title = "익스포트";
+
+file.select.all = "";
+file.select.visible = "";
+file.select.selected = "";
 
 // Export the current selected objects instead of the entire scene
 file.onlySelection = "선택한 오브젝트만 포함";
@@ -557,9 +561,14 @@ file.export.stl.warning = "레이어 및 추가 페인트(러프니스, 메탈�
 // Whether we include the vertex color in the exported file
 file.export.stl.color = "버텍스 색상";
 file.export.stl.color.help = "일부 3D 소프트웨어에서 열 수 있지만, 모든 소프트웨어에서 지원되는 것은 아닙니다.";
-file.export.stl.ascii = "기본 포맷은 바이너리입니다.
 
-텍스트 형식(ASCII)으로 내보내는 것도 가능하지만 파일 크기가 더 커집니다.";
+file.export.ply = "STL 익스포트";
+file.export.ply.warning = "레이어 및 추가 페인트(러프니스, 메탈릭, 마스크)가 손실됩니다.";
+// Whether we include the vertex color in the exported file
+file.export.ply.color0 = "버텍스 색상";
+
+file.export.ply.color1 = "PBR 페인트";
+file.export.ply.color1.help = "러프니스와 메탈릭, 마스크 페인팅을 내보냅니다. 다른 소프트웨어에서는 무시됩니다.";
 
 // Advanced settings
 settings.advanced = "고급";
@@ -915,10 +924,19 @@ light.type = "유형";
 // Directional light (synonym: sun light)
 light.type.directional = "방향성";
 light.type.directional.short = "";
+// Directional light (synonym: sun light)
+light.type.environment = "주변환경";
+light.type.environment.short = "";
 // Spot light emits light in a single direction, restricted by a cone shape.
 light.type.spot = "스폿";
+light.type.spot.short = "스폿";
 // Point light emits lights everywhere (synonym: omni, omnidirectional)
 light.type.point = "포인트";
+light.type.point.short = "포인트";
+// For directional light (angle jitter)
+light.angle = "각도";
+// For point/spot light (offset jitter)
+light.size = "크기";
 // Cone angle for spot angles
 light.spot.angle = "원뿔 각도";
 // Softness of the spot light
@@ -1143,7 +1161,7 @@ paint.useAlpha = "스트로크 알파 사용";
 paint.useAlpha.help = "스트로크 메뉴에 있는 알파 세트를 사용하여 페인팅을 조절할 수 있습니다.";
 // Whether the Brush Falloff will be used to modulate painting intensity
 paint.useCurve = "스트로크 폴오프 사용";
-paint.useFalloff.help = "스트로크 메뉴에 있는 폴오프 세트를 사용하여 페인팅을 조절할 수 있습니다.";
+paint.useCurve.help = "스트로크 메뉴에 있는 폴오프 세트를 사용하여 페인팅을 조절할 수 있습니다.";
 // Whether the Brush Randomize will be used to modulate painting intensity
 paint.useJitter = "";
 paint.useJitter.help = "";
@@ -1268,6 +1286,8 @@ postprocess.grain = "그레인";
 postprocess.grain.factor = "강도";
 // Accentuate the edges of the model
 postprocess.curvature = "곡률";
+// main strength of curvatre
+postprocess.curvature.factor = "인수";
 // Color/Strength of concave curvature
 postprocess.curvature.cavity = "캐비티";
 // Color/Strength of convex curvature
@@ -1869,8 +1889,6 @@ symmetry.mirror.help = "토폴로지에 영향을 주지 않고 대칭을 다시
 방사성 대칭은 무시됩니다.
 
 토폴로지가 대칭으로 간주되지 않아 유지할 수 없는 경우, 강제로 미러링을 적용할 수 있는 옵션이 주어집니다.";
-symmetry.mirrorLeftToRight = "왼쪽에서 오른쪽으로";
-symmetry.mirrorRightToLeft = "오른쪽에서 왼쪽으로";
 symmetry.mirrorFail = "대칭을 적용하지 못했습니다.
 
 메시를 미러링하여 대칭을 강제 적용하시겠습니까?";
@@ -1878,6 +1896,8 @@ symmetry.mirrorUseMasking = "마스크 영역 보호";
 symmetry.mirrorUseMasking.help = "마스크 영역을 그대로 유지합니다.
 
 이 옵션은 비대칭 토폴로지(또는 한 쌍의 눈처럼 연결이 끊긴 표면)에서는 무시됩니다.";
+symmetry.apply = "";
+symmetry.splitMirror = "";
 // Reset the symmetry plane position
 symmetry.reset = "초기화";
 // Reset the symmetry plane positon to the object center
@@ -1983,6 +2003,11 @@ tool.transform.snap = "스냅";
 tool.measure = "측정";
 // Ideally <10 chars (Lattice, deformer)
 tool.lattice = "";
+// Ideally <10 chars (FaceGroup)
+tool.faceGroup = "";
+tool.faceGroup.autoPick = "";
+// Ideally <10 chars (Hide)
+tool.hide = "가리기";
 // Ideally <10 chars (View tool, do nothing in particular)
 tool.view = "보기";
 // Ideally <10 chars (Revolving surface along a line)
@@ -2330,6 +2355,7 @@ topology.dynamic.quality.quality = "품질";
 // Whether the pencil pressure can impact the level of detail
 topology.dynamic.usePressure = "반지름에 압력 사용";
 topology.dynamic.usePressure.help = "펜 압력이 도구 반지름에 영향을 미칠 때 세부 수준으로 영향을 미치도록 하려면 이 옵션을 사용하세요.";
+topology.dynamic.useFalloff = "";
 // Decimate
 topology.decimate.title = "데시메이션";
 topology.decimate.title.help = "가능한 디테일을 최대한 유지하면서 폴리곤 개수를 줄입니다.
@@ -2416,7 +2442,9 @@ binding.reset = "바인딩 초기화";
 binding.toggleTool = "";
 binding.toggleTool.help = "";
 // Same as Color Picker but it pick the material (color, roughness, metalness, etc)
-binding.materialPicker = "머티리얼 피커";
+binding.pickMaterial = "머티리얼 피커";
+// Same as Color Picker but it pick the material (color, roughness, metalness, etc)
+binding.pickFaceGroup = "";
 // Edit the tool brush size/radius
 binding.editRadius = "도구 반지름";
 // Edit the tool brush size/radius

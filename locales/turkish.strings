@@ -176,6 +176,8 @@ about.instagram = "Instagram";
 about.facebook = "Facebook";
 // Link to the App Discord account
 about.discord = "Uyuşmazlık";
+// Link to the App Threads account
+about.threads = "";
 
 // The user canceled an operation that was running
 alert.aborted = "";
@@ -210,6 +212,7 @@ alert.matrix.clone = "Nesne çoğaltılacak";
 alert.matrix.instance = "Nesnenin örneği oluşturulacak";
 // A pivot refers the gizmo 3d position, this mode means we are moving the pivot
 alert.gizmo.editPivot = "Eksen modunu düzenle.";
+alert.mask.full = "Maskele = 100%!";
 // A pivot refers the gizmo 3d position
 alert.gizmo.editObject = "Nesne modunu düzenle.";
 // See Glossary (DynTopo)
@@ -248,7 +251,7 @@ alert.autoSave.auto = "$0s içinde otomatik kaydedilecek...";
 // The selected object doesn't have any layers
 alert.needLayer = "Geçerli araç için etkin bir katman gerekli.";
 // The user decides to hide the painting on the objects
-alert.paintingHidden = "Boyama gizli: Ayarlar panelinde yeniden göster.";
+alert.paintingHidden = "Boyama gizli!";
 // The selected object doesn't have any layers
 alert.noPartialWireframe = "Genel taslak görüntülendiğinde kısmi çizim devre dışı kalır.";
 // The user has selected a tool that is more intuitive to use when the camera is in orthographic mode
@@ -494,10 +497,7 @@ Verteks/yüz yeniden sıralanması, verteks/yüz kopyalarının kaldırılması 
 
 // Import file section
 file.import.title = "İçe aktar";
-file.import.title.help = "Desteklenen formatlar:
-- Wavefront (.obj)
-- glTF 2.0 (.glb .gltf)
-- STL (.stl)";
+file.import.title.help = "Desteklenen formatlar:";
 // The user imports a scene file that will replace the current scene
 file.import.open = "Aç";
 file.import.open.confirm = "Yeni dosya içeri aktarılsın mı?";
@@ -507,6 +507,10 @@ file.import.add.confirm = "Yeni dosya içeri aktarılsın mı?";
 
 // Export scene file
 file.export.title = "Dışa Aktar";
+
+file.select.all = "";
+file.select.visible = "";
+file.select.selected = "";
 
 // Export the current selected objects instead of the entire scene
 file.onlySelection = "Sadece seçili nesneleri dâhil et";
@@ -557,9 +561,14 @@ file.export.stl.warning = "Katmanlar ve ekstra boyama (pürüzlük ve metaliklik
 // Whether we include the vertex color in the exported file
 file.export.stl.color = "Verteks renklerini";
 file.export.stl.color.help = "Bazı 3D yazılımları bunu okuyabilir, ama hepsi okuyamaz.";
-file.export.stl.ascii = "Format varsayılan olarak ikilidir.
 
-Metin formatında (ASCII) dışarı aktarmayı seçebilirsiniz, ama dosya daha büyük olur.";
+file.export.ply = "STL dışa aktar";
+file.export.ply.warning = "Katmanlar ve ekstra boyama (pürüzlük ve metaliklik seviyesi ve maske) kaybolur.";
+// Whether we include the vertex color in the exported file
+file.export.ply.color0 = "Verteks renklerini";
+
+file.export.ply.color1 = "pbr boyamasını";
+file.export.ply.color1.help = "Pürüzlük, metaliklik seviyesi ve maske boyamayı dışa aktarır. Bu diğer yazılımlar tarafından göz ardı edilir.";
 
 // Advanced settings
 settings.advanced = "Gelişmiş";
@@ -916,10 +925,19 @@ light.type = "Tip";
 // Directional light (synonym: sun light)
 light.type.directional = "Yönsel";
 light.type.directional.short = "";
+// Directional light (synonym: sun light)
+light.type.environment = "Ortam";
+light.type.environment.short = "";
 // Spot light emits light in a single direction, restricted by a cone shape.
 light.type.spot = "Spot";
+light.type.spot.short = "Spot";
 // Point light emits lights everywhere (synonym: omni, omnidirectional)
 light.type.point = "Nokta";
+light.type.point.short = "Nokta";
+// For directional light (angle jitter)
+light.angle = "Açı";
+// For point/spot light (offset jitter)
+light.size = "Büyüklük";
 // Cone angle for spot angles
 light.spot.angle = "Koni açısı";
 // Softness of the spot light
@@ -1144,7 +1162,7 @@ paint.useAlpha = "Alfa darbesini kullan";
 paint.useAlpha.help = "Boyamayı değiştirmek için darbe menüsünde belirlenmiş alfa kullanılır.";
 // Whether the Brush Falloff will be used to modulate painting intensity
 paint.useCurve = "Darbe düşüşü dullan";
-paint.useFalloff.help = "Boyamayı değiştirmek için darbe menüsünde belirlenmiş düşüş kullanılır.";
+paint.useCurve.help = "Boyamayı değiştirmek için darbe menüsünde belirlenmiş düşüş kullanılır.";
 // Whether the Brush Randomize will be used to modulate painting intensity
 paint.useJitter = "";
 paint.useJitter.help = "";
@@ -1269,6 +1287,8 @@ postprocess.grain = "Tanecik";
 postprocess.grain.factor = "Şiddet";
 // Accentuate the edges of the model
 postprocess.curvature = "Eğrilik";
+// main strength of curvatre
+postprocess.curvature.factor = "Faktör";
 // Color/Strength of concave curvature
 postprocess.curvature.cavity = "Boşluk";
 // Color/Strength of convex curvature
@@ -1872,8 +1892,6 @@ symmetry.mirror.help = "Topolojiye etki etmeden simetriyi tekrar uygulamaya çal
 Radyal simetri göz ardı edilir.
 
 Topoloji simetrik olarak değerlendirilmediğinden korunamıyorsa, aynalamayı zorlamak için bir seçenek gelir.";
-symmetry.mirrorLeftToRight = "Soldan sağa";
-symmetry.mirrorRightToLeft = "Sağdan sola";
 symmetry.mirrorFail = "Simetri uygulanamadı.
 
 Ağ örgüsünü aynalayarak simetriyi zorlamak istiyor musunuz?";
@@ -1881,6 +1899,8 @@ symmetry.mirrorUseMasking = "Maskelenmiş alanı koru";
 symmetry.mirrorUseMasking.help = "Maskelenmiş alana dokunulmaz.
 
 Bu seçenek simetrik olmayan topolojilerde (ya da bir çift göz gibi bağlı olmayan bir yüzeylerde) göz ardı edilir.";
+symmetry.apply = "";
+symmetry.splitMirror = "";
 // Reset the symmetry plane position
 symmetry.reset = "Sıfırla";
 // Reset the symmetry plane positon to the object center
@@ -1986,6 +2006,11 @@ tool.transform.snap = "Yasla";
 tool.measure = "Ölç";
 // Ideally <10 chars (Lattice, deformer)
 tool.lattice = "";
+// Ideally <10 chars (FaceGroup)
+tool.faceGroup = "";
+tool.faceGroup.autoPick = "";
+// Ideally <10 chars (Hide)
+tool.hide = "Gizle";
 // Ideally <10 chars (View tool, do nothing in particular)
 tool.view = "Görüntüle";
 // Ideally <10 chars (Revolving surface along a line)
@@ -2333,6 +2358,7 @@ topology.dynamic.quality.quality = "Kalite";
 // Whether the pencil pressure can impact the level of detail
 topology.dynamic.usePressure = "Yarıçapta basınç kullan";
 topology.dynamic.usePressure.help = "Kalem basıncının alet yarıçapını etkileyerek, ayrıntı düzeyini etkilemesini istiyorsanız bu seçeneği kullanın.";
+topology.dynamic.useFalloff = "";
 // Decimate
 topology.decimate.title = "Azaltım";
 topology.decimate.title.help = "Mümkün olduğunca fazla detay korumaya çalışarak, poligonların sayısını azaltır.
@@ -2419,7 +2445,9 @@ binding.reset = "Atamaları sıfırla";
 binding.toggleTool = "";
 binding.toggleTool.help = "";
 // Same as Color Picker but it pick the material (color, roughness, metalness, etc)
-binding.materialPicker = "Malzeme Seçici";
+binding.pickMaterial = "Malzeme Seçici";
+// Same as Color Picker but it pick the material (color, roughness, metalness, etc)
+binding.pickFaceGroup = "";
 // Edit the tool brush size/radius
 binding.editRadius = "Araç Yarıçapı";
 // Edit the tool brush size/radius

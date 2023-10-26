@@ -176,6 +176,8 @@ about.instagram = "Instagram";
 about.facebook = "Facebook";
 // Link to the App Discord account
 about.discord = "Discord";
+// Link to the App Threads account
+about.threads = "";
 
 // The user canceled an operation that was running
 alert.aborted = "";
@@ -210,6 +212,7 @@ alert.matrix.clone = "将复制此对象";
 alert.matrix.instance = "将实例此对象";
 // A pivot refers the gizmo 3d position, this mode means we are moving the pivot
 alert.gizmo.editPivot = "编辑轴心模式";
+alert.mask.full = "蒙版 = 100%!";
 // A pivot refers the gizmo 3d position
 alert.gizmo.editObject = "编辑对象模式";
 // See Glossary (DynTopo)
@@ -248,7 +251,7 @@ alert.autoSave.auto = "将在$0秒后自动保存";
 // The selected object doesn't have any layers
 alert.needLayer = "使用当前工具需要激活一个图层。";
 // The user decides to hide the painting on the objects
-alert.paintingHidden = "绘画已被隐藏，请在设置面板里将其打开。";
+alert.paintingHidden = "绘画已被隐藏！";
 // The selected object doesn't have any layers
 alert.noPartialWireframe = "打开线框显示时，局部绘画将被禁用。";
 // The user has selected a tool that is more intuitive to use when the camera is in orthographic mode
@@ -495,10 +498,7 @@ file.import.keepTopology.help = "如果你不希望Nomad对导入的网格进行
 
 // Import file section
 file.import.title = "导入";
-file.import.title.help = "支持导入的格式：
-- Wavefront (.obj)
-- glTF 2.0 (.glb .gltf)
-- STL (.stl)";
+file.import.title.help = "支持导入的格式：";
 // The user imports a scene file that will replace the current scene
 file.import.open = "打开";
 file.import.open.confirm = "确定导入新文件？";
@@ -508,6 +508,10 @@ file.import.add.confirm = "确定添加新文件？";
 
 // Export scene file
 file.export.title = "导出";
+
+file.select.all = "";
+file.select.visible = "";
+file.select.selected = "";
 
 // Export the current selected objects instead of the entire scene
 file.onlySelection = "只导出选择部分";
@@ -557,9 +561,14 @@ file.export.stl.warning = "图层和额外的绘画（粗糙度、金属强度�
 // Whether we include the vertex color in the exported file
 file.export.stl.color = "顶点颜色";
 file.export.stl.color.help = "只有部分3D软件能够识别。";
-file.export.stl.ascii = "默认情况下，格式为二进制。
 
-您可以选择导出为文本格式（ASCII），但文件会更大。";
+file.export.ply = "导出STL格式";
+file.export.ply.warning = "图层和额外的绘画（粗糙度、金属强度和蒙版）将会丢失。";
+// Whether we include the vertex color in the exported file
+file.export.ply.color0 = "顶点颜色";
+
+file.export.ply.color1 = "PBR绘画";
+file.export.ply.color1.help = "导出粗糙度、金属强度和蒙版绘制。这将被其他软件忽略。";
 
 // Advanced settings
 settings.advanced = "高级设置";
@@ -917,10 +926,19 @@ light.type = "类型";
 // Directional light (synonym: sun light)
 light.type.directional = "定向光";
 light.type.directional.short = "";
+// Directional light (synonym: sun light)
+light.type.environment = "HDRI";
+light.type.environment.short = "";
 // Spot light emits light in a single direction, restricted by a cone shape.
 light.type.spot = "聚光灯";
+light.type.spot.short = "聚光灯";
 // Point light emits lights everywhere (synonym: omni, omnidirectional)
 light.type.point = "点光源";
+light.type.point.short = "点光源";
+// For directional light (angle jitter)
+light.angle = "角度";
+// For point/spot light (offset jitter)
+light.size = "尺寸";
 // Cone angle for spot angles
 light.spot.angle = "入射角";
 // Softness of the spot light
@@ -1151,7 +1169,7 @@ paint.useAlpha = "使用笔刷alpha";
 paint.useAlpha.help = "使用笔画菜单中的alpha设置来调制绘画。";
 // Whether the Brush Falloff will be used to modulate painting intensity
 paint.useCurve = "使用笔刷衰减";
-paint.useFalloff.help = "使用笔画菜单中的衰减设置来调控绘画。";
+paint.useCurve.help = "使用笔画菜单中的衰减设置来调控绘画。";
 // Whether the Brush Randomize will be used to modulate painting intensity
 paint.useJitter = "";
 paint.useJitter.help = "";
@@ -1276,6 +1294,8 @@ postprocess.grain = "噪点";
 postprocess.grain.factor = "强度";
 // Accentuate the edges of the model
 postprocess.curvature = "曲率描边";
+// main strength of curvatre
+postprocess.curvature.factor = "吸收系数";
 // Color/Strength of concave curvature
 postprocess.curvature.cavity = "凹陷";
 // Color/Strength of convex curvature
@@ -1880,8 +1900,6 @@ symmetry.mirror.help = "尝试在不影响拓扑的情况下重新应用对称�
 拓扑必须对称且至少有一个边缘恰好位于对称平面上才能成功应用。
 
 如果镜像失败，将会建议您强制对称。但这样会影响到拓扑。";
-symmetry.mirrorLeftToRight = "从左至右";
-symmetry.mirrorRightToLeft = "从右至左";
 symmetry.mirrorFail = "对称失败：
 
 是否使用镜像来强制对称？";
@@ -1889,6 +1907,8 @@ symmetry.mirrorUseMasking = "保护蒙版区域";
 symmetry.mirrorUseMasking.help = "启用后，在镜像时将不会修改蒙版区域。
 
 该选项会忽略非对称网格(或不相连的表面，比如眼睛)。";
+symmetry.apply = "";
+symmetry.splitMirror = "";
 // Reset the symmetry plane position
 symmetry.reset = "重设";
 // Reset the symmetry plane positon to the object center
@@ -1994,6 +2014,11 @@ tool.transform.snap = "表面吸附";
 tool.measure = "测量";
 // Ideally <10 chars (Lattice, deformer)
 tool.lattice = "";
+// Ideally <10 chars (FaceGroup)
+tool.faceGroup = "";
+tool.faceGroup.autoPick = "";
+// Ideally <10 chars (Hide)
+tool.hide = "隐藏";
 // Ideally <10 chars (View tool, do nothing in particular)
 tool.view = "浏览模式";
 // Ideally <10 chars (Revolving surface along a line)
@@ -2342,6 +2367,7 @@ topology.dynamic.quality.quality = "性能";
 // Whether the pencil pressure can impact the level of detail
 topology.dynamic.usePressure = "在半径上使用压感";
 topology.dynamic.usePressure.help = "如果您想让笔压对工具半径的影响也影响到细节层次，请启用此选项。";
+topology.dynamic.useFalloff = "";
 // Decimate
 topology.decimate.title = "成型简化";
 topology.decimate.title.help = "减少多边形的数量，尽量保留更多的细节。
@@ -2429,7 +2455,9 @@ binding.reset = "重设键位绑定";
 binding.toggleTool = "";
 binding.toggleTool.help = "";
 // Same as Color Picker but it pick the material (color, roughness, metalness, etc)
-binding.materialPicker = "材质选取器";
+binding.pickMaterial = "材质选取器";
+// Same as Color Picker but it pick the material (color, roughness, metalness, etc)
+binding.pickFaceGroup = "";
 // Edit the tool brush size/radius
 binding.editRadius = "工具半径";
 // Edit the tool brush size/radius
