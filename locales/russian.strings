@@ -10,6 +10,10 @@ confirm.cancel = "Отмена";
 // Experimental feature
 experimental = "Экспериментальная функция!";
 
+clipboard = "";
+clipboard.copy = "";
+clipboard.paste = "";
+
 // memory size
 bytes = "байт";
 kB = "КБ";
@@ -252,6 +256,8 @@ alert.autoSave.auto = "Автосохранение через... $0с";
 alert.needLayer = "Для текущего инструмента необходим активный слой.";
 // The user decides to hide the painting on the objects
 alert.paintingHidden = "Рисование скрыто!";
+// The user decides to hide the masking on the objects
+alert.maskingHidden = "";
 // The selected object doesn't have any layers
 alert.noPartialWireframe = "Частичное рисование отключено, когда каркас отображается.";
 // The user has selected a tool that is more intuitive to use when the camera is in orthographic mode
@@ -262,6 +268,8 @@ alert.state.trial = "Пробная версия: отмена отключен�
 background = "Фон";
 // A flat color will be displayed in the background of the scene
 background.color = "Цвет";
+// 2 color with rotation
+background.gradient = "градиент";
 // The environment (HDRI) will be displayed in the background
 background.environment = "Окружение";
 background.blur = "Размытие";
@@ -387,12 +395,8 @@ curve.spiral.angle = "Сдвиг угла";
 debug.targetFPS = "";
 debug.targetFPS.help = "";
 
-// Debug option, the newly created primitives will contains texture coordinates (UVs)
-debug.uvPrimitive = "Сохранить примитивные UV";
+// Warning about UVs (using extra memory)
 debug.uvPrimitive.warning = "Отключите эту функцию, если вы не работаете с UV (экономия памяти).";
-debug.uvPrimitive.help = "В данный момент доступны только Сфера и Коробка.
-
-В будущем будут поддерживаться и другие типы.";
 // Debug option, Normalize means transforming the data so that it fits in [0-1] the range
 debug.uvNormalize = "Нормализация UV";
 debug.uvNormalize.help = "Nomad нормализует UV в плитке [0-1].";
@@ -403,8 +407,6 @@ debug.uvBFF.help = "Добавить альтернативный метод р�
 Примечание: BFF создаст перекрытия, если топология меша отличается от диска или сферы.";
 
 debug.quadriflow = "";
-debug.quadriflow.help = "";
-
 
 // Debug option, display an window with some debugging logs
 debug.logs = "Журнал";
@@ -607,7 +609,7 @@ file.render.size = "Финальный размер";
 // Desired size of the exported screenshot (custom vs predefined size)
 file.render.size.custom = "Собственный";
 // Screen resolution parameters for the export screenshot features
-file.render.screenResolution = "экран";
+file.render.screenResolution = "Экран";
 // width of exported screenshot
 file.render.width = "Ширина";
 // height of exported screenshot
@@ -664,18 +666,14 @@ gesture.dropper.help = "Выбор материала/цвета можно вы
 
 // Three fingers on screen
 gesture.three.title = "Три пальца";
-// Drag 3 fingers horizontally on the canvas to rotate the environment, lights and MatCap
-gesture.fingerLighting = "Повернуть освещение (3 пальца)";
-// Canvas means the scene viewport (the entire screen but excluding the interface)
-gesture.fingerLighting.help = "Проведите горизонтально тремя пальцами по холсту для проворачивания окружения, освещения и MatCap.";
-// Drag 3 fingers vertically to edit the tool radius
-gesture.fingerRadius = "Редактировать радиус инструмента (3 пальца)";
-// Canvas means the scene viewport (the entire screen but excluding the interface)
-gesture.fingerRadius.help = "Проведите вертикально тремя пальцами по холсту для изменения радиуса инструмента.";
+gesture.three.light = "Поворот освещения";
+gesture.three.light.help = "Поверните окружение, освещение и MatCap.";
+gesture.three.radius = "Радиус инструмента";
+gesture.three.intensity = "Интенсивность инструмента";
 
 // If this option is enabled, finger inputs on screen will use the smoothing tool
-gesture.fingerSmooth = "Палец производит сглаживание";
-gesture.fingerSmooth.help = "";
+gesture.finger.smooth = "Палец производит сглаживание";
+gesture.finger.smooth.help = "";
 // If enabled, the pressure will be taken into account even if it's not coming from a recognized stylus
 gesture.unknownPressure = "Разрешить неопознанное давление";
 gesture.unknownPressure.help = "Выберите эту функцию, если нажим не поддерживается для вашего стилуса или вам нужна регулировка нажима стилусом.";
@@ -741,8 +739,8 @@ history.includePostProcess = "Пост-обработка";
 // include shading parameters (MatCap & HDRIs) editing in the undo/redo
 history.includeShading = "Маткапы и HDRI";
 // Can limit the stack of undo/redo size
-history.limitSize = "Лимит истории (Мб)";
-history.limitSize.help = "Максимальный размер истории в Мб.
+history.limitSize = "Лимит истории";
+history.limitSize.help = "Максимальный размер истории.
 
 История будет обновлена при следующем записанном действии.";
 // Limit the number of undo in the history stack
@@ -848,12 +846,14 @@ interface.flipMiddle = "Отражение боковой панели";
 interface.materialPreview = "Предпросмотр цвета материала";
 // Interface customization
 interface.materialPreview.help = "При выборе цвета для материала, предпросмотр материала отображается на текущем выбранном объекте.";
-interface.toolbox.hide = "Скрыть панель инструментов";
-interface.toolboxHide.help = "Включите эту функцию, если вы хотите скрыть панель инструментов.";
+// list of tools
+interface.toolbox = "панель инструментов";
+// hide toolbox by default
+interface.toolbox.hide = "Скрытый";
 // Interface customization (the toolbox is a grid, we can adjust the column count)
-interface.toolbox.maxColumn = "Макс. колонок панели инструментов";
+interface.toolbox.columns = "количество столбцов";
 // Reset the tool's order in the toolbox
-interface.toolbox.resetOrder = "Сбросить порядок панели инструментов";
+interface.toolbox.resetOrder = "Сбросить порядок";
 // Scale the interface
 interface.scale = "Общий масштаб";
 // Spacing between widgets
@@ -1149,11 +1149,7 @@ paint.usePainting = "Окрашивание штрихов";
 paint.intensity = "Интенсивность окрашивания";
 // Apply the paint on the object
 paint.paintAll = "Окрасить все";
-paint.paintAll.help = "Применить текущий материал к объекту.
-
-Область маски и отключенные каналы не будут окрашены.";
-// Apply the paint on the object but ignore painting intensity (force full intensity)
-paint.paintAllForce = "Принудительно окрасить все";
+paint.paintAll.help = "Применить текущий материал к объекту.";
 paint.strokePainting.title = "Краски";
 // Brush stroke texture
 paint.texture.warningEnable = "Окрашивание штрихов необходимо включить для проекции текстур (галочка вверху)!";
@@ -1319,7 +1315,7 @@ primitive.plane = "Плоскость";
 primitive.triplanar = "Трипланарность";
 primitive.faceXYZ = "Грань XYZ";
 primitive.faceXYZ.help = "Базовый меш без развертки UV предоставлен https://texturing.xyz/";
-primitive.needValidate = "Примитивы должны быть утверждены для скульптурирования.";
+primitive.needValidate = "Примитивы должны быть утверждены!";
 
 // If enabled, we can edit primitive inside the viewport
 primitive.edit = "Правка";
@@ -1411,11 +1407,13 @@ primitive.coneRadius = "Радиус";
 primitive.coneHeight = "Высота";
 // Hole sub menu (cylinder, tube, etc)
 primitive.hole = "Дырки";
-// Make a hole in the primtive to make it hollow
+// Make a hole in the primitive to make it hollow
 primitive.hasHole = "Есть дырка";
 // Curve profile (synonym: profile, curve)
 primitive.profile = "";
 primitive.profile.viewport = "";
+// If the revolution surface has caps (E.g: cylinder)
+primitive.cap = "";
 
 // Singular of Repeaters (Nodes that make many copies of its children (type of mirror/curve/array/radial))
 repeater = "";
@@ -1549,7 +1547,7 @@ settings.cursor.showRope = "Показать канат-стабилизатор
 // indicator
 settings.indicator.title = "";
 settings.indicator.title.help = "";
-settings.indicator.size = "";
+settings.indicator.size = "Размер";
 // Highlight (the object glows when we select it)
 settings.highlight.selection = "Выделить выбранное";
 // Highlight settings
@@ -1656,6 +1654,9 @@ shortcut.maskVisible.short = "Маска";
 // bottom shortcut buttons (should be SHORT)
 shortcut.solo = "Соло";
 shortcut.solo.short = "Соло";
+// bottom shortcut buttons (should be SHORT)
+shortcut.xray = "";
+shortcut.xray.short = "";
 // bottom shortcut buttons (should be SHORT)
 shortcut.voxelRemesh = "Воксельная перестройка меша";
 shortcut.voxelRemesh.short = "Воксель";
@@ -1852,8 +1853,6 @@ stroke.falloffProject.circle = "";
 // Symmetry
 symmetry = "Симметрия";
 symmetry.enable = "Вкл.";
-// Display a warning (the feature is only available for mesh object)
-symmetry.primitiveWarning = "Симметрия кисти доступна только для утвержденных примитив, за исключением трипланарности.";
 symmetry.plane.title = "Плоскости";
 symmetry.toolIgnore = "Текущий инструмент игнорирует симметрию.";
 // Instead of planar symmetry, use a radial symmetry
@@ -2007,9 +2006,13 @@ tool.transform.snap = "Привязка";
 tool.measure = "Измерение";
 // Ideally <10 chars (Lattice, deformer)
 tool.lattice = "";
+// Ideally <10 chars (Quad Remesher)
+tool.remesh = "";
+tool.remesh.guides = "";
 // Ideally <10 chars (FaceGroup)
 tool.faceGroup = "";
 tool.faceGroup.autoPick = "";
+tool.faceGroup.flush = "";
 // Ideally <10 chars (Hide)
 tool.hide = "Скрыть";
 // Ideally <10 chars (View tool, do nothing in particular)
@@ -2094,23 +2097,19 @@ tool.mask.polish.border = "";
 // Smooth the border in a way that it matches completely with its dual
 tool.mask.polish.syncBorder = "";
 // topology of extracted mesh
-tool.mask.autoDivision = "";
-tool.mask.division = "";
+tool.mask.edgeLoop = "";
+tool.mask.edgeLoop.auto = "";
+tool.mask.edgeLoop.division = "";
 // The thickness of the extracted mesh (from the painted mask)
 tool.mask.thickness = "Толщина";
-// The extracted mesh has the same height everywhere
-tool.mask.thicknessUniform = "";
-tool.mask.thicknessUniform.help = "";
 // Carve the mask into the surface
 tool.mask.carve = "Гравировка";
 // Extract a new mesh from the painted mask
 tool.mask.extract = "Извлечение";
+// Preview extract
+tool.mask.preview = "Предпросмотр";
 // Extract two new mesh from the painted mask and from the unmasked area
 tool.mask.split = "Разделить";
-// How should we close the topology of the extracted object
-tool.mask.split.mask = "Действие закрытия (маска):";
-// How should we close the topology of the extracted object
-tool.mask.split.unmask = "Действие закрытия (без маски):";
 // How should we close the topology of the extracted object
 tool.mask.action = "Действие закрытия:";
 tool.mask.action.help = "-- Нет
@@ -2223,7 +2222,7 @@ tool.hole = "Заполнение дырок";
 tool.hole.fillHoles = "Заполнить дырки";
 // synonym: Alternative method
 tool.hole.method.fill = "";
-tool.hole.method.screen = "";
+tool.hole.method.legacy = "";
 tool.hole.method.boolean = "Boolean";
 tool.hole.bridges = "Boolean по размеру экрана";
 tool.hole.bridges.help = "Включение этой функции позволяет создавать дырки в объеме.
@@ -2333,7 +2332,7 @@ topology.dynamic = "Динамическая топология";
 topology.dynamic.activate = "Вкл.";
 topology.dynamic.activate.help = "Динамическая топология позволяет инструментам скульптурирования подразделять или упрощать меш локально в режиме реального времени.";
 topology.dynamic.method = "Дали базируются на...";
-topology.dynamic.method.zoom = "Увеличение";
+topology.dynamic.method.screen = "Экран";
 topology.dynamic.method.radius = "Радиус";
 topology.dynamic.method.constant = "Постоянная";
 topology.dynamic.method.help = "-- Масштабирование
@@ -2484,11 +2483,22 @@ binding.rotateLighting = "Поворот освещения";
 // The Camera pivot is the point around which the camera rotates
 binding.updatePivot = "Ось";
 
+quadremesh.adaptQuadCount = "";
+quadremesh.curvatureAdaptivness = "";
+quadremesh.curvatureAdaptivness.help = "";
+quadremesh.autoDetectHardEdges = "";
+quadremesh.useVertexColors = "Сохранить окрашивание";
+
 // Privacy policy
 privacyPolicy.title = "Политика конфиденциальности";
 privacyPolicy.reject = "Отклонить";
 // Hexanomad is the company name
 privacyPolicy = "Hexanomad не собирает данные из Nomad Sculpt.";
+
+sonar.disconnect = "";
+sonar.connect = "";
+sonar.connect.confirm = "";
+sonar.connect.confirm.warning = "";
 
 // Color disc mode
 widget.color.disc = "";
@@ -2498,7 +2508,9 @@ widget.color.square = "";
 // version trial
 version.buyWeb = "Веб-версия — это только демо-версия";
 version.buyFull = "Перейти на полную версию";
-version.restorePurchase = "Восстановить покупку";
+version.buyQR = "";
+version.restoreFull = "Восстановить покупку";
+version.buyQR.promo = "";
 
 version.trialHistory = "Пробная версия: доступны только 4 отмены/возврата";
 version.trialLayer = "Пробная версия: 1 слой на меш";

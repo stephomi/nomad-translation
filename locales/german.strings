@@ -10,6 +10,10 @@ confirm.cancel = "Abbrechen";
 // Experimental feature
 experimental = "Experimentell!";
 
+clipboard = "";
+clipboard.copy = "";
+clipboard.paste = "";
+
 // memory size
 bytes = "";
 kB = "";
@@ -252,6 +256,8 @@ alert.autoSave.auto = "Automatisches Speichern in... $0s";
 alert.needLayer = "Das aktuelle Werkzeug erfordert eine aktive Ebene.";
 // The user decides to hide the painting on the objects
 alert.paintingHidden = "Painting ausgeblendet!";
+// The user decides to hide the masking on the objects
+alert.maskingHidden = "";
 // The selected object doesn't have any layers
 alert.noPartialWireframe = "Das partielle Zeichnen ist deaktiviert, wenn das Drahtgitter (Wireframe) eingeblendet ist.";
 // The user has selected a tool that is more intuitive to use when the camera is in orthographic mode
@@ -262,6 +268,8 @@ alert.state.trial = "Rückgängig abgebrochen: Sie benutzen die Testversion!";
 background = "Hintergrund";
 // A flat color will be displayed in the background of the scene
 background.color = "Farbe";
+// 2 color with rotation
+background.gradient = "Farbgradient";
 // The environment (HDRI) will be displayed in the background
 background.environment = "Umgebung";
 background.blur = "Unschärfe";
@@ -387,12 +395,8 @@ curve.spiral.angle = "Winkel-Offset";
 debug.targetFPS = "";
 debug.targetFPS.help = "";
 
-// Debug option, the newly created primitives will contains texture coordinates (UVs)
-debug.uvPrimitive = "Primitive UVs beibehalten";
+// Warning about UVs (using extra memory)
 debug.uvPrimitive.warning = "Deaktivieren Sie diese Option, wenn Sie keine UVs benötigen (zusätzlicher Speicher).";
-debug.uvPrimitive.help = "Momentan werden nur Box und Kugel (Sphere) unterstützt.
-
-Andere Typen werden in Zukunft unterstützt werden.";
 // Debug option, Normalize means transforming the data so that it fits in [0-1] the range
 debug.uvNormalize = "UVs normalisieren";
 debug.uvNormalize.help = "Nomad normalisiert die UVs innerhalb Tile [0-1].";
@@ -403,8 +407,6 @@ debug.uvBFF.help = "Hinzufügen einer alternativen Unwrapping-Methode (boundary 
 Beachten Sie, dass BFF zu Überschneidungen führt, wenn Ihre Mesh-Topologie nicht aus einer Scheibe oder Kugel besteht.";
 
 debug.quadriflow = "";
-debug.quadriflow.help = "";
-
 
 // Debug option, display an window with some debugging logs
 debug.logs = "Protokolle";
@@ -664,18 +666,14 @@ Dies funktioniert nur, wenn das Malen für den aktuellen Pinsel aktiviert ist.";
 
 // Three fingers on screen
 gesture.three.title = "Drei Finger";
-// Drag 3 fingers horizontally on the canvas to rotate the environment, lights and MatCap
-gesture.fingerLighting = "Licht-Rotation (3 Finger)";
-// Canvas means the scene viewport (the entire screen but excluding the interface)
-gesture.fingerLighting.help = "Bewegen Sie 3 Finger horizontal (von links nach rechts oder umgekehrt) auf der dem Arbeitsbereich, um die Umgebung, die Lichter und das MatCap zu rotieren.";
-// Drag 3 fingers vertically to edit the tool radius
-gesture.fingerRadius = "Tool-Radius bearbeiten (3 Finger)";
-// Canvas means the scene viewport (the entire screen but excluding the interface)
-gesture.fingerRadius.help = "Bewegen Sie 3 Finger horizontal auf der dem Arbeitsbereich (von oben nach unten = verkleinern, von unten nach oben vergößern), um den Werkzeug-Radius zu verändern.";
+gesture.three.light = "Beleuchtung drehen";
+gesture.three.light.help = "Dreht die Umgebung, Lichter und MatCap.";
+gesture.three.radius = "Werkzeugradius";
+gesture.three.intensity = "Werkzeugintensität";
 
 // If this option is enabled, finger inputs on screen will use the smoothing tool
-gesture.fingerSmooth = "Finger glättet immer";
-gesture.fingerSmooth.help = "";
+gesture.finger.smooth = "Finger glättet immer";
+gesture.finger.smooth.help = "";
 // If enabled, the pressure will be taken into account even if it's not coming from a recognized stylus
 gesture.unknownPressure = "Unerkannten Pressure zulassen";
 gesture.unknownPressure.help = "Aktivieren Sie diese Option, wenn Pressure (Druck) mit Ihrem Stift nicht funktioniert oder wenn Sie einen Pressure für den Finger benötigen.";
@@ -741,8 +739,8 @@ history.includePostProcess = "Nachbearbeitung";
 // include shading parameters (MatCap & HDRIs) editing in the undo/redo
 history.includeShading = "MatCaps und HDRIs";
 // Can limit the stack of undo/redo size
-history.limitSize = "Verlaufslimit (MB)";
-history.limitSize.help = "Max. Größe des Verlaufs (in MB).
+history.limitSize = "Verlaufslimit";
+history.limitSize.help = "Max. Größe des Verlaufs.
 
 Der Verlauf wird bei der nächsten aufgezeichneten Änderung aktualisiert.";
 // Limit the number of undo in the history stack
@@ -848,12 +846,14 @@ interface.flipMiddle = "Mitte spiegeln";
 interface.materialPreview = "Material-Picker Vorschau";
 // Interface customization
 interface.materialPreview.help = "Wenn du eine Farbe für ein Material wählst, wird auf dem aktuell ausgewählten Objekt eine Vorschau dieses Materials gezeigt.";
-interface.toolbox.hide = "Toolbox ausblenden";
-interface.toolboxHide.help = "Aktivieren Sie diese Option, wenn Sie die Toolbox ausblenden möchten.";
+// list of tools
+interface.toolbox = "Toolbox";
+// hide toolbox by default
+interface.toolbox.hide = "Ausgeblendet";
 // Interface customization (the toolbox is a grid, we can adjust the column count)
-interface.toolbox.maxColumn = "Toolbox max. Spalten";
+interface.toolbox.columns = "Spalten";
 // Reset the tool's order in the toolbox
-interface.toolbox.resetOrder = "Reset Anordn. Tools";
+interface.toolbox.resetOrder = "Reset Anordnen";
 // Scale the interface
 interface.scale = "Gesamt-Skalierung";
 // Spacing between widgets
@@ -1149,11 +1149,7 @@ paint.usePainting = "Striche malen";
 paint.intensity = "Paint Stäke";
 // Apply the paint on the object
 paint.paintAll = "Füllen";
-paint.paintAll.help = "Wendet das aktuelle Material auf das gesamte Mesh ohne maskierte Bereiche an (Paint all).
-
-Maskierte Bereiche und deaktivierte Kanäle werden berücksichtigt und entsprechend ausgespart!";
-// Apply the paint on the object but ignore painting intensity (force full intensity)
-paint.paintAllForce = "Füllen erzwingen";
+paint.paintAll.help = "Wendet das aktuelle Material auf das gesamte Mesh ohne maskierte Bereiche an (Paint all).";
 paint.strokePainting.title = "Malen";
 // Brush stroke texture
 paint.texture.warningEnable = "Stroke Painting muss aktiviert sein, um Texturprojektion zu ermöglichen (Kontrollkästchen oben)!";
@@ -1319,7 +1315,7 @@ primitive.plane = "Ebene";
 primitive.triplanar = "Triplanar";
 primitive.faceXYZ = "Fläche XYZ";
 primitive.faceXYZ.help = "Von https://texturing.xyz/ bereitgestelltes UV-berechnetes Basisnetz";
-primitive.needValidate = "Grundformen müssen validiert werden, damit sie für das Sculpting bereit sind.";
+primitive.needValidate = "Grundformen müssen validiert werden!";
 
 // If enabled, we can edit primitive inside the viewport
 primitive.edit = "Bearbeiten";
@@ -1411,11 +1407,13 @@ primitive.coneRadius = "Radius";
 primitive.coneHeight = "Höhe";
 // Hole sub menu (cylinder, tube, etc)
 primitive.hole = "Loch";
-// Make a hole in the primtive to make it hollow
+// Make a hole in the primitive to make it hollow
 primitive.hasHole = "Hat ein Loch";
 // Curve profile (synonym: profile, curve)
 primitive.profile = "";
 primitive.profile.viewport = "";
+// If the revolution surface has caps (E.g: cylinder)
+primitive.cap = "";
 
 // Singular of Repeaters (Nodes that make many copies of its children (type of mirror/curve/array/radial))
 repeater = "";
@@ -1547,7 +1545,7 @@ settings.cursor.showRope = "Rope-Stabilisator anzeigen";
 // indicator
 settings.indicator.title = "";
 settings.indicator.title.help = "";
-settings.indicator.size = "";
+settings.indicator.size = "Maße";
 // Highlight (the object glows when we select it)
 settings.highlight.selection = "Auswahl hervorheben";
 // Highlight settings
@@ -1654,6 +1652,9 @@ shortcut.maskVisible.short = "Maskieren";
 // bottom shortcut buttons (should be SHORT)
 shortcut.solo = "Solo";
 shortcut.solo.short = "Solo";
+// bottom shortcut buttons (should be SHORT)
+shortcut.xray = "";
+shortcut.xray.short = "";
 // bottom shortcut buttons (should be SHORT)
 shortcut.voxelRemesh = "Voxel Remesh";
 shortcut.voxelRemesh.short = "Voxel";
@@ -1850,8 +1851,6 @@ stroke.falloffProject.circle = "";
 // Symmetry
 symmetry = "Symmetrie";
 symmetry.enable = "Aktiviert";
-// Display a warning (the feature is only available for mesh object)
-symmetry.primitiveWarning = "Pinsel-Symmetrie ist nur für validierte Grundformen verfügbar (außer „Triplanar“).";
 symmetry.plane.title = "Ebenen";
 symmetry.toolIgnore = "Das aktuelle Werkzeug ignoriert Symmetrie.";
 // Instead of planar symmetry, use a radial symmetry
@@ -2006,9 +2005,13 @@ tool.transform.snap = "Anheften";
 tool.measure = "Messen";
 // Ideally <10 chars (Lattice, deformer)
 tool.lattice = "";
+// Ideally <10 chars (Quad Remesher)
+tool.remesh = "";
+tool.remesh.guides = "";
 // Ideally <10 chars (FaceGroup)
 tool.faceGroup = "";
 tool.faceGroup.autoPick = "";
+tool.faceGroup.flush = "";
 // Ideally <10 chars (Hide)
 tool.hide = "Ausblenden";
 // Ideally <10 chars (View tool, do nothing in particular)
@@ -2093,23 +2096,19 @@ tool.mask.polish.border = "";
 // Smooth the border in a way that it matches completely with its dual
 tool.mask.polish.syncBorder = "";
 // topology of extracted mesh
-tool.mask.autoDivision = "";
-tool.mask.division = "";
+tool.mask.edgeLoop = "";
+tool.mask.edgeLoop.auto = "";
+tool.mask.edgeLoop.division = "";
 // The thickness of the extracted mesh (from the painted mask)
 tool.mask.thickness = "Stärke";
-// The extracted mesh has the same height everywhere
-tool.mask.thicknessUniform = "";
-tool.mask.thicknessUniform.help = "";
 // Carve the mask into the surface
 tool.mask.carve = "Gravieren";
 // Extract a new mesh from the painted mask
 tool.mask.extract = "Extrahieren";
+// Preview extract
+tool.mask.preview = "Vorschau";
 // Extract two new mesh from the painted mask and from the unmasked area
 tool.mask.split = "Teilen";
-// How should we close the topology of the extracted object
-tool.mask.split.mask = "Closing Aktion (maskiert):";
-// How should we close the topology of the extracted object
-tool.mask.split.unmask = "Closing Aktion (unmaskiert):";
 // How should we close the topology of the extracted object
 tool.mask.action = "Closing Aktion:";
 tool.mask.action.help = "-- Keine
@@ -2222,7 +2221,7 @@ tool.hole = "Füllen von Löchern";
 tool.hole.fillHoles = "Löcher füllen";
 // synonym: Alternative method
 tool.hole.method.fill = "";
-tool.hole.method.screen = "";
+tool.hole.method.legacy = "";
 tool.hole.method.boolean = "Boolean";
 tool.hole.bridges = "Screen-Space Boolean";
 tool.hole.bridges.help = "Wenn diese Option aktiviert ist, können Sie Löcher in das Volumen stechen.
@@ -2336,7 +2335,7 @@ Diese Funktion kann sich spürbar auf die Leistung auswirken.
 
 Layer werden einwandfrei aktualisiert.";
 topology.dynamic.method = "Detailgrad basierend auf...";
-topology.dynamic.method.zoom = "Zoomen";
+topology.dynamic.method.screen = "Bildschirm";
 topology.dynamic.method.radius = "Radius";
 topology.dynamic.method.constant = "Konstant";
 topology.dynamic.method.help = "-- Zoom
@@ -2487,11 +2486,22 @@ binding.rotateLighting = "Beleuchtung drehen";
 // The Camera pivot is the point around which the camera rotates
 binding.updatePivot = "Drehpunkt";
 
+quadremesh.adaptQuadCount = "";
+quadremesh.curvatureAdaptivness = "";
+quadremesh.curvatureAdaptivness.help = "";
+quadremesh.autoDetectHardEdges = "";
+quadremesh.useVertexColors = "Painting erhalten";
+
 // Privacy policy
 privacyPolicy.title = "Datenschutzrichtlinie";
 privacyPolicy.reject = "Ablehnen";
 // Hexanomad is the company name
 privacyPolicy = "Hexanomad erfasst keinerlei Daten von Nomad Sculpt.";
+
+sonar.disconnect = "";
+sonar.connect = "";
+sonar.connect.confirm = "";
+sonar.connect.confirm.warning = "";
 
 // Color disc mode
 widget.color.disc = "";
@@ -2501,7 +2511,9 @@ widget.color.square = "";
 // version trial
 version.buyWeb = "Die Web-Version ist nur eine Demo";
 version.buyFull = "Upgrade auf Vollversion";
-version.restorePurchase = "Kauf wiederherstellen";
+version.buyQR = "";
+version.restoreFull = "Kauf wiederherstellen";
+version.buyQR.promo = "";
 
 version.trialHistory = "Trial version: Nur 4 UnDo/Redo möglich";
 version.trialLayer = "Trial version: Nur 1 Layer pro Mesh";

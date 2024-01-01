@@ -10,8 +10,12 @@ confirm.cancel = "取消";
 // Experimental feature
 experimental = "實驗性功能！";
 
+clipboard = "";
+clipboard.copy = "";
+clipboard.paste = "";
+
 // memory size
-bytes = "字節";
+bytes = "位元組";
 kB = "";
 MB = "";
 GB = "";
@@ -196,7 +200,7 @@ alert.mask.noExtract = "沒有可提取物件！";
 // In order to split something, the mesh needs to have painted mask
 alert.mask.noSplit = "沒有可分離物件！";
 // List of disabled features when View Mode is selected
-alert.view.disabled = "在瀏覽模式下禁用的功能：";
+alert.view.disabled = "在瀏覽模式下停用的功能：";
 // Primitive Widgets are small ui stuffs in the viewport that the user can interact with to modify an object
 alert.view.disabled.widgetPrimitive = "編輯錨點";
 // The object needs to have two parts disconnected
@@ -218,7 +222,7 @@ alert.gizmo.editObject = "編輯物件模式";
 // See Glossary (DynTopo)
 alert.dynamic.enable = "啟用動態拓撲";
 // See Glossary (DynTopo)
-alert.dynamic.disable = "禁用動態拓撲";
+alert.dynamic.disable = "停用動態拓撲";
 alert.colorPicker = "用手指在物件上拖動選擇一個顏色";
 // Transform mode is when the user can move the reference (image in the background) with its two fingers
 alert.backgroundTransform = "輕點即可退出切換模式";
@@ -252,8 +256,10 @@ alert.autoSave.auto = "將在$0秒後自動儲存";
 alert.needLayer = "使用當前工具需要啟用一個圖層。";
 // The user decides to hide the painting on the objects
 alert.paintingHidden = "繪畫已被隱藏！";
+// The user decides to hide the masking on the objects
+alert.maskingHidden = "";
 // The selected object doesn't have any layers
-alert.noPartialWireframe = "開啟線框顯示時，區域性繪畫將被禁用。";
+alert.noPartialWireframe = "開啟線框顯示時，區域性繪畫將被停用。";
 // The user has selected a tool that is more intuitive to use when the camera is in orthographic mode
 alert.shapeOrthographic = "如果您想在使用投影儀時避免透視偏差，建議在相機設定裡切換到正交檢視。";
 // Trial version has a limited number of undo
@@ -262,6 +268,8 @@ alert.state.trial = "試用版本的撤銷次數已用完。";
 background = "背景";
 // A flat color will be displayed in the background of the scene
 background.color = "顏色";
+// 2 color with rotation
+background.gradient = "顏色漸變";
 // The environment (HDRI) will be displayed in the background
 background.environment = "環境";
 background.blur = "模糊";
@@ -387,10 +395,8 @@ curve.spiral.angle = "角度偏移";
 debug.targetFPS = "";
 debug.targetFPS.help = "";
 
-// Debug option, the newly created primitives will contains texture coordinates (UVs)
-debug.uvPrimitive = "儲存primitive UV";
-debug.uvPrimitive.warning = "如果您不再需要UV選項，請禁用該選項以釋放更多記憶體。";
-debug.uvPrimitive.help = "目前僅支援立方體和球體，將會在未來支援更多種類。";
+// Warning about UVs (using extra memory)
+debug.uvPrimitive.warning = "如果您不再需要UV選項，請停用該選項以釋放更多記憶體。";
 // Debug option, Normalize means transforming the data so that it fits in [0-1] the range
 debug.uvNormalize = "規格化UV選項";
 debug.uvNormalize.help = "Nomad將會讓所有選定面的UV適配 [0-1] 紋理空間。";
@@ -401,8 +407,6 @@ debug.uvBFF.help = "使用BFF演算法來展平UV。
 請注意，如果物件的拓撲網格與正方體或球體有很大差別的話，結果有可能會產生重疊。";
 
 debug.quadriflow = "";
-debug.quadriflow.help = "";
-
 
 // Debug option, display an window with some debugging logs
 debug.logs = "除錯日誌";
@@ -455,7 +459,7 @@ file.project.delete.confirmActive = "刪除 $0？
 
 // Auto save section
 file.project.autoSave = "自動儲存";
-file.project.autoSave.confirm = "確定要禁用自動儲存嗎？";
+file.project.autoSave.confirm = "確定要停用自動儲存嗎？";
 file.project.autoSave.help = "每隔一段時間將您的專案另存到一個單獨的檔案。
 這個自動儲存檔案可以在以下目錄找到：
 
@@ -664,18 +668,14 @@ gesture.dropper.help = "顏色/材料選擇器可以透過在畫布上長按來�
 
 // Three fingers on screen
 gesture.three.title = "三個手指";
-// Drag 3 fingers horizontally on the canvas to rotate the environment, lights and MatCap
-gesture.fingerLighting = "三指旋轉燈光";
-// Canvas means the scene viewport (the entire screen but excluding the interface)
-gesture.fingerLighting.help = "在螢幕上使用三指水平移動可使環境、燈光與MatCap旋轉。";
-// Drag 3 fingers vertically to edit the tool radius
-gesture.fingerRadius = "三指調節工具半徑";
-// Canvas means the scene viewport (the entire screen but excluding the interface)
-gesture.fingerRadius.help = "在螢幕上使用三指垂直移動可調節當前工具的畫筆半徑。";
+gesture.three.light = "旋轉照明";
+gesture.three.light.help = "可使環境、燈光與MatCap旋轉。";
+gesture.three.radius = "工具半徑";
+gesture.three.intensity = "工具強度";
 
 // If this option is enabled, finger inputs on screen will use the smoothing tool
-gesture.fingerSmooth = "將手指用於平滑";
-gesture.fingerSmooth.help = "";
+gesture.finger.smooth = "將手指用於平滑";
+gesture.finger.smooth.help = "";
 // If enabled, the pressure will be taken into account even if it's not coming from a recognized stylus
 gesture.unknownPressure = "允許未識別的壓感";
 gesture.unknownPressure.help = "當您的觸控筆無法使用壓感或者您希望使用手指壓感時，請勾選此選項。";
@@ -741,8 +741,8 @@ history.includePostProcess = "後期處理";
 // include shading parameters (MatCap & HDRIs) editing in the undo/redo
 history.includeShading = "MatCap與HDRI";
 // Can limit the stack of undo/redo size
-history.limitSize = "歷史記錄限制 (Mb)";
-history.limitSize.help = "歷史記錄的最大容量（以Mb為單位）。
+history.limitSize = "歷史記錄限制";
+history.limitSize.help = "歷史記錄的最大容量。
 
 歷史記錄會隨著下一個操作記錄而更新。";
 // Limit the number of undo in the history stack
@@ -848,12 +848,14 @@ interface.flipMiddle = "翻轉側邊欄";
 interface.materialPreview = "預覽材料顏色";
 // Interface customization
 interface.materialPreview.help = "選取材料顏色後，將在當前選中的物件上顯示預覽。";
-interface.toolbox.hide = "隱藏工具箱";
-interface.toolboxHide.help = "如果您想隱藏工具箱，請勾選此選項。";
+// list of tools
+interface.toolbox = "工具箱";
+// hide toolbox by default
+interface.toolbox.hide = "隱藏";
 // Interface customization (the toolbox is a grid, we can adjust the column count)
-interface.toolbox.maxColumn = "最大工具箱列數";
+interface.toolbox.columns = "列數";
 // Reset the tool's order in the toolbox
-interface.toolbox.resetOrder = "重設工具箱排序";
+interface.toolbox.resetOrder = "重設排序";
 // Scale the interface
 interface.scale = "介面縮放";
 // Spacing between widgets
@@ -1155,11 +1157,7 @@ paint.usePainting = "啟用繪圖";
 paint.intensity = "畫筆強度";
 // Apply the paint on the object
 paint.paintAll = "全部上色";
-paint.paintAll.help = "將當前材質應用到所選物件上。
-
-蒙版區域與未勾選通道也會被應用。";
-// Apply the paint on the object but ignore painting intensity (force full intensity)
-paint.paintAllForce = "強制全部上色";
+paint.paintAll.help = "將當前材質應用到所選物件上。";
 paint.strokePainting.title = "上漆";
 // Brush stroke texture
 paint.texture.warningEnable = "您需要先勾選選單頂部的“紋理貼圖”後才能使用貼圖繪製功能！";
@@ -1325,13 +1323,13 @@ primitive.plane = "平面";
 primitive.triplanar = "三面體";
 primitive.faceXYZ = "X、Y、Z面";
 primitive.faceXYZ.help = "由https://texturing.xyz/提供的UV展開的基本網格";
-primitive.needValidate = "基本體需轉換為可編輯物件後才可雕刻。";
+primitive.needValidate = "基本體需轉換為可編輯物件後!";
 
 // If enabled, we can edit primitive inside the viewport
 primitive.edit = "編輯";
 primitive.edit.help = "可以在軟體介面直接修改基本體的引數。
 
-如果您喜歡使用軸向變換或自由變換來調整基本體，可以禁用此功能。";
+如果您喜歡使用軸向變換或自由變換來調整基本體，可以停用此功能。";
 
 // Primitive configuration
 primitive.mainConfig = "引數";
@@ -1417,11 +1415,13 @@ primitive.coneRadius = "半徑";
 primitive.coneHeight = "高度";
 // Hole sub menu (cylinder, tube, etc)
 primitive.hole = "孔洞";
-// Make a hole in the primtive to make it hollow
+// Make a hole in the primitive to make it hollow
 primitive.hasHole = "打洞";
 // Curve profile (synonym: profile, curve)
 primitive.profile = "";
 primitive.profile.viewport = "";
+// If the revolution surface has caps (E.g: cylinder)
+primitive.cap = "";
 
 // Singular of Repeaters (Nodes that make many copies of its children (type of mirror/curve/array/radial))
 repeater = "";
@@ -1555,7 +1555,7 @@ settings.cursor.showRope = "顯示畫筆準星";
 // indicator
 settings.indicator.title = "";
 settings.indicator.title.help = "";
-settings.indicator.size = "";
+settings.indicator.size = "尺寸";
 // Highlight (the object glows when we select it)
 settings.highlight.selection = "高亮選擇物件";
 // Highlight settings
@@ -1663,6 +1663,9 @@ shortcut.maskVisible.short = "蒙版";
 // bottom shortcut buttons (should be SHORT)
 shortcut.solo = "單放軌道";
 shortcut.solo.short = "單放";
+// bottom shortcut buttons (should be SHORT)
+shortcut.xray = "";
+shortcut.xray.short = "";
 // bottom shortcut buttons (should be SHORT)
 shortcut.voxelRemesh = "體素網格重構";
 shortcut.voxelRemesh.short = "體素";
@@ -1859,8 +1862,6 @@ stroke.falloffProject.circle = "";
 // Symmetry
 symmetry = "對稱";
 symmetry.enable = "啟用";
-// Display a warning (the feature is only available for mesh object)
-symmetry.primitiveWarning = "筆刷對稱僅對已轉換為可編輯物件的基本體可用，三平面基本體除外。";
 symmetry.plane.title = "平面";
 symmetry.toolIgnore = "當前工具不適用對稱。";
 // Instead of planar symmetry, use a radial symmetry
@@ -2014,9 +2015,13 @@ tool.transform.snap = "表面吸附";
 tool.measure = "測量";
 // Ideally <10 chars (Lattice, deformer)
 tool.lattice = "";
+// Ideally <10 chars (Quad Remesher)
+tool.remesh = "";
+tool.remesh.guides = "";
 // Ideally <10 chars (FaceGroup)
 tool.faceGroup = "";
 tool.faceGroup.autoPick = "";
+tool.faceGroup.flush = "";
 // Ideally <10 chars (Hide)
 tool.hide = "隱藏";
 // Ideally <10 chars (View tool, do nothing in particular)
@@ -2101,23 +2106,19 @@ tool.mask.polish.border = "";
 // Smooth the border in a way that it matches completely with its dual
 tool.mask.polish.syncBorder = "";
 // topology of extracted mesh
-tool.mask.autoDivision = "";
-tool.mask.division = "";
+tool.mask.edgeLoop = "";
+tool.mask.edgeLoop.auto = "";
+tool.mask.edgeLoop.division = "";
 // The thickness of the extracted mesh (from the painted mask)
 tool.mask.thickness = "厚度";
-// The extracted mesh has the same height everywhere
-tool.mask.thicknessUniform = "";
-tool.mask.thicknessUniform.help = "";
 // Carve the mask into the surface
 tool.mask.carve = "雕刻";
 // Extract a new mesh from the painted mask
 tool.mask.extract = "抽殼";
+// Preview extract
+tool.mask.preview = "預覽";
 // Extract two new mesh from the painted mask and from the unmasked area
 tool.mask.split = "分離";
-// How should we close the topology of the extracted object
-tool.mask.split.mask = "關閉操作（蒙版區域）：";
-// How should we close the topology of the extracted object
-tool.mask.split.unmask = "關閉操作（非蒙版區域）：";
 // How should we close the topology of the extracted object
 tool.mask.action = "關閉操作：";
 tool.mask.action.help = "- 無
@@ -2207,7 +2208,7 @@ tool.gizmo.linearRollThreshold.help = "此引數可影響模型旋轉時的“�
 // Partially hide/fade the gizmo when we interact with it
 tool.gizmo.autoHide = "自動隱藏";
 tool.gizmo.tap = "點選";
-tool.gizmo.tap.help = "此選項僅在自定義座標原點模式下有效（預設禁用）。
+tool.gizmo.tap.help = "此選項僅在自定義座標原點模式下有效（預設停用）。
 
 - 無
 點選物件後無任何操作。
@@ -2230,7 +2231,7 @@ tool.hole = "孔洞填補";
 tool.hole.fillHoles = "填補孔洞";
 // synonym: Alternative method
 tool.hole.method.fill = "";
-tool.hole.method.screen = "";
+tool.hole.method.legacy = "";
 tool.hole.method.boolean = "布林";
 tool.hole.bridges = "螢幕空間的布林值";
 tool.hole.bridges.help = "啟用此選項後。您可以用裁切的方式在物體上打洞。
@@ -2344,7 +2345,7 @@ topology.dynamic.activate.help = "啟用此功能可以讓您在雕刻過程中�
 
 圖層不會受到影響。";
 topology.dynamic.method = "細節等級模式";
-topology.dynamic.method.zoom = "縮放";
+topology.dynamic.method.screen = "螢幕解析度";
 topology.dynamic.method.radius = "半徑";
 topology.dynamic.method.constant = "網格";
 topology.dynamic.method.help = "
@@ -2497,11 +2498,22 @@ binding.rotateLighting = "旋轉照明";
 // The Camera pivot is the point around which the camera rotates
 binding.updatePivot = "檢視中心點";
 
+quadremesh.adaptQuadCount = "";
+quadremesh.curvatureAdaptivness = "";
+quadremesh.curvatureAdaptivness.help = "";
+quadremesh.autoDetectHardEdges = "";
+quadremesh.useVertexColors = "儲存繪畫";
+
 // Privacy policy
 privacyPolicy.title = "未收集資料";
 privacyPolicy.reject = "不好";
 // Hexanomad is the company name
 privacyPolicy = "Hexanomad 不會從 Nomad Sculpt 收集任何資料。";
+
+sonar.disconnect = "";
+sonar.connect = "";
+sonar.connect.confirm = "";
+sonar.connect.confirm.warning = "";
 
 // Color disc mode
 widget.color.disc = "";
@@ -2511,7 +2523,9 @@ widget.color.square = "";
 // version trial
 version.buyWeb = "該版本僅供演示";
 version.buyFull = "購買完整版本";
-version.restorePurchase = "恢復購買";
+version.buyQR = "";
+version.restoreFull = "恢復購買";
+version.buyQR.promo = "";
 
 version.trialHistory = "試用版本限制：僅允許4次以內的撤銷或重做";
 version.trialLayer = "試用版本限制：每個物體僅允許新增一個圖層";

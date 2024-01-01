@@ -10,6 +10,10 @@ confirm.cancel = "Vazgeç";
 // Experimental feature
 experimental = "Deneysel!";
 
+clipboard = "";
+clipboard.copy = "";
+clipboard.paste = "";
+
 // memory size
 bytes = "bayt";
 kB = "";
@@ -252,6 +256,8 @@ alert.autoSave.auto = "$0s içinde otomatik kaydedilecek...";
 alert.needLayer = "Geçerli araç için etkin bir katman gerekli.";
 // The user decides to hide the painting on the objects
 alert.paintingHidden = "Boyama gizli!";
+// The user decides to hide the masking on the objects
+alert.maskingHidden = "";
 // The selected object doesn't have any layers
 alert.noPartialWireframe = "Genel taslak görüntülendiğinde kısmi çizim devre dışı kalır.";
 // The user has selected a tool that is more intuitive to use when the camera is in orthographic mode
@@ -262,6 +268,8 @@ alert.state.trial = "Deneme sürümü: geri al iptal edildi";
 background = "Arka Plan";
 // A flat color will be displayed in the background of the scene
 background.color = "Renk";
+// 2 color with rotation
+background.gradient = "Gradyanı";
 // The environment (HDRI) will be displayed in the background
 background.environment = "Ortam";
 background.blur = "Bulanıklık";
@@ -387,12 +395,8 @@ curve.spiral.angle = "Açı kaydırma";
 debug.targetFPS = "";
 debug.targetFPS.help = "";
 
-// Debug option, the newly created primitives will contains texture coordinates (UVs)
-debug.uvPrimitive = "Primitif UV'leri tut";
+// Warning about UVs (using extra memory)
 debug.uvPrimitive.warning = "UV'ler gerekmiyorsa bu seçeneği devre dışı bırakın (fazladan bellek).";
-debug.uvPrimitive.help = "Şu anda sadece Kutu ve Küre desteklenmektedir.
-
-İleride diğer türler de desteklenecektir.";
 // Debug option, Normalize means transforming the data so that it fits in [0-1] the range
 debug.uvNormalize = "UV'leri normalleştir";
 debug.uvNormalize.help = "Nomad [0-1] deseninin içindeki UV'leri normalleştirecektir.";
@@ -403,8 +407,6 @@ debug.uvBFF.help = "Alternatif hesaplama yöntemi ekler (boundary first flatteni
 Ağ örgüsü topolojiniz disk ya da küreden farklıysa, BFF'in çakışmalar oluşturacağı unutulmamalıdır.";
 
 debug.quadriflow = "";
-debug.quadriflow.help = "";
-
 
 // Debug option, display an window with some debugging logs
 debug.logs = "Günlük kayıtları";
@@ -606,7 +608,7 @@ file.render.size = "Son büyükülük";
 // Desired size of the exported screenshot (custom vs predefined size)
 file.render.size.custom = "Özel";
 // Screen resolution parameters for the export screenshot features
-file.render.screenResolution = "ekran";
+file.render.screenResolution = "Ekran";
 // width of exported screenshot
 file.render.width = "Genişlik";
 // height of exported screenshot
@@ -663,18 +665,14 @@ Yalnız bunun sadece geçerli fırçada boyamanın etkin olması durumunda çal�
 
 // Three fingers on screen
 gesture.three.title = "Üç parmak";
-// Drag 3 fingers horizontally on the canvas to rotate the environment, lights and MatCap
-gesture.fingerLighting = "Işıklandırmayı döndür (3 parmak)";
-// Canvas means the scene viewport (the entire screen but excluding the interface)
-gesture.fingerLighting.help = "Ortamı, ışıkları ve MatCap'i döndürmek için 3 parmağınızı kanvasın üzerinde yatay olarak sürükleyin.";
-// Drag 3 fingers vertically to edit the tool radius
-gesture.fingerRadius = "Araç yarıçapını düzenle ( 3 parmak)";
-// Canvas means the scene viewport (the entire screen but excluding the interface)
-gesture.fingerRadius.help = "Araç yarıçapını düzenlemek için 3 parmağınızı kanvasın üzerinde dikey olarak sürükleyin.";
+gesture.three.light = "Işıklandırmayı döndür";
+gesture.three.light.help = "Ortamı, ışıkları ve MatCap'i döndürün.";
+gesture.three.radius = "Araç Yarıçapı";
+gesture.three.intensity = "Araç yoğunluğu";
 
 // If this option is enabled, finger inputs on screen will use the smoothing tool
-gesture.fingerSmooth = "Parmak her zaman düzleştirir";
-gesture.fingerSmooth.help = "";
+gesture.finger.smooth = "Parmak her zaman düzleştirir";
+gesture.finger.smooth.help = "";
 // If enabled, the pressure will be taken into account even if it's not coming from a recognized stylus
 gesture.unknownPressure = "Tanınmayan basınca izin ver";
 gesture.unknownPressure.help = "Basınç kaleminizle çalışmıyorsa ya da parmakla basınç gerekiyorsa bu seçeneği işaretleyin.";
@@ -740,8 +738,8 @@ history.includePostProcess = "Süreç sonrası işlemler";
 // include shading parameters (MatCap & HDRIs) editing in the undo/redo
 history.includeShading = "MatCap'ler ve HDRI'ler";
 // Can limit the stack of undo/redo size
-history.limitSize = "Geçmiş limiti (Mb)";
-history.limitSize.help = "Geçmişin (Mb olarak) maksimum büyüklüğü.
+history.limitSize = "Geçmiş limiti";
+history.limitSize.help = "Geçmişin maksimum büyüklüğü.
 
 Geçmiş bir sonraki kaydedilen işlemde güncellenir.";
 // Limit the number of undo in the history stack
@@ -847,12 +845,14 @@ interface.flipMiddle = "Yan çubukları aynala";
 interface.materialPreview = "Malzeme rengi önzileme";
 // Interface customization
 interface.materialPreview.help = "Bir malzeme için bir renk seçtiğinizde, bu malzeme hâlen seçili nesne üzerinde önizlenir.";
-interface.toolbox.hide = "Araç kutusunu gizle";
-interface.toolboxHide.help = "Araç kutusunu gizlemek isterseniz bu seçeneği etkinleştirin.";
+// list of tools
+interface.toolbox = "Araç kutusunu";
+// hide toolbox by default
+interface.toolbox.hide = "Gizle";
 // Interface customization (the toolbox is a grid, we can adjust the column count)
-interface.toolbox.maxColumn = "Maks. sütun araç kutusu";
+interface.toolbox.columns = "Sütunlar";
 // Reset the tool's order in the toolbox
-interface.toolbox.resetOrder = "Araç kutusu sıralamasını sıfırla";
+interface.toolbox.resetOrder = "Sıralamasını sıfırla";
 // Scale the interface
 interface.scale = "Genel ölçek";
 // Spacing between widgets
@@ -1148,11 +1148,7 @@ paint.usePainting = "Darbe boyama";
 paint.intensity = "Boyama yoğunluğu";
 // Apply the paint on the object
 paint.paintAll = "Tümünü boya";
-paint.paintAll.help = "Geçerli malzemeyi nesneye uygular.
-
-Maskelenmiş alan ve devre dışı bırakılmış kanallar boyanmaz.";
-// Apply the paint on the object but ignore painting intensity (force full intensity)
-paint.paintAllForce = "Tümünü boyamayı zorla";
+paint.paintAll.help = "Geçerli malzemeyi nesneye uygular.";
 paint.strokePainting.title = "Boyama";
 // Brush stroke texture
 paint.texture.warningEnable = "Doku projeksiyonuna izin vermek için darbe boyamanın etkinleştirilmesi gerekir (onay kutusu yukarıda)!";
@@ -1318,7 +1314,7 @@ primitive.plane = "Düzlem";
 primitive.triplanar = "Üç düzlemli";
 primitive.faceXYZ = "Yüz XYZ";
 primitive.faceXYZ.help = "UV-hesaplanmış temel ağ örgüsü şuradan sağlanır: https://texturing.xyz/";
-primitive.needValidate = "Primitiflerin şekillendirilebilmesi için doğrulanması gerekir.";
+primitive.needValidate = "Primitiflerin doğrulanması gerekir!";
 
 // If enabled, we can edit primitive inside the viewport
 primitive.edit = "Düzenle";
@@ -1410,11 +1406,13 @@ primitive.coneRadius = "Yarıçap";
 primitive.coneHeight = "Yükseklik";
 // Hole sub menu (cylinder, tube, etc)
 primitive.hole = "Delik";
-// Make a hole in the primtive to make it hollow
+// Make a hole in the primitive to make it hollow
 primitive.hasHole = "Deliği var";
 // Curve profile (synonym: profile, curve)
 primitive.profile = "";
 primitive.profile.viewport = "";
+// If the revolution surface has caps (E.g: cylinder)
+primitive.cap = "";
 
 // Singular of Repeaters (Nodes that make many copies of its children (type of mirror/curve/array/radial))
 repeater = "";
@@ -1548,7 +1546,7 @@ settings.cursor.showRope = "Dengeleyici ipi göster";
 // indicator
 settings.indicator.title = "";
 settings.indicator.title.help = "";
-settings.indicator.size = "";
+settings.indicator.size = "Büyüklük";
 // Highlight (the object glows when we select it)
 settings.highlight.selection = "Seçimi vurgula";
 // Highlight settings
@@ -1655,6 +1653,9 @@ shortcut.maskVisible.short = "Maskele";
 // bottom shortcut buttons (should be SHORT)
 shortcut.solo = "Solo";
 shortcut.solo.short = "Solo";
+// bottom shortcut buttons (should be SHORT)
+shortcut.xray = "";
+shortcut.xray.short = "";
 // bottom shortcut buttons (should be SHORT)
 shortcut.voxelRemesh = "Voksel yeniden ağ örgülendirme";
 shortcut.voxelRemesh.short = "Voksel";
@@ -1851,8 +1852,6 @@ stroke.falloffProject.circle = "";
 // Symmetry
 symmetry = "Simetri";
 symmetry.enable = "Etkin";
-// Display a warning (the feature is only available for mesh object)
-symmetry.primitiveWarning = "Fırça simetrisi, üç düzlemli haricinde, sadece doğrulanan primitifler için kullanılabilir.";
 symmetry.plane.title = "Düzlemler";
 symmetry.toolIgnore = "Geçerli araç simetriyi göz ardı ediyor.";
 // Instead of planar symmetry, use a radial symmetry
@@ -2006,9 +2005,13 @@ tool.transform.snap = "Yasla";
 tool.measure = "Ölç";
 // Ideally <10 chars (Lattice, deformer)
 tool.lattice = "";
+// Ideally <10 chars (Quad Remesher)
+tool.remesh = "";
+tool.remesh.guides = "";
 // Ideally <10 chars (FaceGroup)
 tool.faceGroup = "";
 tool.faceGroup.autoPick = "";
+tool.faceGroup.flush = "";
 // Ideally <10 chars (Hide)
 tool.hide = "Gizle";
 // Ideally <10 chars (View tool, do nothing in particular)
@@ -2093,23 +2096,19 @@ tool.mask.polish.border = "";
 // Smooth the border in a way that it matches completely with its dual
 tool.mask.polish.syncBorder = "";
 // topology of extracted mesh
-tool.mask.autoDivision = "";
-tool.mask.division = "";
+tool.mask.edgeLoop = "";
+tool.mask.edgeLoop.auto = "";
+tool.mask.edgeLoop.division = "";
 // The thickness of the extracted mesh (from the painted mask)
 tool.mask.thickness = "Kalınlık";
-// The extracted mesh has the same height everywhere
-tool.mask.thicknessUniform = "";
-tool.mask.thicknessUniform.help = "";
 // Carve the mask into the surface
 tool.mask.carve = "Oyma";
 // Extract a new mesh from the painted mask
 tool.mask.extract = "Çıkar";
+// Preview extract
+tool.mask.preview = "Önizleme";
 // Extract two new mesh from the painted mask and from the unmasked area
 tool.mask.split = "Ayır";
-// How should we close the topology of the extracted object
-tool.mask.split.mask = "Kapatma eylemi (maskelenmiş):";
-// How should we close the topology of the extracted object
-tool.mask.split.unmask = "Kapatma eylemi (maskelenmemiş):";
 // How should we close the topology of the extracted object
 tool.mask.action = "Kapatma eylemi:";
 tool.mask.action.help = "-- Yok
@@ -2222,7 +2221,7 @@ tool.hole = "Delik doldurma";
 tool.hole.fillHoles = "Delikleri doldur";
 // synonym: Alternative method
 tool.hole.method.fill = "";
-tool.hole.method.screen = "";
+tool.hole.method.legacy = "";
 tool.hole.method.boolean = "Boolean";
 tool.hole.bridges = "Ekrana sabitli boolean";
 tool.hole.bridges.help = "Bu seçenek etkinse, hacimde delikler açabilirsiniz.
@@ -2336,7 +2335,7 @@ Bu özellik performansa önemli ölçüde etki edebilir.
 
 Katmanlar doğru şekilde güncellenir.";
 topology.dynamic.method = "Detayın kaynağı:";
-topology.dynamic.method.zoom = "Büyüt/Küçült";
+topology.dynamic.method.screen = "Ekran";
 topology.dynamic.method.radius = "Yarıçap";
 topology.dynamic.method.constant = "Sabit";
 topology.dynamic.method.help = "-- Yakınlaştırma
@@ -2487,11 +2486,22 @@ binding.rotateLighting = "Işıklandırmayı döndür";
 // The Camera pivot is the point around which the camera rotates
 binding.updatePivot = "Eksen";
 
+quadremesh.adaptQuadCount = "";
+quadremesh.curvatureAdaptivness = "";
+quadremesh.curvatureAdaptivness.help = "";
+quadremesh.autoDetectHardEdges = "";
+quadremesh.useVertexColors = "Boyamayı koru";
+
 // Privacy policy
 privacyPolicy.title = "Gizlilik Politikası";
 privacyPolicy.reject = "Reddet";
 // Hexanomad is the company name
 privacyPolicy = "Hexanomad Nomad Sculpt'tan hiçbir veri toplamaz.";
+
+sonar.disconnect = "";
+sonar.connect = "";
+sonar.connect.confirm = "";
+sonar.connect.confirm.warning = "";
 
 // Color disc mode
 widget.color.disc = "";
@@ -2501,7 +2511,9 @@ widget.color.square = "";
 // version trial
 version.buyWeb = "Web versiyonu sadece bir demodur";
 version.buyFull = "Tam sürüme yükselt";
-version.restorePurchase = "Satın almayı geri yükle";
+version.buyQR = "";
+version.restoreFull = "Satın almayı geri yükle";
+version.buyQR.promo = "";
 
 version.trialHistory = "Deneme sürümü: 4 geri alma/yineleme mümkündür";
 version.trialLayer = "Deneme sürümü: Ağ örgüsü başına 1 katman";

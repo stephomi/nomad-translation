@@ -10,6 +10,10 @@ confirm.cancel = "キャンセル";
 // Experimental feature
 experimental = "実験的！";
 
+clipboard = "";
+clipboard.copy = "";
+clipboard.paste = "";
+
 // memory size
 bytes = "バイト";
 kB = "";
@@ -252,6 +256,8 @@ alert.autoSave.auto = "自動保存... $0s後";
 alert.needLayer = "使用中のツールはアクティブなレイヤーが必要です。";
 // The user decides to hide the painting on the objects
 alert.paintingHidden = "ペイントが非表示です!";
+// The user decides to hide the masking on the objects
+alert.maskingHidden = "";
 // The selected object doesn't have any layers
 alert.noPartialWireframe = "ワイヤーフレームが表示されている場合、部分的な描画は無効です。";
 // The user has selected a tool that is more intuitive to use when the camera is in orthographic mode
@@ -262,6 +268,8 @@ alert.state.trial = "お試し版: 取り消しはキャンセルされました
 background = "背景";
 // A flat color will be displayed in the background of the scene
 background.color = "カラー";
+// 2 color with rotation
+background.gradient = "カラーグラデーション";
 // The environment (HDRI) will be displayed in the background
 background.environment = "環境";
 background.blur = "ブラー";
@@ -387,12 +395,8 @@ curve.spiral.angle = "角度のオフセット";
 debug.targetFPS = "";
 debug.targetFPS.help = "";
 
-// Debug option, the newly created primitives will contains texture coordinates (UVs)
-debug.uvPrimitive = "プリミティブのUVを残す";
+// Warning about UVs (using extra memory)
 debug.uvPrimitive.warning = "UV (追加のメモリ) が必要でない場合、このオプションを無効にしてください。";
-debug.uvPrimitive.help = "現時点では、ボックスと球のみがサポートされています。
-
-その他のタイプは今後サポートされる予定です。";
 // Debug option, Normalize means transforming the data so that it fits in [0-1] the range
 debug.uvNormalize = "UVを標準化";
 debug.uvNormalize.help = "Nomadは [0-1] のタイル内のUVを標準化します。";
@@ -403,8 +407,6 @@ debug.uvBFF.help = "代替のラップ解除方法 (Boundary First Flattening) �
 BFFは、メッシュトポロジーがディスクまたは球と異なる場合、オーバーラップを生成します。 ご注意ください。";
 
 debug.quadriflow = "";
-debug.quadriflow.help = "";
-
 
 // Debug option, display an window with some debugging logs
 debug.logs = "ログ";
@@ -664,18 +666,14 @@ gesture.dropper.help = "キャンバスを長押しすると、カラー/マテ�
 
 // Three fingers on screen
 gesture.three.title = "3本指";
-// Drag 3 fingers horizontally on the canvas to rotate the environment, lights and MatCap
-gesture.fingerLighting = "ライティングを回転 (3 本指)";
-// Canvas means the scene viewport (the entire screen but excluding the interface)
-gesture.fingerLighting.help = "指3本でキャンバス上を横方向にドラッグすると、環境、ライト、MatCapを回転できます。";
-// Drag 3 fingers vertically to edit the tool radius
-gesture.fingerRadius = "ツールの半径を編集 (3 本指)";
-// Canvas means the scene viewport (the entire screen but excluding the interface)
-gesture.fingerRadius.help = "指3本でキャンバスを縦方向にドラッグすると、ツールの半径を編集できます。";
+gesture.three.light = "ライティングを回転";
+gesture.three.light.help = "環境、ライト、MatCapを回転できます。";
+gesture.three.radius = "ツールの半径";
+gesture.three.intensity = "ツールの強度";
 
 // If this option is enabled, finger inputs on screen will use the smoothing tool
-gesture.fingerSmooth = "指は常にスムージングに使用されます";
-gesture.fingerSmooth.help = "";
+gesture.finger.smooth = "指は常にスムージングに使用されます";
+gesture.finger.smooth.help = "";
 // If enabled, the pressure will be taken into account even if it's not coming from a recognized stylus
 gesture.unknownPressure = "未認識の筆圧を許可";
 gesture.unknownPressure.help = "お使いのペンシルで筆圧が動作しない場合、または指の筆圧が必要な場合、このオプションをチェックしてください。";
@@ -741,8 +739,8 @@ history.includePostProcess = "ポストプロセス";
 // include shading parameters (MatCap & HDRIs) editing in the undo/redo
 history.includeShading = "MatCap & HDRI";
 // Can limit the stack of undo/redo size
-history.limitSize = "履歴の上限 (Mb)";
-history.limitSize.help = "履歴の最大サイズ (Mb) 。
+history.limitSize = "履歴の上限";
+history.limitSize.help = "履歴の最大サイズ。
 
 履歴は次に操作が記録されるとアップデートされます。";
 // Limit the number of undo in the history stack
@@ -848,12 +846,14 @@ interface.flipMiddle = "サイドバーにミラー";
 interface.materialPreview = "マテリアルのカラーのプレビュー";
 // Interface customization
 interface.materialPreview.help = "素材のカラーを選択すると、この素材のプレビューが現在選択中のオブジェクトに表示されます。";
-interface.toolbox.hide = "ツールボックスを隠す";
-interface.toolboxHide.help = "ツールボックスを非表示にしたい場合は、このオプションを有効にしてください。";
+// list of tools
+interface.toolbox = "ツールボックス";
+// hide toolbox by default
+interface.toolbox.hide = "隠れた";
 // Interface customization (the toolbox is a grid, we can adjust the column count)
-interface.toolbox.maxColumn = "ツールボックスの列の最大値";
+interface.toolbox.columns = "列数";
 // Reset the tool's order in the toolbox
-interface.toolbox.resetOrder = "ツールボックスの順序をリセット";
+interface.toolbox.resetOrder = "順序をリセット";
 // Scale the interface
 interface.scale = "全体的なサイズ調整";
 // Spacing between widgets
@@ -1149,11 +1149,7 @@ paint.usePainting = "ストロークペイント";
 paint.intensity = "ペイントの強度";
 // Apply the paint on the object
 paint.paintAll = "すべてをペイント";
-paint.paintAll.help = "現在のマテリアルをオブジェクトに適用できます。
-
-マスクの部分と無効なチャンネルはペイントされません。";
-// Apply the paint on the object but ignore painting intensity (force full intensity)
-paint.paintAllForce = "すべてを強制的にペイント";
+paint.paintAll.help = "現在のマテリアルをオブジェクトに適用できます。";
 paint.strokePainting.title = "ペイント";
 // Brush stroke texture
 paint.texture.warningEnable = "テクスチャのプロジェクションを許可するには、ストロークペイントを有効にする必要があります (一番上のチェックボックス)！";
@@ -1318,7 +1314,7 @@ primitive.plane = "平面";
 primitive.triplanar = "Triplanar";
 primitive.faceXYZ = "面 XYZ";
 primitive.faceXYZ.help = "UV展開されたベースメッシュの提供元: https://texturing.xyz/";
-primitive.needValidate = "スカルプトするにはプリミティブを検証する必要があります。";
+primitive.needValidate = "プリミティブを検証する必要があります!";
 
 // If enabled, we can edit primitive inside the viewport
 primitive.edit = "編集";
@@ -1410,11 +1406,13 @@ primitive.coneRadius = "半径";
 primitive.coneHeight = "高さ";
 // Hole sub menu (cylinder, tube, etc)
 primitive.hole = "穴";
-// Make a hole in the primtive to make it hollow
+// Make a hole in the primitive to make it hollow
 primitive.hasHole = "穴があります";
 // Curve profile (synonym: profile, curve)
 primitive.profile = "";
 primitive.profile.viewport = "";
+// If the revolution surface has caps (E.g: cylinder)
+primitive.cap = "";
 
 // Singular of Repeaters (Nodes that make many copies of its children (type of mirror/curve/array/radial))
 repeater = "";
@@ -1548,7 +1546,7 @@ settings.cursor.showRope = "手ぶれ補正ロープを表示";
 // indicator
 settings.indicator.title = "";
 settings.indicator.title.help = "";
-settings.indicator.size = "";
+settings.indicator.size = "サイズ";
 // Highlight (the object glows when we select it)
 settings.highlight.selection = "選択部分をハイライト";
 // Highlight settings
@@ -1653,6 +1651,9 @@ shortcut.maskVisible.short = "マスク";
 // bottom shortcut buttons (should be SHORT)
 shortcut.solo = "ソロ";
 shortcut.solo.short = "ソロ";
+// bottom shortcut buttons (should be SHORT)
+shortcut.xray = "";
+shortcut.xray.short = "";
 // bottom shortcut buttons (should be SHORT)
 shortcut.voxelRemesh = "ボクセルのリメッシュ";
 shortcut.voxelRemesh.short = "ボクセル";
@@ -1849,8 +1850,6 @@ stroke.falloffProject.circle = "";
 // Symmetry
 symmetry = "対称";
 symmetry.enable = "オン";
-// Display a warning (the feature is only available for mesh object)
-symmetry.primitiveWarning = "ブラシのシンメトリーは検証されたプリミティブにのみ利用できます。但し、Triplanarは例外です。";
 symmetry.plane.title = "平面";
 symmetry.toolIgnore = "現在使用中のツールは対称を無視します。";
 // Instead of planar symmetry, use a radial symmetry
@@ -2004,9 +2003,13 @@ tool.transform.snap = "スナップ";
 tool.measure = "計測";
 // Ideally <10 chars (Lattice, deformer)
 tool.lattice = "";
+// Ideally <10 chars (Quad Remesher)
+tool.remesh = "";
+tool.remesh.guides = "";
 // Ideally <10 chars (FaceGroup)
 tool.faceGroup = "";
 tool.faceGroup.autoPick = "";
+tool.faceGroup.flush = "";
 // Ideally <10 chars (Hide)
 tool.hide = "隠す";
 // Ideally <10 chars (View tool, do nothing in particular)
@@ -2091,23 +2094,19 @@ tool.mask.polish.border = "";
 // Smooth the border in a way that it matches completely with its dual
 tool.mask.polish.syncBorder = "";
 // topology of extracted mesh
-tool.mask.autoDivision = "";
-tool.mask.division = "";
+tool.mask.edgeLoop = "";
+tool.mask.edgeLoop.auto = "";
+tool.mask.edgeLoop.division = "";
 // The thickness of the extracted mesh (from the painted mask)
 tool.mask.thickness = "太さ";
-// The extracted mesh has the same height everywhere
-tool.mask.thicknessUniform = "";
-tool.mask.thicknessUniform.help = "";
 // Carve the mask into the surface
 tool.mask.carve = "浮き出し";
 // Extract a new mesh from the painted mask
 tool.mask.extract = "取り出す";
+// Preview extract
+tool.mask.preview = "のプレビュー";
 // Extract two new mesh from the painted mask and from the unmasked area
 tool.mask.split = "分割";
-// How should we close the topology of the extracted object
-tool.mask.split.mask = "閉じるアクション (マスクあり):";
-// How should we close the topology of the extracted object
-tool.mask.split.unmask = "閉じるアクション (マスクなし):";
 // How should we close the topology of the extracted object
 tool.mask.action = "閉じるアクション:";
 tool.mask.action.help = "-- なし
@@ -2220,7 +2219,7 @@ tool.hole = "穴埋め";
 tool.hole.fillHoles = "穴を埋める";
 // synonym: Alternative method
 tool.hole.method.fill = "";
-tool.hole.method.screen = "";
+tool.hole.method.legacy = "";
 tool.hole.method.boolean = "ブーリアン";
 tool.hole.bridges = "画面空間のブーリアン";
 tool.hole.bridges.help = "このオプションを有効にすると、体積に穴を開けられます。
@@ -2334,7 +2333,7 @@ topology.dynamic.activate.help = "ダイナミックトポロジーを使うと�
 
 レイヤーは正しくアップデートされます。";
 topology.dynamic.method = "ディテールの基となるもの…";
-topology.dynamic.method.zoom = "拡大/縮小";
+topology.dynamic.method.screen = "スクリーン";
 topology.dynamic.method.radius = "半径";
 topology.dynamic.method.constant = "一定";
 topology.dynamic.method.help = "-- ズーム
@@ -2485,11 +2484,22 @@ binding.rotateLighting = "ライティングを回転";
 // The Camera pivot is the point around which the camera rotates
 binding.updatePivot = "回転軸";
 
+quadremesh.adaptQuadCount = "";
+quadremesh.curvatureAdaptivness = "";
+quadremesh.curvatureAdaptivness.help = "";
+quadremesh.autoDetectHardEdges = "";
+quadremesh.useVertexColors = "ペイントを保持";
+
 // Privacy policy
 privacyPolicy.title = "プライバシーポリシー";
 privacyPolicy.reject = "拒否";
 // Hexanomad is the company name
 privacyPolicy = "HexanomadはNomad Sculptからいかなるデータも収集しません。";
+
+sonar.disconnect = "";
+sonar.connect = "";
+sonar.connect.confirm = "";
+sonar.connect.confirm.warning = "";
 
 // Color disc mode
 widget.color.disc = "";
@@ -2499,7 +2509,9 @@ widget.color.square = "";
 // version trial
 version.buyWeb = "ウェブバージョンはデモ目的のみに利用できます";
 version.buyFull = "フルバージョンにアップグレード";
-version.restorePurchase = "購入を復元";
+version.buyQR = "";
+version.restoreFull = "購入を復元";
+version.buyQR.promo = "";
 
 version.trialHistory = "お試し版: 取り消し/やり直しの上限は4回です";
 version.trialLayer = "お試し版: メッシュごとに1 レイヤーのみ";

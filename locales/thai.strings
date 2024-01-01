@@ -10,6 +10,10 @@ confirm.cancel = "ยกเลิก";
 // Experimental feature
 experimental = "ที่ทดลอง!";
 
+clipboard = "";
+clipboard.copy = "";
+clipboard.paste = "";
+
 // memory size
 bytes = "ไบต์";
 kB = "";
@@ -252,6 +256,8 @@ alert.autoSave.auto = "บันทึกอัตโนมัติใน... $0
 alert.needLayer = "เครื่องมือปัจจุบันต้องการเลเยอร์ที่ใช้งานอยู่";
 // The user decides to hide the painting on the objects
 alert.paintingHidden = "การวาดลงสีที่ซ่อนอยู่!";
+// The user decides to hide the masking on the objects
+alert.maskingHidden = "";
 // The selected object doesn't have any layers
 alert.noPartialWireframe = "การวาดบางส่วนถูกปิดใช้งานเมื่อแสดงโครงร่าง";
 // The user has selected a tool that is more intuitive to use when the camera is in orthographic mode
@@ -262,6 +268,8 @@ alert.state.trial = "เวอร์ชันทดลอง เลิกทำ�
 background = "พื้นหลัง";
 // A flat color will be displayed in the background of the scene
 background.color = "คัลเลอร์";
+// 2 color with rotation
+background.gradient = "การไล่ระดับสี";
 // The environment (HDRI) will be displayed in the background
 background.environment = "สภาพแวดล้อม";
 background.blur = "เบลอ";
@@ -387,12 +395,8 @@ curve.spiral.angle = "ออฟเซ็ตของมุม";
 debug.targetFPS = "";
 debug.targetFPS.help = "";
 
-// Debug option, the newly created primitives will contains texture coordinates (UVs)
-debug.uvPrimitive = "รักษาค่า UV ของรูปทรงพื้นฐาน";
+// Warning about UVs (using extra memory)
 debug.uvPrimitive.warning = "ปิดใช้งานตัวเลือกนี้หากคุณไม่ต้องการ UVs (หน่วยความจำเพิ่มเติม)";
-debug.uvPrimitive.help = "สำหรับตอนนี้รองรับเฉพาะบ็อกซ์และสเฟียร์
-
-จะรองรับประเภทอื่นๆ ได้ในอนาคต";
 // Debug option, Normalize means transforming the data so that it fits in [0-1] the range
 debug.uvNormalize = "ปรับ UVs ให้เป็นปกติ";
 debug.uvNormalize.help = "Nomad จะทำให้ UVs ภายในไทล์ [0-1] เป็นปกติ";
@@ -403,8 +407,6 @@ debug.uvBFF.help = "เพิ่มวิธีการคำนวนแบบ
 โปรดทราบว่า BFF จะทับซ้อนกันหากโครงสร้างหรือโทโพโลยีของเมชของคุณแตกต่างจากดิสก์หรือสเฟียร์";
 
 debug.quadriflow = "";
-debug.quadriflow.help = "";
-
 
 // Debug option, display an window with some debugging logs
 debug.logs = "บันทึก";
@@ -664,18 +666,14 @@ gesture.dropper.help = "การเลือกสี/วัสดุสาม�
 
 // Three fingers on screen
 gesture.three.title = "สามนิ้ว";
-// Drag 3 fingers horizontally on the canvas to rotate the environment, lights and MatCap
-gesture.fingerLighting = "หมุนแสง (3 นิ้ว)";
-// Canvas means the scene viewport (the entire screen but excluding the interface)
-gesture.fingerLighting.help = "ลาก 3 นิ้วในแนวนอนบนแคนวาสเพื่อหมุนสภาพแวดล้อม แสงและ MatCap";
-// Drag 3 fingers vertically to edit the tool radius
-gesture.fingerRadius = "แก้ไขรัศมีเครื่องมือ (3 นิ้ว)";
-// Canvas means the scene viewport (the entire screen but excluding the interface)
-gesture.fingerRadius.help = "ลาก 3 นิ้วในแนวตั้งบนแคนวาสใบเพื่อแก้ไขรัศมีของเครื่องมือ";
+gesture.three.light = "หมุนแสง";
+gesture.three.light.help = "หมุนสภาพแวดล้อม แสงและ MatCap";
+gesture.three.radius = "รัศมีเครื่องมือ";
+gesture.three.intensity = "ความเข้มของเครื่องมือ";
 
 // If this option is enabled, finger inputs on screen will use the smoothing tool
-gesture.fingerSmooth = "นิ้วเรียบเสมอ";
-gesture.fingerSmooth.help = "";
+gesture.finger.smooth = "นิ้วเรียบเสมอ";
+gesture.finger.smooth.help = "";
 // If enabled, the pressure will be taken into account even if it's not coming from a recognized stylus
 gesture.unknownPressure = "ให้ใช้แรงกดที่ไม่รู้จัก";
 gesture.unknownPressure.help = "เลือกตัวเลือกนี้หากใช้งานแรงกดไม่ได้กับ Pencil ของคุณ หรือหากต้องการใช้นิ้วกด";
@@ -741,8 +739,8 @@ history.includePostProcess = "PostProcess";
 // include shading parameters (MatCap & HDRIs) editing in the undo/redo
 history.includeShading = "MatCaps & HDRIs";
 // Can limit the stack of undo/redo size
-history.limitSize = "ข้อจำกัดรายการประวัติ (Mb)";
-history.limitSize.help = "ขนาดสูงสุด (เป็น Mb) ของประวัติ
+history.limitSize = "ข้อจำกัดรายการประวัติ";
+history.limitSize.help = "ขนาดสูงสุด ของประวัติ
 
 รายการประวัติจะได้รับการอัพเดทในการดำเนินการที่บันทึกไว้ในครั้งต่อไป";
 // Limit the number of undo in the history stack
@@ -848,12 +846,14 @@ interface.flipMiddle = "มิเรอร์แถบด้านข้าง";
 interface.materialPreview = "พรีวิวสีวัสดุ";
 // Interface customization
 interface.materialPreview.help = "เมื่อคุณเลือกสีสำหรับวัสดุ การแสดงตัวอย่างของวัสดุนี้จะแสดงบนออบเจ็กต์ที่เลือกในปัจจุบัน";
-interface.toolbox.hide = "ซ่อนกล่องเครื่องมือ";
-interface.toolboxHide.help = "เปิดใช้งานตัวเลือกนี้หากคุณต้องการซ่อนกล่องเครื่องมือ";
+// list of tools
+interface.toolbox = "กล่องเครื่องมือ";
+// hide toolbox by default
+interface.toolbox.hide = "ซ่อน";
 // Interface customization (the toolbox is a grid, we can adjust the column count)
-interface.toolbox.maxColumn = "กล่องเครื่องมือแถวคอลัมน์สูงสุด";
+interface.toolbox.columns = "คอลัมน์";
 // Reset the tool's order in the toolbox
-interface.toolbox.resetOrder = "รีเซ็ตลำดับกล่องเครื่องมือ";
+interface.toolbox.resetOrder = "รีเซ็ตลำดับ";
 // Scale the interface
 interface.scale = "ขนาดโดยรวม";
 // Spacing between widgets
@@ -1149,11 +1149,7 @@ paint.usePainting = "ภาพวาดลายเส้น";
 paint.intensity = "ความเข้มของการลงสี";
 // Apply the paint on the object
 paint.paintAll = "ทาสีทั้งหมด";
-paint.paintAll.help = "นำวัสดุปัจจุบันไปใช้กับออบเจ็กต์
-
-พื้นที่และช่องที่มาส์กไว้จะไม่ถูกลงสี";
-// Apply the paint on the object but ignore painting intensity (force full intensity)
-paint.paintAllForce = "บังคับระบายสีทั้งหมด";
+paint.paintAll.help = "นำวัสดุปัจจุบันไปใช้กับออบเจ็กต์";
 paint.strokePainting.title = "ทาสี";
 // Brush stroke texture
 paint.texture.warningEnable = "ต้องเปิดใช้งานการวาดภาพลายเส้นเพื่อให้สามารถฉายพื้นผิวได้ (ช่องทำเครื่องหมายด้านบน)!";
@@ -1319,7 +1315,7 @@ primitive.plane = "ระนาบ";
 primitive.triplanar = "สามระนาบ";
 primitive.faceXYZ = "เฟส XYZ";
 primitive.faceXYZ.help = "ฐานเมชที่คำนวน UV ให้บริการโดย https://texturing.xyz/";
-primitive.needValidate = "รูปทรงพื้นฐานควรได้รับการตรวจสอบเพื่อที่จะแกะสลัก";
+primitive.needValidate = "รูปทรงพื้นฐานควรได้รับการตรวจสอบ!";
 
 // If enabled, we can edit primitive inside the viewport
 primitive.edit = "แก้ไข";
@@ -1411,11 +1407,13 @@ primitive.coneRadius = "รัศมี";
 primitive.coneHeight = "สูง";
 // Hole sub menu (cylinder, tube, etc)
 primitive.hole = "รู";
-// Make a hole in the primtive to make it hollow
+// Make a hole in the primitive to make it hollow
 primitive.hasHole = "มีรู";
 // Curve profile (synonym: profile, curve)
 primitive.profile = "";
 primitive.profile.viewport = "";
+// If the revolution surface has caps (E.g: cylinder)
+primitive.cap = "";
 
 // Singular of Repeaters (Nodes that make many copies of its children (type of mirror/curve/array/radial))
 repeater = "";
@@ -1549,7 +1547,7 @@ settings.cursor.showRope = "แสดงเชือกกันโคลง";
 // indicator
 settings.indicator.title = "";
 settings.indicator.title.help = "";
-settings.indicator.size = "";
+settings.indicator.size = "ขนาด";
 // Highlight (the object glows when we select it)
 settings.highlight.selection = "ไฮไลท์การเลือก";
 // Highlight settings
@@ -1656,6 +1654,9 @@ shortcut.maskVisible.short = "มาส์ก";
 // bottom shortcut buttons (should be SHORT)
 shortcut.solo = "เดี่ยว";
 shortcut.solo.short = "เดี่ยว";
+// bottom shortcut buttons (should be SHORT)
+shortcut.xray = "";
+shortcut.xray.short = "";
 // bottom shortcut buttons (should be SHORT)
 shortcut.voxelRemesh = "รีเมชว็อกเซล";
 shortcut.voxelRemesh.short = "ว็อกเซล";
@@ -1852,8 +1853,6 @@ stroke.falloffProject.circle = "";
 // Symmetry
 symmetry = "สมมาตร";
 symmetry.enable = "เปิดใช้งาน";
-// Display a warning (the feature is only available for mesh object)
-symmetry.primitiveWarning = "ความสมมาตรของแปรงใช้ได้เฉพาะกับรูปทรงพื้นฐานที่ผ่านการตรวจสอบแล้ว ยกเว้นสามระนาบ";
 symmetry.plane.title = "ระนาบ";
 symmetry.toolIgnore = "เครื่องมือปัจจุบันไม่เกี่ยวกับความสมมาตร";
 // Instead of planar symmetry, use a radial symmetry
@@ -2007,9 +2006,13 @@ tool.transform.snap = "สแนป";
 tool.measure = "วัด";
 // Ideally <10 chars (Lattice, deformer)
 tool.lattice = "";
+// Ideally <10 chars (Quad Remesher)
+tool.remesh = "";
+tool.remesh.guides = "";
 // Ideally <10 chars (FaceGroup)
 tool.faceGroup = "";
 tool.faceGroup.autoPick = "";
+tool.faceGroup.flush = "";
 // Ideally <10 chars (Hide)
 tool.hide = "ซ่อน";
 // Ideally <10 chars (View tool, do nothing in particular)
@@ -2094,23 +2097,19 @@ tool.mask.polish.border = "";
 // Smooth the border in a way that it matches completely with its dual
 tool.mask.polish.syncBorder = "";
 // topology of extracted mesh
-tool.mask.autoDivision = "";
-tool.mask.division = "";
+tool.mask.edgeLoop = "";
+tool.mask.edgeLoop.auto = "";
+tool.mask.edgeLoop.division = "";
 // The thickness of the extracted mesh (from the painted mask)
 tool.mask.thickness = "ความหนา";
-// The extracted mesh has the same height everywhere
-tool.mask.thicknessUniform = "";
-tool.mask.thicknessUniform.help = "";
 // Carve the mask into the surface
 tool.mask.carve = "แกะสลัก";
 // Extract a new mesh from the painted mask
 tool.mask.extract = "สกัด";
+// Preview extract
+tool.mask.preview = "พรีวิว";
 // Extract two new mesh from the painted mask and from the unmasked area
 tool.mask.split = "แยก";
-// How should we close the topology of the extracted object
-tool.mask.split.mask = "การดำเนินการปิด (มาส์ก)";
-// How should we close the topology of the extracted object
-tool.mask.split.unmask = "การดำเนินการปิด (ไม่มาส์ก)";
 // How should we close the topology of the extracted object
 tool.mask.action = "การดำเนินการปิด";
 tool.mask.action.help = "-- ไม่มี
@@ -2223,7 +2222,7 @@ tool.hole = "การอุดรู";
 tool.hole.fillHoles = "อุดรู";
 // synonym: Alternative method
 tool.hole.method.fill = "";
-tool.hole.method.screen = "";
+tool.hole.method.legacy = "";
 tool.hole.method.boolean = "บูลีน";
 tool.hole.bridges = "บูลีนพื้นที่หน้าจอ";
 tool.hole.bridges.help = "หากเปิดใช้งานตัวเลือกนี้ คุณสามารถเจาะรูในวอลุ่มได้
@@ -2337,7 +2336,7 @@ topology.dynamic.activate.help = "ด้วยโทโพโลยีแบบ�
 
 เลเยอร์ได้รับการอัพเดทอย่างถูกต้อง";
 topology.dynamic.method = "รายละเอียดตาม...";
-topology.dynamic.method.zoom = "ซูม";
+topology.dynamic.method.screen = "สกรีน";
 topology.dynamic.method.radius = "รัศมี";
 topology.dynamic.method.constant = "คงที่";
 topology.dynamic.method.help = "-- ซูม
@@ -2488,11 +2487,22 @@ binding.rotateLighting = "หมุนแสง";
 // The Camera pivot is the point around which the camera rotates
 binding.updatePivot = "จุดหมุน";
 
+quadremesh.adaptQuadCount = "";
+quadremesh.curvatureAdaptivness = "";
+quadremesh.curvatureAdaptivness.help = "";
+quadremesh.autoDetectHardEdges = "";
+quadremesh.useVertexColors = "รักษาภาพวาด";
+
 // Privacy policy
 privacyPolicy.title = "นโยบายความเป็นส่วนตัว";
 privacyPolicy.reject = "ปฏิเสธ";
 // Hexanomad is the company name
 privacyPolicy = "Hexanomad ไม่ได้รวบรวมข้อมูลใดๆ จาก Nomad Sculpt";
+
+sonar.disconnect = "";
+sonar.connect = "";
+sonar.connect.confirm = "";
+sonar.connect.confirm.warning = "";
 
 // Color disc mode
 widget.color.disc = "";
@@ -2502,7 +2512,9 @@ widget.color.square = "";
 // version trial
 version.buyWeb = "เวอร์ชันเว็บเป็นเพียงตัวอย่างเท่านั้น";
 version.buyFull = "อัพเกรดเป็นเวอร์ชันเต็ม";
-version.restorePurchase = "กู้คืนการซื้อ";
+version.buyQR = "";
+version.restoreFull = "กู้คืนการซื้อ";
+version.buyQR.promo = "";
 
 version.trialHistory = "เวอร์ชันทดลอง เลิกทำ/ทำซ้ำได้ 4 ครั้ง";
 version.trialLayer = "เวอร์ชันทดลอง 1 เลเยอร์ต่อเมช";

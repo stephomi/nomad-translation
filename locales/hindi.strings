@@ -10,6 +10,10 @@ confirm.cancel = "रद्द करें";
 // Experimental feature
 experimental = "प्रायोगिक!";
 
+clipboard = "";
+clipboard.copy = "";
+clipboard.paste = "";
+
 // memory size
 bytes = "बाइट्स";
 kB = "";
@@ -252,6 +256,8 @@ alert.autoSave.auto = "$0s... में स्वतः सहेजें";
 alert.needLayer = "वर्तमान टूल को एक सक्रिय परत की आवश्यकता है.";
 // The user decides to hide the painting on the objects
 alert.paintingHidden = "पेंटिंग छिपी हुई है!";
+// The user decides to hide the masking on the objects
+alert.maskingHidden = "";
 // The selected object doesn't have any layers
 alert.noPartialWireframe = "तार का ढांचा प्रदर्शित होने पर आंशिक आरेखण अक्षम हो जाता है.";
 // The user has selected a tool that is more intuitive to use when the camera is in orthographic mode
@@ -262,6 +268,8 @@ alert.state.trial = "परीक्षण संस्करण: अनडू �
 background = "पृष्ठभूमि";
 // A flat color will be displayed in the background of the scene
 background.color = "रंग";
+// 2 color with rotation
+background.gradient = "रंग ढाल";
 // The environment (HDRI) will be displayed in the background
 background.environment = "पर्यावरण";
 background.blur = "धुंधलापन";
@@ -389,12 +397,8 @@ curve.spiral.angle = "कोण आफसेट";
 debug.targetFPS = "एफपीएस टारगेट करें";
 debug.targetFPS.help = "अक्षम होने पर, डिफ़ॉल्ट मान का अर्थ है कि यह डिस्प्ले की रीफ़्रेश दर के साथ समन्वयित होगा।";
 
-// Debug option, the newly created primitives will contains texture coordinates (UVs)
-debug.uvPrimitive = "पूर्वग UVs रखें";
+// Warning about UVs (using extra memory)
 debug.uvPrimitive.warning = "यदि आपको UVs की आवश्यकता नहीं है, तो इस विकल्प को अक्षम करें (अतिरिक्त मेमोरी).";
-debug.uvPrimitive.help = "अभी के लिए, केवल बॉक्स और गोला समर्थित हैं.
-
-भविष्य में अन्य प्रकारों का समर्थन किया जाएगा.";
 // Debug option, Normalize means transforming the data so that it fits in [0-1] the range
 debug.uvNormalize = "UVs को सामन्य करें";
 debug.uvNormalize.help = "Nomad [0-1] टाइल के अंदर UVs को सामान्य करेगा.";
@@ -405,8 +409,6 @@ debug.uvBFF.help = "एक वैकल्पिक अनावृत विध
 ध्यान दें कि यदि आपका मेश टोपोलॉजी डिस्क या गोले से अलग है तो BFF ओवरलैप उत्पन्न करेगा.";
 
 debug.quadriflow = "";
-debug.quadriflow.help = "";
-
 
 // Debug option, display an window with some debugging logs
 debug.logs = "लॉग्स";
@@ -666,18 +668,14 @@ gesture.dropper.help = "कैनवस पर लंबे समय तक द
 
 // Three fingers on screen
 gesture.three.title = "तीन उंगलियां";
-// Drag 3 fingers horizontally on the canvas to rotate the environment, lights and MatCap
-gesture.fingerLighting = "प्रकाश घुमाएँ (3 उंगलियां)";
-// Canvas means the scene viewport (the entire screen but excluding the interface)
-gesture.fingerLighting.help = "पर्यावरण, रोशनी और MatCap को घुमाने के लिए कैनवस पर क्षैतिज रूप से 3 उंगलियों को घसीटें.";
-// Drag 3 fingers vertically to edit the tool radius
-gesture.fingerRadius = "टूल त्रिज्या संपादित करें (3 उंगलियां)";
-// Canvas means the scene viewport (the entire screen but excluding the interface)
-gesture.fingerRadius.help = "टूल त्रिज्या को संपादित करने के लिए कैनवस पर लंबवत रूप से 3 उंगलियों को घसीटें.";
+gesture.three.light = "प्रकाश घुमाएँ";
+gesture.three.light.help = "पर्यावरण, रोशनी और MatCap को घुमाने.";
+gesture.three.radius = "टूल त्रिज्या";
+gesture.three.intensity = "टूल तीव्रता";
 
 // If this option is enabled, finger inputs on screen will use the smoothing tool
-gesture.fingerSmooth = "उंगली हमेशा चिकना करती है";
-gesture.fingerSmooth.help = "यह विकल्प केवल तभी सक्रिय होता है जब कोई मूर्तिकला उपकरण सक्रिय हो।";
+gesture.finger.smooth = "उंगली हमेशा चिकना करती है";
+gesture.finger.smooth.help = "यह विकल्प केवल तभी सक्रिय होता है जब कोई मूर्तिकला उपकरण सक्रिय हो।";
 // If enabled, the pressure will be taken into account even if it's not coming from a recognized stylus
 gesture.unknownPressure = "अपरिचित दबाव को अनुमति दें";
 gesture.unknownPressure.help = "यदि आपकी पेंसिल से दबाव काम नहीं करता है या फिर आपको दबाव वाली उंगली की आवश्यकता है तो इस विकल्प को चुनें.";
@@ -743,8 +741,8 @@ history.includePostProcess = "पोस्टप्रॉसेस";
 // include shading parameters (MatCap & HDRIs) editing in the undo/redo
 history.includeShading = "MatCaps और HDRIs";
 // Can limit the stack of undo/redo size
-history.limitSize = "इतिहास सीमा (Mb)";
-history.limitSize.help = "इतिहास का अधिकतम आकार (Mb में).
+history.limitSize = "इतिहास सीमा";
+history.limitSize.help = "इतिहास का अधिकतम आकार.
 
 इतिहास को अगले रिकॉर्ड किए गए ऑपरेशन पर अपडेट किया जाएगा.";
 // Limit the number of undo in the history stack
@@ -852,12 +850,14 @@ interface.flipMiddle = "साइड पट्टियाँ प्रतिर
 interface.materialPreview = "मटीरीयल रंग प्रीव्यू";
 // Interface customization
 interface.materialPreview.help = "जब आप किसी मटीरीयल के लिए रंग का चयन करते हैं, तो इस मटीरीयल का पूर्वावलोकन वर्तमान में चयनित वस्तु पर प्रदर्शित होता है.";
-interface.toolbox.hide = "टूलबॉक्स छिपाएँ";
-interface.toolboxHide.help = "यदि आप टूलबॉक्स को छिपाना चाहते हैं तो इस विकल्प को सक्षम करें.";
+// list of tools
+interface.toolbox = "टूलबॉक्स";
+// hide toolbox by default
+interface.toolbox.hide = "छिपाएँ";
 // Interface customization (the toolbox is a grid, we can adjust the column count)
-interface.toolbox.maxColumn = "अधिकतम टूलबॉक्स स्तंभ";
+interface.toolbox.columns = "स्तंभ";
 // Reset the tool's order in the toolbox
-interface.toolbox.resetOrder = "टूलबॉक्स क्रम रीसेट करें";
+interface.toolbox.resetOrder = "क्रम रीसेट करें";
 // Scale the interface
 interface.scale = "समग्र पैमाना";
 // Spacing between widgets
@@ -1152,11 +1152,7 @@ paint.usePainting = "स्ट्रोक पेंटिंग";
 paint.intensity = "पेंट तीव्रता";
 // Apply the paint on the object
 paint.paintAll = "सभी पैंट करें";
-paint.paintAll.help = "वस्तु पर वर्तमान मटीरीयल लागू करें.
-
-मुखौटा किए गए क्षेत्र और अक्षम चैनलों पर पेंट नहीं किया जाएगा.";
-// Apply the paint on the object but ignore painting intensity (force full intensity)
-paint.paintAllForce = "सभी पैंट करें";
+paint.paintAll.help = "वस्तु पर वर्तमान मटीरीयल लागू करें.";
 paint.strokePainting.title = "पेंटिंग";
 // Brush stroke texture
 paint.texture.warningEnable = "टेक्स्चर प्रक्षेपण की अनुमति देने के लिए स्ट्रोक पेंटिंग को सक्षम करने की आवश्यकता है (शीर्ष पर चेकबॉक्स)!";
@@ -1322,7 +1318,7 @@ primitive.plane = "समतल";
 primitive.triplanar = "त्रिफ़लक";
 primitive.faceXYZ = "फ़लक XYZ";
 primitive.faceXYZ.help = "https://texturing.xyz/ द्वारा प्रदान किया गया UV-अनावृत आधार मेश";
-primitive.needValidate = "गढ़ने के लिए पूर्वग को सत्यापित किया जाना चाहिए.";
+primitive.needValidate = "सत्यापित किया जाना चाहिए!";
 
 // If enabled, we can edit primitive inside the viewport
 primitive.edit = "संपादित करें";
@@ -1414,11 +1410,13 @@ primitive.coneRadius = "त्रिज्या";
 primitive.coneHeight = "ऊँचाई";
 // Hole sub menu (cylinder, tube, etc)
 primitive.hole = "छेद";
-// Make a hole in the primtive to make it hollow
+// Make a hole in the primitive to make it hollow
 primitive.hasHole = "छेद है";
 // Curve profile (synonym: profile, curve)
 primitive.profile = "";
 primitive.profile.viewport = "";
+// If the revolution surface has caps (E.g: cylinder)
+primitive.cap = "";
 
 // Singular of Repeaters (Nodes that make many copies of its children (type of mirror/curve/array/radial))
 repeater = "पुनरावर्तक";
@@ -1555,7 +1553,7 @@ settings.cursor.showRope = "रस्सी स्थायीकारक द�
 // indicator
 settings.indicator.title = "";
 settings.indicator.title.help = "";
-settings.indicator.size = "";
+settings.indicator.size = "आकार";
 // Highlight (the object glows when we select it)
 settings.highlight.selection = "चयन हाईलाइट करें";
 // Highlight settings
@@ -1662,6 +1660,9 @@ shortcut.maskVisible.short = "मुखौटा";
 // bottom shortcut buttons (should be SHORT)
 shortcut.solo = "एकल";
 shortcut.solo.short = "एकल";
+// bottom shortcut buttons (should be SHORT)
+shortcut.xray = "";
+shortcut.xray.short = "";
 // bottom shortcut buttons (should be SHORT)
 shortcut.voxelRemesh = "वॉक्सेल रीमेश";
 shortcut.voxelRemesh.short = "वॉक्सेल";
@@ -1860,8 +1861,6 @@ stroke.falloffProject.circle = "";
 // Symmetry
 symmetry = "सममिति";
 symmetry.enable = "सक्षम किया गया";
-// Display a warning (the feature is only available for mesh object)
-symmetry.primitiveWarning = "त्रिफलकीय के अपवाद को छोड़कर ब्रश सममिति केवल उन पूर्वगों के लिए उपलब्ध है जो सत्यापित हैं.";
 symmetry.plane.title = "फलक";
 symmetry.toolIgnore = "वर्तमान टूल सममिति की अनदेखी करता है.";
 // Instead of planar symmetry, use a radial symmetry
@@ -2015,9 +2014,13 @@ tool.transform.snap = "स्नैप";
 tool.measure = "माप";
 // Ideally <10 chars (Lattice, deformer)
 tool.lattice = "";
+// Ideally <10 chars (Quad Remesher)
+tool.remesh = "";
+tool.remesh.guides = "";
 // Ideally <10 chars (FaceGroup)
 tool.faceGroup = "";
 tool.faceGroup.autoPick = "";
+tool.faceGroup.flush = "";
 // Ideally <10 chars (Hide)
 tool.hide = "छिपाएँ";
 // Ideally <10 chars (View tool, do nothing in particular)
@@ -2102,23 +2105,19 @@ tool.mask.polish.border = "";
 // Smooth the border in a way that it matches completely with its dual
 tool.mask.polish.syncBorder = "";
 // topology of extracted mesh
-tool.mask.autoDivision = "";
-tool.mask.division = "";
+tool.mask.edgeLoop = "";
+tool.mask.edgeLoop.auto = "";
+tool.mask.edgeLoop.division = "";
 // The thickness of the extracted mesh (from the painted mask)
 tool.mask.thickness = "मोटाई";
-// The extracted mesh has the same height everywhere
-tool.mask.thicknessUniform = "";
-tool.mask.thicknessUniform.help = "";
 // Carve the mask into the surface
 tool.mask.carve = "उत्कीर्ण";
 // Extract a new mesh from the painted mask
 tool.mask.extract = "विसंकुचन";
+// Preview extract
+tool.mask.preview = "प्रीव्यू";
 // Extract two new mesh from the painted mask and from the unmasked area
 tool.mask.split = "विभाजन";
-// How should we close the topology of the extracted object
-tool.mask.split.mask = "बंद करने की क्रिया (मुखौटा लगाएँ):";
-// How should we close the topology of the extracted object
-tool.mask.split.unmask = "बंद करने की क्रिया (मुखौटा हटाएँ):";
 // How should we close the topology of the extracted object
 tool.mask.action = "बंद करने की क्रिया:";
 tool.mask.action.help = "-- कुछ भी नहीं
@@ -2231,7 +2230,7 @@ tool.hole = "छेद-भरना";
 tool.hole.fillHoles = "छेद भरें";
 // synonym: Alternative method
 tool.hole.method.fill = "";
-tool.hole.method.screen = "";
+tool.hole.method.legacy = "";
 tool.hole.method.boolean = "बूलियन";
 tool.hole.bridges = "स्क्रीन-स्पेस बूलियन";
 tool.hole.bridges.help = "यदि यह विकल्प सक्षम है, तो आप वॉल्यूम में छेद कर सकते हैं.
@@ -2345,7 +2344,7 @@ topology.dynamic.activate.help = "डायनामिक टोपोलॉज
 
 परतें सही ढंग से अपडेट की जाती हैं.";
 topology.dynamic.method = "विवरण आधारित है...";
-topology.dynamic.method.zoom = "ज़ूम";
+topology.dynamic.method.screen = "स्क्रीन";
 topology.dynamic.method.radius = "त्रिज्या";
 topology.dynamic.method.constant = "स्थिर";
 topology.dynamic.method.help = "-- ज़ूम
@@ -2496,11 +2495,22 @@ binding.rotateLighting = "प्रकाश घुमाएँ";
 // The Camera pivot is the point around which the camera rotates
 binding.updatePivot = "धुरी अपडेट करें...";
 
+quadremesh.adaptQuadCount = "";
+quadremesh.curvatureAdaptivness = "";
+quadremesh.curvatureAdaptivness.help = "";
+quadremesh.autoDetectHardEdges = "";
+quadremesh.useVertexColors = "पेंटिंग परिरक्षित करें";
+
 // Privacy policy
 privacyPolicy.title = "गोपनीयता नीति";
 privacyPolicy.reject = "अस्वीकृति";
 // Hexanomad is the company name
 privacyPolicy = "Hexanomad Nomad मूर्तिकला से कोई डेटा एकत्र नहीं करता है.";
+
+sonar.disconnect = "";
+sonar.connect = "";
+sonar.connect.confirm = "";
+sonar.connect.confirm.warning = "";
 
 // Color disc mode
 widget.color.disc = "";
@@ -2510,7 +2520,9 @@ widget.color.square = "";
 // version trial
 version.buyWeb = "वेब संस्करण केवल एक डेमो है";
 version.buyFull = "संपूर्ण संस्करण में अपग्रेड करें";
-version.restorePurchase = "ख़रीदारी रीस्टोर करें";
+version.buyQR = "";
+version.restoreFull = "ख़रीदारी रीस्टोर करें";
+version.buyQR.promo = "";
 
 version.trialHistory = "परीक्षण संस्करण: 4 अनडू/रीडू सम्भव";
 version.trialLayer = "परीक्षण संस्करण: 1 परत प्रति वस्तु";

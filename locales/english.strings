@@ -10,6 +10,10 @@ confirm.cancel = "Cancel";
 // Experimental feature
 experimental = "Experimental!";
 
+clipboard = "Clipboard";
+clipboard.copy = "Copy";
+clipboard.paste = "Paste";
+
 // memory size
 bytes = "bytes";
 kB = "kB";
@@ -252,6 +256,8 @@ alert.autoSave.auto = "Autosave in... $0s";
 alert.needLayer = "The current tool requires an active layer.";
 // The user decides to hide the painting on the objects
 alert.paintingHidden = "Painting is hidden!";
+// The user decides to hide the masking on the objects
+alert.maskingHidden = "Mask is hidden!";
 // The selected object doesn't have any layers
 alert.noPartialWireframe = "Partial drawing is disabled when wireframe is displayed.";
 // The user has selected a tool that is more intuitive to use when the camera is in orthographic mode
@@ -262,6 +268,8 @@ alert.state.trial = "Trial version: undo canceled";
 background = "Background";
 // A flat color will be displayed in the background of the scene
 background.color = "Color";
+// 2 color with rotation
+background.gradient = "Gradient";
 // The environment (HDRI) will be displayed in the background
 background.environment = "Environment";
 background.blur = "Blur";
@@ -391,12 +399,10 @@ curve.spiral.angle = "Angle offset";
 debug.targetFPS = "Target FPS";
 debug.targetFPS.help = "When disabled, the default value means it will sync with the display's refresh rate.";
 
-// Debug option, the newly created primitives will contains texture coordinates (UVs)
-debug.uvPrimitive = "Keep primitive UVs";
-debug.uvPrimitive.warning = "Disable this option if you don't need UVs (extra memory).";
-debug.uvPrimitive.help = "For now, only Box and Sphere are supported.
+// Warning about UVs (using extra memory)
+debug.uvPrimitive.warning = "Disable this option if you don't need UVs.
 
-Other types will be supported in the future.";
+Meshes with UVs will use more memory.";
 // Debug option, Normalize means transforming the data so that it fits in [0-1] the range
 debug.uvNormalize = "Normalize UVs";
 debug.uvNormalize.help = "Nomad will normalise the UVs inside the [0-1] tile.";
@@ -406,9 +412,7 @@ debug.uvBFF.help = "Add an alternative unwrapping method (boundary first flatten
 
 Note that BFF will produce overlaps if your mesh topology is different than a disk or a sphere.";
 
-debug.quadriflow = "Add Quadriflow";
-debug.quadriflow.help = "QuadriFlow might crash!";
-
+debug.quadriflow = "Quadriflow";
 
 // Debug option, display an window with some debugging logs
 debug.logs = "Logs";
@@ -570,7 +574,7 @@ file.export.stl.warning = "Layers and extra painting (roughness, metalness, etc)
 file.export.stl.color = "Vertex colors";
 file.export.stl.color.help = "Some 3d softwares will be able to read it but not all of them.";
 
-file.export.ply = "Export STL";
+file.export.ply = "Export PLY";
 file.export.ply.warning = "Layers and extra painting (roughness, metalness, etc) will be lost.";
 // Whether we include the vertex color in the exported file
 file.export.ply.color0 = "Vertex colors";
@@ -615,7 +619,7 @@ file.render.size = "Final size";
 // Desired size of the exported screenshot (custom vs predefined size)
 file.render.size.custom = "Custom";
 // Screen resolution parameters for the export screenshot features
-file.render.screenResolution = "screen";
+file.render.screenResolution = "Screen";
 // width of exported screenshot
 file.render.width = "Width";
 // height of exported screenshot
@@ -672,18 +676,14 @@ Note that it only work if the current brush has painting enabled.";
 
 // Three fingers on screen
 gesture.three.title = "Three fingers";
-// Drag 3 fingers horizontally on the canvas to rotate the environment, lights and MatCap
-gesture.fingerLighting = "Rotate lighting (3 fingers)";
-// Canvas means the scene viewport (the entire screen but excluding the interface)
-gesture.fingerLighting.help = "Drag 3 fingers horizontally on the canvas to rotate the environment, lights and MatCap.";
-// Drag 3 fingers vertically to edit the tool radius
-gesture.fingerRadius = "Edit tool radius (3 fingers)";
-// Canvas means the scene viewport (the entire screen but excluding the interface)
-gesture.fingerRadius.help = "Drag 3 fingers vertically on the canvas to edit the tool radius.";
+gesture.three.light = "Rotate lighting";
+gesture.three.light.help = "Rotate the environment, lights and MatCap.";
+gesture.three.radius = "Tool Radius";
+gesture.three.intensity = "Tool Intensity";
 
 // If this option is enabled, finger inputs on screen will use the smoothing tool
-gesture.fingerSmooth = "Finger always smooths";
-gesture.fingerSmooth.help = "This option is only active if a sculpting tool is active.";
+gesture.finger.smooth = "Finger always smooths";
+gesture.finger.smooth.help = "This option is only active if a sculpting tool is active.";
 // If enabled, the pressure will be taken into account even if it's not coming from a recognized stylus
 gesture.unknownPressure = "Allow unrecognized pressure";
 gesture.unknownPressure.help = "Check this option if the pressure doesn't work with your pencil or if you need pressure finger.";
@@ -751,8 +751,8 @@ history.includePostProcess = "PostProcess";
 // include shading parameters (MatCap & HDRIs) editing in the undo/redo
 history.includeShading = "MatCaps & HDRIs";
 // Can limit the stack of undo/redo size
-history.limitSize = "History limit (Mb)";
-history.limitSize.help = "Maximum size (in Mb) of the history.
+history.limitSize = "History limit";
+history.limitSize.help = "Maximum size of the history.
 
 The history will be updated on the next recorded operation.";
 // Limit the number of undo in the history stack
@@ -860,12 +860,14 @@ interface.flipMiddle = "Mirror side bars";
 interface.materialPreview = "Material color preview";
 // Interface customization
 interface.materialPreview.help = "When you select a color for a material, a preview of this material is displayed on the currently selected object.";
-interface.toolbox.hide = "Hide toolbox";
-interface.toolboxHide.help = "Enable this option if you want to hide the toolbox.";
+// list of tools
+interface.toolbox = "Toolbox";
+// hide toolbox by default
+interface.toolbox.hide = "Hidden";
 // Interface customization (the toolbox is a grid, we can adjust the column count)
-interface.toolbox.maxColumn = "Max column toolbox";
+interface.toolbox.columns = "Columns";
 // Reset the tool's order in the toolbox
-interface.toolbox.resetOrder = "Reset toolbox order";
+interface.toolbox.resetOrder = "Reset order";
 // Scale the interface
 interface.scale = "Overall scale";
 // Spacing between widgets
@@ -1161,11 +1163,7 @@ paint.usePainting = "Stroke painting";
 paint.intensity = "Paint intensity";
 // Apply the paint on the object
 paint.paintAll = "Paint all";
-paint.paintAll.help = "Apply the current material to the object.
-
-Masked area and disabled channels won't be painted.";
-// Apply the paint on the object but ignore painting intensity (force full intensity)
-paint.paintAllForce = "Force paint all";
+paint.paintAll.help = "Apply the current material to the object.";
 paint.strokePainting.title = "Painting";
 // Brush stroke texture
 paint.texture.warningEnable = "Stroke painting needs to be enabled to allow texture projection (checkbox on top)!";
@@ -1331,7 +1329,7 @@ primitive.plane = "Plane";
 primitive.triplanar = "Triplanar";
 primitive.faceXYZ = "Face XYZ";
 primitive.faceXYZ.help = "UV-unwrapped base mesh provided by https://texturing.xyz/";
-primitive.needValidate = "Primitives should be validated in order to be sculpted.";
+primitive.needValidate = "Primitive should be validated!";
 
 // If enabled, we can edit primitive inside the viewport
 primitive.edit = "Edit";
@@ -1423,11 +1421,13 @@ primitive.coneRadius = "Radius";
 primitive.coneHeight = "Height";
 // Hole sub menu (cylinder, tube, etc)
 primitive.hole = "Hole";
-// Make a hole in the primtive to make it hollow
+// Make a hole in the primitive to make it hollow
 primitive.hasHole = "Has hole";
 // Curve profile (synonym: profile, curve)
 primitive.profile = "Profile";
 primitive.profile.viewport = "Show in viewport";
+// If the revolution surface has caps (E.g: cylinder)
+primitive.cap = "Cap";
 
 // Singular of Repeaters (Nodes that make many copies of its children (type of mirror/curve/array/radial))
 repeater = "Repeater";
@@ -1570,7 +1570,7 @@ settings.cursor.showRope = "Show rope stabilizer";
 // indicator
 settings.indicator.title = "Indicator";
 settings.indicator.title.help = "Display a visual indicator (tutorials, screen capture, etc).";
-settings.indicator.size = "size";
+settings.indicator.size = "Size";
 // Highlight (the object glows when we select it)
 settings.highlight.selection = "Highlight selection";
 // Highlight settings
@@ -1677,6 +1677,9 @@ shortcut.maskVisible.short = "Mask";
 // bottom shortcut buttons (should be SHORT)
 shortcut.solo = "Solo";
 shortcut.solo.short = "Solo";
+// bottom shortcut buttons (should be SHORT)
+shortcut.xray = "X-Ray";
+shortcut.xray.short = "X-Ray";
 // bottom shortcut buttons (should be SHORT)
 shortcut.voxelRemesh = "Voxel remesh";
 shortcut.voxelRemesh.short = "Voxel";
@@ -1890,8 +1893,6 @@ stroke.falloffProject.circle = "Circle";
 // Symmetry
 symmetry = "Symmetry";
 symmetry.enable = "Enabled";
-// Display a warning (the feature is only available for mesh object)
-symmetry.primitiveWarning = "Brush symmetry is only available for primitives that are validated, with the exception of the Triplanar.";
 symmetry.plane.title = "Planes";
 symmetry.toolIgnore = "The current tool ignores symmetry.";
 // Instead of planar symmetry, use a radial symmetry
@@ -2047,9 +2048,13 @@ tool.transform.snap = "Snap";
 tool.measure = "Measure";
 // Ideally <10 chars (Lattice, deformer)
 tool.lattice = "Lattice";
+// Ideally <10 chars (Quad Remesher)
+tool.remesh = "Quad Remesher";
+tool.remesh.guides = "Guides";
 // Ideally <10 chars (FaceGroup)
 tool.faceGroup = "Face Group";
 tool.faceGroup.autoPick = "Auto-pick";
+tool.faceGroup.flush = "Remove unused";
 // Ideally <10 chars (Hide)
 tool.hide = "Hide";
 // Ideally <10 chars (View tool, do nothing in particular)
@@ -2136,25 +2141,21 @@ tool.mask.polish.border = "Borders only";
 // Smooth the border in a way that it matches completely with its dual
 tool.mask.polish.syncBorder = "Sync border";
 // topology of extracted mesh
-tool.mask.autoDivision = "Auto Edge-loop (side)";
-tool.mask.division = "Edge loop (side)";
+tool.mask.edgeLoop = "Edge loop (side)";
+tool.mask.edgeLoop.auto = "Auto edge loop";
+tool.mask.edgeLoop.division = "Division";
 // The thickness of the extracted mesh (from the painted mask)
 tool.mask.thickness = "Thickness";
-// The extracted mesh has the same height everywhere
-tool.mask.thicknessUniform = "Uniform thickness";
-tool.mask.thicknessUniform.help = "If this option is disabled, the mask intensity will drive the height of the extracted surface.";
 // Carve the mask into the surface
 tool.mask.carve = "Carve";
 // Extract a new mesh from the painted mask
 tool.mask.extract = "Extract";
+// Preview extract
+tool.mask.preview = "Preview";
 // Extract two new mesh from the painted mask and from the unmasked area
 tool.mask.split = "Split";
 // How should we close the topology of the extracted object
-tool.mask.split.mask = "Closing action (masked):";
-// How should we close the topology of the extracted object
-tool.mask.split.unmask = "Closing action (unmasked):";
-// How should we close the topology of the extracted object
-tool.mask.action = "Closing action:";
+tool.mask.action = "Closing action";
 tool.mask.action.help = "-- None
 Simply extract the part and let the extracted part opened.
 
@@ -2268,7 +2269,7 @@ tool.hole = "Hole filling";
 tool.hole.fillHoles = "Fill holes";
 // synonym: Alternative method
 tool.hole.method.fill = "Fill";
-tool.hole.method.screen = "Legacy";
+tool.hole.method.legacy = "Legacy";
 tool.hole.method.boolean = "Boolean";
 tool.hole.bridges = "Screen-space boolean";
 tool.hole.bridges.help = "If this option is enabled, you can punch holes in the volume.
@@ -2382,7 +2383,7 @@ This feature can have a noticeable impact on performance.
 
 Layers are updated correctly.";
 topology.dynamic.method = "Detail based on...";
-topology.dynamic.method.zoom = "Zoom";
+topology.dynamic.method.screen = "Screen";
 topology.dynamic.method.radius = "Radius";
 topology.dynamic.method.constant = "Constant";
 topology.dynamic.method.help = "-- Zoom
@@ -2558,11 +2559,23 @@ binding.rotateLighting = "Rotate lighting";
 // The Camera pivot is the point around which the camera rotates
 binding.updatePivot = "Update pivot...";
 
+quadremesh.adaptQuadCount = "Adaptive Quad Count";
+quadremesh.curvatureAdaptivness = "Adaptive Size";
+quadremesh.curvatureAdaptivness.help = "At 100%, quads size will vary depending on the object curvature, allowing smaller quad on high curvature.
+At 0%, quads size will be uniform.";
+quadremesh.autoDetectHardEdges = "Auto-Detect Hard Edges";
+quadremesh.useVertexColors = "Preserve painting";
+
 // Privacy policy
 privacyPolicy.title = "Privacy Policy";
 privacyPolicy.reject = "Reject";
 // Hexanomad is the company name
 privacyPolicy = "Hexanomad does not collect any data from Nomad Sculpt.";
+
+sonar.disconnect = "Disconnect SonarPen";
+sonar.connect = "Connect SonarPen";
+sonar.connect.confirm = "Connect SonarPen?";
+sonar.connect.confirm.warning = "Sonar Pen will use the microphone (audio loopback) to detect the pressure of the pen.";
 
 // Color disc mode
 widget.color.disc = "Disc";
@@ -2572,7 +2585,23 @@ widget.color.square = "Square";
 // version trial
 version.buyWeb = "Web version is only a demo";
 version.buyFull = "Upgrade to full version";
-version.restorePurchase = "Restore purchase";
+version.buyQR = "Purchase";
+version.restoreFull = "Restore purchase";
+version.buyQR.promo = "
+The Quad Remesher is an an algorithm that outputs quad dominant mesh.
+The quad distribution will try to follow the natural curvature of the object.
+
+The algorithm can also adapt the quads size depending on the local curvature.
+
+You can also guide the resulting topology with:
+
+- Face Group $0 (make sure to smooth their borders for better result!)
+
+- Planar X/Y/Z symmetry $1
+
+- Curve guides $2
+
+The Quad Remesher is developed by https://exoside.com/.";
 
 version.trialHistory = "Trial version: 4 undo/redo possible";
 version.trialLayer = "Trial version: 1 layer per object";

@@ -10,6 +10,10 @@ confirm.cancel = "Cancelar";
 // Experimental feature
 experimental = "¡Experimental!";
 
+clipboard = "";
+clipboard.copy = "";
+clipboard.paste = "";
+
 // memory size
 bytes = "";
 kB = "";
@@ -252,6 +256,8 @@ alert.autoSave.auto = "Guardar automáticamente en... $0s";
 alert.needLayer = "La herramienta actual requiere una capa activa.";
 // The user decides to hide the painting on the objects
 alert.paintingHidden = "Pintura oculta!";
+// The user decides to hide the masking on the objects
+alert.maskingHidden = "";
 // The selected object doesn't have any layers
 alert.noPartialWireframe = "El dibujo parcial se desactiva cuando se muestra el esquema de página.";
 // The user has selected a tool that is more intuitive to use when the camera is in orthographic mode
@@ -262,6 +268,8 @@ alert.state.trial = "Deshacer cancelación: versión de prueba";
 background = "Fondo";
 // A flat color will be displayed in the background of the scene
 background.color = "Color";
+// 2 color with rotation
+background.gradient = "Degradado";
 // The environment (HDRI) will be displayed in the background
 background.environment = "Entorno";
 background.blur = "Borroso";
@@ -387,12 +395,8 @@ curve.spiral.angle = "Desplazamiento de ángulo";
 debug.targetFPS = "FPS del objetivo";
 debug.targetFPS.help = "";
 
-// Debug option, the newly created primitives will contains texture coordinates (UVs)
-debug.uvPrimitive = "Mantén los UV primitivos";
+// Warning about UVs (using extra memory)
 debug.uvPrimitive.warning = "Deshabilita esta opción si no necesitas UV (memoria adicional).";
-debug.uvPrimitive.help = "Por ahora, solo se admiten Box y Sphere.
-
-En el futuro se admitirán otros tipos.";
 // Debug option, Normalize means transforming the data so that it fits in [0-1] the range
 debug.uvNormalize = "Normalizar UV";
 debug.uvNormalize.help = "Nomad normalizará los UV dentro del mosaico [0-1].";
@@ -403,8 +407,6 @@ debug.uvBFF.help = "Agrega un método alternativo de desenvolver (primer aplanam
 Ten en cuenta que BFF producirá superposiciones si tu topología de malla es diferente de un disco o una esfera.";
 
 debug.quadriflow = "";
-debug.quadriflow.help = "";
-
 
 // Debug option, display an window with some debugging logs
 debug.logs = "Registros";
@@ -607,7 +609,7 @@ file.render.size = "Tamaño final";
 // Desired size of the exported screenshot (custom vs predefined size)
 file.render.size.custom = "Personalizar";
 // Screen resolution parameters for the export screenshot features
-file.render.screenResolution = "pantalla";
+file.render.screenResolution = "Pantalla";
 // width of exported screenshot
 file.render.width = "Ancho";
 // height of exported screenshot
@@ -664,18 +666,14 @@ Importante: esto solo funciona si el pincel actual tiene activada la pintura.";
 
 // Three fingers on screen
 gesture.three.title = "Tres dedos";
-// Drag 3 fingers horizontally on the canvas to rotate the environment, lights and MatCap
-gesture.fingerLighting = "Rotar la iluminación (3 dedos)";
-// Canvas means the scene viewport (the entire screen but excluding the interface)
-gesture.fingerLighting.help = "Arrastra 3 dedos horizontalmente sobre el lienzo para rotar el entorno, las luces y el MatCap.";
-// Drag 3 fingers vertically to edit the tool radius
-gesture.fingerRadius = "Radio de la herramienta de edición (3 dedos)";
-// Canvas means the scene viewport (the entire screen but excluding the interface)
-gesture.fingerRadius.help = "Arrastra 3 dedos verticalmente para editar el radio.";
+gesture.three.light = "Girar iluminación";
+gesture.three.light.help = "Rotar el entorno, las luces y el MatCap.";
+gesture.three.radius = "Radio de herramienta";
+gesture.three.intensity = "Intensidad de herramienta";
 
 // If this option is enabled, finger inputs on screen will use the smoothing tool
-gesture.fingerSmooth = "El dedo siempre suaviza";
-gesture.fingerSmooth.help = "";
+gesture.finger.smooth = "El dedo siempre suaviza";
+gesture.finger.smooth.help = "";
 // If enabled, the pressure will be taken into account even if it's not coming from a recognized stylus
 gesture.unknownPressure = "Permitir presión no reconocida";
 gesture.unknownPressure.help = "Marca esta opción si la presión no funciona con el lápiz o si necesitas presionar con el dedo.";
@@ -741,8 +739,8 @@ history.includePostProcess = "Posprocesado";
 // include shading parameters (MatCap & HDRIs) editing in the undo/redo
 history.includeShading = "MatCaps y Hdris";
 // Can limit the stack of undo/redo size
-history.limitSize = "Límite de historial (Mb)";
-history.limitSize.help = "Tamaño máximo (en Mb) del historial.
+history.limitSize = "Límite de historial";
+history.limitSize.help = "Tamaño máximo del historial.
 
 El historial se actualizará en la siguiente operación registrada.";
 // Limit the number of undo in the history stack
@@ -848,12 +846,14 @@ interface.flipMiddle = "voltear medio";
 interface.materialPreview = "Vista previa del Selector de materiales";
 // Interface customization
 interface.materialPreview.help = "Al seleccionar un color para un material, se muestra una previsualización del material en el objeto seleccionado.";
-interface.toolbox.hide = "Ocultar la caja de herramientas";
-interface.toolboxHide.help = "Activa esta opción si quieres ocultar la caja de herramientas.";
+// list of tools
+interface.toolbox = "Caja de herramientas";
+// hide toolbox by default
+interface.toolbox.hide = "Ocultar";
 // Interface customization (the toolbox is a grid, we can adjust the column count)
-interface.toolbox.maxColumn = "Caja de herramientas de columna máxima";
+interface.toolbox.columns = "Columna";
 // Reset the tool's order in the toolbox
-interface.toolbox.resetOrder = "Restablecer el orden de la caja de herramientas";
+interface.toolbox.resetOrder = "Restablecer el orden";
 // Scale the interface
 interface.scale = "Escala general";
 // Spacing between widgets
@@ -1149,11 +1149,7 @@ paint.usePainting = "Pintura de trazo";
 paint.intensity = "Intensidad de pintura";
 // Apply the paint on the object
 paint.paintAll = "Pintar todo";
-paint.paintAll.help = "Aplicar el material actual a la malla.
-
-El área enmascarada y los canales deshabilitados no se pintarán.";
-// Apply the paint on the object but ignore painting intensity (force full intensity)
-paint.paintAllForce = "Forzar pintura en todo";
+paint.paintAll.help = "Aplicar el material actual a la malla.";
 paint.strokePainting.title = "Pintura";
 // Brush stroke texture
 paint.texture.warningEnable = "La pintura de trazos debe estar habilitada para permitir la proyección de texturas (casilla de verificación en la parte superior)";
@@ -1319,7 +1315,7 @@ primitive.plane = "Plano";
 primitive.triplanar = "Triplanar";
 primitive.faceXYZ = "Cara XYZ";
 primitive.faceXYZ.help = "Malla base sin envolver UV proporcionada por https://texturing.xyz/";
-primitive.needValidate = "Las primitivas deben ser validadas para ser esculpidas.";
+primitive.needValidate = "Las primitivas deben ser validadas!";
 
 // If enabled, we can edit primitive inside the viewport
 primitive.edit = "Editar";
@@ -1411,11 +1407,13 @@ primitive.coneRadius = "Radio";
 primitive.coneHeight = "Altura";
 // Hole sub menu (cylinder, tube, etc)
 primitive.hole = "Agujero";
-// Make a hole in the primtive to make it hollow
+// Make a hole in the primitive to make it hollow
 primitive.hasHole = "Tiene un agujero";
 // Curve profile (synonym: profile, curve)
 primitive.profile = "";
 primitive.profile.viewport = "";
+// If the revolution surface has caps (E.g: cylinder)
+primitive.cap = "";
 
 // Singular of Repeaters (Nodes that make many copies of its children (type of mirror/curve/array/radial))
 repeater = "";
@@ -1547,7 +1545,7 @@ settings.cursor.showRope = "Mostrar estabilizador de cuerda";
 // indicator
 settings.indicator.title = "";
 settings.indicator.title.help = "";
-settings.indicator.size = "";
+settings.indicator.size = "Tamaño";
 // Highlight (the object glows when we select it)
 settings.highlight.selection = "Resaltar mallas seleccionadas";
 // Highlight settings
@@ -1654,6 +1652,9 @@ shortcut.maskVisible.short = "Máscara";
 // bottom shortcut buttons (should be SHORT)
 shortcut.solo = "Individual";
 shortcut.solo.short = "Individual";
+// bottom shortcut buttons (should be SHORT)
+shortcut.xray = "";
+shortcut.xray.short = "";
 // bottom shortcut buttons (should be SHORT)
 shortcut.voxelRemesh = "Reforzar malla Voxel";
 shortcut.voxelRemesh.short = "Voxel";
@@ -1850,8 +1851,6 @@ stroke.falloffProject.circle = "";
 // Symmetry
 symmetry = "Simetría";
 symmetry.enable = "Activado";
-// Display a warning (the feature is only available for mesh object)
-symmetry.primitiveWarning = "La simetría de pincel solo está disponible para primitivas validadas, con la excepción de la Triplanar.";
 symmetry.plane.title = "Planos";
 symmetry.toolIgnore = "La herramienta actual ignora la simetría.";
 // Instead of planar symmetry, use a radial symmetry
@@ -2006,9 +2005,13 @@ tool.transform.snap = "Capturar";
 tool.measure = "medir";
 // Ideally <10 chars (Lattice, deformer)
 tool.lattice = "";
+// Ideally <10 chars (Quad Remesher)
+tool.remesh = "";
+tool.remesh.guides = "";
 // Ideally <10 chars (FaceGroup)
 tool.faceGroup = "";
 tool.faceGroup.autoPick = "";
+tool.faceGroup.flush = "";
 // Ideally <10 chars (Hide)
 tool.hide = "Ocultar";
 // Ideally <10 chars (View tool, do nothing in particular)
@@ -2093,23 +2096,19 @@ tool.mask.polish.border = "";
 // Smooth the border in a way that it matches completely with its dual
 tool.mask.polish.syncBorder = "";
 // topology of extracted mesh
-tool.mask.autoDivision = "";
-tool.mask.division = "";
+tool.mask.edgeLoop = "";
+tool.mask.edgeLoop.auto = "";
+tool.mask.edgeLoop.division = "";
 // The thickness of the extracted mesh (from the painted mask)
 tool.mask.thickness = "Espesor";
-// The extracted mesh has the same height everywhere
-tool.mask.thicknessUniform = "";
-tool.mask.thicknessUniform.help = "";
 // Carve the mask into the surface
 tool.mask.carve = "Grabar";
 // Extract a new mesh from the painted mask
 tool.mask.extract = "Extraer";
+// Preview extract
+tool.mask.preview = "Vista previa";
 // Extract two new mesh from the painted mask and from the unmasked area
 tool.mask.split = "Dividir";
-// How should we close the topology of the extracted object
-tool.mask.split.mask = "Acción de cierre (enmascarado):";
-// How should we close the topology of the extracted object
-tool.mask.split.unmask = "Acción de cierre (desenmascarad):";
 // How should we close the topology of the extracted object
 tool.mask.action = "Acción de cierre:";
 tool.mask.action.help = "-- Ninguno
@@ -2222,7 +2221,7 @@ tool.hole = "Relleno de agujero";
 tool.hole.fillHoles = "Rellenar agujeros";
 // synonym: Alternative method
 tool.hole.method.fill = "";
-tool.hole.method.screen = "";
+tool.hole.method.legacy = "";
 tool.hole.method.boolean = "Booleano";
 tool.hole.bridges = "Espacio de pantalla booleano";
 tool.hole.bridges.help = "Si esta opción está habilitada, puedes hacer agujeros en el volumen.
@@ -2336,7 +2335,7 @@ Esta característica puede tener un impacto notable en el rendimiento.
 
 Las capas se actualizan correctamente.";
 topology.dynamic.method = "Detalle basado en...";
-topology.dynamic.method.zoom = "Zoom";
+topology.dynamic.method.screen = "Pantalla";
 topology.dynamic.method.radius = "Radio";
 topology.dynamic.method.constant = "Constante";
 topology.dynamic.method.help = "-- Zoom
@@ -2487,11 +2486,22 @@ binding.rotateLighting = "Girar iluminación";
 // The Camera pivot is the point around which the camera rotates
 binding.updatePivot = "Pivote";
 
+quadremesh.adaptQuadCount = "";
+quadremesh.curvatureAdaptivness = "";
+quadremesh.curvatureAdaptivness.help = "";
+quadremesh.autoDetectHardEdges = "";
+quadremesh.useVertexColors = "Preservar pintura";
+
 // Privacy policy
 privacyPolicy.title = "Política de privacidad";
 privacyPolicy.reject = "Rechazar";
 // Hexanomad is the company name
 privacyPolicy = "Hexanomad no recopila ningún dato de Nomad Sculpt.";
+
+sonar.disconnect = "";
+sonar.connect = "";
+sonar.connect.confirm = "";
+sonar.connect.confirm.warning = "";
 
 // Color disc mode
 widget.color.disc = "";
@@ -2501,7 +2511,9 @@ widget.color.square = "";
 // version trial
 version.buyWeb = "La versión web es solo una demostración";
 version.buyFull = "Actualiza a la versión completa";
-version.restorePurchase = "Restaurar compra";
+version.buyQR = "";
+version.restoreFull = "Restaurar compra";
+version.buyQR.promo = "";
 
 version.trialHistory = "Versión de prueba: Deshacer/rehacer 4 veces";
 version.trialLayer = "Versión de prueba: Una capa por malla";

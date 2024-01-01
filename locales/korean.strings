@@ -10,6 +10,10 @@ confirm.cancel = "취소";
 // Experimental feature
 experimental = "실험적!";
 
+clipboard = "";
+clipboard.copy = "";
+clipboard.paste = "";
+
 // memory size
 bytes = "바이트";
 kB = "";
@@ -252,6 +256,8 @@ alert.autoSave.auto = "$0초 후 자동저장";
 alert.needLayer = "현재 도구는 활성화된 레이어를 요구합니다.";
 // The user decides to hide the painting on the objects
 alert.paintingHidden = "페인팅 숨김!";
+// The user decides to hide the masking on the objects
+alert.maskingHidden = "";
 // The selected object doesn't have any layers
 alert.noPartialWireframe = "와이어프레임을 표시하면 부분 드로잉이 비활성화됩니다.";
 // The user has selected a tool that is more intuitive to use when the camera is in orthographic mode
@@ -262,6 +268,8 @@ alert.state.trial = "평가판: `실행 취소`가 취소됨";
 background = "배경";
 // A flat color will be displayed in the background of the scene
 background.color = "색상";
+// 2 color with rotation
+background.gradient = "그라데이션";
 // The environment (HDRI) will be displayed in the background
 background.environment = "환경";
 background.blur = "흐림 효과";
@@ -387,12 +395,8 @@ curve.spiral.angle = "각도 오프셋";
 debug.targetFPS = "";
 debug.targetFPS.help = "";
 
-// Debug option, the newly created primitives will contains texture coordinates (UVs)
-debug.uvPrimitive = "프리미티브 UV 유지하기";
+// Warning about UVs (using extra memory)
 debug.uvPrimitive.warning = "UV가 필요하지 않은 경우 이 옵션을 비활성화하십시오 (추가 메모리 확보).";
-debug.uvPrimitive.help = "현재는 상자와 구체만 지원됩니다.
-
-다른 유형은 향후 지원될 예정입니다.";
 // Debug option, Normalize means transforming the data so that it fits in [0-1] the range
 debug.uvNormalize = "UV 노멀라이즈";
 debug.uvNormalize.help = "Nomad는 [0-1] 타일 안에 있는 UV를 노멀라이즈합니다.";
@@ -403,8 +407,6 @@ debug.uvBFF.help = "대체 언랩 방법(BFF, Boundary First Flattening)을 추�
 메시 토폴로지가 원반 또는 구체와 다른 경우 BFF에 의해 중첩이 발생하니 주의해주십시오.";
 
 debug.quadriflow = "";
-debug.quadriflow.help = "";
-
 
 // Debug option, display an window with some debugging logs
 debug.logs = "로그";
@@ -664,18 +666,14 @@ gesture.dropper.help = "버스를 길게 누르면 색상/머티리얼 피커가
 
 // Three fingers on screen
 gesture.three.title = "세 손가락";
-// Drag 3 fingers horizontally on the canvas to rotate the environment, lights and MatCap
-gesture.fingerLighting = "광원 회전 (세 손가락)";
-// Canvas means the scene viewport (the entire screen but excluding the interface)
-gesture.fingerLighting.help = "세 손가락으로 캔버스 위를 가로로 드래그하면 환경, 광원, MatCap을 회전할 수 있습니다.";
-// Drag 3 fingers vertically to edit the tool radius
-gesture.fingerRadius = "도구 반지름 편집 (세 손가락)";
-// Canvas means the scene viewport (the entire screen but excluding the interface)
-gesture.fingerRadius.help = "캔버스에서 세 손가락을 수직으로 드래그하여 도구의 반지름을 수정합니다.";
+gesture.three.light = "광원 회전";
+gesture.three.light.help = "환경, 광원, MatCap을 회전할 수 있습니다.";
+gesture.three.radius = "도구 반지름";
+gesture.three.intensity = "도구 강도";
 
 // If this option is enabled, finger inputs on screen will use the smoothing tool
-gesture.fingerSmooth = "손가락을 항상 스무드 도구로 사용";
-gesture.fingerSmooth.help = "";
+gesture.finger.smooth = "손가락을 항상 스무드 도구로 사용";
+gesture.finger.smooth.help = "";
 // If enabled, the pressure will be taken into account even if it's not coming from a recognized stylus
 gesture.unknownPressure = "인식되지 않는 압력 허용";
 gesture.unknownPressure.help = "연필로 압력을 가할 수 없거나 압력 손가락이 필요한 경우 이 옵션을 선택하십시오.";
@@ -741,8 +739,8 @@ history.includePostProcess = "포스트 프로세싱";
 // include shading parameters (MatCap & HDRIs) editing in the undo/redo
 history.includeShading = "MatCap 및 HDRI";
 // Can limit the stack of undo/redo size
-history.limitSize = "작업 내역 제한 (Mb)";
-history.limitSize.help = "작업 내역의 최소 크기 (Mb 단위)";
+history.limitSize = "작업 내역 제한";
+history.limitSize.help = "작업 내역의 최소 크기";
 // Limit the number of undo in the history stack
 history.limitStack = "스택 제한";
 history.limitStack.help = "응용 프로그램이 기억할 수 있는 최대 작업 수입니다.
@@ -846,12 +844,14 @@ interface.flipMiddle = "측면 바 반전";
 interface.materialPreview = "머티리얼 색상 미리보기";
 // Interface customization
 interface.materialPreview.help = "머티리얼의 색상을 선택하면, 이 머티리얼에 대한 미리보기가 현재 선택한 오브젝트에 표시됩니다.";
-interface.toolbox.hide = "도구 상자 가리기";
-interface.toolboxHide.help = "도구 상자를 숨기려면 이 옵션을 켜십시오.";
+// list of tools
+interface.toolbox = "도구 상자";
+// hide toolbox by default
+interface.toolbox.hide = "가리기";
 // Interface customization (the toolbox is a grid, we can adjust the column count)
-interface.toolbox.maxColumn = "도구 상자 최대 열";
+interface.toolbox.columns = "그리드 열";
 // Reset the tool's order in the toolbox
-interface.toolbox.resetOrder = "도구 상자 순서 초기화";
+interface.toolbox.resetOrder = "순서 초기화";
 // Scale the interface
 interface.scale = "인터페이스 스케일";
 // Spacing between widgets
@@ -1147,11 +1147,7 @@ paint.usePainting = "스트로크 페인팅";
 paint.intensity = "페인트 강도";
 // Apply the paint on the object
 paint.paintAll = "모두 칠하기";
-paint.paintAll.help = "현재 머티리얼을 오브젝트에 적용합니다.
-
-마스크 부분과 비활성화된 채널은 페인팅되지 않습니다.";
-// Apply the paint on the object but ignore painting intensity (force full intensity)
-paint.paintAllForce = "강제로 모두 칠하기";
+paint.paintAll.help = "현재 머티리얼을 오브젝트에 적용합니다.";
 paint.strokePainting.title = "페인팅";
 // Brush stroke texture
 paint.texture.warningEnable = "텍스처 투영을 허용하려면 스트로크 페인팅을 활성화해야 합니다 (상단의 체크상자)!";
@@ -1317,7 +1313,7 @@ primitive.plane = "평면";
 primitive.triplanar = "트라이플레이너";
 primitive.faceXYZ = "면 XYZ";
 primitive.faceXYZ.help = "https://texturing.xyz/ 에서 제공하는 UV-언랩 기본 메시";
-primitive.needValidate = "프리미티브를 스컬프팅하기 전에 유효성 검사를 해야 합니다.";
+primitive.needValidate = "프리미티브를 전에 유효성 검사를 해야 합니다!";
 
 // If enabled, we can edit primitive inside the viewport
 primitive.edit = "편집";
@@ -1409,11 +1405,13 @@ primitive.coneRadius = "반지름";
 primitive.coneHeight = "높이";
 // Hole sub menu (cylinder, tube, etc)
 primitive.hole = "구멍";
-// Make a hole in the primtive to make it hollow
+// Make a hole in the primitive to make it hollow
 primitive.hasHole = "구멍 있음";
 // Curve profile (synonym: profile, curve)
 primitive.profile = "";
 primitive.profile.viewport = "";
+// If the revolution surface has caps (E.g: cylinder)
+primitive.cap = "";
 
 // Singular of Repeaters (Nodes that make many copies of its children (type of mirror/curve/array/radial))
 repeater = "";
@@ -1547,7 +1545,7 @@ settings.cursor.showRope = "로프 스태빌라이저 보기";
 // indicator
 settings.indicator.title = "";
 settings.indicator.title.help = "";
-settings.indicator.size = "";
+settings.indicator.size = "크기";
 // Highlight (the object glows when we select it)
 settings.highlight.selection = "선택 영역 강조";
 // Highlight settings
@@ -1652,6 +1650,9 @@ shortcut.maskVisible.short = "마스크";
 // bottom shortcut buttons (should be SHORT)
 shortcut.solo = "솔로";
 shortcut.solo.short = "솔로";
+// bottom shortcut buttons (should be SHORT)
+shortcut.xray = "";
+shortcut.xray.short = "";
 // bottom shortcut buttons (should be SHORT)
 shortcut.voxelRemesh = "복셀 리메시";
 shortcut.voxelRemesh.short = "복셀";
@@ -1848,8 +1849,6 @@ stroke.falloffProject.circle = "";
 // Symmetry
 symmetry = "대칭";
 symmetry.enable = "활성화";
-// Display a warning (the feature is only available for mesh object)
-symmetry.primitiveWarning = "브러시 대칭은 트라이플레이너를 제외하면 검증된 프리미티브에만 사용할 수 있습니다.";
 symmetry.plane.title = "평면";
 symmetry.toolIgnore = "현재 도구는 대칭을 무시합니다.";
 // Instead of planar symmetry, use a radial symmetry
@@ -2003,9 +2002,13 @@ tool.transform.snap = "스냅";
 tool.measure = "측정";
 // Ideally <10 chars (Lattice, deformer)
 tool.lattice = "";
+// Ideally <10 chars (Quad Remesher)
+tool.remesh = "";
+tool.remesh.guides = "";
 // Ideally <10 chars (FaceGroup)
 tool.faceGroup = "";
 tool.faceGroup.autoPick = "";
+tool.faceGroup.flush = "";
 // Ideally <10 chars (Hide)
 tool.hide = "가리기";
 // Ideally <10 chars (View tool, do nothing in particular)
@@ -2090,23 +2093,19 @@ tool.mask.polish.border = "";
 // Smooth the border in a way that it matches completely with its dual
 tool.mask.polish.syncBorder = "";
 // topology of extracted mesh
-tool.mask.autoDivision = "";
-tool.mask.division = "";
+tool.mask.edgeLoop = "";
+tool.mask.edgeLoop.auto = "";
+tool.mask.edgeLoop.division = "";
 // The thickness of the extracted mesh (from the painted mask)
 tool.mask.thickness = "두께";
-// The extracted mesh has the same height everywhere
-tool.mask.thicknessUniform = "";
-tool.mask.thicknessUniform.help = "";
 // Carve the mask into the surface
 tool.mask.carve = "조각";
 // Extract a new mesh from the painted mask
 tool.mask.extract = "추출";
+// Preview extract
+tool.mask.preview = "미리보기";
 // Extract two new mesh from the painted mask and from the unmasked area
 tool.mask.split = "분할";
-// How should we close the topology of the extracted object
-tool.mask.split.mask = "닫기 동작 (마스킹 영역):";
-// How should we close the topology of the extracted object
-tool.mask.split.unmask = "닫기 동작 (마스킹 되지 않은 영역):";
 // How should we close the topology of the extracted object
 tool.mask.action = "닫기 동작:";
 tool.mask.action.help = "-- 없음
@@ -2219,7 +2218,7 @@ tool.hole = "구멍 채우기";
 tool.hole.fillHoles = "구멍 채우기";
 // synonym: Alternative method
 tool.hole.method.fill = "";
-tool.hole.method.screen = "";
+tool.hole.method.legacy = "";
 tool.hole.method.boolean = "부울";
 tool.hole.bridges = "화면 공간 부울";
 tool.hole.bridges.help = "이 옵션이 활성화되면 볼륨에 구멍을 뚫을 수 있습니다.
@@ -2333,7 +2332,7 @@ topology.dynamic.activate.help = "동적 토폴로지를 사용하면 조각 도
 
 레이어가 올바르게 업데이트됩니다.";
 topology.dynamic.method = "디테일 기본 바탕:";
-topology.dynamic.method.zoom = "확대/축소";
+topology.dynamic.method.screen = "스크린";
 topology.dynamic.method.radius = "반지름";
 topology.dynamic.method.constant = "일정";
 topology.dynamic.method.help = "- 확대/축소
@@ -2484,11 +2483,22 @@ binding.rotateLighting = "광원 회전";
 // The Camera pivot is the point around which the camera rotates
 binding.updatePivot = "피벗";
 
+quadremesh.adaptQuadCount = "";
+quadremesh.curvatureAdaptivness = "";
+quadremesh.curvatureAdaptivness.help = "";
+quadremesh.autoDetectHardEdges = "";
+quadremesh.useVertexColors = "패인팅 보존";
+
 // Privacy policy
 privacyPolicy.title = "개인 정보 보호 정책";
 privacyPolicy.reject = "거부";
 // Hexanomad is the company name
 privacyPolicy = "Hexanomad는 Nomad Sculpt로부터 어떠한 데이터도 수집하지 않습니다.";
+
+sonar.disconnect = "";
+sonar.connect = "";
+sonar.connect.confirm = "";
+sonar.connect.confirm.warning = "";
 
 // Color disc mode
 widget.color.disc = "";
@@ -2498,7 +2508,9 @@ widget.color.square = "";
 // version trial
 version.buyWeb = "웹 버전은 데모 목적으로만 사용할 수 있습니다";
 version.buyFull = "풀 버전으로 업그레이드";
-version.restorePurchase = "구매내역 복원";
+version.buyQR = "";
+version.restoreFull = "구매내역 복원";
+version.buyQR.promo = "";
 
 version.trialHistory = "평가판: 4번의 실행 취소/다시 실행 가능";
 version.trialLayer = "평가판: 메시 당 1개의 레이어";

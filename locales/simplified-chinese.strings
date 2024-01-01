@@ -10,6 +10,10 @@ confirm.cancel = "取消";
 // Experimental feature
 experimental = "实验性功能！";
 
+clipboard = "";
+clipboard.copy = "";
+clipboard.paste = "";
+
 // memory size
 bytes = "字节";
 kB = "";
@@ -252,6 +256,8 @@ alert.autoSave.auto = "将在$0秒后自动保存";
 alert.needLayer = "使用当前工具需要激活一个图层。";
 // The user decides to hide the painting on the objects
 alert.paintingHidden = "绘画已被隐藏！";
+// The user decides to hide the masking on the objects
+alert.maskingHidden = "";
 // The selected object doesn't have any layers
 alert.noPartialWireframe = "打开线框显示时，局部绘画将被禁用。";
 // The user has selected a tool that is more intuitive to use when the camera is in orthographic mode
@@ -262,6 +268,8 @@ alert.state.trial = "试用版本的撤销次数已用完。";
 background = "背景";
 // A flat color will be displayed in the background of the scene
 background.color = "颜色";
+// 2 color with rotation
+background.gradient = "颜色渐变";
 // The environment (HDRI) will be displayed in the background
 background.environment = "环境";
 background.blur = "模糊";
@@ -387,10 +395,8 @@ curve.spiral.angle = "角度偏移";
 debug.targetFPS = "";
 debug.targetFPS.help = "";
 
-// Debug option, the newly created primitives will contains texture coordinates (UVs)
-debug.uvPrimitive = "保存primitive UV";
+// Warning about UVs (using extra memory)
 debug.uvPrimitive.warning = "如果您不再需要UV选项，请禁用该选项以释放更多内存。";
-debug.uvPrimitive.help = "目前仅支持立方体和球体，将会在未来支持更多种类。";
 // Debug option, Normalize means transforming the data so that it fits in [0-1] the range
 debug.uvNormalize = "规格化UV选项";
 debug.uvNormalize.help = "Nomad将会让所有选定面的UV适配 [0-1] 纹理空间。";
@@ -401,8 +407,6 @@ debug.uvBFF.help = "使用BFF算法来展平UV。
 请注意，如果对象的拓扑网格与正方体或球体有很大差别的话，结果有可能会产生重叠。";
 
 debug.quadriflow = "";
-debug.quadriflow.help = "";
-
 
 // Debug option, display an window with some debugging logs
 debug.logs = "调试日志";
@@ -664,18 +668,14 @@ gesture.dropper.help = "颜色/材料选择器可以通过在画布上长按来�
 
 // Three fingers on screen
 gesture.three.title = "三个手指";
-// Drag 3 fingers horizontally on the canvas to rotate the environment, lights and MatCap
-gesture.fingerLighting = "三指旋转灯光";
-// Canvas means the scene viewport (the entire screen but excluding the interface)
-gesture.fingerLighting.help = "在屏幕上使用三指水平移动可使环境、灯光与MatCap旋转。";
-// Drag 3 fingers vertically to edit the tool radius
-gesture.fingerRadius = "三指调节工具半径";
-// Canvas means the scene viewport (the entire screen but excluding the interface)
-gesture.fingerRadius.help = "在屏幕上使用三指垂直移动可调节当前工具的画笔半径。";
+gesture.three.light = "旋转照明";
+gesture.three.light.help = "可使环境、灯光与MatCap旋转。";
+gesture.three.radius = "工具半径";
+gesture.three.intensity = "工具强度";
 
 // If this option is enabled, finger inputs on screen will use the smoothing tool
-gesture.fingerSmooth = "将手指用于平滑";
-gesture.fingerSmooth.help = "";
+gesture.finger.smooth = "将手指用于平滑";
+gesture.finger.smooth.help = "";
 // If enabled, the pressure will be taken into account even if it's not coming from a recognized stylus
 gesture.unknownPressure = "允许未识别的压感";
 gesture.unknownPressure.help = "当您的触控笔无法使用压感或者您希望使用手指压感时，请勾选此选项。";
@@ -741,8 +741,8 @@ history.includePostProcess = "后期处理";
 // include shading parameters (MatCap & HDRIs) editing in the undo/redo
 history.includeShading = "MatCap与HDRI";
 // Can limit the stack of undo/redo size
-history.limitSize = "历史记录限制 (Mb)";
-history.limitSize.help = "历史记录的最大容量（以Mb为单位）。
+history.limitSize = "历史记录限制";
+history.limitSize.help = "历史记录的最大容量。
 
 历史记录会随着下一个操作记录而更新。";
 // Limit the number of undo in the history stack
@@ -848,12 +848,14 @@ interface.flipMiddle = "翻转侧边栏";
 interface.materialPreview = "预览材料颜色";
 // Interface customization
 interface.materialPreview.help = "选取材料颜色后，将在当前选中的对象上显示预览。";
-interface.toolbox.hide = "隐藏工具箱";
-interface.toolboxHide.help = "如果您想隐藏工具箱，请勾选此选项。";
+// list of tools
+interface.toolbox = "工具箱";
+// hide toolbox by default
+interface.toolbox.hide = "隐藏";
 // Interface customization (the toolbox is a grid, we can adjust the column count)
-interface.toolbox.maxColumn = "最大工具箱列数";
+interface.toolbox.columns = "列数";
 // Reset the tool's order in the toolbox
-interface.toolbox.resetOrder = "重设工具箱排序";
+interface.toolbox.resetOrder = "重设排序";
 // Scale the interface
 interface.scale = "界面缩放";
 // Spacing between widgets
@@ -1155,11 +1157,7 @@ paint.usePainting = "启用绘图";
 paint.intensity = "画笔强度";
 // Apply the paint on the object
 paint.paintAll = "全部上色";
-paint.paintAll.help = "将当前材质应用到所选对象上。
-
-蒙版区域与未勾选通道也会被应用。";
-// Apply the paint on the object but ignore painting intensity (force full intensity)
-paint.paintAllForce = "强制全部上色";
+paint.paintAll.help = "将当前材质应用到所选对象上。";
 paint.strokePainting.title = "上漆";
 // Brush stroke texture
 paint.texture.warningEnable = "您需要先勾选菜单顶部的“纹理贴图”后才能使用贴图绘制功能！";
@@ -1325,7 +1323,7 @@ primitive.plane = "平面";
 primitive.triplanar = "三面体";
 primitive.faceXYZ = "X、Y、Z面";
 primitive.faceXYZ.help = "由https://texturing.xyz/提供的UV展开的基本网格";
-primitive.needValidate = "基本体需转换为可编辑对象后才可雕刻。";
+primitive.needValidate = "基本体需转换为可编辑对象后!";
 
 // If enabled, we can edit primitive inside the viewport
 primitive.edit = "编辑";
@@ -1417,11 +1415,13 @@ primitive.coneRadius = "半径";
 primitive.coneHeight = "高度";
 // Hole sub menu (cylinder, tube, etc)
 primitive.hole = "孔洞";
-// Make a hole in the primtive to make it hollow
+// Make a hole in the primitive to make it hollow
 primitive.hasHole = "打洞";
 // Curve profile (synonym: profile, curve)
 primitive.profile = "";
 primitive.profile.viewport = "";
+// If the revolution surface has caps (E.g: cylinder)
+primitive.cap = "";
 
 // Singular of Repeaters (Nodes that make many copies of its children (type of mirror/curve/array/radial))
 repeater = "";
@@ -1555,7 +1555,7 @@ settings.cursor.showRope = "显示画笔准星";
 // indicator
 settings.indicator.title = "";
 settings.indicator.title.help = "";
-settings.indicator.size = "";
+settings.indicator.size = "尺寸";
 // Highlight (the object glows when we select it)
 settings.highlight.selection = "高亮选择对象";
 // Highlight settings
@@ -1663,6 +1663,9 @@ shortcut.maskVisible.short = "蒙版";
 // bottom shortcut buttons (should be SHORT)
 shortcut.solo = "单放轨道";
 shortcut.solo.short = "单放";
+// bottom shortcut buttons (should be SHORT)
+shortcut.xray = "";
+shortcut.xray.short = "";
 // bottom shortcut buttons (should be SHORT)
 shortcut.voxelRemesh = "体素网格重构";
 shortcut.voxelRemesh.short = "体素";
@@ -1859,8 +1862,6 @@ stroke.falloffProject.circle = "";
 // Symmetry
 symmetry = "对称";
 symmetry.enable = "启用";
-// Display a warning (the feature is only available for mesh object)
-symmetry.primitiveWarning = "笔刷对称仅对已转换为可编辑对象的基本体可用，三平面基本体除外。";
 symmetry.plane.title = "平面";
 symmetry.toolIgnore = "当前工具不适用对称。";
 // Instead of planar symmetry, use a radial symmetry
@@ -2014,9 +2015,13 @@ tool.transform.snap = "表面吸附";
 tool.measure = "测量";
 // Ideally <10 chars (Lattice, deformer)
 tool.lattice = "";
+// Ideally <10 chars (Quad Remesher)
+tool.remesh = "";
+tool.remesh.guides = "";
 // Ideally <10 chars (FaceGroup)
 tool.faceGroup = "";
 tool.faceGroup.autoPick = "";
+tool.faceGroup.flush = "";
 // Ideally <10 chars (Hide)
 tool.hide = "隐藏";
 // Ideally <10 chars (View tool, do nothing in particular)
@@ -2101,23 +2106,19 @@ tool.mask.polish.border = "";
 // Smooth the border in a way that it matches completely with its dual
 tool.mask.polish.syncBorder = "";
 // topology of extracted mesh
-tool.mask.autoDivision = "";
-tool.mask.division = "";
+tool.mask.edgeLoop = "";
+tool.mask.edgeLoop.auto = "";
+tool.mask.edgeLoop.division = "";
 // The thickness of the extracted mesh (from the painted mask)
 tool.mask.thickness = "厚度";
-// The extracted mesh has the same height everywhere
-tool.mask.thicknessUniform = "";
-tool.mask.thicknessUniform.help = "";
 // Carve the mask into the surface
 tool.mask.carve = "雕刻";
 // Extract a new mesh from the painted mask
 tool.mask.extract = "抽壳";
+// Preview extract
+tool.mask.preview = "预览";
 // Extract two new mesh from the painted mask and from the unmasked area
 tool.mask.split = "分离";
-// How should we close the topology of the extracted object
-tool.mask.split.mask = "关闭操作（蒙版区域）：";
-// How should we close the topology of the extracted object
-tool.mask.split.unmask = "关闭操作（非蒙版区域）：";
 // How should we close the topology of the extracted object
 tool.mask.action = "关闭操作：";
 tool.mask.action.help = "- 无
@@ -2230,7 +2231,7 @@ tool.hole = "孔洞填补";
 tool.hole.fillHoles = "填补孔洞";
 // synonym: Alternative method
 tool.hole.method.fill = "";
-tool.hole.method.screen = "";
+tool.hole.method.legacy = "";
 tool.hole.method.boolean = "布尔";
 tool.hole.bridges = "屏幕空间的布尔值";
 tool.hole.bridges.help = "启用此选项后。您可以用裁切的方式在物体上打洞。
@@ -2344,7 +2345,7 @@ topology.dynamic.activate.help = "启用此功能可以让您在雕刻过程中�
 
 图层不会受到影响。";
 topology.dynamic.method = "细节等级模式";
-topology.dynamic.method.zoom = "缩放";
+topology.dynamic.method.screen = "屏幕分辨率";
 topology.dynamic.method.radius = "半径";
 topology.dynamic.method.constant = "网格";
 topology.dynamic.method.help = "
@@ -2497,11 +2498,22 @@ binding.rotateLighting = "旋转照明";
 // The Camera pivot is the point around which the camera rotates
 binding.updatePivot = "视图中心点";
 
+quadremesh.adaptQuadCount = "";
+quadremesh.curvatureAdaptivness = "";
+quadremesh.curvatureAdaptivness.help = "";
+quadremesh.autoDetectHardEdges = "";
+quadremesh.useVertexColors = "保存绘画";
+
 // Privacy policy
 privacyPolicy.title = "未收集数据";
 privacyPolicy.reject = "不好";
 // Hexanomad is the company name
 privacyPolicy = "Hexanomad 不会从 Nomad Sculpt 收集任何数据。";
+
+sonar.disconnect = "";
+sonar.connect = "";
+sonar.connect.confirm = "";
+sonar.connect.confirm.warning = "";
 
 // Color disc mode
 widget.color.disc = "";
@@ -2511,7 +2523,9 @@ widget.color.square = "";
 // version trial
 version.buyWeb = "该版本仅供演示";
 version.buyFull = "购买完整版本";
-version.restorePurchase = "恢复购买";
+version.buyQR = "";
+version.restoreFull = "恢复购买";
+version.buyQR.promo = "";
 
 version.trialHistory = "试用版本限制：仅允许4次以内的撤销或重做";
 version.trialLayer = "试用版本限制：每个物体仅允许添加一个图层";
