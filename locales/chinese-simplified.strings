@@ -45,6 +45,8 @@ item.replace = "";
 // Save an item (object, tool, etc)
 item.save = "保存";
 item.save.confirm = "确认保存 $0？";
+// Update an item (update camera view point, etc)
+item.update = "更新";
 // Reload last save of an item (object, tool, etc)
 item.lastSave = "上次保存";
 // Reload last save of an item (object, tool, etc)
@@ -107,8 +109,8 @@ loading.reprocess.cancel = "";
 
 access.title = "";
 access.window = "";
-access.pinch = "";
-access.drag = "";
+access.pinch = "挤捏";
+access.drag = "拖拽";
 access.roll = "";
 
 // Color of an object
@@ -196,9 +198,9 @@ alert.trim.nothing = "没有可裁切的对象。";
 // The user tried to trim an object but the selected region completely encompassed the object
 alert.trim.full = "不可裁剪：选择区域完全包含了被裁减对象";
 // In order to extract something, the mesh needs to have painted mask
-alert.mask.noExtract = "没有可提取对象！";
+alert.extract.none = "没有可提取对象！";
 // In order to split something, the mesh needs to have painted mask
-alert.mask.noSplit = "没有可分离对象！";
+alert.extract.split.none = "没有可分离对象！";
 // List of disabled features when View Mode is selected
 alert.view.disabled = "在浏览模式下禁用的功能：";
 // Primitive Widgets are small ui stuffs in the viewport that the user can interact with to modify an object
@@ -243,9 +245,9 @@ alert.selection.showAll = "显示全部";
 // Project quick saving
 alert.quickSave = "正在保存...";
 // Painting on the object was hidden but the user did paint the object
-alert.forceShowPainting.fill = "显示图层绘画已打开";
+alert.forcePainting.fill = "显示图层绘画已打开";
 // Painting on the object was hidden but the user started to paint on the object
-alert.forceShowPainting.tool = "显示绘画，该对象已被画";
+alert.forcePainting.tool = "显示绘画，该对象已被画";
 // See Glossary (Multiresolution)
 alert.multiresLost = "高分辨率将丢失！";
 // The user is starting an operation that can lead to a crash
@@ -406,8 +408,6 @@ debug.uvBFF.help = "使用BFF算法来展平UV。
 
 请注意，如果对象的拓扑网格与正方体或球体有很大差别的话，结果有可能会产生重叠。";
 
-debug.quadriflow = "";
-
 // Debug option, display an window with some debugging logs
 debug.logs = "调试日志";
 // Debug option, overrides the rendering to display the depth buffer
@@ -472,7 +472,8 @@ file.project.autoSave.minutes = "自动保存间隔";
 file.project.autoSave.delete = "删除自动保存的数据";
 
 // color space (linear or srgb), do not translate linear/srgb if there is a doubt
-file.colorSpace = ""
+file.colorSpace = "
+";
 file.colorSpace.help = "";
 file.colorSpace.linear = "";
 file.colorSpace.srgb = "";
@@ -484,8 +485,8 @@ file.importSettings = "导入选项";
 file.import.guiSettings = "加载项目GUI设置";
 file.import.guiSettings.help = "当您打开或导入项目文件时，同时加载项目中包含的GUI设置。";
 // OBJ have "groups" and "objects", by default groups are ignored, use this option to consider groups as separate objects
-file.import.objSplitByGroup = "按组拆分OBJ";
-file.import.objSplitByGroup.help = "启用该选项后，Nomad会将OBJ文件的各个顶点组拆分为单独的对象。";
+file.import.obj.splitByGroup = "按组拆分OBJ";
+file.import.obj.splitByGroup.help = "启用该选项后，Nomad会将OBJ文件的各个顶点组拆分为单独的对象。";
 // Merge all the object layers at when loading a file (deleting them in the process)
 file.import.mergeLayers = "合并图层";
 // Ignore the textures present in the file to load
@@ -498,7 +499,6 @@ file.import.keepTopology.help = "如果你不希望Nomad对导入的网格进行
 - 重新排序顶点和面
 - 删除重叠顶点和面
 - 移除未使用顶点";
-
 
 // Import file section
 file.import.title = "导入";
@@ -514,7 +514,7 @@ file.import.add.confirm = "确定添加新文件？";
 file.export.title = "导出";
 
 file.select.all = "";
-file.select.visible = "";
+file.select.visible = "可见";
 file.select.selected = "";
 
 // Export the current selected objects instead of the entire scene
@@ -559,6 +559,9 @@ file.export.obj.colorAppend.help = "给顶点添加颜色信息。
 只有部分3D软件能够识别。";
 file.export.obj.colorHexa = "";
 file.export.obj.colorHexa.help = "";
+
+file.export.obj.faceGroup = "按组拆分OBJ";
+file.export.obj.faceGroup.help = "";
 
 file.export.stl = "导出STL格式";
 file.export.stl.warning = "图层和额外的绘画（粗糙度、金属强度和蒙版）将会丢失。";
@@ -723,6 +726,49 @@ gesture.palmRejection.help = "如果手指与屏幕的接触面积超过设定�
 // Size in pixel for the palm rejection feature
 gesture.palmRejection.size = "最大尺寸阈值";
 
+// Smoothing strategy
+extract.polish.all = "";
+extract.polish.sharp = "";
+extract.polish.border = "";
+// Smooth the border in a way that it matches completely with its dual
+extract.polish.syncBorder = "";
+// topology of extracted mesh
+extract.edgeLoop = "";
+extract.edgeLoop.auto = "";
+extract.edgeLoop.division = "分段数";
+// The thickness of the extracted mesh (from the painted mask)
+extract.thickness = "厚度";
+// Carve the mask into the surface
+extract.carve = "雕刻";
+// Extract a new mesh from the painted mask
+extract = "抽壳";
+// Preview extract
+extract.preview = "预览";
+// Extract two new mesh from the painted mask and from the unmasked area
+extract.split = "分离";
+// How should we close the topology of the extracted object
+extract.action = "关闭操作：";
+extract.action.help = "- 无
+仅分离蒙版区域，并且不封闭对象。
+
+- 填补
+孔洞会被填补并光滑。
+不要在平面上使用。
+
+- Shell
+通过增加厚度的方式来封闭图形。
+
+- 图层
+提取图层差异（仅限图层子菜单）。";
+// Do not close the mesh (leave it open)
+extract.action.none = "无";
+// Close the mesh with a hole-filling algorithm
+extract.action.fill = "填补";
+// Close the mesh by adding a thickness on the surface
+extract.action.shell = "抽壳";
+// Close the mesh by using the layer data as a difference thickness
+extract.action.layer = "层";
+
 // History, list of undo/redo
 history = "历史记录";
 // First "undo" state
@@ -856,6 +902,8 @@ interface.toolbox.hide = "隐藏";
 interface.toolbox.columns = "列数";
 // Reset the tool's order in the toolbox
 interface.toolbox.resetOrder = "重设排序";
+// Colored text and icon
+interface.toolbox.color = "";
 // Scale the interface
 interface.scale = "界面缩放";
 // Spacing between widgets
@@ -1083,7 +1131,7 @@ menu.render = "渲染";
 // Menu name
 menu.material = "材料";
 // Menu name
-menu.postProcess = "后期处理";
+menu.postprocess = "后期处理";
 // Menu name
 menu.camera = "相机";
 // Menu name
@@ -1435,7 +1483,7 @@ resource.import = "导入…";
 // iOS Photos gallery
 resource.import.ios.photos = "";
 // iOS Files App
-resource.import.ios.files = "";
+resource.import.ios.files = "文件";
 
 scene.title = "场景";
 scene.title.help = "当场景内有多个对象时，在复选框处上下滑动即可快速选择多个对象。 
@@ -1502,7 +1550,8 @@ scene.noneButNeedOne = "未选中任何对象，请至少选中一个对象。";
 scene.onlyOneObject = "您选择了多个对象，无法修改图层。";
 // Boolean operation
 scene.boolean = "布尔";
-scene.boolean.help = ""
+scene.boolean.help = "
+";
 scene.boolean.mergeIntersection = "";
 
 // General scene display settings
@@ -1774,7 +1823,7 @@ stroke.culling.help = "打开此选项后，应用会忽略对“背面”的操
 该选项也可用于雕刻，但您可能会遇到一些不便。";
 // Infinite depth, move everything under the circle, disregarding depth
 stroke.silhouette = "";
-stroke.silhouette.view = "";
+stroke.silhouette.view = "浏览模式";
 stroke.silhouette.snapped = "";
 stroke.silhouette.closest = "";
 // Only sculpt the vertex that points toward the direction of the deformation
@@ -1795,40 +1844,38 @@ stroke.area.normal.average = "";
 stroke.area.point.average = "";
 // Keep sharp edges
 stroke.keepSharp = "保留硬边";
-stroke.keepSharp.help = ""
+stroke.keepSharp.help = "
+深度限定";
 
 // Only paint the part of the mesh above a certain height
-stroke.depthFilter = "深度限定";
+stroke.depthFilter = "";
 stroke.depthFilter.help = "";
 stroke.depthFilter.max = "";
 stroke.depthFilter.min = "";
 stroke.depthFilter.offset = "";
 
 // Invert the pixel (black <-> white)
-stroke.alphaInvert = "反转像素";
+stroke.alpha.invert = "反转像素";
 // Repeat the alpha image (pattern)
-stroke.alphaWrap = "平铺";
+stroke.alpha.wrap = "平铺";
 // No repeat pattern
-stroke.alphaWrap.none = "无";
+stroke.alpha.wrap.none = "无";
 // Repeat the alpha in a regular manner (tiles with seams)
-stroke.alphaWrap.repeat = "重复";
+stroke.alpha.wrap.repeat = "重复";
 // Repeat the alpha in a mirrored (seamless tiling)
-stroke.alphaWrap.mirror = "镜像";
+stroke.alpha.wrap.mirror = "镜像";
 stroke.alphaFetch = "平铺模式";
-// Project the alpha perpendicularly onto the surface
-stroke.alphaFetch.surface = "表面连续";
-// Project the alpha onto the surface in the direction of the camera view
-stroke.alphaFetch.screen = "屏幕投影";
-stroke.alphaRotation = "旋转";
-stroke.alphaRotation.lock.help = "";
+// Alpha rotation
+stroke.alpha.rotation = "旋转";
+stroke.alpha.rotation.lock.help = "";
 // Repeat the image
-stroke.alphaTiling = "形状平铺";
+stroke.alpha.tiling = "形状平铺";
 // Scale the image (make it bigger or smaller)
-stroke.alphaScale = "形状缩放";
-stroke.alphaScale.help = "当该值最小时，画笔形状将不会大于工具画笔的半径圆。";
+stroke.alpha.scale = "形状缩放";
+stroke.alpha.scale.help = "当该值最小时，画笔形状将不会大于工具画笔的半径圆。";
 // Middle-point value at which no deformation occurs
-stroke.alphaMidValue = "中间值";
-stroke.alphaMidValue.help = "不发生变形的中间值。
+stroke.alpha.midValue = "中间值";
+stroke.alpha.midValue.help = "不发生变形的中间值。
 
 当中间值为0时：
 - 黑色：无变化
@@ -1845,6 +1892,10 @@ stroke.alphaMidValue.help = "不发生变形的中间值。
 stroke.jitter = "";
 // Sculpt and paint along the brush stroke at regular spacing
 stroke.type.dot = "点";
+// Sculpt and paint along with alpha spaced by brush radius
+stroke.type.roll = "";
+// Sculpt and paint with alpha projected on screen stencil
+stroke.type.tile = "";
 // Sculpt continuously
 stroke.type.drag = "拖拽";
 // Lock a region and move it around
@@ -1856,12 +1907,13 @@ stroke.type.grabIntensity = "抓取 - 可调强度";
 
 stroke.falloffProject = "";
 stroke.falloffProject.help = "";
-stroke.falloffProject.sphere = "";
-stroke.falloffProject.circle = "";
+stroke.falloffProject.sphere = "球体";
+stroke.falloffProject.circle = "圆形";
 
 // Symmetry
 symmetry = "对称";
 symmetry.enable = "启用";
+symmetry.primitiveWarning = "笔刷对称仅对已转换为可编辑对象的基本体可用，三平面基本体除外。";
 symmetry.plane.title = "平面";
 symmetry.toolIgnore = "当前工具不适用对称。";
 // Instead of planar symmetry, use a radial symmetry
@@ -2018,6 +2070,7 @@ tool.lattice = "";
 // Ideally <10 chars (Quad Remesher)
 tool.remesh = "";
 tool.remesh.guides = "";
+tool.remesh.density = "";
 // Ideally <10 chars (FaceGroup)
 tool.faceGroup = "";
 tool.faceGroup.autoPick = "";
@@ -2099,49 +2152,6 @@ tool.mask.flipConnected = "反转已连接区域";
 tool.mask.blur = "模糊";
 // Sharpen the edge of the painted mask area
 tool.mask.sharpen = "锐化";
-// Smoothing strategy
-tool.mask.polish.all = "";
-tool.mask.polish.sharp = "";
-tool.mask.polish.border = "";
-// Smooth the border in a way that it matches completely with its dual
-tool.mask.polish.syncBorder = "";
-// topology of extracted mesh
-tool.mask.edgeLoop = "";
-tool.mask.edgeLoop.auto = "";
-tool.mask.edgeLoop.division = "";
-// The thickness of the extracted mesh (from the painted mask)
-tool.mask.thickness = "厚度";
-// Carve the mask into the surface
-tool.mask.carve = "雕刻";
-// Extract a new mesh from the painted mask
-tool.mask.extract = "抽壳";
-// Preview extract
-tool.mask.preview = "预览";
-// Extract two new mesh from the painted mask and from the unmasked area
-tool.mask.split = "分离";
-// How should we close the topology of the extracted object
-tool.mask.action = "关闭操作：";
-tool.mask.action.help = "- 无
-仅分离蒙版区域，并且不封闭对象。
-
-- 填补
-孔洞会被填补并光滑。
-不要在平面上使用。
-
-- Shell
-通过增加厚度的方式来封闭图形。
-
-- 图层
-提取图层差异（仅限图层子菜单）。";
-// Do not close the mesh (leave it open)
-tool.mask.action.none = "无";
-// Close the mesh with a hole-filling algorithm
-tool.mask.action.fill = "填补";
-// Close the mesh by adding a thickness on the surface
-tool.mask.action.shell = "抽壳";
-// Close the mesh by using the layer data as a difference thickness
-tool.mask.action.layer = "层";
-
 // Transform/Matrix
 tool.matrix = "坐标";
 // The target of the transform is either the Matrix or the Vertex of the object
@@ -2230,7 +2240,7 @@ tool.lathe.axisFixed = "固定位置";
 tool.hole = "孔洞填补";
 tool.hole.fillHoles = "填补孔洞";
 // synonym: Alternative method
-tool.hole.method.fill = "";
+tool.hole.method.fill = "填充";
 tool.hole.method.legacy = "";
 tool.hole.method.boolean = "布尔";
 tool.hole.bridges = "屏幕空间的布尔值";
@@ -2368,7 +2378,7 @@ topology.dynamic.quality.quality = "性能";
 // Whether the pencil pressure can impact the level of detail
 topology.dynamic.usePressure = "在半径上使用压感";
 topology.dynamic.usePressure.help = "如果您想让笔压对工具半径的影响也影响到细节层次，请启用此选项。";
-topology.dynamic.useFalloff = "";
+topology.dynamic.useFalloff = "使用笔刷衰减";
 // Decimate
 topology.decimate.title = "成型简化";
 topology.decimate.title.help = "减少多边形的数量，尽量保留更多的细节。
@@ -2398,10 +2408,11 @@ topology.qremesh.angle = "";
 topology.qremesh.border = "";
 topology.qremesh.onlyQuad = "";
 topology.qremesh.hole = "";
-topology.qremesh.hole.help = ""
+topology.qremesh.hole.help = "
+UV展开";
 
 // Unwrapping means compute UV (texture coordinates), with uvs you can appliy (wrap) a texture onto the model
-topology.uv.title = "UV展开";
+topology.uv.title = "";
 // UV Unwrap but as a Verb
 topology.uv.unwrap = "展开";
 // The operation can be very slow
@@ -2421,15 +2432,16 @@ topology.bake.title = "烘焙";
 // Bake here means "create texture (from mesh data)"
 topology.bake.title.help = "";
 // Bake here means "create texture (from mesh data)"
-topology.bakeSelf = "";
+topology.bake.self = "";
 // Bake here means "create texture (from another mesh data)"
-topology.bakeOther = "";
-topology.bakeResolution = "分辨率";
+topology.bake.other = "";
+topology.bake.resolution = "分辨率";
 // Cage is a specific term, synonyom: "Bake offset"
-topology.bakeOffset = "";
-topology.bakeRadius = "";
+topology.bake.offset = "";
+topology.bake.radius = "";
 // Bake opacity (from mask data)
 topology.bake.opacityFromMask = "";
+topology.bake.backup = "";
 
 // project a high resolution mesh details onto another
 topology.reproject.title = "";
@@ -2440,8 +2452,9 @@ topology.reproject.rayBias.help = "";
 topology.reproject.normalOffset = "";
 // number of iteration the algorithm will take
 topology.reproject.iterations = "";
-topology.reproject.relax = "";
+topology.reproject.relax = "规整网格";
 topology.reproject.relax.help = "";
+topology.reproject.layers.help = "";
 
 topology.manifold = "";
 topology.nonManifold = "";
@@ -2487,10 +2500,6 @@ binding.snapViewOnRotate = "切换视图（旋转时）";
 binding.project.open = "打开（项目）";
 // Open a Nomad internal project (add it to the current scene)
 binding.project.add = "添加（项目）";
-// Import an external scene file (replace current scene)
-binding.import.open = "打开（导入）";
-// Import an external scene file (add it to the current scene)
-binding.import.add = "添加（导入）";
 // Select all the objects in the scene
 binding.selectAll = "全选";
 // Rotate environment and the lighting
@@ -2518,7 +2527,7 @@ sonar.connect.confirm.warning = "";
 // Color disc mode
 widget.color.disc = "";
 // Color square mode
-widget.color.square = "";
+widget.color.square = "正方形";
 
 // version trial
 version.buyWeb = "该版本仅供演示";

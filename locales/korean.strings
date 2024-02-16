@@ -45,6 +45,8 @@ item.replace = "";
 // Save an item (object, tool, etc)
 item.save = "저장";
 item.save.confirm = "저장하시겠습니까?";
+// Update an item (update camera view point, etc)
+item.update = "업데이트";
 // Reload last save of an item (object, tool, etc)
 item.lastSave = "최근 저장";
 // Reload last save of an item (object, tool, etc)
@@ -107,8 +109,8 @@ loading.reprocess.cancel = "";
 
 access.title = "";
 access.window = "";
-access.pinch = "";
-access.drag = "";
+access.pinch = "꼬집기";
+access.drag = "끌기";
 access.roll = "";
 
 // Color of an object
@@ -196,9 +198,9 @@ alert.trim.nothing = "잘라낼 대상이 없음.";
 // The user tried to trim an object but the selected region completely encompassed the object
 alert.trim.full = "잘라내기 중지: 오브젝트가 완전히 다듬어져 있습니다.";
 // In order to extract something, the mesh needs to have painted mask
-alert.mask.noExtract = "추출할 대상이 없음!";
+alert.extract.none = "추출할 대상이 없음!";
 // In order to split something, the mesh needs to have painted mask
-alert.mask.noSplit = "분할할 대상이 없음!";
+alert.extract.split.none = "분할할 대상이 없음!";
 // List of disabled features when View Mode is selected
 alert.view.disabled = "뷰 모드에서 비활성화된 기능:";
 // Primitive Widgets are small ui stuffs in the viewport that the user can interact with to modify an object
@@ -243,9 +245,9 @@ alert.selection.showAll = "모두 보기";
 // Project quick saving
 alert.quickSave = "저장 중...";
 // Painting on the object was hidden but the user did paint the object
-alert.forceShowPainting.fill = "페인트 표시가 활성화되었으며, [모두 칠하기]가 사용되었습니다.";
+alert.forcePainting.fill = "페인트 표시가 활성화되었으며, [모두 칠하기]가 사용되었습니다.";
 // Painting on the object was hidden but the user started to paint on the object
-alert.forceShowPainting.tool = "페인트 표시가 활성화되었으며, 오브젝트가 페인팅되었습니다.";
+alert.forcePainting.tool = "페인트 표시가 활성화되었으며, 오브젝트가 페인팅되었습니다.";
 // See Glossary (Multiresolution)
 alert.multiresLost = "다중해상도가 손실됩니다!";
 // The user is starting an operation that can lead to a crash
@@ -406,8 +408,6 @@ debug.uvBFF.help = "대체 언랩 방법(BFF, Boundary First Flattening)을 추�
 
 메시 토폴로지가 원반 또는 구체와 다른 경우 BFF에 의해 중첩이 발생하니 주의해주십시오.";
 
-debug.quadriflow = "";
-
 // Debug option, display an window with some debugging logs
 debug.logs = "로그";
 // Debug option, overrides the rendering to display the depth buffer
@@ -472,7 +472,8 @@ file.project.autoSave.minutes = "타이머 팝업";
 file.project.autoSave.delete = "자동 저장 취소";
 
 // color space (linear or srgb), do not translate linear/srgb if there is a doubt
-file.colorSpace = ""
+file.colorSpace = "
+";
 file.colorSpace.help = "";
 file.colorSpace.linear = "";
 file.colorSpace.srgb = "";
@@ -484,8 +485,8 @@ file.importSettings = "임포트 옵션";
 file.import.guiSettings = "GUI 설정 유지하기";
 file.import.guiSettings.help = "프로젝트 파일을 열거나 임포트할 때 프로젝트에 포함된 GUI 관련 설정을 모두 불러옵니다.";
 // OBJ have "groups" and "objects", by default groups are ignored, use this option to consider groups as separate objects
-file.import.objSplitByGroup = "OBJ를 그룹으로 분할";
-file.import.objSplitByGroup.help = "활성화되면 Nomad는 OBJ 그룹을 별도의 객체로 분할합니다.";
+file.import.obj.splitByGroup = "OBJ를 그룹으로 분할";
+file.import.obj.splitByGroup.help = "활성화되면 Nomad는 OBJ 그룹을 별도의 객체로 분할합니다.";
 // Merge all the object layers at when loading a file (deleting them in the process)
 file.import.mergeLayers = "레이어 병합";
 // Ignore the textures present in the file to load
@@ -495,7 +496,6 @@ file.import.keepTopology = "토폴로지 유지하기";
 file.import.keepTopology.help = "Nomad로 불러온 메시 토폴로지를 건드리지 않으려면 이 옵션을 사용하십시오.
 
 이렇게 하면 버텍스/면 재정렬, 버텍스/면 복제본 제거, 사용하지 않는 버텍스 제거가 비활성화됩니다.";
-
 
 // Import file section
 file.import.title = "임포트";
@@ -511,7 +511,7 @@ file.import.add.confirm = "새로운 파일을 가져오시겠습니까?";
 file.export.title = "익스포트";
 
 file.select.all = "";
-file.select.visible = "";
+file.select.visible = "보이기";
 file.select.selected = "";
 
 // Export the current selected objects instead of the entire scene
@@ -557,6 +557,9 @@ file.export.obj.colorAppend.help = "버텍스에 색상 정보를 덧붙입니�
 해당 정보는 일부 3D 소프트웨어에서 읽을 수 있지만, 호환되지 않는 소프트웨어도 있습니다.";
 file.export.obj.colorHexa = "";
 file.export.obj.colorHexa.help = "";
+
+file.export.obj.faceGroup = "OBJ를 그룹으로 분할";
+file.export.obj.faceGroup.help = "";
 
 file.export.stl = "STL 익스포트";
 file.export.stl.warning = "레이어 및 추가 페인트(러프니스, 메탈릭, 마스크)가 손실됩니다.";
@@ -721,6 +724,49 @@ gesture.palmRejection.help = "이 값보다 접촉 면적이 넓으면 입력을
 // Size in pixel for the palm rejection feature
 gesture.palmRejection.size = "최대 크기 임계값";
 
+// Smoothing strategy
+extract.polish.all = "";
+extract.polish.sharp = "";
+extract.polish.border = "";
+// Smooth the border in a way that it matches completely with its dual
+extract.polish.syncBorder = "";
+// topology of extracted mesh
+extract.edgeLoop = "";
+extract.edgeLoop.auto = "";
+extract.edgeLoop.division = "디비전";
+// The thickness of the extracted mesh (from the painted mask)
+extract.thickness = "두께";
+// Carve the mask into the surface
+extract.carve = "조각";
+// Extract a new mesh from the painted mask
+extract = "추출";
+// Preview extract
+extract.preview = "미리보기";
+// Extract two new mesh from the painted mask and from the unmasked area
+extract.split = "분할";
+// How should we close the topology of the extracted object
+extract.action = "닫기 동작:";
+extract.action.help = "-- 없음
+일부분을 추출하고 추출된 부분을 열린 상태로 유지합니다.
+
+-- 채우기
+구멍이 채우고 다듬어 매끄럽게 만듭니다. 
+이 옵션을 평평한 표면에는 사용하지 마십시오.
+
+-- 셸
+두께 값을 사용하여 추출한 모양을 닫습니다.
+
+-- 레이어
+레이어 차이를 추출합니다 (레이어 하위 메뉴만 해당).";
+// Do not close the mesh (leave it open)
+extract.action.none = "없음";
+// Close the mesh with a hole-filling algorithm
+extract.action.fill = "채우기";
+// Close the mesh by adding a thickness on the surface
+extract.action.shell = "셸";
+// Close the mesh by using the layer data as a difference thickness
+extract.action.layer = "레이어";
+
 // History, list of undo/redo
 history = "작업 내역";
 // First "undo" state
@@ -852,6 +898,8 @@ interface.toolbox.hide = "가리기";
 interface.toolbox.columns = "그리드 열";
 // Reset the tool's order in the toolbox
 interface.toolbox.resetOrder = "순서 초기화";
+// Colored text and icon
+interface.toolbox.color = "";
 // Scale the interface
 interface.scale = "인터페이스 스케일";
 // Spacing between widgets
@@ -1073,7 +1121,7 @@ menu.render = "렌더";
 // Menu name
 menu.material = "머티리얼";
 // Menu name
-menu.postProcess = "포스트 프로세싱";
+menu.postprocess = "포스트 프로세싱";
 // Menu name
 menu.camera = "카메라";
 // Menu name
@@ -1425,7 +1473,7 @@ resource.import = "임포트...";
 // iOS Photos gallery
 resource.import.ios.photos = "";
 // iOS Files App
-resource.import.ios.files = "";
+resource.import.ios.files = "파일";
 
 scene.title = "씬";
 scene.title.help = "보이기/선택 버튼을 사용할 때 손가락을 누른 상태로 드래그하면 다른 객체를 쉽게 선택할 수 있습니다.
@@ -1492,7 +1540,8 @@ scene.noneButNeedOne = "선택한 오브젝트가 없습니다. 최소한 하나
 scene.onlyOneObject = "복수의 오브젝트가 선택되어 있습니다. 단 하나의 오브젝트만 선택하십시오.";
 // Boolean operation
 scene.boolean = "부울";
-scene.boolean.help = ""
+scene.boolean.help = "
+";
 scene.boolean.mergeIntersection = "";
 
 // General scene display settings
@@ -1761,7 +1810,7 @@ stroke.culling.help = "이 옵션은 뒷면을 바라보는 버텍스를 무시�
 스컬프팅에도 효과가 있지만 눈에 띄는 아티팩트가 발생할 수 있습니다.";
 // Infinite depth, move everything under the circle, disregarding depth
 stroke.silhouette = "";
-stroke.silhouette.view = "";
+stroke.silhouette.view = "보기";
 stroke.silhouette.snapped = "";
 stroke.silhouette.closest = "";
 // Only sculpt the vertex that points toward the direction of the deformation
@@ -1782,40 +1831,38 @@ stroke.area.normal.average = "";
 stroke.area.point.average = "";
 // Keep sharp edges
 stroke.keepSharp = "날카로운 변 유지";
-stroke.keepSharp.help = ""
+stroke.keepSharp.help = "
+깊이 필터링";
 
 // Only paint the part of the mesh above a certain height
-stroke.depthFilter = "깊이 필터링";
+stroke.depthFilter = "";
 stroke.depthFilter.help = "";
 stroke.depthFilter.max = "";
 stroke.depthFilter.min = "";
 stroke.depthFilter.offset = "";
 
 // Invert the pixel (black <-> white)
-stroke.alphaInvert = "픽셀 반전";
+stroke.alpha.invert = "픽셀 반전";
 // Repeat the alpha image (pattern)
-stroke.alphaWrap = "타일링";
+stroke.alpha.wrap = "타일링";
 // No repeat pattern
-stroke.alphaWrap.none = "없음";
+stroke.alpha.wrap.none = "없음";
 // Repeat the alpha in a regular manner (tiles with seams)
-stroke.alphaWrap.repeat = "반복";
+stroke.alpha.wrap.repeat = "반복";
 // Repeat the alpha in a mirrored (seamless tiling)
-stroke.alphaWrap.mirror = "거울";
+stroke.alpha.wrap.mirror = "거울";
 stroke.alphaFetch = "방법";
-// Project the alpha perpendicularly onto the surface
-stroke.alphaFetch.surface = "표면";
-// Project the alpha onto the surface in the direction of the camera view
-stroke.alphaFetch.screen = "스크린 투시";
-stroke.alphaRotation = "회전";
-stroke.alphaRotation.lock.help = "";
+// Alpha rotation
+stroke.alpha.rotation = "회전";
+stroke.alpha.rotation.lock.help = "";
 // Repeat the image
-stroke.alphaTiling = "타일링";
+stroke.alpha.tiling = "타일링";
 // Scale the image (make it bigger or smaller)
-stroke.alphaScale = "스케일링";
-stroke.alphaScale.help = "최소값에서 알파 사각형이 도구 원의 반지름 안에 있습니다.";
+stroke.alpha.scale = "스케일링";
+stroke.alpha.scale.help = "최소값에서 알파 사각형이 도구 원의 반지름 안에 있습니다.";
 // Middle-point value at which no deformation occurs
-stroke.alphaMidValue = "중간값";
-stroke.alphaMidValue.help = "변형을 일으키지 않는 중간값.
+stroke.alpha.midValue = "중간값";
+stroke.alpha.midValue.help = "변형을 일으키지 않는 중간값.
 
 (중간값 = 0)
 - 검은색: 변위 없음
@@ -1832,6 +1879,10 @@ stroke.alphaMidValue.help = "변형을 일으키지 않는 중간값.
 stroke.jitter = "";
 // Sculpt and paint along the brush stroke at regular spacing
 stroke.type.dot = "점";
+// Sculpt and paint along with alpha spaced by brush radius
+stroke.type.roll = "";
+// Sculpt and paint with alpha projected on screen stencil
+stroke.type.tile = "";
 // Sculpt continuously
 stroke.type.drag = "끌기";
 // Lock a region and move it around
@@ -1843,12 +1894,13 @@ stroke.type.grabIntensity = "붙잡기 - 유동적인 강도";
 
 stroke.falloffProject = "";
 stroke.falloffProject.help = "";
-stroke.falloffProject.sphere = "";
-stroke.falloffProject.circle = "";
+stroke.falloffProject.sphere = "구체";
+stroke.falloffProject.circle = "원";
 
 // Symmetry
 symmetry = "대칭";
 symmetry.enable = "활성화";
+symmetry.primitiveWarning = "브러시 대칭은 트라이플레이너를 제외하면 검증된 프리미티브에만 사용할 수 있습니다.";
 symmetry.plane.title = "평면";
 symmetry.toolIgnore = "현재 도구는 대칭을 무시합니다.";
 // Instead of planar symmetry, use a radial symmetry
@@ -2005,6 +2057,7 @@ tool.lattice = "";
 // Ideally <10 chars (Quad Remesher)
 tool.remesh = "";
 tool.remesh.guides = "";
+tool.remesh.density = "";
 // Ideally <10 chars (FaceGroup)
 tool.faceGroup = "";
 tool.faceGroup.autoPick = "";
@@ -2086,49 +2139,6 @@ tool.mask.flipConnected = "연결 뒤집기";
 tool.mask.blur = "흐림 효과";
 // Sharpen the edge of the painted mask area
 tool.mask.sharpen = "선명 효과";
-// Smoothing strategy
-tool.mask.polish.all = "";
-tool.mask.polish.sharp = "";
-tool.mask.polish.border = "";
-// Smooth the border in a way that it matches completely with its dual
-tool.mask.polish.syncBorder = "";
-// topology of extracted mesh
-tool.mask.edgeLoop = "";
-tool.mask.edgeLoop.auto = "";
-tool.mask.edgeLoop.division = "";
-// The thickness of the extracted mesh (from the painted mask)
-tool.mask.thickness = "두께";
-// Carve the mask into the surface
-tool.mask.carve = "조각";
-// Extract a new mesh from the painted mask
-tool.mask.extract = "추출";
-// Preview extract
-tool.mask.preview = "미리보기";
-// Extract two new mesh from the painted mask and from the unmasked area
-tool.mask.split = "분할";
-// How should we close the topology of the extracted object
-tool.mask.action = "닫기 동작:";
-tool.mask.action.help = "-- 없음
-일부분을 추출하고 추출된 부분을 열린 상태로 유지합니다.
-
--- 채우기
-구멍이 채우고 다듬어 매끄럽게 만듭니다. 
-이 옵션을 평평한 표면에는 사용하지 마십시오.
-
--- 셸
-두께 값을 사용하여 추출한 모양을 닫습니다.
-
--- 레이어
-레이어 차이를 추출합니다 (레이어 하위 메뉴만 해당).";
-// Do not close the mesh (leave it open)
-tool.mask.action.none = "없음";
-// Close the mesh with a hole-filling algorithm
-tool.mask.action.fill = "채우기";
-// Close the mesh by adding a thickness on the surface
-tool.mask.action.shell = "셸";
-// Close the mesh by using the layer data as a difference thickness
-tool.mask.action.layer = "레이어";
-
 // Transform/Matrix
 tool.matrix = "매트릭스";
 // The target of the transform is either the Matrix or the Vertex of the object
@@ -2217,7 +2227,7 @@ tool.lathe.axisFixed = "고정";
 tool.hole = "구멍 채우기";
 tool.hole.fillHoles = "구멍 채우기";
 // synonym: Alternative method
-tool.hole.method.fill = "";
+tool.hole.method.fill = "채우기";
 tool.hole.method.legacy = "";
 tool.hole.method.boolean = "부울";
 tool.hole.bridges = "화면 공간 부울";
@@ -2354,7 +2364,7 @@ topology.dynamic.quality.quality = "품질";
 // Whether the pencil pressure can impact the level of detail
 topology.dynamic.usePressure = "반지름에 압력 사용";
 topology.dynamic.usePressure.help = "펜 압력이 도구 반지름에 영향을 미칠 때 세부 수준으로 영향을 미치도록 하려면 이 옵션을 사용하세요.";
-topology.dynamic.useFalloff = "";
+topology.dynamic.useFalloff = "스트로크 폴오프 사용";
 // Decimate
 topology.decimate.title = "데시메이션";
 topology.decimate.title.help = "가능한 디테일을 최대한 유지하면서 폴리곤 개수를 줄입니다.
@@ -2384,10 +2394,11 @@ topology.qremesh.angle = "";
 topology.qremesh.border = "";
 topology.qremesh.onlyQuad = "";
 topology.qremesh.hole = "";
-topology.qremesh.hole.help = ""
+topology.qremesh.hole.help = "
+UV 언랩";
 
 // Unwrapping means compute UV (texture coordinates), with uvs you can appliy (wrap) a texture onto the model
-topology.uv.title = "UV 언랩";
+topology.uv.title = "";
 // UV Unwrap but as a Verb
 topology.uv.unwrap = "언랩";
 // The operation can be very slow
@@ -2406,15 +2417,16 @@ topology.bake.title = "베이크";
 // Bake here means "create texture (from mesh data)"
 topology.bake.title.help = "";
 // Bake here means "create texture (from mesh data)"
-topology.bakeSelf = "";
+topology.bake.self = "";
 // Bake here means "create texture (from another mesh data)"
-topology.bakeOther = "";
-topology.bakeResolution = "해상도";
+topology.bake.other = "";
+topology.bake.resolution = "해상도";
 // Cage is a specific term, synonyom: "Bake offset"
-topology.bakeOffset = "";
-topology.bakeRadius = "";
+topology.bake.offset = "";
+topology.bake.radius = "";
 // Bake opacity (from mask data)
 topology.bake.opacityFromMask = "";
+topology.bake.backup = "";
 
 // project a high resolution mesh details onto another
 topology.reproject.title = "";
@@ -2425,8 +2437,9 @@ topology.reproject.rayBias.help = "";
 topology.reproject.normalOffset = "";
 // number of iteration the algorithm will take
 topology.reproject.iterations = "";
-topology.reproject.relax = "";
+topology.reproject.relax = "릴렉스";
 topology.reproject.relax.help = "";
+topology.reproject.layers.help = "";
 
 topology.manifold = "";
 topology.nonManifold = "";
@@ -2472,10 +2485,6 @@ binding.snapViewOnRotate = "뷰 스냅 (회전 도중)";
 binding.project.open = "열기 (프로젝트)";
 // Open a Nomad internal project (add it to the current scene)
 binding.project.add = "추가 (프로젝트)";
-// Import an external scene file (replace current scene)
-binding.import.open = "열기 (임포트)";
-// Import an external scene file (add it to the current scene)
-binding.import.add = "추가 (임포트)";
 // Select all the objects in the scene
 binding.selectAll = "모두 선택";
 // Rotate environment and the lighting
@@ -2503,7 +2512,7 @@ sonar.connect.confirm.warning = "";
 // Color disc mode
 widget.color.disc = "";
 // Color square mode
-widget.color.square = "";
+widget.color.square = "사각형";
 
 // version trial
 version.buyWeb = "웹 버전은 데모 목적으로만 사용할 수 있습니다";

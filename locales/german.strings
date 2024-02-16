@@ -45,6 +45,8 @@ item.replace = "";
 // Save an item (object, tool, etc)
 item.save = "Speichern";
 item.save.confirm = "Speichern bestätigen?";
+// Update an item (update camera view point, etc)
+item.update = "Update";
 // Reload last save of an item (object, tool, etc)
 item.lastSave = "Letzte Speicher";
 // Reload last save of an item (object, tool, etc)
@@ -107,8 +109,8 @@ loading.reprocess.cancel = "";
 
 access.title = "";
 access.window = "";
-access.pinch = "";
-access.drag = "";
+access.pinch = "Kneifen";
+access.drag = "Ziehen";
 access.roll = "";
 
 // Color of an object
@@ -196,9 +198,9 @@ alert.trim.nothing = "Nichts zu beschneiden.";
 // The user tried to trim an object but the selected region completely encompassed the object
 alert.trim.full = "Beschneiden abgebrochen: Das Mesh würde vollständig beschnitten werden.";
 // In order to extract something, the mesh needs to have painted mask
-alert.mask.noExtract = "Nichts zum Extrahieren!";
+alert.extract.none = "Nichts zum Extrahieren!";
 // In order to split something, the mesh needs to have painted mask
-alert.mask.noSplit = "Nichts zum Teilen ausgewählt!";
+alert.extract.split.none = "Nichts zum Teilen ausgewählt!";
 // List of disabled features when View Mode is selected
 alert.view.disabled = "Funktionen im Ansichtsmodus deaktiviert:";
 // Primitive Widgets are small ui stuffs in the viewport that the user can interact with to modify an object
@@ -243,9 +245,9 @@ alert.selection.showAll = "Alles anzeigen";
 // Project quick saving
 alert.quickSave = "Speichere...";
 // Painting on the object was hidden but the user did paint the object
-alert.forceShowPainting.fill = "Painting anzeigen aktiviert, [Paint all] wurde verwendet.";
+alert.forcePainting.fill = "Painting anzeigen aktiviert, [Paint all] wurde verwendet.";
 // Painting on the object was hidden but the user started to paint on the object
-alert.forceShowPainting.tool = "Painting anzeigen aktiviert, Objekt painted.";
+alert.forcePainting.tool = "Painting anzeigen aktiviert, Objekt painted.";
 // See Glossary (Multiresolution)
 alert.multiresLost = "Multiresolution geht verloren!";
 // The user is starting an operation that can lead to a crash
@@ -406,8 +408,6 @@ debug.uvBFF.help = "Hinzufügen einer alternativen Unwrapping-Methode (boundary 
 
 Beachten Sie, dass BFF zu Überschneidungen führt, wenn Ihre Mesh-Topologie nicht aus einer Scheibe oder Kugel besteht.";
 
-debug.quadriflow = "";
-
 // Debug option, display an window with some debugging logs
 debug.logs = "Protokolle";
 // Debug option, overrides the rendering to display the depth buffer
@@ -472,7 +472,8 @@ file.project.autoSave.minutes = "Timer Popup";
 file.project.autoSave.delete = "AutoSave löschen";
 
 // color space (linear or srgb), do not translate linear/srgb if there is a doubt
-file.colorSpace = ""
+file.colorSpace = "
+";
 file.colorSpace.help = "";
 file.colorSpace.linear = "";
 file.colorSpace.srgb = "";
@@ -484,8 +485,8 @@ file.importSettings = "Importoptionen";
 file.import.guiSettings = "GUI-Einstellungen mitladen";
 file.import.guiSettings.help = "Beim Öffnen oder Importieren einer Projektdatei werden alle in das Projekt eingebetteten GUI-bezogenen Einstellungen geladen.";
 // OBJ have "groups" and "objects", by default groups are ignored, use this option to consider groups as separate objects
-file.import.objSplitByGroup = "OBJ-Gruppen beibehalten";
-file.import.objSplitByGroup.help = "Wenn diese Option aktiviert ist, teilt Nomad das OBJ in jede Vertex-Gruppe in separate Objekte auf.";
+file.import.obj.splitByGroup = "OBJ-Gruppen beibehalten";
+file.import.obj.splitByGroup.help = "Wenn diese Option aktiviert ist, teilt Nomad das OBJ in jede Vertex-Gruppe in separate Objekte auf.";
 // Merge all the object layers at when loading a file (deleting them in the process)
 file.import.mergeLayers = "Layer zusammenführen";
 // Ignore the textures present in the file to load
@@ -495,7 +496,6 @@ file.import.keepTopology = "Topologie beibehalten";
 file.import.keepTopology.help = "Verwenden Sie diese Option, wenn Sie nicht möchten, dass Nomad die Topologie des importierten Meshes verändert.
 
 Es deaktiviert das Neuanordnen von Vertices/Faces, das Entfernen von Vertex-/Face-Duplikaten und das Entfernen von unbenutzten Vertices.";
-
 
 // Import file section
 file.import.title = "Importieren";
@@ -511,7 +511,7 @@ file.import.add.confirm = "Neue Datei importieren?";
 file.export.title = "Exportieren";
 
 file.select.all = "";
-file.select.visible = "";
+file.select.visible = "Sichtbar";
 file.select.selected = "";
 
 // Export the current selected objects instead of the entire scene
@@ -557,6 +557,9 @@ file.export.obj.colorAppend.help = "Farbinformationen nach Vertices einfügen.
 Einige 3D-Programme können dies importieren, aber nicht alle.";
 file.export.obj.colorHexa = "";
 file.export.obj.colorHexa.help = "";
+
+file.export.obj.faceGroup = "OBJ-Gruppen beibehalten";
+file.export.obj.faceGroup.help = "";
 
 file.export.stl = "STL exportieren";
 file.export.stl.warning = "Layer und zusätzliches Painting (Roughness, Metalness, Masken) gehen verloren.";
@@ -721,6 +724,49 @@ Funktioniert möglicherweise nicht auf jedem Gerät.";
 // Size in pixel for the palm rejection feature
 gesture.palmRejection.size = "Schwelle für maximale Größe";
 
+// Smoothing strategy
+extract.polish.all = "";
+extract.polish.sharp = "";
+extract.polish.border = "";
+// Smooth the border in a way that it matches completely with its dual
+extract.polish.syncBorder = "";
+// topology of extracted mesh
+extract.edgeLoop = "";
+extract.edgeLoop.auto = "";
+extract.edgeLoop.division = "Untereilung";
+// The thickness of the extracted mesh (from the painted mask)
+extract.thickness = "Stärke";
+// Carve the mask into the surface
+extract.carve = "Gravieren";
+// Extract a new mesh from the painted mask
+extract = "Extrahieren";
+// Preview extract
+extract.preview = "Vorschau";
+// Extract two new mesh from the painted mask and from the unmasked area
+extract.split = "Teilen";
+// How should we close the topology of the extracted object
+extract.action = "Closing Aktion:";
+extract.action.help = "-- Keine
+Extrahiert einfach den Bereich und lässt das extrahierte Teil offen.
+
+-- Fill
+Das Loch wird gefüllt und geglättet.
+Verwenden Sie diese Option nicht für ebene Oberflächen.
+
+-- Shell
+Schließt die extrahierte Form mit Hilfe des Dickenwerts.
+
+-- Layer
+Extrahiert die Layer-Differenz (nur Layer-Untermenü).";
+// Do not close the mesh (leave it open)
+extract.action.none = "Keine";
+// Close the mesh with a hole-filling algorithm
+extract.action.fill = "Füllen";
+// Close the mesh by adding a thickness on the surface
+extract.action.shell = "Hülle";
+// Close the mesh by using the layer data as a difference thickness
+extract.action.layer = "Ebene";
+
 // History, list of undo/redo
 history = "Verlauf";
 // First "undo" state
@@ -854,6 +900,8 @@ interface.toolbox.hide = "Ausgeblendet";
 interface.toolbox.columns = "Spalten";
 // Reset the tool's order in the toolbox
 interface.toolbox.resetOrder = "Reset Anordnen";
+// Colored text and icon
+interface.toolbox.color = "";
 // Scale the interface
 interface.scale = "Gesamt-Skalierung";
 // Spacing between widgets
@@ -1075,7 +1123,7 @@ menu.render = "Render";
 // Menu name
 menu.material = "Material";
 // Menu name
-menu.postProcess = "Nachbearbeitung";
+menu.postprocess = "Nachbearbeitung";
 // Menu name
 menu.camera = "Kamera";
 // Menu name
@@ -1427,7 +1475,7 @@ resource.import = "Import";
 // iOS Photos gallery
 resource.import.ios.photos = "";
 // iOS Files App
-resource.import.ios.files = "";
+resource.import.ios.files = "Dateien";
 
 scene.title = "Szene";
 scene.title.help = "Wenn Sie das Auswahlkästchen verwenden, halten Sie Ihren Finger gedrückt und ziehen Sie ihn, um andere Objekte einfach auszuwählen.";
@@ -1492,7 +1540,8 @@ scene.noneButNeedOne = "Kein Objekt ausgewählt, bitte wähle ein Objekt aus.";
 scene.onlyOneObject = "Mehrere Meshes sind ausgewählt, bitte nur ein Mesh auswählen.";
 // Boolean operation
 scene.boolean = "Boolean";
-scene.boolean.help = ""
+scene.boolean.help = "
+";
 scene.boolean.mergeIntersection = "";
 
 // General scene display settings
@@ -1763,7 +1812,7 @@ Dies kann nützlich sein, wenn Sie einen Teil einer dünnen Geometrie painten wo
 Dies funktioniert auch für das Sculpting, aber es kann zu Artefakten kommen.";
 // Infinite depth, move everything under the circle, disregarding depth
 stroke.silhouette = "";
-stroke.silhouette.view = "";
+stroke.silhouette.view = "Ansicht";
 stroke.silhouette.snapped = "";
 stroke.silhouette.closest = "";
 // Only sculpt the vertex that points toward the direction of the deformation
@@ -1784,40 +1833,38 @@ stroke.area.normal.average = "";
 stroke.area.point.average = "";
 // Keep sharp edges
 stroke.keepSharp = "Scharfe Kanten beibehalten";
-stroke.keepSharp.help = ""
+stroke.keepSharp.help = "
+Depth Filter";
 
 // Only paint the part of the mesh above a certain height
-stroke.depthFilter = "Depth Filter";
+stroke.depthFilter = "";
 stroke.depthFilter.help = "";
 stroke.depthFilter.max = "";
 stroke.depthFilter.min = "";
 stroke.depthFilter.offset = "";
 
 // Invert the pixel (black <-> white)
-stroke.alphaInvert = "Alpha invertieren";
+stroke.alpha.invert = "Alpha invertieren";
 // Repeat the alpha image (pattern)
-stroke.alphaWrap = "Kacheln";
+stroke.alpha.wrap = "Kacheln";
 // No repeat pattern
-stroke.alphaWrap.none = "Kein";
+stroke.alpha.wrap.none = "Kein";
 // Repeat the alpha in a regular manner (tiles with seams)
-stroke.alphaWrap.repeat = "Wiederholen";
+stroke.alpha.wrap.repeat = "Wiederholen";
 // Repeat the alpha in a mirrored (seamless tiling)
-stroke.alphaWrap.mirror = "Spiegeln";
+stroke.alpha.wrap.mirror = "Spiegeln";
 stroke.alphaFetch = "Methode";
-// Project the alpha perpendicularly onto the surface
-stroke.alphaFetch.surface = "Oberfläche";
-// Project the alpha onto the surface in the direction of the camera view
-stroke.alphaFetch.screen = "Screen Project";
-stroke.alphaRotation = "Rotation";
-stroke.alphaRotation.lock.help = "";
+// Alpha rotation
+stroke.alpha.rotation = "Rotation";
+stroke.alpha.rotation.lock.help = "";
 // Repeat the image
-stroke.alphaTiling = "Kacheln";
+stroke.alpha.tiling = "Kacheln";
 // Scale the image (make it bigger or smaller)
-stroke.alphaScale = "Skalierung";
-stroke.alphaScale.help = "Beim Minimalwert liegt das Alpha-Quadrat innerhalb des Werkzeugkreisradius";
+stroke.alpha.scale = "Skalierung";
+stroke.alpha.scale.help = "Beim Minimalwert liegt das Alpha-Quadrat innerhalb des Werkzeugkreisradius";
 // Middle-point value at which no deformation occurs
-stroke.alphaMidValue = "Mittelwert";
-stroke.alphaMidValue.help = "Mittelwert, bei dem keine Verformung auftritt.
+stroke.alpha.midValue = "Mittelwert";
+stroke.alpha.midValue.help = "Mittelwert, bei dem keine Verformung auftritt.
 
 (Mittelwert = 0)
 - Schwarz: Kein Displacement
@@ -1834,6 +1881,10 @@ stroke.alphaMidValue.help = "Mittelwert, bei dem keine Verformung auftritt.
 stroke.jitter = "";
 // Sculpt and paint along the brush stroke at regular spacing
 stroke.type.dot = "Punkt";
+// Sculpt and paint along with alpha spaced by brush radius
+stroke.type.roll = "";
+// Sculpt and paint with alpha projected on screen stencil
+stroke.type.tile = "";
 // Sculpt continuously
 stroke.type.drag = "Ziehen";
 // Lock a region and move it around
@@ -1845,12 +1896,13 @@ stroke.type.grabIntensity = "Grab - Dynamische Intensität";
 
 stroke.falloffProject = "";
 stroke.falloffProject.help = "";
-stroke.falloffProject.sphere = "";
-stroke.falloffProject.circle = "";
+stroke.falloffProject.sphere = "Kugel";
+stroke.falloffProject.circle = "Kreis";
 
 // Symmetry
 symmetry = "Symmetrie";
 symmetry.enable = "Aktiviert";
+symmetry.primitiveWarning = "Pinsel-Symmetrie ist nur für validierte Grundformen verfügbar (außer „Triplanar“).";
 symmetry.plane.title = "Ebenen";
 symmetry.toolIgnore = "Das aktuelle Werkzeug ignoriert Symmetrie.";
 // Instead of planar symmetry, use a radial symmetry
@@ -2008,6 +2060,7 @@ tool.lattice = "";
 // Ideally <10 chars (Quad Remesher)
 tool.remesh = "";
 tool.remesh.guides = "";
+tool.remesh.density = "";
 // Ideally <10 chars (FaceGroup)
 tool.faceGroup = "";
 tool.faceGroup.autoPick = "";
@@ -2089,49 +2142,6 @@ tool.mask.flipConnected = "Flip Connected";
 tool.mask.blur = "Unschärfe";
 // Sharpen the edge of the painted mask area
 tool.mask.sharpen = "Schärfen";
-// Smoothing strategy
-tool.mask.polish.all = "";
-tool.mask.polish.sharp = "";
-tool.mask.polish.border = "";
-// Smooth the border in a way that it matches completely with its dual
-tool.mask.polish.syncBorder = "";
-// topology of extracted mesh
-tool.mask.edgeLoop = "";
-tool.mask.edgeLoop.auto = "";
-tool.mask.edgeLoop.division = "";
-// The thickness of the extracted mesh (from the painted mask)
-tool.mask.thickness = "Stärke";
-// Carve the mask into the surface
-tool.mask.carve = "Gravieren";
-// Extract a new mesh from the painted mask
-tool.mask.extract = "Extrahieren";
-// Preview extract
-tool.mask.preview = "Vorschau";
-// Extract two new mesh from the painted mask and from the unmasked area
-tool.mask.split = "Teilen";
-// How should we close the topology of the extracted object
-tool.mask.action = "Closing Aktion:";
-tool.mask.action.help = "-- Keine
-Extrahiert einfach den Bereich und lässt das extrahierte Teil offen.
-
--- Fill
-Das Loch wird gefüllt und geglättet.
-Verwenden Sie diese Option nicht für ebene Oberflächen.
-
--- Shell
-Schließt die extrahierte Form mit Hilfe des Dickenwerts.
-
--- Layer
-Extrahiert die Layer-Differenz (nur Layer-Untermenü).";
-// Do not close the mesh (leave it open)
-tool.mask.action.none = "Keine";
-// Close the mesh with a hole-filling algorithm
-tool.mask.action.fill = "Füllen";
-// Close the mesh by adding a thickness on the surface
-tool.mask.action.shell = "Hülle";
-// Close the mesh by using the layer data as a difference thickness
-tool.mask.action.layer = "Ebene";
-
 // Transform/Matrix
 tool.matrix = "Matrix";
 // The target of the transform is either the Matrix or the Vertex of the object
@@ -2220,7 +2230,7 @@ tool.lathe.axisFixed = "Fixiert";
 tool.hole = "Füllen von Löchern";
 tool.hole.fillHoles = "Löcher füllen";
 // synonym: Alternative method
-tool.hole.method.fill = "";
+tool.hole.method.fill = "Füllen";
 tool.hole.method.legacy = "";
 tool.hole.method.boolean = "Boolean";
 tool.hole.bridges = "Screen-Space Boolean";
@@ -2357,7 +2367,7 @@ topology.dynamic.quality.quality = "Qualität";
 // Whether the pencil pressure can impact the level of detail
 topology.dynamic.usePressure = "Druck auf Radius anwenden";
 topology.dynamic.usePressure.help = "Verwenden Sie diese Option, wenn Sie möchten, dass sich der Stiftdruck (pen pressure) auf den Radius des Werkzeugs auswirkt und die Detailgenauigkeit beeinflusst.";
-topology.dynamic.useFalloff = "";
+topology.dynamic.useFalloff = "Strich-Falloff verwenden";
 // Decimate
 topology.decimate.title = "Dezimierung";
 topology.decimate.title.help = "Verringert die Anzahl der Polygone, wobei versucht wird, so viele Details wie möglich zu erhalten.
@@ -2387,10 +2397,11 @@ topology.qremesh.angle = "";
 topology.qremesh.border = "";
 topology.qremesh.onlyQuad = "";
 topology.qremesh.hole = "";
-topology.qremesh.hole.help = ""
+topology.qremesh.hole.help = "
+UV-berechnung";
 
 // Unwrapping means compute UV (texture coordinates), with uvs you can appliy (wrap) a texture onto the model
-topology.uv.title = "UV-berechnung";
+topology.uv.title = "";
 // UV Unwrap but as a Verb
 topology.uv.unwrap = "Berechnen";
 // The operation can be very slow
@@ -2409,15 +2420,16 @@ topology.bake.title = "Backen";
 // Bake here means "create texture (from mesh data)"
 topology.bake.title.help = "";
 // Bake here means "create texture (from mesh data)"
-topology.bakeSelf = "";
+topology.bake.self = "";
 // Bake here means "create texture (from another mesh data)"
-topology.bakeOther = "";
-topology.bakeResolution = "Auflösung";
+topology.bake.other = "";
+topology.bake.resolution = "Auflösung";
 // Cage is a specific term, synonyom: "Bake offset"
-topology.bakeOffset = "";
-topology.bakeRadius = "";
+topology.bake.offset = "";
+topology.bake.radius = "";
 // Bake opacity (from mask data)
 topology.bake.opacityFromMask = "";
+topology.bake.backup = "";
 
 // project a high resolution mesh details onto another
 topology.reproject.title = "";
@@ -2428,8 +2440,9 @@ topology.reproject.rayBias.help = "";
 topology.reproject.normalOffset = "";
 // number of iteration the algorithm will take
 topology.reproject.iterations = "";
-topology.reproject.relax = "";
+topology.reproject.relax = "Entspannen";
 topology.reproject.relax.help = "";
+topology.reproject.layers.help = "";
 
 topology.manifold = "";
 topology.nonManifold = "";
@@ -2475,10 +2488,6 @@ binding.snapViewOnRotate = "Ansicht ausrichten (beim Drehen)";
 binding.project.open = "Öffnen (Projekt)";
 // Open a Nomad internal project (add it to the current scene)
 binding.project.add = "Hinzufügen (Projekt)";
-// Import an external scene file (replace current scene)
-binding.import.open = "Öffnen (Import)";
-// Import an external scene file (add it to the current scene)
-binding.import.add = "Hinzufügen (Import)";
 // Select all the objects in the scene
 binding.selectAll = "Alle auswählen";
 // Rotate environment and the lighting
@@ -2506,7 +2515,7 @@ sonar.connect.confirm.warning = "";
 // Color disc mode
 widget.color.disc = "";
 // Color square mode
-widget.color.square = "";
+widget.color.square = "Quadrat";
 
 // version trial
 version.buyWeb = "Die Web-Version ist nur eine Demo";

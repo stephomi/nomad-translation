@@ -45,6 +45,8 @@ item.replace = "Replace";
 // Save an item (object, tool, etc)
 item.save = "Save";
 item.save.confirm = "Confirm save?";
+// Update an item (update camera view point, etc)
+item.update = "Update";
 // Reload last save of an item (object, tool, etc)
 item.lastSave = "Last save";
 // Reload last save of an item (object, tool, etc)
@@ -196,9 +198,9 @@ alert.trim.nothing = "Nothing to trim.";
 // The user tried to trim an object but the selected region completely encompassed the object
 alert.trim.full = "Abort trim: the object is fully trimmed.";
 // In order to extract something, the mesh needs to have painted mask
-alert.mask.noExtract = "Nothing to extract!";
+alert.extract.none = "Nothing to extract!";
 // In order to split something, the mesh needs to have painted mask
-alert.mask.noSplit = "Nothing to split!";
+alert.extract.split.none = "Nothing to split!";
 // List of disabled features when View Mode is selected
 alert.view.disabled = "Features disabled in View Mode:";
 // Primitive Widgets are small ui stuffs in the viewport that the user can interact with to modify an object
@@ -223,7 +225,7 @@ alert.gizmo.editObject = "Edit object mode.";
 alert.dynamic.enable = "Dynamic topology ON";
 // See Glossary (DynTopo)
 alert.dynamic.disable = "Dynamic topology OFF";
-alert.colorPicker = "Drag your finger on the object to pick a color.";
+alert.colorPicker = "Drag on the object to pick a color.";
 // Transform mode is when the user can move the reference (image in the background) with its two fingers
 alert.backgroundTransform = "Simple tap to exit transform mode.";
 // Edit the symmetry plane with the gizmo
@@ -243,9 +245,9 @@ alert.selection.showAll = "Show all";
 // Project quick saving
 alert.quickSave = "Saving...";
 // Painting on the object was hidden but the user did paint the object
-alert.forceShowPainting.fill = "Show painting activated, [Paint all] was used.";
+alert.forcePainting.fill = "Show painting activated, [Paint all] was used.";
 // Painting on the object was hidden but the user started to paint on the object
-alert.forceShowPainting.tool = "Show painting activated, the object was painted.";
+alert.forcePainting.tool = "Show painting activated, the object was painted.";
 // See Glossary (Multiresolution)
 alert.multiresLost = "Multiresolution will be lost!";
 // The user is starting an operation that can lead to a crash
@@ -412,8 +414,6 @@ debug.uvBFF.help = "Add an alternative unwrapping method (boundary first flatten
 
 Note that BFF will produce overlaps if your mesh topology is different than a disk or a sphere.";
 
-debug.quadriflow = "Quadriflow";
-
 // Debug option, display an window with some debugging logs
 debug.logs = "Logs";
 // Debug option, overrides the rendering to display the depth buffer
@@ -478,7 +478,7 @@ file.project.autoSave.minutes = "Timer popup";
 file.project.autoSave.delete = "Discard Auto Save";
 
 // color space (linear or srgb), do not translate linear/srgb if there is a doubt
-file.colorSpace = "Color Space"
+file.colorSpace = "Color Space";
 file.colorSpace.help = "Try to toggle this option if the colors seem incorrect.";
 file.colorSpace.linear = "Linear";
 file.colorSpace.srgb = "sRGB";
@@ -490,8 +490,8 @@ file.importSettings = "Import options";
 file.import.guiSettings = "Keep gui settings";
 file.import.guiSettings.help = "When opening or importing a project file, all the gui-related settings embedded in the project will be loaded.";
 // OBJ have "groups" and "objects", by default groups are ignored, use this option to consider groups as separate objects
-file.import.objSplitByGroup = "Split OBJ by groups";
-file.import.objSplitByGroup.help = "When enabled, Nomad will split the OBJ groups into separate objects.";
+file.import.obj.splitByGroup = "Split OBJ by groups";
+file.import.obj.splitByGroup.help = "When enabled, Nomad will split the OBJ groups into separate objects.";
 // Merge all the object layers at when loading a file (deleting them in the process)
 file.import.mergeLayers = "Merge Layers";
 // Ignore the textures present in the file to load
@@ -501,7 +501,6 @@ file.import.keepTopology = "Keep topology";
 file.import.keepTopology.help = "Use this option if you don't want Nomad to fiddle with the topology of imported mesh.
 
 It will disable vertex/face reordering, removal of vertex/face duplicates and removal of unused vertices.";
-
 
 // Import file section
 file.import.title = "Import";
@@ -567,6 +566,9 @@ file.export.obj.colorAppend.help = "Append color information after vertices.
 Some 3d softwares will be able to read it but not all of them.";
 file.export.obj.colorHexa = "Hexa colors";
 file.export.obj.colorHexa.help = "An alternative way to encode color. It also support mask data.";
+
+file.export.obj.faceGroup = "Split OBJ by groups";
+file.export.obj.faceGroup.help = "Disable this option if you export to Procreate!";
 
 file.export.stl = "Export STL";
 file.export.stl.warning = "Layers and extra painting (roughness, metalness, etc) will be lost.";
@@ -733,6 +735,49 @@ Might not work on every device.";
 // Size in pixel for the palm rejection feature
 gesture.palmRejection.size = "Max size threshold";
 
+// Smoothing strategy
+extract.polish.all = "All";
+extract.polish.sharp = "Sharp border";
+extract.polish.border = "Borders only";
+// Smooth the border in a way that it matches completely with its dual
+extract.polish.syncBorder = "Sync border";
+// topology of extracted mesh
+extract.edgeLoop = "Edge loop (side)";
+extract.edgeLoop.auto = "Auto edge loop";
+extract.edgeLoop.division = "Division";
+// The thickness of the extracted mesh (from the painted mask)
+extract.thickness = "Thickness";
+// Carve the mask into the surface
+extract.carve = "Carve";
+// Extract a new mesh from the painted mask
+extract = "Extract";
+// Preview extract
+extract.preview = "Preview";
+// Extract two new mesh from the painted mask and from the unmasked area
+extract.split = "Split";
+// How should we close the topology of the extracted object
+extract.action = "Closing action";
+extract.action.help = "-- None
+Simply extract the part and let the extracted part opened.
+
+-- Fill
+Hole is filled and smoothed.
+Do not use this option for flat surface.
+
+-- Shell
+Close the extracted shape by using the thickness value.
+
+-- Layer
+Extract the layer difference (layer sub-menu only).";
+// Do not close the mesh (leave it open)
+extract.action.none = "None";
+// Close the mesh with a hole-filling algorithm
+extract.action.fill = "Fill";
+// Close the mesh by adding a thickness on the surface
+extract.action.shell = "Shell";
+// Close the mesh by using the layer data as a difference thickness
+extract.action.layer = "Layer";
+
 // History, list of undo/redo
 history = "History";
 // First "undo" state
@@ -868,6 +913,8 @@ interface.toolbox.hide = "Hidden";
 interface.toolbox.columns = "Columns";
 // Reset the tool's order in the toolbox
 interface.toolbox.resetOrder = "Reset order";
+// Colored text and icon
+interface.toolbox.color = "Colored";
 // Scale the interface
 interface.scale = "Overall scale";
 // Spacing between widgets
@@ -1089,7 +1136,7 @@ menu.render = "Render";
 // Menu name
 menu.material = "Material";
 // Menu name
-menu.postProcess = "PostProcess";
+menu.postprocess = "PostProcess";
 // Menu name
 menu.camera = "Camera";
 // Menu name
@@ -1515,7 +1562,7 @@ scene.boolean.help = "Merge, subtract or intersect objects by performing a boole
 
 The operation can fail if some objects are not manifold or not watertight.
 
-If the boolean fails, you can always use the voxel remesher on the problematic object to ensure it's a watertight manifold."
+If the boolean fails, you can always use the voxel remesher on the problematic object to ensure it's a watertight manifold.";
 scene.boolean.mergeIntersection = "Weld intersection";
 
 // General scene display settings
@@ -1817,7 +1864,7 @@ stroke.keepSharp.help = "Exclude points whose normals differ too much from the s
 
 It will change how the plane area is computed (Area sampling).
 
-This option can be useful for flatten-based tool, or if you want to color a planar surface without spilling."
+This option can be useful for flatten-based tool, or if you want to color a planar surface without spilling.";
 
 // Only paint the part of the mesh above a certain height
 stroke.depthFilter = "Depth masking";
@@ -1829,32 +1876,29 @@ stroke.depthFilter.min = "Bottom area";
 stroke.depthFilter.offset = "Height offset";
 
 // Invert the pixel (black <-> white)
-stroke.alphaInvert = "Invert pixels";
+stroke.alpha.invert = "Invert pixels";
 // Repeat the alpha image (pattern)
-stroke.alphaWrap = "Tiling";
+stroke.alpha.wrap = "Tiling";
 // No repeat pattern
-stroke.alphaWrap.none = "None";
+stroke.alpha.wrap.none = "None";
 // Repeat the alpha in a regular manner (tiles with seams)
-stroke.alphaWrap.repeat = "Repeat";
+stroke.alpha.wrap.repeat = "Repeat";
 // Repeat the alpha in a mirrored (seamless tiling)
-stroke.alphaWrap.mirror = "Mirror";
+stroke.alpha.wrap.mirror = "Mirror";
 stroke.alphaFetch = "Method";
-// Project the alpha perpendicularly onto the surface
-stroke.alphaFetch.surface = "Surface";
-// Project the alpha onto the surface in the direction of the camera view
-stroke.alphaFetch.screen = "Screen project";
-stroke.alphaRotation = "Rotation";
-stroke.alphaRotation.lock.help = "Lock the alpha orientation.
+// Alpha rotation
+stroke.alpha.rotation = "Rotation";
+stroke.alpha.rotation.lock.help = "Lock the alpha orientation.
 
 If the rotation is unlocked, the orientation will follow the stroke direction in real-time.";
 // Repeat the image
-stroke.alphaTiling = "Tiling";
+stroke.alpha.tiling = "Tiling";
 // Scale the image (make it bigger or smaller)
-stroke.alphaScale = "Scaling";
-stroke.alphaScale.help = "At minimum value, the alpha square is inside the tool circle radius.";
+stroke.alpha.scale = "Scaling";
+stroke.alpha.scale.help = "At minimum value, the alpha square is inside the tool circle radius.";
 // Middle-point value at which no deformation occurs
-stroke.alphaMidValue = "Mid value";
-stroke.alphaMidValue.help = "Middle-point value at which no deformation occurs.
+stroke.alpha.midValue = "Mid value";
+stroke.alpha.midValue.help = "Middle-point value at which no deformation occurs.
 
 (Mid value = 0)
 - Black: no displacement
@@ -1871,6 +1915,10 @@ stroke.alphaMidValue.help = "Middle-point value at which no deformation occurs.
 stroke.jitter = "Randomize";
 // Sculpt and paint along the brush stroke at regular spacing
 stroke.type.dot = "Dot";
+// Sculpt and paint along with alpha spaced by brush radius
+stroke.type.roll = "Roll";
+// Sculpt and paint with alpha projected on screen stencil
+stroke.type.tile = "Tile";
 // Sculpt continuously
 stroke.type.drag = "Drag";
 // Lock a region and move it around
@@ -1893,6 +1941,7 @@ stroke.falloffProject.circle = "Circle";
 // Symmetry
 symmetry = "Symmetry";
 symmetry.enable = "Enabled";
+symmetry.primitiveWarning = "Brush symmetry is only available for primitives that are validated, with the exception of the Triplanar.";
 symmetry.plane.title = "Planes";
 symmetry.toolIgnore = "The current tool ignores symmetry.";
 // Instead of planar symmetry, use a radial symmetry
@@ -2051,6 +2100,7 @@ tool.lattice = "Lattice";
 // Ideally <10 chars (Quad Remesher)
 tool.remesh = "Quad Remesher";
 tool.remesh.guides = "Guides";
+tool.remesh.density = "Density";
 // Ideally <10 chars (FaceGroup)
 tool.faceGroup = "Face Group";
 tool.faceGroup.autoPick = "Auto-pick";
@@ -2134,49 +2184,6 @@ tool.mask.flipConnected = "Invert mask (connected)";
 tool.mask.blur = "Blur";
 // Sharpen the edge of the painted mask area
 tool.mask.sharpen = "Sharpen";
-// Smoothing strategy
-tool.mask.polish.all = "All";
-tool.mask.polish.sharp = "Sharp border";
-tool.mask.polish.border = "Borders only";
-// Smooth the border in a way that it matches completely with its dual
-tool.mask.polish.syncBorder = "Sync border";
-// topology of extracted mesh
-tool.mask.edgeLoop = "Edge loop (side)";
-tool.mask.edgeLoop.auto = "Auto edge loop";
-tool.mask.edgeLoop.division = "Division";
-// The thickness of the extracted mesh (from the painted mask)
-tool.mask.thickness = "Thickness";
-// Carve the mask into the surface
-tool.mask.carve = "Carve";
-// Extract a new mesh from the painted mask
-tool.mask.extract = "Extract";
-// Preview extract
-tool.mask.preview = "Preview";
-// Extract two new mesh from the painted mask and from the unmasked area
-tool.mask.split = "Split";
-// How should we close the topology of the extracted object
-tool.mask.action = "Closing action";
-tool.mask.action.help = "-- None
-Simply extract the part and let the extracted part opened.
-
--- Fill
-Hole is filled and smoothed.
-Do not use this option for flat surface.
-
--- Shell
-Close the extracted shape by using the thickness value.
-
--- Layer
-Extract the layer difference (layer sub-menu only).";
-// Do not close the mesh (leave it open)
-tool.mask.action.none = "None";
-// Close the mesh with a hole-filling algorithm
-tool.mask.action.fill = "Fill";
-// Close the mesh by adding a thickness on the surface
-tool.mask.action.shell = "Shell";
-// Close the mesh by using the layer data as a difference thickness
-tool.mask.action.layer = "Layer";
-
 // Transform/Matrix
 tool.matrix = "Matrix";
 // The target of the transform is either the Matrix or the Vertex of the object
@@ -2437,7 +2444,7 @@ topology.qremesh.onlyQuad = "Quads only";
 topology.qremesh.hole = "Max fill hole";
 topology.qremesh.hole.help = "The algorithm can sometimes produce unwanted holes.
 
-If a hole has fewer vertices than this value, then it will be filled."
+If a hole has fewer vertices than this value, then it will be filled.";
 
 // Unwrapping means compute UV (texture coordinates), with uvs you can appliy (wrap) a texture onto the model
 topology.uv.title = "UV Unwrap";
@@ -2474,15 +2481,16 @@ You should now have a low-resolution mesh that retains most of the paint and det
 
 After the operation, vertex colors will be moved in a new disabled layer, so that it gets ignored instead of being multiplied against the colored texture.";
 // Bake here means "create texture (from mesh data)"
-topology.bakeSelf = "From itself";
+topology.bake.self = "From itself";
 // Bake here means "create texture (from another mesh data)"
-topology.bakeOther = "From high-res";
-topology.bakeResolution = "Resolution";
+topology.bake.other = "From high-res";
+topology.bake.resolution = "Resolution";
 // Cage is a specific term, synonyom: "Bake offset"
-topology.bakeOffset = "Cage offset";
-topology.bakeRadius = "Cage radius";
+topology.bake.offset = "Cage offset";
+topology.bake.radius = "Cage radius";
 // Bake opacity (from mask data)
 topology.bake.opacityFromMask = "Mask -> Opacity";
+topology.bake.backup = "Backup";
 
 // project a high resolution mesh details onto another
 topology.reproject.title = "Reproject";
@@ -2501,6 +2509,7 @@ topology.reproject.normalOffset = "Normal offset";
 topology.reproject.iterations = "Iterations";
 topology.reproject.relax = "Relax";
 topology.reproject.relax.help = "Relax should be prefered when the mesh is low poly";
+topology.reproject.layers.help = "Transfer other layers onto the selected mesh.";
 
 topology.manifold = "Manifold";
 topology.nonManifold = "Non-manifold";
@@ -2548,10 +2557,6 @@ binding.snapViewOnRotate = "Snap view (while rotating)";
 binding.project.open = "Open (project)";
 // Open a Nomad internal project (add it to the current scene)
 binding.project.add = "Add (project)";
-// Import an external scene file (replace current scene)
-binding.import.open = "Open (import)";
-// Import an external scene file (add it to the current scene)
-binding.import.add = "Add (import)";
 // Select all the objects in the scene
 binding.selectAll = "Select All";
 // Rotate environment and the lighting
@@ -2600,6 +2605,8 @@ You can also guide the resulting topology with:
 - Planar X/Y/Z symmetry $1
 
 - Curve guides $2
+
+- Density painting $3
 
 The Quad Remesher is developed by https://exoside.com/.";
 

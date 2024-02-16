@@ -45,6 +45,8 @@ item.replace = "";
 // Save an item (object, tool, etc)
 item.save = "保存";
 item.save.confirm = "保存しますか？";
+// Update an item (update camera view point, etc)
+item.update = "アップデート";
 // Reload last save of an item (object, tool, etc)
 item.lastSave = "最後の保存内容";
 // Reload last save of an item (object, tool, etc)
@@ -107,8 +109,8 @@ loading.reprocess.cancel = "";
 
 access.title = "";
 access.window = "";
-access.pinch = "";
-access.drag = "";
+access.pinch = "ピンチ";
+access.drag = "ドラッグ";
 access.roll = "";
 
 // Color of an object
@@ -196,9 +198,9 @@ alert.trim.nothing = "トリムするものがありません！";
 // The user tried to trim an object but the selected region completely encompassed the object
 alert.trim.full = "トリムを中止: オブジェクトは完全にトリムされています。";
 // In order to extract something, the mesh needs to have painted mask
-alert.mask.noExtract = "取り出すものがありません！";
+alert.extract.none = "取り出すものがありません！";
 // In order to split something, the mesh needs to have painted mask
-alert.mask.noSplit = "分割するものがありません！";
+alert.extract.split.none = "分割するものがありません！";
 // List of disabled features when View Mode is selected
 alert.view.disabled = "表示モードで無効になっている機能:";
 // Primitive Widgets are small ui stuffs in the viewport that the user can interact with to modify an object
@@ -243,9 +245,9 @@ alert.selection.showAll = "すべてを表示";
 // Project quick saving
 alert.quickSave = "保存中…";
 // Painting on the object was hidden but the user did paint the object
-alert.forceShowPainting.fill = "“ペイントを表示”が有効で、[すべてをペイント] が使用されました。";
+alert.forcePainting.fill = "“ペイントを表示”が有効で、[すべてをペイント] が使用されました。";
 // Painting on the object was hidden but the user started to paint on the object
-alert.forceShowPainting.tool = "“ペイントを表示”が有効で、オブジェクトがペイントされました。";
+alert.forcePainting.tool = "“ペイントを表示”が有効で、オブジェクトがペイントされました。";
 // See Glossary (Multiresolution)
 alert.multiresLost = "マルチレゾリューションは喪失します！";
 // The user is starting an operation that can lead to a crash
@@ -326,7 +328,7 @@ camera.speed = "速度";
 // Camera rotation sensitivity
 camera.speed.rotation = "回転";
 // Camera translation sensitivity
-camera.speed.panning = "";
+camera.speed.panning = "平行移動";
 // Camera zooming sensitivity
 camera.speed.zooming = "ズーム";
 // Reset camera position
@@ -406,8 +408,6 @@ debug.uvBFF.help = "代替のラップ解除方法 (Boundary First Flattening) �
 
 BFFは、メッシュトポロジーがディスクまたは球と異なる場合、オーバーラップを生成します。 ご注意ください。";
 
-debug.quadriflow = "";
-
 // Debug option, display an window with some debugging logs
 debug.logs = "ログ";
 // Debug option, overrides the rendering to display the depth buffer
@@ -472,7 +472,8 @@ file.project.autoSave.minutes = "タイマーのポップアップ";
 file.project.autoSave.delete = "自動保存の内容を破棄";
 
 // color space (linear or srgb), do not translate linear/srgb if there is a doubt
-file.colorSpace = ""
+file.colorSpace = "
+";
 file.colorSpace.help = "";
 file.colorSpace.linear = "";
 file.colorSpace.srgb = "";
@@ -484,8 +485,8 @@ file.importSettings = "オプションを読み込む";
 file.import.guiSettings = "GUI設定を残す";
 file.import.guiSettings.help = "プロジェクトファイルを開く、または読み込む際、プロジェクトに埋め込まれたGUIに関連するすべての設定は読み込まれます。";
 // OBJ have "groups" and "objects", by default groups are ignored, use this option to consider groups as separate objects
-file.import.objSplitByGroup = "OBJをグループで分割";
-file.import.objSplitByGroup.help = "有効にすると、NomadはOBJグループを別々のオブジェクトに分割します。";
+file.import.obj.splitByGroup = "OBJをグループで分割";
+file.import.obj.splitByGroup.help = "有効にすると、NomadはOBJグループを別々のオブジェクトに分割します。";
 // Merge all the object layers at when loading a file (deleting them in the process)
 file.import.mergeLayers = "レイヤーを結合";
 // Ignore the textures present in the file to load
@@ -495,7 +496,6 @@ file.import.keepTopology = "トポロジーを残す";
 file.import.keepTopology.help = "Nomadに読み込んだメッシュのトポロジーをいじらせたくない場合は、このオプションを使用してください。
 
 こうすることで、頂点/面の並べ替え、頂点/面の複製の削除、および未使用の頂点の削除を無効にします。";
-
 
 // Import file section
 file.import.title = "読み込む";
@@ -511,7 +511,7 @@ file.import.add.confirm = "新しいファイルを読み込みますか？";
 file.export.title = "書き出す";
 
 file.select.all = "";
-file.select.visible = "";
+file.select.visible = "可視";
 file.select.selected = "";
 
 // Export the current selected objects instead of the entire scene
@@ -557,6 +557,9 @@ file.export.obj.colorAppend.help = "頂点の後にカラーの情報を追加�
 これを読み取れる3Dソフトウェアもありますが、読み取れないソフトウェアもあります。";
 file.export.obj.colorHexa = "";
 file.export.obj.colorHexa.help = "";
+
+file.export.obj.faceGroup = "OBJをグループで分割";
+file.export.obj.faceGroup.help = "";
 
 file.export.stl = "STLを書き出す";
 file.export.stl.warning = "レイヤーとその他のペイント (粗さ、メタリック、マスク) は喪失します。";
@@ -721,6 +724,49 @@ gesture.palmRejection.help = "接触部分のサイズがこの値より大き�
 // Size in pixel for the palm rejection feature
 gesture.palmRejection.size = "最大サイズのしきい値";
 
+// Smoothing strategy
+extract.polish.all = "";
+extract.polish.sharp = "";
+extract.polish.border = "";
+// Smooth the border in a way that it matches completely with its dual
+extract.polish.syncBorder = "";
+// topology of extracted mesh
+extract.edgeLoop = "";
+extract.edgeLoop.auto = "";
+extract.edgeLoop.division = "除算";
+// The thickness of the extracted mesh (from the painted mask)
+extract.thickness = "太さ";
+// Carve the mask into the surface
+extract.carve = "浮き出し";
+// Extract a new mesh from the painted mask
+extract = "取り出す";
+// Preview extract
+extract.preview = "のプレビュー";
+// Extract two new mesh from the painted mask and from the unmasked area
+extract.split = "分割";
+// How should we close the topology of the extracted object
+extract.action = "閉じるアクション:";
+extract.action.help = "-- なし
+単純に部分を取り出し、取り出した部分を開けたままにします。
+
+-- 埋める
+穴を埋めて、スムーズにします。
+平らな表面にはこのオプションを使用しないでください。
+
+-- シェル
+厚さの値を使って、取り出したシェイプを閉じます。
+
+-- レイヤー
+レイヤーの差を取り出します (レイヤーのサブメニューのみ)。";
+// Do not close the mesh (leave it open)
+extract.action.none = "なし";
+// Close the mesh with a hole-filling algorithm
+extract.action.fill = "埋める";
+// Close the mesh by adding a thickness on the surface
+extract.action.shell = "シェル";
+// Close the mesh by using the layer data as a difference thickness
+extract.action.layer = "レイヤー";
+
 // History, list of undo/redo
 history = "履歴";
 // First "undo" state
@@ -854,6 +900,8 @@ interface.toolbox.hide = "隠れた";
 interface.toolbox.columns = "列数";
 // Reset the tool's order in the toolbox
 interface.toolbox.resetOrder = "順序をリセット";
+// Colored text and icon
+interface.toolbox.color = "";
 // Scale the interface
 interface.scale = "全体的なサイズ調整";
 // Spacing between widgets
@@ -1075,7 +1123,7 @@ menu.render = "レンダリング";
 // Menu name
 menu.material = "マテリアル";
 // Menu name
-menu.postProcess = "ポストプロセス";
+menu.postprocess = "ポストプロセス";
 // Menu name
 menu.camera = "カメラ";
 // Menu name
@@ -1426,7 +1474,7 @@ resource.import = "読み込む...";
 // iOS Photos gallery
 resource.import.ios.photos = "";
 // iOS Files App
-resource.import.ios.files = "";
+resource.import.ios.files = "ファイル";
 
 scene.title = "シーン";
 scene.title.help = "可視/選択ボタンを使用中、指で押さえたままドラッグすると、他のオブジェクトを簡単に選択できます。
@@ -1493,7 +1541,8 @@ scene.noneButNeedOne = "オブジェクトが選択されていません。オ�
 scene.onlyOneObject = "複数のオブジェクトが選択されています。1つだけ選択してください。";
 // Boolean operation
 scene.boolean = "ブーリアン";
-scene.boolean.help = ""
+scene.boolean.help = "
+";
 scene.boolean.mergeIntersection = "";
 
 // General scene display settings
@@ -1762,7 +1811,7 @@ stroke.culling.help = "このオプションは背面を向いている頂点は
 スカルプトにも利用できますが、アーティファクトが発生する可能性があります。";
 // Infinite depth, move everything under the circle, disregarding depth
 stroke.silhouette = "";
-stroke.silhouette.view = "";
+stroke.silhouette.view = "表示";
 stroke.silhouette.snapped = "";
 stroke.silhouette.closest = "";
 // Only sculpt the vertex that points toward the direction of the deformation
@@ -1783,40 +1832,38 @@ stroke.area.normal.average = "";
 stroke.area.point.average = "";
 // Keep sharp edges
 stroke.keepSharp = "シャープなエッジを残す";
-stroke.keepSharp.help = ""
+stroke.keepSharp.help = "
+深度のフィルタリング";
 
 // Only paint the part of the mesh above a certain height
-stroke.depthFilter = "深度のフィルタリング";
+stroke.depthFilter = "";
 stroke.depthFilter.help = "";
 stroke.depthFilter.max = "";
 stroke.depthFilter.min = "";
 stroke.depthFilter.offset = "";
 
 // Invert the pixel (black <-> white)
-stroke.alphaInvert = "ピクセルを反転";
+stroke.alpha.invert = "ピクセルを反転";
 // Repeat the alpha image (pattern)
-stroke.alphaWrap = "タイリング";
+stroke.alpha.wrap = "タイリング";
 // No repeat pattern
-stroke.alphaWrap.none = "なし";
+stroke.alpha.wrap.none = "なし";
 // Repeat the alpha in a regular manner (tiles with seams)
-stroke.alphaWrap.repeat = "繰り返す";
+stroke.alpha.wrap.repeat = "繰り返す";
 // Repeat the alpha in a mirrored (seamless tiling)
-stroke.alphaWrap.mirror = "ミラー";
+stroke.alpha.wrap.mirror = "ミラー";
 stroke.alphaFetch = "方法";
-// Project the alpha perpendicularly onto the surface
-stroke.alphaFetch.surface = "サーフェス";
-// Project the alpha onto the surface in the direction of the camera view
-stroke.alphaFetch.screen = "スクリーンプロジェクト";
-stroke.alphaRotation = "回転";
-stroke.alphaRotation.lock.help = "";
+// Alpha rotation
+stroke.alpha.rotation = "回転";
+stroke.alpha.rotation.lock.help = "";
 // Repeat the image
-stroke.alphaTiling = "タイリング";
+stroke.alpha.tiling = "タイリング";
 // Scale the image (make it bigger or smaller)
-stroke.alphaScale = "サイズ調整";
-stroke.alphaScale.help = "最小値では、アルファの四角はツールの円の半径内にあります。";
+stroke.alpha.scale = "サイズ調整";
+stroke.alpha.scale.help = "最小値では、アルファの四角はツールの円の半径内にあります。";
 // Middle-point value at which no deformation occurs
-stroke.alphaMidValue = "中間値";
-stroke.alphaMidValue.help = "デフォーメーションを起こさない中間値。
+stroke.alpha.midValue = "中間値";
+stroke.alpha.midValue.help = "デフォーメーションを起こさない中間値。
 
 (中間値 = 0)
 - ブラック: ディスプレイスメントなし
@@ -1833,6 +1880,10 @@ stroke.alphaMidValue.help = "デフォーメーションを起こさない中間
 stroke.jitter = "";
 // Sculpt and paint along the brush stroke at regular spacing
 stroke.type.dot = "ドット";
+// Sculpt and paint along with alpha spaced by brush radius
+stroke.type.roll = "";
+// Sculpt and paint with alpha projected on screen stencil
+stroke.type.tile = "";
 // Sculpt continuously
 stroke.type.drag = "ドラッグ";
 // Lock a region and move it around
@@ -1844,12 +1895,13 @@ stroke.type.grabIntensity = "グラブ - 動的な強度";
 
 stroke.falloffProject = "";
 stroke.falloffProject.help = "";
-stroke.falloffProject.sphere = "";
-stroke.falloffProject.circle = "";
+stroke.falloffProject.sphere = "球";
+stroke.falloffProject.circle = "円";
 
 // Symmetry
 symmetry = "対称";
 symmetry.enable = "オン";
+symmetry.primitiveWarning = "ブラシのシンメトリーは検証されたプリミティブにのみ利用できます。但し、Triplanarは例外です。";
 symmetry.plane.title = "平面";
 symmetry.toolIgnore = "現在使用中のツールは対称を無視します。";
 // Instead of planar symmetry, use a radial symmetry
@@ -2006,6 +2058,7 @@ tool.lattice = "";
 // Ideally <10 chars (Quad Remesher)
 tool.remesh = "";
 tool.remesh.guides = "";
+tool.remesh.density = "";
 // Ideally <10 chars (FaceGroup)
 tool.faceGroup = "";
 tool.faceGroup.autoPick = "";
@@ -2087,49 +2140,6 @@ tool.mask.flipConnected = "接続部分を反転";
 tool.mask.blur = "ブラー";
 // Sharpen the edge of the painted mask area
 tool.mask.sharpen = "シャープ";
-// Smoothing strategy
-tool.mask.polish.all = "";
-tool.mask.polish.sharp = "";
-tool.mask.polish.border = "";
-// Smooth the border in a way that it matches completely with its dual
-tool.mask.polish.syncBorder = "";
-// topology of extracted mesh
-tool.mask.edgeLoop = "";
-tool.mask.edgeLoop.auto = "";
-tool.mask.edgeLoop.division = "";
-// The thickness of the extracted mesh (from the painted mask)
-tool.mask.thickness = "太さ";
-// Carve the mask into the surface
-tool.mask.carve = "浮き出し";
-// Extract a new mesh from the painted mask
-tool.mask.extract = "取り出す";
-// Preview extract
-tool.mask.preview = "のプレビュー";
-// Extract two new mesh from the painted mask and from the unmasked area
-tool.mask.split = "分割";
-// How should we close the topology of the extracted object
-tool.mask.action = "閉じるアクション:";
-tool.mask.action.help = "-- なし
-単純に部分を取り出し、取り出した部分を開けたままにします。
-
--- 埋める
-穴を埋めて、スムーズにします。
-平らな表面にはこのオプションを使用しないでください。
-
--- シェル
-厚さの値を使って、取り出したシェイプを閉じます。
-
--- レイヤー
-レイヤーの差を取り出します (レイヤーのサブメニューのみ)。";
-// Do not close the mesh (leave it open)
-tool.mask.action.none = "なし";
-// Close the mesh with a hole-filling algorithm
-tool.mask.action.fill = "埋める";
-// Close the mesh by adding a thickness on the surface
-tool.mask.action.shell = "シェル";
-// Close the mesh by using the layer data as a difference thickness
-tool.mask.action.layer = "レイヤー";
-
 // Transform/Matrix
 tool.matrix = "マトリクス";
 // The target of the transform is either the Matrix or the Vertex of the object
@@ -2218,7 +2228,7 @@ tool.lathe.axisFixed = "固定";
 tool.hole = "穴埋め";
 tool.hole.fillHoles = "穴を埋める";
 // synonym: Alternative method
-tool.hole.method.fill = "";
+tool.hole.method.fill = "埋める";
 tool.hole.method.legacy = "";
 tool.hole.method.boolean = "ブーリアン";
 tool.hole.bridges = "画面空間のブーリアン";
@@ -2355,7 +2365,7 @@ topology.dynamic.quality.quality = "クオリティ";
 // Whether the pencil pressure can impact the level of detail
 topology.dynamic.usePressure = "半径に筆圧を使用";
 topology.dynamic.usePressure.help = "筆圧をツールの半径に影響させ、ディテールのレベルに影響を与えたい場合、このオプションを使用してください。";
-topology.dynamic.useFalloff = "";
+topology.dynamic.useFalloff = "ストロークのフォールオフを使用";
 // Decimate
 topology.decimate.title = "デシメーション";
 topology.decimate.title.help = "ディテールをできるだけ多く残したままポリゴン数を減らします。
@@ -2385,10 +2395,11 @@ topology.qremesh.angle = "";
 topology.qremesh.border = "";
 topology.qremesh.onlyQuad = "";
 topology.qremesh.hole = "";
-topology.qremesh.hole.help = ""
+topology.qremesh.hole.help = "
+UV展開";
 
 // Unwrapping means compute UV (texture coordinates), with uvs you can appliy (wrap) a texture onto the model
-topology.uv.title = "UV展開";
+topology.uv.title = "";
 // UV Unwrap but as a Verb
 topology.uv.unwrap = "展開";
 // The operation can be very slow
@@ -2407,15 +2418,16 @@ topology.bake.title = "ベイク";
 // Bake here means "create texture (from mesh data)"
 topology.bake.title.help = "";
 // Bake here means "create texture (from mesh data)"
-topology.bakeSelf = "";
+topology.bake.self = "";
 // Bake here means "create texture (from another mesh data)"
-topology.bakeOther = "";
-topology.bakeResolution = "解像度";
+topology.bake.other = "";
+topology.bake.resolution = "解像度";
 // Cage is a specific term, synonyom: "Bake offset"
-topology.bakeOffset = "";
-topology.bakeRadius = "";
+topology.bake.offset = "";
+topology.bake.radius = "";
 // Bake opacity (from mask data)
 topology.bake.opacityFromMask = "";
+topology.bake.backup = "";
 
 // project a high resolution mesh details onto another
 topology.reproject.title = "";
@@ -2426,8 +2438,9 @@ topology.reproject.rayBias.help = "";
 topology.reproject.normalOffset = "";
 // number of iteration the algorithm will take
 topology.reproject.iterations = "";
-topology.reproject.relax = "";
+topology.reproject.relax = "リラックス";
 topology.reproject.relax.help = "";
+topology.reproject.layers.help = "";
 
 topology.manifold = "";
 topology.nonManifold = "";
@@ -2473,10 +2486,6 @@ binding.snapViewOnRotate = "スナップビュー (回転中)";
 binding.project.open = "開く (プロジェクト)";
 // Open a Nomad internal project (add it to the current scene)
 binding.project.add = "追加 (プロジェクト)";
-// Import an external scene file (replace current scene)
-binding.import.open = "開く (読み込む)";
-// Import an external scene file (add it to the current scene)
-binding.import.add = "追加 (読み込む)";
 // Select all the objects in the scene
 binding.selectAll = "すべてを選択";
 // Rotate environment and the lighting
@@ -2504,7 +2513,7 @@ sonar.connect.confirm.warning = "";
 // Color disc mode
 widget.color.disc = "";
 // Color square mode
-widget.color.square = "";
+widget.color.square = "スクエア";
 
 // version trial
 version.buyWeb = "ウェブバージョンはデモ目的のみに利用できます";

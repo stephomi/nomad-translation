@@ -45,6 +45,8 @@ item.replace = "";
 // Save an item (object, tool, etc)
 item.save = "सहेजें";
 item.save.confirm = "सहेजें?";
+// Update an item (update camera view point, etc)
+item.update = "अपडेट";
 // Reload last save of an item (object, tool, etc)
 item.lastSave = "आखिरी सहेजा हुआ";
 // Reload last save of an item (object, tool, etc)
@@ -107,8 +109,8 @@ loading.reprocess.cancel = "थंबनेल जेनरेशन छोड�
 
 access.title = "";
 access.window = "";
-access.pinch = "";
-access.drag = "";
+access.pinch = "पिंच";
+access.drag = "घसीटें";
 access.roll = "";
 
 // Color of an object
@@ -196,9 +198,9 @@ alert.trim.nothing = "ट्रिम करने के लिए कुछ �
 // The user tried to trim an object but the selected region completely encompassed the object
 alert.trim.full = "ट्रिम रद्द करें: वस्तु पूरी तरह से ट्रिम हो गई है.";
 // In order to extract something, the mesh needs to have painted mask
-alert.mask.noExtract = "निचोड़ के लिए कुछ नहीं है.";
+alert.extract.none = "निचोड़ के लिए कुछ नहीं है.";
 // In order to split something, the mesh needs to have painted mask
-alert.mask.noSplit = "विभाजित करने के लिए कुछ नहीं है!";
+alert.extract.split.none = "विभाजित करने के लिए कुछ नहीं है!";
 // List of disabled features when View Mode is selected
 alert.view.disabled = "दृश्य मोड़ में फ़ीचर अक्षम हैं.";
 // Primitive Widgets are small ui stuffs in the viewport that the user can interact with to modify an object
@@ -243,9 +245,9 @@ alert.selection.showAll = "सभी दिखाएँ";
 // Project quick saving
 alert.quickSave = "सहेजा जा रहा है...";
 // Painting on the object was hidden but the user did paint the object
-alert.forceShowPainting.fill = "रंग दिखाएं सक्रिय किया गया, [सभी पेंट करें] का उपयोग किया गया.";
+alert.forcePainting.fill = "रंग दिखाएं सक्रिय किया गया, [सभी पेंट करें] का उपयोग किया गया.";
 // Painting on the object was hidden but the user started to paint on the object
-alert.forceShowPainting.tool = "रंग दिखाएं सक्रिय किया गया, वस्तु को पेंट किया गया था.";
+alert.forcePainting.tool = "रंग दिखाएं सक्रिय किया गया, वस्तु को पेंट किया गया था.";
 // See Glossary (Multiresolution)
 alert.multiresLost = "मल्टी-रिजॉल्यूशन खो जाएगा!";
 // The user is starting an operation that can lead to a crash
@@ -408,8 +410,6 @@ debug.uvBFF.help = "एक वैकल्पिक अनावृत विध
 
 ध्यान दें कि यदि आपका मेश टोपोलॉजी डिस्क या गोले से अलग है तो BFF ओवरलैप उत्पन्न करेगा.";
 
-debug.quadriflow = "";
-
 // Debug option, display an window with some debugging logs
 debug.logs = "लॉग्स";
 // Debug option, overrides the rendering to display the depth buffer
@@ -474,7 +474,8 @@ file.project.autoSave.minutes = "टाइमर पॉपअप";
 file.project.autoSave.delete = "स्वतः सहेजे गए को हटा दें";
 
 // color space (linear or srgb), do not translate linear/srgb if there is a doubt
-file.colorSpace = ""
+file.colorSpace = "
+";
 file.colorSpace.help = "";
 file.colorSpace.linear = "";
 file.colorSpace.srgb = "";
@@ -486,8 +487,8 @@ file.importSettings = "इंपोर्ट विकल्प";
 file.import.guiSettings = "Gui सेटिंग्स बनाए रखें";
 file.import.guiSettings.help = "प्रोजेक्ट फ़ाइल खोलते या इंपोर्ट करते समय, प्रोजेक्ट में अंत: स्थापित सभी gui-संबंधित सेटिंग्स लोड हो जाएंगी.";
 // OBJ have "groups" and "objects", by default groups are ignored, use this option to consider groups as separate objects
-file.import.objSplitByGroup = "समूहों द्वारा OBJ विभाजित करें";
-file.import.objSplitByGroup.help = "सक्षम होने पर, Nomad OBJ समूहों को अलग-अलग वस्तुओं विभाजित कर देगा.";
+file.import.obj.splitByGroup = "समूहों द्वारा OBJ विभाजित करें";
+file.import.obj.splitByGroup.help = "सक्षम होने पर, Nomad OBJ समूहों को अलग-अलग वस्तुओं विभाजित कर देगा.";
 // Merge all the object layers at when loading a file (deleting them in the process)
 file.import.mergeLayers = "परतें मिलाएँ";
 // Ignore the textures present in the file to load
@@ -497,7 +498,6 @@ file.import.keepTopology = "टोपोलॉजी बनाए रखें";
 file.import.keepTopology.help = "यदि आप नहीं चाहते कि Nomad इंपोर्ट की गयी मेश टोपोलॉजी के साथ छेड़छाड़ करे तो इस विकल्प का उपयोग करें.
 
 यह शीर्ष/फ़लक पुनर्व्यवस्था, शीर्ष/फ़लक डुप्लीकेट को हटाने और अप्रयुक्त शीर्ष को हटाने को अक्षम कर देगा.";
-
 
 // Import file section
 file.import.title = "इंपोर्ट करें";
@@ -513,7 +513,7 @@ file.import.add.confirm = "नयी फ़ाइल इंपोर्ट क�
 file.export.title = "एक्सपोर्ट करें";
 
 file.select.all = "";
-file.select.visible = "";
+file.select.visible = "दृश्यमान";
 file.select.selected = "";
 
 // Export the current selected objects instead of the entire scene
@@ -559,6 +559,9 @@ file.export.obj.colorAppend.help = "रंग की जानकारी श�
 कुछ 3डी सॉफ्टवेयर इसे पढ़ सकेंगे लेकिन सभी नहीं.";
 file.export.obj.colorHexa = "";
 file.export.obj.colorHexa.help = "";
+
+file.export.obj.faceGroup = "समूहों द्वारा OBJ विभाजित करें";
+file.export.obj.faceGroup.help = "";
 
 file.export.stl = "STL एक्सपोर्ट करें";
 file.export.stl.warning = "परतें और अतिरिक्त पेंटिंग (खुरदरापन धातुपन और मुखौटा) खो जाएँगे.";
@@ -723,6 +726,49 @@ gesture.palmRejection.help = "यदि संपर्क क्षेत्र
 // Size in pixel for the palm rejection feature
 gesture.palmRejection.size = "अधिकतम आकार सीमा";
 
+// Smoothing strategy
+extract.polish.all = "";
+extract.polish.sharp = "";
+extract.polish.border = "";
+// Smooth the border in a way that it matches completely with its dual
+extract.polish.syncBorder = "";
+// topology of extracted mesh
+extract.edgeLoop = "";
+extract.edgeLoop.auto = "";
+extract.edgeLoop.division = "विभाजन";
+// The thickness of the extracted mesh (from the painted mask)
+extract.thickness = "मोटाई";
+// Carve the mask into the surface
+extract.carve = "उत्कीर्ण";
+// Extract a new mesh from the painted mask
+extract = "विसंकुचन";
+// Preview extract
+extract.preview = "प्रीव्यू";
+// Extract two new mesh from the painted mask and from the unmasked area
+extract.split = "विभाजन";
+// How should we close the topology of the extracted object
+extract.action = "बंद करने की क्रिया:";
+extract.action.help = "-- कुछ भी नहीं
+बस उस हिस्से को निकालें और निकाले गए हिस्से को खुलने दें.
+
+-- भरें
+छेद भर जाता है और चिकना हो जाता है.
+समतल सतह के लिए इस विकल्प का उपयोग न करें.
+
+-- आवरण
+मोटाई मान का उपयोग करके निकाले गए आकार को बंद करें.
+
+-- परत
+परत अंतर निकालें (केवल परत उप-मेनू).";
+// Do not close the mesh (leave it open)
+extract.action.none = "नहीं";
+// Close the mesh with a hole-filling algorithm
+extract.action.fill = "भरें";
+// Close the mesh by adding a thickness on the surface
+extract.action.shell = "आवरण";
+// Close the mesh by using the layer data as a difference thickness
+extract.action.layer = "परत";
+
 // History, list of undo/redo
 history = "इतिहास";
 // First "undo" state
@@ -858,6 +904,8 @@ interface.toolbox.hide = "छिपाएँ";
 interface.toolbox.columns = "स्तंभ";
 // Reset the tool's order in the toolbox
 interface.toolbox.resetOrder = "क्रम रीसेट करें";
+// Colored text and icon
+interface.toolbox.color = "";
 // Scale the interface
 interface.scale = "समग्र पैमाना";
 // Spacing between widgets
@@ -1078,7 +1126,7 @@ menu.render = "रेंडर";
 // Menu name
 menu.material = "मटीरीयल";
 // Menu name
-menu.postProcess = "पोस्टप्रॉसेस";
+menu.postprocess = "पोस्टप्रॉसेस";
 // Menu name
 menu.camera = "कैमरा";
 // Menu name
@@ -1430,7 +1478,7 @@ resource.import = "इंपोर्ट करें...";
 // iOS Photos gallery
 resource.import.ios.photos = "";
 // iOS Files App
-resource.import.ios.files = "";
+resource.import.ios.files = "फ़ाइलें";
 
 scene.title = "दृश्य";
 scene.title.help = "दृश्यमान/चयन बटनों का उपयोग करते समय, अन्य वस्तुओं को आसानी से चुनने के लिए अपनी उंगली को रखें और घसीटें.
@@ -1500,7 +1548,8 @@ scene.noneButNeedOne = "कोई चयनित वस्तु नहीं, 
 scene.onlyOneObject = "कई वस्तुएँ चयनित हैं, कृपया केवल एक वस्तु का चयन करें.";
 // Boolean operation
 scene.boolean = "बूलियन";
-scene.boolean.help = ""
+scene.boolean.help = "
+";
 scene.boolean.mergeIntersection = "";
 
 // General scene display settings
@@ -1771,7 +1820,7 @@ stroke.culling.help = "यह विकल्प पीछे की ओर म�
 यह गढ़ाई के लिए भी काम करता है लेकिन आपको कुछ अनचाही कलाकृतियाँ दिख सकती हैं.";
 // Infinite depth, move everything under the circle, disregarding depth
 stroke.silhouette = "";
-stroke.silhouette.view = "";
+stroke.silhouette.view = "दृश्य";
 stroke.silhouette.snapped = "";
 stroke.silhouette.closest = "";
 // Only sculpt the vertex that points toward the direction of the deformation
@@ -1792,42 +1841,40 @@ stroke.area.normal.average = "";
 stroke.area.point.average = "";
 // Keep sharp edges
 stroke.keepSharp = "नुकीले किनारे बनाए रखें";
-stroke.keepSharp.help = ""
+stroke.keepSharp.help = "
+डेप्थ फ़िल्टरिंग";
 
 // Only paint the part of the mesh above a certain height
-stroke.depthFilter = "डेप्थ फ़िल्टरिंग";
+stroke.depthFilter = "";
 stroke.depthFilter.help = "";
 stroke.depthFilter.max = "";
 stroke.depthFilter.min = "";
 stroke.depthFilter.offset = "";
 
 // Invert the pixel (black <-> white)
-stroke.alphaInvert = "इन्वर्ट पिक्सेल";
+stroke.alpha.invert = "इन्वर्ट पिक्सेल";
 // Repeat the alpha image (pattern)
-stroke.alphaWrap = "टाइलिंग";
+stroke.alpha.wrap = "टाइलिंग";
 // No repeat pattern
-stroke.alphaWrap.none = "नहीं";
+stroke.alpha.wrap.none = "नहीं";
 // Repeat the alpha in a regular manner (tiles with seams)
-stroke.alphaWrap.repeat = "पुनरावृत";
+stroke.alpha.wrap.repeat = "पुनरावृत";
 // Repeat the alpha in a mirrored (seamless tiling)
-stroke.alphaWrap.mirror = "प्रतिरूप";
+stroke.alpha.wrap.mirror = "प्रतिरूप";
 stroke.alphaFetch = "विधि";
-// Project the alpha perpendicularly onto the surface
-stroke.alphaFetch.surface = "सतह";
-// Project the alpha onto the surface in the direction of the camera view
-stroke.alphaFetch.screen = "स्क्रीन प्रक्षेपण";
-stroke.alphaRotation = "घुमाव";
-stroke.alphaRotation.lock.help = "अल्फा ओरिएंटेशन लॉक करें।
+// Alpha rotation
+stroke.alpha.rotation = "घुमाव";
+stroke.alpha.rotation.lock.help = "अल्फा ओरिएंटेशन लॉक करें।
 
 यदि रोटेशन अनलॉक है, तो ओरिएंटेशन रीयल-टाइम में स्ट्रोक दिशा का अनुसरण करेगा।";
 // Repeat the image
-stroke.alphaTiling = "टाइलिंग";
+stroke.alpha.tiling = "टाइलिंग";
 // Scale the image (make it bigger or smaller)
-stroke.alphaScale = "स्केलिंग";
-stroke.alphaScale.help = "न्यूनतम मान पर, अल्फा वर्ग टूल वृत त्रिज्या के अंदर होता है.";
+stroke.alpha.scale = "स्केलिंग";
+stroke.alpha.scale.help = "न्यूनतम मान पर, अल्फा वर्ग टूल वृत त्रिज्या के अंदर होता है.";
 // Middle-point value at which no deformation occurs
-stroke.alphaMidValue = "मध्य मान";
-stroke.alphaMidValue.help = "मध्य-बिंदु मान जिस पर कोई विकृति नहीं होती है.
+stroke.alpha.midValue = "मध्य मान";
+stroke.alpha.midValue.help = "मध्य-बिंदु मान जिस पर कोई विकृति नहीं होती है.
 
 (मध्य मान = 0)
 - काला: कोई विस्थापन नहीं
@@ -1844,6 +1891,10 @@ stroke.alphaMidValue.help = "मध्य-बिंदु मान जिस �
 stroke.jitter = "";
 // Sculpt and paint along the brush stroke at regular spacing
 stroke.type.dot = "बिंदु";
+// Sculpt and paint along with alpha spaced by brush radius
+stroke.type.roll = "";
+// Sculpt and paint with alpha projected on screen stencil
+stroke.type.tile = "";
 // Sculpt continuously
 stroke.type.drag = "घसीट";
 // Lock a region and move it around
@@ -1855,12 +1906,13 @@ stroke.type.grabIntensity = "ग्रैब - डायनामिक ती�
 
 stroke.falloffProject = "";
 stroke.falloffProject.help = "";
-stroke.falloffProject.sphere = "";
-stroke.falloffProject.circle = "";
+stroke.falloffProject.sphere = "गोला";
+stroke.falloffProject.circle = "वृत्त";
 
 // Symmetry
 symmetry = "सममिति";
 symmetry.enable = "सक्षम किया गया";
+symmetry.primitiveWarning = "त्रिफलकीय के अपवाद को छोड़कर ब्रश सममिति केवल उन पूर्वगों के लिए उपलब्ध है जो सत्यापित हैं.";
 symmetry.plane.title = "फलक";
 symmetry.toolIgnore = "वर्तमान टूल सममिति की अनदेखी करता है.";
 // Instead of planar symmetry, use a radial symmetry
@@ -2017,6 +2069,7 @@ tool.lattice = "";
 // Ideally <10 chars (Quad Remesher)
 tool.remesh = "";
 tool.remesh.guides = "";
+tool.remesh.density = "";
 // Ideally <10 chars (FaceGroup)
 tool.faceGroup = "";
 tool.faceGroup.autoPick = "";
@@ -2098,49 +2151,6 @@ tool.mask.flipConnected = "मुखौटा उलटें (जुड़ा �
 tool.mask.blur = "धुंधलापन";
 // Sharpen the edge of the painted mask area
 tool.mask.sharpen = "पैना करें";
-// Smoothing strategy
-tool.mask.polish.all = "";
-tool.mask.polish.sharp = "";
-tool.mask.polish.border = "";
-// Smooth the border in a way that it matches completely with its dual
-tool.mask.polish.syncBorder = "";
-// topology of extracted mesh
-tool.mask.edgeLoop = "";
-tool.mask.edgeLoop.auto = "";
-tool.mask.edgeLoop.division = "";
-// The thickness of the extracted mesh (from the painted mask)
-tool.mask.thickness = "मोटाई";
-// Carve the mask into the surface
-tool.mask.carve = "उत्कीर्ण";
-// Extract a new mesh from the painted mask
-tool.mask.extract = "विसंकुचन";
-// Preview extract
-tool.mask.preview = "प्रीव्यू";
-// Extract two new mesh from the painted mask and from the unmasked area
-tool.mask.split = "विभाजन";
-// How should we close the topology of the extracted object
-tool.mask.action = "बंद करने की क्रिया:";
-tool.mask.action.help = "-- कुछ भी नहीं
-बस उस हिस्से को निकालें और निकाले गए हिस्से को खुलने दें.
-
--- भरें
-छेद भर जाता है और चिकना हो जाता है.
-समतल सतह के लिए इस विकल्प का उपयोग न करें.
-
--- आवरण
-मोटाई मान का उपयोग करके निकाले गए आकार को बंद करें.
-
--- परत
-परत अंतर निकालें (केवल परत उप-मेनू).";
-// Do not close the mesh (leave it open)
-tool.mask.action.none = "नहीं";
-// Close the mesh with a hole-filling algorithm
-tool.mask.action.fill = "भरें";
-// Close the mesh by adding a thickness on the surface
-tool.mask.action.shell = "आवरण";
-// Close the mesh by using the layer data as a difference thickness
-tool.mask.action.layer = "परत";
-
 // Transform/Matrix
 tool.matrix = "मैट्रिक्स";
 // The target of the transform is either the Matrix or the Vertex of the object
@@ -2229,7 +2239,7 @@ tool.lathe.axisFixed = "निर्धारित";
 tool.hole = "छेद-भरना";
 tool.hole.fillHoles = "छेद भरें";
 // synonym: Alternative method
-tool.hole.method.fill = "";
+tool.hole.method.fill = "भरें";
 tool.hole.method.legacy = "";
 tool.hole.method.boolean = "बूलियन";
 tool.hole.bridges = "स्क्रीन-स्पेस बूलियन";
@@ -2366,7 +2376,7 @@ topology.dynamic.quality.quality = "गुणवत्ता";
 // Whether the pencil pressure can impact the level of detail
 topology.dynamic.usePressure = "त्रिज्या पर दबाव का उपयोग करें";
 topology.dynamic.usePressure.help = "इस विकल्प का उपयोग करें यदि आप चाहते हैं कि टूल त्रिज्या पर पेन के दबाव का प्रभाव विवरण के स्तर को प्रभावित करे.";
-topology.dynamic.useFalloff = "";
+topology.dynamic.useFalloff = "स्ट्रोक फ़ॉलऑफ़ का उपयोग करें";
 // Decimate
 topology.decimate.title = "डेशीमेशन";
 topology.decimate.title.help = "अधिक से अधिक विवरण रखने का प्रयास करके बहुभुजों की संख्या कम करें.
@@ -2393,13 +2403,14 @@ topology.target.points = "";
 // Quad remesher
 topology.qremesh = "";
 topology.qremesh.angle = "";
-topology.qremesh.border = "";
+topology.qremesh.border = "सीमाओं को सुरक्षित रखें";
 topology.qremesh.onlyQuad = "";
 topology.qremesh.hole = "";
-topology.qremesh.hole.help = ""
+topology.qremesh.hole.help = "
+UV अनावृत";
 
 // Unwrapping means compute UV (texture coordinates), with uvs you can appliy (wrap) a texture onto the model
-topology.uv.title = "UV अनावृत";
+topology.uv.title = "";
 // UV Unwrap but as a Verb
 topology.uv.unwrap = "अनावृत";
 // The operation can be very slow
@@ -2418,15 +2429,16 @@ topology.bake.title = "बेक";
 // Bake here means "create texture (from mesh data)"
 topology.bake.title.help = "";
 // Bake here means "create texture (from mesh data)"
-topology.bakeSelf = "";
+topology.bake.self = "";
 // Bake here means "create texture (from another mesh data)"
-topology.bakeOther = "";
-topology.bakeResolution = "रिज़ोल्यूशन";
+topology.bake.other = "";
+topology.bake.resolution = "रिज़ोल्यूशन";
 // Cage is a specific term, synonyom: "Bake offset"
-topology.bakeOffset = "";
-topology.bakeRadius = "";
+topology.bake.offset = "";
+topology.bake.radius = "";
 // Bake opacity (from mask data)
 topology.bake.opacityFromMask = "";
+topology.bake.backup = "";
 
 // project a high resolution mesh details onto another
 topology.reproject.title = "";
@@ -2437,8 +2449,9 @@ topology.reproject.rayBias.help = "";
 topology.reproject.normalOffset = "";
 // number of iteration the algorithm will take
 topology.reproject.iterations = "";
-topology.reproject.relax = "";
+topology.reproject.relax = "शिथिल";
 topology.reproject.relax.help = "";
+topology.reproject.layers.help = "";
 
 topology.manifold = "";
 topology.nonManifold = "";
@@ -2484,10 +2497,6 @@ binding.snapViewOnRotate = "दृश्य पलटें (घुमाते 
 binding.project.open = "खोलें (प्रोजेक्ट)";
 // Open a Nomad internal project (add it to the current scene)
 binding.project.add = "जोड़ें (प्रोजेक्ट)";
-// Import an external scene file (replace current scene)
-binding.import.open = "खोलें (इंपोर्ट करें)";
-// Import an external scene file (add it to the current scene)
-binding.import.add = "जोड़ें (इंपोर्ट करें)";
 // Select all the objects in the scene
 binding.selectAll = "सभी चुनें";
 // Rotate environment and the lighting
@@ -2515,7 +2524,7 @@ sonar.connect.confirm.warning = "";
 // Color disc mode
 widget.color.disc = "";
 // Color square mode
-widget.color.square = "";
+widget.color.square = "चौकोर";
 
 // version trial
 version.buyWeb = "वेब संस्करण केवल एक डेमो है";

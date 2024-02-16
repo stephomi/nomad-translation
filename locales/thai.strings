@@ -45,6 +45,8 @@ item.replace = "";
 // Save an item (object, tool, etc)
 item.save = "บันทึก";
 item.save.confirm = "ยืนยันการบันทึก?";
+// Update an item (update camera view point, etc)
+item.update = "อัปเดต";
 // Reload last save of an item (object, tool, etc)
 item.lastSave = "บันทึกล่าสุด";
 // Reload last save of an item (object, tool, etc)
@@ -107,8 +109,8 @@ loading.reprocess.cancel = "";
 
 access.title = "";
 access.window = "";
-access.pinch = "";
-access.drag = "";
+access.pinch = "กระจุก";
+access.drag = "ลาก";
 access.roll = "";
 
 // Color of an object
@@ -196,9 +198,9 @@ alert.trim.nothing = "ไม่มีสิ่งที่ให้ตัดแ�
 // The user tried to trim an object but the selected region completely encompassed the object
 alert.trim.full = "ยกเลิกการตัดแต่ง ออบเจ็กต์ถูกตัดแต่งสมบูรณ์แล้ว";
 // In order to extract something, the mesh needs to have painted mask
-alert.mask.noExtract = "ไม่มีสิ่งที่ให้สกัด!";
+alert.extract.none = "ไม่มีสิ่งที่ให้สกัด!";
 // In order to split something, the mesh needs to have painted mask
-alert.mask.noSplit = "ไม่มีสิ่งที่ให้แยก!";
+alert.extract.split.none = "ไม่มีสิ่งที่ให้แยก!";
 // List of disabled features when View Mode is selected
 alert.view.disabled = "คุณสมบัติที่ปิดใช้งานในโหมดดู";
 // Primitive Widgets are small ui stuffs in the viewport that the user can interact with to modify an object
@@ -243,9 +245,9 @@ alert.selection.showAll = "แสดงทั้งหมด";
 // Project quick saving
 alert.quickSave = "กำลังบันทึก...";
 // Painting on the object was hidden but the user did paint the object
-alert.forceShowPainting.fill = "แสดงการวาดลงสีที่เปิดใช้งาน [ระบายสีทั้งหมด] ถูกใช้แล้ว";
+alert.forcePainting.fill = "แสดงการวาดลงสีที่เปิดใช้งาน [ระบายสีทั้งหมด] ถูกใช้แล้ว";
 // Painting on the object was hidden but the user started to paint on the object
-alert.forceShowPainting.tool = "แสดงการวาดลงสีที่เปิดใช้งาน ออบเจ็กต์ถูกทาสีแล้ว";
+alert.forcePainting.tool = "แสดงการวาดลงสีที่เปิดใช้งาน ออบเจ็กต์ถูกทาสีแล้ว";
 // See Glossary (Multiresolution)
 alert.multiresLost = "ความละเอียดแบบหลายระดับจะหายไป!";
 // The user is starting an operation that can lead to a crash
@@ -406,8 +408,6 @@ debug.uvBFF.help = "เพิ่มวิธีการคำนวนแบบ
 
 โปรดทราบว่า BFF จะทับซ้อนกันหากโครงสร้างหรือโทโพโลยีของเมชของคุณแตกต่างจากดิสก์หรือสเฟียร์";
 
-debug.quadriflow = "";
-
 // Debug option, display an window with some debugging logs
 debug.logs = "บันทึก";
 // Debug option, overrides the rendering to display the depth buffer
@@ -472,7 +472,8 @@ file.project.autoSave.minutes = "ป๊อปอัพตัวจับเว�
 file.project.autoSave.delete = "ลบบันทึกอัตโนมัติ?";
 
 // color space (linear or srgb), do not translate linear/srgb if there is a doubt
-file.colorSpace = ""
+file.colorSpace = "
+";
 file.colorSpace.help = "";
 file.colorSpace.linear = "";
 file.colorSpace.srgb = "";
@@ -484,8 +485,8 @@ file.importSettings = "นำเข้าตัวเลือก";
 file.import.guiSettings = "เก็บการตั้งค่า gui";
 file.import.guiSettings.help = "เมื่อเปิดหรือนำเข้าไฟล์โปรเจ็กต์ การตั้งค่าที่เกี่ยวข้องกับ gui ทั้งหมดที่ฝังอยู่ในโปรเจ็กต์จะถูกโหลด";
 // OBJ have "groups" and "objects", by default groups are ignored, use this option to consider groups as separate objects
-file.import.objSplitByGroup = "แยก OBJ ตามกลุ่ม";
-file.import.objSplitByGroup.help = "เมื่อเปิดใช้งาน Nomad จะแบ่งกลุ่ม OBJ ออกเป็นอ็อบเจ็กต์แยกกัน";
+file.import.obj.splitByGroup = "แยก OBJ ตามกลุ่ม";
+file.import.obj.splitByGroup.help = "เมื่อเปิดใช้งาน Nomad จะแบ่งกลุ่ม OBJ ออกเป็นอ็อบเจ็กต์แยกกัน";
 // Merge all the object layers at when loading a file (deleting them in the process)
 file.import.mergeLayers = "รวมเลเยอร์";
 // Ignore the textures present in the file to load
@@ -495,7 +496,6 @@ file.import.keepTopology = "เก็บโทโพโลยี";
 file.import.keepTopology.help = "ใช้ตัวเลือกนี้หากคุณไม่ต้องการให้ Nomad จัดการกับโทโพโลยีของเมชที่นำเข้า
 
 จะปิดใช้งานการจัดลำดับใหม่จุดยอด/เฟส การลบจุดยอด/เฟสที่ซ้ำกัน และการลบจุดยอดที่ไม่ได้ใช้";
-
 
 // Import file section
 file.import.title = "นำเข้า";
@@ -511,7 +511,7 @@ file.import.add.confirm = "นำเข้าไฟล์ใหม่?";
 file.export.title = "นำออก";
 
 file.select.all = "";
-file.select.visible = "";
+file.select.visible = "ที่เห็นได้";
 file.select.selected = "";
 
 // Export the current selected objects instead of the entire scene
@@ -557,6 +557,9 @@ file.export.obj.colorAppend.help = "ผนวกข้อมูลสีหล�
 ซอฟต์แวร์ 3D บางตัวจะสามารถอ่านได้ แต่ไม่ใช่ทั้งหมด";
 file.export.obj.colorHexa = "";
 file.export.obj.colorHexa.help = "";
+
+file.export.obj.faceGroup = "แยก OBJ ตามกลุ่ม";
+file.export.obj.faceGroup.help = "";
 
 file.export.stl = "นำออก STL";
 file.export.stl.warning = "เลเยอร์และการวาดลงสีเพิ่มเติม (ความหยาบ ความเป็นโลหะและมาส์ก) จะหายไป";
@@ -721,6 +724,49 @@ gesture.palmRejection.help = "ปฏิเสธอินพุตหากพ�
 // Size in pixel for the palm rejection feature
 gesture.palmRejection.size = "เกณฑ์ขนาดสูงสุด";
 
+// Smoothing strategy
+extract.polish.all = "";
+extract.polish.sharp = "";
+extract.polish.border = "";
+// Smooth the border in a way that it matches completely with its dual
+extract.polish.syncBorder = "";
+// topology of extracted mesh
+extract.edgeLoop = "";
+extract.edgeLoop.auto = "";
+extract.edgeLoop.division = "การแบ่งแยก";
+// The thickness of the extracted mesh (from the painted mask)
+extract.thickness = "ความหนา";
+// Carve the mask into the surface
+extract.carve = "แกะสลัก";
+// Extract a new mesh from the painted mask
+extract = "สกัด";
+// Preview extract
+extract.preview = "พรีวิว";
+// Extract two new mesh from the painted mask and from the unmasked area
+extract.split = "แยก";
+// How should we close the topology of the extracted object
+extract.action = "การดำเนินการปิด";
+extract.action.help = "-- ไม่มี
+เพียงสกัดส่วนนี้แล้วปล่อยให้ส่วนที่สกัดออกมาเปิดออก
+
+-- เติม
+หลุมถูกเติมและทำให้เรียบ
+อย่าใช้ตัวเลือกนี้สำหรับพื้นผิวเรียบ
+
+-- เปลือก
+ปิดรูปร่างที่สกัดออกมาโดยใช้ค่าความหนา
+
+-- เลเยอร์
+แยกความแตกต่างของเลเยอร์ (เฉพาะเมนูย่อยของเลเยอร์)";
+// Do not close the mesh (leave it open)
+extract.action.none = "ไม่มี";
+// Close the mesh with a hole-filling algorithm
+extract.action.fill = "เติม";
+// Close the mesh by adding a thickness on the surface
+extract.action.shell = "เปลือก";
+// Close the mesh by using the layer data as a difference thickness
+extract.action.layer = "เลเยอร์";
+
 // History, list of undo/redo
 history = "ประวัติ";
 // First "undo" state
@@ -854,6 +900,8 @@ interface.toolbox.hide = "ซ่อน";
 interface.toolbox.columns = "คอลัมน์";
 // Reset the tool's order in the toolbox
 interface.toolbox.resetOrder = "รีเซ็ตลำดับ";
+// Colored text and icon
+interface.toolbox.color = "";
 // Scale the interface
 interface.scale = "ขนาดโดยรวม";
 // Spacing between widgets
@@ -1075,7 +1123,7 @@ menu.render = "เร็นเดอร์";
 // Menu name
 menu.material = "วัสดุ";
 // Menu name
-menu.postProcess = "PostProcess";
+menu.postprocess = "PostProcess";
 // Menu name
 menu.camera = "กล้อง";
 // Menu name
@@ -1427,7 +1475,7 @@ resource.import = "นำเข้า...";
 // iOS Photos gallery
 resource.import.ios.photos = "";
 // iOS Files App
-resource.import.ios.files = "";
+resource.import.ios.files = "ไฟล์";
 
 scene.title = "ซีน";
 scene.title.help = "เมื่อใช้ปุ่มที่มองเห็น/เลือก ให้กดค้างไว้แล้วลากนิ้วเพื่อเลือกออบเจ็กต์อื่นๆ อย่างง่ายดาย
@@ -1494,7 +1542,8 @@ scene.noneButNeedOne = "ไม่ได้เลือกออบเจ็ก�
 scene.onlyOneObject = "เลือกหลายออบเจ็กต์ โปรดเลือกออบเจ็กต์เดียวเท่านั้น";
 // Boolean operation
 scene.boolean = "บูลีน";
-scene.boolean.help = ""
+scene.boolean.help = "
+";
 scene.boolean.mergeIntersection = "";
 
 // General scene display settings
@@ -1765,7 +1814,7 @@ stroke.culling.help = "ตัวเลือกนี้จะละเว้น
 และยังใช้งานได้สำหรับการแกะสลัก แต่คุณอาจพบสิ่งแปลกปลอมบางอย่าง";
 // Infinite depth, move everything under the circle, disregarding depth
 stroke.silhouette = "";
-stroke.silhouette.view = "";
+stroke.silhouette.view = "มุมมอง";
 stroke.silhouette.snapped = "";
 stroke.silhouette.closest = "";
 // Only sculpt the vertex that points toward the direction of the deformation
@@ -1786,40 +1835,38 @@ stroke.area.normal.average = "";
 stroke.area.point.average = "";
 // Keep sharp edges
 stroke.keepSharp = "รักษาขอบคมไว้";
-stroke.keepSharp.help = ""
+stroke.keepSharp.help = "
+การกรองความลึก";
 
 // Only paint the part of the mesh above a certain height
-stroke.depthFilter = "การกรองความลึก";
+stroke.depthFilter = "";
 stroke.depthFilter.help = "";
 stroke.depthFilter.max = "";
 stroke.depthFilter.min = "";
 stroke.depthFilter.offset = "";
 
 // Invert the pixel (black <-> white)
-stroke.alphaInvert = "สลับพิกเซล";
+stroke.alpha.invert = "สลับพิกเซล";
 // Repeat the alpha image (pattern)
-stroke.alphaWrap = "เรียงต่อกัน";
+stroke.alpha.wrap = "เรียงต่อกัน";
 // No repeat pattern
-stroke.alphaWrap.none = "ไม่มี";
+stroke.alpha.wrap.none = "ไม่มี";
 // Repeat the alpha in a regular manner (tiles with seams)
-stroke.alphaWrap.repeat = "ทำซ้ำ";
+stroke.alpha.wrap.repeat = "ทำซ้ำ";
 // Repeat the alpha in a mirrored (seamless tiling)
-stroke.alphaWrap.mirror = "มิเรอร์";
+stroke.alpha.wrap.mirror = "มิเรอร์";
 stroke.alphaFetch = "วิธี";
-// Project the alpha perpendicularly onto the surface
-stroke.alphaFetch.surface = "พื้นผิว";
-// Project the alpha onto the surface in the direction of the camera view
-stroke.alphaFetch.screen = "ฉายภาพโปรเจ็กต์";
-stroke.alphaRotation = "การหมุน";
-stroke.alphaRotation.lock.help = "";
+// Alpha rotation
+stroke.alpha.rotation = "การหมุน";
+stroke.alpha.rotation.lock.help = "";
 // Repeat the image
-stroke.alphaTiling = "เรียงต่อกัน";
+stroke.alpha.tiling = "เรียงต่อกัน";
 // Scale the image (make it bigger or smaller)
-stroke.alphaScale = "การปรับขนาด";
-stroke.alphaScale.help = "ที่ค่าต่ำสุด สี่เหลี่ยมอัลฟาจะอยู่ภายในรัศมีวงกลมของเครื่องมือ";
+stroke.alpha.scale = "การปรับขนาด";
+stroke.alpha.scale.help = "ที่ค่าต่ำสุด สี่เหลี่ยมอัลฟาจะอยู่ภายในรัศมีวงกลมของเครื่องมือ";
 // Middle-point value at which no deformation occurs
-stroke.alphaMidValue = "ค่ากลาง";
-stroke.alphaMidValue.help = "ค่าจุดกึ่งกลางที่ไม่มีดีฟอร์เมชัน
+stroke.alpha.midValue = "ค่ากลาง";
+stroke.alpha.midValue.help = "ค่าจุดกึ่งกลางที่ไม่มีดีฟอร์เมชัน
 
 (ค่ากลาง = 0)
 - สีดำ: ไม่มีการแทนที่
@@ -1836,6 +1883,10 @@ stroke.alphaMidValue.help = "ค่าจุดกึ่งกลางที่
 stroke.jitter = "";
 // Sculpt and paint along the brush stroke at regular spacing
 stroke.type.dot = "จุด";
+// Sculpt and paint along with alpha spaced by brush radius
+stroke.type.roll = "";
+// Sculpt and paint with alpha projected on screen stencil
+stroke.type.tile = "";
 // Sculpt continuously
 stroke.type.drag = "ลาก";
 // Lock a region and move it around
@@ -1847,12 +1898,13 @@ stroke.type.grabIntensity = "คว้า - ความเข้มแบบไ
 
 stroke.falloffProject = "";
 stroke.falloffProject.help = "";
-stroke.falloffProject.sphere = "";
-stroke.falloffProject.circle = "";
+stroke.falloffProject.sphere = "สเฟียร์";
+stroke.falloffProject.circle = "วงกลม";
 
 // Symmetry
 symmetry = "สมมาตร";
 symmetry.enable = "เปิดใช้งาน";
+symmetry.primitiveWarning = "ความสมมาตรของแปรงใช้ได้เฉพาะกับรูปทรงพื้นฐานที่ผ่านการตรวจสอบแล้ว ยกเว้นสามระนาบ";
 symmetry.plane.title = "ระนาบ";
 symmetry.toolIgnore = "เครื่องมือปัจจุบันไม่เกี่ยวกับความสมมาตร";
 // Instead of planar symmetry, use a radial symmetry
@@ -2009,6 +2061,7 @@ tool.lattice = "";
 // Ideally <10 chars (Quad Remesher)
 tool.remesh = "";
 tool.remesh.guides = "";
+tool.remesh.density = "";
 // Ideally <10 chars (FaceGroup)
 tool.faceGroup = "";
 tool.faceGroup.autoPick = "";
@@ -2090,49 +2143,6 @@ tool.mask.flipConnected = "พลิกที่เชื่อมโยงก�
 tool.mask.blur = "เบลอ";
 // Sharpen the edge of the painted mask area
 tool.mask.sharpen = "ความคมชัด";
-// Smoothing strategy
-tool.mask.polish.all = "";
-tool.mask.polish.sharp = "";
-tool.mask.polish.border = "";
-// Smooth the border in a way that it matches completely with its dual
-tool.mask.polish.syncBorder = "";
-// topology of extracted mesh
-tool.mask.edgeLoop = "";
-tool.mask.edgeLoop.auto = "";
-tool.mask.edgeLoop.division = "";
-// The thickness of the extracted mesh (from the painted mask)
-tool.mask.thickness = "ความหนา";
-// Carve the mask into the surface
-tool.mask.carve = "แกะสลัก";
-// Extract a new mesh from the painted mask
-tool.mask.extract = "สกัด";
-// Preview extract
-tool.mask.preview = "พรีวิว";
-// Extract two new mesh from the painted mask and from the unmasked area
-tool.mask.split = "แยก";
-// How should we close the topology of the extracted object
-tool.mask.action = "การดำเนินการปิด";
-tool.mask.action.help = "-- ไม่มี
-เพียงสกัดส่วนนี้แล้วปล่อยให้ส่วนที่สกัดออกมาเปิดออก
-
--- เติม
-หลุมถูกเติมและทำให้เรียบ
-อย่าใช้ตัวเลือกนี้สำหรับพื้นผิวเรียบ
-
--- เปลือก
-ปิดรูปร่างที่สกัดออกมาโดยใช้ค่าความหนา
-
--- เลเยอร์
-แยกความแตกต่างของเลเยอร์ (เฉพาะเมนูย่อยของเลเยอร์)";
-// Do not close the mesh (leave it open)
-tool.mask.action.none = "ไม่มี";
-// Close the mesh with a hole-filling algorithm
-tool.mask.action.fill = "เติม";
-// Close the mesh by adding a thickness on the surface
-tool.mask.action.shell = "เปลือก";
-// Close the mesh by using the layer data as a difference thickness
-tool.mask.action.layer = "เลเยอร์";
-
 // Transform/Matrix
 tool.matrix = "แมทริกซ์";
 // The target of the transform is either the Matrix or the Vertex of the object
@@ -2221,7 +2231,7 @@ tool.lathe.axisFixed = "อยู่กับที่";
 tool.hole = "การอุดรู";
 tool.hole.fillHoles = "อุดรู";
 // synonym: Alternative method
-tool.hole.method.fill = "";
+tool.hole.method.fill = "เติม";
 tool.hole.method.legacy = "";
 tool.hole.method.boolean = "บูลีน";
 tool.hole.bridges = "บูลีนพื้นที่หน้าจอ";
@@ -2358,7 +2368,7 @@ topology.dynamic.quality.quality = "คุณภาพ";
 // Whether the pencil pressure can impact the level of detail
 topology.dynamic.usePressure = "ใช้แรงกดบนรัศมี";
 topology.dynamic.usePressure.help = "ใช้ตัวเลือกนี้หากคุณต้องการให้แรงกดของปากกาส่งผลต่อรัศมีของเครื่องมือ เพื่อที่จะส่งผลต่อระดับของรายละเอียด";
-topology.dynamic.useFalloff = "";
+topology.dynamic.useFalloff = "ใช้การทำเส้นโค้งลายเส้น";
 // Decimate
 topology.decimate.title = "การลบ";
 topology.decimate.title.help = "ลดจำนวนรูปหลายเหลี่ยมโดยพยายามเก็บรายละเอียดให้มากที่สุด
@@ -2388,10 +2398,11 @@ topology.qremesh.angle = "";
 topology.qremesh.border = "";
 topology.qremesh.onlyQuad = "";
 topology.qremesh.hole = "";
-topology.qremesh.hole.help = ""
+topology.qremesh.hole.help = "
+คำนวน UV";
 
 // Unwrapping means compute UV (texture coordinates), with uvs you can appliy (wrap) a texture onto the model
-topology.uv.title = "คำนวน UV";
+topology.uv.title = "";
 // UV Unwrap but as a Verb
 topology.uv.unwrap = "คำนวน";
 // The operation can be very slow
@@ -2410,15 +2421,16 @@ topology.bake.title = "เบค";
 // Bake here means "create texture (from mesh data)"
 topology.bake.title.help = "";
 // Bake here means "create texture (from mesh data)"
-topology.bakeSelf = "";
+topology.bake.self = "";
 // Bake here means "create texture (from another mesh data)"
-topology.bakeOther = "";
-topology.bakeResolution = "ความละเอียด";
+topology.bake.other = "";
+topology.bake.resolution = "ความละเอียด";
 // Cage is a specific term, synonyom: "Bake offset"
-topology.bakeOffset = "";
-topology.bakeRadius = "";
+topology.bake.offset = "";
+topology.bake.radius = "";
 // Bake opacity (from mask data)
 topology.bake.opacityFromMask = "";
+topology.bake.backup = "";
 
 // project a high resolution mesh details onto another
 topology.reproject.title = "";
@@ -2429,8 +2441,9 @@ topology.reproject.rayBias.help = "";
 topology.reproject.normalOffset = "";
 // number of iteration the algorithm will take
 topology.reproject.iterations = "";
-topology.reproject.relax = "";
+topology.reproject.relax = "อ่อนลง";
 topology.reproject.relax.help = "";
+topology.reproject.layers.help = "";
 
 topology.manifold = "";
 topology.nonManifold = "";
@@ -2476,10 +2489,6 @@ binding.snapViewOnRotate = "มุมมองแบบสแนป (ขณะ�
 binding.project.open = "เปิด (โปรเจ็กต์)";
 // Open a Nomad internal project (add it to the current scene)
 binding.project.add = "เพิ่ม (โปรเจ็กต์)";
-// Import an external scene file (replace current scene)
-binding.import.open = "เปิด (นำเข้า)";
-// Import an external scene file (add it to the current scene)
-binding.import.add = "เพิ่ม (นำเข้า)";
 // Select all the objects in the scene
 binding.selectAll = "เลือกทั้งหมด";
 // Rotate environment and the lighting
@@ -2507,7 +2516,7 @@ sonar.connect.confirm.warning = "";
 // Color disc mode
 widget.color.disc = "";
 // Color square mode
-widget.color.square = "";
+widget.color.square = "สี่เหลี่ยม";
 
 // version trial
 version.buyWeb = "เวอร์ชันเว็บเป็นเพียงตัวอย่างเท่านั้น";
