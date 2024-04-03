@@ -22,8 +22,7 @@ Emojis not supported.
 # Traditional Chinese
 
 ```
-opencc -i "locales/chinese-simplified.strings" -o "locales/chinese-traditional.strings" -c s2twp
-opencc -i "description/chinese-simplified.txt" -o "description/chinese-traditional.txt" -c s2twp
+opencc -i "locales/simplified-chinese.strings" -o "locales/traditional-chinese.strings" -c s2twp
 ```
 
 <!-- 
