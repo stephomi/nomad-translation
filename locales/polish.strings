@@ -21,16 +21,24 @@ MB = "MB";
 GB = "GB";
 TB = "TB";
 
-// common
+// position
 position.top = "Góra";
-position.right = "Prawo";
-position.left = "Lewo";
 position.bottom = "Dół";
+position.left = "Lewo";
+position.right = "Prawo";
 position.center = "Wyśrodkowany";
+// direction
 direction.up = "Góra";
-direction.right = "Prawo";
-direction.left = "Lewo";
 direction.down = "Dół";
+direction.left = "Lewo";
+direction.right = "Prawo";
+// 3d cube
+cube.top = "Góra";
+cube.bottom = "Dół";
+cube.left = "Lewo";
+cube.right = "Prawo";
+cube.front = "Przód";
+cube.back = "Tył";
 
 // Name of an item (object, tool, etc)
 item.name = "Nazwa";
@@ -111,6 +119,7 @@ access.title = "Dostępność";
 access.window = "Okno pomocnicze";
 access.pinch = "Ściśnięcie";
 access.drag = "Przeciągnij";
+access.rotate = "Obróć";
 access.roll = "Rolka";
 
 // Color of an object
@@ -183,7 +192,7 @@ about.facebook = "Facebook";
 // Link to the App Discord account
 about.discord = "Discord";
 // Link to the App Threads account
-about.threads = "Wątki";
+about.threads = "Threads";
 
 // The user canceled an operation that was running
 alert.aborted = "Operacja przerwana!";
@@ -380,6 +389,13 @@ curve.catmull = "Catmull-Rom";
 curve.spline = "Splajn";
 curve.bspline = "Splajn";
 curve.precision = "Dokładność";
+// snap
+curve.snap = "Przyciągnij";
+curve.snap.offset = "Przesunięcie";
+curve.snap.offset.help = "Wartość 100% jest równa promieniowi rury.";
+curve.snap.surface = "";
+curve.snap.vertex = "";
+curve.snap.grid = "";
 // Regular spaced sampling
 curve.uniform = "Jednolity";
 curve.uniform.help = "Krzywa będzie próbkowana w regularnych odstępach, aby zapewnić jednolitą gęstość.
@@ -517,6 +533,7 @@ file.export.title = "Eksportuj";
 file.select.all = "Wszystkie";
 file.select.visible = "Widoczne";
 file.select.selected = "Wybrane";
+file.select.unselected = "";
 
 // Export the current selected objects instead of the entire scene
 file.onlySelection = "Dołącz tylko zaznaczone obiekty";
@@ -524,22 +541,30 @@ file.onlySelection.help = "Dołącz tylko zaznaczenie, a nie całą scenę.";
 // Tries to generate quad (rectangle polygon) from triangles
 file.convertToQuad = "Rekonstruuj czworokąty";
 file.convertToQuad.help = "Rekonstruuj czworokąty z trójkątów poprzez parowanie trójkątów (jeśli są sąsiadujące w plikach).";
-
+// ----------------------------------------------
 // Whether we include the textures in the exported file
 file.export.texture = "Tekstury";
 // Baking means transfering/converting
 file.export.texture.help = "Ta opcja nie zapisuje kolorów wierzchołków w teksturach.";
+// ----------------------------------------------
+file.export.color0 = "Kolory wierzchołków";
+file.export.color1 = "Malowanie PBR";
+file.export.color1.help = "Eksportuj chropowatość, metaliczność i malowanie masek. Będzie to ignorowane przez inne programy.";
+// ----------------------------------------------
 // Whether we include normals vector in the exported file
 file.export.normal = "Normalne";
 file.export.normal.help = "Zaznacz tę opcję, jeśli chcesz otworzyć plik w innym programie.
 
 Nomad zawsze ignoruje normale, ponieważ będzie je ponownie obliczać.";
-
+// ----------------------------------------------
+file.export.tangent = "";
+file.export.tangent.help = "";
+// ----------------------------------------------
 file.export.nomad = "Eksportuj Nomad";
 file.export.nomad.help = "Wewnętrzny format pliku Nomad Sculpt.
 
 Ten format nie będzie się ładował w innych oprogramowaniach, jest głównie do celów ponownego importu.";
-
+// ----------------------------------------------
 file.export.gltf = "Eksportuj glTF 2.0";
 // Whether we include layers in the exported file (see glossary for layer)
 file.export.gltf.layer = "Warstwy";
@@ -547,13 +572,7 @@ file.export.gltf.layer.help = "Eksportuj warstwy jako morfy. Oficjalnie obsługi
 // Whether we include painting of layers in the exported file (see glossary for layer)
 file.export.gltf.layerPaint = "Malowanie warstwy";
 file.export.gltf.layerPaint.help = "Eksportuj malowanie warstwy. Zwykle jest to ignorowane przez inne programy.";
-// Whether we include the vertex color in the exported file
-file.export.gltf.color0 = "Kolory wierzchołków";
-file.export.gltf.color0.help = "Eksportuj kolory wierzchołków. Oficjalnie obsługiwane przez glTF więc powinno to działać również w innych programach.";
-// Whether we include the vertex roughness and vertex metalness in the exported file
-file.export.gltf.color1 = "Malowanie PBR";
-file.export.gltf.color1.help = "Eksportuj chropowatość, metaliczność i malowanie masek. Będzie to ignorowane przez inne programy.";
-
+// ----------------------------------------------
 file.export.obj = "Eksportuj OBJ";
 file.export.obj.warning = "Warstwy i dodatkowe malowanie (chropowatość, metaliczność i maski) zostaną utracone.";
 // Whether we include the vertex color in the exported file
@@ -563,24 +582,20 @@ file.export.obj.colorAppend.help = "Dodaj informacje o kolorze po wierzchołkach
 Niektóre programy 3D będą w stanie to odczytać, ale nie wszystkie.";
 file.export.obj.colorHexa = "Kolory szesnastkowe";
 file.export.obj.colorHexa.help = "Alternatywny sposób kodowania koloru. Obsługuje również dane maski.";
-
 file.export.obj.faceGroup = "Podziel OBJ według grup";
 file.export.obj.faceGroup.help = "Wyłącz tę opcję, jeśli eksportujesz do Procreate!";
-
+// ----------------------------------------------
 file.export.stl = "Eksportuj STL";
 file.export.stl.warning = "Warstwy i dodatkowe malowanie (chropowatość, metaliczność i maski) zostaną utracone.";
 // Whether we include the vertex color in the exported file
 file.export.stl.color = "Kolory wierzchołków";
 file.export.stl.color.help = "Niektóre programy 3D będą w stanie to odczytać, ale nie wszystkie.";
-
+// ----------------------------------------------
 file.export.ply = "Eksportuj STL";
 file.export.ply.warning = "Warstwy i dodatkowe malowanie (chropowatość, metaliczność i maski) zostaną utracone.";
-// Whether we include the vertex color in the exported file
-file.export.ply.color0 = "Kolory wierzchołków";
-
-file.export.ply.color1 = "Malowanie PBR";
-file.export.ply.color1.help = "Eksportuj chropowatość, metaliczność i malowanie masek. Będzie to ignorowane przez inne programy.";
-
+// ----------------------------------------------
+file.export.fbx = "";
+// ----------------------------------------------
 // Advanced settings
 settings.advanced = "Zaawansowane";
 // Means that all these options will be resetted when the app restarts
@@ -706,7 +721,6 @@ Umożliwia to następujące gesty:
 - stuknięcie zamaskowanego obszaru w celu rozmycia maski
 - stuknięcie niezamaskowanego obszaru w celu wyostrzenia maski";
 // Hold the finger on screen to toggle between two tools: Mask and SelMask
-gesture.mask.longPress = "Naciśnięcie i przytrzymanie (Maska ↔ Zaz. maskę)";
 gesture.mask.holdStroke = "Pociągnięcie";
 gesture.mask.holdStroke.help = "Długie naciśnięcie przełącza między Mask a SelMask i rozpoczyna nowy ruch.
 
@@ -720,8 +734,9 @@ gesture.shortcut = "Skrót";
 // Shortcuts to undo/redo
 gesture.history = "Skróty historii";
 gesture.history.help = "- Cofnij: stuknięcie 2 palcami
-- Ponów: stuknięcie 3 palcami
-- Cofnij/Ponów: naciśnięcie i przytrzymanie 2/3 palcami (w sposób ciągły)";
+- Ponów: stuknięcie 3 palcami";
+gesture.history.hold = "Naciśnięcie i przytrzymanie";
+gesture.history.hold.help = "Naciśnięcie i przytrzymanie 2/3 palcami (w sposób ciągły).";
 
 // Size rejection is when we try to ignore the palm of the hand when we interact with a tablet
 gesture.palmRejection = "Odrzucenie przypadkowego dotknięcia nadgarstkiem";
@@ -774,6 +789,12 @@ extract.action.fill = "Wypełnienie";
 extract.action.shell = "Powłoka";
 // Close the mesh by using the layer data as a difference thickness
 extract.action.layer = "Warstwa";
+
+// uv part of revolution surface
+genus.main = "Główna";
+genus.hole = "Otwór";
+genus.bottom = "Dół";
+genus.top = "Góra";
 
 // History, list of undo/redo
 history = "Historia";
@@ -860,29 +881,7 @@ interface.blurFactor = "Siła rozmycia";
 interface.colorBaseTransparent = "Panel kolorów";
 
 // Interface color style
-interface.preset.title = "Ustawienia wstępne kolorów";
-// Interface color style (original color of Nomad Sculpt)
-interface.preset.classic = "Klasyczne";
-// Interface color style
-interface.preset.orange = "Pomarańczowy";
-// Interface color style (~red)
-interface.preset.cardinal = "Purpurowy";
-// Interface Color style (~pink)
-interface.preset.mulberry = "Morwowy";
-// Interface color style
-interface.preset.brown = "Brązowy";
-// Interface color style (~green)
-interface.preset.emerald = "Szmaragdowy";
-// Interface color style (~blue)
-interface.preset.neon = "Neon";
-// Interface color style
-interface.preset.violet = "Fioletowy";
-// Interface color style
-interface.preset.gray = "Szary";
-// Interface color style
-interface.preset.black = "Czarny";
-// Interface color style
-interface.preset.white = "Biały";
+interface.preset.title = "Ustawienia wstępne";
 
 // Reset interface settings
 interface.resetAll = "Zresetuj styl";
@@ -1061,7 +1060,7 @@ material.refractionInteriorRoughness.help = "- przy wartości 0 wnętrze korzyst
 material.paintGlossy = "Malowanie błyszczące";
 material.paintGlossy.help = "Spowoduje to pomalowanie obiektu z chropowatością i metalicznością równą 0, co pozwoli na ostre załamanie światła.
 
-Działa to identycznie jak wejście do menu malowania i użycie funkcji Maluj wszystko z wyłączonym kolorem i metalicznością.";
+Działa to identycznie jak wejście do menu malowania i użycie funkcji Maluj wszystko z wyłączonym kolorem.";
 // Simulate the light being absorbed when it travels through the volume.
 material.absorptionEnable = "Pochłanianie";
 material.absorptionEnable.help = "Symuluj pochłanianie światła podczas jego przechodzenia przez objętość.
@@ -1356,7 +1355,7 @@ postprocess.curvature.bump = "Wypukłość";
 postprocess.pixelArt = "Pixel Art";
 // Override frame accumulation feature
 postprocess.pixelArt.allowAccumulate = "Zezwól na próbkowanie klatek";
-// Simulate scanline rendering (horizonal line)
+// Simulate scanline rendering (horizontal line)
 postprocess.scanline = "Linia skanowania";
 postprocess.scanline.factor = "Współczynnik";
 // Spacing between lines
@@ -1440,10 +1439,10 @@ Prawdopodobnie należy wyłączyć symetrię, ponieważ może nie działać zgod
 
 Możesz użyć opcji „Topologicznie połączony” w panelu maski, aby pomalować płaszczyznę wpływającą na inne płaszczyzny.";
 // Make sure the box is a regular cube (same 3 dimension)
-primitive.triplanarSameSize = "Ten sam rozmiar (sześcian)";
-primitive.triplanarPolish = "Gładkość";
+primitive.triplanar.sameSize = "Ten sam rozmiar (sześcian)";
+primitive.triplanar.polish = "Gładkość";
 // Mask refers to the painted mask on the triplanar planes
-primitive.triplanarResetMask = "Resetuj maskę";
+primitive.triplanar.resetMask = "Resetuj maskę";
 // One side of a cube (the back plane)
 primitive.isolate.back = "Wstecz";
 // One side of a cube (the right plane)
@@ -1456,17 +1455,16 @@ primitive.planeSameSize = "Ten sam rozmiar (kwadrat)";
 primitive.planeDisk = "Dysk";
 // Box
 primitive.boxRegular = "Ten sam rozmiar (sześcian)";
-// Distance to the snapping point
-primitive.tubeSnapOffset = "Przesunięcie przyciągania";
-primitive.tubeSnapOffset.help = "Wartość 100% jest równa promieniowi rury.";
-primitive.tubeSnap = "Przyciągnij";
-primitive.torusRadiusOuter = "Zewnętrzny promień";
-primitive.torusRadiusInner = "Wewnętrzny promień";
-primitive.torusAngle = "Kąt";
-primitive.torusAngleOffset = "Przesunięcie kąta";
-primitive.cylinderHeight = "Wysokość";
-primitive.coneRadius = "Promień";
-primitive.coneHeight = "Wysokość";
+// Torus
+primitive.torus.radiusOuter = "Zewnętrzny promień";
+primitive.torus.radiusInner = "Wewnętrzny promień";
+primitive.torus.angle = "Kąt";
+primitive.torus.angleOffset = "Przesunięcie kąta";
+// Cylinder
+primitive.cylinder.height = "Wysokość";
+// Cone
+primitive.cone.radius = "Promień";
+primitive.cone.height = "Wysokość";
 // Hole sub menu (cylinder, tube, etc)
 primitive.hole = "Otwór";
 // Make a hole in the primitive to make it hollow
@@ -2157,6 +2155,9 @@ tool.syncInstance.message = "Nowy obiekt zostanie dodany do wszystkich innych in
 
 // The vertex on the border of the mesh will stay still even if we try to smooth the border
 tool.smooth.stickyBorder = "Lepki wierzchołek na granicy";
+tool.smooth.screen = "";
+tool.smooth.screen.help = "";
+tool.smooth.screen.samples = "";
 tool.smooth.stable = "Stabilne wygładzanie";
 tool.smooth.stable.help = "Stara się uczynić wygładzanie niezależnym od topologii.
 
@@ -2497,10 +2498,12 @@ topology.reproject.rayBias.help = "Dwie metody są używane do rzutowania:
 
 Wyższe wartości uchybu będą faworyzować przecięcie promienia zamiast najbliższej powierzchni.";
 topology.reproject.normalOffset = "Przesunięcie normalne";
+topology.reproject.shpereCast = "";
+topology.reproject.shpereCast.help = "";
 // number of iteration the algorithm will take
 topology.reproject.iterations = "Iteracje";
 topology.reproject.relax = "Złagodź";
-topology.reproject.relax.help = "Relaksacja powinna być preferowana, gdy siatka jest niskiej jakości";
+topology.reproject.relax.help = "Relaksacja powinna być preferowana, gdy siatka jest niskiej jakości.";
 topology.reproject.layers.help = "Przenieś inne warstwy na wybraną siatkę.";
 
 topology.manifold = "Foremny";
@@ -2515,6 +2518,7 @@ Może to być przydatne dla zewnętrznych programów, które nie obsługują kra
 // Reset key-bindings/shortcuts
 binding.reset = "Resetuj powiązania";
 // Binding option
+binding.context.toggle = "";
 binding.toggleTool = "Przełącz skróty narzędzi";
 binding.toggleTool.help = "Przy użyciu jednego ze skrótów narzędzi, poprzednie narzędzie zostanie wybrane, jeśli aktualne narzędzie skrótu jest aktywne.";
 // When the key is tap once, the value will be toggled
@@ -2581,6 +2585,10 @@ widget.color.disc = "Dysk";
 // Color square mode
 widget.color.square = "Kwadrat";
 
+nomad.mainFolder = "";
+nomad.mainFolder.warning = "";
+nomad.mainFolder.error = "";
+
 // version trial
 version.restore = "Przywróć zakup";
 version.buyWeb = "Wersja internetowa to tylko demonstracja";
@@ -2615,6 +2623,9 @@ version.fullFeatures = "- Jednorazowy zakup
 - Nieograniczona liczba warstw
 - Zapisywanie i ładowanie
 - Eksport i import";
+
+version.demo.purpose = "";
+version.demo.disable = "";
 
 // app store main page
 store.name = "Nomad Sculpt";

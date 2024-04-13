@@ -21,16 +21,24 @@ MB = "MB";
 GB = "GB";
 TB = "TB";
 
-// common
+// position
 position.top = "Üst";
-position.right = "Sağ";
-position.left = "Sol";
 position.bottom = "Alt";
+position.left = "Sol";
+position.right = "Sağ";
 position.center = "Ortalanmış";
+// direction
 direction.up = "Üst";
-direction.right = "Sağ";
-direction.left = "Sol";
 direction.down = "Alt";
+direction.left = "Sol";
+direction.right = "Sağ";
+// 3d cube
+cube.top = "Üst";
+cube.bottom = "Alt";
+cube.left = "Sol";
+cube.right = "Sağ";
+cube.front = "Ön";
+cube.back = "Arka";
 
 // Name of an item (object, tool, etc)
 item.name = "İsim";
@@ -111,6 +119,7 @@ access.title = "Erişilebilirlik";
 access.window = "Yardımcı pencere";
 access.pinch = "Kıstır";
 access.drag = "Sürükle";
+access.rotate = "Döndür";
 access.roll = "Rulo";
 
 // Color of an object
@@ -183,7 +192,7 @@ about.facebook = "Facebook";
 // Link to the App Discord account
 about.discord = "Uyuşmazlık";
 // Link to the App Threads account
-about.threads = "İş Parçacıkları";
+about.threads = "Threads";
 
 // The user canceled an operation that was running
 alert.aborted = "İşlem iptal edildi!";
@@ -380,6 +389,13 @@ curve.catmull = "Catmull-Rom";
 curve.spline = "Spline";
 curve.bspline = "B-spline";
 curve.precision = "Hassasiyet";
+// snap
+curve.snap = "Yasla";
+curve.snap.offset = "Kaydırma";
+curve.snap.offset.help = "100% değeri tüpün yarıçapına eşittir.";
+curve.snap.surface = "";
+curve.snap.vertex = "";
+curve.snap.grid = "";
 // Regular spaced sampling
 curve.uniform = "Düzenli";
 curve.uniform.help = "Eğri düzenli aralıklarla örneklenir, böylece uniform yoğunluk sağlanır.
@@ -413,7 +429,7 @@ debug.uvBFF.help = "Alternatif hesaplama yöntemi ekler (boundary first flatteni
 Ağ örgüsü topolojiniz disk ya da küreden farklıysa, BFF'in çakışmalar oluşturacağı unutulmamalıdır.";
 
 // Debug option, display an window with some debugging logs
-debug.logs = "Günlük kayıtları";
+debug.logs = "Kayıtları";
 // Debug option, overrides the rendering to display the depth buffer
 debug.heightmap = "Yükseklik haritası";
 // Debug options, graphical stuffs
@@ -517,6 +533,7 @@ file.export.title = "Dışa Aktar";
 file.select.all = "Tümü";
 file.select.visible = "Görülebilir";
 file.select.selected = "Seçilen";
+file.select.unselected = "";
 
 // Export the current selected objects instead of the entire scene
 file.onlySelection = "Sadece seçili nesneleri dâhil et";
@@ -524,22 +541,30 @@ file.onlySelection.help = "Tüm görünüm yerine, sadece seçimi dâhil eder.";
 // Tries to generate quad (rectangle polygon) from triangles
 file.convertToQuad = "Dörtgen oluştur";
 file.convertToQuad.help = "Üçgenleri eşleştirerek (dosyalarda yan yana iseler), üçgenlerden dörtgenler oluşturur.";
-
+// ----------------------------------------------
 // Whether we include the textures in the exported file
 file.export.texture = "Dokuları";
 // Baking means transfering/converting
 file.export.texture.help = "Bu seçenek verteks renklerini dokulara dönüştürmez.";
+// ----------------------------------------------
+file.export.color0 = "Verteks renklerini";
+file.export.color1 = "pbr boyamasını";
+file.export.color1.help = "Pürüzlük, metaliklik seviyesi ve maske boyamayı dışa aktarır. Bu diğer yazılımlar tarafından göz ardı edilir.";
+// ----------------------------------------------
 // Whether we include normals vector in the exported file
 file.export.normal = "Normalleri";
 file.export.normal.help = "Dosyayı diğer yazılımlarda açmak istiyorsanız, bu seçeneği belirleyin.
 
 Tekrardan hesaplayacağı için, Nomad normalleri her zaman göz ardı eder.";
-
+// ----------------------------------------------
+file.export.tangent = "";
+file.export.tangent.help = "";
+// ----------------------------------------------
 file.export.nomad = "Nomad Dışa Aktar";
 file.export.nomad.help = "Nomad Sculpt dahili dosya formatı.
 
 Bu format başka yazılımlarda yüklenmez, bu çoğunlukla yeniden içe aktarma amaçları içindir.";
-
+// ----------------------------------------------
 file.export.gltf = "glTF 2.0 dışa aktar";
 // Whether we include layers in the exported file (see glossary for layer)
 file.export.gltf.layer = "Katmanları";
@@ -547,13 +572,7 @@ file.export.gltf.layer.help = "Katmanları biçimler olarak dışa aktarır. glT
 // Whether we include painting of layers in the exported file (see glossary for layer)
 file.export.gltf.layerPaint = "Katman boyamasını";
 file.export.gltf.layerPaint.help = "Katman boyamayı dışa aktarır. Diğer yazılımlar tarafından genellikle göz ardı edilir.";
-// Whether we include the vertex color in the exported file
-file.export.gltf.color0 = "Verteks renklerini";
-file.export.gltf.color0.help = "Verteks renklerini dışa aktarır. glTF tarafından resmî olarak desteklenir, dolayısıyla diğer yazılımlarda da çalışması gerekir.";
-// Whether we include the vertex roughness and vertex metalness in the exported file
-file.export.gltf.color1 = "pbr boyamasını";
-file.export.gltf.color1.help = "Pürüzlük, metaliklik seviyesi ve maske boyamayı dışa aktarır. Bu diğer yazılımlar tarafından göz ardı edilir.";
-
+// ----------------------------------------------
 file.export.obj = "OBJ dışa aktar";
 file.export.obj.warning = "Katmanlar ve ekstra boyama (pürüzlük ve metaliklik seviyesi ve maske) kaybolur.";
 // Whether we include the vertex color in the exported file
@@ -563,24 +582,20 @@ file.export.obj.colorAppend.help = "Vertekslere renk bilgilerini ekler.
 Bazı 3D yazılımları bunu okuyabilir, ama hepsi okuyamaz.";
 file.export.obj.colorHexa = "Hexa renkler";
 file.export.obj.colorHexa.help = "Renk kodlamak için alternatif bir yol. Ayrıca maske verilerini de destekler.";
-
 file.export.obj.faceGroup = "OBJ'leri gruplara ayır";
 file.export.obj.faceGroup.help = "Procreate'e dışa aktarıyorsanız bu seçeneği devre dışı bırakın!";
-
+// ----------------------------------------------
 file.export.stl = "STL dışa aktar";
 file.export.stl.warning = "Katmanlar ve ekstra boyama (pürüzlük ve metaliklik seviyesi ve maske) kaybolur.";
 // Whether we include the vertex color in the exported file
 file.export.stl.color = "Verteks renklerini";
 file.export.stl.color.help = "Bazı 3D yazılımları bunu okuyabilir, ama hepsi okuyamaz.";
-
+// ----------------------------------------------
 file.export.ply = "STL dışa aktar";
 file.export.ply.warning = "Katmanlar ve ekstra boyama (pürüzlük ve metaliklik seviyesi ve maske) kaybolur.";
-// Whether we include the vertex color in the exported file
-file.export.ply.color0 = "Verteks renklerini";
-
-file.export.ply.color1 = "pbr boyamasını";
-file.export.ply.color1.help = "Pürüzlük, metaliklik seviyesi ve maske boyamayı dışa aktarır. Bu diğer yazılımlar tarafından göz ardı edilir.";
-
+// ----------------------------------------------
+file.export.fbx = "";
+// ----------------------------------------------
 // Advanced settings
 settings.advanced = "Gelişmiş";
 // Means that all these options will be resetted when the app restarts
@@ -705,7 +720,6 @@ Aşağıdaki hareketlere olanak sağlar:
 - maskeyi bulanıklaştırmak için maskelenmiş alana dokunun
 - maskeyi netleştirmek için maskelenmemiş alana dokunun";
 // Hold the finger on screen to toggle between two tools: Mask and SelMask
-gesture.mask.longPress = "Uzun basılı tut (Maske ↔ MaskeSeç)";
 gesture.mask.holdStroke = "Darbe";
 gesture.mask.holdStroke.help = "Uzun basma Mask ve SelMask arasında geçiş yapacak ve yeni bir çizgi başlatacaktır.
 
@@ -719,8 +733,9 @@ gesture.shortcut = "Kısayolu";
 // Shortcuts to undo/redo
 gesture.history = "Geçmiş kısayolları";
 gesture.history.help = "- Geri al: 2 parmakla dokunun
-- Yinele: 3 parmakla dokunun
-- Geri al/Yinele: 2/3 parmağı basılı tutun (sürekli)";
+- Yinele: 3 parmakla dokunun";
+gesture.history.hold = "Uzun basılı tut";
+gesture.history.hold.help = "2/3 parmağı basılı tutun (sürekli).";
 
 // Size rejection is when we try to ignore the palm of the hand when we interact with a tablet
 gesture.palmRejection = "Palm rejection";
@@ -773,6 +788,12 @@ extract.action.fill = "Doldur";
 extract.action.shell = "Kabuk";
 // Close the mesh by using the layer data as a difference thickness
 extract.action.layer = "Katman";
+
+// uv part of revolution surface
+genus.main = "Ana";
+genus.hole = "Delik";
+genus.bottom = "Alt";
+genus.top = "Üst";
 
 // History, list of undo/redo
 history = "Geçmiş";
@@ -859,29 +880,7 @@ interface.blurFactor = "Bulanıklık seviyesi";
 interface.colorBaseTransparent = "Renk paneli";
 
 // Interface color style
-interface.preset.title = "Renk önayarları";
-// Interface color style (original color of Nomad Sculpt)
-interface.preset.classic = "Klasik";
-// Interface color style
-interface.preset.orange = "Turuncu";
-// Interface color style (~red)
-interface.preset.cardinal = "Kırmızı";
-// Interface Color style (~pink)
-interface.preset.mulberry = "Kara dut moru";
-// Interface color style
-interface.preset.brown = "Kahverengi";
-// Interface color style (~green)
-interface.preset.emerald = "Zümrüt yeşili";
-// Interface color style (~blue)
-interface.preset.neon = "Neon";
-// Interface color style
-interface.preset.violet = "Mor";
-// Interface color style
-interface.preset.gray = "Gri";
-// Interface color style
-interface.preset.black = "Siyah";
-// Interface color style
-interface.preset.white = "Beyaz";
+interface.preset.title = "Önayarlar";
 
 // Reset interface settings
 interface.resetAll = "Stili sıfırla";
@@ -1060,7 +1059,7 @@ material.refractionInteriorRoughness.help = "- 0 değerinde, iç alan boyanan p�
 material.paintGlossy = "Parlak boyama";
 material.paintGlossy.help = "Nesneyi 0 pürüzlülüğünde ve metaliklik seviyesinde boyar, böylece keskin kırılmalara yol açar.
 
-Bu, boyama menüsüne gidip, renk ve metaliklik seviyesini devre dışı bırakarak, tümünü boya özelliğini kullanmakla aynıdır.";
+Bu, boyama menüsüne gidip rengi devre dışı bırakarak tümünü boya özelliğini kullanmakla aynıdır.";
 // Simulate the light being absorbed when it travels through the volume.
 material.absorptionEnable = "Emilim";
 material.absorptionEnable.help = "Hacmin içinden geçerken, emilen ışığı simüle eder.
@@ -1355,7 +1354,7 @@ postprocess.curvature.bump = "Yumru";
 postprocess.pixelArt = "Pixel Art";
 // Override frame accumulation feature
 postprocess.pixelArt.allowAccumulate = "Kare örneklemeye izin ver";
-// Simulate scanline rendering (horizonal line)
+// Simulate scanline rendering (horizontal line)
 postprocess.scanline = "Tarama çizgisi";
 postprocess.scanline.factor = "Faktör";
 // Spacing between lines
@@ -1439,10 +1438,10 @@ Beklediğiniz şekilde çalışmayacağından, simetriyi devre dışı bırakman
 
 Diğer düzlemleri etkileyen bir düzlemi boyamak için maske panelinde `Topolojik bağlantılı` seçeneğini kullanabilirsiniz.";
 // Make sure the box is a regular cube (same 3 dimension)
-primitive.triplanarSameSize = "Aynı büyüklük (küp)";
-primitive.triplanarPolish = "Düzleştirme seviyesi";
+primitive.triplanar.sameSize = "Aynı büyüklük (küp)";
+primitive.triplanar.polish = "Düzleştirme seviyesi";
 // Mask refers to the painted mask on the triplanar planes
-primitive.triplanarResetMask = "Maskeyi sıfırla";
+primitive.triplanar.resetMask = "Maskeyi sıfırla";
 // One side of a cube (the back plane)
 primitive.isolate.back = "Geri";
 // One side of a cube (the right plane)
@@ -1455,17 +1454,16 @@ primitive.planeSameSize = "Aynı büyüklük (kare)";
 primitive.planeDisk = "Disk";
 // Box
 primitive.boxRegular = "Aynı büyüklük (küp)";
-// Distance to the snapping point
-primitive.tubeSnapOffset = "Mesafeyi kaydır";
-primitive.tubeSnapOffset.help = "100% değeri tüpün yarıçapına eşittir.";
-primitive.tubeSnap = "Yasla";
-primitive.torusRadiusOuter = "Dış yarıçap";
-primitive.torusRadiusInner = "İç yarıçap";
-primitive.torusAngle = "Açı";
-primitive.torusAngleOffset = "Açı kaydırma";
-primitive.cylinderHeight = "Yükseklik";
-primitive.coneRadius = "Yarıçap";
-primitive.coneHeight = "Yükseklik";
+// Torus
+primitive.torus.radiusOuter = "Dış yarıçap";
+primitive.torus.radiusInner = "İç yarıçap";
+primitive.torus.angle = "Açı";
+primitive.torus.angleOffset = "Açı kaydırma";
+// Cylinder
+primitive.cylinder.height = "Yükseklik";
+// Cone
+primitive.cone.radius = "Yarıçap";
+primitive.cone.height = "Yükseklik";
 // Hole sub menu (cylinder, tube, etc)
 primitive.hole = "Delik";
 // Make a hole in the primitive to make it hollow
@@ -2156,6 +2154,9 @@ tool.syncInstance.message = "Yeni nesne diğer tüm örnekler üzerine eklenecek
 
 // The vertex on the border of the mesh will stay still even if we try to smooth the border
 tool.smooth.stickyBorder = "Sınırda yapışkan verteks";
+tool.smooth.screen = "";
+tool.smooth.screen.help = "";
+tool.smooth.screen.samples = "";
 tool.smooth.stable = "Stabil düzleştirme";
 tool.smooth.stable.help = "Düzleştirmeyi topoloji bağımsız hale getirmeye çalışır.
 
@@ -2496,10 +2497,12 @@ topology.reproject.rayBias.help = "Tekrar projelendirme için iki yöntem kullan
 
 Daha yüksek yanlılık değerleri, en yakın yüzeye göre ışın kesişimini tercih edecektir.";
 topology.reproject.normalOffset = "Normal ofseti";
+topology.reproject.shpereCast = "";
+topology.reproject.shpereCast.help = "";
 // number of iteration the algorithm will take
 topology.reproject.iterations = "İterasyonlar";
 topology.reproject.relax = "Rahatlat";
-topology.reproject.relax.help = "Örgü düşük poligonlu olduğunda gevşetme tercih edilmelidir";
+topology.reproject.relax.help = "Örgü düşük poligonlu olduğunda gevşetme tercih edilmelidir.";
 topology.reproject.layers.help = "Diğer katmanları seçili örgü üzerine aktarın.";
 
 topology.manifold = "Manifold";
@@ -2514,6 +2517,7 @@ Bu, 2'den fazla yüzeyi ortak olan kenarları desteklemeyen harici yazılımlar 
 // Reset key-bindings/shortcuts
 binding.reset = "Atamaları sıfırla";
 // Binding option
+binding.context.toggle = "";
 binding.toggleTool = "Araç kısayollarını değiştir";
 binding.toggleTool.help = "Bir araç kısayolunu kullanırken, mevcut kısayol aracı aktifse önceki araç seçilecektir.";
 // When the key is tap once, the value will be toggled
@@ -2580,6 +2584,10 @@ widget.color.disc = "Disk";
 // Color square mode
 widget.color.square = "Kare";
 
+nomad.mainFolder = "";
+nomad.mainFolder.warning = "";
+nomad.mainFolder.error = "";
+
 // version trial
 version.restore = "Satın almayı geri yükle";
 version.buyWeb = "Web versiyonu sadece bir demodur";
@@ -2614,6 +2622,9 @@ version.fullFeatures = "- Tek sefer satın alma
 - Sınırsız katman
 - Kaydetme ve yükleme
 - İçe ve dışa aktarma";
+
+version.demo.purpose = "Bu sürüm yalnızca demo amaçlı tasarlanmıştır.";
+version.demo.disable = "Özellik bu demo için etkin değil.";
 
 // app store main page
 store.name = "Nomad Sculpt";
