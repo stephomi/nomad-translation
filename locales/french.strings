@@ -21,16 +21,24 @@ MB = "Mo";
 GB = "Go";
 TB = "To";
 
-// common
+// position
 position.top = "Haut";
-position.right = "Droite";
-position.left = "Gauche";
 position.bottom = "Bas";
+position.left = "Gauche";
+position.right = "Droite";
 position.center = "Centré";
+// direction
 direction.up = "Haut";
-direction.right = "Droite";
-direction.left = "Gauche";
 direction.down = "Bas";
+direction.left = "Gauche";
+direction.right = "Droite";
+// 3d cube
+cube.top = "Dessus";
+cube.bottom = "Dessous";
+cube.left = "Gauche";
+cube.right = "Droite";
+cube.front = "Devant";
+cube.back = "Arrière";
 
 // Name of an item (object, tool, etc)
 item.name = "Nom";
@@ -111,6 +119,7 @@ access.title = "Accessibilité";
 access.window = "Fenêtre d'assistance";
 access.pinch = "Pincer";
 access.drag = "Glisser";
+access.rotate = "Pivoter";
 access.roll = "Rouler";
 
 // Color of an object
@@ -183,7 +192,7 @@ about.facebook = "Facebook";
 // Link to the App Discord account
 about.discord = "Discord";
 // Link to the App Threads account
-about.threads = "Fils de discussion";
+about.threads = "Threads";
 
 // The user canceled an operation that was running
 alert.aborted = "Opération annulée !";
@@ -524,22 +533,30 @@ file.onlySelection.help = "Inclure uniquement la sélection plutôt que la scèn
 // Tries to generate quad (rectangle polygon) from triangles
 file.convertToQuad = "Reconstruire le quadrilatère";
 file.convertToQuad.help = "Reconstruisez les quadrilatères à partir de triangles en associant des triangles (s'ils sont adjacents dans les fichiers).";
-
+// ----------------------------------------------
 // Whether we include the textures in the exported file
 file.export.texture = "Textures";
 // Baking means transfering/converting
 file.export.texture.help = "Cette option ne convertit pas les couleurs des sommets dans les textures.";
+// ----------------------------------------------
+file.export.color0 = "Couleurs des sommets";
+file.export.color1 = "Peinture PBR";
+file.export.color1.help = "Exportez la rugosité, la métallité et la peinture du masque. Ces informations seront ignorées par les autres logiciels.";
+// ----------------------------------------------
 // Whether we include normals vector in the exported file
 file.export.normal = "Normales";
 file.export.normal.help = "Cochez cette option si vous souhaitez ouvrir le fichier dans d'autres logiciels.
 
 Nomad ignore toujours les normales, car il les recalcule.";
-
+// ----------------------------------------------
+file.export.tangent = "";
+file.export.tangent.help = "";
+// ----------------------------------------------
 file.export.nomad = "Export Nomad";
 file.export.nomad.help = "Format de fichier interne Nomad Sculpt.
 
 Ce format ne se chargera pas sur d'autres logiciels, il est surtout destiné à la réimportation.";
-
+// ----------------------------------------------
 file.export.gltf = "Exporter en glTF 2.0";
 // Whether we include layers in the exported file (see glossary for layer)
 file.export.gltf.layer = "Calques";
@@ -547,13 +564,7 @@ file.export.gltf.layer.help = "Exportez les calques sous forme de morphes. Cette
 // Whether we include painting of layers in the exported file (see glossary for layer)
 file.export.gltf.layerPaint = "Peinture (calque)";
 file.export.gltf.layerPaint.help = "Exportez la peinture du calque. Elle est généralement ignorée par les autres logiciels.";
-// Whether we include the vertex color in the exported file
-file.export.gltf.color0 = "Couleurs des sommets";
-file.export.gltf.color0.help = "Exportez les couleurs des sommets. Cette fonctionnalité est officiellement gérée par le format glTF et devrait donc fonctionner aussi avec d'autres logiciels.";
-// Whether we include the vertex roughness and vertex metalness in the exported file
-file.export.gltf.color1 = "Peinture PBR";
-file.export.gltf.color1.help = "Exportez la rugosité, la métallité et la peinture du masque. Ces informations seront ignorées par les autres logiciels.";
-
+// ----------------------------------------------
 file.export.obj = "Exporter en OBJ";
 file.export.obj.warning = "Les calques et la peinture supplémentaire (rugosité, métallité et masque) seront perdus.";
 // Whether we include the vertex color in the exported file
@@ -563,24 +574,20 @@ file.export.obj.colorAppend.help = "Permet d'ajouter les informations de couleur
 Certains logiciels 3D pourront lire ces informations, mais pas tous.";
 file.export.obj.colorHexa = "Couleurs Hexa";
 file.export.obj.colorHexa.help = "Une autre manière de coder la couleur. Elle prend également en charge les données de masque.";
-
 file.export.obj.faceGroup = "Scinder l'OBJ en groupes";
 file.export.obj.faceGroup.help = "Désactivez cette option si vous exportez vers Procreate !";
-
+// ----------------------------------------------
 file.export.stl = "Exporter en STL";
 file.export.stl.warning = "Les calques et la peinture supplémentaire (rugosité, métallité et masque) seront perdus.";
 // Whether we include the vertex color in the exported file
 file.export.stl.color = "Couleurs des sommets";
 file.export.stl.color.help = "Certains logiciels 3D pourront lire ces informations, mais pas tous.";
-
+// ----------------------------------------------
 file.export.ply = "Exporter en STL";
 file.export.ply.warning = "Les calques et la peinture supplémentaire (rugosité, métallité et masque) seront perdus.";
-// Whether we include the vertex color in the exported file
-file.export.ply.color0 = "Couleurs des sommets";
-
-file.export.ply.color1 = "Peinture PBR";
-file.export.ply.color1.help = "Exportez la rugosité, la métallité et la peinture du masque. Ces informations seront ignorées par les autres logiciels.";
-
+// ----------------------------------------------
+file.export.fbx = "";
+// ----------------------------------------------
 // Advanced settings
 settings.advanced = "Avancé";
 // Means that all these options will be resetted when the app restarts
@@ -860,29 +867,7 @@ interface.blurFactor = "Intensité du flou";
 interface.colorBaseTransparent = "Panneau de couleur";
 
 // Interface color style
-interface.preset.title = "Préréglages de couleur";
-// Interface color style (original color of Nomad Sculpt)
-interface.preset.classic = "Classique";
-// Interface color style
-interface.preset.orange = "Orange";
-// Interface color style (~red)
-interface.preset.cardinal = "Écarlate";
-// Interface Color style (~pink)
-interface.preset.mulberry = "Mûre";
-// Interface color style
-interface.preset.brown = "Marron";
-// Interface color style (~green)
-interface.preset.emerald = "Émeraude";
-// Interface color style (~blue)
-interface.preset.neon = "Néon";
-// Interface color style
-interface.preset.violet = "Violet";
-// Interface color style
-interface.preset.gray = "Gris";
-// Interface color style
-interface.preset.black = "Noir";
-// Interface color style
-interface.preset.white = "Blanc";
+interface.preset.title = "Préréglages";
 
 // Reset interface settings
 interface.resetAll = "Réinitialiser le style";
@@ -1061,7 +1046,7 @@ material.refractionInteriorRoughness.help = "- À 0, l'intérieur utilise la rug
 material.paintGlossy = "Peinture brillante";
 material.paintGlossy.help = "L'objet sera peint avec une rugosité et une métallité nulles, permettant ainsi une réfraction nette.
 
-Cela revient à utiliser la commande « Tout peindre » du menu Peinture, avec les options Couleur et Métallité désactivées.";
+Cela revient à utiliser la commande « Tout peindre » du menu Peinture, avec la couleur désactivée.";
 // Simulate the light being absorbed when it travels through the volume.
 material.absorptionEnable = "Absorption";
 material.absorptionEnable.help = "Simulez la lumière absorbée lorsqu'elle traverse le volume.
@@ -1356,7 +1341,7 @@ postprocess.curvature.bump = "Bosse";
 postprocess.pixelArt = "Pixel Art";
 // Override frame accumulation feature
 postprocess.pixelArt.allowAccumulate = "Autoriser l'échantillonnage des images";
-// Simulate scanline rendering (horizonal line)
+// Simulate scanline rendering (horizontal line)
 postprocess.scanline = "Scanline";
 postprocess.scanline.factor = "Facteur";
 // Spacing between lines
@@ -2157,6 +2142,9 @@ tool.syncInstance.message = "Le nouvel objet sera ajouté sur toutes les autres 
 
 // The vertex on the border of the mesh will stay still even if we try to smooth the border
 tool.smooth.stickyBorder = "Sommet collant sur la bordure";
+tool.smooth.screen = "";
+tool.smooth.screen.help = "";
+tool.smooth.screen.samples = "";
 tool.smooth.stable = "Lissage stable";
 tool.smooth.stable.help = "Essaie de rendre le lissage indépendant de la topologie.
 
@@ -2503,7 +2491,7 @@ topology.reproject.normalOffset = "Décalage normal";
 // number of iteration the algorithm will take
 topology.reproject.iterations = "Itérations";
 topology.reproject.relax = "Relâcher";
-topology.reproject.relax.help = "Relax devrait être préféré lorsque le maillage est à faible poly";
+topology.reproject.relax.help = "Relax devrait être préféré lorsque le maillage est à faible poly.";
 topology.reproject.layers.help = "Transférer les autres couches sur le maillage sélectionné.";
 
 topology.manifold = "Variété";
@@ -2518,6 +2506,7 @@ Cela peut être utile pour les logiciels externes qui ne prennent pas en charge 
 // Reset key-bindings/shortcuts
 binding.reset = "Réinitialiser les raccourcis";
 // Binding option
+binding.context.toggle = "";
 binding.toggleTool = "Basculer les raccourcis d'outil";
 binding.toggleTool.help = "Lors de l'utilisation de l'un des raccourcis d'outil, l'outil précédent sera sélectionné si l'outil de raccourci actuel est actif.";
 // When the key is tap once, the value will be toggled
@@ -2583,6 +2572,10 @@ sonar.connect.confirm.warning = "Sonar Pen utilisera le microphone (boucle audio
 widget.color.disc = "Disque";
 // Color square mode
 widget.color.square = "Carré";
+
+nomad.mainFolder = "";
+nomad.mainFolder.warning = "";
+nomad.mainFolder.error = "";
 
 // version trial
 version.restore = "Restaurer l'achat";

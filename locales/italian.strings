@@ -21,16 +21,24 @@ MB = "MB";
 GB = "GB";
 TB = "TB";
 
-// common
+// position
 position.top = "Alto";
-position.right = "Destra";
-position.left = "Sinistra";
 position.bottom = "Basso";
+position.left = "Sinistra";
+position.right = "Destra";
 position.center = "Centrato";
+// direction
 direction.up = "Alto";
-direction.right = "Destra";
-direction.left = "Sinistra";
 direction.down = "Basso";
+direction.left = "Sinistra";
+direction.right = "Destra";
+// 3d cube
+cube.top = "Superiore";
+cube.bottom = "Inferiore";
+cube.left = "Sinistra";
+cube.right = "Destra";
+cube.front = "Anteriore";
+cube.back = "Posteriore";
 
 // Name of an item (object, tool, etc)
 item.name = "Nome";
@@ -111,6 +119,7 @@ access.title = "Accessibilità";
 access.window = "Finestra assistiva";
 access.pinch = "Pizzica";
 access.drag = "Trascina";
+access.rotate = "Ruota";
 access.roll = "Rotazione";
 
 // Color of an object
@@ -183,7 +192,7 @@ about.facebook = "Facebook";
 // Link to the App Discord account
 about.discord = "Discord";
 // Link to the App Threads account
-about.threads = "Thread";
+about.threads = "Threads";
 
 // The user canceled an operation that was running
 alert.aborted = "Operazione annullata!";
@@ -524,22 +533,30 @@ file.onlySelection.help = "Includi solo la selezione, invece dell'intera scena."
 // Tries to generate quad (rectangle polygon) from triangles
 file.convertToQuad = "Ricostruisci quadrilatero";
 file.convertToQuad.help = "Ricostruisci quadrilateri da triangoli accoppiando i triangoli (se sono adiacenti nei file).";
-
+// ----------------------------------------------
 // Whether we include the textures in the exported file
 file.export.texture = "Texture";
 // Baking means transfering/converting
 file.export.texture.help = "Questa opzione non trasferisce i colori dei vertici nelle texture.";
+// ----------------------------------------------
+file.export.color0 = "Colori dei vertici";
+file.export.color1 = "Pittura PBR";
+file.export.color1.help = "Esporta rugosità, metallicità e pittura della maschera. Questo verrà ignorato da altri software.";
+// ----------------------------------------------
 // Whether we include normals vector in the exported file
 file.export.normal = "Normali";
 file.export.normal.help = "Selezionare questa opzione se si desidera aprire il file in un altro software.
 
 Nomad ignora sempre le normali poiché le ricalcolerà.";
-
+// ----------------------------------------------
+file.export.tangent = "";
+file.export.tangent.help = "";
+// ----------------------------------------------
 file.export.nomad = "Esporta Nomad";
 file.export.nomad.help = "Formato file interno di Nomad Sculpt.
 
 Questo formato non si aprirà su altri software, è principalmente per scopi di re-importazione.";
-
+// ----------------------------------------------
 file.export.gltf = "Esporta glTF 2.0";
 // Whether we include layers in the exported file (see glossary for layer)
 file.export.gltf.layer = "Livelli";
@@ -547,13 +564,7 @@ file.export.gltf.layer.help = "Esporta livelli come morph. Ufficialmente support
 // Whether we include painting of layers in the exported file (see glossary for layer)
 file.export.gltf.layerPaint = "Livelli pittura";
 file.export.gltf.layerPaint.help = "Esporta livelli di pittura. Solitamente viene ignorato da altri software.";
-// Whether we include the vertex color in the exported file
-file.export.gltf.color0 = "Colori dei vertici";
-file.export.gltf.color0.help = "Esporta i colori dei vertici. Ufficialmente supportato da glTF, quindi dovrebbe funzionare anche su altri software.";
-// Whether we include the vertex roughness and vertex metalness in the exported file
-file.export.gltf.color1 = "Pittura PBR";
-file.export.gltf.color1.help = "Esporta rugosità, metallicità e pittura della maschera. Questo verrà ignorato da altri software.";
-
+// ----------------------------------------------
 file.export.obj = "Esporta OBJ";
 file.export.obj.warning = "I livelli e la pittura extra (rugosità, metallicità e maschera) andranno persi.";
 // Whether we include the vertex color in the exported file
@@ -563,24 +574,20 @@ file.export.obj.colorAppend.help = "Aggiungi informazioni sul colore dopo i vert
 Alcuni software 3D potranno leggerle, ma non tutti.";
 file.export.obj.colorHexa = "Colori esadecimali";
 file.export.obj.colorHexa.help = "Un modo alternativo per codificare il colore. Supporta anche i dati della maschera.";
-
 file.export.obj.faceGroup = "Dividi OBJ per gruppi";
 file.export.obj.faceGroup.help = "Disabilita questa opzione se esporti su Procreate!";
-
+// ----------------------------------------------
 file.export.stl = "Esporta STL";
 file.export.stl.warning = "I livelli e la pittura extra (rugosità, metallicità e maschera) andranno persi.";
 // Whether we include the vertex color in the exported file
 file.export.stl.color = "Colori dei vertici";
 file.export.stl.color.help = "Alcuni software 3D potranno leggerli, ma non tutti.";
-
+// ----------------------------------------------
 file.export.ply = "Esporta STL";
 file.export.ply.warning = "I livelli e la pittura extra (rugosità, metallicità e maschera) andranno persi.";
-// Whether we include the vertex color in the exported file
-file.export.ply.color0 = "Colori dei vertici";
-
-file.export.ply.color1 = "Pittura PBR";
-file.export.ply.color1.help = "Esporta rugosità, metallicità e pittura della maschera. Questo verrà ignorato da altri software.";
-
+// ----------------------------------------------
+file.export.fbx = "";
+// ----------------------------------------------
 // Advanced settings
 settings.advanced = "Avanzato";
 // Means that all these options will be resetted when the app restarts
@@ -860,29 +867,7 @@ interface.blurFactor = "Intensità sfocatura";
 interface.colorBaseTransparent = "Colore pannelli";
 
 // Interface color style
-interface.preset.title = "Preset colore";
-// Interface color style (original color of Nomad Sculpt)
-interface.preset.classic = "Classico";
-// Interface color style
-interface.preset.orange = "Arancio";
-// Interface color style (~red)
-interface.preset.cardinal = "Rosso cardinale";
-// Interface Color style (~pink)
-interface.preset.mulberry = "Rosato";
-// Interface color style
-interface.preset.brown = "Marrone";
-// Interface color style (~green)
-interface.preset.emerald = "Verde smeraldo";
-// Interface color style (~blue)
-interface.preset.neon = "Neon";
-// Interface color style
-interface.preset.violet = "Viola";
-// Interface color style
-interface.preset.gray = "Grigio";
-// Interface color style
-interface.preset.black = "Nero";
-// Interface color style
-interface.preset.white = "Bianco";
+interface.preset.title = "Preset";
 
 // Reset interface settings
 interface.resetAll = "Ripristina stile";
@@ -1061,7 +1046,7 @@ material.refractionInteriorRoughness.help = "- a 0, l'interno utilizza la rugosi
 material.paintGlossy = "Pittura lucida";
 material.paintGlossy.help = "Dipingerà l'oggetto con una rugosità e una metallicità pari a 0, consentendo così una rifrazione intensa.
 
-Ciò equivale ad andare nel menu pittura e usare la funzione Dipingi tutto con colore e metallicità disabilitati.";
+Ciò equivale ad andare nel menu pittura e usare la funzione Dipingi tutto con colore disabilitato.";
 // Simulate the light being absorbed when it travels through the volume.
 material.absorptionEnable = "Assorbimento";
 material.absorptionEnable.help = "Simula la luce che viene assorbita quando viaggia attraverso il volume.
@@ -1356,7 +1341,7 @@ postprocess.curvature.bump = "Rilievo";
 postprocess.pixelArt = "Pixel Art";
 // Override frame accumulation feature
 postprocess.pixelArt.allowAccumulate = "Consenti campionamento fotogrammi";
-// Simulate scanline rendering (horizonal line)
+// Simulate scanline rendering (horizontal line)
 postprocess.scanline = "Linea di scansione";
 postprocess.scanline.factor = "Fattore";
 // Spacing between lines
@@ -2157,6 +2142,9 @@ tool.syncInstance.message = "Il nuovo oggetto sarà aggiunto su tutte le altre i
 
 // The vertex on the border of the mesh will stay still even if we try to smooth the border
 tool.smooth.stickyBorder = "Vertice fisso sul bordo";
+tool.smooth.screen = "";
+tool.smooth.screen.help = "";
+tool.smooth.screen.samples = "";
 tool.smooth.stable = "Levigatura stabile";
 tool.smooth.stable.help = "Cerca di rendere la levigatura indipendente dalla topologia.
 
@@ -2500,7 +2488,7 @@ topology.reproject.normalOffset = "Offset normale";
 // number of iteration the algorithm will take
 topology.reproject.iterations = "Iterazioni";
 topology.reproject.relax = "Attenua";
-topology.reproject.relax.help = "Relax dovrebbe essere preferito quando la mesh è a basso poligono";
+topology.reproject.relax.help = "Relax dovrebbe essere preferito quando la mesh è a basso poligono.";
 topology.reproject.layers.help = "Trasferisci altri strati sulla mesh selezionata.";
 
 topology.manifold = "Manifold";
@@ -2515,6 +2503,7 @@ Può essere utile per software esterni che non supportano bordi che hanno più d
 // Reset key-bindings/shortcuts
 binding.reset = "Ripristina collegamenti";
 // Binding option
+binding.context.toggle = "";
 binding.toggleTool = "Attiva/Disattiva scorciatoie strumenti";
 binding.toggleTool.help = "Quando si utilizza una delle scorciatoie degli strumenti, verrà selezionato lo strumento precedente se lo strumento corrente della scorciatoia è attivo.";
 // When the key is tap once, the value will be toggled
@@ -2580,6 +2569,10 @@ sonar.connect.confirm.warning = "Sonar Pen utilizzerà il microfono (audio loopb
 widget.color.disc = "Disco";
 // Color square mode
 widget.color.square = "Quadrato";
+
+nomad.mainFolder = "";
+nomad.mainFolder.warning = "";
+nomad.mainFolder.error = "";
 
 // version trial
 version.restore = "Ripristina acquisto";
