@@ -290,7 +290,7 @@ alert.hideIgnored = "非表示は無視されています！";
 // The selected object doesn't have any layers
 alert.noPartialWireframe = "ワイヤーフレームが表示されている場合、部分的な描画は無効です。";
 // The user has selected a tool that is more intuitive to use when the camera is in orthographic mode
-alert.shapeOrthographic = "スクリーンプロジェクタを使用する際、遠近法のfrustumの歪みを避けたい場合は、Orthographicカメラの使用を検討してください。";
+alert.shapeOrthographic = "スクリーンプロジェクタを使用する際、遠近法のfrustumの歪みを避けたい場合は、正投影カメラの使用を検討してください。";
 // Trial version has a limited number of undo
 alert.state.trial = "お試し版: 取り消しはキャンセルされました";
 
@@ -371,7 +371,7 @@ camera.focusOn = "$0に焦点を当てる";
 // Camera projection, Orthographic or Perspective
 camera.projection = "投影";
 // Camera projection, Orthographic or Perspective
-camera.projection.orthographic = "Orthographic (平行投影)";
+camera.projection.orthographic = "正投影";
 // Camera projection, Orthographic or Perspective
 camera.projection.perspective = "遠近法";
 // camera Vertical Field of View
@@ -400,9 +400,9 @@ camera.resetView = "ビューをリセット";
 // Align the view (snap to nearest 90° angle)
 camera.snapView = "スナップビュー";
 // Warning (camera is snapped and it switched to orthographic)
-camera.snapOrthographic.warning = "カメラがスナップされています (Orthographic)";
+camera.snapOrthographic.warning = "カメラがスナップされています (正投影)";
 // Switch to orthographic view when the view is snapped
-camera.snapOrthographic = "Orthographicスナップ";
+camera.snapOrthographic = "正投影スナップ";
 camera.snapOrthographic.help = "このオプションは画面の隅で方向キューブを使用している場合も有効です。";
 // The Camera pivot is the point around which the camera rotates
 camera.pivot = "回転軸";
@@ -1730,10 +1730,6 @@ settings.showPainting = "ペイントを表示";
 settings.showMasking = "マスクを表示";
 // Disable this option to force show the hidden faces
 settings.showDiscard = "非表示を使用";
-// Display the light icons in the viewport
-settings.lightIcon = "ライトのアイコン";
-// Display the camera icons in the viewport
-settings.cameraIcon = "カメラのアイコン";
 // Show icon on the canvas
 settings.icon = "アイコン";
 // Show icons on the canvas
@@ -1761,20 +1757,23 @@ shading.pbr = "ライトあり (PBR)";
 shading.pbr.help = "このモードではライト (シャドウを含む) を、HDR環境と一緒に追加できます。
 
 また、メタリックと粗さをペイントすることもできます。こうすることで、マテリアルの見た目をより詳細にコントロールできます。";
-// Fast rendering mode for sculpting purpose (do not translate)
+// Fast rendering mode for sculpting purpose
 shading.matcap = "MatCap";
 shading.matcap.help = "MatCapとは、MATerial CAPture（マテリアルキャプチャ）の別名で、ライティングとマテリアル（材質）の2つの情報を1つのイメージに反映することです。";
 // Unlit rendering mode, it simply displays a solid/flat color
 shading.unlit = "ライトなし";
 shading.unlit.help = "無地のカラーのシェーディングモード。ライティングなし。";
-// Helper rendering mode that display a (do not translate)
+// Helper rendering mode that display solid colors
 shading.object = "オブジェクト ID";
 shading.object.help = "ランダムにカラーが割り当てられている各オブジェクトでライトのないレンダリングモード。
 
 シーンに多くのオブジェクトがある場合、最も便利です。";
-// Helper rendering mode that display a (do not translate)
+// Helper rendering mode that display solid colors
 shading.instance = "インスタンス ID";
 shading.instance.help = "オブジェクトIDと同じですが、インスタンスは同じ色を持ちます。";
+// Helper rendering mode that display solid colors
+shading.material = "";
+shading.material.help = "";
 // Randomize colors
 shading.id.randomize = "IDをランダム化";
 shading.textures = "テクスチャを使用";
@@ -1812,35 +1811,16 @@ shading.matcap.global.help = "この特定のメッシュに異なるMatCapを�
 
 // bottom shortcut buttons (should be SHORT)
 shortcut.maskVisible = "マスク";
-shortcut.maskVisible.short = "マスク";
-// bottom shortcut buttons (should be SHORT)
 shortcut.solo = "ソロ";
-shortcut.solo.short = "ソロ";
-// bottom shortcut buttons (should be SHORT)
 shortcut.xray = "X線";
-shortcut.xray.short = "X線";
-// bottom shortcut buttons (should be SHORT)
-shortcut.voxelRemesh = "ボクセルのリメッシュ";
-shortcut.voxelRemesh.short = "ボクセル";
-// bottom shortcut buttons (should be SHORT)
-shortcut.wireframe = "ワイヤーフレーム";
-shortcut.wireframe.short = "ワイヤー";
-// bottom shortcut buttons (should be SHORT)
-shortcut.cameraReset = "カメラのリセット";
-shortcut.cameraReset.short = "リセット";
-// bottom shortcut buttons (should be SHORT)
-shortcut.cameraSnap = "カメラのスナップ";
-shortcut.cameraSnap.short = "スナップ";
-// bottom shortcut buttons (should be SHORT)
-shortcut.lockSelection = "選択部分をロック";
-shortcut.lockSelection.short = "ロック";
+shortcut.voxelRemesh = "ボクセル";
+shortcut.wireframe = "ワイヤー";
+shortcut.cameraReset = "リセット";
+shortcut.cameraSnap = "スナップ";
+shortcut.lockSelection = "ロック";
 shortcut.lockSelection.help = "有効な場合、メッシュをタップしても選択部分を変更できません。";
-// bottom shortcut buttons (should be SHORT)
-shortcut.perspective = "遠近法";
-shortcut.perspective.short = "遠近";
-// bottom shortcut buttons (should be SHORT)
+shortcut.perspective = "遠近";
 shortcut.grid = "グリッド";
-shortcut.grid.short = "グリッド";
 
 // Memory taken by the scene
 stat.ramScene = "シーン";
