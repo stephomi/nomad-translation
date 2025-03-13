@@ -26,6 +26,7 @@ TB = "TB";
 
 // Noun
 instance = "インスタンス";
+object = "オブジェクト";
 
 // Same value (usually for axis, e.g: x == y == z)
 uniform = "均一";
@@ -503,10 +504,6 @@ file.project.unsaved = "変更内容が保存されていません！";
 file.project.loseUnsaved = "未保存の変更内容は喪失します！";
 // Indicates to the user that the project thumbnail corresponds to the last manual save
 file.project.lastManualSave = "最後に手動で保存した内容のプレビュー";
-// The user is starting a new project but he won't be able to open the current project (because of trial version)
-file.project.trialNoOpen = "お試し版: 現在のプロジェクトをもう一度開けません！";
-// The user is trying to load a project but he can only reload the current opened project (because of trial version)
-file.project.trialOnlyOpen = "お試し版: 現在のプロジェクトのみを再開できます！";
 
 file.project = "プロジェクト";
 // Save current project (or overwrite if the project has already been saved once)
@@ -521,6 +518,8 @@ file.project.saveAs.confirm = "$0を上書きしますか？";
 file.project.open = "開く";
 // E.g: Open "my_project"?
 file.project.open.confirm = "$0を開きますか？";
+// E.g: Clone "my_project"?
+file.project.clone.confirm = "クローン$0？";
 // Load another project and add/append all its data to the current scene
 file.project.add = "シーンに追加";
 // E;g: Add "my_other_project" to the scene?
@@ -1153,10 +1152,23 @@ material.translucency.help = "透過処理をするにはシャドウを投影�
 material.opacity = "不透明度";
 // Fully opaque material
 material.type.opaque = "不透明";
+material.type.opaque.help = "これはデフォルトのマテリアルタイプです。
+
+ペイントされた頂点アルファ、オパシティテクスチャ、またはカラーチャネルのアルファチャンネルは、ディザリングを通じて考慮されます。
+
+メインの不透明度スライダーのみ無視されます。";
+// Fully opaque material
+material.type.shadowCatcher = "シャドウキャッチャー";
+material.type.shadowCatcher.help = "光によって投射された影を除いて、オブジェクトを完全に透明にします。
+
+このモードは通常、プレーンジオメトリで使用されます。";
+material.type.shadowCatcher.warning = "シーンにはシャドウ付きのライトがありません。シャドウキャスターは無効になります。 
+
+シャドウキャッチャーが完全にメタリックである場合、SSR（反射）ポストプロセスが有効であれば、シャドウキャッチャーはシーンを反射できます。";
 // See glossary
 material.type.subsurface = "サブサーフェス";
 material.type.subsurface.help = "最善の結果を得るには、PBRシェーディングモードに切り替えて、最低1つのディレクショナルライトを、理想的には薄暗い環境で、使用してください。";
-// Transparency mode, alpha blending
+// Transparency mode, alpha blendingd
 material.type.blending = "ブレンド";
 material.type.blending.help = "不透明度の値を調整してオブジェクトを半透明にします。
 
@@ -1321,6 +1333,10 @@ input.hexcolor = "新しいカラー (16進フォーマット)";
 
 // Post process effect
 postprocess = "ポストプロセス";
+// Denoise
+postprocess.denoise = "";
+postprocess.denoise.help = "";
+postprocess.denoise.warning = "";
 // Quality vs performance
 postprocess.quality = "クオリティ";
 postprocess.quality.help = "これらのオプションをアクティベートすると、クオリティは向上しますが、パフォーマンスは低下します。";
@@ -1461,8 +1477,6 @@ primitive.lathe = "レイズ";
 primitive.tube = "チューブ";
 primitive.plane = "平面";
 primitive.triplanar = "Triplanar";
-primitive.faceXYZ = "面 XYZ";
-primitive.faceXYZ.help = "UV展開されたベースメッシュの提供元: https://texturing.xyz/";
 primitive.needValidate = "プリミティブを検証する必要があります!";
 
 // If enabled, we can edit primitive inside the viewport
@@ -1772,8 +1786,8 @@ shading.object.help = "ランダムにカラーが割り当てられている各
 shading.instance = "インスタンス ID";
 shading.instance.help = "オブジェクトIDと同じですが、インスタンスは同じ色を持ちます。";
 // Helper rendering mode that display solid colors
-shading.material = "";
-shading.material.help = "";
+shading.material = "マテリアルID";
+shading.material.help = "マテリアルインスタンスごとに単色を表示します。";
 // Randomize colors
 shading.id.randomize = "IDをランダム化";
 shading.textures = "テクスチャを使用";
@@ -2302,24 +2316,19 @@ tool.matrix.target.group.help = "ノードを移動し、対称とマスクは�
 階層の残りも同様に変換されます。";
 // Operation on the mesh
 tool.matrix.action = "操作";
-tool.matrix.action.help = "• 原点を移動
-メッシュをワールドの原点に移動します。
+tool.matrix.action.origin = "原点を移動";
+tool.matrix.action.origin.help = "メッシュをワールドの原点に移動します。";
+tool.matrix.action.bake = "ベイク";
+tool.matrix.action.bake.help = "マトリクスを頂点に適用して、マトリクスをリセットします。視覚的には、何も変わらないはずです。";
+tool.matrix.action.reset = "リセット";
+tool.matrix.action.reset.help = "メッシュ変換を初期の状況にリセットします。";
 
-• リセット
-メッシュ変換を初期の状況にリセットします。
-
-• ベイク
-マトリクスを頂点に適用して、マトリクスをリセットします。視覚的には、何も変わらないはずです。";
+// Synonym: shear, https://en.wikipedia.org/wiki/Shear_matrix or https://en.wikipedia.org/wiki/Shear_mapping
+tool.matrix.skew = "シアー";
 tool.matrix.translation = "平行移動";
 tool.matrix.rotation = "回転";
 tool.matrix.scale = "比率";
-// Synonym: shear, https://en.wikipedia.org/wiki/Shear_matrix or https://en.wikipedia.org/wiki/Shear_mapping
-tool.matrix.skew = "シアー";
 tool.matrix.uniformScale = "比率を均一化";
-tool.matrix.moveToOrigin = "原点を移動";
-tool.matrix.resetTransform = "リセット";
-// Synonym: Apply (transform)
-tool.matrix.bakeTransform = "ベイク";
 
 tool.transform.tip = "第二指でシングルタップしてモードを切り替えます";
 
@@ -2713,14 +2722,12 @@ Quad Remesherは https://exoside.com/ によって開発されました。";
 
 version.trialHistory = "お試し版: 取り消し/やり直しの上限は4回です";
 version.trialLayer = "お試し版: メッシュごとに1 レイヤーのみ";
-version.trialOneProject = "お試し版: アクティブなプロジェクトは1件のみです";
 version.trialNoImport = "お試し版: 読み込み機能は使用できません";
 version.trialNoExport = "お試し版: 書き出し機能は使用できません";
 
 version.fullFeatures = "• 一括購入
 • 取り消し/やり直しの上限なし
 • 無制限のレイヤー
-• 保存 & 読み込み
 • 書き出し & 読み込み";
 
 version.demo.purpose = "このバージョンはデモ用として特別に開発されたものです。";

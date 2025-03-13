@@ -26,6 +26,7 @@ TB = "TB";
 
 // Noun
 instance = "Instanciar";
+object = "Objeto";
 
 // Same value (usually for axis, e.g: x == y == z)
 uniform = "Uniforme";
@@ -503,10 +504,6 @@ file.project.unsaved = "¡Cambios no guardados!";
 file.project.loseUnsaved = "¡Perderá los cambios no guardados!";
 // Indicates to the user that the project thumbnail corresponds to the last manual save
 file.project.lastManualSave = "Vista previa de lo último guardado manualmente";
-// The user is starting a new project but he won't be able to open the current project (because of trial version)
-file.project.trialNoOpen = "Versión de prueba: ¡No podrás volver a abrir el proyecto actual!";
-// The user is trying to load a project but he can only reload the current opened project (because of trial version)
-file.project.trialOnlyOpen = "Versión de prueba: ¡Solo puedes volver a abrir el proyecto actual!";
 
 file.project = "Proyecto";
 // Save current project (or overwrite if the project has already been saved once)
@@ -521,6 +518,8 @@ file.project.saveAs.confirm = "¿Sobrescribir $0?";
 file.project.open = "Abrir";
 // E.g: Open "my_project"?
 file.project.open.confirm = "¿Abrir $0?";
+// E.g: Clone "my_project"?
+file.project.clone.confirm = "¿Clonar $0?";
 // Load another project and add/append all its data to the current scene
 file.project.add = "Añadir a la escena";
 // E;g: Add "my_other_project" to the scene?
@@ -558,17 +557,17 @@ file.colorSpace.srgb = "sRGB";
 file.importSettings = "Importar opciones";
 
 // Load interface preference settings when opening a scene file
-file.import.guiSettings = "Mantener la configuración de la gui (al importar)";
+file.import.guiSettings = "Mantener la configuración de la gui";
 file.import.guiSettings.help = "Al abrir o importar un archivo de proyecto, se cargarán todas las configuraciones relacionadas con la gui integradas en el proyecto.";
 // OBJ have "groups" and "objects", by default groups are ignored, use this option to consider groups as separate objects
 file.import.obj.splitByGroup = "Dividir OBJ por grupos";
 file.import.obj.splitByGroup.help = "Cuando está habilitado, Nomad dividirá el grupo de vértices OBJECT en objetos separados.";
 // Merge all the object layers at when loading a file (deleting them in the process)
-file.import.mergeLayers = "Combinar capas (al importar)";
+file.import.mergeLayers = "Combinar capas";
 // Ignore the textures present in the file to load
-file.import.skipTextures = "Omitir texturas (al importar)";
+file.import.skipTextures = "Omitir texturas";
 // Do not fiddle with the object topology when loading the file
-file.import.keepTopology = "Mantener topología (al importar)";
+file.import.keepTopology = "Mantener topología";
 file.import.keepTopology.help = "Utilice esta opción si no desea que Nomad juegue con la topología de la malla importada.
 
 Deshabilitará el reordenamiento de vértices/caras, la eliminación de duplicados de vértices/caras y la eliminación de vértices no utilizados.";
@@ -1153,10 +1152,21 @@ material.translucency.help = "Necesitas tener una luz que proyecte sombras para 
 material.opacity = "Opacidad";
 // Fully opaque material
 material.type.opaque = "Opaco";
+material.type.opaque.help = "Este es el tipo de material predeterminado.
+
+El alfa del vértice pintado, la textura de opacidad o el canal alfa del canal de color aún se tomarán en cuenta a través del tramado.
+
+Solo se ignorará el control deslizante de opacidad principal.";
+// Fully opaque material
+material.type.shadowCatcher = "Capturador de sombras";
+material.type.shadowCatcher.help = "Hacer el objeto completamente transparente, excepto por las sombras proyectadas por las luces.
+
+Este modo generalmente se utiliza en la geometría del plano.";
+material.type.shadowCatcher.warning = "No hay luces con sombras en tu escena, el Caster de Sombras estará inactivo. De lo contrario, si el capturador de sombras es completamente metálico, el Capturador de Sombras puede reflejar la escena si está habilitado el Post Proceso SSR (Reflexión).";
 // See glossary
 material.type.subsurface = "Subsuperficie";
 material.type.subsurface.help = "Para obtener el mejor resultado, puedes cambiar al modo de sombreado PBR y usar al menos una luz direccional, idealmente con un entorno tenue.";
-// Transparency mode, alpha blending
+// Transparency mode, alpha blendingd
 material.type.blending = "Mezcla";
 material.type.blending.help = "Haz que la malla sea semitransparente ajustando el valor de opacidad
 
@@ -1321,6 +1331,10 @@ input.hexcolor = "Color hexadecimal";
 
 // Post process effect
 postprocess = "posprocesado";
+// Denoise
+postprocess.denoise = "";
+postprocess.denoise.help = "";
+postprocess.denoise.warning = "";
 // Quality vs performance
 postprocess.quality = "Calidad";
 postprocess.quality.help = "Activa estas opciones para mejorar la calidad en detrimento del rendimiento.";
@@ -1462,8 +1476,6 @@ primitive.lathe = "Torno";
 primitive.tube = "Tubo";
 primitive.plane = "Plano";
 primitive.triplanar = "Triplanar";
-primitive.faceXYZ = "Cara XYZ";
-primitive.faceXYZ.help = "Malla base sin envolver UV proporcionada por https://texturing.xyz/";
 primitive.needValidate = "Las primitivas deben ser validadas!";
 
 // If enabled, we can edit primitive inside the viewport
@@ -1773,8 +1785,8 @@ Esto resulta especialmente útil si la escena contiene muchos objetos.";
 shading.instance = "Instanciar ID";
 shading.instance.help = "Igual que ID de Objeto, pero las instancias tendrán el mismo color.";
 // Helper rendering mode that display solid colors
-shading.material = "";
-shading.material.help = "";
+shading.material = "ID de Material";
+shading.material.help = "Muestra un color sólido para cada instancia de material.";
 // Randomize colors
 shading.id.randomize = "ID aleatorio";
 shading.textures = "Utilizar texturas";
@@ -2304,24 +2316,19 @@ tool.matrix.target.group.help = "Se mueve el nodo, ignorando la simetría y la m
 El resto de la jerarquía también se transformará.";
 // Operation on the mesh
 tool.matrix.action = "Acción";
-tool.matrix.action.help = "• Mover origen
-Mueve la malla al origen mundial.
+tool.matrix.action.origin = "Mover origen";
+tool.matrix.action.origin.help = "Mueve la malla al origen mundial.";
+tool.matrix.action.bake = "Hornear";
+tool.matrix.action.bake.help = "Aplica la matriz al vértice y restablece la matriz. Visualmente, nada debería cambiar.";
+tool.matrix.action.reset = "Restablecer";
+tool.matrix.action.reset.help = "Restablece la transformación de malla a identidad.";
 
-• Restablecer
-Restablece la transformación de malla a identidad.
-
-• Hornear
-Aplica la matriz al vértice y restablece la matriz. Visualmente, nada debería cambiar.";
+// Synonym: shear, https://en.wikipedia.org/wiki/Shear_matrix or https://en.wikipedia.org/wiki/Shear_mapping
+tool.matrix.skew = "Sesgar";
 tool.matrix.translation = "Traslación";
 tool.matrix.rotation = "Rotación";
 tool.matrix.scale = "Escala";
-// Synonym: shear, https://en.wikipedia.org/wiki/Shear_matrix or https://en.wikipedia.org/wiki/Shear_mapping
-tool.matrix.skew = "Sesgar";
 tool.matrix.uniformScale = "Escala uniforme";
-tool.matrix.moveToOrigin = "Mover origen";
-tool.matrix.resetTransform = "Restablecer";
-// Synonym: Apply (transform)
-tool.matrix.bakeTransform = "Hornear";
 
 tool.transform.tip = "Un toque simple con el segundo dedo para cambiar de modo";
 
@@ -2715,14 +2722,12 @@ El Quad Remesher es desarrollado por https://exoside.com/.";
 
 version.trialHistory = "Versión de prueba: Deshacer/rehacer 4 veces";
 version.trialLayer = "Versión de prueba: Una capa por malla";
-version.trialOneProject = "Versión de prueba: solo un proyecto activo";
 version.trialNoImport = "Versión de prueba: sin importación";
 version.trialNoExport = "Versión de prueba: sin exportación";
 
 version.fullFeatures = "• Compra única
 • Deshacer/rehacer ilimitado
 • Capas ilimitadas
-• Guardar y cargar
 • Exportación e importación";
 
 version.demo.purpose = "Esta versión se ha creado específicamente con fines de demostración.";

@@ -26,6 +26,7 @@ TB = "TB";
 
 // Noun
 instance = "例項";
+object = "基於物件";
 
 // Same value (usually for axis, e.g: x == y == z)
 uniform = "均勻";
@@ -503,10 +504,6 @@ file.project.unsaved = "更改未儲存！";
 file.project.loseUnsaved = "如不儲存，您的更改將會丟失！";
 // Indicates to the user that the project thumbnail corresponds to the last manual save
 file.project.lastManualSave = "上一次手動儲存的預覽";
-// The user is starting a new project but he won't be able to open the current project (because of trial version)
-file.project.trialNoOpen = "這是試用版本，您將無法重新開啟當前專案！";
-// The user is trying to load a project but he can only reload the current opened project (because of trial version)
-file.project.trialOnlyOpen = "這是試用版本，您只能開啟當前專案！";
 
 file.project = "專案";
 // Save current project (or overwrite if the project has already been saved once)
@@ -521,6 +518,8 @@ file.project.saveAs.confirm = "確認覆蓋 $0？";
 file.project.open = "開啟";
 // E.g: Open "my_project"?
 file.project.open.confirm = "確認開啟 $0？";
+// E.g: Clone "my_project"?
+file.project.clone.confirm = "克隆$0？";
 // Load another project and add/append all its data to the current scene
 file.project.add = "新增到場景";
 // E;g: Add "my_other_project" to the scene?
@@ -1155,10 +1154,23 @@ material.translucency.help = "您需要藉助燈光投下陰影才能看到半�
 material.opacity = "不透明度";
 // Fully opaque material
 material.type.opaque = "實心";
+material.type.opaque.help = "這是預設的材質型別。
+
+繪製的頂點 Alpha、透明度紋理或顏色通道的 Alpha 通道仍然會透過抖動來考慮。
+
+只有主透明度滑塊將被忽略。";
+// Fully opaque material
+material.type.shadowCatcher = "陰影捕捉器";
+material.type.shadowCatcher.help = "使物件完全透明，除了光源投射的陰影之外。
+
+這種模式通常用於平面幾何體。";
+material.type.shadowCatcher.warning = "您的場景中沒有帶有陰影的燈光，陰影投射器將處於非啟用狀態。
+
+否則，如果陰影捕捉器是完全金屬的，並且SSR（反射）後期處理被啟用，陰影捕捉器可以反射場景。";
 // See glossary
 material.type.subsurface = "次表面";
 material.type.subsurface.help = "為了獲得最佳效果，您可以切換到PBR著色模式，並使用至少一個定向光源。在昏暗環境下效果最理想。";
-// Transparency mode, alpha blending
+// Transparency mode, alpha blendingd
 material.type.blending = "正常混合";
 material.type.blending.help = "可透過調節不透明度的值，以實現不同程度的透明效果。
 
@@ -1323,6 +1335,10 @@ input.hexcolor = "請輸入新顏色程式碼（十六進位制格式）";
 
 // Post process effect
 postprocess = "後期處理";
+// Denoise
+postprocess.denoise = "";
+postprocess.denoise.help = "";
+postprocess.denoise.warning = "";
 // Quality vs performance
 postprocess.quality = "質量";
 postprocess.quality.help = "啟用這些選項可以提升質量，但會影響效能。";
@@ -1464,8 +1480,6 @@ primitive.lathe = "車削";
 primitive.tube = "圓管";
 primitive.plane = "平面";
 primitive.triplanar = "三面體";
-primitive.faceXYZ = "X、Y、Z面";
-primitive.faceXYZ.help = "由https://texturing.xyz/提供的UV展開的基本網格";
 primitive.needValidate = "基本體需轉換為可編輯物件後!";
 
 // If enabled, we can edit primitive inside the viewport
@@ -1778,8 +1792,8 @@ shading.object.help = "無光照渲染模式下每個物件會被隨機分配顏
 shading.instance = "例項 ID";
 shading.instance.help = "與物件 ID 相同，但例項將具有相同的顏色。";
 // Helper rendering mode that display solid colors
-shading.material = "";
-shading.material.help = "";
+shading.material = "材料ID";
+shading.material.help = "顯示每個材料例項的純色。";
 // Randomize colors
 shading.id.randomize = "隨機分配顏色";
 shading.textures = "使用紋理";
@@ -2308,24 +2322,19 @@ tool.matrix.target.group.help = "移動節點，忽略對稱性和蒙版。
 層級中其他節點也會被轉換。";
 // Operation on the mesh
 tool.matrix.action = "操作";
-tool.matrix.action.help = "• 返回原點
-將物件移回原位。
+tool.matrix.action.origin = "返回原點";
+tool.matrix.action.origin.help = "將物件移回原位。";
+tool.matrix.action.bake = "烘焙";
+tool.matrix.action.bake.help = "重新記錄物件變換後的頂點座標。在視覺上什麼都不會改變。";
+tool.matrix.action.reset = "重設";
+tool.matrix.action.reset.help = "重設物件的所有變換。";
 
-• 重設
-重設物件的所有變換。
-
-• 烘焙
-重新記錄物件變換後的頂點座標。在視覺上什麼都不會改變。";
+// Synonym: shear, https://en.wikipedia.org/wiki/Shear_matrix or https://en.wikipedia.org/wiki/Shear_mapping
+tool.matrix.skew = "剪下";
 tool.matrix.translation = "位移";
 tool.matrix.rotation = "旋轉";
 tool.matrix.scale = "縮放";
-// Synonym: shear, https://en.wikipedia.org/wiki/Shear_matrix or https://en.wikipedia.org/wiki/Shear_mapping
-tool.matrix.skew = "剪下";
 tool.matrix.uniformScale = "等比縮放";
-tool.matrix.moveToOrigin = "返回原點";
-tool.matrix.resetTransform = "重設";
-// Synonym: Apply (transform)
-tool.matrix.bakeTransform = "烘焙";
 
 tool.transform.tip = "用第二個手指單擊切換模式";
 
@@ -2721,14 +2730,12 @@ version.buyQR.promo = "
 
 version.trialHistory = "試用版本限制：僅允許4次以內的撤銷或重做";
 version.trialLayer = "試用版本限制：每個物體僅允許新增一個圖層";
-version.trialOneProject = "試用版本限制：僅允許啟用一個專案";
 version.trialNoImport = "試用版本限制：不允許匯入";
 version.trialNoExport = "試用版本限制：不允許匯出";
 
 version.fullFeatures = "購買完整版本後您可以：
 • 撤消或重做不受限制
 • 圖層數量不受限制
-• 允許儲存和載入
 • 可以匯入和匯出檔案";
 
 version.demo.purpose = "此版本專為演示用途而製作。";

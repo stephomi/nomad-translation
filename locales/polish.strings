@@ -26,6 +26,7 @@ TB = "TB";
 
 // Noun
 instance = "Utwórz instancję";
+object = "Obiekt";
 
 // Same value (usually for axis, e.g: x == y == z)
 uniform = "Jednolity";
@@ -503,10 +504,6 @@ file.project.unsaved = "Niezapisane zmiany!";
 file.project.loseUnsaved = "Utracisz niezapisane zmiany!";
 // Indicates to the user that the project thumbnail corresponds to the last manual save
 file.project.lastManualSave = "Podgląd ostatniego zapisu ręcznego";
-// The user is starting a new project but he won't be able to open the current project (because of trial version)
-file.project.trialNoOpen = "Wersja próbna: nie będzie możliwe ponowne otwarcie bieżącego projektu!";
-// The user is trying to load a project but he can only reload the current opened project (because of trial version)
-file.project.trialOnlyOpen = "Wersja próbna: można otworzyć ponownie tylko bieżący projekt!";
 
 file.project = "Projekt";
 // Save current project (or overwrite if the project has already been saved once)
@@ -521,6 +518,8 @@ file.project.saveAs.confirm = "Nadpisać $0?";
 file.project.open = "Otwórz";
 // E.g: Open "my_project"?
 file.project.open.confirm = "Otworzyć $0?";
+// E.g: Clone "my_project"?
+file.project.clone.confirm = "Klonować $0?";
 // Load another project and add/append all its data to the current scene
 file.project.add = "Dodaj do sceny";
 // E;g: Add "my_other_project" to the scene?
@@ -1153,10 +1152,23 @@ material.translucency.help = "Aby zobaczyć przezroczystość, musisz mieć świ
 material.opacity = "Krycie";
 // Fully opaque material
 material.type.opaque = "Nieprzezroczysty";
+material.type.opaque.help = "To jest domyślny typ materiału.
+
+Przezroczystość pomalowanego wierzchołka, tekstura nieprzezroczystości lub kanał alfa w kanale kolorów będą nadal uwzględniane przez dithering.
+
+Tylko główny suwak nieprzezroczystości zostanie zignorowany.";
+// Fully opaque material
+material.type.shadowCatcher = "Łapacz cienia";
+material.type.shadowCatcher.help = "Spraw, aby obiekt był całkowicie przezroczysty, z wyjątkiem cieni rzuconutych przez światła.
+
+Ten tryb jest zwykle używany na geometrii płaszczyzn.";
+material.type.shadowCatcher.warning = "Nie ma żadnych świateł z cieniami w twojej scenie, Rzucacz Cieni będzie nieaktywny.
+
+W przeciwnym razie, jeśli catcher cieni jest w pełni metaliczny, Catcher Cieni może odbijać scenę, jeśli Post Process SSR (Odbicie) jest włączony.";
 // See glossary
 material.type.subsurface = "Podpowierzchnia";
 material.type.subsurface.help = "Aby uzyskać najlepszy efekt, możesz przełączyć się na tryb cieniowania PBR i użyć przynajmniej jednego światła kierunkowego, najlepiej z przyciemnionym otoczeniem.";
-// Transparency mode, alpha blending
+// Transparency mode, alpha blendingd
 material.type.blending = "Mieszanie";
 material.type.blending.help = "Spraw, by obiekt był półprzezroczysty, zmieniając wartość krycia.
 
@@ -1321,6 +1333,10 @@ input.hexcolor = "Nowy kolor (format szesnastkowy)";
 
 // Post process effect
 postprocess = "Postprocessing";
+// Denoise
+postprocess.denoise = "";
+postprocess.denoise.help = "";
+postprocess.denoise.warning = "";
 // Quality vs performance
 postprocess.quality = "Jakość";
 postprocess.quality.help = "Aktywuj te opcje, aby poprawić jakość kosztem wydajności.";
@@ -1462,8 +1478,6 @@ primitive.lathe = "Bryła obrotowa";
 primitive.tube = "Rura";
 primitive.plane = "Płaszczyzna";
 primitive.triplanar = "Trzypłaszczyznowy";
-primitive.faceXYZ = "Powierzchnia XYZ";
-primitive.faceXYZ.help = "Podstawowa siatka z obliczoną mapą UV dostarczona przez https://texturing.xyz/";
 primitive.needValidate = "Prymitywy powinny być zweryfikowane!";
 
 // If enabled, we can edit primitive inside the viewport
@@ -1775,8 +1789,8 @@ Jest to przydatne głównie w sytuacji, gdy na scenie znajduje się wiele obiekt
 shading.instance = "Utwórz instancję ID";
 shading.instance.help = "To samo co ID obiektu, ale instancje będą miały ten sam kolor.";
 // Helper rendering mode that display solid colors
-shading.material = "";
-shading.material.help = "";
+shading.material = "ID Materiału";
+shading.material.help = "Pokaż solidny kolor dla każdej instancji materiału.";
 // Randomize colors
 shading.id.randomize = "Losowy ID";
 shading.textures = "Użyj tekstur";
@@ -2305,24 +2319,19 @@ tool.matrix.target.group.help = "Przesuń węzeł, ignorując symetrię i maskow
 Pozostała część hierarchii również zostanie przekształcona.";
 // Operation on the mesh
 tool.matrix.action = "Operacja";
-tool.matrix.action.help = "• Przenieś początek
-Przesuwa siatkę do początku świata.
+tool.matrix.action.origin = "Przenieś początek";
+tool.matrix.action.origin.help = "Przesuwa siatkę do początku świata.";
+tool.matrix.action.bake = "Zastosuj";
+tool.matrix.action.bake.help = "Zastosuj macierz do wierzchołka i zresetuj macierz. Wizualnie nic nie powinno się zmienić.";
+tool.matrix.action.reset = "Wyzeruj";
+tool.matrix.action.reset.help = "Resetuje transformację siatki do tożsamości.";
 
-• Resetuj
-Resetuje transformację siatki do tożsamości.
-
-• Zastosuj
-Zastosuj macierz do wierzchołka i zresetuj macierz. Wizualnie nic nie powinno się zmienić.";
+// Synonym: shear, https://en.wikipedia.org/wiki/Shear_matrix or https://en.wikipedia.org/wiki/Shear_mapping
+tool.matrix.skew = "Ścinanie";
 tool.matrix.translation = "Translacja";
 tool.matrix.rotation = "Obrót";
 tool.matrix.scale = "Skala";
-// Synonym: shear, https://en.wikipedia.org/wiki/Shear_matrix or https://en.wikipedia.org/wiki/Shear_mapping
-tool.matrix.skew = "Ścinanie";
 tool.matrix.uniformScale = "Jednolite skalowanie";
-tool.matrix.moveToOrigin = "Przenieś początek";
-tool.matrix.resetTransform = "Wyzeruj";
-// Synonym: Apply (transform)
-tool.matrix.bakeTransform = "Zastosuj";
 
 tool.transform.tip = "Pojedyncze stuknięcie drugim palcem, aby przełączyć tryb";
 
@@ -2716,14 +2725,12 @@ Quad Remesher jest rozwijany przez https://exoside.com/.";
 
 version.trialHistory = "Wersja próbna: możliwe 4 operacje cofnięcia/ponowienia";
 version.trialLayer = "Wersja próbna: 1 warstwa na siatkę";
-version.trialOneProject = "Wersja próbna: tylko 1 aktywny projekt";
 version.trialNoImport = "Wersja próbna: brak importu";
 version.trialNoExport = "Wersja próbna: brak eksportu";
 
 version.fullFeatures = "• Jednorazowy zakup
 • Nieograniczona liczba operacji cofnięcia/ponowienia
 • Nieograniczona liczba warstw
-• Zapisywanie i ładowanie
 • Eksport i import";
 
 version.demo.purpose = "Ta wersja została stworzona specjalnie na potrzeby demonstracji.";

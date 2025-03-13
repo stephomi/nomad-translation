@@ -26,6 +26,7 @@ TB = "To";
 
 // Noun
 instance = "Instance";
+object = "Objet";
 
 // Same value (usually for axis, e.g: x == y == z)
 uniform = "Uniforme";
@@ -503,10 +504,6 @@ file.project.unsaved = "Modifications non enregistrées !";
 file.project.loseUnsaved = "Toute modification non enregistrée sera perdue !";
 // Indicates to the user that the project thumbnail corresponds to the last manual save
 file.project.lastManualSave = "Aperçu du dernier enregistrement manuel";
-// The user is starting a new project but he won't be able to open the current project (because of trial version)
-file.project.trialNoOpen = "Version d'essai : vous ne pourrez pas rouvrir le projet actuel !";
-// The user is trying to load a project but he can only reload the current opened project (because of trial version)
-file.project.trialOnlyOpen = "Version d'essai : vous pouvez uniquement rouvrir votre projet actuel !";
 
 file.project = "Projet";
 // Save current project (or overwrite if the project has already been saved once)
@@ -521,6 +518,8 @@ file.project.saveAs.confirm = "Remplacer $0 ?";
 file.project.open = "Ouvrir";
 // E.g: Open "my_project"?
 file.project.open.confirm = "Ouvrir $0 ?";
+// E.g: Clone "my_project"?
+file.project.clone.confirm = "Cloner $0 ?";
 // Load another project and add/append all its data to the current scene
 file.project.add = "Ajouter à la scène";
 // E;g: Add "my_other_project" to the scene?
@@ -1153,10 +1152,23 @@ material.translucency.help = "Pour voir la translucidité, la lumière doit proj
 material.opacity = "Opacité";
 // Fully opaque material
 material.type.opaque = "Opaque";
+material.type.opaque.help = "Ceci est le type de matériau par défaut.
+
+L'alpha du sommet peint, la texture d'opacité ou le canal alpha du canal de couleur seront toujours pris en compte via le tramage.
+
+Seul le curseur principal d'opacité sera ignoré.";
+// Fully opaque material
+material.type.shadowCatcher = "Piège à ombres";
+material.type.shadowCatcher.help = "Rendre l'objet complètement transparent, sauf pour les ombres projetées par les lumières.
+
+Ce mode est généralement utilisé sur la géométrie plane.";
+material.type.shadowCatcher.warning = "Il n'y a pas de lumières avec des ombres dans votre scène, le Lancer d'Ombres sera inactif. 
+
+Sinon, si le capteur d'ombre est entièrement métallique, il peut refléter la scène si le Traitement Après Coup (Reflection) est activé.";
 // See glossary
 material.type.subsurface = "Transluminescence";
 material.type.subsurface.help = "Pour obtenir de bons résultats, vous pouvez passer en mode d'ombrage PBR et utiliser au moins une lumière directionnelle, idéalement dans un environnement peu éclairé.";
-// Transparency mode, alpha blending
+// Transparency mode, alpha blendingd
 material.type.blending = "Fusion";
 material.type.blending.help = "Rendez l'objet translucide en ajustant la valeur d'opacité.
 
@@ -1321,6 +1333,10 @@ input.hexcolor = "Nouvelle couleur (format hexadécimal)";
 
 // Post process effect
 postprocess = "Post-traitement";
+// Denoise
+postprocess.denoise = "";
+postprocess.denoise.help = "";
+postprocess.denoise.warning = "";
 // Quality vs performance
 postprocess.quality = "Qualité";
 postprocess.quality.help = "Activez ces options pour améliorer la qualité, au détriment des performances.";
@@ -1462,8 +1478,6 @@ primitive.lathe = "Tour";
 primitive.tube = "Tube";
 primitive.plane = "Plan";
 primitive.triplanar = "Triplanaire";
-primitive.faceXYZ = "Face XYZ";
-primitive.faceXYZ.help = "Maillage de base UV déplié fourni par https://texturing.xyz/";
 primitive.needValidate = "La primitive doit être validée!";
 
 // If enabled, we can edit primitive inside the viewport
@@ -1775,8 +1789,8 @@ Ce mode est particulièrement utile pour les scènes comportant beaucoup d'objet
 shading.instance = "Instance ID";
 shading.instance.help = "Identique à ID d'objet, mais les instances auront la même couleur.";
 // Helper rendering mode that display solid colors
-shading.material = "";
-shading.material.help = "";
+shading.material = "ID de matériau";
+shading.material.help = "Afficher une couleur uniforme pour chaque instance de matériau.";
 // Randomize colors
 shading.id.randomize = "ID aléatoire";
 shading.textures = "Utiliser des textures";
@@ -2305,24 +2319,19 @@ tool.matrix.target.group.help = "Déplacez le nœud en ignorant la symétrie et 
 Le reste de la hiérarchie sera également transformé.";
 // Operation on the mesh
 tool.matrix.action = "Opération";
-tool.matrix.action.help = "• Déplacer l'origine
-Déplacez le maillage vers l'origine de de la scène.
+tool.matrix.action.origin = "Déplacer l'origine";
+tool.matrix.action.origin.help = "Déplacez le maillage vers l'origine de de la scène.";
+tool.matrix.action.bake = "Appliquer";
+tool.matrix.action.bake.help = "Appliquez la matrice au sommet et réinitialisez la matrice. Visuellement, rien ne devrait changer.";
+tool.matrix.action.reset = "Réinitialiser";
+tool.matrix.action.reset.help = "Réinitialisez la transformation de maillage à l'identique.";
 
-• Réinitialiser
-Réinitialisez la transformation de maillage à l'identique.
-
-• Appliquer
-Appliquez la matrice au sommet et réinitialisez la matrice. Visuellement, rien ne devrait changer.";
+// Synonym: shear, https://en.wikipedia.org/wiki/Shear_matrix or https://en.wikipedia.org/wiki/Shear_mapping
+tool.matrix.skew = "Cisaillement";
 tool.matrix.translation = "Translation";
 tool.matrix.rotation = "Rotation";
 tool.matrix.scale = "Échelle";
-// Synonym: shear, https://en.wikipedia.org/wiki/Shear_matrix or https://en.wikipedia.org/wiki/Shear_mapping
-tool.matrix.skew = "Cisaillement";
 tool.matrix.uniformScale = "Échelle uniforme";
-tool.matrix.moveToOrigin = "Déplacer l'origine";
-tool.matrix.resetTransform = "Réinitialiser";
-// Synonym: Apply (transform)
-tool.matrix.bakeTransform = "Appliquer";
 
 tool.transform.tip = "Appuyez une fois avec un deuxième doigt pour changer de mode";
 
@@ -2716,14 +2725,12 @@ Le Quad Remesher est développé par https://exoside.com/.";
 
 version.trialHistory = "Version d'essai : 4 opérations Annuler/Rétablir possibles";
 version.trialLayer = "Version d'essai : 1 calque par maillage";
-version.trialOneProject = "Version d'essai : 1 seul projet actif";
 version.trialNoImport = "Version d'essai : pas d'importation";
 version.trialNoExport = "Version d'essai : pas d'exportation";
 
 version.fullFeatures = "• Achat définitif
 • Opérations Annuler/Rétablir illimitées
 • Calques illimités
-• Enregistrement et chargement
 • Exportation et importation";
 
 version.demo.purpose = "Cette version a été créée spécifiquement à des fins de démonstration.";

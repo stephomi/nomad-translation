@@ -26,6 +26,7 @@ TB = "TB";
 
 // Noun
 instance = "Örneklendirmek";
+object = "Nesne";
 
 // Same value (usually for axis, e.g: x == y == z)
 uniform = "Düzenli";
@@ -503,10 +504,6 @@ file.project.unsaved = "Kaydedilmemiş değişiklikler!";
 file.project.loseUnsaved = "Kaydedilmemiş değişiklikler kaybolacak!";
 // Indicates to the user that the project thumbnail corresponds to the last manual save
 file.project.lastManualSave = "Son manüel kaydın önizlemesi";
-// The user is starting a new project but he won't be able to open the current project (because of trial version)
-file.project.trialNoOpen = "Deneme sürümü: Geçerli proje yeniden açılamayacak!";
-// The user is trying to load a project but he can only reload the current opened project (because of trial version)
-file.project.trialOnlyOpen = "Deneme sürümü: Sadece geçerli projeniz yeniden açılabilir!";
 
 file.project = "Proje";
 // Save current project (or overwrite if the project has already been saved once)
@@ -521,6 +518,8 @@ file.project.saveAs.confirm = "$0 üstüne yazılsın mı?";
 file.project.open = "Aç";
 // E.g: Open "my_project"?
 file.project.open.confirm = "$0 açılsın mı?";
+// E.g: Clone "my_project"?
+file.project.clone.confirm = "$0 klonlansın mı?";
 // Load another project and add/append all its data to the current scene
 file.project.add = "Görünüme ekle";
 // E;g: Add "my_other_project" to the scene?
@@ -1152,10 +1151,23 @@ material.translucency.help = "Yarı saydamlığı görebilmek için gölgeler or
 material.opacity = "Opaklık";
 // Fully opaque material
 material.type.opaque = "Opak";
+material.type.opaque.help = "Bu varsayılan malzeme türüdür.
+
+Boyalı verteks alpha, opaklık dokusu veya renk kanalının alpha kanalı, araya karışmayla dikkate alınacaktır.
+
+Yalnızca ana opaklık kaydırıcısı göz ardı edilecektir.";
+// Fully opaque material
+material.type.shadowCatcher = "Gölge yakalayıcı";
+material.type.shadowCatcher.help = "Cisim, ışıklar tarafından düşürülen gölgeler hariç tamamen geçirgen hale gelir.
+
+Bu mod genellikle düzlem geometrisi üzerinde kullanılır.";
+material.type.shadowCatcher.warning = "Sahnenizde gölgeli ışıklar yok, Gölge Verici devre dışı kalacaktır. 
+
+Aksi taktirde, gölge yakalayıcı tamamen metalikse ve SSR (Yansıma) Post İşlem etkinse, Gölge Yakalayıcı sahneyi yansıtabilir.";
 // See glossary
 material.type.subsurface = "Yüzey altı";
 material.type.subsurface.help = "En iyi sonucu elde edebilmek için PBR gölgeleme moduna geçebilir ve ideal olarak loş bir ortamda en az bir yönlendirilmiş ışık kullanabilirsiniz.";
-// Transparency mode, alpha blending
+// Transparency mode, alpha blendingd
 material.type.blending = "Karışım";
 material.type.blending.help = "Opaklık değerinde küçük bir ayarlama yaparak nesneyi yarı saydam yapar.
 
@@ -1320,6 +1332,10 @@ input.hexcolor = "Yeni renk (altıgen format)";
 
 // Post process effect
 postprocess = "Süreç sonrası işlemler";
+// Denoise
+postprocess.denoise = "";
+postprocess.denoise.help = "";
+postprocess.denoise.warning = "";
 // Quality vs performance
 postprocess.quality = "Kalite";
 postprocess.quality.help = "Performansı düşürmeyi göze alarak kaliteyi artırmak için bu seçenekleri etkinleştirin.";
@@ -1461,8 +1477,6 @@ primitive.lathe = "Torna";
 primitive.tube = "Tüp";
 primitive.plane = "Düzlem";
 primitive.triplanar = "Üç düzlemli";
-primitive.faceXYZ = "Yüz XYZ";
-primitive.faceXYZ.help = "UV-hesaplanmış temel ağ örgüsü şuradan sağlanır: https://texturing.xyz/";
 primitive.needValidate = "Primitiflerin doğrulanması gerekir!";
 
 // If enabled, we can edit primitive inside the viewport
@@ -1774,8 +1788,8 @@ Bu özellikle görünümüzde bir çok nesne varsa faydalıdır.";
 shading.instance = "Örneklendirmek ID";
 shading.instance.help = "Nesne ID ile aynı, ancak örnekler aynı renge sahip olacak.";
 // Helper rendering mode that display solid colors
-shading.material = "";
-shading.material.help = "";
+shading.material = "Malzeme Kimliği";
+shading.material.help = "Her malzeme için tek renk göster.";
 // Randomize colors
 shading.id.randomize = "Rasgele id atama";
 shading.textures = "Dokular kullan";
@@ -2304,24 +2318,19 @@ tool.matrix.target.group.help = "Simetri ve maskelemeyi göz ardı ederek düğ�
 Hiyerarşinin geri kalanı da dönüşüme uğrar.";
 // Operation on the mesh
 tool.matrix.action = "İşlem";
-tool.matrix.action.help = "• Kökeni hareket ettir
-Ağ örgüsünü dünya kökenine getir.
+tool.matrix.action.origin = "Kökeni hareket ettir";
+tool.matrix.action.origin.help = "Ağ örgüsünü dünya kökenine getir.";
+tool.matrix.action.bake = "Pişir";
+tool.matrix.action.bake.help = "Matrisi vertekse uygula ve matrisi sıfırla. Görsel olarak değişen bir şey olmaması gerekir.";
+tool.matrix.action.reset = "Sıfırla";
+tool.matrix.action.reset.help = "Ağ örgüsü dönüştürmeyi ilk başa sıfırla.";
 
-• Sıfırla
-Ağ örgüsü dönüştürmeyi ilk başa sıfırla.
-
-• Pişir
-Matrisi vertekse uygula ve matrisi sıfırla. Görsel olarak değişen bir şey olmaması gerekir.";
+// Synonym: shear, https://en.wikipedia.org/wiki/Shear_matrix or https://en.wikipedia.org/wiki/Shear_mapping
+tool.matrix.skew = "Yatır";
 tool.matrix.translation = "Çeviri";
 tool.matrix.rotation = "Döndürme";
 tool.matrix.scale = "Ölçek";
-// Synonym: shear, https://en.wikipedia.org/wiki/Shear_matrix or https://en.wikipedia.org/wiki/Shear_mapping
-tool.matrix.skew = "Yatır";
 tool.matrix.uniformScale = "Tek tip ölçeklendirme";
-tool.matrix.moveToOrigin = "Kökeni hareket ettir";
-tool.matrix.resetTransform = "Sıfırla";
-// Synonym: Apply (transform)
-tool.matrix.bakeTransform = "Pişir";
 
 tool.transform.tip = "Modu değiştirmek için ikinci parmakla tek dokunuş yapın";
 
@@ -2715,14 +2724,12 @@ Quad Remesher, https://exoside.com/ tarafından geliştirilmiştir.";
 
 version.trialHistory = "Deneme sürümü: 4 geri alma/yineleme mümkündür";
 version.trialLayer = "Deneme sürümü: Ağ örgüsü başına 1 katman";
-version.trialOneProject = "Deneme sürümü: sadece 1 etkin proje";
 version.trialNoImport = "Deneme sürümü: içe aktarma yok";
 version.trialNoExport = "Deneme sürümü: dışa aktarma yok";
 
 version.fullFeatures = "• Tek sefer satın alma
 • Sınırsız geri alma/yineleme
 • Sınırsız katman
-• Kaydetme ve yükleme
 • İçe ve dışa aktarma";
 
 version.demo.purpose = "Bu sürüm yalnızca demo amaçlı tasarlanmıştır.";

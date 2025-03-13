@@ -26,6 +26,7 @@ TB = "TB";
 
 // Noun
 instance = "인스턴스";
+object = "오브젝트";
 
 // Same value (usually for axis, e.g: x == y == z)
 uniform = "균일";
@@ -503,10 +504,6 @@ file.project.unsaved = "변경 내용이 저장되지 않았습니다!";
 file.project.loseUnsaved = "저장되지 않은 변경사항은 손실됩니다!";
 // Indicates to the user that the project thumbnail corresponds to the last manual save
 file.project.lastManualSave = "마지막으로 수동 저장한 내용 미리보기";
-// The user is starting a new project but he won't be able to open the current project (because of trial version)
-file.project.trialNoOpen = "평가판: 현재 프로젝트를 다시 열 수 없습니다!";
-// The user is trying to load a project but he can only reload the current opened project (because of trial version)
-file.project.trialOnlyOpen = "평가판: 현재 프로젝트만 다시 열 수 있습니다!";
 
 file.project = "프로젝트";
 // Save current project (or overwrite if the project has already been saved once)
@@ -521,6 +518,8 @@ file.project.saveAs.confirm = "$0 항목을 덮어쓰시겠습니까?";
 file.project.open = "열기";
 // E.g: Open "my_project"?
 file.project.open.confirm = "$0 항목을 여시겠습니까?";
+// E.g: Clone "my_project"?
+file.project.clone.confirm = "$0을 복제하시겠습니까?";
 // Load another project and add/append all its data to the current scene
 file.project.add = "씬에 추가";
 // E;g: Add "my_other_project" to the scene?
@@ -1151,10 +1150,23 @@ material.translucency.help = "반투명도 효과를 보려면 그림자를 드�
 material.opacity = "불투명도";
 // Fully opaque material
 material.type.opaque = "불투명";
+material.type.opaque.help = "이것은 기본 재질 유형입니다.
+
+페인팅된 정점 알파, 불투명 텍스처 또는 색상 채널의 알파 채널은 디더링을 통해 여전히 고려됩니다.
+
+오직 메인 불투명도 슬라이더만 무시됩니다.";
+// Fully opaque material
+material.type.shadowCatcher = "그림자 포착기";
+material.type.shadowCatcher.help = "객체를 완전히 투명하게 만들어 빛에 의해 발생하는 그림자만 남깁니다.
+
+이 모드는 일반적으로 평면 기하학에서 사용됩니다.";
+material.type.shadowCatcher.warning = "장면에 그림자가 있는 조명이 없습니다. 그림자 캐스터는 비활성화됩니다.
+
+그렇지 않으면 그림자 캐처가 완전히 금속성일 경우, SSR (반사) 포스트 프로세스가 활성화되면 그림자 캐처가 장면을 반사할 수 있습니다.";
 // See glossary
 material.type.subsurface = "서브서피스";
 material.type.subsurface.help = "최상의 결과를 얻으려면 PBR 셰이딩 모드로 전환하고, 가급적 어두운 환경에서 최소한 하나 이상의 지향성 광원을 사용하십시오.";
-// Transparency mode, alpha blending
+// Transparency mode, alpha blendingd
 material.type.blending = "혼합";
 material.type.blending.help = "불투명도 값을 조정하여 오브젝트를 반투명하게 만듭니다.
 
@@ -1319,6 +1331,10 @@ input.hexcolor = "새로운 색상 (16진수 형식)";
 
 // Post process effect
 postprocess = "포스트 프로세싱";
+// Denoise
+postprocess.denoise = "";
+postprocess.denoise.help = "";
+postprocess.denoise.warning = "";
 // Quality vs performance
 postprocess.quality = "품질";
 postprocess.quality.help = "이 옵션은 렌더링 품질을 향상시키지만, 성능 저하가 발생할 수 있습니다.";
@@ -1460,8 +1476,6 @@ primitive.lathe = "선반";
 primitive.tube = "튜브";
 primitive.plane = "평면";
 primitive.triplanar = "트라이플레이너";
-primitive.faceXYZ = "면 XYZ";
-primitive.faceXYZ.help = "https://texturing.xyz/ 에서 제공하는 UV-언랩 기본 메시";
 primitive.needValidate = "프리미티브를 전에 유효성 검사를 해야 합니다!";
 
 // If enabled, we can edit primitive inside the viewport
@@ -1771,8 +1785,8 @@ shading.object.help = "각 오브젝트에 무작위로 색상이 할당된 조�
 shading.instance = "인스턴스 ID";
 shading.instance.help = "Object ID와 동일하지만 인스턴스는 동일한 색상을 가집니다.";
 // Helper rendering mode that display solid colors
-shading.material = "";
-shading.material.help = "";
+shading.material = "머티리얼 ID";
+shading.material.help = "각 머티리얼 인스턴스에 대해 단색을 표시합니다.";
 // Randomize colors
 shading.id.randomize = "무작위 ID";
 shading.textures = "텍스처 사용";
@@ -2301,24 +2315,19 @@ tool.matrix.target.group.help = "노드를 움직이며, 대칭과 마스크는 
 계층의 나머지 부분도 동일하게 변형됩니다.";
 // Operation on the mesh
 tool.matrix.action = "작동";
-tool.matrix.action.help = "• 원점 이동
-메시를 세계 원점으로 이동합니다.
+tool.matrix.action.origin = "원점 이동";
+tool.matrix.action.origin.help = "메시를 세계 원점으로 이동합니다.";
+tool.matrix.action.bake = "베이크";
+tool.matrix.action.bake.help = "매트릭스를 버텍스에 적용하고 매트릭스를 초기화합니다. 시각적으로 아무것도 변하지 않아야 합니다.";
+tool.matrix.action.reset = "초기화";
+tool.matrix.action.reset.help = "메시 변환을 초기 상태로 재설정합니다.";
 
-• 초기화
-메시 변환을 초기 상태로 재설정합니다.
-
-• 베이크
-매트릭스를 버텍스에 적용하고 매트릭스를 초기화합니다. 시각적으로 아무것도 변하지 않아야 합니다.";
+// Synonym: shear, https://en.wikipedia.org/wiki/Shear_matrix or https://en.wikipedia.org/wiki/Shear_mapping
+tool.matrix.skew = "기울임";
 tool.matrix.translation = "이동";
 tool.matrix.rotation = "회전";
 tool.matrix.scale = "비율";
-// Synonym: shear, https://en.wikipedia.org/wiki/Shear_matrix or https://en.wikipedia.org/wiki/Shear_mapping
-tool.matrix.skew = "기울임";
 tool.matrix.uniformScale = "균등 스케일";
-tool.matrix.moveToOrigin = "원점 이동";
-tool.matrix.resetTransform = "초기화";
-// Synonym: Apply (transform)
-tool.matrix.bakeTransform = "베이크";
 
 tool.transform.tip = "모드를 전환하려면 두 번째 손가락으로 한 번 탭하십시오";
 
@@ -2712,14 +2721,12 @@ version.buyQR.promo = "
 
 version.trialHistory = "평가판: 4번의 실행 취소/다시 실행 가능";
 version.trialLayer = "평가판: 메시 당 1개의 레이어";
-version.trialOneProject = "퍙기판: 1개의 프로젝트만 활성화 가능";
 version.trialNoImport = "평가판: 임포트 기능을 사용할 수 없음";
 version.trialNoExport = "평가판: 익스포트 기능을 사용할 수 없음";
 
 version.fullFeatures = "• 일회성 구매
 • 무제한 실행 취소/다시 실행
 • 무제한 레이어
-• 저장 및 불러오기
 • 익스포트 및 임포트";
 
 version.demo.purpose = "이 버전은 특별히 데모 목적으로 생성되었습니다.";

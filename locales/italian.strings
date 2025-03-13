@@ -26,6 +26,7 @@ TB = "TB";
 
 // Noun
 instance = "Crea istanza";
+object = "Oggetto";
 
 // Same value (usually for axis, e.g: x == y == z)
 uniform = "Uniforme";
@@ -503,10 +504,6 @@ file.project.unsaved = "Vi sono modifiche non salvate!";
 file.project.loseUnsaved = "Perderai le modifiche non salvate!";
 // Indicates to the user that the project thumbnail corresponds to the last manual save
 file.project.lastManualSave = "Anteprima dell'ultimo salvataggio manuale";
-// The user is starting a new project but he won't be able to open the current project (because of trial version)
-file.project.trialNoOpen = "Versione di prova: non potrai riaprire il progetto corrente!";
-// The user is trying to load a project but he can only reload the current opened project (because of trial version)
-file.project.trialOnlyOpen = "Versione di prova: puoi solo riaprire il tuo progetto attuale!";
 
 file.project = "Progetto";
 // Save current project (or overwrite if the project has already been saved once)
@@ -521,6 +518,8 @@ file.project.saveAs.confirm = "Sovrascrivere $0?";
 file.project.open = "Apri";
 // E.g: Open "my_project"?
 file.project.open.confirm = "Aprire $0?";
+// E.g: Clone "my_project"?
+file.project.clone.confirm = "Clonare $0?";
 // Load another project and add/append all its data to the current scene
 file.project.add = "Aggiungi alla scena";
 // E;g: Add "my_other_project" to the scene?
@@ -1153,10 +1152,23 @@ material.translucency.help = "Occorre avere una luce che proietti ombre per vede
 material.opacity = "Opacità";
 // Fully opaque material
 material.type.opaque = "Opaco";
+material.type.opaque.help = "Questo è il tipo di materiale predefinito.
+
+L'alpha dipinta sul vertice, la texture di opacità o il canale alfa del canale colore saranno comunque presi in considerazione tramite dithering.
+
+Solo il cursore principale dell'opacità sarà ignorato.";
+// Fully opaque material
+material.type.shadowCatcher = "Raccoglitore di ombre";
+material.type.shadowCatcher.help = "Rendi l'oggetto completamente trasparente, eccetto per le ombre proiettate dalle luci.
+
+Questa modalità è generalmente usata sulla geometria del piano.";
+material.type.shadowCatcher.warning = "Non ci sono luci con ombre nella tua scena, il Proiettore d'Ombre sarà inattivo.
+
+Altrimenti, se il catturatore di ombre è completamente metallico, il Catturatore d'Ombre può riflettere la scena se il Post Process SSR (Riflesso) è abilitato.";
 // See glossary
 material.type.subsurface = "Subsurface";
 material.type.subsurface.help = "Per ottenere il miglior risultato, puoi passare alla modalità di shading PBR e utilizzare almeno una luce direzionale, idealmente in un ambiente poco luminoso.";
-// Transparency mode, alpha blending
+// Transparency mode, alpha blendingd
 material.type.blending = "Fusione";
 material.type.blending.help = "Può rendere l'oggetto semitrasparente modificando il valore di opacità.
 
@@ -1321,6 +1333,10 @@ input.hexcolor = "Nuovo colore (formato hex)";
 
 // Post process effect
 postprocess = "Post processing";
+// Denoise
+postprocess.denoise = "";
+postprocess.denoise.help = "";
+postprocess.denoise.warning = "";
 // Quality vs performance
 postprocess.quality = "Qualità";
 postprocess.quality.help = "Attivare queste opzioni per migliorare la qualità a scapito delle prestazioni.";
@@ -1462,8 +1478,6 @@ primitive.lathe = "Lathe";
 primitive.tube = "Tubo";
 primitive.plane = "Piano";
 primitive.triplanar = "Triplanare";
-primitive.faceXYZ = "Lato XYZ";
-primitive.faceXYZ.help = "Mesh di base con mappa UV srotolata fornita da https://texturing.xyz/";
 primitive.needValidate = "Le primitive devono essere convalidate!";
 
 // If enabled, we can edit primitive inside the viewport
@@ -1775,8 +1789,8 @@ Questa modalità è utile soprattutto quando si hanno molti oggetti nella scena.
 shading.instance = "Crea istanza ID";
 shading.instance.help = "Uguale all'ID Oggetto, ma le istanze avranno lo stesso colore.";
 // Helper rendering mode that display solid colors
-shading.material = "";
-shading.material.help = "";
+shading.material = "ID Materiale";
+shading.material.help = "Mostra un colore solido per ogni istanza di materiale.";
 // Randomize colors
 shading.id.randomize = "Randomizza ID";
 shading.textures = "Usa texture";
@@ -2305,24 +2319,19 @@ tool.matrix.target.group.help = "Sposta il nodo, ignorando simmetria e mascheram
 Anche il resto della gerarchia verrà trasformato.";
 // Operation on the mesh
 tool.matrix.action = "Azione";
-tool.matrix.action.help = "• Sposta origine
-Sposta la mesh all'origine del mondo.
+tool.matrix.action.origin = "Sposta origine";
+tool.matrix.action.origin.help = "Sposta la mesh all'origine del mondo.";
+tool.matrix.action.bake = "Trasferisci";
+tool.matrix.action.bake.help = "Applica la matrice al vertice e ripristina la matrice. Visivamente, nulla dovrebbe cambiare.";
+tool.matrix.action.reset = "Ripristina";
+tool.matrix.action.reset.help = "Reimposta la trasformazione della mesh su identità.";
 
-• Ripristina
-Reimposta la trasformazione della mesh su identità.
-
-• Trasferisci
-Applica la matrice al vertice e ripristina la matrice. Visivamente, nulla dovrebbe cambiare.";
+// Synonym: shear, https://en.wikipedia.org/wiki/Shear_matrix or https://en.wikipedia.org/wiki/Shear_mapping
+tool.matrix.skew = "Inclina";
 tool.matrix.translation = "Traslazione";
 tool.matrix.rotation = "Rotazione";
 tool.matrix.scale = "Dimensione";
-// Synonym: shear, https://en.wikipedia.org/wiki/Shear_matrix or https://en.wikipedia.org/wiki/Shear_mapping
-tool.matrix.skew = "Inclina";
 tool.matrix.uniformScale = "Scala uniforme";
-tool.matrix.moveToOrigin = "Sposta origine";
-tool.matrix.resetTransform = "Ripristina";
-// Synonym: Apply (transform)
-tool.matrix.bakeTransform = "Trasferisci";
 
 tool.transform.tip = "Tocco singolo con secondo dito per cambiare modalità";
 
@@ -2716,14 +2725,12 @@ Il Quad Remesher è sviluppato da https://exoside.com/.";
 
 version.trialHistory = "Versione di prova: 4 annulla/ripeti possibili";
 version.trialLayer = "Versione di prova: 1 livello per mesh";
-version.trialOneProject = "Versione di prova: 1 solo progetto attivo";
 version.trialNoImport = "Versione di prova: Nessuna importazione";
 version.trialNoExport = "Versione di prova: Nessuna esportazione";
 
 version.fullFeatures = "• Acquisto una tantum
 • Annulla/ripeti illimitati
 • Livelli illimitati
-• Salvataggio e caricamento
 • Esportazione e importazione";
 
 version.demo.purpose = "Questa versione è stata appositamente creata per scopi dimostrativi.";
