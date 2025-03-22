@@ -13,6 +13,8 @@ experimental = "Experimental!";
 // On single tap (should be short)
 ontap = "On tap";
 
+error = "Error";
+
 clipboard = "Clipboard";
 clipboard.copy = "Copy";
 clipboard.paste = "Paste";
@@ -279,7 +281,7 @@ alert.booleanIgnored = "Boolean will ignore masked or hidden area!";
 // The user is starting an operation that can lead to a crash
 alert.range.warning = "The detail value is high and might require lot of memory!";
 // Autosave popup
-alert.autoSave.auto = "Autosave in... $0s";
+alert.autoSave.auto = "Auto Save in... $0s";
 // The selected object doesn't have any layers
 alert.needLayer = "The current tool requires an active layer.";
 // The user decided to hide the painting on the objects
@@ -548,6 +550,8 @@ file.project.autoSave.popup = "Popup timeout";
 file.project.autoSave.minutes = "Timer popup";
 // Delete the current autoSave data
 file.project.autoSave.delete = "Discard Auto Save";
+// Open the last auto save?
+file.project.autoSave.open.warning = "Open the last Auto Save?";
 
 // color space (linear or srgb), do not translate linear/srgb if there is a doubt
 file.colorSpace = "Color Space";
@@ -585,7 +589,7 @@ file.import.add = "Add to scene";
 file.import.add.confirm = "Import new file?";
 
 // Export scene file
-file.export.title = "Export";
+file.export = "Export";
 
 file.select.include = "Include";
 file.select.all = "All";
@@ -624,12 +628,10 @@ Tangents are only used if the model has a normal map.
 
 Nomad always ignore the tangents as it will recompute them.";
 // ----------------------------------------------
-file.export.nomad = "Export Nomad";
 file.export.nomad.help = "Nomad Sculpt internal file format.
 
 This format won't load on other softwares, this is mostly for re-import purposes.";
 // ----------------------------------------------
-file.export.gltf = "Export glTF 2.0";
 // Whether we include layers in the exported file (see glossary for layer)
 file.export.gltf.layer = "Layers";
 file.export.gltf.layer.help = "Export layers as morphs. Officially supported by glTF so it should work on other softwares as well.";
@@ -637,7 +639,6 @@ file.export.gltf.layer.help = "Export layers as morphs. Officially supported by 
 file.export.gltf.layerPaint = "Layer painting";
 file.export.gltf.layerPaint.help = "Export layer painting. It is usually ignored by other softwares.";
 // ----------------------------------------------
-file.export.obj = "Export OBJ";
 file.export.obj.warning = "Layers and extra painting (roughness metalness and mask) will be lost.";
 // Whether we include the vertex color in the exported file
 file.export.obj.color = "Vertex colors";
@@ -655,16 +656,12 @@ file.export.obj.archive.folder = "Folder";
 file.export.obj.archive.zip = "Zip";
 file.export.obj.archive.help = "Some apps (Google Drive, One Drive, etc) don't support folder import, so you can use Zip instead.";
 // ----------------------------------------------
-file.export.stl = "Export STL";
 file.export.stl.warning = "Layers and extra painting (roughness, metalness, etc) will be lost.";
 // Whether we include the vertex color in the exported file
 file.export.stl.color = "Vertex colors";
 file.export.stl.color.help = "Some 3d softwares will be able to read it but not all of them.";
 // ----------------------------------------------
-file.export.ply = "Export PLY";
 file.export.ply.warning = "Layers and extra painting (roughness, metalness, etc) will be lost.";
-// ----------------------------------------------
-file.export.fbx = "Export FBX";
 // ----------------------------------------------
 // Advanced settings
 settings.advanced = "Advanced";
@@ -709,7 +706,6 @@ file.render.width = "Width";
 // height of exported screenshot
 file.render.height = "Height";
 // export screenshot of the scene
-file.render.export = "Export png";
 file.render.warn = "The export resolution is high ($0x$1)!
 
 Make sure to save your project in case your device runs out of VRAM and crashes.";
@@ -2586,13 +2582,14 @@ Here is the typical workflow for baking:
 • UV unwrap it
 • Bake it!
 
-Nomad will take every visible mesh in the scene into account.
-You can also use the Solo mode to quickly hide most of the other meshes.
-If there is no other visible objects, then it will take the entire scene into account.
-
 You should now have a low-resolution mesh that retains most of the paint and details of your previous object.
 
-After the operation, vertex colors will be moved in a new disabled layer, so that it gets ignored instead of being multiplied against the colored texture.";
+After the operation, vertex colors will be moved in a new disabled layer, so that it gets ignored instead of being multiplied against the colored texture.
+
+In order to choose which objects are used for baking, the following logic will apply:
+- all the selected objects used and the main selected object will be baked (strongest highlight in the scene menu)
+- if there is only one selected object, then Nomad will consider all visible objects instead
+- otherwise if every objects are hidden (for example by using Solo), then the entire scene will be taken into account";
 // Bake here means "create texture (from mesh data)"
 topology.bake.self = "From itself";
 // Bake here means "create texture (from another mesh data)"
