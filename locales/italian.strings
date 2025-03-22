@@ -13,6 +13,12 @@ experimental = "Sperimentale!";
 // On single tap (should be short)
 ontap = "Tocco";
 
+all = "Tutti";
+error = "Errore";
+
+reset = "Ripristina";
+resetOrder = "Ripristina ordine";
+
 clipboard = "Appunti";
 clipboard.copy = "Copia";
 clipboard.paste = "Incolla";
@@ -473,19 +479,14 @@ curve.pivot.self = "Curva";
 curve.pivot.children = "Figli";
 
 // Set the desired FPS (frame per second, refresh rate)
-debug.targetFPS = "FPS Obiettivo";
-debug.targetFPS.help = "Quando disabilitato, il valore predefinito significa che si sincronizzerà con il tasso di aggiornamento del display.";
+debug.limitFps = "FPS Obiettivo";
+debug.limitFps.help = "Quando disabilitato, il valore predefinito significa che si sincronizzerà con il tasso di aggiornamento del display.";
 
 // Warning about UVs (using extra memory)
 debug.uvPrimitive.warning = "Disabilita questa opzione se non hai bisogno di UV (memoria extra).";
 // Debug option, Normalize means transforming the data so that it fits in [0-1] the range
 debug.uvNormalize = "Normalizza UV";
 debug.uvNormalize.help = "Nomad normalizzerà le UV all'interno del riquadro [0-1].";
-// Debug option, BFF stands for Boundary First Flattening (no need to translate)
-debug.uvBFF = "Aggiungi UV BFF";
-debug.uvBFF.help = "Si aggiunge un metodo di unwrapping alternativo (Boundary First Flattening).
-
-Si noti che BFF produrrà sovrapposizioni se la topologia della mesh è diversa da un disco o da una sfera.";
 
 // Debug option, display an window with some debugging logs
 debug.logs = "Log";
@@ -510,10 +511,12 @@ file.project = "Progetto";
 file.project.save = "Salva";
 // E.g: Save "my_project"?
 file.project.save.confirm = "Salvare $0?";
-// Overwrite another project
+// Make a copy
 file.project.saveAs = "Salva come";
+// Overwrite another project
+file.project.overwrite = "Sovrascrivere";
 // E.g: Overwrite "my_other_project"?
-file.project.saveAs.confirm = "Sovrascrivere $0?";
+file.project.overwrite.confirm = "Sovrascrivere $0?";
 // Open a project
 file.project.open = "Apri";
 // E.g: Open "my_project"?
@@ -546,6 +549,8 @@ file.project.autoSave.popup = "Intervallo popup";
 file.project.autoSave.minutes = "Timer popup";
 // Delete the current autoSave data
 file.project.autoSave.delete = "Elimina dati salvataggio automatico";
+// Open the last auto save?
+file.project.autoSave.open.warning = "Aprire l'ultimo Auto Salvataggio?";
 
 // color space (linear or srgb), do not translate linear/srgb if there is a doubt
 file.colorSpace = "Spazio Colore";
@@ -583,7 +588,7 @@ file.import.add = "Aggiungi alla scena";
 file.import.add.confirm = "Importare nuovo file?";
 
 // Export scene file
-file.export.title = "Esporta";
+file.export = "Esporta";
 
 file.select.include = "Includi";
 file.select.all = "Tutti";
@@ -620,12 +625,10 @@ Le tangenti sono utilizzate solo se il modello ha una mappa normale.
 
 Nomad ignora sempre le tangenti poiché verranno ricomputate.";
 // ----------------------------------------------
-file.export.nomad = "Esporta Nomad";
 file.export.nomad.help = "Formato file interno di Nomad Sculpt.
 
 Questo formato non si aprirà su altri software, è principalmente per scopi di re-importazione.";
 // ----------------------------------------------
-file.export.gltf = "Esporta glTF 2.0";
 // Whether we include layers in the exported file (see glossary for layer)
 file.export.gltf.layer = "Livelli";
 file.export.gltf.layer.help = "Esporta livelli come morph. Ufficialmente supportato da glTF, quindi dovrebbe funzionare anche su altri software.";
@@ -633,7 +636,6 @@ file.export.gltf.layer.help = "Esporta livelli come morph. Ufficialmente support
 file.export.gltf.layerPaint = "Livelli dipinti";
 file.export.gltf.layerPaint.help = "Esporta livelli di dipinti. Solitamente viene ignorato da altri software.";
 // ----------------------------------------------
-file.export.obj = "Esporta OBJ";
 file.export.obj.warning = "I livelli e la dipinti extra (rugosità, metallicità e maschera) andranno persi.";
 // Whether we include the vertex color in the exported file
 file.export.obj.color = "Colori dei vertici";
@@ -651,16 +653,17 @@ file.export.obj.archive.folder = "Cartella";
 file.export.obj.archive.zip = "Zip";
 file.export.obj.archive.help = "Alcune app (Google Drive, One Drive, ecc.) non supportano l'importazione di cartelle, quindi puoi usare Zip al loro posto.";
 // ----------------------------------------------
-file.export.stl = "Esporta STL";
+file.export.ply.warning = "I livelli e la dipinti extra (rugosità, metallicità e maschera) andranno persi.";
+// ----------------------------------------------
 file.export.stl.warning = "I livelli e la dipinti extra (rugosità, metallicità e maschera) andranno persi.";
 // Whether we include the vertex color in the exported file
 file.export.stl.color = "Colori dei vertici";
 file.export.stl.color.help = "Alcuni software 3D potranno leggerli, ma non tutti.";
 // ----------------------------------------------
-file.export.ply = "Esporta STL";
-file.export.ply.warning = "I livelli e la dipinti extra (rugosità, metallicità e maschera) andranno persi.";
-// ----------------------------------------------
-file.export.fbx = "Esporta FBX";
+file.export.usd.skew = "Permetti distorsione";
+file.export.usd.skew.help = "Permetti distorsione nelle trasformazioni matriciali.
+
+Quando disabilitato, Nomad dividerà le matrici di distorsione in due trasformazioni separate di scalatura e rotazione.";
 // ----------------------------------------------
 // Advanced settings
 settings.advanced = "Avanzato";
@@ -705,7 +708,6 @@ file.render.width = "Larghezza";
 // height of exported screenshot
 file.render.height = "Altezza";
 // export screenshot of the scene
-file.render.export = "Esporta png";
 file.render.warn = "La risoluzione di esportazione è alta ($0x$1)!
 
 Assicurati di salvare il progetto per evitare che il tuo dispositivo esaurisca la VRAM e vada in crash.";
@@ -1027,6 +1029,7 @@ layer.base.nothing = "Niente da estrarre!";
 layer.base.background = "Materiale di sfondo";
 layer.base.background.help = "Se attivo, verranno estratti solo i valori del materiale che differiscono dal materiale di sfondo.";
 // (see Glossary for Layer)
+layers = "Livelli";
 layers.title = "Livelli";
 // (see Glossary for Layer)
 layers.title.help = "I livelli possono registrare dipinti e spostamenti di posizione; può essere utile per un flusso di lavoro non lineare.
@@ -1334,9 +1337,9 @@ input.hexcolor = "Nuovo colore (formato hex)";
 // Post process effect
 postprocess = "Post processing";
 // Denoise
-postprocess.denoise = "";
-postprocess.denoise.help = "";
-postprocess.denoise.warning = "";
+postprocess.denoise = "Denoiser";
+postprocess.denoise.help = "Applica un passaggio di riduzione del rumore dopo che tutti i fotogrammi sono stati accumulati.";
+postprocess.denoise.warning = "Questa è un'operazione costosa, abilita questo effetto solo se l'immagine è rumorosa.";
 // Quality vs performance
 postprocess.quality = "Qualità";
 postprocess.quality.help = "Attivare queste opzioni per migliorare la qualità a scapito delle prestazioni.";
@@ -1836,7 +1839,6 @@ shortcut.cameraReset = "Ripristina";
 shortcut.cameraSnap = "Aggancio";
 shortcut.lockSelection = "Blocca";
 shortcut.lockSelection.help = "Quando è abilitato, non è possibile modificare la selezione toccando una mesh.";
-shortcut.perspective = "Persp";
 shortcut.grid = "Griglia";
 
 // Memory taken by the scene
@@ -2486,6 +2488,7 @@ topology.surface.useMasking.help = "Le aree mascherate proteggono la topologia d
 topology.surface.extrapolate = "Estrapolazione dei vertici";
 // DynTopo
 topology.dynamic = "Topologia dinamica";
+topology.dynamic.global = "Globale acceso/spento";
 topology.dynamic.activate = "Abilitata";
 topology.dynamic.activate.help = "Con la topologia dinamica, gli strumenti di scultura possono suddividere o semplificare localmente la mesh in tempo reale.
 
@@ -2578,13 +2581,14 @@ Ecco il flusso di lavoro tipico per la cottura:
 • Effettua l'unwrap UV
 • Cuocila!
 
-Nomad prenderà in considerazione ogni mesh visibile nella scena.
-Puoi anche usare la modalità Solo per nascondere rapidamente la maggior parte delle altre mesh.
-Se non ci sono altri oggetti visibili, prenderà in considerazione l'intera scena.
-
 Dovresti ora avere una mesh a bassa risoluzione che conserva la maggior parte della dipinti e dei dettagli del tuo oggetto precedente.
 
-Dopo l'operazione, i colori dei vertici verranno spostati in un nuovo livello disabilitato, in modo che vengano ignorati invece di essere moltiplicati contro la texture colorata.";
+Dopo l'operazione, i colori dei vertici verranno spostati in un nuovo livello disabilitato, in modo che vengano ignorati invece di essere moltiplicati contro la texture colorata.
+
+Per scegliere quali oggetti saranno utilizzati per il baking, verrà applicata la seguente logica:
+- tutti gli oggetti selezionati e l'oggetto principale selezionato saranno sottoposti a baking (il più evidenziato nel menu della scena)
+- se viene selezionato un solo oggetto, allora Nomad considererà tutti gli oggetti visibili al suo posto
+- altrimenti, se tutti gli oggetti sono nascosti (ad esempio usando Solo), verrà presa in considerazione l'intera scena";
 // Bake here means "create texture (from mesh data)"
 topology.bake.self = "Da sé stesso";
 // Bake here means "create texture (from another mesh data)"
