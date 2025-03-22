@@ -546,6 +546,8 @@ file.project.autoSave.popup = "Délai d'affichage de la fenêtre contextuelle";
 file.project.autoSave.minutes = "Fenêtre contextuelle du minuteur";
 // Delete the current autoSave data
 file.project.autoSave.delete = "Supprimer l'enregistrement automatique";
+// Open the last auto save?
+file.project.autoSave.open.warning = "Ouvrir la dernière sauvegarde automatique?";
 
 // color space (linear or srgb), do not translate linear/srgb if there is a doubt
 file.colorSpace = "Espace de couleur";
@@ -583,7 +585,7 @@ file.import.add = "Ajouter à la scène";
 file.import.add.confirm = "Importer un nouveau fichier ?";
 
 // Export scene file
-file.export.title = "Exporter";
+file.export = "Exporter";
 
 file.select.include = "Inclure";
 file.select.all = "Tout";
@@ -620,12 +622,10 @@ Les tangentes sont uniquement utilisées si le modèle possède une carte normal
 
 Nomad ignore toujours les tangentes car il les recalcule.";
 // ----------------------------------------------
-file.export.nomad = "Export Nomad";
 file.export.nomad.help = "Format de fichier interne Nomad Sculpt.
 
 Ce format ne se chargera pas sur d'autres logiciels, il est surtout destiné à la réimportation.";
 // ----------------------------------------------
-file.export.gltf = "Exporter en glTF 2.0";
 // Whether we include layers in the exported file (see glossary for layer)
 file.export.gltf.layer = "Calques";
 file.export.gltf.layer.help = "Exportez les calques sous forme de morphes. Cette fonctionnalité est officiellement gérée par le format glTF et devrait donc fonctionner aussi avec d'autres logiciels.";
@@ -633,7 +633,6 @@ file.export.gltf.layer.help = "Exportez les calques sous forme de morphes. Cette
 file.export.gltf.layerPaint = "Peinture (calque)";
 file.export.gltf.layerPaint.help = "Exportez la peinture du calque. Elle est généralement ignorée par les autres logiciels.";
 // ----------------------------------------------
-file.export.obj = "Exporter en OBJ";
 file.export.obj.warning = "Les calques et la peinture supplémentaire (rugosité, métallité et masque) seront perdus.";
 // Whether we include the vertex color in the exported file
 file.export.obj.color = "Couleurs des sommets";
@@ -651,16 +650,12 @@ file.export.obj.archive.folder = "Dossier";
 file.export.obj.archive.zip = "Zip";
 file.export.obj.archive.help = "Certaines applications (Google Drive, One Drive, etc.) ne prennent pas en charge l'importation de dossiers, vous pouvez donc utiliser Zip à la place.";
 // ----------------------------------------------
-file.export.stl = "Exporter en STL";
 file.export.stl.warning = "Les calques et la peinture supplémentaire (rugosité, métallité et masque) seront perdus.";
 // Whether we include the vertex color in the exported file
 file.export.stl.color = "Couleurs des sommets";
 file.export.stl.color.help = "Certains logiciels 3D pourront lire ces informations, mais pas tous.";
 // ----------------------------------------------
-file.export.ply = "Exporter en STL";
 file.export.ply.warning = "Les calques et la peinture supplémentaire (rugosité, métallité et masque) seront perdus.";
-// ----------------------------------------------
-file.export.fbx = "Exporter en FBX";
 // ----------------------------------------------
 // Advanced settings
 settings.advanced = "Avancé";
@@ -705,7 +700,6 @@ file.render.width = "Largeur";
 // height of exported screenshot
 file.render.height = "Hauteur";
 // export screenshot of the scene
-file.render.export = "Exporter en PNG";
 file.render.warn = "La résolution d'exportation est élevée ($0x$1) !
 
 Pensez à enregistrer votre projet, au cas où votre appareil se trouverait à court de VRAM et planterait.";
@@ -1334,9 +1328,9 @@ input.hexcolor = "Nouvelle couleur (format hexadécimal)";
 // Post process effect
 postprocess = "Post-traitement";
 // Denoise
-postprocess.denoise = "";
-postprocess.denoise.help = "";
-postprocess.denoise.warning = "";
+postprocess.denoise = "Filtre anti-bruit";
+postprocess.denoise.help = "Appliquez un passage de débruitage après que tous les cadres sont accumulés.";
+postprocess.denoise.warning = "C'est une opération coûteuse, n'activez cet effet que si l'image est bruitée.";
 // Quality vs performance
 postprocess.quality = "Qualité";
 postprocess.quality.help = "Activez ces options pour améliorer la qualité, au détriment des performances.";
@@ -2578,13 +2572,14 @@ Voici le flux de travail typique pour la cuisson :
 • Dépliez-le UV
 • Cuisson !
 
-Nomad prendra en compte chaque maillage visible dans la scène.
-Vous pouvez également utiliser le mode Solo pour cacher rapidement la plupart des autres maillages.
-S'il n'y a pas d'autres objets visibles, alors il prendra en compte toute la scène.
-
 Vous devriez maintenant avoir un maillage basse résolution qui conserve la plupart de la peinture et des détails de votre objet précédent.
 
-Après l'opération, les couleurs des sommets seront déplacées dans une nouvelle couche désactivée, afin qu'elles soient ignorées au lieu d'être multipliées contre la texture colorée.";
+Après l'opération, les couleurs des sommets seront déplacées dans une nouvelle couche désactivée, afin qu'elles soient ignorées au lieu d'être multipliées contre la texture colorée.
+
+Afin de choisir quels objets sont utilisés pour le baking, la logique suivante s'appliquera :
+- tous les objets sélectionnés et l'objet principal sélectionné seront cuits (la surbrillance la plus forte dans le menu de scène)
+- s'il n'y a qu'un seul objet sélectionné, alors Nomad considérera tous les objets visibles à la place
+- sinon, si tous les objets sont cachés (par exemple en utilisant Solo), alors l'ensemble de la scène sera pris en compte";
 // Bake here means "create texture (from mesh data)"
 topology.bake.self = "D'elle-même";
 // Bake here means "create texture (from another mesh data)"

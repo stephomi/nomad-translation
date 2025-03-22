@@ -546,6 +546,8 @@ file.project.autoSave.popup = "Açılır pencere zaman aşımı";
 file.project.autoSave.minutes = "Zamanlayıcı açılır pencere";
 // Delete the current autoSave data
 file.project.autoSave.delete = "Otomatik kaydı sil";
+// Open the last auto save?
+file.project.autoSave.open.warning = "Son Otomatik Kaydı Aç?";
 
 // color space (linear or srgb), do not translate linear/srgb if there is a doubt
 file.colorSpace = "Renk Alanı";
@@ -583,7 +585,7 @@ file.import.add = "Görünüme ekle";
 file.import.add.confirm = "Yeni dosya içeri aktarılsın mı?";
 
 // Export scene file
-file.export.title = "Dışa Aktar";
+file.export = "Dışa Aktar";
 
 file.select.include = "Dâhil et";
 file.select.all = "Tümü";
@@ -620,12 +622,10 @@ Teğetler, yalnızca model normal haritaya sahipse kullanılır.
 
 Nomad, bunları tekrar hesaplayacağı için teğetleri daima görmezden gelir.";
 // ----------------------------------------------
-file.export.nomad = "Nomad Dışa Aktar";
 file.export.nomad.help = "Nomad Sculpt dahili dosya formatı.
 
 Bu format başka yazılımlarda yüklenmez, bu çoğunlukla yeniden içe aktarma amaçları içindir.";
 // ----------------------------------------------
-file.export.gltf = "glTF 2.0 dışa aktar";
 // Whether we include layers in the exported file (see glossary for layer)
 file.export.gltf.layer = "Katmanları";
 file.export.gltf.layer.help = "Katmanları biçimler olarak dışa aktarır. glTF tarafından resmi olarak desteklenir, dolayısıyla diğer yazılımlarda da çalışması gerekir.";
@@ -633,7 +633,6 @@ file.export.gltf.layer.help = "Katmanları biçimler olarak dışa aktarır. glT
 file.export.gltf.layerPaint = "Katman boyamasını";
 file.export.gltf.layerPaint.help = "Katman boyamayı dışa aktarır. Diğer yazılımlar tarafından genellikle göz ardı edilir.";
 // ----------------------------------------------
-file.export.obj = "OBJ dışa aktar";
 file.export.obj.warning = "Katmanlar ve ekstra boyama (pürüzlük ve metaliklik seviyesi ve maske) kaybolur.";
 // Whether we include the vertex color in the exported file
 file.export.obj.color = "Verteks renklerini";
@@ -651,16 +650,12 @@ file.export.obj.archive.folder = "Klasör";
 file.export.obj.archive.zip = "Zip";
 file.export.obj.archive.help = "Bazı uygulamalar (Google Drive, One Drive, vb.) klasör içe aktarmayı desteklemez, bu yüzden bunun yerine Zip kullanabilirsiniz.";
 // ----------------------------------------------
-file.export.stl = "STL dışa aktar";
 file.export.stl.warning = "Katmanlar ve ekstra boyama (pürüzlük ve metaliklik seviyesi ve maske) kaybolur.";
 // Whether we include the vertex color in the exported file
 file.export.stl.color = "Verteks renklerini";
 file.export.stl.color.help = "Bazı 3D yazılımları bunu okuyabilir, ama hepsi okuyamaz.";
 // ----------------------------------------------
-file.export.ply = "STL dışa aktar";
 file.export.ply.warning = "Katmanlar ve ekstra boyama (pürüzlük ve metaliklik seviyesi ve maske) kaybolur.";
-// ----------------------------------------------
-file.export.fbx = "FBX Dışa Aktar";
 // ----------------------------------------------
 // Advanced settings
 settings.advanced = "Gelişmiş";
@@ -704,7 +699,6 @@ file.render.width = "Genişlik";
 // height of exported screenshot
 file.render.height = "Yükseklik";
 // export screenshot of the scene
-file.render.export = "png dışa aktar";
 file.render.warn = "Dışa aktarma çözünürlüğü yüksek ($0x$1)!
 
 Cihazınızın VRAM'inin yetmemesi ve çökmesi durumuna karşı projenizi kaydettiğinizden emin olun.";
@@ -1333,9 +1327,9 @@ input.hexcolor = "Yeni renk (altıgen format)";
 // Post process effect
 postprocess = "Süreç sonrası işlemler";
 // Denoise
-postprocess.denoise = "";
-postprocess.denoise.help = "";
-postprocess.denoise.warning = "";
+postprocess.denoise = "Gürültü Giderici";
+postprocess.denoise.help = "Tüm kareler birleştikten sonra bir gürültü giderme geçişi uygula.";
+postprocess.denoise.warning = "Bu pahalı bir işlemdir, yalnızca görüntü gürültülü ise bu etkiyi etkinleştirin.";
 // Quality vs performance
 postprocess.quality = "Kalite";
 postprocess.quality.help = "Performansı düşürmeyi göze alarak kaliteyi artırmak için bu seçenekleri etkinleştirin.";
@@ -2577,13 +2571,14 @@ Pişirme için tipik iş akışı şöyledir:
 • UV açın
 • Pişirin!
 
-Nomad, sahnedeki her görünür örgüyü hesaba katacaktır.
-Ayrıca Solo modunu kullanarak diğer örgüleri hızlı bir şekilde gizleyebilirsiniz.
-Görünürde başka nesne yoksa, tüm sahneyi hesaba katacaktır.
-
 Şimdi, önceki nesnenizin çoğu boyayı ve ayrıntıyı koruyan düşük çözünürlüklü bir örgünüz olmalı.
 
-İşlem sonrasında, tepe renkleri yeni bir devre dışı katmana taşınacak, böylece renkli doku ile çarpılmak yerine göz ardı edilmek üzere.";
+İşlem sonrasında, tepe renkleri yeni bir devre dışı katmana taşınacak, böylece renkli doku ile çarpılmak yerine göz ardı edilmek üzere.
+
+Seçilen nesnelerin hangi nesnelerinin 'baking' için kullanılacağı belirlenecektir:
+- tüm seçili nesneler ve ana seçili nesne 'baked' olacak (sahne menüsünde güçlü vurgulama)
+- eğer sadece bir seçili nesne varsa, görünür tüm nesneler göz önünde bulundurulacaktır
+- aksi takdirde, eğer tüm nesneler gizlenmişse (örneğin Solo kullanılarak), tüm sahne dikkate alınacaktır";
 // Bake here means "create texture (from mesh data)"
 topology.bake.self = "Kendisinden";
 // Bake here means "create texture (from another mesh data)"

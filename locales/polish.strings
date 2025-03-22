@@ -546,6 +546,8 @@ file.project.autoSave.popup = "Przekroczenie limitu czasu okienka wyskakującego
 file.project.autoSave.minutes = "Okno wyskakujące czasomierza";
 // Delete the current autoSave data
 file.project.autoSave.delete = "Odrzuć automatyczny zapis";
+// Open the last auto save?
+file.project.autoSave.open.warning = "Otworzyć ostatnio automatycznie zapisany plik?";
 
 // color space (linear or srgb), do not translate linear/srgb if there is a doubt
 file.colorSpace = "Przestrzeń kolorów";
@@ -583,7 +585,7 @@ file.import.add = "Dodaj do sceny";
 file.import.add.confirm = "Zaimportować nowy plik?";
 
 // Export scene file
-file.export.title = "Eksportuj";
+file.export = "Eksportuj";
 
 file.select.include = "Dołącz";
 file.select.all = "Wszystkie";
@@ -620,12 +622,10 @@ Styczne są używane tylko jeśli model posiada mapę normalną.
 
 Nomad zawsze ignoruje styczne, ponieważ będzie je ponownie obliczać.";
 // ----------------------------------------------
-file.export.nomad = "Eksportuj Nomad";
 file.export.nomad.help = "Wewnętrzny format pliku Nomad Sculpt.
 
 Ten format nie będzie się ładował w innych oprogramowaniach, jest głównie do celów ponownego importu.";
 // ----------------------------------------------
-file.export.gltf = "Eksportuj glTF 2.0";
 // Whether we include layers in the exported file (see glossary for layer)
 file.export.gltf.layer = "Warstwy";
 file.export.gltf.layer.help = "Eksportuj warstwy jako morfy. Oficjalnie obsługiwane przez glTF więc powinno to działać również w innych programach.";
@@ -633,7 +633,6 @@ file.export.gltf.layer.help = "Eksportuj warstwy jako morfy. Oficjalnie obsługi
 file.export.gltf.layerPaint = "Malowanie warstwy";
 file.export.gltf.layerPaint.help = "Eksportuj malowanie warstwy. Zwykle jest to ignorowane przez inne programy.";
 // ----------------------------------------------
-file.export.obj = "Eksportuj OBJ";
 file.export.obj.warning = "Warstwy i dodatkowe malowanie (chropowatość, metaliczność i maski) zostaną utracone.";
 // Whether we include the vertex color in the exported file
 file.export.obj.color = "Kolory wierzchołków";
@@ -651,16 +650,12 @@ file.export.obj.archive.folder = "Folder";
 file.export.obj.archive.zip = "Zip";
 file.export.obj.archive.help = "Niektóre aplikacje (Google Drive, One Drive itp.) nie obsługują importu folderów, dlatego możesz użyć zamiast tego Zipa.";
 // ----------------------------------------------
-file.export.stl = "Eksportuj STL";
 file.export.stl.warning = "Warstwy i dodatkowe malowanie (chropowatość, metaliczność i maski) zostaną utracone.";
 // Whether we include the vertex color in the exported file
 file.export.stl.color = "Kolory wierzchołków";
 file.export.stl.color.help = "Niektóre programy 3D będą w stanie to odczytać, ale nie wszystkie.";
 // ----------------------------------------------
-file.export.ply = "Eksportuj STL";
 file.export.ply.warning = "Warstwy i dodatkowe malowanie (chropowatość, metaliczność i maski) zostaną utracone.";
-// ----------------------------------------------
-file.export.fbx = "Eksportuj FBX";
 // ----------------------------------------------
 // Advanced settings
 settings.advanced = "Zaawansowane";
@@ -705,7 +700,6 @@ file.render.width = "Szerokość";
 // height of exported screenshot
 file.render.height = "Wysokość";
 // export screenshot of the scene
-file.render.export = "Eksportuj PNG";
 file.render.warn = "Rozdzielczość eksportu jest wysoka ($0x$1)!
 
 Pamiętaj, aby zapisać projekt na wypadek, gdyby w urządzeniu zabrakło pamięci VRAM i nastąpiła awaria.";
@@ -1334,9 +1328,9 @@ input.hexcolor = "Nowy kolor (format szesnastkowy)";
 // Post process effect
 postprocess = "Postprocessing";
 // Denoise
-postprocess.denoise = "";
-postprocess.denoise.help = "";
-postprocess.denoise.warning = "";
+postprocess.denoise = "Denoiser";
+postprocess.denoise.help = "Zastosuj proces redukcji szumu po zsumowaniu wszystkich klatek.";
+postprocess.denoise.warning = "To operacja o wysokim koszcie obliczeniowym, włącz ten efekt tylko, jeśli obraz jest zaszumiony.";
 // Quality vs performance
 postprocess.quality = "Jakość";
 postprocess.quality.help = "Aktywuj te opcje, aby poprawić jakość kosztem wydajności.";
@@ -2578,13 +2572,14 @@ Oto typowy przepływ pracy dla mapowania:
 • Rozwiń mapę UV
 • Przeprowadź mapowanie!
 
-Nomad weźmie pod uwagę każdą widoczną siatkę w scenie.
-Możesz również użyć trybu Solo, aby szybko ukryć większość innych siatek.
-Jeśli nie ma innych widocznych obiektów, to weźmie pod uwagę całą scenę.
-
 Powinieneś teraz mieć siatkę o niskiej rozdzielczości, która zachowuje większość malowania i szczegółów poprzedniego obiektu.
 
-Po operacji, kolory wierzchołków zostaną przeniesione do nowej wyłączonej warstwy, tak aby były ignorowane zamiast być mnożone przez teksturę kolorów.";
+Po operacji, kolory wierzchołków zostaną przeniesione do nowej wyłączonej warstwy, tak aby były ignorowane zamiast być mnożone przez teksturę kolorów.
+
+Aby wybrać, które obiekty są używane do wypalania, będzie stosowana następująca logika: 
+- wszystkie wybrane obiekty używane oraz główny wybrany obiekt zostaną wypalone (najsilniejsze podświetlenie w menu sceny)
+- jeśli jest tylko jeden wybrany obiekt, Nomad uwzględni zamiast tego wszystkie widoczne obiekty
+- w przeciwnym razie, jeśli wszystkie obiekty są ukryte (na przykład poprzez użycie Solo), uwzględniana będzie cała scena";
 // Bake here means "create texture (from mesh data)"
 topology.bake.self = "Od samego siebie";
 // Bake here means "create texture (from another mesh data)"
