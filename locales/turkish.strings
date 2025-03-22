@@ -2,6 +2,8 @@
 confirm = "Onayla?";
 // Answer to a question (Are you sure you want to do that? [yes, cancel])
 confirm.yes = "Evet";
+// Answer to a question (Are you sure you want to do that? [yes, no, cancel])
+confirm.no = "Hayır";
 // The generic ok in a confirm box (The next operation is dangerous. [ok, cancel])
 confirm.ok = "Tamam";
 // Cancel something after being asked (Question? [answer, cancel])
@@ -10,8 +12,18 @@ confirm.cancel = "Vazgeç";
 // Experimental feature
 experimental = "Deneysel!";
 
+status.exit = "Kaydedilmemiş değişiklikler! Kapatmadan önce kaydetmek ister misiniz?";
+status.exit.yes = "Kaydet";
+status.exit.no = "Kaydetme";
+
 // On single tap (should be short)
 ontap = "Dokunuşta";
+
+all = "Tümü";
+error = "Hata";
+
+reset = "Sıfırla";
+resetOrder = "Sıralamasını sıfırla";
 
 clipboard = "Pano";
 clipboard.copy = "Kopyala";
@@ -168,6 +180,14 @@ material.texture.mipmap = "Mipmap";
 material.projection = "Projeksiyon";
 material.projection.triplanar = "Üç düzlemli";
 
+// Prefer low power
+about.lowPower = "Düşük güç tüketen GPU";
+about.lowPower.confirm = "Bu değeri değiştirdikten sonra, Nomad'ı yeniden başlatmanız gerekiyor.";
+// Wintab wacom API
+about.wintab = "WinTab'ı Kullanın";
+about.wintab.help = "WinTab etkinse, Wacom ayarlarında Windows Ink'i muhtemelen devre dışı bırakmalısınız.<br><br>Benzer şekilde, WinTab devre dışıysa, Windows Ink Wacom ayarlarında etkinleştirilmelidir.";
+// Prefer low power
+about.fullScreen = "Tam Ekran";
 // Minify
 about.minify = "Kullanıcı arayüzünü küçült";
 about.minify.help = "Cihazınız destekliyorsa, ekranınıza 4 parmağınızla da dokunabilirsiniz.";
@@ -473,22 +493,19 @@ curve.pivot.self = "Eğri";
 curve.pivot.children = "Alt öğeleri";
 
 // Set the desired FPS (frame per second, refresh rate)
-debug.targetFPS = "Hedef FPS";
-debug.targetFPS.help = "Devre dışı bırakıldığında, varsayılan değer ekranın yenileme hızıyla senkronize olacak demektir.";
+debug.limitFps = "Hedef FPS";
+debug.limitFps.help = "Devre dışı bırakıldığında, varsayılan değer ekranın yenileme hızıyla senkronize olacak demektir.";
 
 // Warning about UVs (using extra memory)
 debug.uvPrimitive.warning = "UV'ler gerekmiyorsa bu seçeneği devre dışı bırakın (fazladan bellek).";
 // Debug option, Normalize means transforming the data so that it fits in [0-1] the range
 debug.uvNormalize = "UV'leri normalleştir";
 debug.uvNormalize.help = "Nomad [0-1] deseninin içindeki UV'leri normalleştirecektir.";
-// Debug option, BFF stands for Boundary First Flattening (no need to translate)
-debug.uvBFF = "BFF UV'leri ekle";
-debug.uvBFF.help = "Alternatif hesaplama yöntemi ekler (boundary first flattening • BFF).
-
-Ağ örgüsü topolojiniz disk ya da küreden farklıysa, BFF'in çakışmalar oluşturacağı unutulmamalıdır.";
 
 // Debug option, display an window with some debugging logs
 debug.logs = "Kayıtları";
+// Model shortcut window
+debug.shortcut = "Kısayol penceresi";
 // Debug option, overrides the rendering to display the depth buffer
 debug.heightmap = "Yükseklik haritası";
 // Debug options, graphical stuffs
@@ -510,10 +527,12 @@ file.project = "Proje";
 file.project.save = "Kaydet";
 // E.g: Save "my_project"?
 file.project.save.confirm = "$0 kaydedilsin mi?";
-// Overwrite another project
+// Make a copy
 file.project.saveAs = "Farklı kaydet";
+// Overwrite another project
+file.project.overwrite = "$ üstüne yazılsın mı?";
 // E.g: Overwrite "my_other_project"?
-file.project.saveAs.confirm = "$0 üstüne yazılsın mı?";
+file.project.overwrite.confirm = "$0 üstüne yazılsın mı?";
 // Open a project
 file.project.open = "Aç";
 // E.g: Open "my_project"?
@@ -546,6 +565,8 @@ file.project.autoSave.popup = "Açılır pencere zaman aşımı";
 file.project.autoSave.minutes = "Zamanlayıcı açılır pencere";
 // Delete the current autoSave data
 file.project.autoSave.delete = "Otomatik kaydı sil";
+// Open the last auto save?
+file.project.autoSave.open.warning = "Son Otomatik Kaydı Aç?";
 
 // color space (linear or srgb), do not translate linear/srgb if there is a doubt
 file.colorSpace = "Renk Alanı";
@@ -583,7 +604,7 @@ file.import.add = "Görünüme ekle";
 file.import.add.confirm = "Yeni dosya içeri aktarılsın mı?";
 
 // Export scene file
-file.export.title = "Dışa Aktar";
+file.export = "Dışa Aktar";
 
 file.select.include = "Dâhil et";
 file.select.all = "Tümü";
@@ -620,12 +641,10 @@ Teğetler, yalnızca model normal haritaya sahipse kullanılır.
 
 Nomad, bunları tekrar hesaplayacağı için teğetleri daima görmezden gelir.";
 // ----------------------------------------------
-file.export.nomad = "Nomad Dışa Aktar";
 file.export.nomad.help = "Nomad Sculpt dahili dosya formatı.
 
 Bu format başka yazılımlarda yüklenmez, bu çoğunlukla yeniden içe aktarma amaçları içindir.";
 // ----------------------------------------------
-file.export.gltf = "glTF 2.0 dışa aktar";
 // Whether we include layers in the exported file (see glossary for layer)
 file.export.gltf.layer = "Katmanları";
 file.export.gltf.layer.help = "Katmanları biçimler olarak dışa aktarır. glTF tarafından resmi olarak desteklenir, dolayısıyla diğer yazılımlarda da çalışması gerekir.";
@@ -633,7 +652,6 @@ file.export.gltf.layer.help = "Katmanları biçimler olarak dışa aktarır. glT
 file.export.gltf.layerPaint = "Katman boyamasını";
 file.export.gltf.layerPaint.help = "Katman boyamayı dışa aktarır. Diğer yazılımlar tarafından genellikle göz ardı edilir.";
 // ----------------------------------------------
-file.export.obj = "OBJ dışa aktar";
 file.export.obj.warning = "Katmanlar ve ekstra boyama (pürüzlük ve metaliklik seviyesi ve maske) kaybolur.";
 // Whether we include the vertex color in the exported file
 file.export.obj.color = "Verteks renklerini";
@@ -651,16 +669,17 @@ file.export.obj.archive.folder = "Klasör";
 file.export.obj.archive.zip = "Zip";
 file.export.obj.archive.help = "Bazı uygulamalar (Google Drive, One Drive, vb.) klasör içe aktarmayı desteklemez, bu yüzden bunun yerine Zip kullanabilirsiniz.";
 // ----------------------------------------------
-file.export.stl = "STL dışa aktar";
+file.export.ply.warning = "Katmanlar ve ekstra boyama (pürüzlük ve metaliklik seviyesi ve maske) kaybolur.";
+// ----------------------------------------------
 file.export.stl.warning = "Katmanlar ve ekstra boyama (pürüzlük ve metaliklik seviyesi ve maske) kaybolur.";
 // Whether we include the vertex color in the exported file
 file.export.stl.color = "Verteks renklerini";
 file.export.stl.color.help = "Bazı 3D yazılımları bunu okuyabilir, ama hepsi okuyamaz.";
 // ----------------------------------------------
-file.export.ply = "STL dışa aktar";
-file.export.ply.warning = "Katmanlar ve ekstra boyama (pürüzlük ve metaliklik seviyesi ve maske) kaybolur.";
-// ----------------------------------------------
-file.export.fbx = "FBX Dışa Aktar";
+file.export.usd.skew = "Kaymayı İzin Ver";
+file.export.usd.skew.help = "Matris dönüşümlerinde kaymayı izin ver.
+
+Devre dışı bırakıldığında, Nomad kayma matrislerini iki ayrı ölçekleme ve döndürme dönüşümüne böler.";
 // ----------------------------------------------
 // Advanced settings
 settings.advanced = "Gelişmiş";
@@ -704,7 +723,6 @@ file.render.width = "Genişlik";
 // height of exported screenshot
 file.render.height = "Yükseklik";
 // export screenshot of the scene
-file.render.export = "png dışa aktar";
 file.render.warn = "Dışa aktarma çözünürlüğü yüksek ($0x$1)!
 
 Cihazınızın VRAM'inin yetmemesi ve çökmesi durumuna karşı projenizi kaydettiğinizden emin olun.";
@@ -752,6 +770,11 @@ gesture.dropper = "Malzeme seçimi";
 gesture.dropper.help = "Kanvasın üzerine uzun basılı tutarak, renk/malzeme seçici başlatılabilir.
 
 Yalnız bunun sadece geçerli fırçada boyamanın etkin olması durumunda çalışacağı unutulmamalıdır.";
+
+camera.airStroke = "Hava vuruşuna izin ver";
+camera.airStroke.help = "Başlangıçta imleç nesneyi kaçırsa bile heykel vuruşunun başlamasına izin ver.
+
+Bu seçenek, sadece heykelcilik etkinleştirildiğinde ve kamera devredışı olduğunda girdi için aktiftir.";
 
 // Three fingers on screen
 gesture.three.title = "Üç parmak";
@@ -1026,6 +1049,7 @@ layer.base.nothing = "Çıkarılacak bir şey yok!";
 layer.base.background = "Arka plan malzemesi";
 layer.base.background.help = "Etkin ise, yalnızca arka plan malzemesinden farklı olan malzeme değerleri çıkarılacaktır.";
 // (see Glossary for Layer)
+layers = "Katmanlar";
 layers.title = "Katmanlar";
 // (see Glossary for Layer)
 layers.title.help = "Katmanlar pozisyon kaydırmalarını ve boyamaları kaydedebilir, lineer olmayan iş akışı için faydalı olabilir.
@@ -1333,9 +1357,9 @@ input.hexcolor = "Yeni renk (altıgen format)";
 // Post process effect
 postprocess = "Süreç sonrası işlemler";
 // Denoise
-postprocess.denoise = "";
-postprocess.denoise.help = "";
-postprocess.denoise.warning = "";
+postprocess.denoise = "Gürültü Giderici";
+postprocess.denoise.help = "Tüm kareler birleştikten sonra bir gürültü giderme geçişi uygula.";
+postprocess.denoise.warning = "Bu pahalı bir işlemdir, yalnızca görüntü gürültülü ise bu etkiyi etkinleştirin.";
 // Quality vs performance
 postprocess.quality = "Kalite";
 postprocess.quality.help = "Performansı düşürmeyi göze alarak kaliteyi artırmak için bu seçenekleri etkinleştirin.";
@@ -1835,7 +1859,6 @@ shortcut.cameraReset = "Sıfırla";
 shortcut.cameraSnap = "Yasla";
 shortcut.lockSelection = "Kilitle";
 shortcut.lockSelection.help = "Etkinleştirildiğinde, bir ağ örgüsüne dokunarak seçimi değiştiremezsiniz.";
-shortcut.perspective = "Persp";
 shortcut.grid = "Izgara";
 
 // Memory taken by the scene
@@ -2034,6 +2057,7 @@ Köşe önce alan düzlemine yansıtılır, ardından fırçanın merkezine olan
 Bu, alfaların örneklenme şekline benzerdir.";
 stroke.falloffProject.sphere = "Küre";
 stroke.falloffProject.circle = "Daire";
+stroke.falloffProject.cylinder = "Silindir";
 
 // Symmetry
 symmetry = "Simetri";
@@ -2485,6 +2509,7 @@ topology.surface.useMasking.help = "Maskelenmiş alanlar topolojiyi değişmeye 
 topology.surface.extrapolate = "Verteks ekstrapolasyonu";
 // DynTopo
 topology.dynamic = "Dinamik topoloji";
+topology.dynamic.global = "Genel açık/kapalı";
 topology.dynamic.activate = "Etkin";
 topology.dynamic.activate.help = "Dinamik topoloji ile şekillendirme araçları, ağ örgüsünü alt bölümlere ayırabilir veya yerel anlamda gerçek zamanlı olarak basitleştirebilir.
 
@@ -2577,13 +2602,14 @@ Pişirme için tipik iş akışı şöyledir:
 • UV açın
 • Pişirin!
 
-Nomad, sahnedeki her görünür örgüyü hesaba katacaktır.
-Ayrıca Solo modunu kullanarak diğer örgüleri hızlı bir şekilde gizleyebilirsiniz.
-Görünürde başka nesne yoksa, tüm sahneyi hesaba katacaktır.
-
 Şimdi, önceki nesnenizin çoğu boyayı ve ayrıntıyı koruyan düşük çözünürlüklü bir örgünüz olmalı.
 
-İşlem sonrasında, tepe renkleri yeni bir devre dışı katmana taşınacak, böylece renkli doku ile çarpılmak yerine göz ardı edilmek üzere.";
+İşlem sonrasında, tepe renkleri yeni bir devre dışı katmana taşınacak, böylece renkli doku ile çarpılmak yerine göz ardı edilmek üzere.
+
+Seçilen nesnelerin hangi nesnelerinin 'baking' için kullanılacağı belirlenecektir:
+- tüm seçili nesneler ve ana seçili nesne 'baked' olacak (sahne menüsünde güçlü vurgulama)
+- eğer sadece bir seçili nesne varsa, görünür tüm nesneler göz önünde bulundurulacaktır
+- aksi takdirde, eğer tüm nesneler gizlenmişse (örneğin Solo kullanılarak), tüm sahne dikkate alınacaktır";
 // Bake here means "create texture (from mesh data)"
 topology.bake.self = "Kendisinden";
 // Bake here means "create texture (from another mesh data)"
@@ -2647,6 +2673,9 @@ binding.pickFaceGroup = "Yüz Grubu Seç";
 binding.editRadius = "Araç Yarıçapı";
 // Edit the tool brush size/radius
 binding.editIntensity = "Araç yoğunluğu";
+// Controller dead zone
+binding.controller.deadZone = "Ölü bölgeyi yapıştır";
+binding.controller.deadZone.help = "Kameranın hareket ettiği durumlarda, denetleyici çubuğu hareket ettirilmeden bile bu değeri artırın.";
 // Snap the camera
 binding.view.front = "Ön Görünüm";
 binding.view.left = "Sol Görünüm";
