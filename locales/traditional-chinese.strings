@@ -2,6 +2,8 @@
 confirm = "請確認是否操作？";
 // Answer to a question (Are you sure you want to do that? [yes, cancel])
 confirm.yes = "確認";
+// Answer to a question (Are you sure you want to do that? [yes, no, cancel])
+confirm.no = "不";
 // The generic ok in a confirm box (The next operation is dangerous. [ok, cancel])
 confirm.ok = "好";
 // Cancel something after being asked (Question? [answer, cancel])
@@ -10,8 +12,18 @@ confirm.cancel = "取消";
 // Experimental feature
 experimental = "實驗性功能！";
 
+status.exit = "未儲存的更改！關閉前要儲存嗎？";
+status.exit.yes = "儲存";
+status.exit.no = "不儲存";
+
 // On single tap (should be short)
 ontap = "點選";
+
+all = "全部";
+error = "錯誤";
+
+reset = "重置";
+resetOrder = "重設排序";
 
 clipboard = "剪貼簿";
 clipboard.copy = "複製";
@@ -168,6 +180,16 @@ material.texture.mipmap = "Mipmap";
 material.projection = "檢視";
 material.projection.triplanar = "三面體";
 
+// Prefer low power
+about.lowPower = "低功耗GPU";
+about.lowPower.confirm = "更改此值後，您需要重新啟動Nomad。";
+// Wintab wacom API
+about.wintab = "使用WinTab";
+about.wintab.help = "如果啟用了WinTab，您可能應該在Wacom設定中停用Windows Ink。
+
+同樣地，如果停用了WinTab，則應在Wacom設定中啟用Windows Ink";
+// Prefer low power
+about.fullScreen = "全屏";
 // Minify
 about.minify = "全屏顯示";
 about.minify.help = "在裝置支援的情況下，可以透過四指觸碰螢幕來開關全屏顯示";
@@ -189,7 +211,7 @@ about.credits.openSource = "開源專案";
 about.credits.arts = "MatCap與HDRI";
 // Change languages of the app
 about.languages = "使用者語言";
-about.languages.help = "翻譯檔案可在 $0獲得";
+about.languages.help = "翻譯檔案可在 $0 獲得";
 // Link to the App Website
 about.website = "官方網站";
 // Link to the App Forum
@@ -321,6 +343,8 @@ background.imageY = "Y軸位置";
 background.imageRotation = "旋轉";
 // Scale of the reference image
 background.imageScale = "縮放";
+// Auto adjust the reference when moving the camera
+background.syncLock = "";
 
 // Blend: normal
 blend.normal = "法線";
@@ -429,6 +453,9 @@ camera.autoPivot.help = "雙指移動相機後，軸會隨之移動。";
 // Move the camera so that it focus on the intersection point
 camera.doubleTapFocus = "聚焦";
 camera.doubleTapFocus.help = "雙擊物體表面後檢視中心將移動至該點。";
+// Disable XY panning when unzomming
+camera.centerZoomOut = "縮小檢視時居中檢視";
+camera.panZoomOut.help = "停用此選項時，此樞軸位置將保持不變。";
 
 // Toolbox context (when expanded), multiple objects are selected
 context.multiselection = "選擇多項";
@@ -445,6 +472,8 @@ curve.catmull = "Catmull-Rom";
 curve.spline = "B樣條";
 curve.bspline = "B樣條";
 curve.precision = "精度";
+// merge or collapse 1 point into another
+curve.merge = "合併";
 // snap
 curve.snap = "吸附";
 curve.snap.offset = "偏移";
@@ -473,22 +502,19 @@ curve.pivot.self = "曲線";
 curve.pivot.children = "子項";
 
 // Set the desired FPS (frame per second, refresh rate)
-debug.targetFPS = "目標 FPS";
-debug.targetFPS.help = "停用時，預設值意味著它將與顯示器的重新整理率同步。";
+debug.limitFps = "目標 FPS";
+debug.limitFps.help = "停用時，預設值意味著它將與顯示器的重新整理率同步。";
 
 // Warning about UVs (using extra memory)
 debug.uvPrimitive.warning = "如果您不再需要UV選項，請停用該選項以釋放更多記憶體。";
 // Debug option, Normalize means transforming the data so that it fits in [0-1] the range
 debug.uvNormalize = "規格化UV選項";
 debug.uvNormalize.help = "Nomad將會讓所有選定面的UV適配 [0-1] 紋理空間。";
-// Debug option, BFF stands for Boundary First Flattening (no need to translate)
-debug.uvBFF = "啟用BFF UV";
-debug.uvBFF.help = "使用BFF演算法來展平UV。
-
-請注意，如果物件的拓撲網格與正方體或球體有很大差別的話，結果有可能會產生重疊。";
 
 // Debug option, display an window with some debugging logs
 debug.logs = "除錯日誌";
+// Model shortcut window
+debug.shortcut = "快捷視窗";
 // Debug option, overrides the rendering to display the depth buffer
 debug.heightmap = "高度圖";
 // Debug options, graphical stuffs
@@ -496,6 +522,10 @@ debug.graphics = "圖形";
 // Debug options, generate screenshots with size compatible with the iOS store
 debug.thumbnails = "製作商店縮圖";
 
+// Open file explorer
+file.explore = "";
+// Empty list: there is no projects
+file.project.load = "啟動時重新載入專案";
 // Empty list: there is no projects
 file.project.empty = "您還沒有儲存該專案！";
 // The current opened project has some unsaved changes
@@ -510,10 +540,12 @@ file.project = "專案";
 file.project.save = "儲存";
 // E.g: Save "my_project"?
 file.project.save.confirm = "確認儲存 $0？";
-// Overwrite another project
+// Make a copy
 file.project.saveAs = "另存為";
+// Overwrite another project
+file.project.overwrite = "確認覆蓋 $？";
 // E.g: Overwrite "my_other_project"?
-file.project.saveAs.confirm = "確認覆蓋 $0？";
+file.project.overwrite.confirm = "確認覆蓋 $0？";
 // Open a project
 file.project.open = "開啟";
 // E.g: Open "my_project"?
@@ -535,17 +567,20 @@ file.project.delete.confirmActive = "刪除 $0？
 這是當前開啟的專案！";
 
 // Auto save section
-file.project.autoSave = "自動儲存";
-file.project.autoSave.confirm = "確定要停用自動儲存嗎？";
-file.project.autoSave.help = "每隔一段時間將您的專案另存到一個單獨的檔案。
+file.autoSave = "自動儲存";
+file.autoSave.confirm = "確定要停用自動儲存嗎？";
+file.autoSave.help = "每隔一段時間將您的專案另存到一個單獨的檔案。
 
 這個自動儲存檔案可以在以下目錄找到：";
 // Interval in minutes in which the auto save popup will appear
-file.project.autoSave.popup = "自動提醒";
+file.autoSave.popup = "自動提醒";
 // In minutes
-file.project.autoSave.minutes = "自動儲存間隔";
+file.autoSave.minutes = "自動儲存間隔";
 // Delete the current autoSave data
-file.project.autoSave.delete = "刪除自動儲存的資料";
+file.autoSave.delete = "刪除自動儲存的資料";
+// Open the outdated auto save
+file.autoSave.open.manual = "開啟過時的手動儲存";
+file.autoSave.open.auto = "開啟過時的自動儲存";
 
 // color space (linear or srgb), do not translate linear/srgb if there is a doubt
 file.colorSpace = "色彩空間";
@@ -586,13 +621,17 @@ file.import.add = "新增到場景";
 file.import.add.confirm = "確定新增新檔案？";
 
 // Export scene file
-file.export.title = "匯出";
+file.export = "匯出";
 
+// Filter nodes that we want to export
 file.select.include = "包括";
 file.select.all = "全部";
 file.select.visible = "可見";
 file.select.selected = "已選";
 file.select.unselected = "未選擇";
+
+// Export each node in a separate file
+file.export.separate = "每個物件一個檔案";
 
 // Export the current selected objects instead of the entire scene
 file.onlySelection = "只匯出選擇部分";
@@ -622,12 +661,10 @@ file.export.tangent.help = "如果您希望在其他軟體中開啟此檔案，�
 
 Nomad總是忽略正切，因為它會重新計算正切。";
 // ----------------------------------------------
-file.export.nomad = "匯出 Nomad";
 file.export.nomad.help = "Nomad Sculpt 內部檔案格式。
 
 此格式不會在其他軟體上載入，主要用於重新匯入。";
 // ----------------------------------------------
-file.export.gltf = "匯出 glTF 2.0";
 // Whether we include layers in the exported file (see glossary for layer)
 file.export.gltf.layer = "圖層";
 file.export.gltf.layer.help = "將圖層作為變形體匯出。官方支援glTF，所以它應該也能在其他軟體上工作。";
@@ -635,7 +672,6 @@ file.export.gltf.layer.help = "將圖層作為變形體匯出。官方支援glTF
 file.export.gltf.layerPaint = "圖層繪畫";
 file.export.gltf.layerPaint.help = "將匯出圖層繪畫。其他軟體不會讀取該屬性。";
 // ----------------------------------------------
-file.export.obj = "匯出OBJ格式";
 file.export.obj.warning = "圖層和額外的繪畫（粗糙度、金屬強度和蒙版）將會丟失。";
 // Whether we include the vertex color in the exported file
 file.export.obj.color = "頂點顏色";
@@ -653,16 +689,17 @@ file.export.obj.archive.folder = "資料夾";
 file.export.obj.archive.zip = "壓縮檔案";
 file.export.obj.archive.help = "某些應用程式（如Google Drive、One Drive等）不支援資料夾匯入，因此您可以改用壓縮檔案。";
 // ----------------------------------------------
-file.export.stl = "匯出STL格式";
+file.export.ply.warning = "圖層和額外的繪畫（粗糙度、金屬強度和蒙版）將會丟失。";
+// ----------------------------------------------
 file.export.stl.warning = "圖層和額外的繪畫（粗糙度、金屬強度和蒙版）將會丟失。";
 // Whether we include the vertex color in the exported file
 file.export.stl.color = "頂點顏色";
 file.export.stl.color.help = "只有部分3D軟體能夠識別。";
 // ----------------------------------------------
-file.export.ply = "匯出STL格式";
-file.export.ply.warning = "圖層和額外的繪畫（粗糙度、金屬強度和蒙版）將會丟失。";
-// ----------------------------------------------
-file.export.fbx = "匯出FBX";
+file.export.usd.skew = "允許傾斜";
+file.export.usd.skew.help = "在矩陣變換中允許傾斜。
+
+停用時，Nomad將分解傾斜矩陣為兩個獨立的縮放和旋轉變換。";
 // ----------------------------------------------
 // Advanced settings
 settings.advanced = "高階設定";
@@ -707,7 +744,6 @@ file.render.width = "寬度";
 // height of exported screenshot
 file.render.height = "高度";
 // export screenshot of the scene
-file.render.export = "匯出為png";
 file.render.warn = "您當前匯出的圖片解析度較高（$0x$1)！
 
 請確認檔案妥善儲存後再繼續匯出，否則程式可能會因運存佔用過高而閃退。";
@@ -736,6 +772,11 @@ pressure.intensity = "強度";
 // Average pencil pressure event to get smoother result
 pressure.average = "壓力平滑";
 pressure.average.help = "平均鉛筆壓力事件以獲得更平滑的結果。";
+// Limit pressure to 100%
+pressure.limit = "限制壓力為100%";
+pressure.limit.help = "這是全域性設定。
+
+使用此選項可以確保觸筆壓力永遠不超過100%。";
 
 // list of inputs allowing camera interaction
 gesture.camera = "相機移動";
@@ -755,6 +796,11 @@ gesture.dropper = "選取材質";
 gesture.dropper.help = "顏色/材料選擇器可以透過在畫布上長按來開啟。
 
 請注意，只有在當前畫筆啟用了繪畫功能的情況下，它才能發揮作用。";
+
+camera.airStroke = "允許空中筆劃";
+camera.airStroke.help = "允許即使初始游標未接觸網格，也可以開始雕刻筆劃。
+
+此選項僅在啟用雕刻且停用相機的輸入中處於活動狀態。";
 
 // Three fingers on screen
 gesture.three.title = "三個手指";
@@ -937,7 +983,9 @@ interface.expandList = "UI：放大列表";
 interface.expandList.help = "使用一個UI選項就能方便列表管理。";
 
 // Add shortcuts buttons to the bottom of the screen
-interface.bottomButtons = "新增快捷鍵（底部）...";
+interface.shortcut.bottom = "新增快捷鍵（底部）...";
+// Floating window
+interface.shortcut.float = "新增快捷鍵（視窗）...";
 
 // Interface option (main base color)
 interface.colorBase = "底色";
@@ -1029,6 +1077,7 @@ layer.base.nothing = "沒有可提取物件！";
 layer.base.background = "背景材料";
 layer.base.background.help = "如果啟用，僅提取與背景材料不同的材料值。";
 // (see Glossary for Layer)
+layers = "圖層";
 layers.title = "圖層";
 // (see Glossary for Layer)
 layers.title.help = "圖層能夠記錄位置偏移和繪畫，這對於非線性工作流程來說非常有用。
@@ -1336,9 +1385,9 @@ input.hexcolor = "請輸入新顏色程式碼（十六進位制格式）";
 // Post process effect
 postprocess = "後期處理";
 // Denoise
-postprocess.denoise = "";
-postprocess.denoise.help = "";
-postprocess.denoise.warning = "";
+postprocess.denoise = "去噪器";
+postprocess.denoise.help = "在所有幀累積之後應用去噪過程。";
+postprocess.denoise.warning = "這是一個昂貴的操作，只有當影像有噪點時才啟用此效果。";
 // Quality vs performance
 postprocess.quality = "質量";
 postprocess.quality.help = "啟用這些選項可以提升質量，但會影響效能。";
@@ -1470,7 +1519,7 @@ postprocess.scanline.spacing = "間距";
 // Geometry Primitive (box, sphere, cylinder, etc)
 primitive = "基本體";
 primitive.box = "立方體";
-primitive.sphereCube = "球體";
+primitive.sphereCube = "四面體球";
 primitive.sphereUV = "UV球體";
 primitive.icosahedron = "二十面體";
 primitive.cylinder = "圓柱體";
@@ -1839,7 +1888,6 @@ shortcut.cameraReset = "重設對稱中心";
 shortcut.cameraSnap = "切換";
 shortcut.lockSelection = "鎖定";
 shortcut.lockSelection.help = "啟用後，您無法透過點選方式選擇物件。";
-shortcut.perspective = "透視";
 shortcut.grid = "世界網格";
 
 // Memory taken by the scene
@@ -2038,6 +2086,7 @@ stroke.falloffProject.help = "• 球體 (3d)
 這與取樣alpha的方式類似。";
 stroke.falloffProject.sphere = "球體";
 stroke.falloffProject.circle = "圓形";
+stroke.falloffProject.cylinder = "圓柱體";
 
 // Symmetry
 symmetry = "對稱";
@@ -2489,6 +2538,7 @@ topology.surface.useMasking.help = "蒙版區域的拓撲將不會受到影響�
 topology.surface.extrapolate = "頂點擴張";
 // DynTopo
 topology.dynamic = "動態網格";
+topology.dynamic.global = "全域性開/關";
 topology.dynamic.activate = "啟用";
 topology.dynamic.activate.help = "啟用此功能可以讓您在雕刻過程中即時增刪網格。
 
@@ -2583,13 +2633,14 @@ topology.bake.title.help = "紋理烘焙將透過投影場景中的其他可見�
 • UV展開
 • 烘焙它！
 
-Nomad將考慮場景中的每一個可見網格。
-您也可以使用Solo模式快速隱藏大部分其他網格。
-如果沒有其他可見物件，則它將考慮整個場景。
-
 您現在應該擁有一個低解析度網格，保留了您之前物件的大部分繪畫和細節。
 
-操作後，頂點顏色將被移到一個新的停用圖層中，這樣它就不會被乘以彩色紋理而被忽略。";
+操作後，頂點顏色將被移到一個新的停用圖層中，這樣它就不會被乘以彩色紋理而被忽略。
+
+為了選擇用於烘焙的物件，將適用以下邏輯：
+- 所有選中的物件和主選物件將被烘焙（場景選單中最強的高亮）
+- 如果只有一個物件被選中，那麼Nomad將考慮所有可見物件
+- 否則如果所有物件都被隱藏（例如透過使用Solo），那麼整個場景將被考慮";
 // Bake here means "create texture (from mesh data)"
 topology.bake.self = "從本身";
 // Bake here means "create texture (from another mesh data)"
@@ -2634,12 +2685,15 @@ topology.manifold.title.help = "嘗試清理非流形邊緣。
 
 // Reset key-bindings/shortcuts
 binding.reset = "重設鍵位繫結";
+// Add node in a sync mode (synchronize instance)
+binding.addSync = "同步";
+binding.addSync.help = "預設情況下，將使用場景選單中設定的同步值。";
 // Binding option
 binding.context.toggle = "切換上下文";
 binding.toggleTool = "切換工具快捷鍵";
 binding.toggleTool.help = "當使用工具快捷鍵時，如果當前的快捷工具處於活動狀態，則會選擇之前的工具。";
 // When the key is tap once, the value will be toggled
-binding.tapToggle = "按鍵切換快捷鍵";
+binding.toggleTap = "按鍵切換快捷鍵";
 // The binding force camera movement
 binding.forceCamera = "強制相機";
 binding.forceCamera.help = "強制相機互動，以防與其他繫結發生衝突。
@@ -2653,6 +2707,10 @@ binding.pickFaceGroup = "選擇面組";
 binding.editRadius = "工具半徑";
 // Edit the tool brush size/radius
 binding.editIntensity = "工具強度";
+// Controller dead zone
+binding.joystick = "遊戲杆";
+binding.controller.deadZone = "搖桿死區";
+binding.controller.deadZone.help = "如果即使在控制器搖桿未被觸碰的情況下相機仍在移動，請提高此值。";
 // Snap the camera
 binding.view.front = "正面檢視";
 binding.view.left = "左檢視";
@@ -2681,8 +2739,12 @@ quadremesh.adaptQuadCount = "自適應四邊形數量";
 quadremesh.curvatureAdaptivness = "自適應大小";
 quadremesh.curvatureAdaptivness.help = "在100%時，四邊形的大小將根據物體的曲率變化，允許在高曲率處使用更小的四邊形。
 在0%時，四邊形的大小將是統一的。";
-quadremesh.autoDetectHardEdges = "自動檢測硬邊";
 quadremesh.useVertexColors = "儲存繪畫";
+quadremesh.autoDetectHardEdges = "自動檢測硬邊";
+quadremesh.autoDetectHardEdges.short = "";
+quadremesh.reprojectVertex = "";
+quadremesh.reprojectVertex.short = "";
+quadremesh.reprojectVertex.label = "";
 
 // Privacy policy
 privacyPolicy.title = "未收集資料";
@@ -2705,6 +2767,29 @@ nomad.mainFolder.warning = "檔案保持不變。
 它們沒有被複制、刪除或移動。";
 nomad.mainFolder.error = "選擇'是'後，Nomad將關閉，您可以簡單地重新啟動它。";
 
+license.title = "許可證";
+license.retry = "重試";
+license.key = "許可證金鑰";
+license.activate = "啟用許可證";
+// ----------------------------------------------
+license.newest = "";
+// ----------------------------------------------
+license.portal.title = "";
+license.portal.label = "";
+// ----------------------------------------------
+license.checkout.title = "";
+license.checkout.label = "";
+// ----------------------------------------------
+license.device.error = "";
+license.device.mismatch = "";
+// ----------------------------------------------
+license.validate.error404 = "";
+license.validate.error422 = "";
+// ----------------------------------------------
+license.activate.error403 = "";
+license.activate.error404 = "";
+license.activate.error422 = "";
+// ----------------------------------------------
 // version trial
 version.restore = "恢復購買";
 version.buyWeb = "該版本僅供演示";

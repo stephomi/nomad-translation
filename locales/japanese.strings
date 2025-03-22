@@ -2,6 +2,8 @@
 confirm = "よろしいですか？";
 // Answer to a question (Are you sure you want to do that? [yes, cancel])
 confirm.yes = "はい";
+// Answer to a question (Are you sure you want to do that? [yes, no, cancel])
+confirm.no = "いいえ";
 // The generic ok in a confirm box (The next operation is dangerous. [ok, cancel])
 confirm.ok = "OK";
 // Cancel something after being asked (Question? [answer, cancel])
@@ -10,8 +12,18 @@ confirm.cancel = "キャンセル";
 // Experimental feature
 experimental = "実験的！";
 
+status.exit = "変更が保存されていません！閉じる前に保存しますか？";
+status.exit.yes = "保存";
+status.exit.no = "保存しない";
+
 // On single tap (should be short)
 ontap = "タップ";
+
+all = "すべて";
+error = "エラー";
+
+reset = "リセット";
+resetOrder = "順序をリセット";
 
 clipboard = "クリップボード";
 clipboard.copy = "コピー";
@@ -168,6 +180,16 @@ material.texture.mipmap = "ミップマップ";
 material.projection = "投影";
 material.projection.triplanar = "Triplanar";
 
+// Prefer low power
+about.lowPower = "省電力GPU";
+about.lowPower.confirm = "この値を変更した後、Nomadを再起動する必要があります。";
+// Wintab wacom API
+about.wintab = "WinTabを使用";
+about.wintab.help = "WinTabが有効な場合、Wacom設定でWindows Inkを無効にすることをお勧めします。
+
+同様に、WinTabが無効な場合は、Wacom設定でWindows Inkを有効にする必要があります。";
+// Prefer low power
+about.fullScreen = "全画面表示";
 // Minify
 about.minify = "UIをMinify";
 about.minify.help = "指4本でスクリーンをタップすることもできます（デバイスがサポートする場合)。";
@@ -321,6 +343,8 @@ background.imageY = "位置 Y";
 background.imageRotation = "回転";
 // Scale of the reference image
 background.imageScale = "比率";
+// Auto adjust the reference when moving the camera
+background.syncLock = "カメラロックと同期";
 
 // Blend: normal
 blend.normal = "標準";
@@ -429,6 +453,9 @@ camera.autoPivot.help = "カメラと動作し始めると回転軸がアップ�
 // Move the camera so that it focus on the intersection point
 camera.doubleTapFocus = "フォーカス";
 camera.doubleTapFocus.help = "オブジェクトをダブルタップすると、カメラはパンし、選択したポイントにフォーカスします。";
+// Disable XY panning when unzomming
+camera.centerZoomOut = "倍率を下げる時、ビューを中央にする";
+camera.panZoomOut.help = "このオプションを無効にした場合、ピボット位置はそのままになります。";
 
 // Toolbox context (when expanded), multiple objects are selected
 context.multiselection = "複数選択";
@@ -445,6 +472,8 @@ curve.catmull = "Catmull-Rom";
 curve.spline = "スプライン曲線";
 curve.bspline = "B-スプライン曲線";
 curve.precision = "精度";
+// merge or collapse 1 point into another
+curve.merge = "結合";
 // snap
 curve.snap = "スナップ";
 curve.snap.offset = "オフセット";
@@ -473,22 +502,19 @@ curve.pivot.self = "曲線";
 curve.pivot.children = "子を";
 
 // Set the desired FPS (frame per second, refresh rate)
-debug.targetFPS = "目標FPS";
-debug.targetFPS.help = "無効にすると、デフォルト値はディスプレイのリフレッシュレートと同期することを意味します。";
+debug.limitFps = "目標FPS";
+debug.limitFps.help = "無効にすると、デフォルト値はディスプレイのリフレッシュレートと同期することを意味します。";
 
 // Warning about UVs (using extra memory)
 debug.uvPrimitive.warning = "UV (追加のメモリ) が必要でない場合、このオプションを無効にしてください。";
 // Debug option, Normalize means transforming the data so that it fits in [0-1] the range
 debug.uvNormalize = "UVを標準化";
 debug.uvNormalize.help = "Nomadは [0-1] のタイル内のUVを標準化します。";
-// Debug option, BFF stands for Boundary First Flattening (no need to translate)
-debug.uvBFF = "BFF UVを追加";
-debug.uvBFF.help = "代替のラップ解除方法 (Boundary First Flattening) を追加します。
-
-BFFは、メッシュトポロジーがディスクまたは球と異なる場合、オーバーラップを生成します。 ご注意ください。";
 
 // Debug option, display an window with some debugging logs
 debug.logs = "ログ";
+// Model shortcut window
+debug.shortcut = "ショートカットウィンドウ";
 // Debug option, overrides the rendering to display the depth buffer
 debug.heightmap = "ハイトマップ";
 // Debug options, graphical stuffs
@@ -496,6 +522,10 @@ debug.graphics = "グラフィック";
 // Debug options, generate screenshots with size compatible with the iOS store
 debug.thumbnails = "ストアのサムネールを作成";
 
+// Open file explorer
+file.explore = "エクスプローラー";
+// Empty list: there is no projects
+file.project.load = "スタートアップでプロジェクトをリロードする";
 // Empty list: there is no projects
 file.project.empty = "まだ保存されたプロジェクトがありません！";
 // The current opened project has some unsaved changes
@@ -510,10 +540,12 @@ file.project = "プロジェクト";
 file.project.save = "保存";
 // E.g: Save "my_project"?
 file.project.save.confirm = "$0を保存しますか？";
-// Overwrite another project
+// Make a copy
 file.project.saveAs = "別名で保存";
+// Overwrite another project
+file.project.overwrite = "上書き";
 // E.g: Overwrite "my_other_project"?
-file.project.saveAs.confirm = "$0を上書きしますか？";
+file.project.overwrite.confirm = "$0を上書きしますか？";
 // Open a project
 file.project.open = "開く";
 // E.g: Open "my_project"?
@@ -535,17 +567,20 @@ file.project.delete.confirmActive = "$0を削除しますか？
 これは現在アクティブなプロジェクトです！";
 
 // Auto save section
-file.project.autoSave = "自動保存";
-file.project.autoSave.confirm = "自動保存をオフにしますか？";
-file.project.autoSave.help = "プロジェクトを一定の間隔で別のファイルに保存します。
+file.autoSave = "自動保存";
+file.autoSave.confirm = "自動保存をオフにしますか？";
+file.autoSave.help = "プロジェクトを一定の間隔で別のファイルに保存します。
 
 自動保存されたファイルの保存先:";
 // Interval in minutes in which the auto save popup will appear
-file.project.autoSave.popup = "ポップアップのタイムアウト";
+file.autoSave.popup = "ポップアップのタイムアウト";
 // In minutes
-file.project.autoSave.minutes = "タイマーのポップアップ";
+file.autoSave.minutes = "タイマーのポップアップ";
 // Delete the current autoSave data
-file.project.autoSave.delete = "自動保存の内容を破棄";
+file.autoSave.delete = "自動保存の内容を破棄";
+// Open the outdated auto save
+file.autoSave.open.manual = "古い手動セーブを開く";
+file.autoSave.open.auto = "古い自動セーブを開く";
 
 // color space (linear or srgb), do not translate linear/srgb if there is a doubt
 file.colorSpace = "カラースペース";
@@ -583,13 +618,17 @@ file.import.add = "シーンに追加";
 file.import.add.confirm = "新しいファイルを読み込みますか？";
 
 // Export scene file
-file.export.title = "書き出す";
+file.export = "書き出す";
 
+// Filter nodes that we want to export
 file.select.include = "含める";
 file.select.all = "すべて";
 file.select.visible = "可視";
 file.select.selected = "選択済み";
 file.select.unselected = "選択解除";
+
+// Export each node in a separate file
+file.export.separate = "オブジェクトごとのファイル";
 
 // Export the current selected objects instead of the entire scene
 file.onlySelection = "選択中のオブジェクトのみを含める";
@@ -620,12 +659,10 @@ file.export.tangent.help = "別のソフトウェアでファイルを開きた�
 
 Nomadは接線を無視し、再計算されます。";
 // ----------------------------------------------
-file.export.nomad = "Nomadエクスポート";
 file.export.nomad.help = "Nomad Sculpt内部ファイル形式。
 
 この形式は他のソフトウェアでは読み込めません。主に再インポート目的で使用されます。";
 // ----------------------------------------------
-file.export.gltf = "glTF 2.0で書き出す";
 // Whether we include layers in the exported file (see glossary for layer)
 file.export.gltf.layer = "レイヤー";
 file.export.gltf.layer.help = "レイヤーをモーフとして書き出します。glTFに公式にサポートされているので、他のソフトウェアでも同様に動作することが期待されます。";
@@ -633,7 +670,6 @@ file.export.gltf.layer.help = "レイヤーをモーフとして書き出しま�
 file.export.gltf.layerPaint = "レイヤーペイント";
 file.export.gltf.layerPaint.help = "レイヤーペイントを書き出します。通常、他のソフトウェアには無視されます。";
 // ----------------------------------------------
-file.export.obj = "OBJを書き出す";
 file.export.obj.warning = "レイヤーとその他のペイント (粗さ、メタリック、マスク) は喪失します。";
 // Whether we include the vertex color in the exported file
 file.export.obj.color = "頂点カラー";
@@ -651,16 +687,17 @@ file.export.obj.archive.folder = "フォルダ";
 file.export.obj.archive.zip = "Zip";
 file.export.obj.archive.help = "一部のアプリ（Google Drive、One Driveなど）はフォルダのインポートをサポートしていないため、代わりにZipを使用できます。";
 // ----------------------------------------------
-file.export.stl = "STLを書き出す";
+file.export.ply.warning = "レイヤーとその他のペイント (粗さ、メタリック、マスク) は喪失します。";
+// ----------------------------------------------
 file.export.stl.warning = "レイヤーとその他のペイント (粗さ、メタリック、マスク) は喪失します。";
 // Whether we include the vertex color in the exported file
 file.export.stl.color = "頂点カラー";
 file.export.stl.color.help = "それを読み出せる3Dソフトウェアもありますが、すべてのソフトウェアができるとは限りません。";
 // ----------------------------------------------
-file.export.ply = "STLを書き出す";
-file.export.ply.warning = "レイヤーとその他のペイント (粗さ、メタリック、マスク) は喪失します。";
-// ----------------------------------------------
-file.export.fbx = "FBXを書き出す";
+file.export.usd.skew = "斜めを許可";
+file.export.usd.skew.help = "マトリクス変換での斜めを許可。
+
+無効にすると、Nomadは斜めマトリクスを2つの別々のスケーリングと回転変換に分割します。";
 // ----------------------------------------------
 // Advanced settings
 settings.advanced = "高度な機能";
@@ -705,7 +742,6 @@ file.render.width = "幅";
 // height of exported screenshot
 file.render.height = "高さ";
 // export screenshot of the scene
-file.render.export = "pngを書き出す";
 file.render.warn = "書き出しの解像度が高いです ($0x$1)！
 
 デバイスでVRAMが不足し、クラッシュするような場合に備えて、必ずプロジェクトを保存しておいてください。";
@@ -734,6 +770,11 @@ pressure.intensity = "強度";
 // Average pencil pressure event to get smoother result
 pressure.average = "筆圧平滑化";
 pressure.average.help = "より滑らかな結果を得るために鉛筆の筆圧イベントを平均化します。";
+// Limit pressure to 100%
+pressure.limit = "圧力を100%に制限する";
+pressure.limit.help = "これはグローバル設定です。
+
+このオプションを使用して、スタイラスの圧力が100%を超えないようにします。";
 
 // list of inputs allowing camera interaction
 gesture.camera = "カメラ";
@@ -753,6 +794,11 @@ gesture.dropper = "マテリアルの選択";
 gesture.dropper.help = "キャンバスを長押しすると、カラー/マテリアルピッカーが表示されます。
 
 現在のブラシのペイントが有効な場合にのみ動作します。";
+
+camera.airStroke = "エアストロークを許可";
+camera.airStroke.help = "初期カーソルがメッシュを外れていても、造形ストロークを開始できる。 
+
+このオプションは、造形が有効でカメラが無効になっている入力にのみアクティブです。";
 
 // Three fingers on screen
 gesture.three.title = "3本指";
@@ -935,7 +981,9 @@ interface.expandList = "UI: リストを展開";
 interface.expandList.help = "リスト管理を簡単にするためのUIオプション。";
 
 // Add shortcuts buttons to the bottom of the screen
-interface.bottomButtons = "ショートカットを追加 (下)...";
+interface.shortcut.bottom = "ショートカットを追加 (下)...";
+// Floating window
+interface.shortcut.float = "ショートカットを追加 (ウィンドウ)...";
 
 // Interface option (main base color)
 interface.colorBase = "カラーベース";
@@ -1027,6 +1075,7 @@ layer.base.nothing = "取り出すものがありません！";
 layer.base.background = "背景材料";
 layer.base.background.help = "有効になっている場合、背景材料と異なる材料値のみが抽出されます。";
 // (see Glossary for Layer)
+layers = "レイヤー";
 layers.title = "レイヤー";
 // (see Glossary for Layer)
 layers.title.help = "レイヤーは位置のオフセットとペイントを記録でき、非線形のワークフローに便利です。
@@ -1334,9 +1383,9 @@ input.hexcolor = "新しいカラー (16進フォーマット)";
 // Post process effect
 postprocess = "ポストプロセス";
 // Denoise
-postprocess.denoise = "";
-postprocess.denoise.help = "";
-postprocess.denoise.warning = "";
+postprocess.denoise = "ノイズ除去";
+postprocess.denoise.help = "すべてのフレームが蓄積された後、ノイズ除去処理を適用します。";
+postprocess.denoise.warning = "これは高コストな処理です。画像がノイズ出ている場合にのみこの効果を有効にしてください。";
 // Quality vs performance
 postprocess.quality = "クオリティ";
 postprocess.quality.help = "これらのオプションをアクティベートすると、クオリティは向上しますが、パフォーマンスは低下します。";
@@ -1467,7 +1516,7 @@ postprocess.scanline.spacing = "間隔";
 // Geometry Primitive (box, sphere, cylinder, etc)
 primitive = "プリミティブ";
 primitive.box = "ボックス";
-primitive.sphereCube = "球";
+primitive.sphereCube = "クアッドスフィア";
 primitive.sphereUV = "UV球";
 primitive.icosahedron = "二十面体";
 primitive.cylinder = "円柱";
@@ -1833,7 +1882,6 @@ shortcut.cameraReset = "リセット";
 shortcut.cameraSnap = "スナップ";
 shortcut.lockSelection = "ロック";
 shortcut.lockSelection.help = "有効な場合、メッシュをタップしても選択部分を変更できません。";
-shortcut.perspective = "遠近";
 shortcut.grid = "グリッド";
 
 // Memory taken by the scene
@@ -2032,6 +2080,7 @@ stroke.falloffProject.help = "• スフィア（3d）
 これはアルファのサンプリング方法と似ています。";
 stroke.falloffProject.sphere = "球";
 stroke.falloffProject.circle = "円";
+stroke.falloffProject.cylinder = "円柱";
 
 // Symmetry
 symmetry = "対称";
@@ -2483,6 +2532,7 @@ topology.surface.useMasking.help = "マスクの部分はトポロジーが変�
 topology.surface.extrapolate = "頂点の外挿";
 // DynTopo
 topology.dynamic = "ダイナミックトポロジー";
+topology.dynamic.global = "グローバルオン/オフ";
 topology.dynamic.activate = "有効";
 topology.dynamic.activate.help = "ダイナミックトポロジーを使うと、スカルプトツールはメッシュをローカルにリアルタイムで分割したり、単純化したりできます。
 
@@ -2575,13 +2625,14 @@ topology.bake.title.help = "テクスチャベイクは、シーン内の他の�
 • UVアンラップします
 • ベイクします！
 
-Nomadは、シーン内のすべての可視メッシュを考慮に入れます。
-また、ソロモードを使用して、他のメッシュのほとんどを素早く非表示にすることもできます。
-可視オブジェクトがない場合は、シーン全体を考慮に入れます。
-
 これで、以前のオブジェクトのペイントやディテールのほとんどを保持した低解像度のメッシュが得られるはずです。
 
-操作後、頂点カラーは新しい無効なレイヤーに移動されるので、色付きテクスチャに対して乗算されるのではなく無視されます。";
+操作後、頂点カラーは新しい無効なレイヤーに移動されるので、色付きテクスチャに対して乗算されるのではなく無視されます。
+
+ベイクに使用するオブジェクトを選ぶためのロジックは以下の通りです:
+- 選択されたすべてのオブジェクトと、シーンメニューで最も強調表示されているメインの選択オブジェクトがベイクされます
+- 1つのオブジェクトだけが選択されている場合、Nomadはすべての表示されているオブジェクトを考慮します
+- すべてのオブジェクトが隠されている場合（例えば、<b>Solo</b>を使用して）、シーン全体が考慮されます";
 // Bake here means "create texture (from mesh data)"
 topology.bake.self = "自分自身から";
 // Bake here means "create texture (from another mesh data)"
@@ -2626,12 +2677,15 @@ topology.manifold.title.help = "非マニフォールドエッジのクリーン
 
 // Reset key-bindings/shortcuts
 binding.reset = "バインドをリセット";
+// Add node in a sync mode (synchronize instance)
+binding.addSync = "同期";
+binding.addSync.help = "デフォルトでは、シーンメニューで設定された同期値を使用します。";
 // Binding option
 binding.context.toggle = "コンテキストの切り替え";
 binding.toggleTool = "ツールショートカットの切り替え";
 binding.toggleTool.help = "ツールのショートカットを使用するとき、現在アクティブなショートカットツールが選択されている場合は、以前のツールが選択されます。";
 // When the key is tap once, the value will be toggled
-binding.tapToggle = "キータップでショートカットの切り替え";
+binding.toggleTap = "キータップでショートカットの切り替え";
 // The binding force camera movement
 binding.forceCamera = "カメラを強制する";
 binding.forceCamera.help = "別のバインディングとの競合がある場合にカメラのインタラクションを強制します。
@@ -2645,6 +2699,10 @@ binding.pickFaceGroup = "フェースグループを選択";
 binding.editRadius = "ツールの半径";
 // Edit the tool brush size/radius
 binding.editIntensity = "ツールの強度";
+// Controller dead zone
+binding.joystick = "ジョイスティック";
+binding.controller.deadZone = "スティックのデッドゾーン";
+binding.controller.deadZone.help = "コントローラースティックが触れられていない場合でもカメラが動く場合、この値を上げてください。";
 // Snap the camera
 binding.view.front = "フロントビュー";
 binding.view.left = "左ビュー";
@@ -2673,8 +2731,14 @@ quadremesh.adaptQuadCount = "アダプティブ・クワッド数";
 quadremesh.curvatureAdaptivness = "アダプティブサイズ";
 quadremesh.curvatureAdaptivness.help = "100%では、オブジェクトの曲率に応じてクワッドのサイズが変わり、高曲率部分ではより小さいクワッドになります。
 0%では、クワッドのサイズは均一になります。";
-quadremesh.autoDetectHardEdges = "ハードエッジの自動検出";
 quadremesh.useVertexColors = "ペイントを保持";
+quadremesh.autoDetectHardEdges = "ハードエッジの自動検出";
+quadremesh.autoDetectHardEdges.short = "ハードエッジ";
+quadremesh.reprojectVertex = "頂点の再投影";
+quadremesh.reprojectVertex.short = "頂点の再投影";
+quadremesh.reprojectVertex.label = "有効にすると、Nomadは前のメッシュ上の位置を再投影します。
+
+メッシュにレイヤーがある場合、再投影は常に使用されます。";
 
 // Privacy policy
 privacyPolicy.title = "プライバシーポリシー";
@@ -2697,6 +2761,30 @@ nomad.mainFolder.warning = "ファイルはそのままにしておきます。
 コピー、削除、移動はしません。";
 nomad.mainFolder.error = "はいを選択すると、Nomadは閉じて、簡単に再起動できます。";
 
+license.title = "ライセンス";
+license.retry = "再試行";
+license.key = "ライセンスキー";
+license.activate = "ライセンスを有効化";
+// ----------------------------------------------
+license.newest = "新しいバージョンが利用可能です！";
+// ----------------------------------------------
+license.portal.title = "既存のユーザー";
+license.portal.label = "ライセンスポータル";
+// ----------------------------------------------
+license.checkout.title = "新しいユーザー";
+license.checkout.label = "Nomadを購入";
+// ----------------------------------------------
+license.device.error = "デバイスIDを取得できませんでした。";
+license.device.mismatch = "デバイスIDが一致しません！";
+// ----------------------------------------------
+license.validate.error404 = "ライセンスキーが見つかりませんでした。";
+license.validate.error422 = "処理できないエンティティ。";
+// ----------------------------------------------
+license.activate.error403 = "最大数のデバイスに達しました！
+ライセンスポータルで他のデバイスのアクティベーションを解除できます。";
+license.activate.error404 = "ライセンスキーが見つかりませんでした。";
+license.activate.error422 = "処理できないエンティティ。";
+// ----------------------------------------------
 // version trial
 version.restore = "購入の復元";
 version.buyWeb = "ウェブバージョンはデモ目的のみに利用できます";

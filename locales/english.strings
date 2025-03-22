@@ -2,6 +2,8 @@
 confirm = "Confirm?";
 // Answer to a question (Are you sure you want to do that? [yes, cancel])
 confirm.yes = "Yes";
+// Answer to a question (Are you sure you want to do that? [yes, no, cancel])
+confirm.no = "No";
 // The generic ok in a confirm box (The next operation is dangerous. [ok, cancel])
 confirm.ok = "Ok";
 // Cancel something after being asked (Question? [answer, cancel])
@@ -10,8 +12,18 @@ confirm.cancel = "Cancel";
 // Experimental feature
 experimental = "Experimental!";
 
+status.exit = "Unsaved changes! Save before closing?";
+status.exit.yes = "Save";
+status.exit.no = "Don't save";
+
 // On single tap (should be short)
 ontap = "On tap";
+
+all = "All";
+error = "Error";
+
+reset = "Reset";
+resetOrder = "Reset order";
 
 clipboard = "Clipboard";
 clipboard.copy = "Copy";
@@ -168,6 +180,16 @@ material.texture.mipmap = "Mipmap";
 material.projection = "Projection";
 material.projection.triplanar = "Triplanar";
 
+// Prefer low power
+about.lowPower = "Low power GPU";
+about.lowPower.confirm = "After changing this value, you need to restart Nomad.";
+// Wintab wacom API
+about.wintab = "Use WinTab";
+about.wintab.help = "If WinTab is enabled, you should probably disable Windows Ink in your Wacom settings.
+
+Similarly, if WinTab is disabled, then Windows Ink should be enabled in the Wacom settings";
+// Prefer low power
+about.fullScreen = "Full Screen";
 // Minify
 about.minify = "Minify UI";
 about.minify.help = "You can also tap your screen with 4 fingers, if your device supports it.";
@@ -279,7 +301,7 @@ alert.booleanIgnored = "Boolean will ignore masked or hidden area!";
 // The user is starting an operation that can lead to a crash
 alert.range.warning = "The detail value is high and might require lot of memory!";
 // Autosave popup
-alert.autoSave.auto = "Autosave in... $0s";
+alert.autoSave.auto = "Auto Save in... $0s";
 // The selected object doesn't have any layers
 alert.needLayer = "The current tool requires an active layer.";
 // The user decided to hide the painting on the objects
@@ -321,6 +343,8 @@ background.imageY = "Position Y";
 background.imageRotation = "Rotation";
 // Scale of the reference image
 background.imageScale = "Scale";
+// Auto adjust the reference when moving the camera
+background.syncLock = "Sync with camera lock";
 
 // Blend: normal
 blend.normal = "Normal";
@@ -429,6 +453,9 @@ camera.autoPivot.help = "Update the pivot when you start interacting with the ca
 // Move the camera so that it focus on the intersection point
 camera.doubleTapFocus = "Focus";
 camera.doubleTapFocus.help = "When double tapping on the object, the camera will pan and focus on the picked point.";
+// Disable XY panning when unzomming
+camera.centerZoomOut = "Center view when zooming out";
+camera.panZoomOut.help = "When this option is disabled, this pivot position will be kept intact.";
 
 // Toolbox context (when expanded), multiple objects are selected
 context.multiselection = "Multiselection";
@@ -445,6 +472,8 @@ curve.catmull = "Catmull-Rom";
 curve.spline = "Spline";
 curve.bspline = "B-spline";
 curve.precision = "Accuracy";
+// merge or collapse 1 point into another
+curve.merge = "Merge";
 // snap
 curve.snap = "Snap";
 curve.snap.offset = "Offset";
@@ -473,8 +502,8 @@ curve.pivot.self = "Self";
 curve.pivot.children = "Children";
 
 // Set the desired FPS (frame per second, refresh rate)
-debug.targetFPS = "Target FPS";
-debug.targetFPS.help = "When disabled, the default value means it will sync with the display's refresh rate.";
+debug.limitFps = "Target FPS";
+debug.limitFps.help = "When disabled, the default value means it will sync with the display's refresh rate.";
 
 // Warning about UVs (using extra memory)
 debug.uvPrimitive.warning = "Disable this option if you don't need UVs.
@@ -483,14 +512,11 @@ Meshes with UVs will use more memory.";
 // Debug option, Normalize means transforming the data so that it fits in [0-1] the range
 debug.uvNormalize = "Normalize UVs";
 debug.uvNormalize.help = "Nomad will normalise the UVs inside the [0-1] tile.";
-// Debug option, BFF stands for Boundary First Flattening (no need to translate)
-debug.uvBFF = "Add BFF UVs";
-debug.uvBFF.help = "Add an alternative unwrapping method (boundary first flattening).
-
-Note that BFF will produce overlaps if your mesh topology is different than a disk or a sphere.";
 
 // Debug option, display an window with some debugging logs
 debug.logs = "Logs";
+// Model shortcut window
+debug.shortcut = "Shortcut window";
 // Debug option, overrides the rendering to display the depth buffer
 debug.heightmap = "Heightmap";
 // Debug options, graphical stuffs
@@ -498,6 +524,10 @@ debug.graphics = "Graphics";
 // Debug options, generate screenshots with size compatible with the iOS store
 debug.thumbnails = "Make store thumbnails";
 
+// Open file explorer
+file.explore = "Explore";
+// Empty list: there is no projects
+file.project.load = "Reload project on startup";
 // Empty list: there is no projects
 file.project.empty = "You have no saved project yet!";
 // The current opened project has some unsaved changes
@@ -512,10 +542,12 @@ file.project = "Project";
 file.project.save = "Save";
 // E.g: Save "my_project"?
 file.project.save.confirm = "Save $0?";
-// Overwrite another project
+// Make a copy
 file.project.saveAs = "Save As";
+// Overwrite another project
+file.project.overwrite = "Overwrite";
 // E.g: Overwrite "my_other_project"?
-file.project.saveAs.confirm = "Overwrite $0?";
+file.project.overwrite.confirm = "Overwrite $0?";
 // Open a project
 file.project.open = "Open";
 // E.g: Open "my_project"?
@@ -537,17 +569,20 @@ file.project.delete.confirmActive = "Delete $0?
 This is the current active project!";
 
 // Auto save section
-file.project.autoSave = "Auto Save";
-file.project.autoSave.confirm = "Disable Auto Save?";
-file.project.autoSave.help = "Save your project in a separate file at regular interval.
+file.autoSave = "Auto Save";
+file.autoSave.confirm = "Disable Auto Save?";
+file.autoSave.help = "Save your project in a separate file at regular interval.
 
 The autoSave file can be found at:";
 // Interval in minutes in which the auto save popup will appear
-file.project.autoSave.popup = "Popup timeout";
+file.autoSave.popup = "Popup timeout";
 // In minutes
-file.project.autoSave.minutes = "Timer popup";
+file.autoSave.minutes = "Timer popup";
 // Delete the current autoSave data
-file.project.autoSave.delete = "Discard Auto Save";
+file.autoSave.delete = "Discard Auto Save";
+// Open the outdated auto save
+file.autoSave.open.manual = "Open outdated manual save";
+file.autoSave.open.auto = "Open outdated auto save";
 
 // color space (linear or srgb), do not translate linear/srgb if there is a doubt
 file.colorSpace = "Color Space";
@@ -585,13 +620,17 @@ file.import.add = "Add to scene";
 file.import.add.confirm = "Import new file?";
 
 // Export scene file
-file.export.title = "Export";
+file.export = "Export";
 
+// Filter nodes that we want to export
 file.select.include = "Include";
 file.select.all = "All";
 file.select.visible = "Visible";
 file.select.selected = "Selected";
 file.select.unselected = "Unselected";
+
+// Export each node in a separate file
+file.export.separate = "One file per object";
 
 // Export the current selected objects instead of the entire scene
 file.onlySelection = "Only include selected objects";
@@ -624,12 +663,10 @@ Tangents are only used if the model has a normal map.
 
 Nomad always ignore the tangents as it will recompute them.";
 // ----------------------------------------------
-file.export.nomad = "Export Nomad";
 file.export.nomad.help = "Nomad Sculpt internal file format.
 
 This format won't load on other softwares, this is mostly for re-import purposes.";
 // ----------------------------------------------
-file.export.gltf = "Export glTF 2.0";
 // Whether we include layers in the exported file (see glossary for layer)
 file.export.gltf.layer = "Layers";
 file.export.gltf.layer.help = "Export layers as morphs. Officially supported by glTF so it should work on other softwares as well.";
@@ -637,7 +674,6 @@ file.export.gltf.layer.help = "Export layers as morphs. Officially supported by 
 file.export.gltf.layerPaint = "Layer painting";
 file.export.gltf.layerPaint.help = "Export layer painting. It is usually ignored by other softwares.";
 // ----------------------------------------------
-file.export.obj = "Export OBJ";
 file.export.obj.warning = "Layers and extra painting (roughness metalness and mask) will be lost.";
 // Whether we include the vertex color in the exported file
 file.export.obj.color = "Vertex colors";
@@ -655,16 +691,17 @@ file.export.obj.archive.folder = "Folder";
 file.export.obj.archive.zip = "Zip";
 file.export.obj.archive.help = "Some apps (Google Drive, One Drive, etc) don't support folder import, so you can use Zip instead.";
 // ----------------------------------------------
-file.export.stl = "Export STL";
+file.export.ply.warning = "Layers and extra painting (roughness, metalness, etc) will be lost.";
+// ----------------------------------------------
 file.export.stl.warning = "Layers and extra painting (roughness, metalness, etc) will be lost.";
 // Whether we include the vertex color in the exported file
 file.export.stl.color = "Vertex colors";
 file.export.stl.color.help = "Some 3d softwares will be able to read it but not all of them.";
 // ----------------------------------------------
-file.export.ply = "Export PLY";
-file.export.ply.warning = "Layers and extra painting (roughness, metalness, etc) will be lost.";
-// ----------------------------------------------
-file.export.fbx = "Export FBX";
+file.export.usd.skew = "Allow skew";
+file.export.usd.skew.help = "Allow skew in the matrix transforms.
+
+When disabled, Nomad will split skew matrices into two separate scaling and rotating transforms.";
 // ----------------------------------------------
 // Advanced settings
 settings.advanced = "Advanced";
@@ -709,7 +746,6 @@ file.render.width = "Width";
 // height of exported screenshot
 file.render.height = "Height";
 // export screenshot of the scene
-file.render.export = "Export png";
 file.render.warn = "The export resolution is high ($0x$1)!
 
 Make sure to save your project in case your device runs out of VRAM and crashes.";
@@ -738,6 +774,11 @@ pressure.intensity = "Intensity";
 // Average pencil pressure event to get smoother result
 pressure.average = "Pressure smoothing";
 pressure.average.help = "Average the pencil pressure events for smoother results.";
+// Limit pressure to 100%
+pressure.limit = "Limit pressure at 100%";
+pressure.limit.help = "This is a global setting.
+
+Use this option to ensure the stylus pressure never exceeds 100%.";
 
 // list of inputs allowing camera interaction
 gesture.camera = "Camera";
@@ -757,6 +798,11 @@ gesture.dropper = "Material picking";
 gesture.dropper.help = "The color/material picker can be triggered by long-pressing on the canvas.
 
 Note that it only work if the current brush has painting enabled.";
+
+camera.airStroke = "Allow air stroke";
+camera.airStroke.help = "Allow sculpting stroke to start even if the initial cursor misses the mesh.
+
+This option is only active for inputs with sculpting enabled and camera disabled.";
 
 // Three fingers on screen
 gesture.three.title = "Three fingers";
@@ -792,7 +838,7 @@ It will allow the following gesture:
 • tap on an unmasked area to sharpen the mask";
 // Hold the finger on screen to toggle between two tools: Mask and SelMask
 gesture.mask.holdStroke = "Stroke";
-gesture.mask.holdStroke.help = "Long press will toggle between Mask and SelMask and start a new stroke.
+gesture.mask.holdStroke.help = "Long press will toggle between Mask and SelMask and starts a new stroke.
 
 At the end of the stroke, the previous tool is selected back.";
 gesture.mask.holdIdle = "Tool";
@@ -939,7 +985,9 @@ interface.expandList = "UI: Expand list";
 interface.expandList.help = "Just an UI option for easier list management.";
 
 // Add shortcuts buttons to the bottom of the screen
-interface.bottomButtons = "Add shortcuts (bottom)...";
+interface.shortcut.bottom = "Add shortcuts (bottom)...";
+// Floating window
+interface.shortcut.float = "Add shortcuts (window)...";
 
 // Interface option (main base color)
 interface.colorBase = "Color base";
@@ -1031,6 +1079,7 @@ layer.base.nothing = "Nothing to extract!";
 layer.base.background = "Background material";
 layer.base.background.help = "If active, only the material values that differs from the background material will be extracted.";
 // (see Glossary for Layer)
+layers = "Layers";
 layers.title = "Layers";
 // (see Glossary for Layer)
 layers.title.help = "Layers can record position offsets and painting, it can be useful for non-linear workflow.
@@ -1472,7 +1521,7 @@ postprocess.scanline.spacing = "Spacing";
 // Geometry Primitive (box, sphere, cylinder, etc)
 primitive = "Primitive";
 primitive.box = "Box";
-primitive.sphereCube = "Sphere";
+primitive.sphereCube = "Quad Sphere";
 primitive.sphereUV = "UV Sphere";
 primitive.icosahedron = "Icosahedron";
 primitive.cylinder = "Cylinder";
@@ -1840,7 +1889,6 @@ shortcut.cameraReset = "Reset";
 shortcut.cameraSnap = "Snap";
 shortcut.lockSelection = "Lock";
 shortcut.lockSelection.help = "When enabled, you cannot change the selection by tapping on a mesh.";
-shortcut.perspective = "Persp";
 shortcut.grid = "Grid";
 
 // Memory taken by the scene
@@ -2042,6 +2090,7 @@ The vertex is first projected on the area plane, before taking its distance to t
 This is similar to how alphas are sampled.";
 stroke.falloffProject.sphere = "Sphere";
 stroke.falloffProject.circle = "Circle";
+stroke.falloffProject.cylinder = "Cylinder";
 
 // Symmetry
 symmetry = "Symmetry";
@@ -2203,7 +2252,7 @@ tool.measure = "Measure";
 // Ideally <10 chars (Lattice, deformer)
 tool.lattice = "Lattice";
 // If an option is shared among the tools
-tool.all = "All tools";
+tool.all = "All";
 // Ideally <10 chars (Quad Remesher)
 tool.remesh = "Quad Remesher";
 tool.remesh.guides = "Guides";
@@ -2493,6 +2542,7 @@ topology.surface.useMasking.help = "The masked areas will protect the topology f
 topology.surface.extrapolate = "Vertex extrapolation";
 // DynTopo
 topology.dynamic = "Dynamic topology";
+topology.dynamic.global = "Global on/off";
 topology.dynamic.activate = "Enabled";
 topology.dynamic.activate.help = "With dynamic topology, sculpting tools can subdivide or simplify the mesh locally in real time.
 
@@ -2586,13 +2636,14 @@ Here is the typical workflow for baking:
 • UV unwrap it
 • Bake it!
 
-Nomad will take every visible mesh in the scene into account.
-You can also use the Solo mode to quickly hide most of the other meshes.
-If there is no other visible objects, then it will take the entire scene into account.
-
 You should now have a low-resolution mesh that retains most of the paint and details of your previous object.
 
-After the operation, vertex colors will be moved in a new disabled layer, so that it gets ignored instead of being multiplied against the colored texture.";
+After the operation, vertex colors will be moved in a new disabled layer, so that it gets ignored instead of being multiplied against the colored texture.
+
+In order to choose which objects are used for baking, the following logic will apply:
+- all the selected objects used and the main selected object will be baked (strongest highlight in the scene menu)
+- if there is only one selected object, then Nomad will consider all visible objects instead
+- otherwise if every objects are hidden (for example by using Solo), then the entire scene will be taken into account";
 // Bake here means "create texture (from mesh data)"
 topology.bake.self = "From itself";
 // Bake here means "create texture (from another mesh data)"
@@ -2637,12 +2688,15 @@ It can be useful for external softwares that don't support edges that have more 
 
 // Reset key-bindings/shortcuts
 binding.reset = "Reset bindings";
+// Add node in a sync mode (synchronize instance)
+binding.addSync = "Sync";
+binding.addSync.help = "By default, it will use the sync value set in the scene menu.";
 // Binding option
 binding.context.toggle = "Toggle context";
 binding.toggleTool = "Toggle tool shortcuts";
 binding.toggleTool.help = "When using one of the tool shortcuts, the previous tool will be selected if the current shortcut tool is active.";
 // When the key is tap once, the value will be toggled
-binding.tapToggle = "Toggle shortcut on key tap";
+binding.toggleTap = "Toggle shortcut on key tap";
 // The binding force camera movement
 binding.forceCamera = "Force camera";
 binding.forceCamera.help = "Force camera interaction in case there is a conflict with another binding.
@@ -2656,6 +2710,10 @@ binding.pickFaceGroup = "Pick Face Group";
 binding.editRadius = "Tool Radius";
 // Edit the tool brush size/radius
 binding.editIntensity = "Tool Intensity";
+// Controller dead zone
+binding.joystick = "Joystick";
+binding.controller.deadZone = "Stick dead zone";
+binding.controller.deadZone.help = "Raise this value if the camera is moving even if the controller stick is left untouched.";
 // Snap the camera
 binding.view.front = "Front View";
 binding.view.left = "Left View";
@@ -2684,8 +2742,14 @@ quadremesh.adaptQuadCount = "Adaptive Quad Count";
 quadremesh.curvatureAdaptivness = "Adaptive Size";
 quadremesh.curvatureAdaptivness.help = "At 100%, quads size will vary depending on the object curvature, allowing smaller quad on high curvature.
 At 0%, quads size will be uniform.";
-quadremesh.autoDetectHardEdges = "Auto-Detect Hard Edges";
 quadremesh.useVertexColors = "Preserve painting";
+quadremesh.autoDetectHardEdges = "Auto-Detect Hard Edges";
+quadremesh.autoDetectHardEdges.short = "Hard Edges";
+quadremesh.reprojectVertex = "Reproject Vertex";
+quadremesh.reprojectVertex.short = "Reproject Vertex";
+quadremesh.reprojectVertex.label = "When enabled, Nomad will reproject the position on the previous mesh.
+
+Note that if the mesh has layers, reprojection will always be used.";
 
 // Privacy policy
 privacyPolicy.title = "Privacy Policy";
@@ -2708,6 +2772,30 @@ nomad.mainFolder.warning = "Files are left untouched.
 They are not copied, deleted or moved.";
 nomad.mainFolder.error = "After you select yes, Nomad will close and you can simply relaunch it.";
 
+license.title = "License";
+license.retry = "Retry";
+license.key = "License key";
+license.activate = "Activate license";
+// ----------------------------------------------
+license.newest = "New version available!";
+// ----------------------------------------------
+license.portal.title = "Existing users";
+license.portal.label = "License portal";
+// ----------------------------------------------
+license.checkout.title = "New users";
+license.checkout.label = "Purchase Nomad";
+// ----------------------------------------------
+license.device.error = "Could not get device ID.";
+license.device.mismatch = "Mismatch device ID!";
+// ----------------------------------------------
+license.validate.error404 = "The license key was not found.";
+license.validate.error422 = "Unprocessable Entity.";
+// ----------------------------------------------
+license.activate.error403 = "Maximum number of devices reached!
+You can de-activate another device on your license portal.";
+license.activate.error404 = "The license key was not found.";
+license.activate.error422 = "Unprocessable Entity.";
+// ----------------------------------------------
 // version trial
 version.restore = "Restore purchase";
 version.buyWeb = "Web version is only a demo";

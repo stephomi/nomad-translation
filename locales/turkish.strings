@@ -2,6 +2,8 @@
 confirm = "Onayla?";
 // Answer to a question (Are you sure you want to do that? [yes, cancel])
 confirm.yes = "Evet";
+// Answer to a question (Are you sure you want to do that? [yes, no, cancel])
+confirm.no = "Hayır";
 // The generic ok in a confirm box (The next operation is dangerous. [ok, cancel])
 confirm.ok = "Tamam";
 // Cancel something after being asked (Question? [answer, cancel])
@@ -10,8 +12,18 @@ confirm.cancel = "Vazgeç";
 // Experimental feature
 experimental = "Deneysel!";
 
+status.exit = "Kaydedilmemiş değişiklikler! Kapatmadan önce kaydetmek ister misiniz?";
+status.exit.yes = "Kaydet";
+status.exit.no = "Kaydetme";
+
 // On single tap (should be short)
 ontap = "Dokunuşta";
+
+all = "Tümü";
+error = "Hata";
+
+reset = "Sıfırla";
+resetOrder = "Sıralamasını sıfırla";
 
 clipboard = "Pano";
 clipboard.copy = "Kopyala";
@@ -168,6 +180,14 @@ material.texture.mipmap = "Mipmap";
 material.projection = "Projeksiyon";
 material.projection.triplanar = "Üç düzlemli";
 
+// Prefer low power
+about.lowPower = "Düşük güç tüketen GPU";
+about.lowPower.confirm = "Bu değeri değiştirdikten sonra, Nomad'ı yeniden başlatmanız gerekiyor.";
+// Wintab wacom API
+about.wintab = "WinTab'ı Kullanın";
+about.wintab.help = "WinTab etkinse, Wacom ayarlarında Windows Ink'i muhtemelen devre dışı bırakmalısınız.<br><br>Benzer şekilde, WinTab devre dışıysa, Windows Ink Wacom ayarlarında etkinleştirilmelidir.";
+// Prefer low power
+about.fullScreen = "Tam Ekran";
 // Minify
 about.minify = "Kullanıcı arayüzünü küçült";
 about.minify.help = "Cihazınız destekliyorsa, ekranınıza 4 parmağınızla da dokunabilirsiniz.";
@@ -321,6 +341,8 @@ background.imageY = "Y Konumu";
 background.imageRotation = "Döndürme";
 // Scale of the reference image
 background.imageScale = "Ölçek";
+// Auto adjust the reference when moving the camera
+background.syncLock = "Kamera kilidi ile senkronize et";
 
 // Blend: normal
 blend.normal = "Normal";
@@ -429,6 +451,9 @@ camera.autoPivot.help = "Kamerayla etkileşime geçildiğinde ekseni günceller.
 // Move the camera so that it focus on the intersection point
 camera.doubleTapFocus = "Odakla";
 camera.doubleTapFocus.help = "Nesneye çift dokunulduğunda kamera yatay kayarak seçilen noktaya odaklanır.";
+// Disable XY panning when unzomming
+camera.centerZoomOut = "Uzaklaşıldığında görünümü ortala";
+camera.panZoomOut.help = "Bu seçenek devre dışı bırakıldığında, bu eksen konumu korunacaktır.";
 
 // Toolbox context (when expanded), multiple objects are selected
 context.multiselection = "Çoklu seçim";
@@ -445,6 +470,8 @@ curve.catmull = "Catmull-Rom";
 curve.spline = "Spline";
 curve.bspline = "B-spline";
 curve.precision = "Hassasiyet";
+// merge or collapse 1 point into another
+curve.merge = "Birleştir";
 // snap
 curve.snap = "Yasla";
 curve.snap.offset = "Kaydırma";
@@ -473,22 +500,19 @@ curve.pivot.self = "Eğri";
 curve.pivot.children = "Alt öğeleri";
 
 // Set the desired FPS (frame per second, refresh rate)
-debug.targetFPS = "Hedef FPS";
-debug.targetFPS.help = "Devre dışı bırakıldığında, varsayılan değer ekranın yenileme hızıyla senkronize olacak demektir.";
+debug.limitFps = "Hedef FPS";
+debug.limitFps.help = "Devre dışı bırakıldığında, varsayılan değer ekranın yenileme hızıyla senkronize olacak demektir.";
 
 // Warning about UVs (using extra memory)
 debug.uvPrimitive.warning = "UV'ler gerekmiyorsa bu seçeneği devre dışı bırakın (fazladan bellek).";
 // Debug option, Normalize means transforming the data so that it fits in [0-1] the range
 debug.uvNormalize = "UV'leri normalleştir";
 debug.uvNormalize.help = "Nomad [0-1] deseninin içindeki UV'leri normalleştirecektir.";
-// Debug option, BFF stands for Boundary First Flattening (no need to translate)
-debug.uvBFF = "BFF UV'leri ekle";
-debug.uvBFF.help = "Alternatif hesaplama yöntemi ekler (boundary first flattening • BFF).
-
-Ağ örgüsü topolojiniz disk ya da küreden farklıysa, BFF'in çakışmalar oluşturacağı unutulmamalıdır.";
 
 // Debug option, display an window with some debugging logs
 debug.logs = "Kayıtları";
+// Model shortcut window
+debug.shortcut = "Kısayol penceresi";
 // Debug option, overrides the rendering to display the depth buffer
 debug.heightmap = "Yükseklik haritası";
 // Debug options, graphical stuffs
@@ -496,6 +520,10 @@ debug.graphics = "Grafik";
 // Debug options, generate screenshots with size compatible with the iOS store
 debug.thumbnails = "Mağaza boyutu küçük resimler oluştur";
 
+// Open file explorer
+file.explore = "Keşfet";
+// Empty list: there is no projects
+file.project.load = "Başlangıçta projeyi yeniden yükle";
 // Empty list: there is no projects
 file.project.empty = "Henüz kaydedilmiş bir projeniz yok!";
 // The current opened project has some unsaved changes
@@ -510,10 +538,12 @@ file.project = "Proje";
 file.project.save = "Kaydet";
 // E.g: Save "my_project"?
 file.project.save.confirm = "$0 kaydedilsin mi?";
-// Overwrite another project
+// Make a copy
 file.project.saveAs = "Farklı kaydet";
+// Overwrite another project
+file.project.overwrite = "$ üstüne yazılsın mı?";
 // E.g: Overwrite "my_other_project"?
-file.project.saveAs.confirm = "$0 üstüne yazılsın mı?";
+file.project.overwrite.confirm = "$0 üstüne yazılsın mı?";
 // Open a project
 file.project.open = "Aç";
 // E.g: Open "my_project"?
@@ -535,17 +565,20 @@ file.project.delete.confirmActive = "$0 silinsin mi?
 Bu geçerli etkin projedir!";
 
 // Auto save section
-file.project.autoSave = "Otomatik Kaydet";
-file.project.autoSave.confirm = "Otomatik kaydetme devre dışı kalsın mı?";
-file.project.autoSave.help = "Projenizi belirli aralıklarla ayrı bir dosyayay kaydedin.
+file.autoSave = "Otomatik Kaydet";
+file.autoSave.confirm = "Otomatik kaydetme devre dışı kalsın mı?";
+file.autoSave.help = "Projenizi belirli aralıklarla ayrı bir dosyayay kaydedin.
 
 Otomatik kaydetme dosyası şurada bulunabilir:";
 // Interval in minutes in which the auto save popup will appear
-file.project.autoSave.popup = "Açılır pencere zaman aşımı";
+file.autoSave.popup = "Açılır pencere zaman aşımı";
 // In minutes
-file.project.autoSave.minutes = "Zamanlayıcı açılır pencere";
+file.autoSave.minutes = "Zamanlayıcı açılır pencere";
 // Delete the current autoSave data
-file.project.autoSave.delete = "Otomatik kaydı sil";
+file.autoSave.delete = "Otomatik kaydı sil";
+// Open the outdated auto save
+file.autoSave.open.manual = "Eski manuel kaydı aç";
+file.autoSave.open.auto = "Eski otomatik kaydı aç";
 
 // color space (linear or srgb), do not translate linear/srgb if there is a doubt
 file.colorSpace = "Renk Alanı";
@@ -583,13 +616,17 @@ file.import.add = "Görünüme ekle";
 file.import.add.confirm = "Yeni dosya içeri aktarılsın mı?";
 
 // Export scene file
-file.export.title = "Dışa Aktar";
+file.export = "Dışa Aktar";
 
+// Filter nodes that we want to export
 file.select.include = "Dâhil et";
 file.select.all = "Tümü";
 file.select.visible = "Görülebilir";
 file.select.selected = "Seçilen";
 file.select.unselected = "Seçilmemiş";
+
+// Export each node in a separate file
+file.export.separate = "Her nesne için bir dosya";
 
 // Export the current selected objects instead of the entire scene
 file.onlySelection = "Sadece seçili nesneleri dâhil et";
@@ -620,12 +657,10 @@ Teğetler, yalnızca model normal haritaya sahipse kullanılır.
 
 Nomad, bunları tekrar hesaplayacağı için teğetleri daima görmezden gelir.";
 // ----------------------------------------------
-file.export.nomad = "Nomad Dışa Aktar";
 file.export.nomad.help = "Nomad Sculpt dahili dosya formatı.
 
 Bu format başka yazılımlarda yüklenmez, bu çoğunlukla yeniden içe aktarma amaçları içindir.";
 // ----------------------------------------------
-file.export.gltf = "glTF 2.0 dışa aktar";
 // Whether we include layers in the exported file (see glossary for layer)
 file.export.gltf.layer = "Katmanları";
 file.export.gltf.layer.help = "Katmanları biçimler olarak dışa aktarır. glTF tarafından resmi olarak desteklenir, dolayısıyla diğer yazılımlarda da çalışması gerekir.";
@@ -633,7 +668,6 @@ file.export.gltf.layer.help = "Katmanları biçimler olarak dışa aktarır. glT
 file.export.gltf.layerPaint = "Katman boyamasını";
 file.export.gltf.layerPaint.help = "Katman boyamayı dışa aktarır. Diğer yazılımlar tarafından genellikle göz ardı edilir.";
 // ----------------------------------------------
-file.export.obj = "OBJ dışa aktar";
 file.export.obj.warning = "Katmanlar ve ekstra boyama (pürüzlük ve metaliklik seviyesi ve maske) kaybolur.";
 // Whether we include the vertex color in the exported file
 file.export.obj.color = "Verteks renklerini";
@@ -651,16 +685,17 @@ file.export.obj.archive.folder = "Klasör";
 file.export.obj.archive.zip = "Zip";
 file.export.obj.archive.help = "Bazı uygulamalar (Google Drive, One Drive, vb.) klasör içe aktarmayı desteklemez, bu yüzden bunun yerine Zip kullanabilirsiniz.";
 // ----------------------------------------------
-file.export.stl = "STL dışa aktar";
+file.export.ply.warning = "Katmanlar ve ekstra boyama (pürüzlük ve metaliklik seviyesi ve maske) kaybolur.";
+// ----------------------------------------------
 file.export.stl.warning = "Katmanlar ve ekstra boyama (pürüzlük ve metaliklik seviyesi ve maske) kaybolur.";
 // Whether we include the vertex color in the exported file
 file.export.stl.color = "Verteks renklerini";
 file.export.stl.color.help = "Bazı 3D yazılımları bunu okuyabilir, ama hepsi okuyamaz.";
 // ----------------------------------------------
-file.export.ply = "STL dışa aktar";
-file.export.ply.warning = "Katmanlar ve ekstra boyama (pürüzlük ve metaliklik seviyesi ve maske) kaybolur.";
-// ----------------------------------------------
-file.export.fbx = "FBX Dışa Aktar";
+file.export.usd.skew = "Kaymayı İzin Ver";
+file.export.usd.skew.help = "Matris dönüşümlerinde kaymayı izin ver.
+
+Devre dışı bırakıldığında, Nomad kayma matrislerini iki ayrı ölçekleme ve döndürme dönüşümüne böler.";
 // ----------------------------------------------
 // Advanced settings
 settings.advanced = "Gelişmiş";
@@ -704,7 +739,6 @@ file.render.width = "Genişlik";
 // height of exported screenshot
 file.render.height = "Yükseklik";
 // export screenshot of the scene
-file.render.export = "png dışa aktar";
 file.render.warn = "Dışa aktarma çözünürlüğü yüksek ($0x$1)!
 
 Cihazınızın VRAM'inin yetmemesi ve çökmesi durumuna karşı projenizi kaydettiğinizden emin olun.";
@@ -733,6 +767,11 @@ pressure.intensity = "Yoğunluk";
 // Average pencil pressure event to get smoother result
 pressure.average = "Basınç yumuşatma";
 pressure.average.help = "Daha yumuşak sonuçlar için kalem basınç olaylarını ortalayın.";
+// Limit pressure to 100%
+pressure.limit = "Basıncı %100 ile sınırla";
+pressure.limit.help = "Bu genel bir ayardır.
+
+Kalem basıncının asla %100'ü aşmadığından emin olmak için bu seçeneği kullanın.";
 
 // list of inputs allowing camera interaction
 gesture.camera = "Kamera";
@@ -752,6 +791,11 @@ gesture.dropper = "Malzeme seçimi";
 gesture.dropper.help = "Kanvasın üzerine uzun basılı tutarak, renk/malzeme seçici başlatılabilir.
 
 Yalnız bunun sadece geçerli fırçada boyamanın etkin olması durumunda çalışacağı unutulmamalıdır.";
+
+camera.airStroke = "Hava vuruşuna izin ver";
+camera.airStroke.help = "Başlangıçta imleç nesneyi kaçırsa bile heykel vuruşunun başlamasına izin ver.
+
+Bu seçenek, sadece heykelcilik etkinleştirildiğinde ve kamera devredışı olduğunda girdi için aktiftir.";
 
 // Three fingers on screen
 gesture.three.title = "Üç parmak";
@@ -934,7 +978,9 @@ interface.expandList = "Kullanıcı Arayüzü: Listeyi genişlet";
 interface.expandList.help = "Sadece liste yönetimini kolaylaştıracak bir kullanıcı arayüzü seçeneği.";
 
 // Add shortcuts buttons to the bottom of the screen
-interface.bottomButtons = "Kısayollar ekle (alta)...";
+interface.shortcut.bottom = "Kısayollar ekle (alta)...";
+// Floating window
+interface.shortcut.float = "Kısayollar ekle (pencere)...";
 
 // Interface option (main base color)
 interface.colorBase = "Renk tabanı";
@@ -1026,6 +1072,7 @@ layer.base.nothing = "Çıkarılacak bir şey yok!";
 layer.base.background = "Arka plan malzemesi";
 layer.base.background.help = "Etkin ise, yalnızca arka plan malzemesinden farklı olan malzeme değerleri çıkarılacaktır.";
 // (see Glossary for Layer)
+layers = "Katmanlar";
 layers.title = "Katmanlar";
 // (see Glossary for Layer)
 layers.title.help = "Katmanlar pozisyon kaydırmalarını ve boyamaları kaydedebilir, lineer olmayan iş akışı için faydalı olabilir.
@@ -1333,9 +1380,9 @@ input.hexcolor = "Yeni renk (altıgen format)";
 // Post process effect
 postprocess = "Süreç sonrası işlemler";
 // Denoise
-postprocess.denoise = "";
-postprocess.denoise.help = "";
-postprocess.denoise.warning = "";
+postprocess.denoise = "Gürültü Giderici";
+postprocess.denoise.help = "Tüm kareler birleştikten sonra bir gürültü giderme geçişi uygula.";
+postprocess.denoise.warning = "Bu pahalı bir işlemdir, yalnızca görüntü gürültülü ise bu etkiyi etkinleştirin.";
 // Quality vs performance
 postprocess.quality = "Kalite";
 postprocess.quality.help = "Performansı düşürmeyi göze alarak kaliteyi artırmak için bu seçenekleri etkinleştirin.";
@@ -1467,7 +1514,7 @@ postprocess.scanline.spacing = "Aralık";
 // Geometry Primitive (box, sphere, cylinder, etc)
 primitive = "Primitif";
 primitive.box = "Küp";
-primitive.sphereCube = "Küre";
+primitive.sphereCube = "Dörtgen Küre";
 primitive.sphereUV = "UV Küre";
 primitive.icosahedron = "İkosahedron";
 primitive.cylinder = "Silindir";
@@ -1835,7 +1882,6 @@ shortcut.cameraReset = "Sıfırla";
 shortcut.cameraSnap = "Yasla";
 shortcut.lockSelection = "Kilitle";
 shortcut.lockSelection.help = "Etkinleştirildiğinde, bir ağ örgüsüne dokunarak seçimi değiştiremezsiniz.";
-shortcut.perspective = "Persp";
 shortcut.grid = "Izgara";
 
 // Memory taken by the scene
@@ -2034,6 +2080,7 @@ Köşe önce alan düzlemine yansıtılır, ardından fırçanın merkezine olan
 Bu, alfaların örneklenme şekline benzerdir.";
 stroke.falloffProject.sphere = "Küre";
 stroke.falloffProject.circle = "Daire";
+stroke.falloffProject.cylinder = "Silindir";
 
 // Symmetry
 symmetry = "Simetri";
@@ -2485,6 +2532,7 @@ topology.surface.useMasking.help = "Maskelenmiş alanlar topolojiyi değişmeye 
 topology.surface.extrapolate = "Verteks ekstrapolasyonu";
 // DynTopo
 topology.dynamic = "Dinamik topoloji";
+topology.dynamic.global = "Genel açık/kapalı";
 topology.dynamic.activate = "Etkin";
 topology.dynamic.activate.help = "Dinamik topoloji ile şekillendirme araçları, ağ örgüsünü alt bölümlere ayırabilir veya yerel anlamda gerçek zamanlı olarak basitleştirebilir.
 
@@ -2577,13 +2625,14 @@ Pişirme için tipik iş akışı şöyledir:
 • UV açın
 • Pişirin!
 
-Nomad, sahnedeki her görünür örgüyü hesaba katacaktır.
-Ayrıca Solo modunu kullanarak diğer örgüleri hızlı bir şekilde gizleyebilirsiniz.
-Görünürde başka nesne yoksa, tüm sahneyi hesaba katacaktır.
-
 Şimdi, önceki nesnenizin çoğu boyayı ve ayrıntıyı koruyan düşük çözünürlüklü bir örgünüz olmalı.
 
-İşlem sonrasında, tepe renkleri yeni bir devre dışı katmana taşınacak, böylece renkli doku ile çarpılmak yerine göz ardı edilmek üzere.";
+İşlem sonrasında, tepe renkleri yeni bir devre dışı katmana taşınacak, böylece renkli doku ile çarpılmak yerine göz ardı edilmek üzere.
+
+Seçilen nesnelerin hangi nesnelerinin 'baking' için kullanılacağı belirlenecektir:
+- tüm seçili nesneler ve ana seçili nesne 'baked' olacak (sahne menüsünde güçlü vurgulama)
+- eğer sadece bir seçili nesne varsa, görünür tüm nesneler göz önünde bulundurulacaktır
+- aksi takdirde, eğer tüm nesneler gizlenmişse (örneğin Solo kullanılarak), tüm sahne dikkate alınacaktır";
 // Bake here means "create texture (from mesh data)"
 topology.bake.self = "Kendisinden";
 // Bake here means "create texture (from another mesh data)"
@@ -2628,12 +2677,15 @@ Bu, 2'den fazla yüzeyi ortak olan kenarları desteklemeyen harici yazılımlar 
 
 // Reset key-bindings/shortcuts
 binding.reset = "Atamaları sıfırla";
+// Add node in a sync mode (synchronize instance)
+binding.addSync = "Senkronize";
+binding.addSync.help = "Varsayılan olarak, sahne menüsünde ayarlanan senkronizasyon değerini kullanacaktır.";
 // Binding option
 binding.context.toggle = "Bağlamı değiştir";
 binding.toggleTool = "Araç kısayollarını değiştir";
 binding.toggleTool.help = "Bir araç kısayolunu kullanırken, mevcut kısayol aracı aktifse önceki araç seçilecektir.";
 // When the key is tap once, the value will be toggled
-binding.tapToggle = "Tuşa dokunulduğunda kısayolu değiştir";
+binding.toggleTap = "Tuşa dokunulduğunda kısayolu değiştir";
 // The binding force camera movement
 binding.forceCamera = "Kamerayı zorla";
 binding.forceCamera.help = "Kamera etkileşimini başka bir bağlama ile çakışma durumunda zorlayın.
@@ -2647,6 +2699,10 @@ binding.pickFaceGroup = "Yüz Grubu Seç";
 binding.editRadius = "Araç Yarıçapı";
 // Edit the tool brush size/radius
 binding.editIntensity = "Araç yoğunluğu";
+// Controller dead zone
+binding.joystick = "Joystick";
+binding.controller.deadZone = "Ölü bölgeyi yapıştır";
+binding.controller.deadZone.help = "Kameranın hareket ettiği durumlarda, denetleyici çubuğu hareket ettirilmeden bile bu değeri artırın.";
 // Snap the camera
 binding.view.front = "Ön Görünüm";
 binding.view.left = "Sol Görünüm";
@@ -2675,8 +2731,14 @@ quadremesh.adaptQuadCount = "Adaptif Kare Sayısı";
 quadremesh.curvatureAdaptivness = "Adaptif Boyut";
 quadremesh.curvatureAdaptivness.help = "%100'de, karelerin boyutu nesnenin eğriliğine bağlı olarak değişecek ve yüksek eğrilikte daha küçük kareler sağlayacaktır.
 %0'da, karelerin boyutu düzgün olacaktır.";
-quadremesh.autoDetectHardEdges = "Sert Kenarları Otomatik Algıla";
 quadremesh.useVertexColors = "Boyamayı koru";
+quadremesh.autoDetectHardEdges = "Sert Kenarları Otomatik Algıla";
+quadremesh.autoDetectHardEdges.short = "Sert Kenarlar";
+quadremesh.reprojectVertex = "Düğüm Noktasını Yeniden Projeksiyon";
+quadremesh.reprojectVertex.short = "Düğüm Noktasını Yeniden Projeksiyon";
+quadremesh.reprojectVertex.label = "Etkinleştirildiğinde, Nomad önceki ağda konumu yeniden projeksiyon yapacaktır.
+
+Not: Eğer ağ katmanlara sahipse, her zaman yeniden projeksiyon yapılacaktır.";
 
 // Privacy policy
 privacyPolicy.title = "Gizlilik Politikası";
@@ -2699,6 +2761,30 @@ nomad.mainFolder.warning = "Dosyalar dokunulmadan kalır.
 Kopyalanmaz, silinmez veya taşınmaz.";
 nomad.mainFolder.error = "Evet'i seçtikten sonra, Nomad kapanacak ve sadece yeniden başlatmanız yeterli olacak.";
 
+license.title = "Lisans";
+license.retry = "Tekrar dene";
+license.key = "Lisans anahtarı";
+license.activate = "Lisansı etkinleştir";
+// ----------------------------------------------
+license.newest = "Yeni versiyon mevcut!";
+// ----------------------------------------------
+license.portal.title = "Mevcut kullanıcılar";
+license.portal.label = "Lisans portalı";
+// ----------------------------------------------
+license.checkout.title = "Yeni kullanıcılar";
+license.checkout.label = "Nomad'ı Satın Al";
+// ----------------------------------------------
+license.device.error = "Cihaz kimliği alınamadı.";
+license.device.mismatch = "Cihaz kimliği eşleşmiyor!";
+// ----------------------------------------------
+license.validate.error404 = "Lisans anahtarı bulunamadı.";
+license.validate.error422 = "İşlenemez Varlık.";
+// ----------------------------------------------
+license.activate.error403 = "Maksimum cihaz sayısına ulaşıldı!
+Lisans portalınızda başka bir cihazı devre dışı bırakabilirsiniz.";
+license.activate.error404 = "Lisans anahtarı bulunamadı.";
+license.activate.error422 = "İşlenemez Varlık.";
+// ----------------------------------------------
 // version trial
 version.restore = "Satın almayı geri yükle";
 version.buyWeb = "Web versiyonu sadece bir demodur";

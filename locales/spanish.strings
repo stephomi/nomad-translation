@@ -2,6 +2,8 @@
 confirm = "¿Confirmar?";
 // Answer to a question (Are you sure you want to do that? [yes, cancel])
 confirm.yes = "Sí";
+// Answer to a question (Are you sure you want to do that? [yes, no, cancel])
+confirm.no = "No";
 // The generic ok in a confirm box (The next operation is dangerous. [ok, cancel])
 confirm.ok = "Aceptar";
 // Cancel something after being asked (Question? [answer, cancel])
@@ -10,8 +12,18 @@ confirm.cancel = "Cancelar";
 // Experimental feature
 experimental = "¡Experimental!";
 
+status.exit = "¡Cambios no guardados! ¿Desea guardar antes de cerrar?";
+status.exit.yes = "Guardar";
+status.exit.no = "No guardar";
+
 // On single tap (should be short)
 ontap = "Pulsación";
+
+all = "Todo";
+error = "Error";
+
+reset = "Restablecer";
+resetOrder = "Restablecer el orden";
 
 clipboard = "Portapapeles";
 clipboard.copy = "Copiar";
@@ -168,6 +180,16 @@ material.texture.mipmap = "Mipmap";
 material.projection = "Proyección";
 material.projection.triplanar = "Triplanar";
 
+// Prefer low power
+about.lowPower = "GPU de bajo consumo";
+about.lowPower.confirm = "Después de cambiar este valor, necesita reiniciar Nomad.";
+// Wintab wacom API
+about.wintab = "Usar WinTab";
+about.wintab.help = "Si WinTab está habilitado, probablemente debería desactivar Windows Ink en sus configuraciones de Wacom.
+
+De manera similar, si WinTab está deshabilitado, entonces Windows Ink debería estar habilitado en las configuraciones de Wacom.";
+// Prefer low power
+about.fullScreen = "Pantalla Completa";
 // Minify
 about.minify = "Minimizar la interfaz de usuario";
 about.minify.help = "También puedes pulsar la pantalla con 4 dedos, si el dispositivo lo admite.";
@@ -321,6 +343,8 @@ background.imageY = "Posición Y";
 background.imageRotation = "Rotación";
 // Scale of the reference image
 background.imageScale = "Escala";
+// Auto adjust the reference when moving the camera
+background.syncLock = "Sincronizar con bloqueo de cámara";
 
 // Blend: normal
 blend.normal = "Normal";
@@ -382,10 +406,10 @@ camera.focal = "distancia focal $0 mm (sensor de 35 mm)";
 // Rotation mode controls how the user will interact with the camera rotation
 camera.rotation = "Modo órbita";
 // Camera interaction mode, 2 degrees of freedom (synonym: Orbit)
-camera.rotation.orbit = "Placa giratoria";
+camera.rotation.orbit = "Giro";
 // Camera interaction mode, 3 degrees of freedom
-camera.rotation.trackball = "Bola de desplazamiento";
-camera.rotation.trackball.help = "La bola de desplazamiento te da más grados de libertad. También puedes rodar la cámara con 2 dedos.";
+camera.rotation.trackball = "Trackball";
+camera.rotation.trackball.help = "La Trackball te da más grados de libertad. También puedes rodar la cámara con 2 dedos.";
 // Camera interaction mode, 1st person view
 camera.firstPerson = "Primera persona";
 // How sensitive the camera is (synonym: sensitivity)
@@ -429,6 +453,9 @@ camera.autoPivot.help = "Actualiza el pivote cuando comiences a interactuar con 
 // Move the camera so that it focus on the intersection point
 camera.doubleTapFocus = "Centrar";
 camera.doubleTapFocus.help = "Al pulsar dos veces la malla, la cámara se desplazará y enfocará en el punto seleccionado.";
+// Disable XY panning when unzomming
+camera.centerZoomOut = "Centrar vista al alejar";
+camera.panZoomOut.help = "Cuando esta opción está deshabilitada, esta posición de pivote se mantendrá intacta.";
 
 // Toolbox context (when expanded), multiple objects are selected
 context.multiselection = "Multiselección";
@@ -445,6 +472,8 @@ curve.catmull = "Catmull-Rom";
 curve.spline = "Spline";
 curve.bspline = "B-spline";
 curve.precision = "Precisión";
+// merge or collapse 1 point into another
+curve.merge = "Fusionar";
 // snap
 curve.snap = "Capturar";
 curve.snap.offset = "Desplazamiento";
@@ -473,22 +502,19 @@ curve.pivot.self = "Curva";
 curve.pivot.children = "Hijos";
 
 // Set the desired FPS (frame per second, refresh rate)
-debug.targetFPS = "FPS del objetivo";
-debug.targetFPS.help = "Cuando está desactivado, el valor predeterminado significa que se sincronizará con la tasa de refresco de la pantalla.";
+debug.limitFps = "FPS del objetivo";
+debug.limitFps.help = "Cuando está desactivado, el valor predeterminado significa que se sincronizará con la tasa de refresco de la pantalla.";
 
 // Warning about UVs (using extra memory)
 debug.uvPrimitive.warning = "Deshabilita esta opción si no necesitas UV (memoria adicional).";
 // Debug option, Normalize means transforming the data so that it fits in [0-1] the range
 debug.uvNormalize = "Normalizar UV";
 debug.uvNormalize.help = "Nomad normalizará los UV dentro del mosaico [0-1].";
-// Debug option, BFF stands for Boundary First Flattening (no need to translate)
-debug.uvBFF = "Añadir UV de BFF";
-debug.uvBFF.help = "Agrega un método alternativo de desenvolver (primer aplanamiento de límites).
-
-Ten en cuenta que BFF producirá superposiciones si tu topología de malla es diferente de un disco o una esfera.";
 
 // Debug option, display an window with some debugging logs
 debug.logs = "Registros";
+// Model shortcut window
+debug.shortcut = "Ventana de atajos";
 // Debug option, overrides the rendering to display the depth buffer
 debug.heightmap = "Mapa de alturas";
 // Debug options, graphical stuffs
@@ -496,6 +522,10 @@ debug.graphics = "Gráficos";
 // Debug options, generate screenshots with size compatible with the iOS store
 debug.thumbnails = "Crear miniaturas de tienda";
 
+// Open file explorer
+file.explore = "Explorar";
+// Empty list: there is no projects
+file.project.load = "Recargar proyecto al iniciar";
 // Empty list: there is no projects
 file.project.empty = "¡Aún no tienes ningún proyecto guardado!";
 // The current opened project has some unsaved changes
@@ -510,10 +540,12 @@ file.project = "Proyecto";
 file.project.save = "Guardar";
 // E.g: Save "my_project"?
 file.project.save.confirm = "¿Guardar $0?";
-// Overwrite another project
+// Make a copy
 file.project.saveAs = "Guardar como";
+// Overwrite another project
+file.project.overwrite = "¿Sobrescribir?";
 // E.g: Overwrite "my_other_project"?
-file.project.saveAs.confirm = "¿Sobrescribir $0?";
+file.project.overwrite.confirm = "¿Sobrescribir $0?";
 // Open a project
 file.project.open = "Abrir";
 // E.g: Open "my_project"?
@@ -535,17 +567,20 @@ file.project.delete.confirmActive = "¿Eliminar $0?
 ¡Este es el proyecto activo actual!";
 
 // Auto save section
-file.project.autoSave = "Guardado automático";
-file.project.autoSave.confirm = "¿Desactivar el guardado automático?";
-file.project.autoSave.help = "Guarda el proyecto en un archivo separado a intervalos regulares.
+file.autoSave = "Guardado automático";
+file.autoSave.confirm = "¿Desactivar el guardado automático?";
+file.autoSave.help = "Guarda el proyecto en un archivo separado a intervalos regulares.
 
 El archivo de guardado automático se puede encontrar en:";
 // Interval in minutes in which the auto save popup will appear
-file.project.autoSave.popup = "Tiempo de espera emergente";
+file.autoSave.popup = "Tiempo de espera emergente";
 // In minutes
-file.project.autoSave.minutes = "Temporizador emergente";
+file.autoSave.minutes = "Temporizador emergente";
 // Delete the current autoSave data
-file.project.autoSave.delete = "Descartar auto guardado";
+file.autoSave.delete = "Descartar auto guardado";
+// Open the outdated auto save
+file.autoSave.open.manual = "Abrir guardado manual desactualizado";
+file.autoSave.open.auto = "Abrir auto guardado desactualizado";
 
 // color space (linear or srgb), do not translate linear/srgb if there is a doubt
 file.colorSpace = "Espacio de Color";
@@ -583,13 +618,17 @@ file.import.add = "Añadir a escena";
 file.import.add.confirm = "¿Importar un nuevo archivo?";
 
 // Export scene file
-file.export.title = "Exportar";
+file.export = "Exportar";
 
+// Filter nodes that we want to export
 file.select.include = "Incluir";
 file.select.all = "Todo";
 file.select.visible = "Visible";
 file.select.selected = "Seleccionado";
 file.select.unselected = "No seleccionado";
+
+// Export each node in a separate file
+file.export.separate = "Un archivo por objeto";
 
 // Export the current selected objects instead of the entire scene
 file.onlySelection = "Exportar selección únicamente";
@@ -620,12 +659,10 @@ Las tangencias solo se utilizan si el modelo tiene un mapa normal.
 
 Nomad siempre ignora las tangencias ya que las volverá a calcular.";
 // ----------------------------------------------
-file.export.nomad = "Exportar Nomad";
 file.export.nomad.help = "Formato de archivo interno de Nomad Sculpt.
 
 Este formato no se cargará en otros programas, esto es principalmente para propósitos de re-importación.";
 // ----------------------------------------------
-file.export.gltf = "Exportar glTF 2.0";
 // Whether we include layers in the exported file (see glossary for layer)
 file.export.gltf.layer = "Capas";
 file.export.gltf.layer.help = "Exportar capas como transformaciones. Oficialmente compatible con glTF, por lo que también debería funcionar en otros softwares.";
@@ -633,7 +670,6 @@ file.export.gltf.layer.help = "Exportar capas como transformaciones. Oficialment
 file.export.gltf.layerPaint = "Pintura de capa";
 file.export.gltf.layerPaint.help = "Exportar pintura de capa. Por lo general, es ignorado por otros softwares.";
 // ----------------------------------------------
-file.export.obj = "Exportar OBJ";
 file.export.obj.warning = "Se perderán las capas y la pintura adicional (rugosidad, metálico y máscara).";
 // Whether we include the vertex color in the exported file
 file.export.obj.color = "Colores de vértices";
@@ -651,16 +687,17 @@ file.export.obj.archive.folder = "Carpeta";
 file.export.obj.archive.zip = "Zip";
 file.export.obj.archive.help = "Algunas aplicaciones (Google Drive, One Drive, etc.) no admiten la importación de carpetas, por lo que puedes usar Zip en su lugar.";
 // ----------------------------------------------
-file.export.stl = "Exportar STL";
+file.export.ply.warning = "Se perderán las capas y la pintura pintura (rugosidad, metálico y máscara).";
+// ----------------------------------------------
 file.export.stl.warning = "Se perderán las capas y la pintura pintura (rugosidad, metálico y máscara).";
 // Whether we include the vertex color in the exported file
 file.export.stl.color = "Colores de vértices";
 file.export.stl.color.help = "Algunos softwares 3D podrán leerlo, pero no todos.";
 // ----------------------------------------------
-file.export.ply = "Exportar STL";
-file.export.ply.warning = "Se perderán las capas y la pintura pintura (rugosidad, metálico y máscara).";
-// ----------------------------------------------
-file.export.fbx = "Exportar FBX";
+file.export.usd.skew = "Permitir inclinación";
+file.export.usd.skew.help = "Permitir inclinación en las transformaciones de la matriz.
+
+Cuando está deshabilitado, Nomad dividirá las matrices de inclinación en dos transformaciones separadas de escalado y rotación.";
 // ----------------------------------------------
 // Advanced settings
 settings.advanced = "Avanzado";
@@ -705,7 +742,6 @@ file.render.width = "Ancho";
 // height of exported screenshot
 file.render.height = "Altura";
 // export screenshot of the scene
-file.render.export = "Exportar png";
 file.render.warn = "¡La resolución de exportación es alta ($0x$1)!
 
 Asegúrate de guardar el proyecto en caso de que el dispositivo se quede sin VRAM y se bloquee.";
@@ -734,6 +770,11 @@ pressure.intensity = "Intensidad";
 // Average pencil pressure event to get smoother result
 pressure.average = "Suavizado de presión";
 pressure.average.help = "Promedia los eventos de presión del lápiz para obtener resultados más suaves.";
+// Limit pressure to 100%
+pressure.limit = "Limitar presión al 100%";
+pressure.limit.help = "Esta es una configuración global.
+
+Use esta opción para asegurarse de que la presión del lápiz nunca supere el 100%.";
 
 // list of inputs allowing camera interaction
 gesture.camera = "Cámara";
@@ -753,6 +794,11 @@ gesture.dropper = "Selección de material";
 gesture.dropper.help = "El selector de color/material se puede invocar manteniendo pulsado el lienzo.
 
 Importante: esto solo funciona si el pincel actual tiene activada la pintura.";
+
+camera.airStroke = "Permitir trazo aéreo";
+camera.airStroke.help = "Permitir que el trazo de escultura comience incluso si el cursor inicial falla en la malla.
+
+Esta opción solo está activa para entradas con escultura habilitada y cámara desactivada.";
 
 // Three fingers on screen
 gesture.three.title = "Tres dedos";
@@ -935,7 +981,9 @@ interface.expandList = "Interfaz de usuario: Expandir lista";
 interface.expandList.help = "Solo una opción de interfaz de usuario para una administración de listas más fácil.";
 
 // Add shortcuts buttons to the bottom of the screen
-interface.bottomButtons = "Añadir accesos directos (abajo)...";
+interface.shortcut.bottom = "Añadir accesos directos (abajo)...";
+// Floating window
+interface.shortcut.float = "Añadir accesos directos (ventana flotante)...";
 
 // Interface option (main base color)
 interface.colorBase = "Base de color";
@@ -1027,6 +1075,7 @@ layer.base.nothing = "¡Nada que extraer!";
 layer.base.background = "Material de fondo";
 layer.base.background.help = "Si está activo, solo se extraerán los valores del material que difieran del material de fondo.";
 // (see Glossary for Layer)
+layers = "Capas";
 layers.title = "Capas";
 // (see Glossary for Layer)
 layers.title.help = "Las capas pueden registrar desplazamientos de posición y pintura, que puede ser útil para flujos de trabajo no lineales.
@@ -1332,9 +1381,9 @@ input.hexcolor = "Color hexadecimal";
 // Post process effect
 postprocess = "posprocesado";
 // Denoise
-postprocess.denoise = "";
-postprocess.denoise.help = "";
-postprocess.denoise.warning = "";
+postprocess.denoise = "Filtro de ruido";
+postprocess.denoise.help = "Aplicar un paso de reducción de ruido después de acumular todos los fotogramas.";
+postprocess.denoise.warning = "Esta es una operación costosa, solo active este efecto si la imagen tiene ruido.";
 // Quality vs performance
 postprocess.quality = "Calidad";
 postprocess.quality.help = "Activa estas opciones para mejorar la calidad en detrimento del rendimiento.";
@@ -1466,7 +1515,7 @@ postprocess.scanline.spacing = "Espaciado";
 // Geometry Primitive (box, sphere, cylinder, etc)
 primitive = "Primitivo";
 primitive.box = "Caja";
-primitive.sphereCube = "Esfera";
+primitive.sphereCube = "Esfera Cuádruple";
 primitive.sphereUV = "Esfera UV";
 primitive.icosahedron = "Icosaedro";
 primitive.cylinder = "Cilindro";
@@ -1832,7 +1881,6 @@ shortcut.cameraReset = "Restablecer";
 shortcut.cameraSnap = "Capturar";
 shortcut.lockSelection = "Bloquear";
 shortcut.lockSelection.help = "Cuando está habilitado, no puedes cambiar la selección pulsando una malla.";
-shortcut.perspective = "Persp";
 shortcut.grid = "Cuadrícula";
 
 // Memory taken by the scene
@@ -2031,6 +2079,7 @@ El vértice se proyecta primero en el plano del área, antes de tomar su distanc
 Esto es similar a cómo se muestrean las alfas.";
 stroke.falloffProject.sphere = "Esfera";
 stroke.falloffProject.circle = "Circulo";
+stroke.falloffProject.cylinder = "Cilindro";
 
 // Symmetry
 symmetry = "Simetría";
@@ -2483,6 +2532,7 @@ topology.surface.useMasking.help = "Las áreas enmascaradas protegerán la topol
 topology.surface.extrapolate = "Extrapolación de vértices";
 // DynTopo
 topology.dynamic = "Topología dinámica";
+topology.dynamic.global = "Global activado/desactivado";
 topology.dynamic.activate = "Habilitado";
 topology.dynamic.activate.help = "Con la topología dinámica, las herramientas de escultura pueden subdividir o simplificar la malla localmente en tiempo real.
 
@@ -2575,13 +2625,14 @@ Aquí está el flujo de trabajo típico para la cocción:
 • Desenvuelve UV
 • Cuécela!
 
-Nomad tomará en cuenta cada malla visible en la escena.
-También puedes usar el modo Solo para ocultar rápidamente la mayoría de las otras mallas.
-Si no hay otros objetos visibles, entonces tomará en cuenta toda la escena.
-
 Ahora deberías tener una malla de baja resolución que retiene la mayoría de la pintura y detalles de tu objeto anterior.
 
-Después de la operación, los colores de los vértices se moverán a una nueva capa desactivada, para que se ignore en lugar de multiplicarse contra la textura coloreada.";
+Después de la operación, los colores de los vértices se moverán a una nueva capa desactivada, para que se ignore en lugar de multiplicarse contra la textura coloreada.
+
+Para elegir qué objetos se utilizan para el horneado, se aplicará la siguiente lógica:
+- se hornearán todos los objetos seleccionados y el objeto principal seleccionado (el resaltado más fuerte en el menú de la escena)
+- si solo hay un objeto seleccionado, Nomad considerará todos los objetos visibles en su lugar
+- de lo contrario, si todos los objetos están ocultos (por ejemplo, usando Solo), se tomará en cuenta toda la escena";
 // Bake here means "create texture (from mesh data)"
 topology.bake.self = "Desde sí mismo";
 // Bake here means "create texture (from another mesh data)"
@@ -2626,12 +2677,15 @@ Puede ser útil para softwares externos que no admiten bordes que tienen más de
 
 // Reset key-bindings/shortcuts
 binding.reset = "Restablecer atajos";
+// Add node in a sync mode (synchronize instance)
+binding.addSync = "Sincronizar";
+binding.addSync.help = "Por defecto, usará el valor de sincronización establecido en el menú de escenas.";
 // Binding option
 binding.context.toggle = "Alternar contexto";
 binding.toggleTool = "Alternar atajos de herramientas";
 binding.toggleTool.help = "Al usar uno de los atajos de herramientas, se seleccionará la herramienta anterior si la herramienta actual del atajo está activa.";
 // When the key is tap once, the value will be toggled
-binding.tapToggle = "Alternar acceso directo al presionar la tecla";
+binding.toggleTap = "Alternar acceso directo al presionar la tecla";
 // The binding force camera movement
 binding.forceCamera = "Forzar cámara";
 binding.forceCamera.help = "Forzar la interacción de la cámara en caso de conflicto con otra vinculación.
@@ -2645,6 +2699,10 @@ binding.pickFaceGroup = "Seleccionar Grupo de Caras";
 binding.editRadius = "Radio de herramienta";
 // Edit the tool brush size/radius
 binding.editIntensity = "Intensidad de herramienta";
+// Controller dead zone
+binding.joystick = "Joystick";
+binding.controller.deadZone = "Zona muerta del stick";
+binding.controller.deadZone.help = "Aumenta este valor si la cámara se mueve incluso si el stick del controlador se deja sin tocar.";
 // Snap the camera
 binding.view.front = "Vista Frontal";
 binding.view.left = "Vista Izquierda";
@@ -2673,8 +2731,14 @@ quadremesh.adaptQuadCount = "Cantidad de Cuadrados Adaptativos";
 quadremesh.curvatureAdaptivness = "Tamaño Adaptativo";
 quadremesh.curvatureAdaptivness.help = "Al 100%, el tamaño de los cuadrados variará dependiendo de la curvatura del objeto, permitiendo cuadrados más pequeños en alta curvatura.
 Al 0%, el tamaño de los cuadrados será uniforme.";
-quadremesh.autoDetectHardEdges = "Detección Automática de Bordes Duros";
 quadremesh.useVertexColors = "Preservar pintura";
+quadremesh.autoDetectHardEdges = "Detección Automática de Bordes Duros";
+quadremesh.autoDetectHardEdges.short = "Bordes duros";
+quadremesh.reprojectVertex = "Reproyectar vértice";
+quadremesh.reprojectVertex.short = "Reproyectar vértice";
+quadremesh.reprojectVertex.label = "Cuando está activado, Nomad reproyectará la posición en la malla anterior.
+
+Tenga en cuenta que si la malla tiene capas, siempre se utilizará la reproyección.";
 
 // Privacy policy
 privacyPolicy.title = "Política de privacidad";
@@ -2697,6 +2761,30 @@ nomad.mainFolder.warning = "Los archivos quedan intactos.
 No se copian, eliminan ni mueven.";
 nomad.mainFolder.error = "Después de seleccionar sí, Nomad se cerrará y podrás reiniciarlo simplemente.";
 
+license.title = "Licencia";
+license.retry = "Reintentar";
+license.key = "Clave de licencia";
+license.activate = "Activar licencia";
+// ----------------------------------------------
+license.newest = "¡Nueva versión disponible!";
+// ----------------------------------------------
+license.portal.title = "Usuarios existentes";
+license.portal.label = "Portal de licencias";
+// ----------------------------------------------
+license.checkout.title = "Nuevos usuarios";
+license.checkout.label = "Comprar Nomad";
+// ----------------------------------------------
+license.device.error = "No se pudo obtener la identificación del dispositivo.";
+license.device.mismatch = "¡Discrepancia en la identificación del dispositivo!";
+// ----------------------------------------------
+license.validate.error404 = "Clave de licencia no encontrada.";
+license.validate.error422 = "Entidad no procesable.";
+// ----------------------------------------------
+license.activate.error403 = "¡Número máximo de dispositivos alcanzado!
+Puedes desactivar otro dispositivo en tu portal de licencias.";
+license.activate.error404 = "Clave de licencia no encontrada.";
+license.activate.error422 = "Entidad no procesable.";
+// ----------------------------------------------
 // version trial
 version.restore = "Restaurar compra";
 version.buyWeb = "La versión web es solo una demostración";

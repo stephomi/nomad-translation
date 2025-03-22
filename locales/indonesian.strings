@@ -2,6 +2,8 @@
 confirm = "Konfirmasi?";
 // Answer to a question (Are you sure you want to do that? [yes, cancel])
 confirm.yes = "Ya";
+// Answer to a question (Are you sure you want to do that? [yes, no, cancel])
+confirm.no = "Tidak";
 // The generic ok in a confirm box (The next operation is dangerous. [ok, cancel])
 confirm.ok = "Oke";
 // Cancel something after being asked (Question? [answer, cancel])
@@ -10,8 +12,18 @@ confirm.cancel = "Batal";
 // Experimental feature
 experimental = "Eksperimental!";
 
+status.exit = "Perubahan yang belum disimpan! Simpan sebelum menutup?";
+status.exit.yes = "Simpan";
+status.exit.no = "Jangan simpan";
+
 // On single tap (should be short)
 ontap = "Pada tap";
+
+all = "Semua";
+error = "Kesalahan";
+
+reset = "Setel ulang";
+resetOrder = "Atur ulang urutan";
 
 clipboard = "Papan klip";
 clipboard.copy = "Salin";
@@ -168,6 +180,16 @@ material.texture.mipmap = "Mipmap";
 material.projection = "Proyeksi";
 material.projection.triplanar = "Triplanar";
 
+// Prefer low power
+about.lowPower = "GPU daya rendah";
+about.lowPower.confirm = "Setelah mengubah nilai ini, Anda perlu memulai ulang Nomad.";
+// Wintab wacom API
+about.wintab = "Gunakan WinTab";
+about.wintab.help = "Jika WinTab diaktifkan, Anda mungkin harus menonaktifkan Windows Ink dalam pengaturan Wacom Anda.
+
+Sebaliknya, jika WinTab dinonaktifkan, maka Windows Ink harus diaktifkan dalam pengaturan Wacom";
+// Prefer low power
+about.fullScreen = "Layar penuh";
 // Minify
 about.minify = "Minimize UI";
 about.minify.help = "Anda juga bisa mengetuk layar Anda dengan 4 jari, jika perangkat Anda mendukungnya.";
@@ -321,6 +343,8 @@ background.imageY = "Posisi Y";
 background.imageRotation = "Rotasi";
 // Scale of the reference image
 background.imageScale = "Skala";
+// Auto adjust the reference when moving the camera
+background.syncLock = "Sinkronkan dengan kunci kamera";
 
 // Blend: normal
 blend.normal = "Normal";
@@ -429,6 +453,9 @@ camera.autoPivot.help = "Perbarui pivot saat Anda mulai berinteraksi dengan kame
 // Move the camera so that it focus on the intersection point
 camera.doubleTapFocus = "Fokus";
 camera.doubleTapFocus.help = "Saat mengetuk dua kali pada objek, kamera akan bergerak dan fokus pada titik yang dipilih.";
+// Disable XY panning when unzomming
+camera.centerZoomOut = "Pusatkan tampilan saat memperkecil zoom";
+camera.panZoomOut.help = "Ketika opsi ini dinonaktifkan, posisi poros ini akan tetap terjaga.";
 
 // Toolbox context (when expanded), multiple objects are selected
 context.multiselection = "Multiseleksi";
@@ -445,6 +472,8 @@ curve.catmull = "Catmull-Rom";
 curve.spline = "Spline";
 curve.bspline = "B-spline";
 curve.precision = "Ketepatan";
+// merge or collapse 1 point into another
+curve.merge = "Gabungkan";
 // snap
 curve.snap = "Tangkap";
 curve.snap.offset = "Pergerakan";
@@ -473,8 +502,8 @@ curve.pivot.self = "Sendiri";
 curve.pivot.children = "Anak";
 
 // Set the desired FPS (frame per second, refresh rate)
-debug.targetFPS = "Target FPS";
-debug.targetFPS.help = "Ketika dinonaktifkan, nilai default berarti akan sinkron dengan laju penyegaran layar.";
+debug.limitFps = "Target FPS";
+debug.limitFps.help = "Ketika dinonaktifkan, nilai default berarti akan sinkron dengan laju penyegaran layar.";
 
 // Warning about UVs (using extra memory)
 debug.uvPrimitive.warning = "Nonaktifkan opsi ini jika Anda tidak memerlukan UVs.
@@ -483,14 +512,11 @@ Mesh dengan UVs akan menggunakan lebih banyak memori.";
 // Debug option, Normalize means transforming the data so that it fits in [0-1] the range
 debug.uvNormalize = "Normalisasi UVs";
 debug.uvNormalize.help = "Nomad akan menormalisasi UVs di dalam ubin [0-1].";
-// Debug option, BFF stands for Boundary First Flattening (no need to translate)
-debug.uvBFF = "Tambahkan BFF UVs";
-debug.uvBFF.help = "Tambahkan metode unfolding alternatif (boundary first flattening).
-
-Perhatikan bahwa BFF akan menghasilkan tumpang tindih jika topologi mesh Anda berbeda dari disk atau bola.";
 
 // Debug option, display an window with some debugging logs
 debug.logs = "Log";
+// Model shortcut window
+debug.shortcut = "Tombol pintas jendela";
 // Debug option, overrides the rendering to display the depth buffer
 debug.heightmap = "Peta Tinggi";
 // Debug options, graphical stuffs
@@ -498,6 +524,10 @@ debug.graphics = "Grafik";
 // Debug options, generate screenshots with size compatible with the iOS store
 debug.thumbnails = "Buat thumbnail toko";
 
+// Open file explorer
+file.explore = "Jelajahi";
+// Empty list: there is no projects
+file.project.load = "Muat ulang proyek saat memulai";
 // Empty list: there is no projects
 file.project.empty = "Anda belum memiliki proyek yang disimpan!";
 // The current opened project has some unsaved changes
@@ -512,10 +542,12 @@ file.project = "Proyek";
 file.project.save = "Simpan";
 // E.g: Save "my_project"?
 file.project.save.confirm = "Simpan $0?";
-// Overwrite another project
+// Make a copy
 file.project.saveAs = "Simpan Sebagai";
+// Overwrite another project
+file.project.overwrite = "Timpa";
 // E.g: Overwrite "my_other_project"?
-file.project.saveAs.confirm = "Timpa $0?";
+file.project.overwrite.confirm = "Timpa $0?";
 // Open a project
 file.project.open = "Buka";
 // E.g: Open "my_project"?
@@ -537,17 +569,20 @@ file.project.delete.confirmActive = "Hapus $0?
 Ini adalah proyek aktif saat ini!";
 
 // Auto save section
-file.project.autoSave = "Simpan Otomatis";
-file.project.autoSave.confirm = "Nonaktifkan Simpan Otomatis?";
-file.project.autoSave.help = "Simpan proyek Anda dalam berkas terpisah secara teratur.
+file.autoSave = "Simpan Otomatis";
+file.autoSave.confirm = "Nonaktifkan Simpan Otomatis?";
+file.autoSave.help = "Simpan proyek Anda dalam berkas terpisah secara teratur.
 
 Berkas autoSave dapat ditemukan di:";
 // Interval in minutes in which the auto save popup will appear
-file.project.autoSave.popup = "Batas waktu pop-up";
+file.autoSave.popup = "Batas waktu pop-up";
 // In minutes
-file.project.autoSave.minutes = "Timer pop-up";
+file.autoSave.minutes = "Timer pop-up";
 // Delete the current autoSave data
-file.project.autoSave.delete = "Buang Simpan Otomatis";
+file.autoSave.delete = "Buang Simpan Otomatis";
+// Open the outdated auto save
+file.autoSave.open.manual = "Buka simpan manual yang usang";
+file.autoSave.open.auto = "Buka auto simpan yang usang";
 
 // color space (linear or srgb), do not translate linear/srgb if there is a doubt
 file.colorSpace = "Ruang Warna";
@@ -585,13 +620,17 @@ file.import.add = "Tambahkan ke adegan";
 file.import.add.confirm = "Impor file baru?";
 
 // Export scene file
-file.export.title = "Ekspor";
+file.export = "Ekspor";
 
+// Filter nodes that we want to export
 file.select.include = "Termasuk";
 file.select.all = "Semua";
 file.select.visible = "Terlihat";
 file.select.selected = "Dipilih";
 file.select.unselected = "Tidak terpilih";
+
+// Export each node in a separate file
+file.export.separate = "Satu file per objek";
 
 // Export the current selected objects instead of the entire scene
 file.onlySelection = "Hanya sertakan objek yang dipilih";
@@ -624,12 +663,10 @@ Tangen hanya digunakan jika model memiliki peta normal.
 
 Nomad selalu mengabaikan tangen karena akan menghitung ulang.";
 // ----------------------------------------------
-file.export.nomad = "Ekspor Nomad";
 file.export.nomad.help = "Format file internal Nomad Sculpt.
 
 Format ini tidak akan memuat di perangkat lunak lain, ini terutama untuk tujuan impor ulang.";
 // ----------------------------------------------
-file.export.gltf = "Ekspor glTF 2.0";
 // Whether we include layers in the exported file (see glossary for layer)
 file.export.gltf.layer = "Lapisan";
 file.export.gltf.layer.help = "Ekspor lapisan sebagai morph. Resmi didukung oleh glTF sehingga seharusnya berfungsi di perangkat lunak lain juga.";
@@ -637,7 +674,6 @@ file.export.gltf.layer.help = "Ekspor lapisan sebagai morph. Resmi didukung oleh
 file.export.gltf.layerPaint = "Melukis lapisan";
 file.export.gltf.layerPaint.help = "Ekspor pengecatan lapisan. Biasanya diabaikan oleh perangkat lunak lain.";
 // ----------------------------------------------
-file.export.obj = "Ekspor OBJ";
 file.export.obj.warning = "Lapisan dan pengecatan tambahan (kesat logam dan topeng) akan hilang.";
 // Whether we include the vertex color in the exported file
 file.export.obj.color = "Warna verteks";
@@ -655,16 +691,17 @@ file.export.obj.archive.folder = "Folder";
 file.export.obj.archive.zip = "Zip";
 file.export.obj.archive.help = "Beberapa aplikasi (Google Drive, One Drive, dll.) tidak mendukung impor folder, jadi Anda bisa menggunakan Zip sebagai gantinya.";
 // ----------------------------------------------
-file.export.stl = "Ekspor STL";
+file.export.ply.warning = "Lapisan dan pengecatan tambahan (kesat, logam, dll) akan hilang.";
+// ----------------------------------------------
 file.export.stl.warning = "Lapisan dan pengecatan tambahan (kesat, logam, dll) akan hilang.";
 // Whether we include the vertex color in the exported file
 file.export.stl.color = "Warna puncak";
 file.export.stl.color.help = "Beberapa perangkat lunak 3D akan dapat membacanya tetapi tidak semuanya.";
 // ----------------------------------------------
-file.export.ply = "Ekspor PLY";
-file.export.ply.warning = "Lapisan dan pengecatan tambahan (kesat, logam, dll) akan hilang.";
-// ----------------------------------------------
-file.export.fbx = "Ekspor FBX";
+file.export.usd.skew = "Izinkan skew";
+file.export.usd.skew.help = "Izinkan skew dalam transformasi matriks.
+
+Ketika dinonaktifkan, Nomad akan memisahkan matriks skew menjadi dua transformasi pemahaman dan rotasi.";
 // ----------------------------------------------
 // Advanced settings
 settings.advanced = "Lanjutan";
@@ -709,7 +746,6 @@ file.render.width = "Lebar";
 // height of exported screenshot
 file.render.height = "Tinggi";
 // export screenshot of the scene
-file.render.export = "Ekspor png";
 file.render.warn = "Resolusi ekspor tinggi ($0x$1)!
 
 Pastikan untuk menyimpan proyek Anda jika perangkat kehabisan VRAM dan mengalami crash.";
@@ -738,6 +774,11 @@ pressure.intensity = "Intensitas";
 // Average pencil pressure event to get smoother result
 pressure.average = "Pelunakan tekanan";
 pressure.average.help = "Rata-rata peristiwa tekanan pensil untuk hasil yang lebih halus.";
+// Limit pressure to 100%
+pressure.limit = "Batasi tekanan pada 100%";
+pressure.limit.help = "Ini adalah pengaturan global.
+
+Gunakan opsi ini untuk memastikan tekanan stylus tidak pernah melebihi 100%.";
 
 // list of inputs allowing camera interaction
 gesture.camera = "Kamera";
@@ -757,6 +798,11 @@ gesture.dropper = "Pemilihan material";
 gesture.dropper.help = "Pemilih warna/material dapat diaktifkan dengan menekan lama pada kanvas.
 
 Perhatikan bahwa ini hanya berfungsi jika kuas saat ini mengaktifkan pengecatan.";
+
+camera.airStroke = "Izinkan goresan udara";
+camera.airStroke.help = "Izinkan goresan patung dimulai meskipun kursor awal meleset dari mesh.
+
+Pilihan ini hanya aktif untuk input dengan patung diaktifkan dan kamera dinonaktifkan.";
 
 // Three fingers on screen
 gesture.three.title = "Tiga jari";
@@ -939,7 +985,9 @@ interface.expandList = "UI: Perbesar daftar";
 interface.expandList.help = "Hanya opsi antarmuka untuk memudahkan pengelolaan daftar.";
 
 // Add shortcuts buttons to the bottom of the screen
-interface.bottomButtons = "Tambahkan pintasan (bawah)...";
+interface.shortcut.bottom = "Tambahkan pintasan (bawah)...";
+// Floating window
+interface.shortcut.float = "Tambahkan pintasan (jendela)...";
 
 // Interface option (main base color)
 interface.colorBase = "Warna dasar";
@@ -1031,6 +1079,7 @@ layer.base.nothing = "Tidak ada yang dapat diekstrak!";
 layer.base.background = "Material latar belakang";
 layer.base.background.help = "Jika aktif, hanya nilai material yang berbeda dari material latar belakang yang akan diekstrak.";
 // (see Glossary for Layer)
+layers = "Lapisan";
 layers.title = "Lapisan";
 // (see Glossary for Layer)
 layers.title.help = "Lapisan dapat merekam offset posisi dan pengecatan, ini bisa berguna untuk alur kerja non-linear.
@@ -1338,9 +1387,9 @@ input.hexcolor = "Warna baru (format hex)";
 // Post process effect
 postprocess = "Pemrosesan pasca";
 // Denoise
-postprocess.denoise = "";
-postprocess.denoise.help = "";
-postprocess.denoise.warning = "";
+postprocess.denoise = "Peredam bising";
+postprocess.denoise.help = "Terapkan pengurangan bising setelah semua bingkai terkumpul.";
+postprocess.denoise.warning = "Ini adalah operasi mahal, aktifkan efek ini hanya jika gambar berisik.";
 // Quality vs performance
 postprocess.quality = "Kualitas";
 postprocess.quality.help = "Aktifkan opsi-opsi ini untuk meningkatkan kualitas dengan mengorbankan kinerja.";
@@ -1472,7 +1521,7 @@ postprocess.scanline.spacing = "Jarak";
 // Geometry Primitive (box, sphere, cylinder, etc)
 primitive = "Primitif";
 primitive.box = "Kotak";
-primitive.sphereCube = "Bola";
+primitive.sphereCube = "Bola Kubus";
 primitive.sphereUV = "Bola UV";
 primitive.icosahedron = "Ikosahedron";
 primitive.cylinder = "Silinder";
@@ -1840,7 +1889,6 @@ shortcut.cameraReset = "Atur Ulang";
 shortcut.cameraSnap = "Sejajar";
 shortcut.lockSelection = "Kunci";
 shortcut.lockSelection.help = "Ketika diaktifkan, Anda tidak dapat mengubah pilihan dengan mengetuk pada mesh.";
-shortcut.perspective = "Persp";
 shortcut.grid = "Grid";
 
 // Memory taken by the scene
@@ -2042,6 +2090,7 @@ Vertex pertama diproyeksikan pada bidang area, sebelum mengambil jaraknya ke pus
 Ini mirip dengan cara alphas disampel.";
 stroke.falloffProject.sphere = "Bola";
 stroke.falloffProject.circle = "Lingkaran";
+stroke.falloffProject.cylinder = "Silinder";
 
 // Symmetry
 symmetry = "Simetri";
@@ -2203,7 +2252,7 @@ tool.measure = "Ukuran";
 // Ideally <10 chars (Lattice, deformer)
 tool.lattice = "Kerangka";
 // If an option is shared among the tools
-tool.all = "Semua alat";
+tool.all = "Semua";
 // Ideally <10 chars (Quad Remesher)
 tool.remesh = "Quad Remesher";
 tool.remesh.guides = "Panduan";
@@ -2493,6 +2542,7 @@ topology.surface.useMasking.help = "Area yang dimasker akan melindungi topologi 
 topology.surface.extrapolate = "Ekstrapolasi Vertex";
 // DynTopo
 topology.dynamic = "Topologi dinamis";
+topology.dynamic.global = "Global aktif/non-aktif";
 topology.dynamic.activate = "Diaktifkan";
 topology.dynamic.activate.help = "Dengan topologi dinamis, alat sculpting dapat membagi atau menyederhanakan mesh secara lokal dalam waktu nyata.
 
@@ -2586,13 +2636,14 @@ Berikut adalah alur kerja tipikal untuk baking:
 • Membuka UV-nya
 • Bakinglah!
 
-Nomad akan memperhitungkan semua mesh yang terlihat di dalam pemandangan.
-Anda juga dapat menggunakan mode Solo untuk dengan cepat menyembunyikan sebagian besar mesh lainnya.
-Jika tidak ada objek lain yang terlihat, maka akan memperhitungkan seluruh pemandangan.
-
 Anda sekarang harus memiliki mesh beresolusi rendah yang mempertahankan sebagian besar cat dan detail dari objek sebelumnya.
 
-Setelah operasi, warna vertex akan dipindahkan ke layer baru yang dinonaktifkan, sehingga diabaikan alih-alih dikalikan dengan tekstur berwarna.";
+Setelah operasi, warna vertex akan dipindahkan ke layer baru yang dinonaktifkan, sehingga diabaikan alih-alih dikalikan dengan tekstur berwarna.
+
+Untuk memilih objek mana yang digunakan untuk baking, logika berikut ini akan diterapkan:
+- semua objek yang dipilih dan objek utama yang dipilih akan dibake (sorotan terkuat di menu scene)
+- jika hanya ada satu objek yang dipilih, maka Nomad akan mempertimbangkan semua objek yang terlihat
+- jika semua objek disembunyikan (misalnya dengan menggunakan Solo), maka seluruh scene akan dipertimbangkan";
 // Bake here means "create texture (from mesh data)"
 topology.bake.self = "Dari diri sendiri";
 // Bake here means "create texture (from another mesh data)"
@@ -2637,12 +2688,15 @@ Ini bisa berguna untuk perangkat lunak eksternal yang tidak mendukung tepi denga
 
 // Reset key-bindings/shortcuts
 binding.reset = "Reset pengikatan";
+// Add node in a sync mode (synchronize instance)
+binding.addSync = "Sinkron";
+binding.addSync.help = "Secara default, akan menggunakan nilai sinkron yang ditetapkan di menu scene.";
 // Binding option
 binding.context.toggle = "Alihkan konteks";
 binding.toggleTool = "Alihkan pintasan alat";
 binding.toggleTool.help = "Saat menggunakan salah satu pintasan alat, alat sebelumnya akan dipilih jika alat pintasan saat ini aktif.";
 // When the key is tap once, the value will be toggled
-binding.tapToggle = "Beralih pintasan pada ketukkan tombol";
+binding.toggleTap = "Beralih pintasan pada ketukkan tombol";
 // The binding force camera movement
 binding.forceCamera = "Paksa Kamera";
 binding.forceCamera.help = "Paksa interaksi kamera jika ada konflik dengan pengikatan lain.
@@ -2656,6 +2710,10 @@ binding.pickFaceGroup = "Pilih Grup Wajah";
 binding.editRadius = "Radius Alat";
 // Edit the tool brush size/radius
 binding.editIntensity = "Intensitas Alat";
+// Controller dead zone
+binding.joystick = "Joystick";
+binding.controller.deadZone = "Stik zona mati";
+binding.controller.deadZone.help = "Tingkatkan nilai ini jika kamera bergerak meskipun stik pengontrol tidak disentuh.";
 // Snap the camera
 binding.view.front = "Tampilan Depan";
 binding.view.left = "Tampilan Kiri";
@@ -2684,8 +2742,14 @@ quadremesh.adaptQuadCount = "Hitung Kuad Adaptif";
 quadremesh.curvatureAdaptivness = "Ukuran Adaptif";
 quadremesh.curvatureAdaptivness.help = "Pada 100%, ukuran kuad akan bervariasi tergantung pada lekukan objek, memungkinkan kuad lebih kecil pada lekukan tinggi.
 Pada 0%, ukuran kuad akan seragam.";
-quadremesh.autoDetectHardEdges = "Deteksi Tepi Keras Otomatis";
 quadremesh.useVertexColors = "Lestarikan lukisan";
+quadremesh.autoDetectHardEdges = "Deteksi Tepi Keras Otomatis";
+quadremesh.autoDetectHardEdges.short = "Lampu Keras";
+quadremesh.reprojectVertex = "Proyeksikan Ulang Vertex";
+quadremesh.reprojectVertex.short = "Proyeksikan Ulang Vertex";
+quadremesh.reprojectVertex.label = "Saat diaktifkan, Nomad akan memproyeksikan ulang posisi pada mesh sebelumnya.
+
+Perhatikan bahwa jika mesh memiliki layer, reproyeksi akan selalu digunakan.";
 
 // Privacy policy
 privacyPolicy.title = "Kebijakan Privasi";
@@ -2708,6 +2772,30 @@ nomad.mainFolder.warning = "File dibiarkan tidak tersentuh.
 Mereka tidak disalin, dihapus, atau dipindahkan.";
 nomad.mainFolder.error = "Setelah Anda memilih ya, Nomad akan menutup dan Anda bisa melanjutkan dengan meluncurkannya kembali.";
 
+license.title = "Lisensi";
+license.retry = "Coba Lagi";
+license.key = "Kunci lisensi";
+license.activate = "Aktifkan lisensi";
+// ----------------------------------------------
+license.newest = "Versi baru tersedia!";
+// ----------------------------------------------
+license.portal.title = "Pengguna yang sudah ada";
+license.portal.label = "Portal lisensi";
+// ----------------------------------------------
+license.checkout.title = "Pengguna baru";
+license.checkout.label = "Beli Nomad";
+// ----------------------------------------------
+license.device.error = "Tidak dapat mendapatkan ID perangkat.";
+license.device.mismatch = "ID perangkat tidak cocok!";
+// ----------------------------------------------
+license.validate.error404 = "Kunci lisensi tidak ditemukan.";
+license.validate.error422 = "Entity tidak dapat diproses.";
+// ----------------------------------------------
+license.activate.error403 = "Jumlah maksimum perangkat telah tercapai!
+Anda dapat menonaktifkan perangkat lain di portal lisensi Anda.";
+license.activate.error404 = "Kunci lisensi tidak ditemukan.";
+license.activate.error422 = "Entity tidak dapat diproses.";
+// ----------------------------------------------
 // version trial
 version.restore = "Pulihkan pembelian";
 version.buyWeb = "Versi web hanya untuk demonstrasi";
