@@ -13,6 +13,8 @@ experimental = "Eksperimental!";
 // On single tap (should be short)
 ontap = "Pada tap";
 
+error = "";
+
 clipboard = "Papan klip";
 clipboard.copy = "Salin";
 clipboard.paste = "Tempel";
@@ -548,6 +550,8 @@ file.project.autoSave.popup = "Batas waktu pop-up";
 file.project.autoSave.minutes = "Timer pop-up";
 // Delete the current autoSave data
 file.project.autoSave.delete = "Buang Simpan Otomatis";
+// Open the last auto save?
+file.project.autoSave.open.warning = "Buka penyimpanan otomatis terakhir?";
 
 // color space (linear or srgb), do not translate linear/srgb if there is a doubt
 file.colorSpace = "Ruang Warna";
@@ -585,7 +589,7 @@ file.import.add = "Tambahkan ke adegan";
 file.import.add.confirm = "Impor file baru?";
 
 // Export scene file
-file.export.title = "Ekspor";
+file.export = "Ekspor";
 
 file.select.include = "Termasuk";
 file.select.all = "Semua";
@@ -624,12 +628,10 @@ Tangen hanya digunakan jika model memiliki peta normal.
 
 Nomad selalu mengabaikan tangen karena akan menghitung ulang.";
 // ----------------------------------------------
-file.export.nomad = "Ekspor Nomad";
 file.export.nomad.help = "Format file internal Nomad Sculpt.
 
 Format ini tidak akan memuat di perangkat lunak lain, ini terutama untuk tujuan impor ulang.";
 // ----------------------------------------------
-file.export.gltf = "Ekspor glTF 2.0";
 // Whether we include layers in the exported file (see glossary for layer)
 file.export.gltf.layer = "Lapisan";
 file.export.gltf.layer.help = "Ekspor lapisan sebagai morph. Resmi didukung oleh glTF sehingga seharusnya berfungsi di perangkat lunak lain juga.";
@@ -637,7 +639,6 @@ file.export.gltf.layer.help = "Ekspor lapisan sebagai morph. Resmi didukung oleh
 file.export.gltf.layerPaint = "Melukis lapisan";
 file.export.gltf.layerPaint.help = "Ekspor pengecatan lapisan. Biasanya diabaikan oleh perangkat lunak lain.";
 // ----------------------------------------------
-file.export.obj = "Ekspor OBJ";
 file.export.obj.warning = "Lapisan dan pengecatan tambahan (kesat logam dan topeng) akan hilang.";
 // Whether we include the vertex color in the exported file
 file.export.obj.color = "Warna verteks";
@@ -655,16 +656,12 @@ file.export.obj.archive.folder = "Folder";
 file.export.obj.archive.zip = "Zip";
 file.export.obj.archive.help = "Beberapa aplikasi (Google Drive, One Drive, dll.) tidak mendukung impor folder, jadi Anda bisa menggunakan Zip sebagai gantinya.";
 // ----------------------------------------------
-file.export.stl = "Ekspor STL";
 file.export.stl.warning = "Lapisan dan pengecatan tambahan (kesat, logam, dll) akan hilang.";
 // Whether we include the vertex color in the exported file
 file.export.stl.color = "Warna puncak";
 file.export.stl.color.help = "Beberapa perangkat lunak 3D akan dapat membacanya tetapi tidak semuanya.";
 // ----------------------------------------------
-file.export.ply = "Ekspor PLY";
 file.export.ply.warning = "Lapisan dan pengecatan tambahan (kesat, logam, dll) akan hilang.";
-// ----------------------------------------------
-file.export.fbx = "Ekspor FBX";
 // ----------------------------------------------
 // Advanced settings
 settings.advanced = "Lanjutan";
@@ -709,7 +706,6 @@ file.render.width = "Lebar";
 // height of exported screenshot
 file.render.height = "Tinggi";
 // export screenshot of the scene
-file.render.export = "Ekspor png";
 file.render.warn = "Resolusi ekspor tinggi ($0x$1)!
 
 Pastikan untuk menyimpan proyek Anda jika perangkat kehabisan VRAM dan mengalami crash.";
@@ -1338,9 +1334,9 @@ input.hexcolor = "Warna baru (format hex)";
 // Post process effect
 postprocess = "Pemrosesan pasca";
 // Denoise
-postprocess.denoise = "";
-postprocess.denoise.help = "";
-postprocess.denoise.warning = "";
+postprocess.denoise = "Peredam bising";
+postprocess.denoise.help = "Terapkan pengurangan bising setelah semua bingkai terkumpul.";
+postprocess.denoise.warning = "Ini adalah operasi mahal, aktifkan efek ini hanya jika gambar berisik.";
 // Quality vs performance
 postprocess.quality = "Kualitas";
 postprocess.quality.help = "Aktifkan opsi-opsi ini untuk meningkatkan kualitas dengan mengorbankan kinerja.";
@@ -2586,13 +2582,14 @@ Berikut adalah alur kerja tipikal untuk baking:
 • Membuka UV-nya
 • Bakinglah!
 
-Nomad akan memperhitungkan semua mesh yang terlihat di dalam pemandangan.
-Anda juga dapat menggunakan mode Solo untuk dengan cepat menyembunyikan sebagian besar mesh lainnya.
-Jika tidak ada objek lain yang terlihat, maka akan memperhitungkan seluruh pemandangan.
-
 Anda sekarang harus memiliki mesh beresolusi rendah yang mempertahankan sebagian besar cat dan detail dari objek sebelumnya.
 
-Setelah operasi, warna vertex akan dipindahkan ke layer baru yang dinonaktifkan, sehingga diabaikan alih-alih dikalikan dengan tekstur berwarna.";
+Setelah operasi, warna vertex akan dipindahkan ke layer baru yang dinonaktifkan, sehingga diabaikan alih-alih dikalikan dengan tekstur berwarna.
+
+Untuk memilih objek mana yang digunakan untuk baking, logika berikut ini akan diterapkan:
+- semua objek yang dipilih dan objek utama yang dipilih akan dibake (sorotan terkuat di menu scene)
+- jika hanya ada satu objek yang dipilih, maka Nomad akan mempertimbangkan semua objek yang terlihat
+- jika semua objek disembunyikan (misalnya dengan menggunakan Solo), maka seluruh scene akan dipertimbangkan";
 // Bake here means "create texture (from mesh data)"
 topology.bake.self = "Dari diri sendiri";
 // Bake here means "create texture (from another mesh data)"
