@@ -13,6 +13,8 @@ experimental = "Experimental!";
 // On single tap (should be short)
 ontap = "Toque";
 
+error = "";
+
 clipboard = "Área de transferência";
 clipboard.copy = "Copiar";
 clipboard.paste = "Colar";
@@ -546,6 +548,8 @@ file.project.autoSave.popup = "Tempo limite do pop-up";
 file.project.autoSave.minutes = "Pop-up do timer";
 // Delete the current autoSave data
 file.project.autoSave.delete = "Descartar Salvamento Automático";
+// Open the last auto save?
+file.project.autoSave.open.warning = "Abrir a última auto-salvar?";
 
 // color space (linear or srgb), do not translate linear/srgb if there is a doubt
 file.colorSpace = "Espaço de Cor";
@@ -583,7 +587,7 @@ file.import.add = "Adicionar à cena";
 file.import.add.confirm = "Importar novo arquivo?";
 
 // Export scene file
-file.export.title = "Exportar";
+file.export = "Exportar";
 
 file.select.include = "Incluir";
 file.select.all = "Todos";
@@ -620,12 +624,10 @@ Tangentes são utilizadas apenas se o modelo possui um mapa normal.
 
 O Nomad sempre ignora as tangentes, pois ele as recalcula.";
 // ----------------------------------------------
-file.export.nomad = "Exportar Nomad";
 file.export.nomad.help = "Formato de arquivo interno do Nomad Sculpt.
 
 Este formato não será carregado em outros softwares, é mais para fins de reimportação.";
 // ----------------------------------------------
-file.export.gltf = "Exportar glTF 2.0";
 // Whether we include layers in the exported file (see glossary for layer)
 file.export.gltf.layer = "Camadas";
 file.export.gltf.layer.help = "Exporte as camadas como morphs. Por ser oficialmente compatível com gITF, isso também deve funcionar em outros softwares.";
@@ -633,7 +635,6 @@ file.export.gltf.layer.help = "Exporte as camadas como morphs. Por ser oficialme
 file.export.gltf.layerPaint = "Pintura da camada";
 file.export.gltf.layerPaint.help = "Exporte a pintura da camada. Normalmente, isso é ignorado por outros softwares.";
 // ----------------------------------------------
-file.export.obj = "Exportar OBJ";
 file.export.obj.warning = "Camadas e pinturas extras (aspereza, metalidade e máscara) serão perdidas.";
 // Whether we include the vertex color in the exported file
 file.export.obj.color = "Cores dos vértices";
@@ -651,16 +652,15 @@ file.export.obj.archive.folder = "Pasta";
 file.export.obj.archive.zip = "Zip";
 file.export.obj.archive.help = "Alguns aplicativos (Google Drive, One Drive, etc) não suportam a importação de pastas, então você pode usar Zip em vez disso.";
 // ----------------------------------------------
-file.export.stl = "Exportar STL";
+file.export.ply.warning = "Camadas e pinturas extras (aspereza, metalidade e máscara) serão perdidas.";
+// ----------------------------------------------
 file.export.stl.warning = "Camadas e pinturas extras (aspereza, metalidade e máscara) serão perdidas.";
 // Whether we include the vertex color in the exported file
 file.export.stl.color = "Cores dos vértices";
 file.export.stl.color.help = "Alguns softwares de 3D (mas não todos) poderão ler essas informações.";
 // ----------------------------------------------
-file.export.ply = "Exportar STL";
-file.export.ply.warning = "Camadas e pinturas extras (aspereza, metalidade e máscara) serão perdidas.";
-// ----------------------------------------------
-file.export.fbx = "Exportar FBX";
+file.export.usd.skew = "";
+file.export.usd.skew.help = "";
 // ----------------------------------------------
 // Advanced settings
 settings.advanced = "Avançado";
@@ -706,7 +706,6 @@ file.render.width = "Largura";
 // height of exported screenshot
 file.render.height = "Altura";
 // export screenshot of the scene
-file.render.export = "Exportar png";
 file.render.warn = "A resolução da exportação é alta ($0x$1)!
 
 Certifique-se de que o projeto esteja salvo para o caso do dispositivo ficar sem VRAM e falhar.";
@@ -1333,9 +1332,9 @@ input.hexcolor = "Nova cor (formato hex)";
 // Post process effect
 postprocess = "Pós-processamento";
 // Denoise
-postprocess.denoise = "";
-postprocess.denoise.help = "";
-postprocess.denoise.warning = "";
+postprocess.denoise = "Removedor de Ruído";
+postprocess.denoise.help = "Aplicar uma passagem de remoção de ruído após acumular todos os quadros.";
+postprocess.denoise.warning = "Esta é uma operação onerosa. Ative este efeito apenas se a imagem estiver com ruído.";
 // Quality vs performance
 postprocess.quality = "Qualidade";
 postprocess.quality.help = "Ative estas opções para melhorar a qualidade em detrimento do desempenho.";
@@ -2579,13 +2578,14 @@ Aqui está o fluxo de trabalho típico para baking:
 • Desembrulhe-a (UV unwrap)
 • Faça o baking!
 
-O Nomad levará em conta todas as malhas visíveis na cena.
-Você também pode usar o modo Solo para esconder rapidamente a maioria das outras malhas.
-Se não houver outros objetos visíveis, então toda a cena será levada em conta.
-
 Você agora deve ter uma malha de baixa resolução que retém a maioria da pintura e detalhes do seu objeto anterior.
 
-Após a operação, as cores dos vértices serão movidas para uma nova camada desativada, para que sejam ignoradas em vez de serem multiplicadas contra a textura colorida.";
+Após a operação, as cores dos vértices serão movidas para uma nova camada desativada, para que sejam ignoradas em vez de serem multiplicadas contra a textura colorida.
+
+Para escolher quais objetos são usados para baking, a seguinte lógica será aplicada:
+- todos os objetos selecionados usados e o objeto principal selecionado serão baked (maior destaque no menu da cena)
+- se houver apenas um objeto selecionado, o Nomad considerará todos os objetos visíveis em vez disso 
+- caso contrário, se todos os objetos estiverem ocultos (por exemplo, ao usar Solo), então toda a cena será levada em consideração";
 // Bake here means "create texture (from mesh data)"
 topology.bake.self = "De si mesmo";
 // Bake here means "create texture (from another mesh data)"
