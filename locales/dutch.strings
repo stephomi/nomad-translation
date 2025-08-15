@@ -56,7 +56,7 @@ direction.up = "Omhoog";
 direction.down = "Omlaag";
 direction.left = "Links";
 direction.right = "Rechts";
-// 3d cube
+// 3D cube
 cube.top = "Bovenkant";
 cube.bottom = "Onderkant";
 cube.left = "Links";
@@ -122,6 +122,8 @@ item.next = "Volgende";
 item.lock = "Vergrendelen";
 // No item selected
 item.none = "Geen";
+// Draggable, moveable
+item.draggable = "";
 
 // Search something (text entry to filter item)
 search = "Zoeken";
@@ -233,6 +235,10 @@ about.threads = "Threads";
 
 // The user canceled an operation that was running
 alert.aborted = "Operatie afgebroken!";
+// Empty mesh
+alert.mirror.empty = "Lege uitvoer!";
+// Mesh already mirrored
+alert.mirror.same = "Zelfde uitvoer!";
 // Error when an algorithm needs the object to have an hole (usually to fill it)
 alert.hole.nothing = "Het object heeft geen gaten!";
 // No operation occured because the mesh is already manifold
@@ -262,10 +268,10 @@ alert.voxelRemesh.invalidInput = "Ongeldige invoer!";
 alert.matrix.clone = "Het object wordt gedupliceerd";
 // Helper popup to tell the users the object will cloned
 alert.matrix.instance = "Het object wordt geïnstantieerd";
-// A pivot refers the gizmo 3d position, this mode means we are moving the pivot
+// A pivot refers the gizmo 3D position, this mode means we are moving the pivot
 alert.gizmo.editPivot = "Draaipuntmodus bewerken.";
 alert.mask.full = "Masker = 100%!";
-// A pivot refers the gizmo 3d position
+// A pivot refers the gizmo 3D position
 alert.gizmo.editObject = "Objectmodus bewerken.";
 // See Glossary (DynTopo)
 alert.dynamic.enable = "Dynamische topologie AAN";
@@ -381,7 +387,7 @@ blend.cancelation.subtract = "Aftrekken";
 blend.component = "Component";
 blend.component.luminosity = "Helderheid";
 
-// Camera (point of view in 3d)
+// Camera (point of view in 3D)
 camera = "Camera";
 cameras = "Camera's";
 camera.view = "Weergave";
@@ -954,8 +960,6 @@ history.state.undo = "Ongedaan maken: $0";
 // Shown during redo
 history.state.redo = "Opnieuw doen: $0";
 // Shown during undo/redo
-history.state.symmetrySplit = "Symmetrische splitsing";
-// Shown during undo/redo
 history.state.voxelRemesh = "Voxel-mesh";
 // Shown during undo/redo
 history.state.surfaceRemesh = "Oppervlak remesh";
@@ -975,6 +979,9 @@ inspect.seams = "Naden";
 
 // Interface customization
 interface = "Interface";
+
+// Resize window (should be short)
+interface.resize = "Formaat aanpassen";
 
 // UI customization: one item row will stands on one line (synonym: Inlined)
 interface.compact = "UI: Compact";
@@ -1031,6 +1038,17 @@ interface.toolbox.rows = "Rijen";
 interface.toolbox.resetOrder = "Reset volgorde";
 // Colored text and icon
 interface.toolbox.color = "Gekleurd";
+// Top bar
+interface.top.title = "Top balk";
+interface.top.responsive = "Responsief";
+interface.top.responsive.help = "Deze optie is vooral relevant voor kleine schermen.";
+interface.top.responsive.multiline = "Meerdere lijnen";
+interface.top.responsive.scroll = "Scroll";
+interface.top.responsive.collapse = "Inklappen";
+interface.top.alt = "Alternatieve volgorde";
+interface.top.alt.help = "Alternatief pictogram voor de volgorde van het topmenu.
+
+Menu's met betrekking tot mesh-bewerking bevinden zich meestal aan de tegenoverliggende kant van het scènemenu, wat kan helpen bij scènes bewerken.";
 // Scale the interface
 interface.scale = "Algemene schaal";
 // Spacing between widgets
@@ -1986,6 +2004,18 @@ stroke.silhouette.closest = "Dichtstbijzijnde";
 // Only sculpt the vertex that points toward the direction of the deformation
 stroke.sameSide = "Alleen zelfde-kant vertex";
 stroke.sameSide.help = "Negeer vertices die in de tegengestelde richting van de vervorming wijzen.";
+// determine normal direction
+stroke.normal.direction = "";
+stroke.normal.direction.help = "";
+stroke.normal.direction.normal = "";
+stroke.normal.direction.normal.help = "";
+stroke.normal.direction.screen = "";
+stroke.normal.direction.screen.help = "";
+stroke.normal.direction.auto = "";
+stroke.normal.direction.auto.help = "";
+stroke.normal.direction.auto.threshold = "";
+stroke.normal.direction.auto.threshold.help = "";
+// small tip/warning
 stroke.onlyLasso = "Instellingen alleen actief voor het lasso gereedschap.";
 
 // Here sampling refers to the app gathering information under the mouse
@@ -2004,8 +2034,8 @@ stroke.area.normal.average = "Normaalgemiddelde";
 // Sampling averaging
 stroke.area.point.average = "Positiegemiddelde";
 // Keep sharp edges
-stroke.keepSharp = "Scherpe randen behouden";
-stroke.keepSharp.help = "Sluit punten uit waarvan de normaal te veel afwijkt van de oppervlakte normaal.
+stroke.normalFilter = "Normaal filter";
+stroke.normalFilter.help = "Sluit punten uit waarvan de normaal te veel afwijkt van de oppervlakte normaal.
 
 Dit verandert hoe het vlakgebied wordt berekend (Gebied sampling).
 
@@ -2126,13 +2156,19 @@ symmetry.method.world = "Wereld";
 symmetry.method.local = "Lokaal";
 // Move the object to the other side of the symmetry (mirror it as well)
 symmetry.flip = "Object omkeren";
-// Mirror the mesh
-symmetry.mirror = "Spiegeling";
+// Cut half of the mesh
+symmetry.cut = "Snij";
+// after mirroring, separate into multiple output (synonym: split, separate)
+symmetry.split = "Splitsen";
+// Reapply the mesh mirror, does not impact the topology
+symmetry.mirror = "Spiegel";
 symmetry.mirror.help = "Probeer de symmetrie opnieuw toe te passen zonder de topologie te beïnvloeden.
 
 Radiale symmetrie wordt genegeerd.
 
 Als topologie niet kan worden behouden omdat deze niet als symmetrisch wordt beschouwd, krijgt u de optie om de spiegeling af te dwingen.";
+// indicate that applying the mirror will keep the mesh topology
+symmetry.mirror.keepTopology = "behoud topologie";
 symmetry.mirrorFail = "Symmetrie niet gedetecteerd.
 
 Wilt u symmetrie afdwingen door de mesh te spiegelen?";
@@ -2140,10 +2176,6 @@ symmetry.mirrorUseMasking = "Bescherm gemaskeerd gebied";
 symmetry.mirrorUseMasking.help = "Houd het gemaskeerde gebied intact.
 
 Deze optie wordt genegeerd bij niet-symmetrische topologie (of losgekoppeld oppervlak, zoals een paar ogen).";
-symmetry.apply = "Spiegel
-(behoud topologie)";
-symmetry.splitMirror = "Splitsen & Spiegel
-(nieuwe topologie)";
 // Reset the symmetry plane position
 symmetry.reset = "Reset";
 // Reset the symmetry plane positon to the object center
@@ -2154,7 +2186,7 @@ symmetry.reset.centerWorld = "Wereldcentrum";
 symmetry.reset.direction = "Oriëntatie";
 // Display a line on the object (to show where the symmetry lies)
 symmetry.showLine = "Lijn tonen";
-// Display the symmetry plane in 3d
+// Display the symmetry plane in 3D
 symmetry.showPlane = "Vlak tonen";
 // Allow the editing of the symmetry plane with the gizmo
 symmetry.edit = "Gizmo bewerken";
@@ -2773,6 +2805,11 @@ license.key = "Licentiesleutel";
 license.activate = "Licentie activeren";
 // ----------------------------------------------
 license.newest = "Nieuwe versie beschikbaar!";
+license.encrypt.error = "Kan niet versleutelen!";
+// ----------------------------------------------
+license.grace = "Offline - Resterende respijtperiode:";
+license.grace.hours = "uren";
+license.grace.days = "dagen";
 // ----------------------------------------------
 license.portal.title = "Bestaande gebruikers";
 license.portal.label = "Licentieportaal";
@@ -2783,6 +2820,8 @@ license.checkout.label = "Koop Nomad";
 license.device.error = "Kon apparaat-ID niet ophalen.";
 license.device.mismatch = "Mismatch apparaat-ID!";
 // ----------------------------------------------
+license.error429 = "Te veel verzoeken (wachten).";
+// ----------------------------------------------
 license.validate.error404 = "De licentiesleutel is niet gevonden.";
 license.validate.error422 = "Onverwerkbare entiteit.";
 // ----------------------------------------------
@@ -2791,12 +2830,18 @@ U kunt een ander apparaat deactiveren op uw licentieportaal.";
 license.activate.error404 = "De licentiesleutel is niet gevonden.";
 license.activate.error422 = "Onverwerkbare entiteit.";
 // ----------------------------------------------
-// version trial
+// version
+version.update = "Update beschikbaar!";
 version.restore = "Herstel aankoop";
 version.buyWeb = "Webversie is slechts een demo";
 version.buyFull = "Upgrade naar volledige versie";
-version.buyQR = "Aankoop";
-version.buyQR.promo = "
+// ----------------------------------------------
+// QuadRemesh
+version.qr.unlock = "Ontgrendel (aankoop, herstel, proefversie)";
+version.qr.desktop = "Op de desktop wordt de QuadRemesher gedistribueerd door Hexanomad, maar Hexanomad behandelt geen verkoop of licenties.
+Alle licentiebeheer wordt uitgevoerd door Exoside.";
+version.qr.buy = "Aankoop";
+version.qr.promo = "
 De Quad Remesher is een algoritme dat een quad dominante mesh produceert.
 De quadverdeling zal proberen de natuurlijke kromming van het object te volgen.
 
@@ -2813,20 +2858,30 @@ U kunt de resulterende topologie ook sturen met:
 • Dichtheidsschildering $3
 
 De Quad Remesher wordt ontwikkeld door https://exoside.com/.";
-
-version.trialHistory = "Proefversie: 4 keer ongedaan maken/herdoen mogelijk";
+// ----------------------------------------------
 version.trialLayer = "Proefversie: 1 laag per object";
-version.trialNoImport = "Proefversie: Geen import";
 version.trialNoExport = "Proefversie: Geen export";
-
+// ----------------------------------------------
 version.fullFeatures = "• Eenmalige aankoop
 • Onbeperkt ongedaan maken/herhalen
 • Onbeperkt lagen
 • Export & import";
-
+// ----------------------------------------------
 version.demo.purpose = "Deze versie is specifiek gemaakt voor demonstratiedoeleinden.";
 version.demo.disable = "Functie niet ingeschakeld voor demo.";
+// ----------------------------------------------
+version.demo = "Demo Test";
+version.demo.sculpt = "Beeldhouwen";
+version.demo.sculpt.help = "Alle penselen zijn beschikbaar maar u kunt niet opslaan of exporteren.
 
+Deze modus is voornamelijk bedoeld om te experimenteren met de penselen of de druksupport te testen.
+
+Andere functies kunnen ook beperkt zijn (geschiedenis, lagen).";
+version.demo.file = "Importeren & Exporteren";
+version.demo.file.help = "U kunt modellen importeren en exporteren, maar sculptpenselen zijn uitgeschakeld.
+
+Deze modus is vooral nuttig voor mobiele gebruikers die geen grote .nom projecten kunnen openen vanwege geheugenbeperkingen van mobiele apparaten.";
+// ----------------------------------------------
 // app store main page
 store.name = "Nomad Sculpt";
 store.headline = "Beeldhouwen, schilderen en creëren in 3D";

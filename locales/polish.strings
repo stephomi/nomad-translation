@@ -56,7 +56,7 @@ direction.up = "Góra";
 direction.down = "Dół";
 direction.left = "Lewo";
 direction.right = "Prawo";
-// 3d cube
+// 3D cube
 cube.top = "Góra";
 cube.bottom = "Dół";
 cube.left = "Lewo";
@@ -122,6 +122,8 @@ item.next = "Dalej";
 item.lock = "Zablokuj";
 // No item selected
 item.none = "Brak";
+// Draggable, moveable
+item.draggable = "";
 
 // Search something (text entry to filter item)
 search = "Przeszukaj";
@@ -233,6 +235,10 @@ about.threads = "Threads";
 
 // The user canceled an operation that was running
 alert.aborted = "Operacja przerwana!";
+// Empty mesh
+alert.mirror.empty = "Pusty wynik!";
+// Mesh already mirrored
+alert.mirror.same = "Taki sam wynik!";
 // Error when an algorithm needs the object to have an hole (usually to fill it)
 alert.hole.nothing = "Obiekt nie ma żadnych otworów!";
 // No operation occured because the mesh is already manifold
@@ -262,10 +268,10 @@ alert.voxelRemesh.invalidInput = "Nieprawidłowe dane wejściowe!";
 alert.matrix.clone = "Obiekt zostanie zduplikowany";
 // Helper popup to tell the users the object will cloned
 alert.matrix.instance = "Zostanie utworzona instancja obiektu";
-// A pivot refers the gizmo 3d position, this mode means we are moving the pivot
+// A pivot refers the gizmo 3D position, this mode means we are moving the pivot
 alert.gizmo.editPivot = "Edytuj tryb punktu obrotu.";
 alert.mask.full = "Maska = 100%!";
-// A pivot refers the gizmo 3d position
+// A pivot refers the gizmo 3D position
 alert.gizmo.editObject = "Edytuj tryb obiektu.";
 // See Glossary (DynTopo)
 alert.dynamic.enable = "Aktywna topologia dynamiczna";
@@ -381,7 +387,7 @@ blend.cancelation.subtract = "Odejmij";
 blend.component = "Komponent";
 blend.component.luminosity = "Luminancja";
 
-// Camera (point of view in 3d)
+// Camera (point of view in 3D)
 camera = "Aparat";
 cameras = "Aparaty";
 camera.view = "Wyświetl";
@@ -950,8 +956,6 @@ history.state.undo = "Cofnij: $0";
 // Shown during redo
 history.state.redo = "Ponów: $0";
 // Shown during undo/redo
-history.state.symmetrySplit = "Podział symetryczny";
-// Shown during undo/redo
 history.state.voxelRemesh = "Ponowne tworzenie siatki wokseli";
 // Shown during undo/redo
 history.state.surfaceRemesh = "Ponowne tworzenie siatki powierzchni";
@@ -971,6 +975,9 @@ inspect.seams = "Szwy";
 
 // Interface customization
 interface = "Interfejs";
+
+// Resize window (should be short)
+interface.resize = "Zmień rozmiar";
 
 // UI customization: one item row will stands on one line (synonym: Inlined)
 interface.compact = "UI: Kompaktowe";
@@ -1027,6 +1034,17 @@ interface.toolbox.rows = "Rzędy";
 interface.toolbox.resetOrder = "Zresetuj kolejność";
 // Colored text and icon
 interface.toolbox.color = "Kolorowy";
+// Top bar
+interface.top.title = "Górny pasek";
+interface.top.responsive = "Responsywność";
+interface.top.responsive.help = "Ta opcja jest zazwyczaj istotna dla małych ekranów.";
+interface.top.responsive.multiline = "Wiele linii";
+interface.top.responsive.scroll = "Przewiń";
+interface.top.responsive.collapse = "Zwiń";
+interface.top.alt = "Alternatywna kolejność";
+interface.top.alt.help = "Alternatywna ikona kolejności dla górnego menu.
+
+Menu związane z edycją siatki są głównie po przeciwnej stronie menu sceny, co może pomóc w edycji sceny.";
 // Scale the interface
 interface.scale = "Ogólna skala";
 // Spacing between widgets
@@ -1983,6 +2001,18 @@ stroke.silhouette.closest = "Najbliższe";
 // Only sculpt the vertex that points toward the direction of the deformation
 stroke.sameSide = "Tylko wierzchołek po tej samej stronie";
 stroke.sameSide.help = "Ignoruj wierzchołki, które wskazują w kierunku przeciwnym do deformacji.";
+// determine normal direction
+stroke.normal.direction = "";
+stroke.normal.direction.help = "";
+stroke.normal.direction.normal = "";
+stroke.normal.direction.normal.help = "";
+stroke.normal.direction.screen = "";
+stroke.normal.direction.screen.help = "";
+stroke.normal.direction.auto = "";
+stroke.normal.direction.auto.help = "";
+stroke.normal.direction.auto.threshold = "";
+stroke.normal.direction.auto.threshold.help = "";
+// small tip/warning
 stroke.onlyLasso = "Ustawienia aktywne tylko dla narzędzia lasso.";
 
 // Here sampling refers to the app gathering information under the mouse
@@ -2001,8 +2031,8 @@ stroke.area.normal.average = "Uśrednianie normalne";
 // Sampling averaging
 stroke.area.point.average = "Uśrednianie pozycji";
 // Keep sharp edges
-stroke.keepSharp = "Zachowaj ostre krawędzie";
-stroke.keepSharp.help = "
+stroke.normalFilter = "Filtr normalny";
+stroke.normalFilter.help = "
 Filtrowanie głębi";
 
 // Only paint the part of the mesh above a certain height
@@ -2121,13 +2151,19 @@ symmetry.method.world = "Świat";
 symmetry.method.local = "Lokalna";
 // Move the object to the other side of the symmetry (mirror it as well)
 symmetry.flip = "Przerzuć obiekt";
-// Mirror the mesh
-symmetry.mirror = "Odbicie lustrzane";
+// Cut half of the mesh
+symmetry.cut = "Wytnij";
+// after mirroring, separate into multiple output (synonym: split, separate)
+symmetry.split = "Podziel";
+// Reapply the mesh mirror, does not impact the topology
+symmetry.mirror = "Lustro";
 symmetry.mirror.help = "Spróbuj ponownie zastosować symetrię bez wpływu na topologię.
 
 Symetria radialna będzie ignorowana.
 
 Jeśli topologia nie może być zachowana, ponieważ nie jest uważana za symetryczną, otrzymasz opcję wymuszenia odbicia lustrzanego.";
+// indicate that applying the mirror will keep the mesh topology
+symmetry.mirror.keepTopology = "zachowaj topologię";
 symmetry.mirrorFail = "Nie udało się zastosować symetrii.
 
 Czy chcesz wymusić symetrię poprzez odbicie lustrzane siatki?";
@@ -2135,10 +2171,6 @@ symmetry.mirrorUseMasking = "Chroń zamaskowany obszar";
 symmetry.mirrorUseMasking.help = "Zachowaj zamaskowany obszar w stanie nienaruszonym.
 
 Ta opcja będzie ignorowana w przypadku niesymetrycznej topologii (lub rozłącznej powierzchni, jak para oczu).";
-symmetry.apply = "Lustro
-(zachowaj topologię)";
-symmetry.splitMirror = "Podziel i odbij lustrzanie
-(nową topologię)";
 // Reset the symmetry plane position
 symmetry.reset = "Wyzeruj";
 // Reset the symmetry plane positon to the object center
@@ -2149,7 +2181,7 @@ symmetry.reset.centerWorld = "Środek świata";
 symmetry.reset.direction = "Orientacja";
 // Display a line on the object (to show where the symmetry lies)
 symmetry.showLine = "Pokaż linię";
-// Display the symmetry plane in 3d
+// Display the symmetry plane in 3D
 symmetry.showPlane = "Pokaż płaszczyznę";
 // Allow the editing of the symmetry plane with the gizmo
 symmetry.edit = "Edycja gizmo";
@@ -2770,6 +2802,11 @@ license.key = "Klucz licencyjny";
 license.activate = "Aktywuj licencję";
 // ----------------------------------------------
 license.newest = "Dostępna nowa wersja!";
+license.encrypt.error = "Nie można zaszyfrować!";
+// ----------------------------------------------
+license.grace = "Offline - Pozostały czas przypadający:";
+license.grace.hours = "godziny";
+license.grace.days = "dni";
 // ----------------------------------------------
 license.portal.title = "Istniejący użytkownicy";
 license.portal.label = "Portal licencyjny";
@@ -2780,6 +2817,8 @@ license.checkout.label = "Kup Nomad";
 license.device.error = "Nie można uzyskać ID urządzenia.";
 license.device.mismatch = "Niezgodność ID urządzenia!";
 // ----------------------------------------------
+license.error429 = "Zbyt wiele żądań (poczekaj).";
+// ----------------------------------------------
 license.validate.error404 = "Nie znaleziono klucza licencyjnego.";
 license.validate.error422 = "Nieprzetwarzalna jednostka.";
 // ----------------------------------------------
@@ -2788,12 +2827,18 @@ Możesz dezaktywować inne urządzenie w swoim portalu licencyjnym.";
 license.activate.error404 = "Nie znaleziono klucza licencyjnego.";
 license.activate.error422 = "Nieprzetwarzalna jednostka.";
 // ----------------------------------------------
-// version trial
+// version
+version.update = "Dostępna aktualizacja!";
 version.restore = "Przywróć zakup";
 version.buyWeb = "Wersja internetowa to tylko demonstracja";
 version.buyFull = "Przejdź na pełną wersję";
-version.buyQR = "Zakup";
-version.buyQR.promo = "
+// ----------------------------------------------
+// QuadRemesh
+version.qr.unlock = "Odblokuj (zakup, przywrócenie, wersja próbna)";
+version.qr.desktop = "Na komputerze QuadRemesher jest dystrybuowany przez Hexanomad, ale Hexanomad nie zajmuje się sprzedażą ani licencjonowaniem.
+Zarządzanie licencjami jest prowadzone przez Exoside.";
+version.qr.buy = "Zakup";
+version.qr.promo = "
 Quad Remesher to algorytm, który generuje siatkę z dominacją czworoboków.
 Rozkład czworoboków będzie próbował podążać za naturalną krzywizną obiektu.
 
@@ -2810,20 +2855,30 @@ Możesz również kierować wynikową topologią za pomocą:
 • Malowanie gęstości $3
 
 Quad Remesher jest rozwijany przez https://exoside.com/.";
-
-version.trialHistory = "Wersja próbna: możliwe 4 operacje cofnięcia/ponowienia";
+// ----------------------------------------------
 version.trialLayer = "Wersja próbna: 1 warstwa na siatkę";
-version.trialNoImport = "Wersja próbna: brak importu";
 version.trialNoExport = "Wersja próbna: brak eksportu";
-
+// ----------------------------------------------
 version.fullFeatures = "• Jednorazowy zakup
 • Nieograniczona liczba operacji cofnięcia/ponowienia
 • Nieograniczona liczba warstw
 • Eksport i import";
-
+// ----------------------------------------------
 version.demo.purpose = "Ta wersja została stworzona specjalnie na potrzeby demonstracji.";
 version.demo.disable = "Funkcja nie jest dostępna w wersji demonstracyjnej.";
+// ----------------------------------------------
+version.demo = "Demo Test";
+version.demo.sculpt = "Rzeźbienie";
+version.demo.sculpt.help = "Wszystkie pędzle są dostępne, ale nie można zapisać ani eksportować.
 
+Ten tryb głównie służy do eksperymentowania z pędzlami lub testowania wsparcia dla czułości nacisku.
+
+Inne funkcje mogą być również ograniczone (historia, warstwy).";
+version.demo.file = "Import i eksport";
+version.demo.file.help = "Można importować i eksportować model, ale pędzle rzeźbiarskie są wyłączone.
+
+Ten tryb jest głównie przydatny dla użytkowników mobilnych, którzy nie mogą otworzyć dużych projektów .nom ze względu na ograniczenia pamięci w urządzeniach mobilnych.";
+// ----------------------------------------------
 // app store main page
 store.name = "Nomad Sculpt";
 store.headline = "Rzeźb, maluj i twórz w 3D";

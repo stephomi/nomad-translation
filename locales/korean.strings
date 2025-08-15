@@ -56,7 +56,7 @@ direction.up = "위";
 direction.down = "아래";
 direction.left = "왼쪽";
 direction.right = "오른쪽";
-// 3d cube
+// 3D cube
 cube.top = "위";
 cube.bottom = "아래";
 cube.left = "왼쪽";
@@ -122,6 +122,8 @@ item.next = "다음";
 item.lock = "잠금";
 // No item selected
 item.none = "없음";
+// Draggable, moveable
+item.draggable = "";
 
 // Search something (text entry to filter item)
 search = "검색";
@@ -233,6 +235,10 @@ about.threads = "Threads";
 
 // The user canceled an operation that was running
 alert.aborted = "작업이 중단되었습니다!";
+// Empty mesh
+alert.mirror.empty = "빈 출력!";
+// Mesh already mirrored
+alert.mirror.same = "같은 출력!";
 // Error when an algorithm needs the object to have an hole (usually to fill it)
 alert.hole.nothing = "오브젝트에 구멍이 없습니다!";
 // No operation occured because the mesh is already manifold
@@ -262,10 +268,10 @@ alert.voxelRemesh.invalidInput = "입력이 유효하지 않습니다!";
 alert.matrix.clone = "오브젝트가 복제됩니다";
 // Helper popup to tell the users the object will cloned
 alert.matrix.instance = "오브젝트가 인스턴스화됩니다";
-// A pivot refers the gizmo 3d position, this mode means we are moving the pivot
+// A pivot refers the gizmo 3D position, this mode means we are moving the pivot
 alert.gizmo.editPivot = "피벗 모드 편집.";
 alert.mask.full = "마스크 = 100%!";
-// A pivot refers the gizmo 3d position
+// A pivot refers the gizmo 3D position
 alert.gizmo.editObject = "오브젝트 모드 편집.";
 // See Glossary (DynTopo)
 alert.dynamic.enable = "동적 토폴로지 활성화";
@@ -381,7 +387,7 @@ blend.cancelation.subtract = "빼기";
 blend.component = "구성 요소";
 blend.component.luminosity = "밝기";
 
-// Camera (point of view in 3d)
+// Camera (point of view in 3D)
 camera = "카메라";
 cameras = "카메라";
 camera.view = "보기";
@@ -948,8 +954,6 @@ history.state.undo = "실행 취소: $0";
 // Shown during redo
 history.state.redo = "다시 실행: $0";
 // Shown during undo/redo
-history.state.symmetrySplit = "대칭 분할";
-// Shown during undo/redo
 history.state.voxelRemesh = "복셀 리메시";
 // Shown during undo/redo
 history.state.surfaceRemesh = "표면 리메시";
@@ -969,6 +973,9 @@ inspect.seams = "시밍";
 
 // Interface customization
 interface = "인터페이스";
+
+// Resize window (should be short)
+interface.resize = "크기 조정";
 
 // UI customization: one item row will stands on one line (synonym: Inlined)
 interface.compact = "UI: 컴팩트";
@@ -1025,6 +1032,17 @@ interface.toolbox.rows = "행들";
 interface.toolbox.resetOrder = "순서 초기화";
 // Colored text and icon
 interface.toolbox.color = "컬러드";
+// Top bar
+interface.top.title = "상단 영역";
+interface.top.responsive = "반응형";
+interface.top.responsive.help = "이 옵션은 주로 작은 화면에 관련이 있습니다.";
+interface.top.responsive.multiline = "여러 줄";
+interface.top.responsive.scroll = "스크롤";
+interface.top.responsive.collapse = "축소";
+interface.top.alt = "대체 순서";
+interface.top.alt.help = "상단 메뉴의 대체 순서 아이콘.
+
+Mesh 편집에 관련된 메뉴는 주로 장면 메뉴 반대편에 있어 장면 편집에 도움을 줍니다.";
 // Scale the interface
 interface.scale = "인터페이스 스케일";
 // Spacing between widgets
@@ -1979,6 +1997,18 @@ stroke.silhouette.closest = "가장 가까운";
 // Only sculpt the vertex that points toward the direction of the deformation
 stroke.sameSide = "같은 면에 있는 버텍스만";
 stroke.sameSide.help = "변형하려는 방향의 반대를 가리키는 버텍스는 무시합니다.";
+// determine normal direction
+stroke.normal.direction = "";
+stroke.normal.direction.help = "";
+stroke.normal.direction.normal = "";
+stroke.normal.direction.normal.help = "";
+stroke.normal.direction.screen = "";
+stroke.normal.direction.screen.help = "";
+stroke.normal.direction.auto = "";
+stroke.normal.direction.auto.help = "";
+stroke.normal.direction.auto.threshold = "";
+stroke.normal.direction.auto.threshold.help = "";
+// small tip/warning
 stroke.onlyLasso = "이 설정은 올가미 도구에만 적용됩니다.";
 
 // Here sampling refers to the app gathering information under the mouse
@@ -1997,8 +2027,8 @@ stroke.area.normal.average = "노멀 평균화";
 // Sampling averaging
 stroke.area.point.average = "위치 평균화";
 // Keep sharp edges
-stroke.keepSharp = "날카로운 변 유지";
-stroke.keepSharp.help = "
+stroke.normalFilter = "노멀 필터";
+stroke.normalFilter.help = "
 깊이 필터링";
 
 // Only paint the part of the mesh above a certain height
@@ -2117,13 +2147,19 @@ symmetry.method.world = "세계";
 symmetry.method.local = "로컬";
 // Move the object to the other side of the symmetry (mirror it as well)
 symmetry.flip = "오브젝트 뒤집기";
-// Mirror the mesh
-symmetry.mirror = "미러링";
+// Cut half of the mesh
+symmetry.cut = "자르기";
+// after mirroring, separate into multiple output (synonym: split, separate)
+symmetry.split = "분할";
+// Reapply the mesh mirror, does not impact the topology
+symmetry.mirror = "미러";
 symmetry.mirror.help = "토폴로지에 영향을 주지 않고 대칭을 다시 적용하기를 시도합니다.
 
 방사성 대칭은 무시됩니다.
 
 토폴로지가 대칭으로 간주되지 않아 유지할 수 없는 경우, 강제로 미러링을 적용할 수 있는 옵션이 주어집니다.";
+// indicate that applying the mirror will keep the mesh topology
+symmetry.mirror.keepTopology = "토폴로지 유지";
 symmetry.mirrorFail = "대칭을 적용하지 못했습니다.
 
 메시를 미러링하여 대칭을 강제 적용하시겠습니까?";
@@ -2131,10 +2167,6 @@ symmetry.mirrorUseMasking = "마스크 영역 보호";
 symmetry.mirrorUseMasking.help = "마스크 영역을 그대로 유지합니다.
 
 이 옵션은 비대칭 토폴로지(또는 한 쌍의 눈처럼 연결이 끊긴 표면)에서는 무시됩니다.";
-symmetry.apply = "미러
-(토폴로지 유지)";
-symmetry.splitMirror = "분할 & 미러
-(새 토폴로지)";
 // Reset the symmetry plane position
 symmetry.reset = "초기화";
 // Reset the symmetry plane positon to the object center
@@ -2145,7 +2177,7 @@ symmetry.reset.centerWorld = "세계 중심";
 symmetry.reset.direction = "방향";
 // Display a line on the object (to show where the symmetry lies)
 symmetry.showLine = "선 보기";
-// Display the symmetry plane in 3d
+// Display the symmetry plane in 3D
 symmetry.showPlane = "평면 보기";
 // Allow the editing of the symmetry plane with the gizmo
 symmetry.edit = "기즈모 편집";
@@ -2766,6 +2798,11 @@ license.key = "라이센스 키";
 license.activate = "라이센스 활성화";
 // ----------------------------------------------
 license.newest = "새 버전이 제공됩니다!";
+license.encrypt.error = "암호화할 수 없습니다!";
+// ----------------------------------------------
+license.grace = "오프라인 - 남은 유예 기간:";
+license.grace.hours = "시간";
+license.grace.days = "일";
 // ----------------------------------------------
 license.portal.title = "기존 사용자";
 license.portal.label = "라이센스 포털";
@@ -2776,6 +2813,8 @@ license.checkout.label = "노마드 구매하기";
 license.device.error = "디바이스 ID를 가져올 수 없습니다.";
 license.device.mismatch = "디바이스 ID 불일치!";
 // ----------------------------------------------
+license.error429 = "요청이 너무 많습니다 (기다려 주세요).";
+// ----------------------------------------------
 license.validate.error404 = "라이센스 키를 찾을 수 없습니다.";
 license.validate.error422 = "처리되지 않는 엔티티.";
 // ----------------------------------------------
@@ -2784,12 +2823,18 @@ license.activate.error403 = "최대 기기 수에 도달했습니다!
 license.activate.error404 = "라이센스 키를 찾을 수 없습니다.";
 license.activate.error422 = "처리되지 않는 엔티티.";
 // ----------------------------------------------
-// version trial
+// version
+version.update = "업데이트가 가능합니다!";
 version.restore = "구매 복원";
 version.buyWeb = "웹 버전은 데모 목적으로만 사용할 수 있습니다";
 version.buyFull = "풀 버전으로 업그레이드";
-version.buyQR = "구매";
-version.buyQR.promo = "
+// ----------------------------------------------
+// QuadRemesh
+version.qr.unlock = "잠금 해제 (구매, 복원, 체험)";
+version.qr.desktop = "데스크톱에서는 QuadRemesher가 Hexanomad에 의해 배포되지만, Hexanomad는 판매 또는 라이선스를 처리하지 않습니다.
+모든 라이선스 관리는 Exoside에 의해 수행됩니다.";
+version.qr.buy = "구매";
+version.qr.promo = "
 쿼드 리메셔는 쿼드 중심 메쉬를 출력하는 알고리즘입니다.
 쿼드 분포는 객체의 자연스러운 곡률을 따르려고 시도할 것입니다.
 
@@ -2806,20 +2851,24 @@ version.buyQR.promo = "
 • 밀도 페인팅 $3
 
 쿼드 리메셔는 https://exoside.com/에 의해 개발되었습니다.";
-
-version.trialHistory = "평가판: 4번의 실행 취소/다시 실행 가능";
+// ----------------------------------------------
 version.trialLayer = "평가판: 메시 당 1개의 레이어";
-version.trialNoImport = "평가판: 임포트 기능을 사용할 수 없음";
 version.trialNoExport = "평가판: 익스포트 기능을 사용할 수 없음";
-
+// ----------------------------------------------
 version.fullFeatures = "• 일회성 구매
 • 무제한 실행 취소/다시 실행
 • 무제한 레이어
 • 익스포트 및 임포트";
-
+// ----------------------------------------------
 version.demo.purpose = "이 버전은 특별히 데모 목적으로 생성되었습니다.";
 version.demo.disable = "기능이 데모에서 활성화되지 않음.";
-
+// ----------------------------------------------
+version.demo = "데모 테스트";
+version.demo.sculpt = "스컬프팅";
+version.demo.sculpt.help = "모든 브러시를 사용할 수 있지만 저장 또는 내보내기를 할 수 없습니다. 이 모드는 대개 브러시를 실험하거나 압력 지원을 테스트하는 데 사용됩니다. 다른 기능도 제한될 수 있습니다 (히스토리, 레이어).";
+version.demo.file = "가져오기 및 내보내기";
+version.demo.file.help = "모델을 가져오고 내보낼 수 있지만 스컬프 브러시는 비활성화됩니다. 이 모드는 주로 모바일 메모리 제한으로 인해 .nom 프로젝트를 열 수 없는 모바일 사용자에게 유용합니다.";
+// ----------------------------------------------
 // app store main page
 store.name = "Nomad Sculpt";
 store.headline = "3D에서 조각, 그리기 및 창조하기";

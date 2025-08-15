@@ -56,7 +56,7 @@ direction.up = "فوق";
 direction.down = "أسفل";
 direction.left = "يسار";
 direction.right = "يمين";
-// 3d cube
+// 3D cube
 cube.top = "أعلى";
 cube.bottom = "أسفل";
 cube.left = "يسار";
@@ -122,6 +122,8 @@ item.next = "التالي";
 item.lock = "قفل";
 // No item selected
 item.none = "لا شيء";
+// Draggable, moveable
+item.draggable = "";
 
 // Search something (text entry to filter item)
 search = "بحث";
@@ -233,6 +235,10 @@ about.threads = "الخيوط";
 
 // The user canceled an operation that was running
 alert.aborted = "تم إلغاء العملية!";
+// Empty mesh
+alert.mirror.empty = "مخرجات فارغة!";
+// Mesh already mirrored
+alert.mirror.same = "نفس المخرجات!";
 // Error when an algorithm needs the object to have an hole (usually to fill it)
 alert.hole.nothing = "الكائن ليس لديه فتحات!";
 // No operation occured because the mesh is already manifold
@@ -262,10 +268,10 @@ alert.voxelRemesh.invalidInput = "إدخال غير صالح!";
 alert.matrix.clone = "سيتم تكرار الكائن";
 // Helper popup to tell the users the object will cloned
 alert.matrix.instance = "سيتم استنساخ الكائن";
-// A pivot refers the gizmo 3d position, this mode means we are moving the pivot
+// A pivot refers the gizmo 3D position, this mode means we are moving the pivot
 alert.gizmo.editPivot = "تحرير وضع المحور.";
 alert.mask.full = "قناع = 100%!";
-// A pivot refers the gizmo 3d position
+// A pivot refers the gizmo 3D position
 alert.gizmo.editObject = "تحرير وضع الكائن.";
 // See Glossary (DynTopo)
 alert.dynamic.enable = "تشغيل الطوبوغرافيا الديناميكية";
@@ -381,7 +387,7 @@ blend.cancelation.subtract = "طرح";
 blend.component = "عنصر";
 blend.component.luminosity = "الإضاءة";
 
-// Camera (point of view in 3d)
+// Camera (point of view in 3D)
 camera = "كاميرا";
 cameras = "الكاميرات";
 camera.view = "عرض";
@@ -952,8 +958,6 @@ history.state.undo = "تراجع: $0";
 // Shown during redo
 history.state.redo = "إعادة: $0";
 // Shown during undo/redo
-history.state.symmetrySplit = "انقسام التناظر";
-// Shown during undo/redo
 history.state.voxelRemesh = "إعادة تشكيل الفوكسل";
 // Shown during undo/redo
 history.state.surfaceRemesh = "إعادة تشكيل السطح";
@@ -973,6 +977,9 @@ inspect.seams = "الدرزات";
 
 // Interface customization
 interface = "واجهة المستخدم";
+
+// Resize window (should be short)
+interface.resize = "تغيير الحجم";
 
 // UI customization: one item row will stands on one line (synonym: Inlined)
 interface.compact = "واجهة مستخدم: مضغوط";
@@ -1029,6 +1036,17 @@ interface.toolbox.rows = "صفوف";
 interface.toolbox.resetOrder = "إعادة تعيين الترتيب";
 // Colored text and icon
 interface.toolbox.color = "ملون";
+// Top bar
+interface.top.title = "الشريط العلوي";
+interface.top.responsive = "متجاوب";
+interface.top.responsive.help = "هذا الخيار مهم في الغالب للشاشات الصغيرة.";
+interface.top.responsive.multiline = "متعدد الأسطر";
+interface.top.responsive.scroll = "التمرير";
+interface.top.responsive.collapse = "طي";
+interface.top.alt = "ترتيب بديل";
+interface.top.alt.help = "أيقونة ترتيب بديلة للقائمة العلوية.
+
+القوائم المتعلقة بتعديل الشبكة تقع غالبًا على الجانب المعاكس لقائمة المشهد، مما يمكن أن يساعد في تعديل المشهد.";
 // Scale the interface
 interface.scale = "المقياس العام";
 // Spacing between widgets
@@ -1979,6 +1997,18 @@ stroke.silhouette.closest = "الأقرب";
 // Only sculpt the vertex that points toward the direction of the deformation
 stroke.sameSide = "فقط القمة من نفس الجانب";
 stroke.sameSide.help = "تجاهل القمم التي تشير في الاتجاه المعاكس للتشوه.";
+// determine normal direction
+stroke.normal.direction = "";
+stroke.normal.direction.help = "";
+stroke.normal.direction.normal = "";
+stroke.normal.direction.normal.help = "";
+stroke.normal.direction.screen = "";
+stroke.normal.direction.screen.help = "";
+stroke.normal.direction.auto = "";
+stroke.normal.direction.auto.help = "";
+stroke.normal.direction.auto.threshold = "";
+stroke.normal.direction.auto.threshold.help = "";
+// small tip/warning
 stroke.onlyLasso = "الإعدادات تنشط فقط لأداة اللاسو.";
 
 // Here sampling refers to the app gathering information under the mouse
@@ -1997,8 +2027,8 @@ stroke.area.normal.average = "متوسط القيم العادية";
 // Sampling averaging
 stroke.area.point.average = "متوسط القيم الموضوعية";
 // Keep sharp edges
-stroke.keepSharp = "الحفاظ على الحواف الحادة";
-stroke.keepSharp.help = "استبعاد النقاط التي تختلف في القيم العادية عن القيمة العادية السطحية.
+stroke.normalFilter = "فلتر العادي";
+stroke.normalFilter.help = "استبعاد النقاط التي تختلف في القيم العادية عن القيمة العادية السطحية.
 
 سيؤدي ذلك إلى تغيير كيفية حساب مساحة المستوى (أخذ عينات المنطقة).
 
@@ -2116,13 +2146,19 @@ symmetry.method.world = "العالم";
 symmetry.method.local = "محلي";
 // Move the object to the other side of the symmetry (mirror it as well)
 symmetry.flip = "عكس الكائن";
-// Mirror the mesh
+// Cut half of the mesh
+symmetry.cut = "قص";
+// after mirroring, separate into multiple output (synonym: split, separate)
+symmetry.split = "قسم";
+// Reapply the mesh mirror, does not impact the topology
 symmetry.mirror = "انعكاس";
 symmetry.mirror.help = "حاول إعادة تطبيق التماثل دون التأثير على البنية.
 
 سيتم تجاهل التماثل الدائري.
 
 إذا لم يكن من الممكن الحفاظ على البنية لأنها غير متماثلة، ستحصل على خيار فرض الانعكاس.";
+// indicate that applying the mirror will keep the mesh topology
+symmetry.mirror.keepTopology = "حافظ على البنية";
 symmetry.mirrorFail = "فشل في الكشف عن التماثل.
 
 هل تريد فرض التماثل عن طريق عكس الشبكة؟";
@@ -2130,10 +2166,6 @@ symmetry.mirrorUseMasking = "حماية المنطقة المقنعة";
 symmetry.mirrorUseMasking.help = "حافظ على المنطقة المقنعة سليمة.
 
 سيتم تجاهل هذا الخيار إذا كانت البنية غير متماثلة (أو سطح مفصول، مثل زوج من العيون).";
-symmetry.apply = "انعكاس
-(حافظ على البنية)";
-symmetry.splitMirror = "فصل وانعكاس
-(بنية جديدة)";
 // Reset the symmetry plane position
 symmetry.reset = "إعادة تعيين";
 // Reset the symmetry plane positon to the object center
@@ -2144,7 +2176,7 @@ symmetry.reset.centerWorld = "مركز العالم";
 symmetry.reset.direction = "الاتجاه";
 // Display a line on the object (to show where the symmetry lies)
 symmetry.showLine = "عرض الخط";
-// Display the symmetry plane in 3d
+// Display the symmetry plane in 3D
 symmetry.showPlane = "عرض المستوى";
 // Allow the editing of the symmetry plane with the gizmo
 symmetry.edit = "تعديل الجيزمو";
@@ -2759,6 +2791,11 @@ license.key = "مفتاح الرخصة";
 license.activate = "تنشيط الرخصة";
 // ----------------------------------------------
 license.newest = "نسخة جديدة متاحة!";
+license.encrypt.error = "لم نتمكن من التشفير!";
+// ----------------------------------------------
+license.grace = "غير متصل - المدة المتبقية للنعمة:";
+license.grace.hours = "ساعات";
+license.grace.days = "أيام";
 // ----------------------------------------------
 license.portal.title = "المستخدمون الحاليون";
 license.portal.label = "بوابة الرخصة";
@@ -2769,6 +2806,8 @@ license.checkout.label = "شراء Nomad";
 license.device.error = "تعذر الحصول على معرّف الجهاز.";
 license.device.mismatch = "عدم تطابق معرّف الجهاز!";
 // ----------------------------------------------
+license.error429 = "عدد الطلبات كبير جداً (انتظر).";
+// ----------------------------------------------
 license.validate.error404 = "لم يتم العثور على مفتاح الرخصة.";
 license.validate.error422 = "كيان غير قابل للمعالجة.";
 // ----------------------------------------------
@@ -2777,12 +2816,18 @@ license.activate.error403 = "تم الوصول إلى الحد الأقصى لع
 license.activate.error404 = "لم يتم العثور على مفتاح الرخصة.";
 license.activate.error422 = "كيان غير قابل للمعالجة.";
 // ----------------------------------------------
-// version trial
+// version
+version.update = "تحديث متاح!";
 version.restore = "استعادة الشراء";
 version.buyWeb = "الإصدار الويب هو فقط للتجربة";
 version.buyFull = "ترقية إلى النسخة الكاملة";
-version.buyQR = "شراء";
-version.buyQR.promo = "
+// ----------------------------------------------
+// QuadRemesh
+version.qr.unlock = "فتح (شراء، استعادة، تجربة)";
+version.qr.desktop = "على سطح المكتب، يتم توزيع QuadRemesher بواسطة Hexanomad، لكن Hexanomad لا تتولى المبيعات أو الترخيص.
+تتم جميع إدارة الترخيص بواسطة Exoside.";
+version.qr.buy = "شراء";
+version.qr.promo = "
 معيد تقسيم الوحدات الرباعية هو خوارزمية تنتج شبكة تتكون بشكل أساسي من وحدات رباعية.
 ستحاول توزيع الرباعيات اتباع الانحناء الطبيعي للجسم.
 
@@ -2799,20 +2844,30 @@ version.buyQR.promo = "
 • رسم الكثافة $3
 
 تم تطوير معيد تقسيم الوحدات الرباعية بواسطة https://exoside.com/.";
-
-version.trialHistory = "نسخة تجريبية: 4 تراجعات/إعادة تنفيذ ممكنة";
+// ----------------------------------------------
 version.trialLayer = "نسخة تجريبية: طبقة واحدة لكل كائن";
-version.trialNoImport = "نسخة تجريبية: لا يوجد استيراد";
 version.trialNoExport = "نسخة تجريبية: لا يوجد تصدير";
-
+// ----------------------------------------------
 version.fullFeatures = "• شراء مرة واحدة 
 • تراجع/إعادة لا محدودة 
 • طبقات لا محدودة 
 • التصدير والاستيراد";
-
+// ----------------------------------------------
 version.demo.purpose = "تم إنشاء هذا الإصدار خصيصًا لأغراض العرض التوضيحي.";
 version.demo.disable = "الميزة غير مفعلة للعرض التوضيحي.";
+// ----------------------------------------------
+version.demo = "اختبار تجريبي";
+version.demo.sculpt = "النحت";
+version.demo.sculpt.help = "جميع الفرشاة متاحة ولكن لا يمكنك الحفظ أو التصدير.
 
+هذا الوضع مخصص للتجربة بالفرشاة أو اختبار دعم الضغط.
+
+يمكن أن تكون الميزات الأخرى محدودة أيضًا (سجل، طبقات).";
+version.demo.file = "استيراد وتصدير";
+version.demo.file.help = "يمكنك استيراد وتصدير النموذج ولكن فرش النحت معطلة.
+
+هذا الوضع مفيد للمستخدمين على الجوال الذين لا يمكنهم فتح مشاريع .nom الكبيرة بسبب قيود ذاكرة الجوال.";
+// ----------------------------------------------
 // app store main page
 store.name = "نوماد سكلبت";
 store.headline = "انحت وزين وأنشئ في بيئة ثلاثية الأبعاد";

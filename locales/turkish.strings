@@ -56,7 +56,7 @@ direction.up = "Üst";
 direction.down = "Alt";
 direction.left = "Sol";
 direction.right = "Sağ";
-// 3d cube
+// 3D cube
 cube.top = "Üst";
 cube.bottom = "Alt";
 cube.left = "Sol";
@@ -122,6 +122,8 @@ item.next = "Sonraki";
 item.lock = "Kilitle";
 // No item selected
 item.none = "Yok";
+// Draggable, moveable
+item.draggable = "";
 
 // Search something (text entry to filter item)
 search = "Arama";
@@ -231,6 +233,10 @@ about.threads = "Threads";
 
 // The user canceled an operation that was running
 alert.aborted = "İşlem iptal edildi!";
+// Empty mesh
+alert.mirror.empty = "Çıktı boş!";
+// Mesh already mirrored
+alert.mirror.same = "Aynı çıktı!";
 // Error when an algorithm needs the object to have an hole (usually to fill it)
 alert.hole.nothing = "Nesnenin hiç deliği yok!";
 // No operation occured because the mesh is already manifold
@@ -260,10 +266,10 @@ alert.voxelRemesh.invalidInput = "Geçersiz girdi!";
 alert.matrix.clone = "Nesne çoğaltılacak";
 // Helper popup to tell the users the object will cloned
 alert.matrix.instance = "Nesnenin örneği oluşturulacak";
-// A pivot refers the gizmo 3d position, this mode means we are moving the pivot
+// A pivot refers the gizmo 3D position, this mode means we are moving the pivot
 alert.gizmo.editPivot = "Eksen modunu düzenle.";
 alert.mask.full = "Maskele = 100%!";
-// A pivot refers the gizmo 3d position
+// A pivot refers the gizmo 3D position
 alert.gizmo.editObject = "Nesne modunu düzenle.";
 // See Glossary (DynTopo)
 alert.dynamic.enable = "Dinamik topoloji aktif";
@@ -379,7 +385,7 @@ blend.cancelation.subtract = "Çıkar";
 blend.component = "Bileşen";
 blend.component.luminosity = "Parlaklık";
 
-// Camera (point of view in 3d)
+// Camera (point of view in 3D)
 camera = "Kamera";
 cameras = "kameralar";
 camera.view = "Görüntüle";
@@ -947,8 +953,6 @@ history.state.undo = "Geri al: $0";
 // Shown during redo
 history.state.redo = "Yinele: $0";
 // Shown during undo/redo
-history.state.symmetrySplit = "Simetri Ayrımı";
-// Shown during undo/redo
 history.state.voxelRemesh = "Voksel yeniden ağ örgülendirme";
 // Shown during undo/redo
 history.state.surfaceRemesh = "Yüzey yeniden ağ örgülendirme";
@@ -968,6 +972,9 @@ inspect.seams = "Dikişler";
 
 // Interface customization
 interface = "Arayüz";
+
+// Resize window (should be short)
+interface.resize = "Yeniden Boyutlandır";
 
 // UI customization: one item row will stands on one line (synonym: Inlined)
 interface.compact = "UI: Sıkıştırılmış";
@@ -1024,6 +1031,17 @@ interface.toolbox.rows = "Satırlar";
 interface.toolbox.resetOrder = "Sıralamasını sıfırla";
 // Colored text and icon
 interface.toolbox.color = "Renkli";
+// Top bar
+interface.top.title = "Üst bar";
+interface.top.responsive = "Duyarlı";
+interface.top.responsive.help = "Bu seçenek çoğunlukla küçük ekranlar için geçerlidir.";
+interface.top.responsive.multiline = "Çok Satırlı";
+interface.top.responsive.scroll = "Kaydır";
+interface.top.responsive.collapse = "Daralt";
+interface.top.alt = "Farklı Sıralama";
+interface.top.alt.help = "Üst menü için alternatif sıralama simgesi.
+
+Mesh düzenlemeye ilişkin menüler genellikle sahne menüsünün karşı tarafındadır, bu da sahne düzenlemesinde yardımcı olabilir.";
 // Scale the interface
 interface.scale = "Genel ölçek";
 // Spacing between widgets
@@ -1980,6 +1998,18 @@ stroke.silhouette.closest = "En Yakın";
 // Only sculpt the vertex that points toward the direction of the deformation
 stroke.sameSide = "Sadece aynı taraftaki verteks";
 stroke.sameSide.help = "Deformasyonun ters yönündeki verteksler göz ardı edilir.";
+// determine normal direction
+stroke.normal.direction = "";
+stroke.normal.direction.help = "";
+stroke.normal.direction.normal = "";
+stroke.normal.direction.normal.help = "";
+stroke.normal.direction.screen = "";
+stroke.normal.direction.screen.help = "";
+stroke.normal.direction.auto = "";
+stroke.normal.direction.auto.help = "";
+stroke.normal.direction.auto.threshold = "";
+stroke.normal.direction.auto.threshold.help = "";
+// small tip/warning
 stroke.onlyLasso = "Sadece lasso aracı için etkin olan ayarlar.";
 
 // Here sampling refers to the app gathering information under the mouse
@@ -1998,8 +2028,8 @@ stroke.area.normal.average = "Normal ortalaması";
 // Sampling averaging
 stroke.area.point.average = "Pozisyon ortalaması";
 // Keep sharp edges
-stroke.keepSharp = "Keskin kenarları koru";
-stroke.keepSharp.help = "
+stroke.normalFilter = "Normal filtre";
+stroke.normalFilter.help = "
 Derinlik filtreleme";
 
 // Only paint the part of the mesh above a certain height
@@ -2118,13 +2148,19 @@ symmetry.method.world = "Dünya";
 symmetry.method.local = "Yerel";
 // Move the object to the other side of the symmetry (mirror it as well)
 symmetry.flip = "Nesneyi ters çevir";
-// Mirror the mesh
-symmetry.mirror = "Aynalama";
+// Cut half of the mesh
+symmetry.cut = "Kes(";
+// after mirroring, separate into multiple output (synonym: split, separate)
+symmetry.split = "Ayır";
+// Reapply the mesh mirror, does not impact the topology
+symmetry.mirror = "Ayna";
 symmetry.mirror.help = "Topolojiye etki etmeden simetriyi tekrar uygulamaya çalışır.
 
 Radyal simetri göz ardı edilir.
 
 Topoloji simetrik olarak değerlendirilmediğinden korunamıyorsa, aynalamayı zorlamak için bir seçenek gelir.";
+// indicate that applying the mirror will keep the mesh topology
+symmetry.mirror.keepTopology = "topolojiyi koru";
 symmetry.mirrorFail = "Simetri uygulanamadı.
 
 Ağ örgüsünü aynalayarak simetriyi zorlamak istiyor musunuz?";
@@ -2132,10 +2168,6 @@ symmetry.mirrorUseMasking = "Maskelenmiş alanı koru";
 symmetry.mirrorUseMasking.help = "Maskelenmiş alana dokunulmaz.
 
 Bu seçenek simetrik olmayan topolojilerde (ya da bir çift göz gibi bağlı olmayan bir yüzeylerde) göz ardı edilir.";
-symmetry.apply = "Ayna
-(topolojiyi koru)";
-symmetry.splitMirror = "Böl ve Ayna
-(yeni topoloji)";
 // Reset the symmetry plane position
 symmetry.reset = "Sıfırla";
 // Reset the symmetry plane positon to the object center
@@ -2146,7 +2178,7 @@ symmetry.reset.centerWorld = "Dünya merkezi";
 symmetry.reset.direction = "Yönelim";
 // Display a line on the object (to show where the symmetry lies)
 symmetry.showLine = "Çizgiyi göster";
-// Display the symmetry plane in 3d
+// Display the symmetry plane in 3D
 symmetry.showPlane = "Düzlemi göster";
 // Allow the editing of the symmetry plane with the gizmo
 symmetry.edit = "Gizmo düzenleme";
@@ -2767,6 +2799,11 @@ license.key = "Lisans anahtarı";
 license.activate = "Lisansı etkinleştir";
 // ----------------------------------------------
 license.newest = "Yeni versiyon mevcut!";
+license.encrypt.error = "Şifreleme yapılamadı!";
+// ----------------------------------------------
+license.grace = "Çevrimdışı - Kalan ek süre:";
+license.grace.hours = "saatler";
+license.grace.days = "günler";
 // ----------------------------------------------
 license.portal.title = "Mevcut kullanıcılar";
 license.portal.label = "Lisans portalı";
@@ -2777,6 +2814,8 @@ license.checkout.label = "Nomad'ı Satın Al";
 license.device.error = "Cihaz kimliği alınamadı.";
 license.device.mismatch = "Cihaz kimliği eşleşmiyor!";
 // ----------------------------------------------
+license.error429 = "Çok fazla istek (bekleyin).";
+// ----------------------------------------------
 license.validate.error404 = "Lisans anahtarı bulunamadı.";
 license.validate.error422 = "İşlenemez Varlık.";
 // ----------------------------------------------
@@ -2785,12 +2824,18 @@ Lisans portalınızda başka bir cihazı devre dışı bırakabilirsiniz.";
 license.activate.error404 = "Lisans anahtarı bulunamadı.";
 license.activate.error422 = "İşlenemez Varlık.";
 // ----------------------------------------------
-// version trial
+// version
+version.update = "Güncelleme mevcut!";
 version.restore = "Satın almayı geri yükle";
 version.buyWeb = "Web versiyonu sadece bir demodur";
 version.buyFull = "Tam sürüme yükselt";
-version.buyQR = "Satın Al";
-version.buyQR.promo = "
+// ----------------------------------------------
+// QuadRemesh
+version.qr.unlock = "Kilit Aç (satın al, geri yükle, deneme)";
+version.qr.desktop = "Masaüstünde QuadRemesher, Hexanomad tarafından dağıtılmaktadır, ancak Hexanomad satış veya lisanslamayı yönetmez.
+Tüm lisans yönetimi Exoside tarafından gerçekleştirilir.";
+version.qr.buy = "Satın Al";
+version.qr.promo = "
 Quad Remesher, dörtgen baskın ağ çıkaran bir algoritmadır.
 Dörtgen dağılımı, nesnenin doğal eğriliğini takip etmeye çalışacaktır.
 
@@ -2807,20 +2852,30 @@ Sonuçlanan topolojiyi şu şekilde yönlendirebilirsiniz:
 • Yoğunluk boyaması $3
 
 Quad Remesher, https://exoside.com/ tarafından geliştirilmiştir.";
-
-version.trialHistory = "Deneme sürümü: 4 geri alma/yineleme mümkündür";
+// ----------------------------------------------
 version.trialLayer = "Deneme sürümü: Ağ örgüsü başına 1 katman";
-version.trialNoImport = "Deneme sürümü: içe aktarma yok";
 version.trialNoExport = "Deneme sürümü: dışa aktarma yok";
-
+// ----------------------------------------------
 version.fullFeatures = "• Tek sefer satın alma
 • Sınırsız geri alma/yineleme
 • Sınırsız katman
 • İçe ve dışa aktarma";
-
+// ----------------------------------------------
 version.demo.purpose = "Bu sürüm yalnızca demo amaçlı tasarlanmıştır.";
 version.demo.disable = "Özellik bu demo için etkin değil.";
+// ----------------------------------------------
+version.demo = "Demo Test";
+version.demo.sculpt = "Şekillendirme";
+version.demo.sculpt.help = "Bütün fırçalar kullanılabilir ama kaydedemez veya dışa aktaramazsınız.
 
+Bu mod, çoğunlukla fırçalarla deneme yapmak veya basınç desteğini test etmek içindir.
+
+Diğer özellikler de sınırlı olabilir (geçmiş, katmanlar).";
+version.demo.file = "İçe Aktarma & Dışa Aktarma";
+version.demo.file.help = "Modeli içe aktarabilir ve dışa aktarabilirsiniz, ancak şekil fırçaları devre dışıdır.
+
+Bu mod, çoğunlukla mobil bellek sıkıntısından dolayı büyük .nom projelerini açamayan mobil kullanıcılar için yararlıdır.";
+// ----------------------------------------------
 // app store main page
 store.name = "Nomad Sculpt";
 store.headline = "3D'de şekillendir ve boyama";

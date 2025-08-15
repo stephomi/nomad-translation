@@ -56,7 +56,7 @@ direction.up = "顶部";
 direction.down = "底部";
 direction.left = "左侧";
 direction.right = "右侧";
-// 3d cube
+// 3D cube
 cube.top = "顶";
 cube.bottom = "底";
 cube.left = "左";
@@ -122,6 +122,8 @@ item.next = "下一步";
 item.lock = "锁定";
 // No item selected
 item.none = "无";
+// Draggable, moveable
+item.draggable = "";
 
 // Search something (text entry to filter item)
 search = "搜索";
@@ -233,6 +235,10 @@ about.threads = "Threads";
 
 // The user canceled an operation that was running
 alert.aborted = "操作已中止！";
+// Empty mesh
+alert.mirror.empty = "输出为空！";
+// Mesh already mirrored
+alert.mirror.same = "相同输出！";
 // Error when an algorithm needs the object to have an hole (usually to fill it)
 alert.hole.nothing = "该对象没有孔洞！";
 // No operation occured because the mesh is already manifold
@@ -262,10 +268,10 @@ alert.voxelRemesh.invalidInput = "输入无效！";
 alert.matrix.clone = "将复制此对象";
 // Helper popup to tell the users the object will cloned
 alert.matrix.instance = "将实例此对象";
-// A pivot refers the gizmo 3d position, this mode means we are moving the pivot
+// A pivot refers the gizmo 3D position, this mode means we are moving the pivot
 alert.gizmo.editPivot = "编辑轴心模式";
 alert.mask.full = "蒙版 = 100%!";
-// A pivot refers the gizmo 3d position
+// A pivot refers the gizmo 3D position
 alert.gizmo.editObject = "编辑对象模式";
 // See Glossary (DynTopo)
 alert.dynamic.enable = "启用动态拓扑";
@@ -381,7 +387,7 @@ blend.cancelation.subtract = "减去";
 blend.component = "组件";
 blend.component.luminosity = "亮度";
 
-// Camera (point of view in 3d)
+// Camera (point of view in 3D)
 camera = "相机";
 cameras = "相机";
 camera.view = "浏览模式";
@@ -952,8 +958,6 @@ history.state.undo = "撤销： $0";
 // Shown during redo
 history.state.redo = "重做： $0";
 // Shown during undo/redo
-history.state.symmetrySplit = "显示对比";
-// Shown during undo/redo
 history.state.voxelRemesh = "体素网格重构";
 // Shown during undo/redo
 history.state.surfaceRemesh = "表面网格重构";
@@ -973,6 +977,9 @@ inspect.seams = "接缝";
 
 // Interface customization
 interface = "界面设置";
+
+// Resize window (should be short)
+interface.resize = "调整大小";
 
 // UI customization: one item row will stands on one line (synonym: Inlined)
 interface.compact = "UI：紧凑";
@@ -1029,6 +1036,17 @@ interface.toolbox.rows = "行";
 interface.toolbox.resetOrder = "重设排序";
 // Colored text and icon
 interface.toolbox.color = "彩色";
+// Top bar
+interface.top.title = "顶部区域";
+interface.top.responsive = "响应式";
+interface.top.responsive.help = "此选项主要与小屏幕相关。";
+interface.top.responsive.multiline = "多行";
+interface.top.responsive.scroll = "滚动";
+interface.top.responsive.collapse = "折叠";
+interface.top.alt = "备用顺序";
+interface.top.alt.help = "顶部菜单的替代顺序图标。
+
+与网格编辑相关的菜单通常在场景菜单的另一侧，有助于场景编辑。";
 // Scale the interface
 interface.scale = "界面缩放";
 // Spacing between widgets
@@ -1986,6 +2004,18 @@ stroke.silhouette.closest = "最近的";
 // Only sculpt the vertex that points toward the direction of the deformation
 stroke.sameSide = "只移动同向顶点";
 stroke.sameSide.help = "在修改对象造型时，不移动朝向不同的顶点。";
+// determine normal direction
+stroke.normal.direction = "";
+stroke.normal.direction.help = "";
+stroke.normal.direction.normal = "";
+stroke.normal.direction.normal.help = "";
+stroke.normal.direction.screen = "";
+stroke.normal.direction.screen.help = "";
+stroke.normal.direction.auto = "";
+stroke.normal.direction.auto.help = "";
+stroke.normal.direction.auto.threshold = "";
+stroke.normal.direction.auto.threshold.help = "";
+// small tip/warning
 stroke.onlyLasso = "该设置仅对套索工具有效。";
 
 // Here sampling refers to the app gathering information under the mouse
@@ -2004,8 +2034,8 @@ stroke.area.normal.average = "法线平均";
 // Sampling averaging
 stroke.area.point.average = "位置平均";
 // Keep sharp edges
-stroke.keepSharp = "保留硬边";
-stroke.keepSharp.help = "
+stroke.normalFilter = "法线滤镜";
+stroke.normalFilter.help = "
 深度限定";
 
 // Only paint the part of the mesh above a certain height
@@ -2124,13 +2154,19 @@ symmetry.method.world = "世界对称";
 symmetry.method.local = "本体对称";
 // Move the object to the other side of the symmetry (mirror it as well)
 symmetry.flip = "翻转对象";
-// Mirror the mesh
+// Cut half of the mesh
+symmetry.cut = "切割";
+// after mirroring, separate into multiple output (synonym: split, separate)
+symmetry.split = "分割";
+// Reapply the mesh mirror, does not impact the topology
 symmetry.mirror = "镜像";
 symmetry.mirror.help = "尝试在不影响拓扑的情况下重新应用对称。
 
 拓扑必须对称且至少有一个边缘恰好位于对称平面上才能成功应用。
 
 如果镜像失败，将会建议您强制对称。但这样会影响到拓扑。";
+// indicate that applying the mirror will keep the mesh topology
+symmetry.mirror.keepTopology = "保持拓扑";
 symmetry.mirrorFail = "对称失败：
 
 是否使用镜像来强制对称？";
@@ -2138,10 +2174,6 @@ symmetry.mirrorUseMasking = "保护蒙版区域";
 symmetry.mirrorUseMasking.help = "启用后，在镜像时将不会修改蒙版区域。
 
 该选项会忽略非对称网格(或不相连的表面，比如眼睛)。";
-symmetry.apply = "镜像
-(保持拓扑)";
-symmetry.splitMirror = "分割 & 镜像
-(新拓扑)";
 // Reset the symmetry plane position
 symmetry.reset = "重设";
 // Reset the symmetry plane positon to the object center
@@ -2152,7 +2184,7 @@ symmetry.reset.centerWorld = "世界中心";
 symmetry.reset.direction = "方向";
 // Display a line on the object (to show where the symmetry lies)
 symmetry.showLine = "显示线条";
-// Display the symmetry plane in 3d
+// Display the symmetry plane in 3D
 symmetry.showPlane = "显示平面";
 // Allow the editing of the symmetry plane with the gizmo
 symmetry.edit = "编辑Gizmo";
@@ -2775,6 +2807,11 @@ license.key = "许可证密钥";
 license.activate = "激活许可证";
 // ----------------------------------------------
 license.newest = "新版本可用！";
+license.encrypt.error = "无法加密！";
+// ----------------------------------------------
+license.grace = "离线 - 剩余宽限期：";
+license.grace.hours = "小时";
+license.grace.days = "天";
 // ----------------------------------------------
 license.portal.title = "现有用户";
 license.portal.label = "许可证门户";
@@ -2785,6 +2822,8 @@ license.checkout.label = "购买 Nomad";
 license.device.error = "无法获取设备 ID。";
 license.device.mismatch = "设备 ID 不匹配！";
 // ----------------------------------------------
+license.error429 = "请求过多（请稍候）。";
+// ----------------------------------------------
 license.validate.error404 = "许可证密钥未找到。";
 license.validate.error422 = "不可处理的实体。";
 // ----------------------------------------------
@@ -2793,12 +2832,18 @@ license.activate.error403 = "已达到最大设备数！
 license.activate.error404 = "许可证密钥未找到。";
 license.activate.error422 = "不可处理的实体。";
 // ----------------------------------------------
-// version trial
+// version
+version.update = "更新可用！";
 version.restore = "恢复购买";
 version.buyWeb = "该版本仅供演示";
 version.buyFull = "购买完整版本";
-version.buyQR = "购买";
-version.buyQR.promo = "
+// ----------------------------------------------
+// QuadRemesh
+version.qr.unlock = "解锁（购买、恢复、试用）";
+version.qr.desktop = "在桌面上，QuadRemesher由Hexanomad分发，但Hexanomad不处理销售或许可。
+所有许可证管理由Exoside负责。";
+version.qr.buy = "购买";
+version.qr.promo = "
 四边形重构算法是输出以四边形为主的网格的算法。
 四边形分布将尝试跟随物体的自然曲率。
 
@@ -2815,20 +2860,30 @@ version.buyQR.promo = "
 • 密度绘制 $3
 
 四边形重构算法由https://exoside.com/开发。";
-
-version.trialHistory = "试用版本限制：仅允许4次以内的撤销或重做";
+// ----------------------------------------------
 version.trialLayer = "试用版本限制：每个物体仅允许添加一个图层";
-version.trialNoImport = "试用版本限制：不允许导入";
 version.trialNoExport = "试用版本限制：不允许导出";
-
+// ----------------------------------------------
 version.fullFeatures = "购买完整版本后您可以：
 • 撤消或重做不受限制
 • 图层数量不受限制
 • 可以导入和导出文件";
-
+// ----------------------------------------------
 version.demo.purpose = "此版本专为演示用途而制作。";
 version.demo.disable = "演示版本不启用此功能。";
+// ----------------------------------------------
+version.demo = "演示测试";
+version.demo.sculpt = "雕刻";
+version.demo.sculpt.help = "所有画笔都可以使用，但不能保存或导出。
 
+此模式主要用于实验画笔或测试压力支持。
+
+其他功能也可能有限(历史记录，图层)。";
+version.demo.file = "导入和导出";
+version.demo.file.help = "您可以导入和导出模型，但雕刻画笔被禁用。
+
+此模式对那些因移动设备内存限制而无法打开大型.nom项目的移动用户特别有用。";
+// ----------------------------------------------
 // app store main page
 store.name = "Nomad Sculpt • 3D雕刻建模";
 store.headline = "专业数字雕刻与模型绘画";

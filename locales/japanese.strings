@@ -56,7 +56,7 @@ direction.up = "上";
 direction.down = "下";
 direction.left = "左";
 direction.right = "右";
-// 3d cube
+// 3D cube
 cube.top = "上";
 cube.bottom = "下";
 cube.left = "左";
@@ -122,6 +122,8 @@ item.next = "次へ";
 item.lock = "ロック";
 // No item selected
 item.none = "なし";
+// Draggable, moveable
+item.draggable = "";
 
 // Search something (text entry to filter item)
 search = "検索";
@@ -233,6 +235,10 @@ about.threads = "Threads";
 
 // The user canceled an operation that was running
 alert.aborted = "操作が中止されました！";
+// Empty mesh
+alert.mirror.empty = "空の出力！";
+// Mesh already mirrored
+alert.mirror.same = "同じ出力！";
 // Error when an algorithm needs the object to have an hole (usually to fill it)
 alert.hole.nothing = "オブジェクトに穴がありません。";
 // No operation occured because the mesh is already manifold
@@ -262,10 +268,10 @@ alert.voxelRemesh.invalidInput = "無効な入力です！";
 alert.matrix.clone = "オブジェクトは複製されます";
 // Helper popup to tell the users the object will cloned
 alert.matrix.instance = "オブジェクトはインスタンス化されます";
-// A pivot refers the gizmo 3d position, this mode means we are moving the pivot
+// A pivot refers the gizmo 3D position, this mode means we are moving the pivot
 alert.gizmo.editPivot = "回転軸モードを編集してください。";
 alert.mask.full = "マスク = 100%!";
-// A pivot refers the gizmo 3d position
+// A pivot refers the gizmo 3D position
 alert.gizmo.editObject = "オブジェクトモードを編集してください。";
 // See Glossary (DynTopo)
 alert.dynamic.enable = "アクティブなダイナミックトポロジー";
@@ -381,7 +387,7 @@ blend.cancelation.subtract = "減算";
 blend.component = "コンポーネント";
 blend.component.luminosity = "輝度";
 
-// Camera (point of view in 3d)
+// Camera (point of view in 3D)
 camera = "カメラ";
 cameras = "カメラ";
 camera.view = "表示";
@@ -950,8 +956,6 @@ history.state.undo = "取り消し: $0";
 // Shown during redo
 history.state.redo = "やり直し: $0";
 // Shown during undo/redo
-history.state.symmetrySplit = "対称で分割";
-// Shown during undo/redo
 history.state.voxelRemesh = "ボクセルのリメッシュ";
 // Shown during undo/redo
 history.state.surfaceRemesh = "サーフェスのリメッシュ";
@@ -971,6 +975,9 @@ inspect.seams = "シーム";
 
 // Interface customization
 interface = "インターフェース";
+
+// Resize window (should be short)
+interface.resize = "サイズ変更";
 
 // UI customization: one item row will stands on one line (synonym: Inlined)
 interface.compact = "UI：コンパクト";
@@ -1027,6 +1034,17 @@ interface.toolbox.rows = "行";
 interface.toolbox.resetOrder = "順序をリセット";
 // Colored text and icon
 interface.toolbox.color = "カラー";
+// Top bar
+interface.top.title = "トップバー";
+interface.top.responsive = "レスポンシブ";
+interface.top.responsive.help = "このオプションは主に小さい画面に関連します。";
+interface.top.responsive.multiline = "複数行対応";
+interface.top.responsive.scroll = "スクロール";
+interface.top.responsive.collapse = "折りたたむ";
+interface.top.alt = "代替の順序";
+interface.top.alt.help = "トップメニューの代替順序アイコン。
+
+メッシュ編集に関するメニューは主にシーンメニューの反対側に配置されており、シーン編集に役立ちます。";
 // Scale the interface
 interface.scale = "全体的なサイズ調整";
 // Spacing between widgets
@@ -1980,6 +1998,18 @@ stroke.silhouette.closest = "最も近い";
 // Only sculpt the vertex that points toward the direction of the deformation
 stroke.sameSide = "同じ側面の頂点のみ";
 stroke.sameSide.help = "デフォーメーションの反対方向を指す頂点を無視します。";
+// determine normal direction
+stroke.normal.direction = "";
+stroke.normal.direction.help = "";
+stroke.normal.direction.normal = "";
+stroke.normal.direction.normal.help = "";
+stroke.normal.direction.screen = "";
+stroke.normal.direction.screen.help = "";
+stroke.normal.direction.auto = "";
+stroke.normal.direction.auto.help = "";
+stroke.normal.direction.auto.threshold = "";
+stroke.normal.direction.auto.threshold.help = "";
+// small tip/warning
 stroke.onlyLasso = "設定は投げなわツールにのみ有効です。";
 
 // Here sampling refers to the app gathering information under the mouse
@@ -1998,8 +2028,8 @@ stroke.area.normal.average = "ノーマル平均";
 // Sampling averaging
 stroke.area.point.average = "ポジション平均";
 // Keep sharp edges
-stroke.keepSharp = "シャープなエッジを残す";
-stroke.keepSharp.help = "
+stroke.normalFilter = "ノーマルフィルター";
+stroke.normalFilter.help = "
 深度のフィルタリング";
 
 // Only paint the part of the mesh above a certain height
@@ -2118,13 +2148,19 @@ symmetry.method.world = "ワールド";
 symmetry.method.local = "ローカル";
 // Move the object to the other side of the symmetry (mirror it as well)
 symmetry.flip = "オブジェクトを反転";
-// Mirror the mesh
-symmetry.mirror = "ミラーリング";
+// Cut half of the mesh
+symmetry.cut = "カット";
+// after mirroring, separate into multiple output (synonym: split, separate)
+symmetry.split = "分割";
+// Reapply the mesh mirror, does not impact the topology
+symmetry.mirror = "ミラー";
 symmetry.mirror.help = "トポロジーに影響を与えないで対称を再度適用します。
 
 放射状の対称は無視されます。
 
 トポロジーが対称でないと認識されたため残せない場合は、ミラーリングを強制実行するオプションが提示されます。";
+// indicate that applying the mirror will keep the mesh topology
+symmetry.mirror.keepTopology = "トポロジーを保持";
 symmetry.mirrorFail = "対称を適用できませんでした。
 
 メッシュをミラーリングすることで対称を強制実行しますか？";
@@ -2132,10 +2168,6 @@ symmetry.mirrorUseMasking = "マスクの部分を保護";
 symmetry.mirrorUseMasking.help = "マスク部分をそのまま残します。
 
 このオプションは非対称のトポロジー (または、一対の目のような、繋がっていないサーフェス) では無視されます。";
-symmetry.apply = "ミラー
-（トポロジーを保持）";
-symmetry.splitMirror = "分割＆ミラー
-（新しいトポロジー）";
 // Reset the symmetry plane position
 symmetry.reset = "リセット";
 // Reset the symmetry plane positon to the object center
@@ -2146,7 +2178,7 @@ symmetry.reset.centerWorld = "ワールドの中央";
 symmetry.reset.direction = "方向";
 // Display a line on the object (to show where the symmetry lies)
 symmetry.showLine = "線を表示";
-// Display the symmetry plane in 3d
+// Display the symmetry plane in 3D
 symmetry.showPlane = "平面を表示";
 // Allow the editing of the symmetry plane with the gizmo
 symmetry.edit = "Gizmoで編集";
@@ -2767,6 +2799,11 @@ license.key = "ライセンスキー";
 license.activate = "ライセンスを有効化";
 // ----------------------------------------------
 license.newest = "新しいバージョンが利用可能です！";
+license.encrypt.error = "暗号化できませんでした！";
+// ----------------------------------------------
+license.grace = "オフライン - 残りの猶予期間:";
+license.grace.hours = "時間";
+license.grace.days = "日";
 // ----------------------------------------------
 license.portal.title = "既存のユーザー";
 license.portal.label = "ライセンスポータル";
@@ -2777,6 +2814,8 @@ license.checkout.label = "Nomadを購入";
 license.device.error = "デバイスIDを取得できませんでした。";
 license.device.mismatch = "デバイスIDが一致しません！";
 // ----------------------------------------------
+license.error429 = "リクエストが多すぎます（待ってください）。";
+// ----------------------------------------------
 license.validate.error404 = "ライセンスキーが見つかりませんでした。";
 license.validate.error422 = "処理できないエンティティ。";
 // ----------------------------------------------
@@ -2785,12 +2824,18 @@ license.activate.error403 = "最大数のデバイスに達しました！
 license.activate.error404 = "ライセンスキーが見つかりませんでした。";
 license.activate.error422 = "処理できないエンティティ。";
 // ----------------------------------------------
-// version trial
+// version
+version.update = "アップデート可能！";
 version.restore = "購入の復元";
 version.buyWeb = "ウェブバージョンはデモ目的のみに利用できます";
 version.buyFull = "フルバージョンにアップグレード";
-version.buyQR = "購入";
-version.buyQR.promo = "
+// ----------------------------------------------
+// QuadRemesh
+version.qr.unlock = "ロック解除 (購入、復元、トライアル)";
+version.qr.desktop = "デスクトップでは、QuadRemesher は Hexanomad によって配布されますが、Hexanomad は販売やライセンスを扱っていません。
+すべてのライセンス管理は Exoside によって行われます。";
+version.qr.buy = "購入";
+version.qr.promo = "
 Quad Remesherは四角形を主体とするメッシュを出力するアルゴリズムです。
 四角形の分布はオブジェクトの自然な曲率に沿って試みます。
 
@@ -2807,20 +2852,30 @@ Quad Remesherは四角形を主体とするメッシュを出力するアルゴ�
 • 密度ペインティング $3
 
 Quad Remesherは https://exoside.com/ によって開発されました。";
-
-version.trialHistory = "お試し版: 取り消し/やり直しの上限は4回です";
+// ----------------------------------------------
 version.trialLayer = "お試し版: メッシュごとに1 レイヤーのみ";
-version.trialNoImport = "お試し版: 読み込み機能は使用できません";
 version.trialNoExport = "お試し版: 書き出し機能は使用できません";
-
+// ----------------------------------------------
 version.fullFeatures = "• 一括購入
 • 取り消し/やり直しの上限なし
 • 無制限のレイヤー
 • 書き出し & 読み込み";
-
+// ----------------------------------------------
 version.demo.purpose = "このバージョンはデモ用として特別に開発されたものです。";
 version.demo.disable = "このデモでは機能が有効になっていません。";
+// ----------------------------------------------
+version.demo = "デモテスト";
+version.demo.sculpt = "スカルプト";
+version.demo.sculpt.help = "すべてのブラシが利用可能ですが、保存やエクスポートはできません。
 
+このモードは主にブラシを試すか、圧力サポートをテストするために設計されています。
+
+他の機能も制限される場合があります（履歴、レイヤー）。";
+version.demo.file = "インポート＆エクスポート";
+version.demo.file.help = "モデルのインポートとエクスポートは可能ですが、スカルプトブラシは無効です。
+
+このモードは、モバイルメモリ制約で大きな.nomプロジェクトを開けないモバイルユーザーにとって特に便利です。";
+// ----------------------------------------------
 // app store main page
 store.name = "Nomad Sculpt";
 store.headline = "3Dで彫刻し、ペイントし、作成する";

@@ -56,7 +56,7 @@ direction.up = "Up";
 direction.down = "Down";
 direction.left = "Left";
 direction.right = "Right";
-// 3d cube
+// 3D cube
 cube.top = "Top";
 cube.bottom = "Bottom";
 cube.left = "Left";
@@ -122,6 +122,8 @@ item.next = "Next";
 item.lock = "Lock";
 // No item selected
 item.none = "None";
+// Draggable, moveable
+item.draggable = "Moveable";
 
 // Search something (text entry to filter item)
 search = "Search";
@@ -233,6 +235,10 @@ about.threads = "Threads";
 
 // The user canceled an operation that was running
 alert.aborted = "Operation aborted!";
+// Empty mesh
+alert.mirror.empty = "Empty output!";
+// Mesh already mirrored
+alert.mirror.same = "Same output!";
 // Error when an algorithm needs the object to have an hole (usually to fill it)
 alert.hole.nothing = "The object has no holes!";
 // No operation occured because the mesh is already manifold
@@ -262,10 +268,10 @@ alert.voxelRemesh.invalidInput = "Invalid input!";
 alert.matrix.clone = "The object will be duplicated";
 // Helper popup to tell the users the object will cloned
 alert.matrix.instance = "The object will be instanced";
-// A pivot refers the gizmo 3d position, this mode means we are moving the pivot
+// A pivot refers the gizmo 3D position, this mode means we are moving the pivot
 alert.gizmo.editPivot = "Edit pivot mode.";
 alert.mask.full = "Mask = 100%!";
-// A pivot refers the gizmo 3d position
+// A pivot refers the gizmo 3D position
 alert.gizmo.editObject = "Edit object mode.";
 // See Glossary (DynTopo)
 alert.dynamic.enable = "Dynamic topology ON";
@@ -381,7 +387,7 @@ blend.cancelation.subtract = "Subtract";
 blend.component = "Component";
 blend.component.luminosity = "Luminosity";
 
-// Camera (point of view in 3d)
+// Camera (point of view in 3D)
 camera = "Camera";
 cameras = "Cameras";
 camera.view = "View";
@@ -600,7 +606,7 @@ file.import.guiSettings.help = "When opening or importing a project file, all th
 file.import.obj.splitByGroup = "Split OBJ by groups";
 file.import.obj.splitByGroup.help = "When enabled, Nomad will split the OBJ groups into separate objects.";
 // Merge all the object layers at when loading a file (deleting them in the process)
-file.import.mergeLayers = "Merge Layers";
+file.import.mergeLayers = "Merge layers";
 // Ignore the textures present in the file to load
 file.import.skipTextures = "Skip textures";
 // Do not fiddle with the object topology when loading the file
@@ -677,7 +683,7 @@ file.export.gltf.layerPaint.help = "Export layer painting. It is usually ignored
 file.export.obj.warning = "Layers and extra painting (roughness metalness and mask) will be lost.";
 // Whether we include the vertex color in the exported file
 file.export.obj.color = "Vertex colors";
-file.export.obj.color.help = "Some 3d softwares will be able to read it but not all of them.";
+file.export.obj.color.help = "Some 3D softwares will be able to read it but not all of them.";
 file.export.obj.color.help.append = "Append color information after vertices.";
 file.export.obj.color.help.hexa = "An alternative way to encode color. It also supports mask data.";
 file.export.obj.faceGroup = "Face Group";
@@ -696,7 +702,7 @@ file.export.ply.warning = "Layers and extra painting (roughness, metalness, etc)
 file.export.stl.warning = "Layers and extra painting (roughness, metalness, etc) will be lost.";
 // Whether we include the vertex color in the exported file
 file.export.stl.color = "Vertex colors";
-file.export.stl.color.help = "Some 3d softwares will be able to read it but not all of them.";
+file.export.stl.color.help = "Some 3D softwares will be able to read it but not all of them.";
 // ----------------------------------------------
 file.export.usd.skew = "Allow skew";
 file.export.usd.skew.help = "Allow skew in the matrix transforms.
@@ -751,7 +757,7 @@ file.render.warn = "The export resolution is high ($0x$1)!
 Make sure to save your project in case your device runs out of VRAM and crashes.";
 // If true, then the exported screenshot will have transparency data in the image
 file.render.transparent = "Transparent background";
-file.render.transparent.help = "This option can be useful if you want to insert the mesh in a 2d creation software.
+file.render.transparent.help = "This option can be useful if you want to insert the mesh in a 2D creation software.
 
 Partial object transparency is not supported for now.";
 
@@ -954,8 +960,6 @@ history.state.undo = "Undo: $0";
 // Shown during redo
 history.state.redo = "Redo: $0";
 // Shown during undo/redo
-history.state.symmetrySplit = "Symmetry Split";
-// Shown during undo/redo
 history.state.voxelRemesh = "Voxel remesh";
 // Shown during undo/redo
 history.state.surfaceRemesh = "Surface remesh";
@@ -975,6 +979,9 @@ inspect.seams = "Seams";
 
 // Interface customization
 interface = "Interface";
+
+// Resize window (should be short)
+interface.resize = "Resize";
 
 // UI customization: one item row will stands on one line (synonym: Inlined)
 interface.compact = "UI: Compact";
@@ -1031,6 +1038,17 @@ interface.toolbox.rows = "Rows";
 interface.toolbox.resetOrder = "Reset order";
 // Colored text and icon
 interface.toolbox.color = "Colored";
+// Top bar
+interface.top.title = "Top bar";
+interface.top.responsive = "Responsive";
+interface.top.responsive.help = "This option is mostly relevant for small screen.";
+interface.top.responsive.multiline = "Multiline";
+interface.top.responsive.scroll = "Scroll";
+interface.top.responsive.collapse = "Collapse";
+interface.top.alt = "Alt order";
+interface.top.alt.help = "Alternative order icon for top menu.
+
+Menus relative to mesh editing are mostly on the opposite side of the scene menu, which can help in scene editing.";
 // Scale the interface
 interface.scale = "Overall scale";
 // Spacing between widgets
@@ -1535,7 +1553,7 @@ primitive.needValidate = "Primitive should be validated!";
 
 // If enabled, we can edit primitive inside the viewport
 primitive.edit = "Edit";
-primitive.edit.help = "Allow 3d editing in the viewport.
+primitive.edit.help = "Allow 3D editing in the viewport.
 
 You can disable this feature if you want to interact with the Gizmo or the Transform tool without modifying the primitive.";
 
@@ -1987,6 +2005,20 @@ stroke.silhouette.closest = "Closest";
 // Only sculpt the vertex that points toward the direction of the deformation
 stroke.sameSide = "Same-side vertex only";
 stroke.sameSide.help = "Ignore vertices that points in the opposite direction of the deformation.";
+// determine normal direction
+stroke.normal.direction = "Direction";
+stroke.normal.direction.help = "Relevant only if normal deformation is enabled.
+
+Controls how Nomad decides the deformation sign (push vs pull).";
+stroke.normal.direction.normal = "Normal 3D";
+stroke.normal.direction.normal.help = "Compares the pointer's XY position with the projected surface normal.";
+stroke.normal.direction.screen = "XY";
+stroke.normal.direction.screen.help = "Uses the pointer's screen XY position to decide push or pull.";
+stroke.normal.direction.auto = "Auto";
+stroke.normal.direction.auto.help = "Chooses the method automatically based on the projected normal angle.";
+stroke.normal.direction.auto.threshold = "Threshold";
+stroke.normal.direction.auto.threshold.help = "Angle limit compared against the surface normal to decide which method is used.";
+// small tip/warning
 stroke.onlyLasso = "Settings only active for the lasso tool.";
 
 // Here sampling refers to the app gathering information under the mouse
@@ -2005,15 +2037,15 @@ stroke.area.normal.average = "Normal averaging";
 // Sampling averaging
 stroke.area.point.average = "Position averaging";
 // Keep sharp edges
-stroke.keepSharp = "Keep sharp edges";
-stroke.keepSharp.help = "Exclude points whose normals differ too much from the surface normal.
+stroke.normalFilter = "Normal filter";
+stroke.normalFilter.help = "Exclude points whose normals differ too much from the surface normal.
 
 It will change how the plane area is computed (Area sampling).
 
 This option can be useful for flatten-based tool, or if you want to color a planar surface without spilling.";
 
 // Only paint the part of the mesh above a certain height
-stroke.depthFilter = "Depth masking";
+stroke.depthFilter = "Depth filter";
 stroke.depthFilter.help = "Exclude points that are above or below a certain distance of the computed plane (Area sampling).
 
 As an example, it can be used to paint bumps or cavities.";
@@ -2082,10 +2114,10 @@ stroke.type.grabRadius = "Lock + radius";
 stroke.type.grabIntensity = "Lock + intensity";
 
 stroke.falloffProject = "Influence";
-stroke.falloffProject.help = "• Sphere (3d)
+stroke.falloffProject.help = "• Sphere (3D)
 Influence is computed by taking the distance from the vertex to the brush's center.
 
-• Circle (2d)
+• Circle (2D)
 The vertex is first projected on the area plane, before taking its distance to the brush's center.
 This is similar to how alphas are sampled.";
 stroke.falloffProject.sphere = "Sphere";
@@ -2128,13 +2160,19 @@ symmetry.method.world = "World";
 symmetry.method.local = "Local";
 // Move the object to the other side of the symmetry (mirror it as well)
 symmetry.flip = "Flip object";
-// Mirror the mesh
-symmetry.mirror = "Mirroring";
+// Cut half of the mesh
+symmetry.cut = "Cut";
+// after mirroring, separate into multiple output (synonym: split, separate)
+symmetry.split = "Split";
+// Reapply the mesh mirror, does not impact the topology
+symmetry.mirror = "Mirror";
 symmetry.mirror.help = "Try to re-apply the symmetry without impacting the topology.
 
 Radial symmetry will be ignored.
 
 If the topology can't be kept because it is not considered symmetrical, you'll get the option to enforce the mirroring.";
+// indicate that applying the mirror will keep the mesh topology
+symmetry.mirror.keepTopology = "keep topology";
 symmetry.mirrorFail = "Failed to detect symmetry.
 
 Do you want to enforce symmetry by mirroring the mesh?";
@@ -2142,10 +2180,6 @@ symmetry.mirrorUseMasking = "Protect masked area";
 symmetry.mirrorUseMasking.help = "Keep masked area intact.
 
 This option will be ignored with non-symmetric topology (or disconnected surface, like a pair of eyes).";
-symmetry.apply = "Mirror
-(keep topology)";
-symmetry.splitMirror = "Split & Mirror
-(new topology)";
 // Reset the symmetry plane position
 symmetry.reset = "Reset";
 // Reset the symmetry plane positon to the object center
@@ -2156,7 +2190,7 @@ symmetry.reset.centerWorld = "World center";
 symmetry.reset.direction = "Orientation";
 // Display a line on the object (to show where the symmetry lies)
 symmetry.showLine = "Show line";
-// Display the symmetry plane in 3d
+// Display the symmetry plane in 3D
 symmetry.showPlane = "Show plane";
 // Allow the editing of the symmetry plane with the gizmo
 symmetry.edit = "Gizmo edit";
@@ -2575,7 +2609,7 @@ topology.dynamic.useFalloff = "Use stroke falloff";
 topology.decimate.title = "Decimation";
 topology.decimate.title.help = "Reduce the number of polygons by trying to keep as many details as possible.
 
-This feature can be useful if you want to export for 3d printing.
+This feature can be useful if you want to export for 3D printing.
 However you should probably not use it if you want to continue sculpting on it, as it can produce uneven triangles.
 
 Note that the masked area won't be decimated.";
@@ -2778,6 +2812,11 @@ license.key = "License key";
 license.activate = "Activate license";
 // ----------------------------------------------
 license.newest = "New version available!";
+license.encrypt.error = "Could not encrypt!";
+// ----------------------------------------------
+license.grace = "Offline - Remaining grace period:";
+license.grace.hours = "hours";
+license.grace.days = "days";
 // ----------------------------------------------
 license.portal.title = "Existing users";
 license.portal.label = "License portal";
@@ -2788,6 +2827,8 @@ license.checkout.label = "Purchase Nomad";
 license.device.error = "Could not get device ID.";
 license.device.mismatch = "Mismatch device ID!";
 // ----------------------------------------------
+license.error429 = "Too many request (wait).";
+// ----------------------------------------------
 license.validate.error404 = "The license key was not found.";
 license.validate.error422 = "Unprocessable Entity.";
 // ----------------------------------------------
@@ -2796,12 +2837,18 @@ You can de-activate another device on your license portal.";
 license.activate.error404 = "The license key was not found.";
 license.activate.error422 = "Unprocessable Entity.";
 // ----------------------------------------------
-// version trial
+// version
+version.update = "Update available!";
 version.restore = "Restore purchase";
 version.buyWeb = "Web version is only a demo";
 version.buyFull = "Upgrade to full version";
-version.buyQR = "Purchase";
-version.buyQR.promo = "
+// ----------------------------------------------
+// QuadRemesh
+version.qr.unlock = "Unlock (purchase, restore, trial)";
+version.qr.desktop = "On desktop, the QuadRemesher is distributed by Hexanomad, but Hexanomad does not handle sales or licensing.
+All license management is carried out by Exoside.";
+version.qr.buy = "Purchase";
+version.qr.promo = "
 The Quad Remesher is an an algorithm that outputs quad dominant mesh.
 The quad distribution will try to follow the natural curvature of the object.
 
@@ -2818,24 +2865,34 @@ You can also guide the resulting topology with:
 • Density painting $3
 
 The Quad Remesher is developed by https://exoside.com/.";
-
-version.trialHistory = "Trial version: 4 undo/redo possible";
+// ----------------------------------------------
 version.trialLayer = "Trial version: 1 layer per object";
-version.trialNoImport = "Trial version: No import";
 version.trialNoExport = "Trial version: No export";
-
+// ----------------------------------------------
 version.fullFeatures = "• One time purchase
 • Unlimited undo/redo
 • Unlimited layers
 • Export & import";
-
+// ----------------------------------------------
 version.demo.purpose = "This version has been created specifically for demonstration purposes.";
 version.demo.disable = "Feature not enabled for demo.";
+// ----------------------------------------------
+version.demo = "Demo Test";
+version.demo.sculpt = "Sculpting";
+version.demo.sculpt.help = "All brushes are available but you cannot save or export.
 
+This mode is mostly meant to experiment with the brushes or test pressure support.
+
+Other features can limited as well (history, layers).";
+version.demo.file = "Import & Export";
+version.demo.file.help = "You can import and export model but sculpt brushes are disabled.
+
+This mode is mostly useful for mobile users who cannot open big .nom project caused by mobile memory constraint.";
+// ----------------------------------------------
 // app store main page
 store.name = "Nomad Sculpt";
 store.headline = "Sculpt, paint and create in 3D";
-store.tag = "sculpt, 3d, nomad, paint, modeling";
+store.tag = "sculpt, 3D, nomad, paint, modeling";
 // ----------------------------------------------
 store.description.sculpt = "• Sculpting tools
 Clay, flatten, smooth, mask and many other brushes will let you shape your creation.

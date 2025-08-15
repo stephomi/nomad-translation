@@ -56,7 +56,7 @@ direction.up = "Lên";
 direction.down = "Xuống";
 direction.left = "Trái";
 direction.right = "Phải";
-// 3d cube
+// 3D cube
 cube.top = "Đỉnh";
 cube.bottom = "Dưới";
 cube.left = "Trái";
@@ -122,6 +122,8 @@ item.next = "Tiếp theo";
 item.lock = "Khóa";
 // No item selected
 item.none = "Không có";
+// Draggable, moveable
+item.draggable = "";
 
 // Search something (text entry to filter item)
 search = "Tìm kiếm";
@@ -233,6 +235,10 @@ about.threads = "Threads";
 
 // The user canceled an operation that was running
 alert.aborted = "Hoạt động bị hủy!";
+// Empty mesh
+alert.mirror.empty = "Xuất kết quả rỗng!";
+// Mesh already mirrored
+alert.mirror.same = "Xuất kết quả giống nhau!";
 // Error when an algorithm needs the object to have an hole (usually to fill it)
 alert.hole.nothing = "Đối tượng không có lỗ!";
 // No operation occured because the mesh is already manifold
@@ -262,10 +268,10 @@ alert.voxelRemesh.invalidInput = "Dữ liệu nhập không hợp lệ!";
 alert.matrix.clone = "Đối tượng sẽ được nhân đôi";
 // Helper popup to tell the users the object will cloned
 alert.matrix.instance = "Đối tượng sẽ được gán định";
-// A pivot refers the gizmo 3d position, this mode means we are moving the pivot
+// A pivot refers the gizmo 3D position, this mode means we are moving the pivot
 alert.gizmo.editPivot = "Chỉnh sửa chế độ trục.";
 alert.mask.full = "Mặt nạ = 100%!";
-// A pivot refers the gizmo 3d position
+// A pivot refers the gizmo 3D position
 alert.gizmo.editObject = "Chỉnh sửa chế độ đối tượng.";
 // See Glossary (DynTopo)
 alert.dynamic.enable = "Trên Đỉnh động";
@@ -381,7 +387,7 @@ blend.cancelation.subtract = "Trừ đi";
 blend.component = "Thành phần";
 blend.component.luminosity = "Độ sáng";
 
-// Camera (point of view in 3d)
+// Camera (point of view in 3D)
 camera = "Máy ảnh";
 cameras = "Máy ảnh";
 camera.view = "Xem";
@@ -954,8 +960,6 @@ history.state.undo = "Hoàn tác: $0";
 // Shown during redo
 history.state.redo = "Làm lại: $0";
 // Shown during undo/redo
-history.state.symmetrySplit = "Tách đối xứng";
-// Shown during undo/redo
 history.state.voxelRemesh = "Lưới lại voxel";
 // Shown during undo/redo
 history.state.surfaceRemesh = "Lưới lại bề mặt";
@@ -975,6 +979,9 @@ inspect.seams = "Đường Rãnh";
 
 // Interface customization
 interface = "Giao diện";
+
+// Resize window (should be short)
+interface.resize = "Thay đổi kích thước";
 
 // UI customization: one item row will stands on one line (synonym: Inlined)
 interface.compact = "Giao diện: Gọn";
@@ -1031,6 +1038,17 @@ interface.toolbox.rows = "Hàng";
 interface.toolbox.resetOrder = "Đặt lại thứ tự";
 // Colored text and icon
 interface.toolbox.color = "Có màu sắc";
+// Top bar
+interface.top.title = "Khu vực trên";
+interface.top.responsive = "Đáp ứng";
+interface.top.responsive.help = "Tuỳ chọn này chủ yếu dành cho màn hình nhỏ.";
+interface.top.responsive.multiline = "Nhiều dây";
+interface.top.responsive.scroll = "Cuộn";
+interface.top.responsive.collapse = "Thu gọn";
+interface.top.alt = "Sắp xếp thay thế";
+interface.top.alt.help = "Biểu tượng sắp xếp thay thế cho menu trên cùng. 
+
+Các menu liên quan đến chỉnh sửa lưới thường nằm ở phía đối diện với menu cảnh, điều này có thể giúp trong việc chỉnh sửa cảnh.";
 // Scale the interface
 interface.scale = "Tỷ lệ tổng thể";
 // Spacing between widgets
@@ -1984,6 +2002,18 @@ stroke.silhouette.closest = "Gần nhất";
 // Only sculpt the vertex that points toward the direction of the deformation
 stroke.sameSide = "Chỉ đỉnh cùng phía";
 stroke.sameSide.help = "Bỏ qua các đỉnh chỉ theo hướng ngược lại của biến dạng.";
+// determine normal direction
+stroke.normal.direction = "";
+stroke.normal.direction.help = "";
+stroke.normal.direction.normal = "";
+stroke.normal.direction.normal.help = "";
+stroke.normal.direction.screen = "";
+stroke.normal.direction.screen.help = "";
+stroke.normal.direction.auto = "";
+stroke.normal.direction.auto.help = "";
+stroke.normal.direction.auto.threshold = "";
+stroke.normal.direction.auto.threshold.help = "";
+// small tip/warning
 stroke.onlyLasso = "Cài đặt chỉ hoạt động với công cụ dây thòng lọng.";
 
 // Here sampling refers to the app gathering information under the mouse
@@ -2002,8 +2032,8 @@ stroke.area.normal.average = "Trung bình tiêu chuẩn";
 // Sampling averaging
 stroke.area.point.average = "Trung bình vị trí";
 // Keep sharp edges
-stroke.keepSharp = "Giữ cạnh sắc";
-stroke.keepSharp.help = "Loại trừ các điểm có phương pháp pháp tuyến khác nhiều với phương pháp pháp tuyến bề mặt.
+stroke.normalFilter = "Bộ lọc Normal";
+stroke.normalFilter.help = "Loại trừ các điểm có phương pháp pháp tuyến khác nhiều với phương pháp pháp tuyến bề mặt.
 
 Nó sẽ thay đổi cách tính diện tích mặt phẳng (Lấy mẫu diện tích).
 
@@ -2125,9 +2155,15 @@ symmetry.method.world = "Thế giới";
 symmetry.method.local = "Cục bộ";
 // Move the object to the other side of the symmetry (mirror it as well)
 symmetry.flip = "Lật đối tượng";
-// Mirror the mesh
+// Cut half of the mesh
+symmetry.cut = "Cắt";
+// after mirroring, separate into multiple output (synonym: split, separate)
+symmetry.split = "Tách";
+// Reapply the mesh mirror, does not impact the topology
 symmetry.mirror = "Phản chiếu";
 symmetry.mirror.help = "Cố thử áp dụng lại đối xứng mà không ảnh hưởng đến cấu trúc. Đối xứng hướng trục sẽ bị bỏ qua. Nếu cấu trúc không thể giữ nguyên vì nó không được xem là đối xứng, bạn sẽ có tùy chọn áp dụng đối xứng bắt buộc.";
+// indicate that applying the mirror will keep the mesh topology
+symmetry.mirror.keepTopology = "giữ cấu trúc";
 symmetry.mirrorFail = "Không phát hiện được đối xứng. 
 
 Bạn có muốn bắt buộc đối xứng bằng cách phản chiếu mesh không?";
@@ -2135,10 +2171,6 @@ symmetry.mirrorUseMasking = "Bảo vệ khu vực bị che";
 symmetry.mirrorUseMasking.help = "Giữ nguyên khu vực bị che. 
 
 Tùy chọn này sẽ bị bỏ qua trong cấu trúc không đối xứng (hoặc bề mặt tách rời như một đôi mắt).";
-symmetry.apply = "Phản chiếu
-(giữ cấu trúc)";
-symmetry.splitMirror = "Chia & Phản chiếu
-(cấu trúc mới)";
 // Reset the symmetry plane position
 symmetry.reset = "Thiết lập lại";
 // Reset the symmetry plane positon to the object center
@@ -2149,7 +2181,7 @@ symmetry.reset.centerWorld = "Trung tâm thế giới";
 symmetry.reset.direction = "Hướng";
 // Display a line on the object (to show where the symmetry lies)
 symmetry.showLine = "Hiển thị đường";
-// Display the symmetry plane in 3d
+// Display the symmetry plane in 3D
 symmetry.showPlane = "Hiển thị mặt phẳng";
 // Allow the editing of the symmetry plane with the gizmo
 symmetry.edit = "Chỉnh sửa Gizmo";
@@ -2762,6 +2794,11 @@ license.key = "Khóa giấy phép";
 license.activate = "Kích hoạt giấy phép";
 // ----------------------------------------------
 license.newest = "Phiên bản mới có sẵn!";
+license.encrypt.error = "Không thể mã hóa!";
+// ----------------------------------------------
+license.grace = "Ngoại tuyến - Thời gian ân hạn còn lại:";
+license.grace.hours = "giờ";
+license.grace.days = "ngày";
 // ----------------------------------------------
 license.portal.title = "Người dùng hiện tại";
 license.portal.label = "Cổng giấy phép";
@@ -2772,6 +2809,8 @@ license.checkout.label = "Mua Nomad";
 license.device.error = "Không thể lấy ID thiết bị.";
 license.device.mismatch = "ID thiết bị không khớp!";
 // ----------------------------------------------
+license.error429 = "Yêu cầu quá nhiều (đợi).";
+// ----------------------------------------------
 license.validate.error404 = "Không tìm thấy chìa khóa giấy phép.";
 license.validate.error422 = "Thực thể không xử lý được.";
 // ----------------------------------------------
@@ -2780,12 +2819,18 @@ Bạn có thể hủy kích hoạt thiết bị khác trên cổng giấy phép 
 license.activate.error404 = "Không tìm thấy chìa khóa giấy phép.";
 license.activate.error422 = "Thực thể không xử lý được.";
 // ----------------------------------------------
-// version trial
+// version
+version.update = "Cập nhật có sẵn!";
 version.restore = "Khôi phục mua hàng";
 version.buyWeb = "Phiên bản Web chỉ là bản demo";
 version.buyFull = "Nâng cấp lên phiên bản đầy đủ";
-version.buyQR = "Mua";
-version.buyQR.promo = "
+// ----------------------------------------------
+// QuadRemesh
+version.qr.unlock = "Mở khóa (mua, khôi phục, thử nghiệm)";
+version.qr.desktop = "Trên phiên bản máy tính, QuadRemesher được phân phối bởi Hexanomad, nhưng Hexanomad không xử lý việc bán hoặc cấp phép. 
+Quản lý giấy phép được thực hiện bởi Exoside.";
+version.qr.buy = "Mua";
+version.qr.promo = "
 Quad Remesher là một thuật toán xuất lưới ưu tiên dạng tứ giác.
 Phân bổ ô tứ giác sẽ cố gắng theo sự cong tự nhiên của vật thể.
 
@@ -2802,20 +2847,30 @@ Bạn cũng có thể hướng dẫn kết quả tô pô bằng cách:
 • Vẽ Độ Dày $3
 
 Quad Remesher được phát triển bởi https://exoside.com/.";
-
-version.trialHistory = "Phiên bản dùng thử: 4 lần hoàn tác/làm lại có thể";
+// ----------------------------------------------
 version.trialLayer = "Phiên bản dùng thử: 1 lớp trên mỗi đối tượng";
-version.trialNoImport = "Phiên bản dùng thử: Không có nhập";
 version.trialNoExport = "Phiên bản dùng thử: Không có xuất";
-
+// ----------------------------------------------
 version.fullFeatures = "• Mua một lần
 • Hoàn tác/làm lại không giới hạn
 • Các lớp không giới hạn
 • Xuất & nhập khẩu";
-
+// ----------------------------------------------
 version.demo.purpose = "Phiên bản này được tạo ra đặc biệt cho mục đích trình diễn.";
 version.demo.disable = "Tính năng chưa được kích hoạt cho bản trình diễn.";
+// ----------------------------------------------
+version.demo = "Kiểm tra thử";
+version.demo.sculpt = "Điêu khắc";
+version.demo.sculpt.help = "Tất cả các cọ đều có sẵn nhưng bạn không thể lưu hoặc xuất.
 
+Chế độ này chủ yếu dành cho việc thử nghiệm các cọ hoặc kiểm tra hỗ trợ áp lực.
+
+Các tính năng khác cũng có thể bị giới hạn (lịch sử, lớp).";
+version.demo.file = "Nhập và xuất";
+version.demo.file.help = "Bạn có thể nhập và xuất mô hình nhưng các cọ điêu khắc bị vô hiệu hóa.
+
+Chế độ này chủ yếu dành cho người dùng di động không thể mở dự án .nom lớn do giới hạn bộ nhớ di động.";
+// ----------------------------------------------
 // app store main page
 store.name = "Nomad Sculpt";
 store.headline = "Điêu khắc, vẽ và tạo trong 3D";

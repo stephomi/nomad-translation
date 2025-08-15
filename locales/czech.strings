@@ -56,7 +56,7 @@ direction.up = "Nahoru";
 direction.down = "Dolů";
 direction.left = "Vlevo";
 direction.right = "Vpravo";
-// 3d cube
+// 3D cube
 cube.top = "Horní";
 cube.bottom = "Spodní";
 cube.left = "Levá";
@@ -122,6 +122,8 @@ item.next = "Další";
 item.lock = "Zámek";
 // No item selected
 item.none = "Žádný";
+// Draggable, moveable
+item.draggable = "";
 
 // Search something (text entry to filter item)
 search = "Hledat";
@@ -233,6 +235,10 @@ about.threads = "Threads";
 
 // The user canceled an operation that was running
 alert.aborted = "Operace zrušena!";
+// Empty mesh
+alert.mirror.empty = "Prázdný výstup!";
+// Mesh already mirrored
+alert.mirror.same = "Stejný výstup!";
 // Error when an algorithm needs the object to have an hole (usually to fill it)
 alert.hole.nothing = "Objekt nemá žádné otvory!";
 // No operation occured because the mesh is already manifold
@@ -262,10 +268,10 @@ alert.voxelRemesh.invalidInput = "Neplatný vstup!";
 alert.matrix.clone = "Objekt bude duplikován";
 // Helper popup to tell the users the object will cloned
 alert.matrix.instance = "Objekt bude vytvořen";
-// A pivot refers the gizmo 3d position, this mode means we are moving the pivot
+// A pivot refers the gizmo 3D position, this mode means we are moving the pivot
 alert.gizmo.editPivot = "Upravit režim otočného bodu.";
 alert.mask.full = "Maska = 100%!";
-// A pivot refers the gizmo 3d position
+// A pivot refers the gizmo 3D position
 alert.gizmo.editObject = "Upravit režim objektu.";
 // See Glossary (DynTopo)
 alert.dynamic.enable = "Dynamická topologie ZAPNUTA";
@@ -381,7 +387,7 @@ blend.cancelation.subtract = "Odečítání";
 blend.component = "Komponent";
 blend.component.luminosity = "Světlost";
 
-// Camera (point of view in 3d)
+// Camera (point of view in 3D)
 camera = "Kamera";
 cameras = "Kamery";
 camera.view = "Zobrazení";
@@ -950,8 +956,6 @@ history.state.undo = "Zpět: $0";
 // Shown during redo
 history.state.redo = "Vpřed: $0";
 // Shown during undo/redo
-history.state.symmetrySplit = "Rozdělení symetrie";
-// Shown during undo/redo
 history.state.voxelRemesh = "Voxel remesh";
 // Shown during undo/redo
 history.state.surfaceRemesh = "Povrchový remesh";
@@ -971,6 +975,9 @@ inspect.seams = "Švy";
 
 // Interface customization
 interface = "Rozhraní";
+
+// Resize window (should be short)
+interface.resize = "Změnit velikost";
 
 // UI customization: one item row will stands on one line (synonym: Inlined)
 interface.compact = "UI: Kompaktní";
@@ -1027,6 +1034,17 @@ interface.toolbox.rows = "Řádky";
 interface.toolbox.resetOrder = "Resetovat pořadí";
 // Colored text and icon
 interface.toolbox.color = "Barevné";
+// Top bar
+interface.top.title = "Horní lišta";
+interface.top.responsive = "Responzivní";
+interface.top.responsive.help = "Tato možnost je většinou relevantní pro malé obrazovky.";
+interface.top.responsive.multiline = "Víceřádkový";
+interface.top.responsive.scroll = "Posun";
+interface.top.responsive.collapse = "Kolaps";
+interface.top.alt = "Alternativní pořadí";
+interface.top.alt.help = "Alternativní ikona pořadí pro horní nabídku.
+
+Nabídky vztahující se k úpravám sítí jsou většinou na opačné straně menu scény, což může pomoci při úpravách scény.";
 // Scale the interface
 interface.scale = "Celková škála";
 // Spacing between widgets
@@ -1981,6 +1999,18 @@ stroke.silhouette.closest = "Nejbližší";
 // Only sculpt the vertex that points toward the direction of the deformation
 stroke.sameSide = "Pouze vrchol stejné strany";
 stroke.sameSide.help = "Ignorujte vrcholy směřující opačným směrem deformace.";
+// determine normal direction
+stroke.normal.direction = "";
+stroke.normal.direction.help = "";
+stroke.normal.direction.normal = "";
+stroke.normal.direction.normal.help = "";
+stroke.normal.direction.screen = "";
+stroke.normal.direction.screen.help = "";
+stroke.normal.direction.auto = "";
+stroke.normal.direction.auto.help = "";
+stroke.normal.direction.auto.threshold = "";
+stroke.normal.direction.auto.threshold.help = "";
+// small tip/warning
 stroke.onlyLasso = "Nastavení jsou aktivní pouze pro nástroj laso.";
 
 // Here sampling refers to the app gathering information under the mouse
@@ -1999,8 +2029,8 @@ stroke.area.normal.average = "Průměr normálnosti";
 // Sampling averaging
 stroke.area.point.average = "Průměr pozice";
 // Keep sharp edges
-stroke.keepSharp = "Udržet ostré hrany";
-stroke.keepSharp.help = "Vyloučit body, jejichž normálnosti se příliš liší od normálnosti povrchu.
+stroke.normalFilter = "Normální filtr";
+stroke.normalFilter.help = "Vyloučit body, jejichž normálnosti se příliš liší od normálnosti povrchu.
 
 To změní způsob, jakým se vypočítává oblast roviny (vzorkování oblasti).
 
@@ -2122,13 +2152,19 @@ symmetry.method.world = "Svět";
 symmetry.method.local = "Lokální";
 // Move the object to the other side of the symmetry (mirror it as well)
 symmetry.flip = "Převrátit objekt";
-// Mirror the mesh
-symmetry.mirror = "Zrcadlení";
+// Cut half of the mesh
+symmetry.cut = "Řez";
+// after mirroring, separate into multiple output (synonym: split, separate)
+symmetry.split = "Rozdělit";
+// Reapply the mesh mirror, does not impact the topology
+symmetry.mirror = "Zrcadlo";
 symmetry.mirror.help = "Zkuste znovu aplikovat symetrii, aniž by to ovlivnilo topologii.
 
 Radiální symetrie bude ignorována.
 
 Pokud nelze topologii udržet, protože není považována za symetrickou, budete mít možnost vynutit zrcadlení.";
+// indicate that applying the mirror will keep the mesh topology
+symmetry.mirror.keepTopology = "udržet topologii";
 symmetry.mirrorFail = "Nepodařilo se zjistit symetrii.
 
 Chcete vynutit symetrii zrcadlením meshe?";
@@ -2136,10 +2172,6 @@ symmetry.mirrorUseMasking = "Chránit maskovanou oblast";
 symmetry.mirrorUseMasking.help = "Udržet maskovanou oblast neporušenou.
 
 Tato možnost bude ignorována u nesymetrické topologie (nebo odpojeného povrchu, jako je dvojice očí).";
-symmetry.apply = "Zrcadlo
-(udržet topologii)";
-symmetry.splitMirror = "Rozdělit a zrcadlit
-(nová topologie)";
 // Reset the symmetry plane position
 symmetry.reset = "Resetovat";
 // Reset the symmetry plane positon to the object center
@@ -2150,7 +2182,7 @@ symmetry.reset.centerWorld = "Centrum světa";
 symmetry.reset.direction = "Orientace";
 // Display a line on the object (to show where the symmetry lies)
 symmetry.showLine = "Zobrazit čáru";
-// Display the symmetry plane in 3d
+// Display the symmetry plane in 3D
 symmetry.showPlane = "Zobrazit rovinu";
 // Allow the editing of the symmetry plane with the gizmo
 symmetry.edit = "Upravit Gizmo";
@@ -2761,6 +2793,11 @@ license.key = "Licenční klíč";
 license.activate = "Aktivovat licenci";
 // ----------------------------------------------
 license.newest = "Nová verze k dispozici!";
+license.encrypt.error = "Nelze zašifrovat!";
+// ----------------------------------------------
+license.grace = "Offline - Zbývající období odkladu:";
+license.grace.hours = "hodin";
+license.grace.days = "dní";
 // ----------------------------------------------
 license.portal.title = "Stávající uživatelé";
 license.portal.label = "Portál licencí";
@@ -2771,6 +2808,8 @@ license.checkout.label = "Zakoupit Nomad";
 license.device.error = "Nelze získat ID zařízení.";
 license.device.mismatch = "Nesoulad ID zařízení!";
 // ----------------------------------------------
+license.error429 = "Příliš mnoho žádostí (počkat).";
+// ----------------------------------------------
 license.validate.error404 = "Licenční klíč nebyl nalezen.";
 license.validate.error422 = "Nezpracovatelný subjekt.";
 // ----------------------------------------------
@@ -2779,12 +2818,18 @@ Na svém portálu licencí můžete deaktivovat jiné zařízení.";
 license.activate.error404 = "Licenční klíč nebyl nalezen.";
 license.activate.error422 = "Nezpracovatelný subjekt.";
 // ----------------------------------------------
-// version trial
+// version
+version.update = "Aktualizace k dispozici!";
 version.restore = "Obnovit nákup";
 version.buyWeb = "Webová verze je pouze ukázka";
 version.buyFull = "Upgradovat na plnou verzi";
-version.buyQR = "Koupit";
-version.buyQR.promo = "
+// ----------------------------------------------
+// QuadRemesh
+version.qr.unlock = "Odemknout (koupit, obnovit, zkušební verze)";
+version.qr.desktop = "Na počítači je QuadRemesher distribuován společností Hexanomad, ale Hexanomad nezpracovává prodeje ani licence.
+Veškerou správu licencí provádí Exoside.";
+version.qr.buy = "Koupit";
+version.qr.promo = "
 Quad Remesher je algoritmus, který vytváří síť převážně složenou z kvadratických tvarů.
 Rozložení čtverců se bude snažit sledovat přirozené zakřivení objektu.
 
@@ -2801,20 +2846,30 @@ Můžete také řídit výslednou topologii pomocí:
 • Malování hustoty $3
 
 Quad Remesher vyvíjí https://exoside.com/.";
-
-version.trialHistory = "Zkušební verze: Možné 4 kroky zpět/znovu";
+// ----------------------------------------------
 version.trialLayer = "Zkušební verze: 1 vrstva na objekt";
-version.trialNoImport = "Zkušební verze: Nelze importovat";
 version.trialNoExport = "Zkušební verze: Nelze exportovat";
-
+// ----------------------------------------------
 version.fullFeatures = "• Jednorázový nákup
 • Neomezené vrátit/znovu
 • Neomezené vrstvy
 • Export & import";
-
+// ----------------------------------------------
 version.demo.purpose = "Tato verze byla vytvořena specificky pro demonstrační účely.";
 version.demo.disable = "Funkce není dostupná v demoverzi.";
+// ----------------------------------------------
+version.demo = "Demo Test";
+version.demo.sculpt = "Sochaření";
+version.demo.sculpt.help = "Všechny štětce jsou k dispozici, ale nemůžete ukládat ani exportovat. 
 
+Tento režim je hlavně určen pro experimentování se štětci nebo testování podpory tlaku. 
+
+Další funkce mohou být také omezené (historie, vrstvy).";
+version.demo.file = "Import & Export";
+version.demo.file.help = "Můžete importovat a exportovat model, ale sochařské štětce jsou deaktivované. 
+
+Tento režim je hlavně užitečný pro mobilní uživatele, kteří nemohou otevřít velké .nom projekty způsobené omezeními paměti mobilních zařízení.";
+// ----------------------------------------------
 // app store main page
 store.name = "Nomad Sculpt";
 store.headline = "Sculptujte, malujte a tvořte ve 3D";

@@ -56,7 +56,7 @@ direction.up = "Superior";
 direction.down = "Inferior";
 direction.left = "Izquierda";
 direction.right = "Derecha";
-// 3d cube
+// 3D cube
 cube.top = "Superior";
 cube.bottom = "Inferior";
 cube.left = "Izquierda";
@@ -122,6 +122,8 @@ item.next = "Siguiente";
 item.lock = "Bloquear";
 // No item selected
 item.none = "Ninguno";
+// Draggable, moveable
+item.draggable = "";
 
 // Search something (text entry to filter item)
 search = "Buscar";
@@ -233,6 +235,10 @@ about.threads = "Threads";
 
 // The user canceled an operation that was running
 alert.aborted = "¡Operación abortada!";
+// Empty mesh
+alert.mirror.empty = "¡Salida vacía!";
+// Mesh already mirrored
+alert.mirror.same = "¡Misma salida!";
 // Error when an algorithm needs the object to have an hole (usually to fill it)
 alert.hole.nothing = "¡El objeto no tiene agujeros!";
 // No operation occured because the mesh is already manifold
@@ -262,10 +268,10 @@ alert.voxelRemesh.invalidInput = "¡Entrada no válida!";
 alert.matrix.clone = "El objeto se duplicará";
 // Helper popup to tell the users the object will cloned
 alert.matrix.instance = "Se creará una instancia del objeto";
-// A pivot refers the gizmo 3d position, this mode means we are moving the pivot
+// A pivot refers the gizmo 3D position, this mode means we are moving the pivot
 alert.gizmo.editPivot = "Modo de edición de pivote.";
 alert.mask.full = "Máscara = 100%!";
-// A pivot refers the gizmo 3d position
+// A pivot refers the gizmo 3D position
 alert.gizmo.editObject = "Modo de edición de objetos.";
 // See Glossary (DynTopo)
 alert.dynamic.enable = "Topología dinámica activa";
@@ -381,7 +387,7 @@ blend.cancelation.subtract = "Sustraer";
 blend.component = "Componente";
 blend.component.luminosity = "Luminosidad";
 
-// Camera (point of view in 3d)
+// Camera (point of view in 3D)
 camera = "Cámara";
 cameras = "Cámaras";
 camera.view = "Ver";
@@ -950,8 +956,6 @@ history.state.undo = "Deshacer: $0";
 // Shown during redo
 history.state.redo = "Rehacer: $0";
 // Shown during undo/redo
-history.state.symmetrySplit = "División de simetría";
-// Shown during undo/redo
 history.state.voxelRemesh = "Reforzar malla de Vóxel";
 // Shown during undo/redo
 history.state.surfaceRemesh = "Reforzar malla de superficie";
@@ -971,6 +975,9 @@ inspect.seams = "Costuras";
 
 // Interface customization
 interface = "Interfaz";
+
+// Resize window (should be short)
+interface.resize = "Redimensionar";
 
 // UI customization: one item row will stands on one line (synonym: Inlined)
 interface.compact = "IU: Compacta";
@@ -1027,6 +1034,17 @@ interface.toolbox.rows = "Filas";
 interface.toolbox.resetOrder = "Restablecer el orden";
 // Colored text and icon
 interface.toolbox.color = "Coloreado";
+// Top bar
+interface.top.title = "Barra superior";
+interface.top.responsive = "Adaptable";
+interface.top.responsive.help = "Esta opción es principalmente relevante para pantallas pequeñas.";
+interface.top.responsive.multiline = "Multilínea";
+interface.top.responsive.scroll = "Desplazar";
+interface.top.responsive.collapse = "Colapsar";
+interface.top.alt = "Orden alternativo";
+interface.top.alt.help = "Icono de orden alternativo para el menú superior.
+
+Los menús relativos a la edición de mallas están principalmente en el lado opuesto del menú de escena, lo que puede ayudar en la edición de escenas.";
 // Scale the interface
 interface.scale = "Escala general";
 // Spacing between widgets
@@ -1979,6 +1997,18 @@ stroke.silhouette.closest = "Más cercano";
 // Only sculpt the vertex that points toward the direction of the deformation
 stroke.sameSide = "Solo vértice del mismo lado";
 stroke.sameSide.help = "Ignora los vértices que apuntan en la dirección opuesta a la deformación.";
+// determine normal direction
+stroke.normal.direction = "";
+stroke.normal.direction.help = "";
+stroke.normal.direction.normal = "";
+stroke.normal.direction.normal.help = "";
+stroke.normal.direction.screen = "";
+stroke.normal.direction.screen.help = "";
+stroke.normal.direction.auto = "";
+stroke.normal.direction.auto.help = "";
+stroke.normal.direction.auto.threshold = "";
+stroke.normal.direction.auto.threshold.help = "";
+// small tip/warning
 stroke.onlyLasso = "La configuración solo está activa para la herramienta lazo.";
 
 // Here sampling refers to the app gathering information under the mouse
@@ -1997,8 +2027,8 @@ stroke.area.normal.average = "Promedio normal";
 // Sampling averaging
 stroke.area.point.average = "Promedio de posición";
 // Keep sharp edges
-stroke.keepSharp = "Mantener bordes nítidos";
-stroke.keepSharp.help = "
+stroke.normalFilter = "Filtro normal";
+stroke.normalFilter.help = "
 Filtrado profundo";
 
 // Only paint the part of the mesh above a certain height
@@ -2118,13 +2148,19 @@ symmetry.method.world = "Mundo";
 symmetry.method.local = "Local";
 // Move the object to the other side of the symmetry (mirror it as well)
 symmetry.flip = "Voltear objeto";
-// Mirror the mesh
-symmetry.mirror = "Duplicación";
+// Cut half of the mesh
+symmetry.cut = "Cortar";
+// after mirroring, separate into multiple output (synonym: split, separate)
+symmetry.split = "Dividir";
+// Reapply the mesh mirror, does not impact the topology
+symmetry.mirror = "Espejo";
 symmetry.mirror.help = "Intenta volver a aplicar la simetría sin afectar a la topología.
 
 Se ignorará la simetría radial.
 
 Si la topología no se puede mantener porque no se considera simétrica, tendrás la opción de aplicar la duplicación.";
+// indicate that applying the mirror will keep the mesh topology
+symmetry.mirror.keepTopology = "mantener topología";
 symmetry.mirrorFail = "No se pudo aplicar la simetría.
 
 ¿Quieres imponer la simetría duplicando la malla?";
@@ -2132,10 +2168,6 @@ symmetry.mirrorUseMasking = "Proteger área enmascarada";
 symmetry.mirrorUseMasking.help = "Mantener el área enmascarada intacta.
 
 Esta opción se ignorará con topología no simétrica (o superficie desconectada, como un par de ojos).";
-symmetry.apply = "Espejo
-(mantener topología)";
-symmetry.splitMirror = "Dividir y Espejar
-(nueva topología)";
 // Reset the symmetry plane position
 symmetry.reset = "Restablecer";
 // Reset the symmetry plane positon to the object center
@@ -2146,7 +2178,7 @@ symmetry.reset.centerWorld = "Centro del Mundo";
 symmetry.reset.direction = "Orientación";
 // Display a line on the object (to show where the symmetry lies)
 symmetry.showLine = "Mostrar línea";
-// Display the symmetry plane in 3d
+// Display the symmetry plane in 3D
 symmetry.showPlane = "Mostrar plano";
 // Allow the editing of the symmetry plane with the gizmo
 symmetry.edit = "Editar aparato";
@@ -2767,6 +2799,11 @@ license.key = "Clave de licencia";
 license.activate = "Activar licencia";
 // ----------------------------------------------
 license.newest = "¡Nueva versión disponible!";
+license.encrypt.error = "¡No se pudo cifrar!";
+// ----------------------------------------------
+license.grace = "Desconectado - Período de gracia restante:";
+license.grace.hours = "horas";
+license.grace.days = "días";
 // ----------------------------------------------
 license.portal.title = "Usuarios existentes";
 license.portal.label = "Portal de licencias";
@@ -2777,6 +2814,8 @@ license.checkout.label = "Comprar Nomad";
 license.device.error = "No se pudo obtener la identificación del dispositivo.";
 license.device.mismatch = "¡Discrepancia en la identificación del dispositivo!";
 // ----------------------------------------------
+license.error429 = "Demasiadas solicitudes (esperar).";
+// ----------------------------------------------
 license.validate.error404 = "Clave de licencia no encontrada.";
 license.validate.error422 = "Entidad no procesable.";
 // ----------------------------------------------
@@ -2785,12 +2824,18 @@ Puedes desactivar otro dispositivo en tu portal de licencias.";
 license.activate.error404 = "Clave de licencia no encontrada.";
 license.activate.error422 = "Entidad no procesable.";
 // ----------------------------------------------
-// version trial
+// version
+version.update = "¡Actualización disponible!";
 version.restore = "Restaurar compra";
 version.buyWeb = "La versión web es solo una demostración";
 version.buyFull = "Actualiza a la versión completa";
-version.buyQR = "Compra";
-version.buyQR.promo = "
+// ----------------------------------------------
+// QuadRemesh
+version.qr.unlock = "Desbloquear (comprar, restaurar, prueba)";
+version.qr.desktop = "En el escritorio, el QuadRemesher es distribuido por Hexanomad, pero Hexanomad no maneja las ventas ni licencias.
+Toda la gestión de licencias es llevada a cabo por Exoside.";
+version.qr.buy = "Compra";
+version.qr.promo = "
 El Quad Remesher es un algoritmo que produce una malla dominante de cuadrados.
 La distribución de cuadrados intentará seguir la curvatura natural del objeto.
 
@@ -2807,20 +2852,30 @@ También puedes guiar la topología resultante con:
 • Pintura de densidad $3
 
 El Quad Remesher es desarrollado por https://exoside.com/.";
-
-version.trialHistory = "Versión de prueba: Deshacer/rehacer 4 veces";
+// ----------------------------------------------
 version.trialLayer = "Versión de prueba: Una capa por malla";
-version.trialNoImport = "Versión de prueba: sin importación";
 version.trialNoExport = "Versión de prueba: sin exportación";
-
+// ----------------------------------------------
 version.fullFeatures = "• Compra única
 • Deshacer/rehacer ilimitado
 • Capas ilimitadas
 • Exportación e importación";
-
+// ----------------------------------------------
 version.demo.purpose = "Esta versión se ha creado específicamente con fines de demostración.";
 version.demo.disable = "Prestación no activada para esta demo.";
+// ----------------------------------------------
+version.demo = "Prueba de Demo";
+version.demo.sculpt = "Esculpido";
+version.demo.sculpt.help = "'Todos los pinceles están disponibles, pero no puedes guardar ni exportar.
 
+Este modo está destinado principalmente a experimentar con los pinceles o probar el soporte de presión.
+
+Otras funciones también pueden estar limitadas (historia, capas).'";
+version.demo.file = "Importar y Exportar";
+version.demo.file.help = "'Puedes importar y exportar modelos pero los pinceles de esculpir están deshabilitados.
+
+Este modo es principalmente útil para usuarios móviles que no pueden abrir grandes proyectos .nom debido a las limitaciones de memoria del móvil.'";
+// ----------------------------------------------
 // app store main page
 store.name = "Nomad Sculpt";
 store.headline = "Esculpir, pintar y crear en 3D";

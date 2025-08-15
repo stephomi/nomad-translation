@@ -56,7 +56,7 @@ direction.up = "Upp";
 direction.down = "Ner";
 direction.left = "Vänster";
 direction.right = "Höger";
-// 3d cube
+// 3D cube
 cube.top = "Övre";
 cube.bottom = "Neder";
 cube.left = "Vänster";
@@ -122,6 +122,8 @@ item.next = "Nästa";
 item.lock = "Lås";
 // No item selected
 item.none = "Ingen";
+// Draggable, moveable
+item.draggable = "";
 
 // Search something (text entry to filter item)
 search = "Sök";
@@ -233,6 +235,10 @@ about.threads = "Trådar";
 
 // The user canceled an operation that was running
 alert.aborted = "Operation avbruten!";
+// Empty mesh
+alert.mirror.empty = "Tomt utdata!";
+// Mesh already mirrored
+alert.mirror.same = "Samma utdata!";
 // Error when an algorithm needs the object to have an hole (usually to fill it)
 alert.hole.nothing = "Objektet har inga hål!";
 // No operation occured because the mesh is already manifold
@@ -262,10 +268,10 @@ alert.voxelRemesh.invalidInput = "Ogiltig inmatning!";
 alert.matrix.clone = "Objektet kommer att dupliceras";
 // Helper popup to tell the users the object will cloned
 alert.matrix.instance = "Objektet kommer att instanseras";
-// A pivot refers the gizmo 3d position, this mode means we are moving the pivot
+// A pivot refers the gizmo 3D position, this mode means we are moving the pivot
 alert.gizmo.editPivot = "Redigera pivotläge.";
 alert.mask.full = "Mask = 100%!";
-// A pivot refers the gizmo 3d position
+// A pivot refers the gizmo 3D position
 alert.gizmo.editObject = "Redigera objektläge.";
 // See Glossary (DynTopo)
 alert.dynamic.enable = "Dynamisk topologi PÅ";
@@ -381,7 +387,7 @@ blend.cancelation.subtract = "Subtrahera";
 blend.component = "Komponent";
 blend.component.luminosity = "Ljushet";
 
-// Camera (point of view in 3d)
+// Camera (point of view in 3D)
 camera = "Kamera";
 cameras = "Kameror";
 camera.view = "Visa";
@@ -954,8 +960,6 @@ history.state.undo = "Ångra: $0";
 // Shown during redo
 history.state.redo = "Gör om: $0";
 // Shown during undo/redo
-history.state.symmetrySplit = "Symmetriavdelning";
-// Shown during undo/redo
 history.state.voxelRemesh = "Voxellomskapa";
 // Shown during undo/redo
 history.state.surfaceRemesh = "Ytomskapa";
@@ -975,6 +979,9 @@ inspect.seams = "Sömmar";
 
 // Interface customization
 interface = "Gränssnitt";
+
+// Resize window (should be short)
+interface.resize = "Ändra storlek";
 
 // UI customization: one item row will stands on one line (synonym: Inlined)
 interface.compact = "UI: Kompakt";
@@ -1031,6 +1038,17 @@ interface.toolbox.rows = "Rader";
 interface.toolbox.resetOrder = "Återställ ordning";
 // Colored text and icon
 interface.toolbox.color = "Färgad";
+// Top bar
+interface.top.title = "Övre området";
+interface.top.responsive = "Responsiv";
+interface.top.responsive.help = "Detta alternativ är mest relevant för små skärmar.";
+interface.top.responsive.multiline = "Flerradig";
+interface.top.responsive.scroll = "Skrolla";
+interface.top.responsive.collapse = "Kollapsa";
+interface.top.alt = "Alternativ ordning";
+interface.top.alt.help = "Alternativ ordningsikon för toppmenyn.
+
+Menyer relaterade till mesh-redigering är mestadels på motsatt sida av scenmenyn, vilket kan hjälpa vid scenredigering.";
 // Scale the interface
 interface.scale = "Övergripande skala";
 // Spacing between widgets
@@ -1983,6 +2001,18 @@ stroke.silhouette.closest = "Närmaste";
 // Only sculpt the vertex that points toward the direction of the deformation
 stroke.sameSide = "Endast vertex på samma sida";
 stroke.sameSide.help = "Ignorera vertex som pekar i motsatt riktning som deformationen.";
+// determine normal direction
+stroke.normal.direction = "";
+stroke.normal.direction.help = "";
+stroke.normal.direction.normal = "";
+stroke.normal.direction.normal.help = "";
+stroke.normal.direction.screen = "";
+stroke.normal.direction.screen.help = "";
+stroke.normal.direction.auto = "";
+stroke.normal.direction.auto.help = "";
+stroke.normal.direction.auto.threshold = "";
+stroke.normal.direction.auto.threshold.help = "";
+// small tip/warning
 stroke.onlyLasso = "Inställningar endast aktiva för lassoverktyget.";
 
 // Here sampling refers to the app gathering information under the mouse
@@ -2001,8 +2031,8 @@ stroke.area.normal.average = "Normal medelvärde";
 // Sampling averaging
 stroke.area.point.average = "Position medelvärde";
 // Keep sharp edges
-stroke.keepSharp = "Behåll skarpa kanter";
-stroke.keepSharp.help = "Exkludera punkter vars normala skiljer sig för mycket från ytan.
+stroke.normalFilter = "Normalfilter";
+stroke.normalFilter.help = "Exkludera punkter vars normala skiljer sig för mycket från ytan.
 
 Det kommer att ändra hur planområdet beräknas (Områdesprovtagning).
 
@@ -2124,13 +2154,19 @@ symmetry.method.world = "Värld";
 symmetry.method.local = "Lokal";
 // Move the object to the other side of the symmetry (mirror it as well)
 symmetry.flip = "Vänd objekt";
-// Mirror the mesh
-symmetry.mirror = "Spegling";
+// Cut half of the mesh
+symmetry.cut = "Klipp";
+// after mirroring, separate into multiple output (synonym: split, separate)
+symmetry.split = "Dela";
+// Reapply the mesh mirror, does not impact the topology
+symmetry.mirror = "Spegla";
 symmetry.mirror.help = "Försök att återanvända symmetrien utan att påverka topologin.
 
 Radial symmetri kommer att ignoreras.
 
 Om topologin inte kan behållas eftersom den inte betraktas som symmetrisk, får du möjligheten att påtvinga spegling.";
+// indicate that applying the mirror will keep the mesh topology
+symmetry.mirror.keepTopology = "behåll topologi";
 symmetry.mirrorFail = "Ingen symmetri kunde detekteras.
 
 Vill du påtvinga symmetri genom att spegla meshen?";
@@ -2138,10 +2174,6 @@ symmetry.mirrorUseMasking = "Skydda maskeradt område";
 symmetry.mirrorUseMasking.help = "Behåll maskeradt område intakt.
 
 Detta alternativ kommer att ignoreras med icke-symmetrisk topologi (eller frånkopplade ytor, som ett par ögon).";
-symmetry.apply = "Spegla
-(behåll topologi)";
-symmetry.splitMirror = "Dela & Spegla
-(ny topologi)";
 // Reset the symmetry plane position
 symmetry.reset = "Återställ";
 // Reset the symmetry plane positon to the object center
@@ -2152,7 +2184,7 @@ symmetry.reset.centerWorld = "Världscentrum";
 symmetry.reset.direction = "Orientering";
 // Display a line on the object (to show where the symmetry lies)
 symmetry.showLine = "Visa linje";
-// Display the symmetry plane in 3d
+// Display the symmetry plane in 3D
 symmetry.showPlane = "Visa plan";
 // Allow the editing of the symmetry plane with the gizmo
 symmetry.edit = "Gizmo redigera";
@@ -2772,6 +2804,11 @@ license.key = "Licensnyckel";
 license.activate = "Aktivera licens";
 // ----------------------------------------------
 license.newest = "Ny version tillgänglig!";
+license.encrypt.error = "Kunde inte kryptera!";
+// ----------------------------------------------
+license.grace = "Offline - Återstående respittid:";
+license.grace.hours = "timmar";
+license.grace.days = "dag";
 // ----------------------------------------------
 license.portal.title = "Befintliga användare";
 license.portal.label = "Licensportal";
@@ -2782,6 +2819,8 @@ license.checkout.label = "Köp Nomad";
 license.device.error = "Kunde inte hämta enhets-ID.";
 license.device.mismatch = "Uppsnitt enhets-ID!";
 // ----------------------------------------------
+license.error429 = "För många förfrågningar (vänta).";
+// ----------------------------------------------
 license.validate.error404 = "Licensnyckeln hittades inte.";
 license.validate.error422 = "Ohanterbar enhet.";
 // ----------------------------------------------
@@ -2790,12 +2829,18 @@ Du kan avaktivera en annan enhet på din licensportal.";
 license.activate.error404 = "Licensnyckeln hittades inte.";
 license.activate.error422 = "Ohanterbar enhet.";
 // ----------------------------------------------
-// version trial
+// version
+version.update = "Uppdatering tillgänglig!";
 version.restore = "Återställ köp";
 version.buyWeb = "Webbversionen är endast en demo";
 version.buyFull = "Uppgradera till full version";
-version.buyQR = "Köp";
-version.buyQR.promo = "
+// ----------------------------------------------
+// QuadRemesh
+version.qr.unlock = "Lås upp (köp, återställ, testning)";
+version.qr.desktop = "På skrivbordet distribueras QuadRemesher av Hexanomad, men Hexanomad hanterar inte försäljning eller licensiering.
+All licenshantering hanteras av Exoside.";
+version.qr.buy = "Köp";
+version.qr.promo = "
 Quad Remesher är en algoritm som genererar en fyrkantig dominerande nätmodell.
 Fyrkantsfördelningen kommer att försöka följa objektets naturliga krökning.
 
@@ -2812,20 +2857,30 @@ Du kan också styra den resulterande topologin med:
 • Densitetsmålning $3
 
 Quad Remesher utvecklas av https://exoside.com/.";
-
-version.trialHistory = "Prova versionen: 4 ångra/gör om möjliga ";
+// ----------------------------------------------
 version.trialLayer = "Prova versionen: 1 lager per objekt";
-version.trialNoImport = "Prova versionen: Ingen import";
 version.trialNoExport = "Prova versionen: Ingen export";
-
+// ----------------------------------------------
 version.fullFeatures = "• Engångsköp
 • Obegränsad ångra/göra om
 • Obegränsade lager
 • Exportera & importera";
-
+// ----------------------------------------------
 version.demo.purpose = "Denna version har skapats speciellt för demonstrationsändamål.";
 version.demo.disable = "Funktionen är inte aktiverad för demo.";
+// ----------------------------------------------
+version.demo = "Demo Test";
+version.demo.sculpt = "Skulptering";
+version.demo.sculpt.help = "Alla penslar är tillgängliga men du kan inte spara eller exportera.
 
+Detta läge är mestadels avsett att experimentera med penslarna eller testa tryckstöd.
+
+Andra funktioner kan också vara begränsade (historia, lager).";
+version.demo.file = "Importera & Exportera";
+version.demo.file.help = "Du kan importera och exportera modellen men skulpteringspenslarna är inaktiverade.
+
+Detta läge är mest användbart för mobilanvändare som inte kan öppna stora .nom-projekt på grund av mobilens minnesbegränsningar.";
+// ----------------------------------------------
 // app store main page
 store.name = "Nomad Sculpt";
 store.headline = "Skulptera, måla och skapa i 3D";

@@ -56,7 +56,7 @@ direction.up = "Naik";
 direction.down = "Turun";
 direction.left = "Kiri";
 direction.right = "Kanan";
-// 3d cube
+// 3D cube
 cube.top = "Atas";
 cube.bottom = "Bawah";
 cube.left = "Kiri";
@@ -122,6 +122,8 @@ item.next = "Sesudahnya";
 item.lock = "Kunci";
 // No item selected
 item.none = "Tidak ada";
+// Draggable, moveable
+item.draggable = "";
 
 // Search something (text entry to filter item)
 search = "Cari";
@@ -233,6 +235,10 @@ about.threads = "Threads";
 
 // The user canceled an operation that was running
 alert.aborted = "Operasi dibatalkan!";
+// Empty mesh
+alert.mirror.empty = "Keluaran kosong!";
+// Mesh already mirrored
+alert.mirror.same = "Keluaran yang sama!";
 // Error when an algorithm needs the object to have an hole (usually to fill it)
 alert.hole.nothing = "Objek tidak memiliki lubang!";
 // No operation occured because the mesh is already manifold
@@ -262,10 +268,10 @@ alert.voxelRemesh.invalidInput = "Masukan tidak valid!";
 alert.matrix.clone = "Objek akan digandakan";
 // Helper popup to tell the users the object will cloned
 alert.matrix.instance = "Objek akan diinstansikan";
-// A pivot refers the gizmo 3d position, this mode means we are moving the pivot
+// A pivot refers the gizmo 3D position, this mode means we are moving the pivot
 alert.gizmo.editPivot = "Edit mode pivot.";
 alert.mask.full = "Topeng = 100%!";
-// A pivot refers the gizmo 3d position
+// A pivot refers the gizmo 3D position
 alert.gizmo.editObject = "Edit mode objek.";
 // See Glossary (DynTopo)
 alert.dynamic.enable = "Topologi dinamis AKTIF";
@@ -381,7 +387,7 @@ blend.cancelation.subtract = "Kurangi";
 blend.component = "Komponen";
 blend.component.luminosity = "Luminositas";
 
-// Camera (point of view in 3d)
+// Camera (point of view in 3D)
 camera = "Kamera";
 cameras = "Kamera";
 camera.view = "Tampilan";
@@ -954,8 +960,6 @@ history.state.undo = "Batalkan: $0";
 // Shown during redo
 history.state.redo = "Ulangi: $0";
 // Shown during undo/redo
-history.state.symmetrySplit = "Pemisahan Simetri";
-// Shown during undo/redo
 history.state.voxelRemesh = "Remesh voxel";
 // Shown during undo/redo
 history.state.surfaceRemesh = "Permukaan remesh";
@@ -975,6 +979,9 @@ inspect.seams = "Jahitan";
 
 // Interface customization
 interface = "Antarmuka";
+
+// Resize window (should be short)
+interface.resize = "Ubah ukuran";
 
 // UI customization: one item row will stands on one line (synonym: Inlined)
 interface.compact = "UI: Kompak";
@@ -1031,6 +1038,17 @@ interface.toolbox.rows = "Baris";
 interface.toolbox.resetOrder = "Atur ulang urutan";
 // Colored text and icon
 interface.toolbox.color = "Berwarna";
+// Top bar
+interface.top.title = "Bar atas";
+interface.top.responsive = "Responsif";
+interface.top.responsive.help = "Opsi ini lebih relevan untuk layar kecil.";
+interface.top.responsive.multiline = "Multiline";
+interface.top.responsive.scroll = "Gulir";
+interface.top.responsive.collapse = "Runtuhkan";
+interface.top.alt = "Urutan alternatif";
+interface.top.alt.help = "Ikon urutan alternatif untuk menu atas.
+
+Menu yang terkait dengan penyuntingan mesh sebagian besar berada di sisi yang berlawanan dengan menu scene, yang dapat membantu dalam penyuntingan scene.";
 // Scale the interface
 interface.scale = "Skala keseluruhan";
 // Spacing between widgets
@@ -1987,6 +2005,18 @@ stroke.silhouette.closest = "Terdekat";
 // Only sculpt the vertex that points toward the direction of the deformation
 stroke.sameSide = "Hanya verteks sisi yang sama";
 stroke.sameSide.help = "Abaikan verteks yang menunjuk ke arah yang berlawanan arah dengan deformasi.";
+// determine normal direction
+stroke.normal.direction = "";
+stroke.normal.direction.help = "";
+stroke.normal.direction.normal = "";
+stroke.normal.direction.normal.help = "";
+stroke.normal.direction.screen = "";
+stroke.normal.direction.screen.help = "";
+stroke.normal.direction.auto = "";
+stroke.normal.direction.auto.help = "";
+stroke.normal.direction.auto.threshold = "";
+stroke.normal.direction.auto.threshold.help = "";
+// small tip/warning
 stroke.onlyLasso = "Pengaturan hanya aktif untuk alat lasso.";
 
 // Here sampling refers to the app gathering information under the mouse
@@ -2005,8 +2035,8 @@ stroke.area.normal.average = "Rata-rata normal";
 // Sampling averaging
 stroke.area.point.average = "Rata-rata posisi";
 // Keep sharp edges
-stroke.keepSharp = "Pertahankan tepi tajam";
-stroke.keepSharp.help = "Kecualikan titik yang normalnya terlalu berbeda dari normal permukaan.
+stroke.normalFilter = "Filter normal";
+stroke.normalFilter.help = "Kecualikan titik yang normalnya terlalu berbeda dari normal permukaan.
 
 Ini akan mengubah cara area bidang dihitung (Pengambilan sampel area).
 
@@ -2128,13 +2158,19 @@ symmetry.method.world = "Dunia";
 symmetry.method.local = "Lokal";
 // Move the object to the other side of the symmetry (mirror it as well)
 symmetry.flip = "Balik objek";
-// Mirror the mesh
-symmetry.mirror = "Cerminan";
+// Cut half of the mesh
+symmetry.cut = "Potong";
+// after mirroring, separate into multiple output (synonym: split, separate)
+symmetry.split = "Pisah";
+// Reapply the mesh mirror, does not impact the topology
+symmetry.mirror = "Cerminkan";
 symmetry.mirror.help = "Cobalah untuk menerapkan kembali simetri tanpa mempengaruhi topologi.
 
 Simetri radial akan diabaikan.
 
 Jika topologi tidak bisa dipertahankan karena tidak dianggap simetris, anda akan mendapatkan opsi untuk memaksakan pencerminan.";
+// indicate that applying the mirror will keep the mesh topology
+symmetry.mirror.keepTopology = "jaga topologi";
 symmetry.mirrorFail = "Gagal mendeteksi simetri.
 
 Apakah anda ingin memaksakan simetri dengan mencerminkan mesh?";
@@ -2142,10 +2178,6 @@ symmetry.mirrorUseMasking = "Lindungi area yang ditandai";
 symmetry.mirrorUseMasking.help = "Jaga area yang ditandai tetap utuh.
 
 Opsi ini akan diabaikan dengan topologi yang tidak simetris (atau permukaan yang terputus, seperti sepasang mata).";
-symmetry.apply = "Cerminkan
-(jaga topologi)";
-symmetry.splitMirror = "Pisahkan & Cerminkan
-(topologi baru)";
 // Reset the symmetry plane position
 symmetry.reset = "Atur ulang";
 // Reset the symmetry plane positon to the object center
@@ -2156,7 +2188,7 @@ symmetry.reset.centerWorld = "Pusat dunia";
 symmetry.reset.direction = "Orientasi";
 // Display a line on the object (to show where the symmetry lies)
 symmetry.showLine = "Tampilkan garis";
-// Display the symmetry plane in 3d
+// Display the symmetry plane in 3D
 symmetry.showPlane = "Tampilkan bidang";
 // Allow the editing of the symmetry plane with the gizmo
 symmetry.edit = "Edit Gizmo";
@@ -2778,6 +2810,11 @@ license.key = "Kunci lisensi";
 license.activate = "Aktifkan lisensi";
 // ----------------------------------------------
 license.newest = "Versi baru tersedia!";
+license.encrypt.error = "Tidak dapat mengenkripsi!";
+// ----------------------------------------------
+license.grace = "Offline - Masa tenggang yang tersisa:";
+license.grace.hours = "jam";
+license.grace.days = "hari";
 // ----------------------------------------------
 license.portal.title = "Pengguna yang sudah ada";
 license.portal.label = "Portal lisensi";
@@ -2788,6 +2825,8 @@ license.checkout.label = "Beli Nomad";
 license.device.error = "Tidak dapat mendapatkan ID perangkat.";
 license.device.mismatch = "ID perangkat tidak cocok!";
 // ----------------------------------------------
+license.error429 = "Terlalu banyak permintaan (tunggu).";
+// ----------------------------------------------
 license.validate.error404 = "Kunci lisensi tidak ditemukan.";
 license.validate.error422 = "Entity tidak dapat diproses.";
 // ----------------------------------------------
@@ -2796,12 +2835,18 @@ Anda dapat menonaktifkan perangkat lain di portal lisensi Anda.";
 license.activate.error404 = "Kunci lisensi tidak ditemukan.";
 license.activate.error422 = "Entity tidak dapat diproses.";
 // ----------------------------------------------
-// version trial
+// version
+version.update = "Pembaruan tersedia!";
 version.restore = "Pulihkan pembelian";
 version.buyWeb = "Versi web hanya untuk demonstrasi";
 version.buyFull = "Tingkatkan ke versi penuh";
-version.buyQR = "Pembelian";
-version.buyQR.promo = "
+// ----------------------------------------------
+// QuadRemesh
+version.qr.unlock = "Buka kunci (beli, pulihkan, coba)";
+version.qr.desktop = "Di desktop, QuadRemesher didistribusikan oleh Hexanomad, tetapi Hexanomad tidak menangani penjualan atau lisensi.
+Semua pengelolaan lisensi dilakukan oleh Exoside.";
+version.qr.buy = "Pembelian";
+version.qr.promo = "
 Quad Remesher adalah algoritma yang menghasilkan mesh dominan empat sisi.
 Distribusi quad akan mencoba mengikuti kelengkungan alami objek.
 
@@ -2818,20 +2863,30 @@ Anda juga dapat memandu topologi hasil dengan:
 • Penggambaran Kerapatan $3
 
 Quad Remesher dikembangkan oleh https://exoside.com/.";
-
-version.trialHistory = "Versi uji coba: 4 undo/redo dapat dilakukan";
+// ----------------------------------------------
 version.trialLayer = "Versi uji coba: 1 lapis per objek";
-version.trialNoImport = "Versi uji coba: Tidak ada impor";
 version.trialNoExport = "Versi percobaan: Tidak ada ekspor";
-
+// ----------------------------------------------
 version.fullFeatures = "• Pembelian satu kali
 • Undo/Redo tanpa batas
 • Lapisan tanpa batas
 • Ekspor & Impor";
-
+// ----------------------------------------------
 version.demo.purpose = "Versi ini dibuat khusus untuk tujuan demonstrasi.";
 version.demo.disable = "Fitur tidak diaktifkan untuk demo.";
+// ----------------------------------------------
+version.demo = "Demo Uji";
+version.demo.sculpt = "Membuat patung";
+version.demo.sculpt.help = "Semua kuas tersedia tetapi Anda tidak dapat menyimpan atau mengekspor.
 
+Mode ini sebagian besar dimaksudkan untuk bereksperimen dengan kuas atau menguji dukungan tekanan.
+
+Fitur lain mungkin juga terbatas (riwayat, lapisan).";
+version.demo.file = "Impor & Ekspor";
+version.demo.file.help = "Anda dapat mengimpor dan mengekspor model tetapi kuas membuat patung dinonaktifkan.
+
+Mode ini paling bermanfaat untuk pengguna seluler yang tidak dapat membuka proyek .nom besar karena keterbatasan memori seluler.";
+// ----------------------------------------------
 // app store main page
 store.name = "Nomad Sculpt";
 store.headline = "Membentuk, melukis, dan menciptakan dalam 3D";

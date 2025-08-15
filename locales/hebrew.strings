@@ -56,7 +56,7 @@ direction.up = "למעלה";
 direction.down = "למטה";
 direction.left = "שמאלה";
 direction.right = "ימינה";
-// 3d cube
+// 3D cube
 cube.top = "למעלה";
 cube.bottom = "למטה";
 cube.left = "שמאל";
@@ -122,6 +122,8 @@ item.next = "הבא";
 item.lock = "נעל";
 // No item selected
 item.none = "אין";
+// Draggable, moveable
+item.draggable = "";
 
 // Search something (text entry to filter item)
 search = "חיפוש";
@@ -233,6 +235,10 @@ about.threads = "פוסטים";
 
 // The user canceled an operation that was running
 alert.aborted = "הפעלה בוטלה!";
+// Empty mesh
+alert.mirror.empty = "יציאה ריקה!";
+// Mesh already mirrored
+alert.mirror.same = "אותה יציאה!";
 // Error when an algorithm needs the object to have an hole (usually to fill it)
 alert.hole.nothing = "ללא חורים!";
 // No operation occured because the mesh is already manifold
@@ -262,10 +268,10 @@ alert.voxelRemesh.invalidInput = "קלט לא חוקי!";
 alert.matrix.clone = "האובייקט ישוכפל";
 // Helper popup to tell the users the object will cloned
 alert.matrix.instance = "האובייקט ייוצג";
-// A pivot refers the gizmo 3d position, this mode means we are moving the pivot
+// A pivot refers the gizmo 3D position, this mode means we are moving the pivot
 alert.gizmo.editPivot = "ערוך מצב נקודת ציר.";
 alert.mask.full = "מסכה = 100%!";
-// A pivot refers the gizmo 3d position
+// A pivot refers the gizmo 3D position
 alert.gizmo.editObject = "ערוך מצב אובייקט.";
 // See Glossary (DynTopo)
 alert.dynamic.enable = "טופולוגיה דינמית פועלת";
@@ -381,7 +387,7 @@ blend.cancelation.subtract = "חיסור";
 blend.component = "רכיב";
 blend.component.luminosity = "בהירות";
 
-// Camera (point of view in 3d)
+// Camera (point of view in 3D)
 camera = "מצלמה";
 cameras = "מצלמות";
 camera.view = "צפייה";
@@ -954,8 +960,6 @@ history.state.undo = "ביטול: $0";
 // Shown during redo
 history.state.redo = "שחזור: $0";
 // Shown during undo/redo
-history.state.symmetrySplit = "חלוקה סימטרית";
-// Shown during undo/redo
 history.state.voxelRemesh = "רתימה מחודשת של ווקסל";
 // Shown during undo/redo
 history.state.surfaceRemesh = "רתימה מחודשת של משטח";
@@ -975,6 +979,9 @@ inspect.seams = "תפרים";
 
 // Interface customization
 interface = "ממשק";
+
+// Resize window (should be short)
+interface.resize = "שנה גודל";
 
 // UI customization: one item row will stands on one line (synonym: Inlined)
 interface.compact = "UI: קומפקטי";
@@ -1031,6 +1038,17 @@ interface.toolbox.rows = "שורות";
 interface.toolbox.resetOrder = "איפוס סדר";
 // Colored text and icon
 interface.toolbox.color = "צבוע";
+// Top bar
+interface.top.title = "סרגל עליון";
+interface.top.responsive = "רספונסיבי";
+interface.top.responsive.help = "אפשרות זו רלוונטית בעיקר למסכים קטנים.";
+interface.top.responsive.multiline = "רב-שורה";
+interface.top.responsive.scroll = "גלגל";
+interface.top.responsive.collapse = "קרוס";
+interface.top.alt = "סדר חלופי";
+interface.top.alt.help = "אייקון סדר חלופי עבור התפריט העליון.
+
+תפריטים הקשורים לעריכת מסה נמצאים בעיקר בצד הנגדי של תפריט הסצנה, מה שעשוי לעזור בעריכת סצנה.";
 // Scale the interface
 interface.scale = "סקאלה כללית";
 // Spacing between widgets
@@ -1980,6 +1998,18 @@ stroke.silhouette.closest = "הקרוב ביותר";
 // Only sculpt the vertex that points toward the direction of the deformation
 stroke.sameSide = "ורטקס באותו צד בלבד";
 stroke.sameSide.help = "התעלם מוורטקסים המצביעים לכיוון מנוגד לשינוי הצורה.";
+// determine normal direction
+stroke.normal.direction = "";
+stroke.normal.direction.help = "";
+stroke.normal.direction.normal = "";
+stroke.normal.direction.normal.help = "";
+stroke.normal.direction.screen = "";
+stroke.normal.direction.screen.help = "";
+stroke.normal.direction.auto = "";
+stroke.normal.direction.auto.help = "";
+stroke.normal.direction.auto.threshold = "";
+stroke.normal.direction.auto.threshold.help = "";
+// small tip/warning
 stroke.onlyLasso = "הגדרות פעילות רק לכלי הלאסו.";
 
 // Here sampling refers to the app gathering information under the mouse
@@ -1998,8 +2028,8 @@ stroke.area.normal.average = "ממוצע נורמלי";
 // Sampling averaging
 stroke.area.point.average = "ממוצע מיקום";
 // Keep sharp edges
-stroke.keepSharp = "השאר קצוות חדים";
-stroke.keepSharp.help = "לא לכלול נקודות בעלות נורמל שונות מדי מהנורמל של המשטח.
+stroke.normalFilter = "פילטר רגיל";
+stroke.normalFilter.help = "לא לכלול נקודות בעלות נורמל שונות מדי מהנורמל של המשטח.
 
 זה ישנה כיצד מתבצעת חישוב שטח המישור (דגימת שטח).
 
@@ -2121,13 +2151,19 @@ symmetry.method.world = "עולם";
 symmetry.method.local = "מקומי";
 // Move the object to the other side of the symmetry (mirror it as well)
 symmetry.flip = "הפוך אובייקט";
-// Mirror the mesh
+// Cut half of the mesh
+symmetry.cut = "d";
+// after mirroring, separate into multiple output (synonym: split, separate)
+symmetry.split = "פָּצַל";
+// Reapply the mesh mirror, does not impact the topology
 symmetry.mirror = "שיקוף";
 symmetry.mirror.help = "נסה ליישם מחדש את הסימטריה מבלי להשפיע על הטופולוגיה.
 
 הסימטריה הרדיאלית תתעלם.
 
 אם לא ניתן לשמור על הטופולוגיה כיוון שאינה נחשבת לסימטרית, תינתן לכם אפשרות להפעיל את השיקוף בכוח.";
+// indicate that applying the mirror will keep the mesh topology
+symmetry.mirror.keepTopology = "שמור על טופולוגיה";
 symmetry.mirrorFail = "לא הצליח לזהות סימטריה.
 
 האם ברצונכם לכפות סימטריה באמצעות שיקוף של הרשת?";
@@ -2135,10 +2171,6 @@ symmetry.mirrorUseMasking = "שמור על האזור המסומן";
 symmetry.mirrorUseMasking.help = "שמור על האזור המסומן שלם.
 
 אפשרות זו תתעלם בטופולוגיה לא סימטרית (או משטח מנותק, כמו זוג עיניים).";
-symmetry.apply = "שיקוף
-(שמור על טופולוגיה)";
-symmetry.splitMirror = "הפרד ושקף
-(טופולוגיה חדשה)";
 // Reset the symmetry plane position
 symmetry.reset = "אפס";
 // Reset the symmetry plane positon to the object center
@@ -2149,7 +2181,7 @@ symmetry.reset.centerWorld = "מרכז עולם";
 symmetry.reset.direction = "כיוון";
 // Display a line on the object (to show where the symmetry lies)
 symmetry.showLine = "הצג קו";
-// Display the symmetry plane in 3d
+// Display the symmetry plane in 3D
 symmetry.showPlane = "הצג מישור";
 // Allow the editing of the symmetry plane with the gizmo
 symmetry.edit = "עריכת גיזמו";
@@ -2769,6 +2801,11 @@ license.key = "מפתח רישיון";
 license.activate = "הפעל רישיון";
 // ----------------------------------------------
 license.newest = "גרסה חדשה זמינה!";
+license.encrypt.error = "לא ניתן להצפין!";
+// ----------------------------------------------
+license.grace = "לא מקוון - תקופת החסד שנותרה:";
+license.grace.hours = "שעות";
+license.grace.days = "ימים";
 // ----------------------------------------------
 license.portal.title = "משתמשים קיימים";
 license.portal.label = "פורטל רישיון";
@@ -2779,6 +2816,8 @@ license.checkout.label = "רכישת Nomad";
 license.device.error = "לא ניתן היה לקבל את מזהה המכשיר.";
 license.device.mismatch = "קוד מזהה מכשיר לא מתאים!";
 // ----------------------------------------------
+license.error429 = "יותר מדי בקשות (המתן).";
+// ----------------------------------------------
 license.validate.error404 = "מפתח הרישיון לא נמצא.";
 license.validate.error422 = "ישות בלתי ניתנת לעיבוד.";
 // ----------------------------------------------
@@ -2787,12 +2826,18 @@ license.activate.error403 = "הגעת למספר המכשירים המקסימל
 license.activate.error404 = "מפתח הרישיון לא נמצא.";
 license.activate.error422 = "ישות בלתי ניתנת לעיבוד.";
 // ----------------------------------------------
-// version trial
+// version
+version.update = "עדכון זמין!";
 version.restore = "שחזר רכישה";
 version.buyWeb = "גרסת האינטרנט היא רק הדגמה";
 version.buyFull = "שדרג לגרסה המלאה";
-version.buyQR = "קנה";
-version.buyQR.promo = "
+// ----------------------------------------------
+// QuadRemesh
+version.qr.unlock = "פתח נעילה (רכוש, שחזר, ניסיון)";
+version.qr.desktop = "על שולחן העבודה, QuadRemesher מופץ על ידי Hexanomad, אך Hexanomad אינה מטפלת בהפצה או ברישוי.
+כל ניהול הרישיונות מתבצע על ידי Exoside.";
+version.qr.buy = "קנה";
+version.qr.promo = "
 כלי Quad Remesher הוא אלגוריתם היוצר רשת שמשתלטת על רוב הפוליגונים.
 הפיזור של הפוליגונים ינסה לעקוב אחרי הקימור הטבעי של האובייקט.
 
@@ -2809,20 +2854,30 @@ version.buyQR.promo = "
 • ציור צפיפות $3
 
 כלי Quad Remesher פותח על ידי https://exoside.com.";
-
-version.trialHistory = "גרסת ניסיון: אפשרי 4 פעולות ביטול/שחזור";
+// ----------------------------------------------
 version.trialLayer = "גרסת ניסיון: שכבה אחת לכל עצם";
-version.trialNoImport = "גרסת ניסיון: אין ייבוא";
 version.trialNoExport = "גרסת ניסיון: אין יצוא";
-
+// ----------------------------------------------
 version.fullFeatures = "• רכישה חד פעמית
 • ביטול/חידוש ללא הגבלה
 • שכבות ללא הגבלה
 • ייבוא וייצוא";
-
+// ----------------------------------------------
 version.demo.purpose = "גירסה זו נוצרה במיוחד למטרות הדגמה.";
 version.demo.disable = "התכונה לא מופעלת לדמו.";
+// ----------------------------------------------
+version.demo = "בדיקת הדמו";
+version.demo.sculpt = "פיסול";
+version.demo.sculpt.help = "כל המברשות זמינות אך אינך יכול לשמור או לייצא.
 
+מצב זה נועד בעיקר להתנסות במברשות או לבדוק תמיכה בלחץ.
+
+תכונות אחרות עשויות להיות מוגבלות גם כן (היסטוריה, שכבות).";
+version.demo.file = "ייבוא וייצוא";
+version.demo.file.help = "אתה יכול לייבא ולייצא מודל אבל מברשות פיסול לא פעילות.
+
+מצב זה שימושי במיוחד למשתמשי מובייל שלא יכולים לפתוח פרויקט .nom גדול בגלל מגבלות זיכרון במובייל.";
+// ----------------------------------------------
 // app store main page
 store.name = "Nomad Sculpt";
 store.headline = "לפסל, לצייר וליצור ב-3D";

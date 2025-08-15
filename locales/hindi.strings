@@ -56,7 +56,7 @@ direction.up = "ऊपर";
 direction.down = "नीचे";
 direction.left = "बायाँ";
 direction.right = "दायाँ";
-// 3d cube
+// 3D cube
 cube.top = "ऊपर";
 cube.bottom = "नीचे";
 cube.left = "बायाँ";
@@ -122,6 +122,8 @@ item.next = "अगला";
 item.lock = "लॉक करें";
 // No item selected
 item.none = "नहीं";
+// Draggable, moveable
+item.draggable = "";
 
 // Search something (text entry to filter item)
 search = "ढूंढिए";
@@ -233,6 +235,10 @@ about.threads = "Threads";
 
 // The user canceled an operation that was running
 alert.aborted = "ऑपरेशन निरस्त!";
+// Empty mesh
+alert.mirror.empty = "निष्क्रिय आउटपुट!";
+// Mesh already mirrored
+alert.mirror.same = "एक जैसा आउटपुट!";
 // Error when an algorithm needs the object to have an hole (usually to fill it)
 alert.hole.nothing = "वस्तु में कोई छेद नहीं है!";
 // No operation occured because the mesh is already manifold
@@ -262,10 +268,10 @@ alert.voxelRemesh.invalidInput = "अमान्य इनपुट!";
 alert.matrix.clone = "वस्तु दोहराई जाएगी";
 // Helper popup to tell the users the object will cloned
 alert.matrix.instance = "वस्तु का द्रष्टांत बनाया जाएगा।";
-// A pivot refers the gizmo 3d position, this mode means we are moving the pivot
+// A pivot refers the gizmo 3D position, this mode means we are moving the pivot
 alert.gizmo.editPivot = "धुरी मोड संपादित करें.";
 alert.mask.full = "मुखौटा = 100%!";
-// A pivot refers the gizmo 3d position
+// A pivot refers the gizmo 3D position
 alert.gizmo.editObject = "वस्तु मोड संपादित करें.";
 // See Glossary (DynTopo)
 alert.dynamic.enable = "डायनेमिक टोपोलॉजी चालू";
@@ -381,7 +387,7 @@ blend.cancelation.subtract = "घटाना";
 blend.component = "घटक";
 blend.component.luminosity = "प्रकाशमानता";
 
-// Camera (point of view in 3d)
+// Camera (point of view in 3D)
 camera = "कैमरा";
 cameras = "कैमरा";
 camera.view = "दृश्य";
@@ -946,8 +952,6 @@ history.state.undo = "अनडू: $0";
 // Shown during redo
 history.state.redo = "रीडू: $0";
 // Shown during undo/redo
-history.state.symmetrySplit = "सममिति विभाजन";
-// Shown during undo/redo
 history.state.voxelRemesh = "वॉक्सेल रीमेश";
 // Shown during undo/redo
 history.state.surfaceRemesh = "सतह रीमेश";
@@ -967,6 +971,9 @@ inspect.seams = "सीम";
 
 // Interface customization
 interface = "इंटरफ़ेस";
+
+// Resize window (should be short)
+interface.resize = "आकार बदलें";
 
 // UI customization: one item row will stands on one line (synonym: Inlined)
 interface.compact = "UI: संक्षिप्त";
@@ -1023,6 +1030,17 @@ interface.toolbox.rows = "पंक्तियाँ";
 interface.toolbox.resetOrder = "क्रम रीसेट करें";
 // Colored text and icon
 interface.toolbox.color = "रंगीन";
+// Top bar
+interface.top.title = "शीर्ष बार";
+interface.top.responsive = "प्रतिसादक";
+interface.top.responsive.help = "यह विकल्प मुख्य रूप से छोटे स्क्रीन के लिए प्रासंगिक है।";
+interface.top.responsive.multiline = "मल्टीलाइन";
+interface.top.responsive.scroll = "स्क्रॉल";
+interface.top.responsive.collapse = "संक्षेप";
+interface.top.alt = "वैकल्पिक क्रम";
+interface.top.alt.help = "शीर्ष मेनू के लिए वैकल्पिक क्रम आइकन।
+
+मेश संपादन से संबंधित मेनू मुख्यतः दृश्य मेनू के विपरीत दिशा में होते हैं, जो दृश्य संपादन में मदद कर सकते हैं।";
 // Scale the interface
 interface.scale = "समग्र पैमाना";
 // Spacing between widgets
@@ -1978,6 +1996,18 @@ stroke.silhouette.closest = "सबसे नज़दीकी";
 // Only sculpt the vertex that points toward the direction of the deformation
 stroke.sameSide = "उसी तरफ़ का शीर्ष बिंदु";
 stroke.sameSide.help = "विरूपण की विपरीत दिशा में इंगित करने वाले शीर्ष बिंदुओं को अनदेखा करें.";
+// determine normal direction
+stroke.normal.direction = "";
+stroke.normal.direction.help = "";
+stroke.normal.direction.normal = "";
+stroke.normal.direction.normal.help = "";
+stroke.normal.direction.screen = "";
+stroke.normal.direction.screen.help = "";
+stroke.normal.direction.auto = "";
+stroke.normal.direction.auto.help = "";
+stroke.normal.direction.auto.threshold = "";
+stroke.normal.direction.auto.threshold.help = "";
+// small tip/warning
 stroke.onlyLasso = "सेटिंग्ज़ केवल लासो टूल के लिए सक्रिय हैं.";
 
 // Here sampling refers to the app gathering information under the mouse
@@ -1996,8 +2026,8 @@ stroke.area.normal.average = "सामान्य औसतन";
 // Sampling averaging
 stroke.area.point.average = "स्थिति औसतन";
 // Keep sharp edges
-stroke.keepSharp = "नुकीले किनारे बनाए रखें";
-stroke.keepSharp.help = "
+stroke.normalFilter = "सामान्य फिल्टर";
+stroke.normalFilter.help = "
 डेप्थ फ़िल्टरिंग";
 
 // Only paint the part of the mesh above a certain height
@@ -2116,13 +2146,19 @@ symmetry.method.world = "विश्व";
 symmetry.method.local = "स्थानीय";
 // Move the object to the other side of the symmetry (mirror it as well)
 symmetry.flip = "वस्तु पलटें";
-// Mirror the mesh
-symmetry.mirror = "प्रतिरूप";
+// Cut half of the mesh
+symmetry.cut = "काटें";
+// after mirroring, separate into multiple output (synonym: split, separate)
+symmetry.split = "विभाजन";
+// Reapply the mesh mirror, does not impact the topology
+symmetry.mirror = "दर्पण";
 symmetry.mirror.help = "टोपोलॉजी को प्रभावित किए बिना सममिति को फिर से लागू करने का प्रयास करें.
 
 व्यासीय सममिति को नजरअंदाज कर दिया जाएगा.
 
 यदि टोपोलॉजी को बनाए नहीं रखा जा सकता है क्योंकि इसे सममित नहीं माना जाता है, तो आपको प्रतिरूप लागू करने का विकल्प मिलेगा.";
+// indicate that applying the mirror will keep the mesh topology
+symmetry.mirror.keepTopology = "टोपोलॉजी बनाए रखें";
 symmetry.mirrorFail = "सममिति लागू करने में विफल.
 
 क्या आप मेश का प्रतिरूप करके सममिति लागू करना चाहते हैं?";
@@ -2130,10 +2166,6 @@ symmetry.mirrorUseMasking = "मुखौटा किए गए क्षेत
 symmetry.mirrorUseMasking.help = "मुखौटा किए गए क्षेत्र को बरकरार रखें.
 
 गैर-सममित टोपोलॉजी (या आंखों की एक जोड़ी की तरह डिस्कनेक्ट की गई सतह) के साथ इस विकल्प को अनदेखा कर दिया जाएगा.";
-symmetry.apply = "दर्पण
-(टोपोलॉजी बनाए रखें)";
-symmetry.splitMirror = "विभाजित और दर्पण
-(नई टोपोलॉजी)";
 // Reset the symmetry plane position
 symmetry.reset = "रीसेट करें";
 // Reset the symmetry plane positon to the object center
@@ -2144,7 +2176,7 @@ symmetry.reset.centerWorld = "विश्व केंद्र";
 symmetry.reset.direction = "अभिविन्यास";
 // Display a line on the object (to show where the symmetry lies)
 symmetry.showLine = "रेखा दिखाएँ";
-// Display the symmetry plane in 3d
+// Display the symmetry plane in 3D
 symmetry.showPlane = "फलक दिखाएँ";
 // Allow the editing of the symmetry plane with the gizmo
 symmetry.edit = "गिज़्मो संपादन";
@@ -2765,6 +2797,11 @@ license.key = " ";
 license.activate = " ";
 // ----------------------------------------------
 license.newest = "नई संस्करण उपलब्ध!";
+license.encrypt.error = "एन्क्रिप्ट नहीं हो सका!";
+// ----------------------------------------------
+license.grace = "अन्यथा - शेष छूट अवधि:";
+license.grace.hours = "घंटे";
+license.grace.days = "दिन";
 // ----------------------------------------------
 license.portal.title = "मौजूदा उपयोगकर्ता";
 license.portal.label = "लाइसेंस पोर्टल";
@@ -2775,6 +2812,8 @@ license.checkout.label = "Nomad खरीदें";
 license.device.error = "डिवाइस ID प्राप्त नहीं हो सकी।";
 license.device.mismatch = "डिवाइस ID का मेल नहीं है!";
 // ----------------------------------------------
+license.error429 = "बहुत अधिक अनुरोध (प्रतीक्षा करें)।";
+// ----------------------------------------------
 license.validate.error404 = "लाइसेंस कुंजी नहीं मिली।";
 license.validate.error422 = "अप्रक्रियणीय इकाई।";
 // ----------------------------------------------
@@ -2783,12 +2822,18 @@ license.activate.error403 = "अधिकतम डिवाइसों की 
 license.activate.error404 = "लाइसेंस कुंजी नहीं मिली।";
 license.activate.error422 = "अप्रक्रियणीय इकाई।";
 // ----------------------------------------------
-// version trial
+// version
+version.update = "अद्यतन उपलब्ध है!";
 version.restore = "खरीदारी पुनर्स्थापित करें";
 version.buyWeb = "वेब संस्करण केवल एक डेमो है";
 version.buyFull = "संपूर्ण संस्करण में अपग्रेड करें";
-version.buyQR = "खरीदें";
-version.buyQR.promo = "
+// ----------------------------------------------
+// QuadRemesh
+version.qr.unlock = "अनलॉक (खरीद, पुनर्स्थापित, परीक्षण)";
+version.qr.desktop = "डेस्कटॉप पर, क्वाडरीमेचर का वितरण हेग्सोनोमैड द्वारा किया जाता है, लेकिन हेग्सोनोमैड बिक्री या लायसेंसिंग को संभालता नहीं है।
+सभी लायसेंस प्रबंधन एक्सोसेइड द्वारा किया जाता है।";
+version.qr.buy = "खरीदें";
+version.qr.promo = "
 क्वाड रीमेशर एक ऐसा एल्गोरिदम है जो क्वाड प्रधान मेश का उत्पादन करता है।
 क्वाड वितरण वस्तु की प्राकृतिक वक्रता का अनुसरण करने का प्रयास करेगा।
 
@@ -2805,20 +2850,30 @@ version.buyQR.promo = "
 • घनत्व पेंटिंग $3
 
 क्वाड रीमेशर https://exoside.com/ द्वारा विकसित किया गया है।";
-
-version.trialHistory = "परीक्षण संस्करण: 4 अनडू/रीडू सम्भव";
+// ----------------------------------------------
 version.trialLayer = "परीक्षण संस्करण: 1 परत प्रति वस्तु";
-version.trialNoImport = "परीक्षण संस्करण: इंपोर्ट उपलब्ध नहीं";
 version.trialNoExport = "परीक्षण संस्करण: एक्सपोर्ट उपलब्ध नहीं";
-
+// ----------------------------------------------
 version.fullFeatures = "• एक मुश्त खरीद
 • असीमित अनडू/रीडू’
 • असीमित परतें
 • एक्सपोर्ट और इंपोर्ट";
-
+// ----------------------------------------------
 version.demo.purpose = "यह संस्करण विशेष रूप से प्रदर्शन उद्देश्यों के लिए बनाया गया है।";
 version.demo.disable = "डेमो के लिए सुविधा सक्षम नहीं है।";
+// ----------------------------------------------
+version.demo = "डेमो टेस्ट";
+version.demo.sculpt = "गढ़ना";
+version.demo.sculpt.help = "सभी ब्रश उपलब्ध हैं लेकिन आप सहेज या निर्यात नहीं कर सकते।
 
+यह मोड ज्यादातर ब्रश के साथ प्रयोग करने या दबाव समर्थन का परीक्षण करने के लिए है।
+
+अन्य सुविधाओं पर भी सीमाएं हो सकती हैं (इतिहास, परतें)।";
+version.demo.file = "आयात और निर्यात";
+version.demo.file.help = "आप मॉडल आयात और निर्यात कर सकते हैं लेकिन गढ़ना ब्रश अक्षम हैं।
+
+यह मोड ज्यादातर उन मोबाइल उपयोगकर्ताओं के लिए उपयोगी है जो मोबाइल मेमोरी बाधा के कारण बड़े .nom प्रोजेक्ट नहीं खोल सकते।";
+// ----------------------------------------------
 // app store main page
 store.name = "Nomad Sculpt";
 store.headline = "3डी मूर्तिकला और पेंटिंग";

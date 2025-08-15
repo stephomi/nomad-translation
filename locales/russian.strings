@@ -56,7 +56,7 @@ direction.up = "Верх";
 direction.down = "Низ";
 direction.left = "Лево";
 direction.right = "Право";
-// 3d cube
+// 3D cube
 cube.top = "Сверху";
 cube.bottom = "Снизу";
 cube.left = "Слева";
@@ -122,6 +122,8 @@ item.next = "Далее";
 item.lock = "Блокировать";
 // No item selected
 item.none = "Нет";
+// Draggable, moveable
+item.draggable = "";
 
 // Search something (text entry to filter item)
 search = "Поиск";
@@ -233,6 +235,10 @@ about.threads = "Threads";
 
 // The user canceled an operation that was running
 alert.aborted = "Операция прервана!";
+// Empty mesh
+alert.mirror.empty = "Пустой вывод!";
+// Mesh already mirrored
+alert.mirror.same = "Такой же вывод!";
 // Error when an algorithm needs the object to have an hole (usually to fill it)
 alert.hole.nothing = "У объекта нет отверстий!";
 // No operation occured because the mesh is already manifold
@@ -262,10 +268,10 @@ alert.voxelRemesh.invalidInput = "Неверный объект!";
 alert.matrix.clone = "Объект будет дублирован";
 // Helper popup to tell the users the object will cloned
 alert.matrix.instance = "Для объекта будет создана метка экземпляра";
-// A pivot refers the gizmo 3d position, this mode means we are moving the pivot
+// A pivot refers the gizmo 3D position, this mode means we are moving the pivot
 alert.gizmo.editPivot = "Редактировать режим опорной точки.";
 alert.mask.full = "Маска = 100%!";
-// A pivot refers the gizmo 3d position
+// A pivot refers the gizmo 3D position
 alert.gizmo.editObject = "Редактировать режим объекта.";
 // See Glossary (DynTopo)
 alert.dynamic.enable = "Динамическая топология активна";
@@ -381,7 +387,7 @@ blend.cancelation.subtract = "Вычесть";
 blend.component = "Компонент";
 blend.component.luminosity = "Светимость";
 
-// Camera (point of view in 3d)
+// Camera (point of view in 3D)
 camera = "Камера";
 cameras = "камеры";
 camera.view = "Просмотр";
@@ -950,8 +956,6 @@ history.state.undo = "Отмена: $0";
 // Shown during redo
 history.state.redo = "Возврат: $0";
 // Shown during undo/redo
-history.state.symmetrySplit = "Симметричное разделение";
-// Shown during undo/redo
 history.state.voxelRemesh = "Воксельная перестройка меша";
 // Shown during undo/redo
 history.state.surfaceRemesh = "Поверхностная перестройка меша";
@@ -971,6 +975,9 @@ inspect.seams = "Швы";
 
 // Interface customization
 interface = "Интерфейс";
+
+// Resize window (should be short)
+interface.resize = "Изменить размер";
 
 // UI customization: one item row will stands on one line (synonym: Inlined)
 interface.compact = "UI: Компактный";
@@ -1027,6 +1034,17 @@ interface.toolbox.rows = "Строки";
 interface.toolbox.resetOrder = "Сбросить порядок";
 // Colored text and icon
 interface.toolbox.color = "Цветной";
+// Top bar
+interface.top.title = "Верхняя панель";
+interface.top.responsive = "Адаптивный";
+interface.top.responsive.help = "Эта опция в основном актуальна для небольших экранов.";
+interface.top.responsive.multiline = "Многострочный";
+interface.top.responsive.scroll = "Прокрутка";
+interface.top.responsive.collapse = "Свернуть";
+interface.top.alt = "Альтернативный порядок";
+interface.top.alt.help = "Альтернативная иконка порядка для верхнего меню.
+
+Меню, связанные с редактированием сетки, в основном находятся на противоположной стороне от меню сцены, что может помочь в редактировании сцены.";
 // Scale the interface
 interface.scale = "Общий масштаб";
 // Spacing between widgets
@@ -1983,6 +2001,18 @@ stroke.silhouette.closest = "Ближайший";
 // Only sculpt the vertex that points toward the direction of the deformation
 stroke.sameSide = "Только вершины на одной стороне";
 stroke.sameSide.help = "Игнорировать вершины, указывающие в обратную сторону от деформации.";
+// determine normal direction
+stroke.normal.direction = "";
+stroke.normal.direction.help = "";
+stroke.normal.direction.normal = "";
+stroke.normal.direction.normal.help = "";
+stroke.normal.direction.screen = "";
+stroke.normal.direction.screen.help = "";
+stroke.normal.direction.auto = "";
+stroke.normal.direction.auto.help = "";
+stroke.normal.direction.auto.threshold = "";
+stroke.normal.direction.auto.threshold.help = "";
+// small tip/warning
 stroke.onlyLasso = "Настройки активны только для инструмента `Лассо`.";
 
 // Here sampling refers to the app gathering information under the mouse
@@ -2001,8 +2031,8 @@ stroke.area.normal.average = "Усреднение нормалей";
 // Sampling averaging
 stroke.area.point.average = "Усреднение позиций";
 // Keep sharp edges
-stroke.keepSharp = "Сохранение острых ребер";
-stroke.keepSharp.help = "
+stroke.normalFilter = "Фильтр нормали";
+stroke.normalFilter.help = "
 Фильтрование глубины";
 
 // Only paint the part of the mesh above a certain height
@@ -2121,13 +2151,19 @@ symmetry.method.world = "Мир";
 symmetry.method.local = "Локально";
 // Move the object to the other side of the symmetry (mirror it as well)
 symmetry.flip = "Перевернуть объект";
-// Mirror the mesh
-symmetry.mirror = "Отзеркаливание";
+// Cut half of the mesh
+symmetry.cut = "Обрезать";
+// after mirroring, separate into multiple output (synonym: split, separate)
+symmetry.split = "Разделить";
+// Reapply the mesh mirror, does not impact the topology
+symmetry.mirror = "Зеркало";
 symmetry.mirror.help = "Попытайтесь заново применить симметрию без влияния на топологию.
 
 Радиальная симметрия будет проигнорирована.
 
 Если топологию невозможно сохранить, потому что она не считается симметричной, вы можете принудительно произвести отзеркаливание.";
+// indicate that applying the mirror will keep the mesh topology
+symmetry.mirror.keepTopology = "с сохранением топологии";
 symmetry.mirrorFail = "Не удалось применить симметрию.
 
 Хотите принудительно создать симметрию, отзеркалив меш?";
@@ -2135,10 +2171,6 @@ symmetry.mirrorUseMasking = "Защита области маски";
 symmetry.mirrorUseMasking.help = "Сохраняет область маски нетронутой.
 
 Эта опция игнорируется при несимметричной топологии (или на отдельной поверхности, например, глазах).";
-symmetry.apply = "Зеркало
-(с сохранением топологии)";
-symmetry.splitMirror = "Разделить и Отразить
-(новая топология)";
 // Reset the symmetry plane position
 symmetry.reset = "Сбросить";
 // Reset the symmetry plane positon to the object center
@@ -2149,7 +2181,7 @@ symmetry.reset.centerWorld = "Центр мира";
 symmetry.reset.direction = "Ориентация";
 // Display a line on the object (to show where the symmetry lies)
 symmetry.showLine = "Показать линию";
-// Display the symmetry plane in 3d
+// Display the symmetry plane in 3D
 symmetry.showPlane = "Показать плоскость";
 // Allow the editing of the symmetry plane with the gizmo
 symmetry.edit = "Редактирование гизмо";
@@ -2766,6 +2798,11 @@ license.key = "Ключ лицензии";
 license.activate = "Активировать лицензию";
 // ----------------------------------------------
 license.newest = "Доступна новая версия!";
+license.encrypt.error = "Не удалось зашифровать!";
+// ----------------------------------------------
+license.grace = "Офлайн - Остаток льготного периода:";
+license.grace.hours = "часов";
+license.grace.days = "дней";
 // ----------------------------------------------
 license.portal.title = "Существующие пользователи";
 license.portal.label = "Портал лицензий";
@@ -2776,6 +2813,8 @@ license.checkout.label = "Купить Nomad";
 license.device.error = "Невозможно получить ID устройства.";
 license.device.mismatch = "Несоответствие ID устройства!";
 // ----------------------------------------------
+license.error429 = "Слишком много запросов (ожидание).";
+// ----------------------------------------------
 license.validate.error404 = "Лицензионный ключ не найден.";
 license.validate.error422 = "Непроцессируемый объект.";
 // ----------------------------------------------
@@ -2784,12 +2823,18 @@ license.activate.error403 = "Максимальное количество ус�
 license.activate.error404 = "Лицензионный ключ не найден.";
 license.activate.error422 = "Непроцессируемый объект.";
 // ----------------------------------------------
-// version trial
+// version
+version.update = "Обновление доступно!";
 version.restore = "Восстановить покупку";
 version.buyWeb = "Веб-версия — это только демо-версия";
 version.buyFull = "Перейти на полную версию";
-version.buyQR = "Покупка";
-version.buyQR.promo = "
+// ----------------------------------------------
+// QuadRemesh
+version.qr.unlock = "Разблокировать (покупка, восстановление, пробная версия)";
+version.qr.desktop = "На рабочем столе QuadRemesher распространяется компанией Hexanomad, но Hexanomad не занимается продажей или лицензированием. 
+Управление всеми лицензиями осуществляет Exoside.";
+version.qr.buy = "Покупка";
+version.qr.promo = "
 Quad Remesher — это алгоритм, который создает сетку, преимущественно состоящую из четырехугольников.
 Распределение четырехугольников будет пытаться следовать естественной кривизне объекта.
 
@@ -2806,20 +2851,30 @@ Quad Remesher — это алгоритм, который создает сет�
 • Рисования плотности $3
 
 Quad Remesher разработан https://exoside.com/.";
-
-version.trialHistory = "Пробная версия: доступны только 4 отмены/возврата";
+// ----------------------------------------------
 version.trialLayer = "Пробная версия: 1 слой на меш";
-version.trialNoImport = "Пробная версия: импорт невозможен";
 version.trialNoExport = "Пробная версия: экспорт невозможен";
-
+// ----------------------------------------------
 version.fullFeatures = "• Однократная покупка
 • Бесконечное количество отмен/возвратов
 • Бесконечное количество слоев
 • Экспорт и импорт";
-
+// ----------------------------------------------
 version.demo.purpose = "Это демоверсия приложения.";
 version.demo.disable = "Функция недоступна в демоверсии.";
+// ----------------------------------------------
+version.demo = "Демо Тест";
+version.demo.sculpt = "Скульптурирование";
+version.demo.sculpt.help = "Все кисти доступны, но вы не можете сохранять или экспортировать.
 
+Этот режим в основном предназначен для экспериментов с кистями или проверки поддержки силы нажатия.
+
+Другие функции также могут быть ограничены (история, слои).";
+version.demo.file = "Импорт и Экспорт";
+version.demo.file.help = "Вы можете импортировать и экспортировать модель, но скульптурные кисти отключены.
+
+Этот режим в основном полезен для мобильных пользователей, которые не могут открыть большие проекты .nom из-за ограничения памяти мобильного устройства.";
+// ----------------------------------------------
 // app store main page
 store.name = "Nomad Sculpt";
 store.headline = "Лепка и рисование в 3D";
