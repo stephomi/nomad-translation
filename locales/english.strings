@@ -233,6 +233,10 @@ about.threads = "Threads";
 
 // The user canceled an operation that was running
 alert.aborted = "Operation aborted!";
+// Empty mesh
+alert.mirror.empty = "Empty output!";
+// Mesh already mirrored
+alert.mirror.same = "Same output!";
 // Error when an algorithm needs the object to have an hole (usually to fill it)
 alert.hole.nothing = "The object has no holes!";
 // No operation occured because the mesh is already manifold
@@ -600,7 +604,7 @@ file.import.guiSettings.help = "When opening or importing a project file, all th
 file.import.obj.splitByGroup = "Split OBJ by groups";
 file.import.obj.splitByGroup.help = "When enabled, Nomad will split the OBJ groups into separate objects.";
 // Merge all the object layers at when loading a file (deleting them in the process)
-file.import.mergeLayers = "Merge Layers";
+file.import.mergeLayers = "Merge layers";
 // Ignore the textures present in the file to load
 file.import.skipTextures = "Skip textures";
 // Do not fiddle with the object topology when loading the file
@@ -954,8 +958,6 @@ history.state.undo = "Undo: $0";
 // Shown during redo
 history.state.redo = "Redo: $0";
 // Shown during undo/redo
-history.state.symmetrySplit = "Symmetry Split";
-// Shown during undo/redo
 history.state.voxelRemesh = "Voxel remesh";
 // Shown during undo/redo
 history.state.surfaceRemesh = "Surface remesh";
@@ -975,6 +977,9 @@ inspect.seams = "Seams";
 
 // Interface customization
 interface = "Interface";
+
+// Resize window (should be short)
+interface.resize = "Resize";
 
 // UI customization: one item row will stands on one line (synonym: Inlined)
 interface.compact = "UI: Compact";
@@ -1031,6 +1036,17 @@ interface.toolbox.rows = "Rows";
 interface.toolbox.resetOrder = "Reset order";
 // Colored text and icon
 interface.toolbox.color = "Colored";
+// Top bar
+interface.top.title = "Top bar";
+interface.top.responsive = "Responsive";
+interface.top.responsive.help = "This option is mostly relevant for small screen.";
+interface.top.responsive.multiline = "Multiline";
+interface.top.responsive.scroll = "Scroll";
+interface.top.responsive.collapse = "Collapse";
+interface.top.alt = "Alt order";
+interface.top.alt.help = "Alternative order icon for top menu.
+
+Menus relative to mesh editing are mostly on the opposite side of the scene menu, which can help in scene editing.";
 // Scale the interface
 interface.scale = "Overall scale";
 // Spacing between widgets
@@ -2005,15 +2021,15 @@ stroke.area.normal.average = "Normal averaging";
 // Sampling averaging
 stroke.area.point.average = "Position averaging";
 // Keep sharp edges
-stroke.keepSharp = "Keep sharp edges";
-stroke.keepSharp.help = "Exclude points whose normals differ too much from the surface normal.
+stroke.normalFilter = "Normal filter";
+stroke.normalFilter.help = "Exclude points whose normals differ too much from the surface normal.
 
 It will change how the plane area is computed (Area sampling).
 
 This option can be useful for flatten-based tool, or if you want to color a planar surface without spilling.";
 
 // Only paint the part of the mesh above a certain height
-stroke.depthFilter = "Depth masking";
+stroke.depthFilter = "Depth filter";
 stroke.depthFilter.help = "Exclude points that are above or below a certain distance of the computed plane (Area sampling).
 
 As an example, it can be used to paint bumps or cavities.";
@@ -2128,13 +2144,19 @@ symmetry.method.world = "World";
 symmetry.method.local = "Local";
 // Move the object to the other side of the symmetry (mirror it as well)
 symmetry.flip = "Flip object";
-// Mirror the mesh
-symmetry.mirror = "Mirroring";
+// Cut half of the mesh
+symmetry.cut = "Cut";
+// after mirroring, separate into multiple output (synonym: split, separate)
+symmetry.split = "Split";
+// Reapply the mesh mirror, does not impact the topology
+symmetry.mirror = "Mirror";
 symmetry.mirror.help = "Try to re-apply the symmetry without impacting the topology.
 
 Radial symmetry will be ignored.
 
 If the topology can't be kept because it is not considered symmetrical, you'll get the option to enforce the mirroring.";
+// indicate that applying the mirror will keep the mesh topology
+symmetry.mirror.keepTopology = "keep topology";
 symmetry.mirrorFail = "Failed to detect symmetry.
 
 Do you want to enforce symmetry by mirroring the mesh?";
@@ -2142,10 +2164,6 @@ symmetry.mirrorUseMasking = "Protect masked area";
 symmetry.mirrorUseMasking.help = "Keep masked area intact.
 
 This option will be ignored with non-symmetric topology (or disconnected surface, like a pair of eyes).";
-symmetry.apply = "Mirror
-(keep topology)";
-symmetry.splitMirror = "Split & Mirror
-(new topology)";
 // Reset the symmetry plane position
 symmetry.reset = "Reset";
 // Reset the symmetry plane positon to the object center
@@ -2778,6 +2796,11 @@ license.key = "License key";
 license.activate = "Activate license";
 // ----------------------------------------------
 license.newest = "New version available!";
+license.encrypt.error = "Could not encrypt!";
+// ----------------------------------------------
+license.grace = "Offline - Remaining grace period:";
+license.grace.hours = "hours";
+license.grace.days = "days";
 // ----------------------------------------------
 license.portal.title = "Existing users";
 license.portal.label = "License portal";
@@ -2788,6 +2811,8 @@ license.checkout.label = "Purchase Nomad";
 license.device.error = "Could not get device ID.";
 license.device.mismatch = "Mismatch device ID!";
 // ----------------------------------------------
+license.error429 = "Too many request (wait).";
+// ----------------------------------------------
 license.validate.error404 = "The license key was not found.";
 license.validate.error422 = "Unprocessable Entity.";
 // ----------------------------------------------
@@ -2796,12 +2821,18 @@ You can de-activate another device on your license portal.";
 license.activate.error404 = "The license key was not found.";
 license.activate.error422 = "Unprocessable Entity.";
 // ----------------------------------------------
-// version trial
+// version
+version.update = "Update available!";
 version.restore = "Restore purchase";
 version.buyWeb = "Web version is only a demo";
 version.buyFull = "Upgrade to full version";
-version.buyQR = "Purchase";
-version.buyQR.promo = "
+// ----------------------------------------------
+// QuadRemesh
+version.qr.unlock = "Unlock (purchase, restore, trial)";
+version.qr.desktop = "On desktop, the QuadRemesher is distributed by Hexanomad, but Hexanomad does not handle sales or licensing.
+All license management is carried out by Exoside.";
+version.qr.buy = "Purchase";
+version.qr.promo = "
 The Quad Remesher is an an algorithm that outputs quad dominant mesh.
 The quad distribution will try to follow the natural curvature of the object.
 
@@ -2818,20 +2849,30 @@ You can also guide the resulting topology with:
 • Density painting $3
 
 The Quad Remesher is developed by https://exoside.com/.";
-
-version.trialHistory = "Trial version: 4 undo/redo possible";
+// ----------------------------------------------
 version.trialLayer = "Trial version: 1 layer per object";
-version.trialNoImport = "Trial version: No import";
 version.trialNoExport = "Trial version: No export";
-
+// ----------------------------------------------
 version.fullFeatures = "• One time purchase
 • Unlimited undo/redo
 • Unlimited layers
 • Export & import";
-
+// ----------------------------------------------
 version.demo.purpose = "This version has been created specifically for demonstration purposes.";
 version.demo.disable = "Feature not enabled for demo.";
+// ----------------------------------------------
+version.demo = "Demo Test";
+version.demo.sculpt = "Sculpting";
+version.demo.sculpt.help = "All brushes are available but you cannot save or export.
 
+This mode is mostly meant to experiment with the brushes or test pressure support.
+
+Other features can limited as well (history, layers).";
+version.demo.file = "Import & Export";
+version.demo.file.help = "You can import and export model but sculpt brushes are disabled.
+
+This mode is mostly useful for mobile users who cannot open big .nom project caused by mobile memory constraint.";
+// ----------------------------------------------
 // app store main page
 store.name = "Nomad Sculpt";
 store.headline = "Sculpt, paint and create in 3D";
