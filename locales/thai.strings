@@ -122,6 +122,8 @@ item.next = "ถัดไป";
 item.lock = "ล็อค";
 // No item selected
 item.none = "ไม่มี";
+// Draggable, moveable
+item.draggable = "";
 
 // Search something (text entry to filter item)
 search = "ค้นหา";
@@ -233,6 +235,10 @@ about.threads = "Threads";
 
 // The user canceled an operation that was running
 alert.aborted = "การดำเนินการถูกยกเลิก!";
+// Empty mesh
+alert.mirror.empty = "ผลลัพธ์ว่างเปล่า!";
+// Mesh already mirrored
+alert.mirror.same = "ผลลัพธ์เดียวกัน!";
 // Error when an algorithm needs the object to have an hole (usually to fill it)
 alert.hole.nothing = "ออบเจ็กต์ไม่มีรู!";
 // No operation occured because the mesh is already manifold
@@ -950,8 +956,6 @@ history.state.undo = "เลิกทำ $0";
 // Shown during redo
 history.state.redo = "ทำซ้ำ $0";
 // Shown during undo/redo
-history.state.symmetrySplit = "การแยกส่วนสมมาตร";
-// Shown during undo/redo
 history.state.voxelRemesh = "รีเมชว็อกเซล";
 // Shown during undo/redo
 history.state.surfaceRemesh = "รีเมชพื้นผิว";
@@ -971,6 +975,9 @@ inspect.seams = "รอยต่อ";
 
 // Interface customization
 interface = "อินเตอร์เฟซ";
+
+// Resize window (should be short)
+interface.resize = "ปรับขนาด";
 
 // UI customization: one item row will stands on one line (synonym: Inlined)
 interface.compact = "UI: กระชับ";
@@ -1027,6 +1034,17 @@ interface.toolbox.rows = "แถว";
 interface.toolbox.resetOrder = "รีเซ็ตลำดับ";
 // Colored text and icon
 interface.toolbox.color = "มีสี";
+// Top bar
+interface.top.title = "แถบบนสุด";
+interface.top.responsive = "ตอบสนอง";
+interface.top.responsive.help = "ตัวเลือกนี้เหมาะสำหรับหน้าจอขนาดเล็ก";
+interface.top.responsive.multiline = "หลายบรรทัด";
+interface.top.responsive.scroll = "เลื่อน";
+interface.top.responsive.collapse = "ยุบ";
+interface.top.alt = "ลำดับ Alt";
+interface.top.alt.help = "ไอคอนลำดับทางเลือกสำหรับเมนูด้านบน
+
+เมนูที่เกี่ยวข้องกับการแก้ไขเมชจะอยู่ในด้านตรงข้ามของเมนูฉาก ซึ่งช่วยในการแก้ไขฉากได้";
 // Scale the interface
 interface.scale = "ขนาดโดยรวม";
 // Spacing between widgets
@@ -2001,8 +2019,8 @@ stroke.area.normal.average = "การเฉลี่ยค่าปกติ";
 // Sampling averaging
 stroke.area.point.average = "การเฉลี่ยตำแหน่ง";
 // Keep sharp edges
-stroke.keepSharp = "รักษาขอบคมไว้";
-stroke.keepSharp.help = "
+stroke.normalFilter = "ฟิลเตอร์ Normal";
+stroke.normalFilter.help = "
 การกรองความลึก";
 
 // Only paint the part of the mesh above a certain height
@@ -2121,13 +2139,19 @@ symmetry.method.world = "เวิลด์";
 symmetry.method.local = "โลคอล";
 // Move the object to the other side of the symmetry (mirror it as well)
 symmetry.flip = "พลิกออบเจ็กต์";
-// Mirror the mesh
-symmetry.mirror = "การมิเรอร์";
+// Cut half of the mesh
+symmetry.cut = "ตัด";
+// after mirroring, separate into multiple output (synonym: split, separate)
+symmetry.split = "แยก";
+// Reapply the mesh mirror, does not impact the topology
+symmetry.mirror = "กระจก";
 symmetry.mirror.help = "ลองใช้การทำสมมาตรอีกครั้งโดยไม่กระทบต่อโทโพโลยี
 
 สมมาตรในแนวรัศมีจะถูกละเว้น
 
 หากไม่สามารถรักษาโทโพโลยีได้เนื่องจากไม่ถือว่าสมมาตร คุณจะได้รับตัวเลือกเพื่อบังคับใช้การมิเรอร์";
+// indicate that applying the mirror will keep the mesh topology
+symmetry.mirror.keepTopology = "รักษาโครงสร้าง";
 symmetry.mirrorFail = "ใช้สมมาตรไม่สำเร็จ
 
 คุณต้องการบังคับใช้สมมาตรโดยมิเรอร์เมชหรือไม่?";
@@ -2135,10 +2159,6 @@ symmetry.mirrorUseMasking = "ปกป้องพื้นที่ที่ม
 symmetry.mirrorUseMasking.help = "รักษาพื้นที่ที่มาส์กไว้
 
 ตัวเลือกนี้จะถูกละเว้นด้วยโทโพโลยีที่ไม่สมมาตร (หรือพื้นผิวที่ไม่ได้เชื่อมต่อ เช่น ดวงตาคู่หนึ่ง)";
-symmetry.apply = "กระจก
-(รักษาโครงสร้าง)";
-symmetry.splitMirror = "แยก & กระจก
-(โครงสร้างใหม่)";
 // Reset the symmetry plane position
 symmetry.reset = "รีเซ็ต";
 // Reset the symmetry plane positon to the object center
@@ -2768,6 +2788,11 @@ license.key = "คีย์ใบอนุญาต";
 license.activate = "เปิดใช้งานใบอนุญาต";
 // ----------------------------------------------
 license.newest = "มีเวอร์ชันใหม่!";
+license.encrypt.error = "ไม่สามารถเข้ารหัสได้!";
+// ----------------------------------------------
+license.grace = "ออฟไลน์ - ช่วงเวลาผ่อนผันที่เหลืออยู่:";
+license.grace.hours = "ชั่วโมง";
+license.grace.days = "วัน";
 // ----------------------------------------------
 license.portal.title = "ผู้ใช้ที่มีอยู่";
 license.portal.label = "พอร์ทัลใบอนุญาต";
@@ -2778,6 +2803,8 @@ license.checkout.label = "ซื้อ Nomad";
 license.device.error = "ไม่สามารถรับ ID อุปกรณ์ได้";
 license.device.mismatch = "ID อุปกรณ์ไม่ตรงกัน!";
 // ----------------------------------------------
+license.error429 = "คำขอมากเกินไป (โปรดรอ).";
+// ----------------------------------------------
 license.validate.error404 = "ไม่พบคีย์ใบอนุญาต";
 license.validate.error422 = "หน่วยงานไม่สามารถประมวลผลได้";
 // ----------------------------------------------
@@ -2786,12 +2813,18 @@ license.activate.error403 = "ถึงจำนวนอุปกรณ์สู
 license.activate.error404 = "ไม่พบคีย์ใบอนุญาต";
 license.activate.error422 = "หน่วยงานไม่สามารถประมวลผลได้";
 // ----------------------------------------------
-// version trial
+// version
+version.update = "อัปเดตใหม่พร้อมใช้งาน!";
 version.restore = "คืนค่าการซื้อ";
 version.buyWeb = "เวอร์ชันเว็บเป็นเพียงตัวอย่างเท่านั้น";
 version.buyFull = "อัพเกรดเป็นเวอร์ชันเต็ม";
-version.buyQR = "ซื้อ";
-version.buyQR.promo = "
+// ----------------------------------------------
+// QuadRemesh
+version.qr.unlock = "ปลดล็อก (ซื้อ, กู้คืน, ทดลองใช้)";
+version.qr.desktop = "บนเดสก์ท็อป QuadRemesher ถูกแจกจ่ายโดย Hexanomad แต่ว่า Hexanomad ไม่ได้จัดการการขายหรือการออกใบอนุญาต
+การจัดการใบอนุญาตทั้งหมดดำเนินการโดย Exoside";
+version.qr.buy = "ซื้อ";
+version.qr.promo = "
 Quad Remesher เป็นอัลกอริทึมที่ผลิตเมชที่มีสี่เหลี่ยมเป็นหลัก
 การกระจายสี่เหลี่ยมจะพยายามตามความโค้งธรรมชาติของวัตถุ
 
@@ -2808,20 +2841,30 @@ Quad Remesher เป็นอัลกอริทึมที่ผลิตเ
 • การวาดความหนาแน่น $3
 
 Quad Remesher พัฒนาโดย https://exoside.com/.";
-
-version.trialHistory = "เวอร์ชันทดลอง เลิกทำ/ทำซ้ำได้ 4 ครั้ง";
+// ----------------------------------------------
 version.trialLayer = "เวอร์ชันทดลอง 1 เลเยอร์ต่อเมช";
-version.trialNoImport = "เวอร์ชันทดลอง ไม่นำเข้า";
 version.trialNoExport = "เวอร์ชันทดลอง ไม่นำออก";
-
+// ----------------------------------------------
 version.fullFeatures = "• ซื้อครั้งเดียว
 • เลิกทำ/ทำซ้ำได้ไม่จำกัด
 • ไม่จำกัดเลเยอร์
 • นำออกนำเข้า";
-
+// ----------------------------------------------
 version.demo.purpose = "แอพเวอร์ชั่นนี้จัดทำขึ้นสำหรับการสาธิตโดยเฉพาะ.";
 version.demo.disable = "คุณสมบัติไม่ได้เปิดให้ใช้สำหรับการสาธิตนี้.";
+// ----------------------------------------------
+version.demo = "ทดสอบสาธิต";
+version.demo.sculpt = "การแกะสลัก";
+version.demo.sculpt.help = "แปรงทั้งหมดสามารถใช้งานได้ แต่คุณไม่สามารถบันทึกหรือส่งออกได้
 
+โหมดนี้มีไว้เพื่อทดลองใช้แปรงหรือทดสอบการรองรับแรงกด
+
+คุณลักษณะอื่นๆ อาจถูกจำกัดเช่นกัน (ประวัติ, ชั้น)";
+version.demo.file = "การนำเข้าและส่งออก";
+version.demo.file.help = "คุณสามารถนำเข้าและส่งออกโมเดลได้ แต่ว่าแปรงแกะสลักจะถูกปิดใช้งาน
+
+โหมดนี้จะเป็นประโยชน์สำหรับผู้ใช้มือถือที่ไม่สามารถเปิดโครงการ .nom ขนาดใหญ่ได้เนื่องจากข้อจำกัดของหน่วยความจำมือถือ";
+// ----------------------------------------------
 // app store main page
 store.name = "Nomad Sculpt";
 store.headline = "สลัก, วาด, และสร้างใน 3 มิติ";
