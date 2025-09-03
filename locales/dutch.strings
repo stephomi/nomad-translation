@@ -8,6 +8,8 @@ confirm.no = "Nee";
 confirm.ok = "Ok";
 // Cancel something after being asked (Question? [answer, cancel])
 confirm.cancel = "Annuleer";
+// Restart nomad
+confirm.restart = "Na het wijzigen van deze waarde, moet je Nomad opnieuw opstarten.";
 
 // Experimental feature
 experimental = "Experimenteel!";
@@ -123,7 +125,7 @@ item.lock = "Vergrendelen";
 // No item selected
 item.none = "Geen";
 // Draggable, moveable
-item.draggable = "";
+item.draggable = "Verplaatsbaar";
 
 // Search something (text entry to filter item)
 search = "Zoeken";
@@ -184,12 +186,14 @@ material.projection.triplanar = "Triplanar";
 
 // Prefer low power
 about.lowPower = "Laag stroomverbruik GPU";
-about.lowPower.confirm = "Na het wijzigen van deze waarde, moet je Nomad opnieuw opstarten.";
 // Wintab wacom API
 about.wintab = "Gebruik WinTab";
 about.wintab.help = "Als WinTab ingeschakeld is, moet je waarschijnlijk Windows Ink uitschakelen in je Wacom-instellingen.
 
 Evenzo, als WinTab is uitgeschakeld, moet Windows Ink zijn ingeschakeld in de Wacom-instellingen.";
+// Wacom Multi Touch API
+about.touch = "Gebruik Wacom Multi-Touch";
+about.touch.help = "Schakel deze optie in om ondersteuning voor meerdere vingers op Wacom-tablets mogelijk te maken.";
 // Prefer low power
 about.fullScreen = "Volledig scherm";
 // Minify
@@ -350,7 +354,17 @@ background.imageRotation = "Rotatie";
 // Scale of the reference image
 background.imageScale = "Schaal";
 // Auto adjust the reference when moving the camera
-background.syncLock = "Synchroniseer met cameravergrendeling";
+background.lock.image = "Synchroniseer met cameravergrendeling";
+background.lock.image.help = "Wanneer de camera vergrendeld is met de Snap Cube, volgt de referentie-afbeelding de beweging van de camera.";
+// When exiting camera lock
+background.lock.exit = "Reset bij ontgrendeling:";
+background.lock.exit.none = "FoV aanpassen";
+background.lock.exit.none.help = "Houd afbeelding en camera zoals ze zijn.
+Als het in perspectief is, pas dan alleen het gezichtsveld aan.";
+background.lock.exit.all = "Alles Reset";
+background.lock.exit.all.help = "Reset zowel de positie van de afbeelding als de camera.";
+background.lock.exit.perspective = "Indien Perspectief";
+background.lock.exit.perspective.help = "Als het in perspectief is, reset dan de afbeelding en de positie van de camera.";
 
 // Blend: normal
 blend.normal = "Normaal";
@@ -508,8 +522,8 @@ curve.pivot.self = "Zelf";
 curve.pivot.children = "Kinderen";
 
 // Set the desired FPS (frame per second, refresh rate)
-debug.limitFps = "Doel FPS";
-debug.limitFps.help = "Wanneer uitgeschakeld, betekent de standaardwaarde dat deze synchroniseert met de verversingssnelheid van het scherm.";
+debug.targetFps = "Doel FPS";
+debug.targetFps.help = "Wanneer uitgeschakeld, betekent de standaardwaarde dat deze synchroniseert met de verversingssnelheid van het scherm.";
 
 // Warning about UVs (using extra memory)
 debug.uvPrimitive.warning = "Schakel deze optie uit als u geen UV's nodig hebt.
@@ -532,6 +546,14 @@ debug.thumbnails = "Maak winkelminiaturen";
 
 // Open file explorer
 file.explore = "Verken";
+// Open file explorer
+file.scope = "Bereik";
+file.scope.internal = "Intern";
+file.scope.internal.help = "Standaardgedrag, hetzelfde als mobiel.
+Projecten worden alleen opgeslagen in de hoofdmap van Nomad.";
+file.scope.external = "Op de plaats";
+file.scope.external.help = "Bij het importeren van een project van buitenaf, zal opslaan het oorspronkelijke bestand overschrijven.
+Automatisch opslaan wordt niet ondersteund voor externe projecten.";
 // Empty list: there is no projects
 file.project.load = "Project herladen bij opstarten";
 // Empty list: there is no projects
@@ -798,6 +820,10 @@ gesture.finger = "Vinger";
 gesture.stylus = "Stylus";
 // Mouse/Trackpad
 gesture.mouse = "Muis";
+
+gesture.wheel = "Muiswiel";
+gesture.wheel.speed3d = "Snelheid (3d zoomen)";
+gesture.wheel.speed2d = "Snelheid (2d interface)";
 
 // long press to pick the color/material under the cursor
 gesture.dropper = "Materiaal kiezer";
@@ -1779,6 +1805,7 @@ settings.stats.right = "Rechts";
 settings.stats.all = "Toon volledige scène";
 // Grid
 settings.grid = "Raster";
+settings.grid.divideThreshold = "Deeldrempel";
 // Cursor
 settings.cursor.title = "Cursor";
 settings.cursor.whileSculpting = "Toon cirkel tijdens beeldhouwen";
@@ -2005,16 +2032,18 @@ stroke.silhouette.closest = "Dichtstbijzijnde";
 stroke.sameSide = "Alleen zelfde-kant vertex";
 stroke.sameSide.help = "Negeer vertices die in de tegengestelde richting van de vervorming wijzen.";
 // determine normal direction
-stroke.normal.direction = "";
-stroke.normal.direction.help = "";
-stroke.normal.direction.normal = "";
-stroke.normal.direction.normal.help = "";
-stroke.normal.direction.screen = "";
-stroke.normal.direction.screen.help = "";
-stroke.normal.direction.auto = "";
-stroke.normal.direction.auto.help = "";
-stroke.normal.direction.auto.threshold = "";
-stroke.normal.direction.auto.threshold.help = "";
+stroke.normal.direction = "Richting";
+stroke.normal.direction.help = "Alleen relevant als normale vervorming is ingeschakeld.
+
+Regelt hoe Nomad beslist over het teken van de vervorming (duwen versus trekken).";
+stroke.normal.direction.normal = "Normaal 3D";
+stroke.normal.direction.normal.help = "Vergelijkt de XY-positie van de aanwijzer met de geprojecteerde oppervlakte-normaal.";
+stroke.normal.direction.screen = "XY";
+stroke.normal.direction.screen.help = "Gebruikt de XY-positie van het scherm van de aanwijzer om te beslissen of je moet duwen of trekken.";
+stroke.normal.direction.auto = "Automatisch";
+stroke.normal.direction.auto.help = "Kiest de methode automatisch op basis van de hoek van de geprojecteerde normaal.";
+stroke.normal.direction.auto.threshold = "Drempel";
+stroke.normal.direction.auto.threshold.help = "Grenshoek vergeleken met de oppervlakte-normaal om te beslissen welke methode wordt gebruikt.";
 // small tip/warning
 stroke.onlyLasso = "Instellingen alleen actief voor het lasso gereedschap.";
 
@@ -2042,13 +2071,14 @@ Dit verandert hoe het vlakgebied wordt berekend (Gebied sampling).
 Deze optie kan nuttig zijn voor tool-gebaseerde flatten, of als je een vlak oppervlak wilt kleuren zonder te morsen.";
 
 // Only paint the part of the mesh above a certain height
-stroke.depthFilter = "Dieptemasking";
-stroke.depthFilter.help = "Sluit punten uit die boven of onder een bepaalde afstand van het berekende vlak liggen (Gebied sampling).
+stroke.depth.enable = "Dieptemasking";
+stroke.depth.enable.help = "Sluit punten uit die boven of onder een bepaalde afstand van het berekende vlak liggen (Gebied sampling).
 
 Als voorbeeld kan het gebruikt worden om bulten of holtes te schilderen.";
-stroke.depthFilter.max = "Bovenste gebied";
-stroke.depthFilter.min = "Onderste gebied";
-stroke.depthFilter.offset = "Hoogte compensatie";
+stroke.depth.offset = "Hoogte compensatie";
+stroke.depth.falloff = "Diepte-afname";
+stroke.depth.max = "Bovenste gebied";
+stroke.depth.min = "Onderste gebied";
 
 // Invert the pixel (black <-> white)
 stroke.alpha.invert = "Inverteer pixels";
@@ -2195,101 +2225,101 @@ symmetry.edit.help = "U kunt vrij de symmetrievlakte instellen.
 
 Deze functie is enigszins experimenteel en het wordt waarschijnlijk afgeraden deze te gebruiken.";
 
-// Ideally <10 chars
+// Ideally short strings
 tool.dynamic = "DynTopo";
-// Ideally <10 chars (Symmetry)
+// Ideally short strings (Symmetry)
 tool.symmetry = "Sym";
-// Ideally <10 chars (Mirror primitive)
+// Ideally short strings (Mirror primitive)
 tool.mirror = "Spiegel";
-// Ideally <10 chars
+// Ideally short strings
 tool.clay = "Klei";
-// Ideally <10 chars (Subtract)
+// Ideally short strings (Subtract)
 tool.clay.sub = "Aftrekken";
-// Ideally <10 chars
+// Ideally short strings
 tool.brush = "Kwast";
-// Ideally <10 chars
+// Ideally short strings
 tool.move = "Verplaats";
-// Ideally <10 chars (Normal vector, perpendicular to surface)
+// Ideally short strings (Normal vector, perpendicular to surface)
 tool.move.normal = "Normaal";
-// Ideally <10 chars
+// Ideally short strings
 tool.drag = "Slepen";
-// Ideally <10 chars (Smooth the surface by erasing the details)
+// Ideally short strings (Smooth the surface by erasing the details)
 tool.smooth = "Gladstrijken";
-// Ideally <10 chars (Tries to smooth the topology by making the polygons more regular)
+// Ideally short strings (Tries to smooth the topology by making the polygons more regular)
 tool.smooth.relax = "Ontspannen";
-// Ideally <10 chars (Paint mask)
+// Ideally short strings (Paint mask)
 tool.mask = "Masker";
-// Ideally <10 chars
+// Ideally short strings
 tool.mask.unmask = "Unmask";
-// Ideally <10 chars (Selector Mask, use lasso/ellipse,etc shape to mask the mesh)
+// Ideally short strings (Selector Mask, use lasso/ellipse,etc shape to mask the mesh)
 tool.maskSelector = "SelMask";
-// Ideally <10 chars (Smudge the paint of the object)
+// Ideally short strings (Smudge the paint of the object)
 tool.smudge = "Vlekken";
-// Ideally <10 chars (Flatten the surface)
+// Ideally short strings (Flatten the surface)
 tool.flatten = "Plat maken";
-// Ideally <10 chars (Flatten the surface, more strongly than Flatten)
+// Ideally short strings (Flatten the surface, more strongly than Flatten)
 tool.planar = "Vlak";
-// Ideally <10 chars (Flatten the surface by offsetting the surface in the opposite direction)
+// Ideally short strings (Flatten the surface by offsetting the surface in the opposite direction)
 tool.flatten.fill = "Vullen";
-// Ideally <10 chars (Layer brush)
+// Ideally short strings (Layer brush)
 tool.layer = "Laag";
-// Ideally <10 chars
+// Ideally short strings
 tool.crease = "Plooi";
-// Ideally <10 chars (Cut part of the mesh cleanly)
+// Ideally short strings (Cut part of the mesh cleanly)
 tool.trim = "Trimmen";
-// Ideally <10 chars (Cut part of the mesh cleanly into two separate meshes)
+// Ideally short strings (Cut part of the mesh cleanly into two separate meshes)
 tool.split = "Splitsen";
-// Ideally <10 chars (Project part of the object onto a curve)
+// Ideally short strings (Project part of the object onto a curve)
 tool.project = "Projecteren";
-// Ideally <10 chars
+// Ideally short strings
 tool.inflate = "Plop";
-// Ideally <10 chars
+// Ideally short strings
 tool.pinch = "Knijpen";
-// Ideally <10 chars
+// Ideally short strings
 tool.nudge = "Nudge";
-// Ideally <10 chars
+// Ideally short strings
 tool.stamp = "Stempel";
-// Ideally <10 chars (Delete Layer, a tool that can cancel the Layer deformation/paint)
+// Ideally short strings (Delete Layer, a tool that can cancel the Layer deformation/paint)
 tool.clearLayer = "LaagVerwijderen";
-// Ideally <10 chars (Select multiple objects with a lasso tool)
+// Ideally short strings (Select multiple objects with a lasso tool)
 tool.select = "Selecteren";
-// Ideally <10 chars (Rotate, Translate and Scale the object)
+// Ideally short strings (Rotate, Translate and Scale the object)
 tool.gizmo = "Widget";
-// Ideally <10 chars
+// Ideally short strings
 tool.gizmo.editPivot = "Draaischijf";
-// Ideally <10 chars (Snap angle)
+// Ideally short strings (Snap angle)
 tool.gizmo.rotateSnap = "Kleven";
-// Ideally <10 chars (Snap translation)
+// Ideally short strings (Snap translation)
 tool.gizmo.moveSnap = "Kleven";
-// Ideally <10 chars (Local/Relative space)
+// Ideally short strings (Local/Relative space)
 tool.gizmo.local = "Lokaal";
-// Ideally <10 chars (Align/Snap the gizmo to world axis)
+// Ideally short strings (Align/Snap the gizmo to world axis)
 tool.gizmo.align = "Uitlijnen";
-// Ideally <10 chars (Pin the gizmo, so that it stays in place when switching between objects)
+// Ideally short strings (Pin the gizmo, so that it stays in place when switching between objects)
 tool.gizmo.pin = "Spelden";
-// Ideally <10 chars (Rotate, Translate and Scale the object)
+// Ideally short strings (Rotate, Translate and Scale the object)
 tool.transform = "Transformatie";
-// Ideally <10 chars (Translate the object)
+// Ideally short strings (Translate the object)
 tool.transform.move = "Verplaats";
-// Ideally <10 chars (Rotate the object)
+// Ideally short strings (Rotate the object)
 tool.transform.rotate = "Draaien";
-// Ideally <10 chars (Scale the object)
+// Ideally short strings (Scale the object)
 tool.transform.scale = "Schaal";
-// Ideally <10 chars (Snap the object on another object surface)
+// Ideally short strings (Snap the object on another object surface)
 tool.transform.snap = "Kleven";
-// Ideally <10 chars (Measure distance between 2 points)
+// Ideally short strings (Measure distance between 2 points)
 tool.measure = "Meten";
-// Ideally <10 chars (Lattice, deformer)
+// Ideally short strings (Lattice, deformer)
 tool.lattice = "Rooster";
 // If an option is shared among the tools
 tool.all = "Alles";
-// Ideally <10 chars (Quad Remesher)
+// Ideally short strings (Quad Remesher)
 tool.remesh = "Vierkant Remesher";
 tool.remesh.guides = "Richtlijnen";
 tool.remesh.density = "Dichtheid";
 tool.remesh.same = "Zelfde";
 tool.remesh.half = "Half";
-// Ideally <10 chars (FaceGroup)
+// Ideally short strings (FaceGroup)
 tool.faceGroup = "GezichtGroep";
 tool.faceGroup.autoPick = "Auto-selectie";
 tool.faceGroup.flush = "Verwijder ongebruikte";
@@ -2300,35 +2330,35 @@ tool.faceGroup.skipArea = "Oppervlakte";
 tool.faceGroup.skipArea.help = "Maak geen nieuwe groep aan als de oppervlakte van de nieuwe groep lager is dan deze drempelwaarde.
 
 De drempelwaarde wordt gegeven als percentage van de totale oppervlakte van het object.";
-// Ideally <10 chars (Hide)
+// Ideally short strings (Hide)
 tool.hide = "Verbergen";
-// Ideally <10 chars (View tool, do nothing in particular)
+// Ideally short strings (View tool, do nothing in particular)
 tool.view = "Bekijken";
-// Ideally <10 chars (Revolving surface along a line)
+// Ideally short strings (Revolving surface along a line)
 tool.lathe = "Draaibank";
-// Ideally <10 chars (Revolving surface along a curve)
+// Ideally short strings (Revolving surface along a curve)
 tool.tube = "Buis";
-// Ideally <10 chars (Insert object into the scene)
+// Ideally short strings (Insert object into the scene)
 tool.insert = "Invoegen";
-// Ideally <10 chars (Flip/Invert/Negate the shape)
+// Ideally short strings (Flip/Invert/Negate the shape)
 tool.shape.flip = "Draaien";
-// Ideally <10 chars (No shape selected, same as Camera mode, does nothing in particular)
+// Ideally short strings (No shape selected, same as Camera mode, does nothing in particular)
 tool.shape.view = "Bekijken";
-// Ideally <10 chars (Lasso selection)
+// Ideally short strings (Lasso selection)
 tool.shape.lasso = "Lasso";
-// Ideally <10 chars (Curve selection, same as Lasso and it's an open shape)
+// Ideally short strings (Curve selection, same as Lasso and it's an open shape)
 tool.shape.curve = "Kromme";
-// Ideally <10 chars (Polygon selection, same as Lasso but with more precision)
+// Ideally short strings (Polygon selection, same as Lasso but with more precision)
 tool.shape.polygon = "Polygoon";
-// Ideally <10 chars (Path selection, same as Lasso but with more precision and it's an open shape)
+// Ideally short strings (Path selection, same as Lasso but with more precision and it's an open shape)
 tool.shape.path = "Pad";
-// Ideally <10 chars (Rectangular selection)
+// Ideally short strings (Rectangular selection)
 tool.shape.rectangle = "Rechthoek";
-// Ideally <10 chars (Ellipse selection)
+// Ideally short strings (Ellipse selection)
 tool.shape.ellipse = "Ellips";
-// Ideally <10 chars (Line selection, split the screen in half)
+// Ideally short strings (Line selection, split the screen in half)
 tool.shape.line = "Lijn";
-// Ideally <10 chars (Whether a shape is closed or not, a tube is open, a torus is closed)
+// Ideally short strings (Whether a shape is closed or not, a tube is open, a torus is closed)
 tool.shape.closed = "Gesloten";
 
 // Radius of the tool (size)
@@ -2720,10 +2750,21 @@ binding.addSync = "Synchronisatie";
 binding.addSync.help = "Standaard wordt de synchronisatiewaarde gebruikt die is ingesteld in het scene-menu.";
 // Binding option
 binding.context.toggle = "Context schakelen";
-binding.toggleTool = "Toggle tool snelkoppelingen";
-binding.toggleTool.help = "Wanneer je een van de tool snelkoppelingen gebruikt, wordt de vorige tool geselecteerd als de huidige snelkoppellingstool actief is.";
-// When the key is tap once, the value will be toggled
-binding.toggleTap = "Toggle snelkoppeling bij het aantikken van de toets";
+// quick sidebar tool shortcuts
+binding.quicks = "Snelle sneltoetsen";
+// quick regular tool shortcuts
+binding.tools = "Tools sneltoetsen";
+// When the key is tapped once, the value will be toggled
+binding.toggle = "Wissel Vorige Tool";
+binding.toggle.help = "Gebruik dezelfde binding om terug te schakelen naar het laatste gereedschap.";
+// sticky keys
+binding.sticky = "Sticky toetsen";
+binding.sticky.off = "Vast,";
+binding.sticky.off.help = "Houd de toets ingedrukt om het gereedschap te gebruiken, laat los om terug te keren naar het vorige gereedschap.";
+binding.sticky.on = "Wisselen";
+binding.sticky.on.help = "Druk eenmaal om tools te wisselen.";
+binding.sticky.quick = "Snelle Druk";
+binding.sticky.quick.help = "Houd ingedrukt om tijdelijk te gebruiken, druk snel om te wisselen.";
 // The binding force camera movement
 binding.forceCamera = "Camera forceren";
 binding.forceCamera.help = "Forceer camera-interactie in geval van een conflict met een andere binding.
@@ -2735,6 +2776,8 @@ binding.pickMaterial = "Kies Materiaal";
 binding.pickFaceGroup = "Kies Vlakkengroep";
 // Edit the tool brush size/radius
 binding.editRadius = "Hulpmiddel Radius";
+// Inverse direction zooming
+binding.invertZoomY = "Draai zoom Y om";
 // Edit the tool brush size/radius
 binding.editIntensity = "Hulpmiddel Intensiteit";
 // Controller dead zone

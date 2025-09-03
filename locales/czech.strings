@@ -8,6 +8,8 @@ confirm.no = "Ne";
 confirm.ok = "Ok";
 // Cancel something after being asked (Question? [answer, cancel])
 confirm.cancel = "Zrušit";
+// Restart nomad
+confirm.restart = "Po změně této hodnoty, musíte restartovat Nomad.";
 
 // Experimental feature
 experimental = "Experimentální!";
@@ -123,7 +125,7 @@ item.lock = "Zámek";
 // No item selected
 item.none = "Žádný";
 // Draggable, moveable
-item.draggable = "";
+item.draggable = "Přenosné";
 
 // Search something (text entry to filter item)
 search = "Hledat";
@@ -184,12 +186,14 @@ material.projection.triplanar = "Triplanar";
 
 // Prefer low power
 about.lowPower = "Nízká spotřeba GPU";
-about.lowPower.confirm = "Po změně této hodnoty, musíte restartovat Nomad.";
 // Wintab wacom API
 about.wintab = "Použijte WinTab";
 about.wintab.help = "Pokud je WinTab povolen, měli byste ve svých nastaveních Wacom pravděpodobně deaktivovat Windows Ink.
 
 Podobně, pokud je WinTab deaktivován, měl by být ve vašich nastaveních Wacom povolen Windows Ink.";
+// Wacom Multi Touch API
+about.touch = "Použijte Wacom Multi-Touch";
+about.touch.help = "Povolte tuto možnost pro podporu více prstů na tabletech Wacom.";
 // Prefer low power
 about.fullScreen = "Na celou obrazovku";
 // Minify
@@ -350,7 +354,17 @@ background.imageRotation = "Rotace";
 // Scale of the reference image
 background.imageScale = "Měřítko";
 // Auto adjust the reference when moving the camera
-background.syncLock = "Synchronizovat s uzamčením kamery";
+background.lock.image = "Synchronizovat s uzamčením kamery";
+background.lock.image.help = "Když je kamera uzamčena pomocí Snap Cube, referenční obrázek sleduje pohyb kamery.";
+// When exiting camera lock
+background.lock.exit = "Resetovat při odemknutí:";
+background.lock.exit.none = "Upravit šířku zorného pole";
+background.lock.exit.none.help = "Nechte obrázek a kameru tak, jak jsou. 
+Pokud je v perspektivě, upravte pouze šířku zorného pole.";
+background.lock.exit.all = "Resetovat vše";
+background.lock.exit.all.help = "Resetujte jak obrázek, tak pozici kamery.";
+background.lock.exit.perspective = "Pokud Perspektiva";
+background.lock.exit.perspective.help = "Pokud je v perspektivě, resetujte obrázek a pozici kamery.";
 
 // Blend: normal
 blend.normal = "Normální";
@@ -508,8 +522,8 @@ curve.pivot.self = "Vlastní";
 curve.pivot.children = "Děti";
 
 // Set the desired FPS (frame per second, refresh rate)
-debug.limitFps = "Cílové FPS";
-debug.limitFps.help = "Když je funkce deaktivována, výchozí hodnota znamená, že bude synchronizována s obnovovací frekvencí displeje.";
+debug.targetFps = "Cílové FPS";
+debug.targetFps.help = "Když je funkce deaktivována, výchozí hodnota znamená, že bude synchronizována s obnovovací frekvencí displeje.";
 
 // Warning about UVs (using extra memory)
 debug.uvPrimitive.warning = "Deaktivujte tuto volbu, pokud nepotřebujete UV.
@@ -532,6 +546,13 @@ debug.thumbnails = "Vytvořit náhledy obchodu";
 
 // Open file explorer
 file.explore = "Prozkoumat";
+// Open file explorer
+file.scope = "Dosah";
+file.scope.internal = "Interní";
+file.scope.internal.help = "Výchozí chování, stejně jako na mobilu. Projekty jsou uloženy pouze ve hlavní složce Nomad.";
+file.scope.external = "Na místě";
+file.scope.external.help = "Při importu projektu zvenčí bude uložením přepsán původní soubor.
+Automatické ukládání není podporováno pro externí projekty.";
 // Empty list: there is no projects
 file.project.load = "Znovu načíst projekt při spuštění";
 // Empty list: there is no projects
@@ -798,6 +819,10 @@ gesture.finger = "Prst";
 gesture.stylus = "Stylus";
 // Mouse/Trackpad
 gesture.mouse = "Myš";
+
+gesture.wheel = "Kolečko myši";
+gesture.wheel.speed3d = "Rychlost (3D přiblížení)";
+gesture.wheel.speed2d = "Rychlost (2D rozhraní)";
 
 // long press to pick the color/material under the cursor
 gesture.dropper = "Výběr materiálu";
@@ -1774,6 +1799,7 @@ settings.stats.right = "Vpravo";
 settings.stats.all = "Zobrazit celou scénu";
 // Grid
 settings.grid = "Mřížka";
+settings.grid.divideThreshold = "Rozdělovací práh";
 // Cursor
 settings.cursor.title = "Kurzor";
 settings.cursor.whileSculpting = "Zobrazit kruh při sochařství";
@@ -2000,16 +2026,18 @@ stroke.silhouette.closest = "Nejbližší";
 stroke.sameSide = "Pouze vrchol stejné strany";
 stroke.sameSide.help = "Ignorujte vrcholy směřující opačným směrem deformace.";
 // determine normal direction
-stroke.normal.direction = "";
-stroke.normal.direction.help = "";
-stroke.normal.direction.normal = "";
-stroke.normal.direction.normal.help = "";
-stroke.normal.direction.screen = "";
-stroke.normal.direction.screen.help = "";
-stroke.normal.direction.auto = "";
-stroke.normal.direction.auto.help = "";
-stroke.normal.direction.auto.threshold = "";
-stroke.normal.direction.auto.threshold.help = "";
+stroke.normal.direction = "Směr";
+stroke.normal.direction.help = "Relevantní pouze pokud je povolena deformace pomocí normál.
+
+Řídí, jak Nomad určí znaménko deformace (tlačit vs táhnout).";
+stroke.normal.direction.normal = "Normální 3D";
+stroke.normal.direction.normal.help = "Porovnává pozici XY prstu s normálou promítané plochy.";
+stroke.normal.direction.screen = "XY";
+stroke.normal.direction.screen.help = "Při rozhodování o tlačení nebo tahání používá pozici XY prstu na obrazovce.";
+stroke.normal.direction.auto = "Automaticky";
+stroke.normal.direction.auto.help = "Metodu vybere automaticky na základě úhlu promítané normály.";
+stroke.normal.direction.auto.threshold = "Prahová hodnota";
+stroke.normal.direction.auto.threshold.help = "Úhlový limit porovnán s normálou povrchu k určení použití metody.";
 // small tip/warning
 stroke.onlyLasso = "Nastavení jsou aktivní pouze pro nástroj laso.";
 
@@ -2037,13 +2065,14 @@ To změní způsob, jakým se vypočítává oblast roviny (vzorkování oblasti
 Tato možnost může být užitečná pro nástroje založené na zploštění nebo pokud chcete barvit rovinný povrch bez rozlití.";
 
 // Only paint the part of the mesh above a certain height
-stroke.depthFilter = "Maskování hloubky";
-stroke.depthFilter.help = "Vyloučit body, které jsou nad nebo pod určitou vzdáleností od vypočítané roviny (Vzorkování oblasti).
+stroke.depth.enable = "Maskování hloubky";
+stroke.depth.enable.help = "Vyloučit body, které jsou nad nebo pod určitou vzdáleností od vypočítané roviny (Vzorkování oblasti).
 
 Například může být použito k malování hrbolů nebo dutin.";
-stroke.depthFilter.max = "Horní oblast";
-stroke.depthFilter.min = "Dolní oblast";
-stroke.depthFilter.offset = "Převýšení výšky";
+stroke.depth.offset = "Převýšení výšky";
+stroke.depth.falloff = "Spád hloubky";
+stroke.depth.max = "Horní oblast";
+stroke.depth.min = "Dolní oblast";
 
 // Invert the pixel (black <-> white)
 stroke.alpha.invert = "Invertovat pixely";
@@ -2191,101 +2220,101 @@ symmetry.edit.help = "Můžete volně nastavit rovinu symetrie.
 
 Tato funkce je trochu experimentální a pravděpodobně byste ji neměli nikdy používat.";
 
-// Ideally <10 chars
+// Ideally short strings
 tool.dynamic = "DynTopo";
-// Ideally <10 chars (Symmetry)
+// Ideally short strings (Symmetry)
 tool.symmetry = "Sym";
-// Ideally <10 chars (Mirror primitive)
+// Ideally short strings (Mirror primitive)
 tool.mirror = "Zrcadlo";
-// Ideally <10 chars
+// Ideally short strings
 tool.clay = "Hlína";
-// Ideally <10 chars (Subtract)
+// Ideally short strings (Subtract)
 tool.clay.sub = "Méně";
-// Ideally <10 chars
+// Ideally short strings
 tool.brush = "Štětec";
-// Ideally <10 chars
+// Ideally short strings
 tool.move = "Přesunout";
-// Ideally <10 chars (Normal vector, perpendicular to surface)
+// Ideally short strings (Normal vector, perpendicular to surface)
 tool.move.normal = "Normální";
-// Ideally <10 chars
+// Ideally short strings
 tool.drag = "Táhnout";
-// Ideally <10 chars (Smooth the surface by erasing the details)
+// Ideally short strings (Smooth the surface by erasing the details)
 tool.smooth = "Hladit";
-// Ideally <10 chars (Tries to smooth the topology by making the polygons more regular)
+// Ideally short strings (Tries to smooth the topology by making the polygons more regular)
 tool.smooth.relax = "Uvolnit";
-// Ideally <10 chars (Paint mask)
+// Ideally short strings (Paint mask)
 tool.mask = "Maska";
-// Ideally <10 chars
+// Ideally short strings
 tool.mask.unmask = "Odmaskovat";
-// Ideally <10 chars (Selector Mask, use lasso/ellipse,etc shape to mask the mesh)
+// Ideally short strings (Selector Mask, use lasso/ellipse,etc shape to mask the mesh)
 tool.maskSelector = "VybrMasuku";
-// Ideally <10 chars (Smudge the paint of the object)
+// Ideally short strings (Smudge the paint of the object)
 tool.smudge = "Rozmazat";
-// Ideally <10 chars (Flatten the surface)
+// Ideally short strings (Flatten the surface)
 tool.flatten = "Zploštit";
-// Ideally <10 chars (Flatten the surface, more strongly than Flatten)
+// Ideally short strings (Flatten the surface, more strongly than Flatten)
 tool.planar = "Planar";
-// Ideally <10 chars (Flatten the surface by offsetting the surface in the opposite direction)
+// Ideally short strings (Flatten the surface by offsetting the surface in the opposite direction)
 tool.flatten.fill = "Vyplnit";
-// Ideally <10 chars (Layer brush)
+// Ideally short strings (Layer brush)
 tool.layer = "Vrstva";
-// Ideally <10 chars
+// Ideally short strings
 tool.crease = "Skládat";
-// Ideally <10 chars (Cut part of the mesh cleanly)
+// Ideally short strings (Cut part of the mesh cleanly)
 tool.trim = "Oříznout";
-// Ideally <10 chars (Cut part of the mesh cleanly into two separate meshes)
+// Ideally short strings (Cut part of the mesh cleanly into two separate meshes)
 tool.split = "Rozdělit";
-// Ideally <10 chars (Project part of the object onto a curve)
+// Ideally short strings (Project part of the object onto a curve)
 tool.project = "Projekt";
-// Ideally <10 chars
+// Ideally short strings
 tool.inflate = "Zvětšit";
-// Ideally <10 chars
+// Ideally short strings
 tool.pinch = "Štípnout";
-// Ideally <10 chars
+// Ideally short strings
 tool.nudge = "Posunout";
-// Ideally <10 chars
+// Ideally short strings
 tool.stamp = "Razítko";
-// Ideally <10 chars (Delete Layer, a tool that can cancel the Layer deformation/paint)
+// Ideally short strings (Delete Layer, a tool that can cancel the Layer deformation/paint)
 tool.clearLayer = "SmazatVrstva";
-// Ideally <10 chars (Select multiple objects with a lasso tool)
+// Ideally short strings (Select multiple objects with a lasso tool)
 tool.select = "Vybrat";
-// Ideally <10 chars (Rotate, Translate and Scale the object)
+// Ideally short strings (Rotate, Translate and Scale the object)
 tool.gizmo = "Nástroj";
-// Ideally <10 chars
+// Ideally short strings
 tool.gizmo.editPivot = "Osa";
-// Ideally <10 chars (Snap angle)
+// Ideally short strings (Snap angle)
 tool.gizmo.rotateSnap = "Přischnout";
-// Ideally <10 chars (Snap translation)
+// Ideally short strings (Snap translation)
 tool.gizmo.moveSnap = "Přischnout";
-// Ideally <10 chars (Local/Relative space)
+// Ideally short strings (Local/Relative space)
 tool.gizmo.local = "Lokální";
-// Ideally <10 chars (Align/Snap the gizmo to world axis)
+// Ideally short strings (Align/Snap the gizmo to world axis)
 tool.gizmo.align = "Zarovnat";
-// Ideally <10 chars (Pin the gizmo, so that it stays in place when switching between objects)
+// Ideally short strings (Pin the gizmo, so that it stays in place when switching between objects)
 tool.gizmo.pin = "Zapíchnout";
-// Ideally <10 chars (Rotate, Translate and Scale the object)
+// Ideally short strings (Rotate, Translate and Scale the object)
 tool.transform = "Přeměnit";
-// Ideally <10 chars (Translate the object)
+// Ideally short strings (Translate the object)
 tool.transform.move = "Přesunout";
-// Ideally <10 chars (Rotate the object)
+// Ideally short strings (Rotate the object)
 tool.transform.rotate = "Otočit";
-// Ideally <10 chars (Scale the object)
+// Ideally short strings (Scale the object)
 tool.transform.scale = "Škála";
-// Ideally <10 chars (Snap the object on another object surface)
+// Ideally short strings (Snap the object on another object surface)
 tool.transform.snap = "Přischnout";
-// Ideally <10 chars (Measure distance between 2 points)
+// Ideally short strings (Measure distance between 2 points)
 tool.measure = "Měřit";
-// Ideally <10 chars (Lattice, deformer)
+// Ideally short strings (Lattice, deformer)
 tool.lattice = "Mřížka";
 // If an option is shared among the tools
 tool.all = "Vše";
-// Ideally <10 chars (Quad Remesher)
+// Ideally short strings (Quad Remesher)
 tool.remesh = "Quad Remesh";
 tool.remesh.guides = "Vodítka";
 tool.remesh.density = "Hustota";
 tool.remesh.same = "Stejný";
 tool.remesh.half = "Poloviční";
-// Ideally <10 chars (FaceGroup)
+// Ideally short strings (FaceGroup)
 tool.faceGroup = "SkupinaPovrch";
 tool.faceGroup.autoPick = "Auto-výběr";
 tool.faceGroup.flush = "OdebratNepoužité";
@@ -2296,35 +2325,35 @@ tool.faceGroup.skipArea = "Plocha povrchu";
 tool.faceGroup.skipArea.help = "Nevytvářejte novou skupinu, pokud je plocha nového skupení menší než tento práh.
 
 Práh je dán procentním vyjádřením z celkové plochy objektu.";
-// Ideally <10 chars (Hide)
+// Ideally short strings (Hide)
 tool.hide = "Skrýt";
-// Ideally <10 chars (View tool, do nothing in particular)
+// Ideally short strings (View tool, do nothing in particular)
 tool.view = "Zobrazit";
-// Ideally <10 chars (Revolving surface along a line)
+// Ideally short strings (Revolving surface along a line)
 tool.lathe = "Soustruh";
-// Ideally <10 chars (Revolving surface along a curve)
+// Ideally short strings (Revolving surface along a curve)
 tool.tube = "Trubka";
-// Ideally <10 chars (Insert object into the scene)
+// Ideally short strings (Insert object into the scene)
 tool.insert = "Vložit";
-// Ideally <10 chars (Flip/Invert/Negate the shape)
+// Ideally short strings (Flip/Invert/Negate the shape)
 tool.shape.flip = "Převrátit";
-// Ideally <10 chars (No shape selected, same as Camera mode, does nothing in particular)
+// Ideally short strings (No shape selected, same as Camera mode, does nothing in particular)
 tool.shape.view = "Zobrazit";
-// Ideally <10 chars (Lasso selection)
+// Ideally short strings (Lasso selection)
 tool.shape.lasso = "Laso";
-// Ideally <10 chars (Curve selection, same as Lasso and it's an open shape)
+// Ideally short strings (Curve selection, same as Lasso and it's an open shape)
 tool.shape.curve = "Křivka";
-// Ideally <10 chars (Polygon selection, same as Lasso but with more precision)
+// Ideally short strings (Polygon selection, same as Lasso but with more precision)
 tool.shape.polygon = "Polygon";
-// Ideally <10 chars (Path selection, same as Lasso but with more precision and it's an open shape)
+// Ideally short strings (Path selection, same as Lasso but with more precision and it's an open shape)
 tool.shape.path = "Cesta";
-// Ideally <10 chars (Rectangular selection)
+// Ideally short strings (Rectangular selection)
 tool.shape.rectangle = "Obdélník";
-// Ideally <10 chars (Ellipse selection)
+// Ideally short strings (Ellipse selection)
 tool.shape.ellipse = "Elipsa";
-// Ideally <10 chars (Line selection, split the screen in half)
+// Ideally short strings (Line selection, split the screen in half)
 tool.shape.line = "Čára";
-// Ideally <10 chars (Whether a shape is closed or not, a tube is open, a torus is closed)
+// Ideally short strings (Whether a shape is closed or not, a tube is open, a torus is closed)
 tool.shape.closed = "Uzavřeno";
 
 // Radius of the tool (size)
@@ -2708,10 +2737,21 @@ binding.addSync = "Synchronizovat";
 binding.addSync.help = "Ve výchozím nastavení se použije hodnota synchronizace nastavená v menu scény.";
 // Binding option
 binding.context.toggle = "Přepnout kontext";
-binding.toggleTool = "Přepnout klávesové zkratky nástroje";
-binding.toggleTool.help = "Při použití jedné z klávesových zkratek nástrojů bude vybrán předchozí nástroj, pokud je současný zkratkový nástroj aktivní.";
-// When the key is tap once, the value will be toggled
-binding.toggleTap = "Předvolba pro přepnutí klávesové zkratky";
+// quick sidebar tool shortcuts
+binding.quicks = "Rychlé zástupce";
+// quick regular tool shortcuts
+binding.tools = "Nástrojové zkratky";
+// When the key is tapped once, the value will be toggled
+binding.toggle = "Přepnout předchozí nástroj";
+binding.toggle.help = "Použijte stejné propojení k přepnutí zpět na poslední nástroj.";
+// sticky keys
+binding.sticky = "Lepící klávesy";
+binding.sticky.off = "Držet";
+binding.sticky.off.help = "Držte klávesu k použití nástroje, uvolněte k návratu k předchozímu nástroji.";
+binding.sticky.on = "Přepnout";
+binding.sticky.on.help = "Stiskněte jednou pro změnu nástrojů.";
+binding.sticky.quick = "Rychlý stisk";
+binding.sticky.quick.help = "Podržte pro dočasné použití, rychle stiskněte pro přepnutí.";
 // The binding force camera movement
 binding.forceCamera = "Vynutit kameru";
 binding.forceCamera.help = "Vynutit interakci s kamerou v případě konfliktu s jiným bindingem.
@@ -2723,6 +2763,8 @@ binding.pickMaterial = "Vybrat materiál";
 binding.pickFaceGroup = "Vybrat skupinu ploch";
 // Edit the tool brush size/radius
 binding.editRadius = "Poloměr nástroje";
+// Inverse direction zooming
+binding.invertZoomY = "Překlopit zoom Y";
 // Edit the tool brush size/radius
 binding.editIntensity = "Intenzita nástroje";
 // Controller dead zone

@@ -8,6 +8,8 @@ confirm.no = "Nej";
 confirm.ok = "Ok";
 // Cancel something after being asked (Question? [answer, cancel])
 confirm.cancel = "Avbryt";
+// Restart nomad
+confirm.restart = "Efter att ha ändrat detta värde måste du starta om Nomad.";
 
 // Experimental feature
 experimental = "Experimentell!";
@@ -123,7 +125,7 @@ item.lock = "Lås";
 // No item selected
 item.none = "Ingen";
 // Draggable, moveable
-item.draggable = "";
+item.draggable = "Flyttbar";
 
 // Search something (text entry to filter item)
 search = "Sök";
@@ -184,12 +186,14 @@ material.projection.triplanar = "Triplanar";
 
 // Prefer low power
 about.lowPower = "Låg energi GPU";
-about.lowPower.confirm = "Efter att ha ändrat detta värde måste du starta om Nomad.";
 // Wintab wacom API
 about.wintab = "Använd Wintab";
 about.wintab.help = "Om Wintab är aktiverad bör du förmodligen inaktivera Windows Ink i dina Wacom-inställningar.
 
 På samma sätt, om Wintab är inaktiverad, bör Windows Ink aktiveras i Wacom-inställningarna.";
+// Wacom Multi Touch API
+about.touch = "Använd Wacom Multi-Touch";
+about.touch.help = "Aktivera detta alternativ för att stödja flera fingrar på Wacom-surfplattor.";
 // Prefer low power
 about.fullScreen = "Fullskärm";
 // Minify
@@ -350,7 +354,17 @@ background.imageRotation = "Rotation";
 // Scale of the reference image
 background.imageScale = "Skala";
 // Auto adjust the reference when moving the camera
-background.syncLock = "Synka med kameralås";
+background.lock.image = "Synka med kameralås";
+background.lock.image.help = "När kameran är låst med Snap Cube, följer referensbilden kamerans rörelse.";
+// When exiting camera lock
+background.lock.exit = "Återställ vid upplåsning:";
+background.lock.exit.none = "Justera Fov";
+background.lock.exit.none.help = "Behåll bild och kamera som de är.
+Om i perspektiv, justera endast synfältet.";
+background.lock.exit.all = "Återställ Allt";
+background.lock.exit.all.help = "Återställ både bildens och kamerans position.";
+background.lock.exit.perspective = "Om Perspektiv";
+background.lock.exit.perspective.help = "Om i perspektiv, återställ bildens och kamerans position.";
 
 // Blend: normal
 blend.normal = "Normal";
@@ -508,8 +522,8 @@ curve.pivot.self = "Själv";
 curve.pivot.children = "Barn";
 
 // Set the desired FPS (frame per second, refresh rate)
-debug.limitFps = "Mål FPS";
-debug.limitFps.help = "När den är avstängd betyder standardvärdet att den synkroniseras med skärmens uppdateringshastighet.";
+debug.targetFps = "Mål FPS";
+debug.targetFps.help = "När den är avstängd betyder standardvärdet att den synkroniseras med skärmens uppdateringshastighet.";
 
 // Warning about UVs (using extra memory)
 debug.uvPrimitive.warning = "Inaktivera det här alternativet om du inte behöver UVs.
@@ -532,6 +546,14 @@ debug.thumbnails = "Skapa butikens miniatyrer";
 
 // Open file explorer
 file.explore = "Utforska";
+// Open file explorer
+file.scope = "Omfång";
+file.scope.internal = "Intern";
+file.scope.internal.help = "Standardbeteende, samma som mobil.
+Projekt sparas endast i huvudmappen för Nomad.";
+file.scope.external = "På plats";
+file.scope.external.help = "När ett projekt importeras utifrån, kommer sparande att skriva över den ursprungliga filen.
+Autospar är inte stödd för externa projekt.";
 // Empty list: there is no projects
 file.project.load = "Ladda om projekt vid start";
 // Empty list: there is no projects
@@ -798,6 +820,10 @@ gesture.finger = "Finger";
 gesture.stylus = "Stylus";
 // Mouse/Trackpad
 gesture.mouse = "Mus";
+
+gesture.wheel = "Mus hjul";
+gesture.wheel.speed3d = "Hastighet (3d zoom)";
+gesture.wheel.speed2d = "Hastighet (2d gränssnitt)";
 
 // long press to pick the color/material under the cursor
 gesture.dropper = "Materialval";
@@ -1776,6 +1802,7 @@ settings.stats.right = "Höger";
 settings.stats.all = "Visa fullständig scen";
 // Grid
 settings.grid = "Rutnät";
+settings.grid.divideThreshold = "Dela tröskelvärde";
 // Cursor
 settings.cursor.title = "Markör";
 settings.cursor.whileSculpting = "Visa cirkel vid skulptering";
@@ -2002,16 +2029,18 @@ stroke.silhouette.closest = "Närmaste";
 stroke.sameSide = "Endast vertex på samma sida";
 stroke.sameSide.help = "Ignorera vertex som pekar i motsatt riktning som deformationen.";
 // determine normal direction
-stroke.normal.direction = "";
-stroke.normal.direction.help = "";
-stroke.normal.direction.normal = "";
-stroke.normal.direction.normal.help = "";
-stroke.normal.direction.screen = "";
-stroke.normal.direction.screen.help = "";
-stroke.normal.direction.auto = "";
-stroke.normal.direction.auto.help = "";
-stroke.normal.direction.auto.threshold = "";
-stroke.normal.direction.auto.threshold.help = "";
+stroke.normal.direction = "Riktning";
+stroke.normal.direction.help = "Endast relevant om normal deformation är aktiverad.
+
+Kontrollerar hur Nomad bestämmer deformationssignen (trycka vs dra).";
+stroke.normal.direction.normal = "Normal 3D";
+stroke.normal.direction.normal.help = "Jämför pekarens XY-position med den projicerade ytnormalen.";
+stroke.normal.direction.screen = "XY";
+stroke.normal.direction.screen.help = "Använder pekarens skärm-XY-position för att bestämma trycka eller dra.";
+stroke.normal.direction.auto = "Auto";
+stroke.normal.direction.auto.help = "Väljer metod automatiskt baserat på projicerad normalvinkel.";
+stroke.normal.direction.auto.threshold = "Tröskel";
+stroke.normal.direction.auto.threshold.help = "Vinkelgräns jämfört mot ytnormalen för att bestämma vilken metod som används.";
 // small tip/warning
 stroke.onlyLasso = "Inställningar endast aktiva för lassoverktyget.";
 
@@ -2039,13 +2068,14 @@ Det kommer att ändra hur planområdet beräknas (Områdesprovtagning).
 Detta alternativ kan vara användbart för ett verktyg baserat på utjämning, eller om du vill färglägga en plan yta utan att spilla.";
 
 // Only paint the part of the mesh above a certain height
-stroke.depthFilter = "Djupmaskering";
-stroke.depthFilter.help = "Exkludera punkter som är över eller under ett visst avstånd från den beräknade planet (Områdesprovtagning).
+stroke.depth.enable = "Djupmaskering";
+stroke.depth.enable.help = "Exkludera punkter som är över eller under ett visst avstånd från den beräknade planet (Områdesprovtagning).
 
 Som ett exempel kan det användas för att måla stötnar eller håligheter.";
-stroke.depthFilter.max = "Övre området";
-stroke.depthFilter.min = "Nedre området";
-stroke.depthFilter.offset = "Höjdkompensation";
+stroke.depth.offset = "Höjdkompensation";
+stroke.depth.falloff = "Djupavmattning";
+stroke.depth.max = "Övre området";
+stroke.depth.min = "Nedre området";
 
 // Invert the pixel (black <-> white)
 stroke.alpha.invert = "Invertera pixlar";
@@ -2193,101 +2223,101 @@ symmetry.edit.help = "Du kan fritt ställa in symmetriplanet.
 
 Den här funktionen är lite experimentell och du bör förmodligen aldrig använda den.";
 
-// Ideally <10 chars
+// Ideally short strings
 tool.dynamic = "DynTopo";
-// Ideally <10 chars (Symmetry)
+// Ideally short strings (Symmetry)
 tool.symmetry = "Sym";
-// Ideally <10 chars (Mirror primitive)
+// Ideally short strings (Mirror primitive)
 tool.mirror = "Spegel";
-// Ideally <10 chars
+// Ideally short strings
 tool.clay = "Lera";
-// Ideally <10 chars (Subtract)
+// Ideally short strings (Subtract)
 tool.clay.sub = "Sub";
-// Ideally <10 chars
+// Ideally short strings
 tool.brush = "Pensel";
-// Ideally <10 chars
+// Ideally short strings
 tool.move = "Flytta";
-// Ideally <10 chars (Normal vector, perpendicular to surface)
+// Ideally short strings (Normal vector, perpendicular to surface)
 tool.move.normal = "Normal";
-// Ideally <10 chars
+// Ideally short strings
 tool.drag = "Dra";
-// Ideally <10 chars (Smooth the surface by erasing the details)
+// Ideally short strings (Smooth the surface by erasing the details)
 tool.smooth = "Jämna ut";
-// Ideally <10 chars (Tries to smooth the topology by making the polygons more regular)
+// Ideally short strings (Tries to smooth the topology by making the polygons more regular)
 tool.smooth.relax = "Slappna av";
-// Ideally <10 chars (Paint mask)
+// Ideally short strings (Paint mask)
 tool.mask = "Mask";
-// Ideally <10 chars
+// Ideally short strings
 tool.mask.unmask = "Avmaskera";
-// Ideally <10 chars (Selector Mask, use lasso/ellipse,etc shape to mask the mesh)
+// Ideally short strings (Selector Mask, use lasso/ellipse,etc shape to mask the mesh)
 tool.maskSelector = "SelMask";
-// Ideally <10 chars (Smudge the paint of the object)
+// Ideally short strings (Smudge the paint of the object)
 tool.smudge = "Smeta ut";
-// Ideally <10 chars (Flatten the surface)
+// Ideally short strings (Flatten the surface)
 tool.flatten = "Platta ut";
-// Ideally <10 chars (Flatten the surface, more strongly than Flatten)
+// Ideally short strings (Flatten the surface, more strongly than Flatten)
 tool.planar = "Plan";
-// Ideally <10 chars (Flatten the surface by offsetting the surface in the opposite direction)
+// Ideally short strings (Flatten the surface by offsetting the surface in the opposite direction)
 tool.flatten.fill = "Fyll";
-// Ideally <10 chars (Layer brush)
+// Ideally short strings (Layer brush)
 tool.layer = "Layer";
-// Ideally <10 chars
+// Ideally short strings
 tool.crease = "Veck";
-// Ideally <10 chars (Cut part of the mesh cleanly)
+// Ideally short strings (Cut part of the mesh cleanly)
 tool.trim = "Beskär";
-// Ideally <10 chars (Cut part of the mesh cleanly into two separate meshes)
+// Ideally short strings (Cut part of the mesh cleanly into two separate meshes)
 tool.split = "Dela";
-// Ideally <10 chars (Project part of the object onto a curve)
+// Ideally short strings (Project part of the object onto a curve)
 tool.project = "Projekt";
-// Ideally <10 chars
+// Ideally short strings
 tool.inflate = "Blås upp";
-// Ideally <10 chars
+// Ideally short strings
 tool.pinch = "Klämma";
-// Ideally <10 chars
+// Ideally short strings
 tool.nudge = "Knuffa";
-// Ideally <10 chars
+// Ideally short strings
 tool.stamp = "Stämpel";
-// Ideally <10 chars (Delete Layer, a tool that can cancel the Layer deformation/paint)
+// Ideally short strings (Delete Layer, a tool that can cancel the Layer deformation/paint)
 tool.clearLayer = "Radera lager";
-// Ideally <10 chars (Select multiple objects with a lasso tool)
+// Ideally short strings (Select multiple objects with a lasso tool)
 tool.select = "Välj";
-// Ideally <10 chars (Rotate, Translate and Scale the object)
+// Ideally short strings (Rotate, Translate and Scale the object)
 tool.gizmo = "Gizmo";
-// Ideally <10 chars
+// Ideally short strings
 tool.gizmo.editPivot = "Pivot";
-// Ideally <10 chars (Snap angle)
+// Ideally short strings (Snap angle)
 tool.gizmo.rotateSnap = "Snap";
-// Ideally <10 chars (Snap translation)
+// Ideally short strings (Snap translation)
 tool.gizmo.moveSnap = "Snap";
-// Ideally <10 chars (Local/Relative space)
+// Ideally short strings (Local/Relative space)
 tool.gizmo.local = "Lokal";
-// Ideally <10 chars (Align/Snap the gizmo to world axis)
+// Ideally short strings (Align/Snap the gizmo to world axis)
 tool.gizmo.align = "Rikta";
-// Ideally <10 chars (Pin the gizmo, so that it stays in place when switching between objects)
+// Ideally short strings (Pin the gizmo, so that it stays in place when switching between objects)
 tool.gizmo.pin = "Fäst";
-// Ideally <10 chars (Rotate, Translate and Scale the object)
+// Ideally short strings (Rotate, Translate and Scale the object)
 tool.transform = "Transformera";
-// Ideally <10 chars (Translate the object)
+// Ideally short strings (Translate the object)
 tool.transform.move = "Flytta";
-// Ideally <10 chars (Rotate the object)
+// Ideally short strings (Rotate the object)
 tool.transform.rotate = "Rotera";
-// Ideally <10 chars (Scale the object)
+// Ideally short strings (Scale the object)
 tool.transform.scale = "Skala";
-// Ideally <10 chars (Snap the object on another object surface)
+// Ideally short strings (Snap the object on another object surface)
 tool.transform.snap = "Snap";
-// Ideally <10 chars (Measure distance between 2 points)
+// Ideally short strings (Measure distance between 2 points)
 tool.measure = "Mät";
-// Ideally <10 chars (Lattice, deformer)
+// Ideally short strings (Lattice, deformer)
 tool.lattice = "Galler";
 // If an option is shared among the tools
 tool.all = "Alla";
-// Ideally <10 chars (Quad Remesher)
+// Ideally short strings (Quad Remesher)
 tool.remesh = "Quad Remesher";
 tool.remesh.guides = "Guider";
 tool.remesh.density = "Täthet";
 tool.remesh.same = "Samma";
 tool.remesh.half = "Halv";
-// Ideally <10 chars (FaceGroup)
+// Ideally short strings (FaceGroup)
 tool.faceGroup = "Face Group";
 tool.faceGroup.autoPick = "Auto-välj";
 tool.faceGroup.flush = "Ta bort oanvänd";
@@ -2298,35 +2328,35 @@ tool.faceGroup.skipArea = "Ytområde";
 tool.faceGroup.skipArea.help = "Skapa inte en ny grupp om det nya gruppens ytarea är lägre än denna tröskel.
 
 Tröskelvärdet anges i procent av objektets totala area.";
-// Ideally <10 chars (Hide)
+// Ideally short strings (Hide)
 tool.hide = "Dölj";
-// Ideally <10 chars (View tool, do nothing in particular)
+// Ideally short strings (View tool, do nothing in particular)
 tool.view = "Visa";
-// Ideally <10 chars (Revolving surface along a line)
+// Ideally short strings (Revolving surface along a line)
 tool.lathe = "Svarv";
-// Ideally <10 chars (Revolving surface along a curve)
+// Ideally short strings (Revolving surface along a curve)
 tool.tube = "Rör";
-// Ideally <10 chars (Insert object into the scene)
+// Ideally short strings (Insert object into the scene)
 tool.insert = "Infoga";
-// Ideally <10 chars (Flip/Invert/Negate the shape)
+// Ideally short strings (Flip/Invert/Negate the shape)
 tool.shape.flip = "Vänd";
-// Ideally <10 chars (No shape selected, same as Camera mode, does nothing in particular)
+// Ideally short strings (No shape selected, same as Camera mode, does nothing in particular)
 tool.shape.view = "Visa";
-// Ideally <10 chars (Lasso selection)
+// Ideally short strings (Lasso selection)
 tool.shape.lasso = "Lasso";
-// Ideally <10 chars (Curve selection, same as Lasso and it's an open shape)
+// Ideally short strings (Curve selection, same as Lasso and it's an open shape)
 tool.shape.curve = "Kurva";
-// Ideally <10 chars (Polygon selection, same as Lasso but with more precision)
+// Ideally short strings (Polygon selection, same as Lasso but with more precision)
 tool.shape.polygon = "Polygon";
-// Ideally <10 chars (Path selection, same as Lasso but with more precision and it's an open shape)
+// Ideally short strings (Path selection, same as Lasso but with more precision and it's an open shape)
 tool.shape.path = "Bana";
-// Ideally <10 chars (Rectangular selection)
+// Ideally short strings (Rectangular selection)
 tool.shape.rectangle = "Rekt";
-// Ideally <10 chars (Ellipse selection)
+// Ideally short strings (Ellipse selection)
 tool.shape.ellipse = "Ellips";
-// Ideally <10 chars (Line selection, split the screen in half)
+// Ideally short strings (Line selection, split the screen in half)
 tool.shape.line = "Linje";
-// Ideally <10 chars (Whether a shape is closed or not, a tube is open, a torus is closed)
+// Ideally short strings (Whether a shape is closed or not, a tube is open, a torus is closed)
 tool.shape.closed = "Stängd";
 
 // Radius of the tool (size)
@@ -2721,10 +2751,21 @@ binding.addSync = "Sync";
 binding.addSync.help = "Som standard kommer den att använda synkvärdet som ställs in i scene-menyn.";
 // Binding option
 binding.context.toggle = "Växla kontext";
-binding.toggleTool = "Växla verktygssnabbval";
-binding.toggleTool.help = "När du använder ett av verktygssnabbvalen, väljs det tidigare verktyget om det aktuella snabbvalet är aktivt.";
-// When the key is tap once, the value will be toggled
-binding.toggleTap = "Växla genväg när du trycker på tangenten";
+// quick sidebar tool shortcuts
+binding.quicks = "Snabba genvägar";
+// quick regular tool shortcuts
+binding.tools = "Verktygsgenvägar";
+// When the key is tapped once, the value will be toggled
+binding.toggle = "Växla föregående verktyg";
+binding.toggle.help = "Använd samma bindning för att växla tillbaka till det senaste verktyget.";
+// sticky keys
+binding.sticky = "Klistertangenter";
+binding.sticky.off = "Håll";
+binding.sticky.off.help = "Håll tangenten för att använda verktyget, släpp för att återgå till föregående verktyg.";
+binding.sticky.on = "Växla";
+binding.sticky.on.help = "Tryck en gång för att växla verktyg.";
+binding.sticky.quick = "Snabbtryck";
+binding.sticky.quick.help = "Håll för att använda tillfälligt, snabbtryck för att växla.";
 // The binding force camera movement
 binding.forceCamera = "Tvinga kamera";
 binding.forceCamera.help = "Tvinga kamerainteraktion i händelse av konflikt med en annan bindning. Detta kan vanligtvis hända om samma bindning är tilldelad som ett verktygssnabbkomando eller Lägg till/Subtrahera.";
@@ -2734,6 +2775,8 @@ binding.pickMaterial = "Välj Material";
 binding.pickFaceGroup = "Välj Ansiktsgrupp";
 // Edit the tool brush size/radius
 binding.editRadius = "Verktygsradie";
+// Inverse direction zooming
+binding.invertZoomY = "Vänd zoom Y";
 // Edit the tool brush size/radius
 binding.editIntensity = "Verktygsintensitet";
 // Controller dead zone

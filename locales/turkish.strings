@@ -8,6 +8,8 @@ confirm.no = "Hayır";
 confirm.ok = "Tamam";
 // Cancel something after being asked (Question? [answer, cancel])
 confirm.cancel = "Vazgeç";
+// Restart nomad
+confirm.restart = "Bu değeri değiştirdikten sonra, Nomad'ı yeniden başlatmanız gerekiyor.";
 
 // Experimental feature
 experimental = "Deneysel!";
@@ -123,7 +125,7 @@ item.lock = "Kilitle";
 // No item selected
 item.none = "Yok";
 // Draggable, moveable
-item.draggable = "";
+item.draggable = "Hareketli";
 
 // Search something (text entry to filter item)
 search = "Arama";
@@ -184,10 +186,16 @@ material.projection.triplanar = "Üç düzlemli";
 
 // Prefer low power
 about.lowPower = "Düşük güç tüketen GPU";
-about.lowPower.confirm = "Bu değeri değiştirdikten sonra, Nomad'ı yeniden başlatmanız gerekiyor.";
 // Wintab wacom API
 about.wintab = "WinTab'ı Kullanın";
-about.wintab.help = "WinTab etkinse, Wacom ayarlarında Windows Ink'i muhtemelen devre dışı bırakmalısınız.<br><br>Benzer şekilde, WinTab devre dışıysa, Windows Ink Wacom ayarlarında etkinleştirilmelidir.";
+about.wintab.help = "WinTab etkinse, Wacom ayarlarında Windows Ink'i muhtemelen devre dışı bırakmalısınız.
+
+
+
+Benzer şekilde, WinTab devre dışıysa, Windows Ink Wacom ayarlarında etkinleştirilmelidir.";
+// Wacom Multi Touch API
+about.touch = "Wacom Çoklu Dokunmatik Kullan";
+about.touch.help = "Wacom tabletlerde birden fazla parmak desteğini etkinleştirmek için bu seçeneği etkinleştir.";
 // Prefer low power
 about.fullScreen = "Tam Ekran";
 // Minify
@@ -348,7 +356,17 @@ background.imageRotation = "Döndürme";
 // Scale of the reference image
 background.imageScale = "Ölçek";
 // Auto adjust the reference when moving the camera
-background.syncLock = "Kamera kilidi ile senkronize et";
+background.lock.image = "Kamera kilidi ile senkronize et";
+background.lock.image.help = "Kamera Snap Cube ile kilitlendiğinde, referans görüntüsü kamera hareketini takip eder.";
+// When exiting camera lock
+background.lock.exit = "Kilidi açınca sıfırla:";
+background.lock.exit.none = "Fov Ayarla";
+background.lock.exit.none.help = "Görüntü ve kamerayı olduğu gibi bırak.  
+Perspektifte iseniz, sadece görüş alanını ayarlayın.";
+background.lock.exit.all = "Tümünü Sıfırla";
+background.lock.exit.all.help = "Hem görüntüyü hem kamerayı sıfırla.";
+background.lock.exit.perspective = "Eğer Perspektifse";
+background.lock.exit.perspective.help = "Eğer perspektif modundaysanız, görüntü ve kamera pozisyonunu sıfırlayın.";
 
 // Blend: normal
 blend.normal = "Normal";
@@ -506,8 +524,8 @@ curve.pivot.self = "Eğri";
 curve.pivot.children = "Alt öğeleri";
 
 // Set the desired FPS (frame per second, refresh rate)
-debug.limitFps = "Hedef FPS";
-debug.limitFps.help = "Devre dışı bırakıldığında, varsayılan değer ekranın yenileme hızıyla senkronize olacak demektir.";
+debug.targetFps = "Hedef FPS";
+debug.targetFps.help = "Devre dışı bırakıldığında, varsayılan değer ekranın yenileme hızıyla senkronize olacak demektir.";
 
 // Warning about UVs (using extra memory)
 debug.uvPrimitive.warning = "UV'ler gerekmiyorsa bu seçeneği devre dışı bırakın (fazladan bellek).";
@@ -528,6 +546,14 @@ debug.thumbnails = "Mağaza boyutu küçük resimler oluştur";
 
 // Open file explorer
 file.explore = "Keşfet";
+// Open file explorer
+file.scope = "Alan";
+file.scope.internal = "Dahili";
+file.scope.internal.help = "Varsayılan davranış, mobil ile aynıdır.  
+Projeler yalnızca ana Nomad klasörüne kaydedilir.";
+file.scope.external = "Yerinde";
+file.scope.external.help = "Dışarıdan bir projeyi içe aktarırken, kaydetmek asıl dosyanın üzerine yazacaktır.
+Otomatik Kurtarma, dış projeler için desteklenmez.";
 // Empty list: there is no projects
 file.project.load = "Başlangıçta projeyi yeniden yükle";
 // Empty list: there is no projects
@@ -791,6 +817,10 @@ gesture.finger = "Parmak";
 gesture.stylus = "Stylus";
 // Mouse/Trackpad
 gesture.mouse = "Fare";
+
+gesture.wheel = "Fare tekerleği";
+gesture.wheel.speed3d = "Hız (3d yakınlaştırma)";
+gesture.wheel.speed2d = "Hız (2d arayüz)";
 
 // long press to pick the color/material under the cursor
 gesture.dropper = "Malzeme seçimi";
@@ -1773,6 +1803,7 @@ settings.stats.right = "Sağ";
 settings.stats.all = "Tam görünüm göster";
 // Grid
 settings.grid = "Izgara";
+settings.grid.divideThreshold = "Bölme eşiği";
 // Cursor
 settings.cursor.title = "İmleç";
 settings.cursor.whileSculpting = "Şekillendirirken daireyi göster";
@@ -1999,16 +2030,18 @@ stroke.silhouette.closest = "En Yakın";
 stroke.sameSide = "Sadece aynı taraftaki verteks";
 stroke.sameSide.help = "Deformasyonun ters yönündeki verteksler göz ardı edilir.";
 // determine normal direction
-stroke.normal.direction = "";
-stroke.normal.direction.help = "";
-stroke.normal.direction.normal = "";
-stroke.normal.direction.normal.help = "";
-stroke.normal.direction.screen = "";
-stroke.normal.direction.screen.help = "";
-stroke.normal.direction.auto = "";
-stroke.normal.direction.auto.help = "";
-stroke.normal.direction.auto.threshold = "";
-stroke.normal.direction.auto.threshold.help = "";
+stroke.normal.direction = "Yön";
+stroke.normal.direction.help = "Yalnızca normal deformasyon etkinse geçerlidir.
+
+Nomad'in deformasyon işaretini (itme vs çekme) nasıl belirlediğini kontrol eder.";
+stroke.normal.direction.normal = "Normal 3D";
+stroke.normal.direction.normal.help = "İşaretçinin XY pozisyonunu, yansıtılmış yüzey normaliyle karşılaştırır.";
+stroke.normal.direction.screen = "XY";
+stroke.normal.direction.screen.help = "İşaretçinin ekranındaki XY konumunu itme ya da çekme için kullanır.";
+stroke.normal.direction.auto = "Otomatik";
+stroke.normal.direction.auto.help = "Yöntemi otomatik olarak yansıtılan normal açısına göre seçer.";
+stroke.normal.direction.auto.threshold = "Eşik";
+stroke.normal.direction.auto.threshold.help = "Kullanılacak yöntemi belirlemek için yüzey normali ile karşılaştırılan açı sınırı.";
 // small tip/warning
 stroke.onlyLasso = "Sadece lasso aracı için etkin olan ayarlar.";
 
@@ -2033,13 +2066,14 @@ stroke.normalFilter.help = "
 Derinlik filtreleme";
 
 // Only paint the part of the mesh above a certain height
-stroke.depthFilter = "Derinlik maskesi";
-stroke.depthFilter.help = "Belirli bir mesafenin üstünde veya altında olan noktaları hariç tutun (Alan örnekleme).
+stroke.depth.enable = "Derinlik maskesi";
+stroke.depth.enable.help = "Belirli bir mesafenin üstünde veya altında olan noktaları hariç tutun (Alan örnekleme).
 
 Örneğin, tümsekleri veya oyukları boyamak için kullanılabilir.";
-stroke.depthFilter.max = "Üst alan";
-stroke.depthFilter.min = "Alt alan";
-stroke.depthFilter.offset = "Yükseklik ofseti";
+stroke.depth.offset = "Yükseklik ofseti";
+stroke.depth.falloff = "Derinlik azaltma";
+stroke.depth.max = "Üst alan";
+stroke.depth.min = "Alt alan";
 
 // Invert the pixel (black <-> white)
 stroke.alpha.invert = "Pikselleri tersine çevir";
@@ -2187,101 +2221,101 @@ symmetry.edit.help = "Simetri düzlemini serbestçe belirleyebilirsiniz.
 
 Bu özellik biraz deneyseldir ve herhalde hiçbir zaman kullanmamanız gerekir.";
 
-// Ideally <10 chars
+// Ideally short strings
 tool.dynamic = "DinTopo";
-// Ideally <10 chars (Symmetry)
+// Ideally short strings (Symmetry)
 tool.symmetry = "Sim";
-// Ideally <10 chars (Mirror primitive)
+// Ideally short strings (Mirror primitive)
 tool.mirror = "Aynala";
-// Ideally <10 chars
+// Ideally short strings
 tool.clay = "Kil";
-// Ideally <10 chars (Subtract)
+// Ideally short strings (Subtract)
 tool.clay.sub = "Alt";
-// Ideally <10 chars
+// Ideally short strings
 tool.brush = "Fırça";
-// Ideally <10 chars
+// Ideally short strings
 tool.move = "Taşı";
-// Ideally <10 chars (Normal vector, perpendicular to surface)
+// Ideally short strings (Normal vector, perpendicular to surface)
 tool.move.normal = "Normal";
-// Ideally <10 chars
+// Ideally short strings
 tool.drag = "Sürükle";
-// Ideally <10 chars (Smooth the surface by erasing the details)
+// Ideally short strings (Smooth the surface by erasing the details)
 tool.smooth = "Pürüzsüzleştir";
-// Ideally <10 chars (Tries to smooth the topology by making the polygons more regular)
+// Ideally short strings (Tries to smooth the topology by making the polygons more regular)
 tool.smooth.relax = "Rahatlat";
-// Ideally <10 chars (Paint mask)
+// Ideally short strings (Paint mask)
 tool.mask = "Maskele";
-// Ideally <10 chars
+// Ideally short strings
 tool.mask.unmask = "Maske Yok";
-// Ideally <10 chars (Selector Mask, use lasso/ellipse,etc shape to mask the mesh)
+// Ideally short strings (Selector Mask, use lasso/ellipse,etc shape to mask the mesh)
 tool.maskSelector = "MaskeSeç";
-// Ideally <10 chars (Smudge the paint of the object)
+// Ideally short strings (Smudge the paint of the object)
 tool.smudge = "Leke";
-// Ideally <10 chars (Flatten the surface)
+// Ideally short strings (Flatten the surface)
 tool.flatten = "Düzleştir";
-// Ideally <10 chars (Flatten the surface, more strongly than Flatten)
+// Ideally short strings (Flatten the surface, more strongly than Flatten)
 tool.planar = "Düzlemsel";
-// Ideally <10 chars (Flatten the surface by offsetting the surface in the opposite direction)
+// Ideally short strings (Flatten the surface by offsetting the surface in the opposite direction)
 tool.flatten.fill = "Doldur";
-// Ideally <10 chars (Layer brush)
+// Ideally short strings (Layer brush)
 tool.layer = "Katman";
-// Ideally <10 chars
+// Ideally short strings
 tool.crease = "Buruştur";
-// Ideally <10 chars (Cut part of the mesh cleanly)
+// Ideally short strings (Cut part of the mesh cleanly)
 tool.trim = "Kes";
-// Ideally <10 chars (Cut part of the mesh cleanly into two separate meshes)
+// Ideally short strings (Cut part of the mesh cleanly into two separate meshes)
 tool.split = "Ayır";
-// Ideally <10 chars (Project part of the object onto a curve)
+// Ideally short strings (Project part of the object onto a curve)
 tool.project = "Proje";
-// Ideally <10 chars
+// Ideally short strings
 tool.inflate = "Şişir";
-// Ideally <10 chars
+// Ideally short strings
 tool.pinch = "Kıstır";
-// Ideally <10 chars
+// Ideally short strings
 tool.nudge = "Dürt";
-// Ideally <10 chars
+// Ideally short strings
 tool.stamp = "Damga";
-// Ideally <10 chars (Delete Layer, a tool that can cancel the Layer deformation/paint)
+// Ideally short strings (Delete Layer, a tool that can cancel the Layer deformation/paint)
 tool.clearLayer = "KatmanSil";
-// Ideally <10 chars (Select multiple objects with a lasso tool)
+// Ideally short strings (Select multiple objects with a lasso tool)
 tool.select = "Seç";
-// Ideally <10 chars (Rotate, Translate and Scale the object)
+// Ideally short strings (Rotate, Translate and Scale the object)
 tool.gizmo = "Gizmo";
-// Ideally <10 chars
+// Ideally short strings
 tool.gizmo.editPivot = "Eksen";
-// Ideally <10 chars (Snap angle)
+// Ideally short strings (Snap angle)
 tool.gizmo.rotateSnap = "Yasla";
-// Ideally <10 chars (Snap translation)
+// Ideally short strings (Snap translation)
 tool.gizmo.moveSnap = "Yasla";
-// Ideally <10 chars (Local/Relative space)
+// Ideally short strings (Local/Relative space)
 tool.gizmo.local = "Yerel";
-// Ideally <10 chars (Align/Snap the gizmo to world axis)
+// Ideally short strings (Align/Snap the gizmo to world axis)
 tool.gizmo.align = "Hizala";
-// Ideally <10 chars (Pin the gizmo, so that it stays in place when switching between objects)
+// Ideally short strings (Pin the gizmo, so that it stays in place when switching between objects)
 tool.gizmo.pin = "Tuttur";
-// Ideally <10 chars (Rotate, Translate and Scale the object)
+// Ideally short strings (Rotate, Translate and Scale the object)
 tool.transform = "Dönüştür";
-// Ideally <10 chars (Translate the object)
+// Ideally short strings (Translate the object)
 tool.transform.move = "Taşı";
-// Ideally <10 chars (Rotate the object)
+// Ideally short strings (Rotate the object)
 tool.transform.rotate = "Döndür";
-// Ideally <10 chars (Scale the object)
+// Ideally short strings (Scale the object)
 tool.transform.scale = "Ölçek";
-// Ideally <10 chars (Snap the object on another object surface)
+// Ideally short strings (Snap the object on another object surface)
 tool.transform.snap = "Yasla";
-// Ideally <10 chars (Measure distance between 2 points)
+// Ideally short strings (Measure distance between 2 points)
 tool.measure = "Ölç";
-// Ideally <10 chars (Lattice, deformer)
+// Ideally short strings (Lattice, deformer)
 tool.lattice = "Kafes";
 // If an option is shared among the tools
 tool.all = "Tümü";
-// Ideally <10 chars (Quad Remesher)
+// Ideally short strings (Quad Remesher)
 tool.remesh = "Quad Remesher";
 tool.remesh.guides = "Rehberler";
 tool.remesh.density = "Yoğunluk";
 tool.remesh.same = "Same";
 tool.remesh.half = "Half";
-// Ideally <10 chars (FaceGroup)
+// Ideally short strings (FaceGroup)
 tool.faceGroup = "Yüz Grubu";
 tool.faceGroup.autoPick = "Otomatik seç";
 tool.faceGroup.flush = "Kullanılmayanları kaldır";
@@ -2292,35 +2326,35 @@ tool.faceGroup.skipArea = "Yüzey alanı";
 tool.faceGroup.skipArea.help = "Yeni grubun yüzey alanı bu eşik değerinden düşükse yeni bir grup oluşturmayın.
 
 Eşik değeri, nesnenin toplam alanının yüzdesi olarak verilir.";
-// Ideally <10 chars (Hide)
+// Ideally short strings (Hide)
 tool.hide = "Gizle";
-// Ideally <10 chars (View tool, do nothing in particular)
+// Ideally short strings (View tool, do nothing in particular)
 tool.view = "Görüntüle";
-// Ideally <10 chars (Revolving surface along a line)
+// Ideally short strings (Revolving surface along a line)
 tool.lathe = "Torna";
-// Ideally <10 chars (Revolving surface along a curve)
+// Ideally short strings (Revolving surface along a curve)
 tool.tube = "Tüp";
-// Ideally <10 chars (Insert object into the scene)
+// Ideally short strings (Insert object into the scene)
 tool.insert = "Ekle";
-// Ideally <10 chars (Flip/Invert/Negate the shape)
+// Ideally short strings (Flip/Invert/Negate the shape)
 tool.shape.flip = "Ters Çevir";
-// Ideally <10 chars (No shape selected, same as Camera mode, does nothing in particular)
+// Ideally short strings (No shape selected, same as Camera mode, does nothing in particular)
 tool.shape.view = "Görüntüle";
-// Ideally <10 chars (Lasso selection)
+// Ideally short strings (Lasso selection)
 tool.shape.lasso = "Lasso";
-// Ideally <10 chars (Curve selection, same as Lasso and it's an open shape)
+// Ideally short strings (Curve selection, same as Lasso and it's an open shape)
 tool.shape.curve = "Eğri";
-// Ideally <10 chars (Polygon selection, same as Lasso but with more precision)
+// Ideally short strings (Polygon selection, same as Lasso but with more precision)
 tool.shape.polygon = "Poligon";
-// Ideally <10 chars (Path selection, same as Lasso but with more precision and it's an open shape)
+// Ideally short strings (Path selection, same as Lasso but with more precision and it's an open shape)
 tool.shape.path = "Yol";
-// Ideally <10 chars (Rectangular selection)
+// Ideally short strings (Rectangular selection)
 tool.shape.rectangle = "Dikdörtgen";
-// Ideally <10 chars (Ellipse selection)
+// Ideally short strings (Ellipse selection)
 tool.shape.ellipse = "Elips";
-// Ideally <10 chars (Line selection, split the screen in half)
+// Ideally short strings (Line selection, split the screen in half)
 tool.shape.line = "Çizgi";
-// Ideally <10 chars (Whether a shape is closed or not, a tube is open, a torus is closed)
+// Ideally short strings (Whether a shape is closed or not, a tube is open, a torus is closed)
 tool.shape.closed = "Kapalı";
 
 // Radius of the tool (size)
@@ -2714,10 +2748,21 @@ binding.addSync = "Senkronize";
 binding.addSync.help = "Varsayılan olarak, sahne menüsünde ayarlanan senkronizasyon değerini kullanacaktır.";
 // Binding option
 binding.context.toggle = "Bağlamı değiştir";
-binding.toggleTool = "Araç kısayollarını değiştir";
-binding.toggleTool.help = "Bir araç kısayolunu kullanırken, mevcut kısayol aracı aktifse önceki araç seçilecektir.";
-// When the key is tap once, the value will be toggled
-binding.toggleTap = "Tuşa dokunulduğunda kısayolu değiştir";
+// quick sidebar tool shortcuts
+binding.quicks = "Hızlı kısayollar";
+// quick regular tool shortcuts
+binding.tools = "Araç kısayolları";
+// When the key is tapped once, the value will be toggled
+binding.toggle = "Önceki Aracı Değiştir";
+binding.toggle.help = "Son araca geri dönmek için aynı bağı kullanın.";
+// sticky keys
+binding.sticky = "Yapışkan tuşlar";
+binding.sticky.off = "Beklet";
+binding.sticky.off.help = "Aracı kullanmak için tuşa basılı tutun, serbest bırakmak için önceki araca dönün.";
+binding.sticky.on = "Değiştir";
+binding.sticky.on.help = "Aracı değiştirmek için bir kez basın.";
+binding.sticky.quick = "Hızlı Bas";
+binding.sticky.quick.help = "Geçici olarak kullanmak için basılı tutun, değiştirmek için hızlı basın.";
 // The binding force camera movement
 binding.forceCamera = "Kamerayı zorla";
 binding.forceCamera.help = "Kamera etkileşimini başka bir bağlama ile çakışma durumunda zorlayın.
@@ -2729,6 +2774,8 @@ binding.pickMaterial = "Malzeme Seçici";
 binding.pickFaceGroup = "Yüz Grubu Seç";
 // Edit the tool brush size/radius
 binding.editRadius = "Araç Yarıçapı";
+// Inverse direction zooming
+binding.invertZoomY = "Zoom Y’yi Ters Çevir";
 // Edit the tool brush size/radius
 binding.editIntensity = "Araç yoğunluğu";
 // Controller dead zone

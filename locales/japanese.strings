@@ -8,6 +8,8 @@ confirm.no = "いいえ";
 confirm.ok = "OK";
 // Cancel something after being asked (Question? [answer, cancel])
 confirm.cancel = "キャンセル";
+// Restart nomad
+confirm.restart = "この値を変更した後、Nomadを再起動する必要があります。";
 
 // Experimental feature
 experimental = "実験的！";
@@ -123,7 +125,7 @@ item.lock = "ロック";
 // No item selected
 item.none = "なし";
 // Draggable, moveable
-item.draggable = "";
+item.draggable = "移動可能";
 
 // Search something (text entry to filter item)
 search = "検索";
@@ -184,12 +186,14 @@ material.projection.triplanar = "Triplanar";
 
 // Prefer low power
 about.lowPower = "省電力GPU";
-about.lowPower.confirm = "この値を変更した後、Nomadを再起動する必要があります。";
 // Wintab wacom API
 about.wintab = "WinTabを使用";
 about.wintab.help = "WinTabが有効な場合、Wacom設定でWindows Inkを無効にすることをお勧めします。
 
 同様に、WinTabが無効な場合は、Wacom設定でWindows Inkを有効にする必要があります。";
+// Wacom Multi Touch API
+about.touch = "ワコムマルチタッチを使用する";
+about.touch.help = "このオプションを有効にすると、ワコムタブレットで複数の指をサポートできます。";
 // Prefer low power
 about.fullScreen = "全画面表示";
 // Minify
@@ -350,7 +354,17 @@ background.imageRotation = "回転";
 // Scale of the reference image
 background.imageScale = "比率";
 // Auto adjust the reference when moving the camera
-background.syncLock = "カメラロックと同期";
+background.lock.image = "カメラロックと同期";
+background.lock.image.help = "カメラがスナップキューブでロックされているとき、参照画像はカメラの動きに従います。";
+// When exiting camera lock
+background.lock.exit = "ロック解除時にリセット：";
+background.lock.exit.none = "FOVを調整";
+background.lock.exit.none.help = "画像とカメラをそのまま保持。
+遠近法の場合、視野のみを調整。";
+background.lock.exit.all = "すべてをリセット";
+background.lock.exit.all.help = "画像とカメラの位置をリセット。";
+background.lock.exit.perspective = "遠近法の場合";
+background.lock.exit.perspective.help = "遠近法の場合は、画像とカメラの位置をリセットします。";
 
 // Blend: normal
 blend.normal = "標準";
@@ -508,8 +522,8 @@ curve.pivot.self = "曲線";
 curve.pivot.children = "子を";
 
 // Set the desired FPS (frame per second, refresh rate)
-debug.limitFps = "目標FPS";
-debug.limitFps.help = "無効にすると、デフォルト値はディスプレイのリフレッシュレートと同期することを意味します。";
+debug.targetFps = "目標FPS";
+debug.targetFps.help = "無効にすると、デフォルト値はディスプレイのリフレッシュレートと同期することを意味します。";
 
 // Warning about UVs (using extra memory)
 debug.uvPrimitive.warning = "UV (追加のメモリ) が必要でない場合、このオプションを無効にしてください。";
@@ -530,6 +544,14 @@ debug.thumbnails = "ストアのサムネールを作成";
 
 // Open file explorer
 file.explore = "エクスプローラー";
+// Open file explorer
+file.scope = "スコープ";
+file.scope.internal = "内部";
+file.scope.internal.help = "デフォルトの動作、モバイルと同様。
+プロジェクトはメインのNomadフォルダー内にのみ保存されます。";
+file.scope.external = "その場所で";
+file.scope.external.help = "外部からプロジェクトをインポートする際、保存すると元のファイルが上書きされます。
+外部プロジェクトには自動保存はサポートされていません。";
 // Empty list: there is no projects
 file.project.load = "スタートアップでプロジェクトをリロードする";
 // Empty list: there is no projects
@@ -794,6 +816,10 @@ gesture.finger = "指";
 gesture.stylus = "スタイラス";
 // Mouse/Trackpad
 gesture.mouse = "マウス";
+
+gesture.wheel = "マウスホイール";
+gesture.wheel.speed3d = "速度 (3D ズーム)";
+gesture.wheel.speed2d = "速度 (2D インターフェース)";
 
 // long press to pick the color/material under the cursor
 gesture.dropper = "マテリアルの選択";
@@ -1775,6 +1801,7 @@ settings.stats.right = "右";
 settings.stats.all = "シーン全体を表示";
 // Grid
 settings.grid = "グリッド";
+settings.grid.divideThreshold = "分割しきい値";
 // Cursor
 settings.cursor.title = "カーソル";
 settings.cursor.whileSculpting = "スカルプト中、円を表示";
@@ -1999,16 +2026,17 @@ stroke.silhouette.closest = "最も近い";
 stroke.sameSide = "同じ側面の頂点のみ";
 stroke.sameSide.help = "デフォーメーションの反対方向を指す頂点を無視します。";
 // determine normal direction
-stroke.normal.direction = "";
-stroke.normal.direction.help = "";
-stroke.normal.direction.normal = "";
-stroke.normal.direction.normal.help = "";
-stroke.normal.direction.screen = "";
-stroke.normal.direction.screen.help = "";
-stroke.normal.direction.auto = "";
-stroke.normal.direction.auto.help = "";
-stroke.normal.direction.auto.threshold = "";
-stroke.normal.direction.auto.threshold.help = "";
+stroke.normal.direction = "方向";
+stroke.normal.direction.help = "通常の変形が有効になっている場合のみ関連があります。
+Nomadが変形の符号（押すまたは引く）を決定する方法を制御します。";
+stroke.normal.direction.normal = "標準3D";
+stroke.normal.direction.normal.help = "ポインターのXY位置と投影された表面の標準を比較します。";
+stroke.normal.direction.screen = "XY";
+stroke.normal.direction.screen.help = "ポインターの画面上のXY位置を使用して押すか引くかを決定します。";
+stroke.normal.direction.auto = "自動";
+stroke.normal.direction.auto.help = "投影面の標準角度に基づいて自動的に方法を選択します。";
+stroke.normal.direction.auto.threshold = "しきい値";
+stroke.normal.direction.auto.threshold.help = "使用する方法を決定するために、表面の標準に対して比較される角度制限。";
 // small tip/warning
 stroke.onlyLasso = "設定は投げなわツールにのみ有効です。";
 
@@ -2033,13 +2061,14 @@ stroke.normalFilter.help = "
 深度のフィルタリング";
 
 // Only paint the part of the mesh above a certain height
-stroke.depthFilter = "深度マスキング";
-stroke.depthFilter.help = "計算された平面の上または下にある特定の距離以上の点を除外します（エリアサンプリング）。
+stroke.depth.enable = "深度マスキング";
+stroke.depth.enable.help = "計算された平面の上または下にある特定の距離以上の点を除外します（エリアサンプリング）。
 
 例として、凹凸やくぼみにペイントする場合に使用できます。";
-stroke.depthFilter.max = "上部エリア";
-stroke.depthFilter.min = "下部エリア";
-stroke.depthFilter.offset = "高さのオフセット";
+stroke.depth.offset = "高さのオフセット";
+stroke.depth.falloff = "深度フォールオフ";
+stroke.depth.max = "上部エリア";
+stroke.depth.min = "下部エリア";
 
 // Invert the pixel (black <-> white)
 stroke.alpha.invert = "ピクセルを反転";
@@ -2187,101 +2216,101 @@ symmetry.edit.help = "自由に面対称を設定できます。
 
 この機能はまだ実験段階ですので、使用しないことをお勧めします。";
 
-// Ideally <10 chars
+// Ideally short strings
 tool.dynamic = "DynTopo";
-// Ideally <10 chars (Symmetry)
+// Ideally short strings (Symmetry)
 tool.symmetry = "対称";
-// Ideally <10 chars (Mirror primitive)
+// Ideally short strings (Mirror primitive)
 tool.mirror = "ミラー";
-// Ideally <10 chars
+// Ideally short strings
 tool.clay = "粘土";
-// Ideally <10 chars (Subtract)
+// Ideally short strings (Subtract)
 tool.clay.sub = "減算";
-// Ideally <10 chars
+// Ideally short strings
 tool.brush = "ブラシ";
-// Ideally <10 chars
+// Ideally short strings
 tool.move = "移動";
-// Ideally <10 chars (Normal vector, perpendicular to surface)
+// Ideally short strings (Normal vector, perpendicular to surface)
 tool.move.normal = "標準";
-// Ideally <10 chars
+// Ideally short strings
 tool.drag = "ドラッグ";
-// Ideally <10 chars (Smooth the surface by erasing the details)
+// Ideally short strings (Smooth the surface by erasing the details)
 tool.smooth = "スムーズ";
-// Ideally <10 chars (Tries to smooth the topology by making the polygons more regular)
+// Ideally short strings (Tries to smooth the topology by making the polygons more regular)
 tool.smooth.relax = "リラックス";
-// Ideally <10 chars (Paint mask)
+// Ideally short strings (Paint mask)
 tool.mask = "マスク";
-// Ideally <10 chars
+// Ideally short strings
 tool.mask.unmask = "マスク解除";
-// Ideally <10 chars (Selector Mask, use lasso/ellipse,etc shape to mask the mesh)
+// Ideally short strings (Selector Mask, use lasso/ellipse,etc shape to mask the mesh)
 tool.maskSelector = "SelMask";
-// Ideally <10 chars (Smudge the paint of the object)
+// Ideally short strings (Smudge the paint of the object)
 tool.smudge = "ぼかし";
-// Ideally <10 chars (Flatten the surface)
+// Ideally short strings (Flatten the surface)
 tool.flatten = "フラット化";
-// Ideally <10 chars (Flatten the surface, more strongly than Flatten)
+// Ideally short strings (Flatten the surface, more strongly than Flatten)
 tool.planar = "プラナー";
-// Ideally <10 chars (Flatten the surface by offsetting the surface in the opposite direction)
+// Ideally short strings (Flatten the surface by offsetting the surface in the opposite direction)
 tool.flatten.fill = "埋める";
-// Ideally <10 chars (Layer brush)
+// Ideally short strings (Layer brush)
 tool.layer = "レイヤー";
-// Ideally <10 chars
+// Ideally short strings
 tool.crease = "クリース";
-// Ideally <10 chars (Cut part of the mesh cleanly)
+// Ideally short strings (Cut part of the mesh cleanly)
 tool.trim = "トリム";
-// Ideally <10 chars (Cut part of the mesh cleanly into two separate meshes)
+// Ideally short strings (Cut part of the mesh cleanly into two separate meshes)
 tool.split = "分割";
-// Ideally <10 chars (Project part of the object onto a curve)
+// Ideally short strings (Project part of the object onto a curve)
 tool.project = "プロジェクト";
-// Ideally <10 chars
+// Ideally short strings
 tool.inflate = "膨張";
-// Ideally <10 chars
+// Ideally short strings
 tool.pinch = "ピンチ";
-// Ideally <10 chars
+// Ideally short strings
 tool.nudge = "ナッジ";
-// Ideally <10 chars
+// Ideally short strings
 tool.stamp = "スタンプ";
-// Ideally <10 chars (Delete Layer, a tool that can cancel the Layer deformation/paint)
+// Ideally short strings (Delete Layer, a tool that can cancel the Layer deformation/paint)
 tool.clearLayer = "DelLayer";
-// Ideally <10 chars (Select multiple objects with a lasso tool)
+// Ideally short strings (Select multiple objects with a lasso tool)
 tool.select = "選択";
-// Ideally <10 chars (Rotate, Translate and Scale the object)
+// Ideally short strings (Rotate, Translate and Scale the object)
 tool.gizmo = "Gizmo";
-// Ideally <10 chars
+// Ideally short strings
 tool.gizmo.editPivot = "回転軸";
-// Ideally <10 chars (Snap angle)
+// Ideally short strings (Snap angle)
 tool.gizmo.rotateSnap = "スナップ";
-// Ideally <10 chars (Snap translation)
+// Ideally short strings (Snap translation)
 tool.gizmo.moveSnap = "スナップ";
-// Ideally <10 chars (Local/Relative space)
+// Ideally short strings (Local/Relative space)
 tool.gizmo.local = "ローカル";
-// Ideally <10 chars (Align/Snap the gizmo to world axis)
+// Ideally short strings (Align/Snap the gizmo to world axis)
 tool.gizmo.align = "アライン";
-// Ideally <10 chars (Pin the gizmo, so that it stays in place when switching between objects)
+// Ideally short strings (Pin the gizmo, so that it stays in place when switching between objects)
 tool.gizmo.pin = "ピン";
-// Ideally <10 chars (Rotate, Translate and Scale the object)
+// Ideally short strings (Rotate, Translate and Scale the object)
 tool.transform = "変形";
-// Ideally <10 chars (Translate the object)
+// Ideally short strings (Translate the object)
 tool.transform.move = "移動";
-// Ideally <10 chars (Rotate the object)
+// Ideally short strings (Rotate the object)
 tool.transform.rotate = "回転";
-// Ideally <10 chars (Scale the object)
+// Ideally short strings (Scale the object)
 tool.transform.scale = "比率";
-// Ideally <10 chars (Snap the object on another object surface)
+// Ideally short strings (Snap the object on another object surface)
 tool.transform.snap = "スナップ";
-// Ideally <10 chars (Measure distance between 2 points)
+// Ideally short strings (Measure distance between 2 points)
 tool.measure = "計測";
-// Ideally <10 chars (Lattice, deformer)
+// Ideally short strings (Lattice, deformer)
 tool.lattice = "ラティス";
 // If an option is shared among the tools
 tool.all = "すべて";
-// Ideally <10 chars (Quad Remesher)
+// Ideally short strings (Quad Remesher)
 tool.remesh = "クワッドリメッシャー";
 tool.remesh.guides = "ガイド";
 tool.remesh.density = "密度";
 tool.remesh.same = "Same";
 tool.remesh.half = "Half";
-// Ideally <10 chars (FaceGroup)
+// Ideally short strings (FaceGroup)
 tool.faceGroup = "フェースグループ";
 tool.faceGroup.autoPick = "自動選択";
 tool.faceGroup.flush = "未使用を削除";
@@ -2292,35 +2321,35 @@ tool.faceGroup.skipArea = "表面積";
 tool.faceGroup.skipArea.help = "新しいグループの表面積がこの閾値以下であれば新しいグループを作成しません。
 
 閾値はオブジェクトの全体の表面積の割合として与えられます。";
-// Ideally <10 chars (Hide)
+// Ideally short strings (Hide)
 tool.hide = "隠す";
-// Ideally <10 chars (View tool, do nothing in particular)
+// Ideally short strings (View tool, do nothing in particular)
 tool.view = "表示";
-// Ideally <10 chars (Revolving surface along a line)
+// Ideally short strings (Revolving surface along a line)
 tool.lathe = "レイズ";
-// Ideally <10 chars (Revolving surface along a curve)
+// Ideally short strings (Revolving surface along a curve)
 tool.tube = "チューブ";
-// Ideally <10 chars (Insert object into the scene)
+// Ideally short strings (Insert object into the scene)
 tool.insert = "挿入";
-// Ideally <10 chars (Flip/Invert/Negate the shape)
+// Ideally short strings (Flip/Invert/Negate the shape)
 tool.shape.flip = "反転";
-// Ideally <10 chars (No shape selected, same as Camera mode, does nothing in particular)
+// Ideally short strings (No shape selected, same as Camera mode, does nothing in particular)
 tool.shape.view = "表示";
-// Ideally <10 chars (Lasso selection)
+// Ideally short strings (Lasso selection)
 tool.shape.lasso = "投げ縄";
-// Ideally <10 chars (Curve selection, same as Lasso and it's an open shape)
+// Ideally short strings (Curve selection, same as Lasso and it's an open shape)
 tool.shape.curve = "曲線";
-// Ideally <10 chars (Polygon selection, same as Lasso but with more precision)
+// Ideally short strings (Polygon selection, same as Lasso but with more precision)
 tool.shape.polygon = "多角形";
-// Ideally <10 chars (Path selection, same as Lasso but with more precision and it's an open shape)
+// Ideally short strings (Path selection, same as Lasso but with more precision and it's an open shape)
 tool.shape.path = "パス";
-// Ideally <10 chars (Rectangular selection)
+// Ideally short strings (Rectangular selection)
 tool.shape.rectangle = "長方形";
-// Ideally <10 chars (Ellipse selection)
+// Ideally short strings (Ellipse selection)
 tool.shape.ellipse = "楕円形";
-// Ideally <10 chars (Line selection, split the screen in half)
+// Ideally short strings (Line selection, split the screen in half)
 tool.shape.line = "線";
-// Ideally <10 chars (Whether a shape is closed or not, a tube is open, a torus is closed)
+// Ideally short strings (Whether a shape is closed or not, a tube is open, a torus is closed)
 tool.shape.closed = "閉じています";
 
 // Radius of the tool (size)
@@ -2714,10 +2743,21 @@ binding.addSync = "同期";
 binding.addSync.help = "デフォルトでは、シーンメニューで設定された同期値を使用します。";
 // Binding option
 binding.context.toggle = "コンテキストの切り替え";
-binding.toggleTool = "ツールショートカットの切り替え";
-binding.toggleTool.help = "ツールのショートカットを使用するとき、現在アクティブなショートカットツールが選択されている場合は、以前のツールが選択されます。";
-// When the key is tap once, the value will be toggled
-binding.toggleTap = "キータップでショートカットの切り替え";
+// quick sidebar tool shortcuts
+binding.quicks = "クイックショートカット";
+// quick regular tool shortcuts
+binding.tools = "ツールショートカット";
+// When the key is tapped once, the value will be toggled
+binding.toggle = "前のツールに切り替える";
+binding.toggle.help = "同じバインディングを使って最後のツールに戻ります。";
+// sticky keys
+binding.sticky = "固定キー";
+binding.sticky.off = "押す";
+binding.sticky.off.help = "キーを押し続けてツールを使用し、離して前のツールに戻ります。";
+binding.sticky.on = "切り替える";
+binding.sticky.on.help = "一度押してツールを切り替えます。";
+binding.sticky.quick = "クイックプレス";
+binding.sticky.quick.help = "一時的に使用するには押し続け、クイックプレスで切り替えます。";
 // The binding force camera movement
 binding.forceCamera = "カメラを強制する";
 binding.forceCamera.help = "別のバインディングとの競合がある場合にカメラのインタラクションを強制します。
@@ -2729,6 +2769,8 @@ binding.pickMaterial = "マテリアルピッカー";
 binding.pickFaceGroup = "フェースグループを選択";
 // Edit the tool brush size/radius
 binding.editRadius = "ツールの半径";
+// Inverse direction zooming
+binding.invertZoomY = "ズームYを反転";
 // Edit the tool brush size/radius
 binding.editIntensity = "ツールの強度";
 // Controller dead zone

@@ -8,6 +8,8 @@ confirm.no = "لا";
 confirm.ok = "حسناً";
 // Cancel something after being asked (Question? [answer, cancel])
 confirm.cancel = "إلغاء";
+// Restart nomad
+confirm.restart = "بعد تغيير هذه القيمة، يجب إعادة تشغيل Nomad.";
 
 // Experimental feature
 experimental = "تجريبي!";
@@ -123,7 +125,7 @@ item.lock = "قفل";
 // No item selected
 item.none = "لا شيء";
 // Draggable, moveable
-item.draggable = "";
+item.draggable = "قابل للنقل";
 
 // Search something (text entry to filter item)
 search = "بحث";
@@ -184,12 +186,14 @@ material.projection.triplanar = "ثلاثي الأبعاد";
 
 // Prefer low power
 about.lowPower = "بطاقة رسومات منخفضة الطاقة";
-about.lowPower.confirm = "بعد تغيير هذه القيمة، يجب إعادة تشغيل Nomad.";
 // Wintab wacom API
 about.wintab = "استخدام WinTab";
 about.wintab.help = "إذا كان Wintab مفعلاً، يجب عليك على الأرجح تعطيل Windows Ink في إعدادات Wacom الخاصة بك.
 
 وبالمثل، إذا كان Wintab معطلاً، فيجب تمكين Windows Ink في إعدادات Wacom";
+// Wacom Multi Touch API
+about.touch = "استخدام خاصية اللمس المتعدد من Wacom";
+about.touch.help = "تمكين هذا الخيار لدعم استخدام عدة أصابع على لوحات Wacom.";
 // Prefer low power
 about.fullScreen = "شاشة كاملة";
 // Minify
@@ -350,7 +354,17 @@ background.imageRotation = "الدوران";
 // Scale of the reference image
 background.imageScale = "مقياس";
 // Auto adjust the reference when moving the camera
-background.syncLock = "مزامنة مع قفل الكاميرا";
+background.lock.image = "مزامنة مع قفل الكاميرا";
+background.lock.image.help = "عند قفل الكاميرا مع مكعب السناب، تتبع صورة المرجع حركة الكاميرا.";
+// When exiting camera lock
+background.lock.exit = "إعادة التعيين عند إلغاء القفل:";
+background.lock.exit.none = "ضبط قدر الرؤية";
+background.lock.exit.none.help = "احتفظ بالصورة والكاميرا كما هي. 
+إذا كانت في الرسم المنظوري، اضبط فقط مجال الرؤية.";
+background.lock.exit.all = "إعادة تعيين الكل";
+background.lock.exit.all.help = "إعادة تعيين كل من موقع الصورة والكاميرا.";
+background.lock.exit.perspective = "إذا كان في الرسم المنظوري";
+background.lock.exit.perspective.help = "إذا كنت في الرسم المنظوري، قم بإعادة تعيين موقع الصورة والكاميرا.";
 
 // Blend: normal
 blend.normal = "عادي";
@@ -508,8 +522,8 @@ curve.pivot.self = "الذاتي";
 curve.pivot.children = "الأطفال";
 
 // Set the desired FPS (frame per second, refresh rate)
-debug.limitFps = "الهدف FPS";
-debug.limitFps.help = "عند تعطيله، يعني القيمة الافتراضية أنه سيتم المزامنة مع معدل تحديث الشاشة.";
+debug.targetFps = "الهدف FPS";
+debug.targetFps.help = "عند تعطيله، يعني القيمة الافتراضية أنه سيتم المزامنة مع معدل تحديث الشاشة.";
 
 // Warning about UVs (using extra memory)
 debug.uvPrimitive.warning = "عطل هذا الخيار إذا كنت لا تحتاج إلى UVs.
@@ -532,6 +546,14 @@ debug.thumbnails = "إنشاء مصغرات المتجر";
 
 // Open file explorer
 file.explore = "استكشاف";
+// Open file explorer
+file.scope = "نطاق";
+file.scope.internal = "داخلي";
+file.scope.internal.help = "سلوك افتراضي، نفس الشيء كما في الجوال. 
+يتم حفظ المشاريع فقط داخل المجلد الرئيسي لنوماد.";
+file.scope.external = "في الموقع";
+file.scope.external.help = "عند استيراد مشروع من الخارج، حفظ العمل سيقوم بالكتابة على الملف الأصلي.
+الحفظ التلقائي غير مدعوم للمشاريع الخارجية.";
 // Empty list: there is no projects
 file.project.load = "إعادة تحميل المشروع عند بدء التشغيل";
 // Empty list: there is no projects
@@ -796,6 +818,10 @@ gesture.finger = "الإصبع";
 gesture.stylus = "قلم اللمس";
 // Mouse/Trackpad
 gesture.mouse = "الماوس";
+
+gesture.wheel = "عجلة الفأرة";
+gesture.wheel.speed3d = "السرعة (تكبير 3D)";
+gesture.wheel.speed2d = "السرعة (واجهة 2D)";
 
 // long press to pick the color/material under the cursor
 gesture.dropper = "اختيار المادة";
@@ -1772,6 +1798,7 @@ settings.stats.right = "اليمين";
 settings.stats.all = "عرض المشهد الكامل";
 // Grid
 settings.grid = "الشبكة";
+settings.grid.divideThreshold = "تقسيم العتبة";
 // Cursor
 settings.cursor.title = "المؤشر";
 settings.cursor.whileSculpting = "عرض الدائرة أثناء النحت";
@@ -1998,16 +2025,18 @@ stroke.silhouette.closest = "الأقرب";
 stroke.sameSide = "فقط القمة من نفس الجانب";
 stroke.sameSide.help = "تجاهل القمم التي تشير في الاتجاه المعاكس للتشوه.";
 // determine normal direction
-stroke.normal.direction = "";
-stroke.normal.direction.help = "";
-stroke.normal.direction.normal = "";
-stroke.normal.direction.normal.help = "";
-stroke.normal.direction.screen = "";
-stroke.normal.direction.screen.help = "";
-stroke.normal.direction.auto = "";
-stroke.normal.direction.auto.help = "";
-stroke.normal.direction.auto.threshold = "";
-stroke.normal.direction.auto.threshold.help = "";
+stroke.normal.direction = "اتجاه";
+stroke.normal.direction.help = "ذو صلة فقط إذا كان تشويه النورمال مفعل.
+
+يتحكم بكيفية تحديد نوماد لرمز التشويه (دفع أو سحب).";
+stroke.normal.direction.normal = "نورمال 3D";
+stroke.normal.direction.normal.help = "يقارن موضع XY للمؤشر مع النورمال المسطح المسقط.";
+stroke.normal.direction.screen = "XY";
+stroke.normal.direction.screen.help = "يستخدم موضع شاشة XY للمؤشر لتحديد الدفع أو السحب.";
+stroke.normal.direction.auto = "تلقائي";
+stroke.normal.direction.auto.help = "يختار الطريقة تلقائيًا بناءً على زاوية النورمال المسقط.";
+stroke.normal.direction.auto.threshold = "عَتَبَة";
+stroke.normal.direction.auto.threshold.help = "حد الزاوية مقارنة بالنورمال المسطح لتحديد الطريقة المستخدمة.";
 // small tip/warning
 stroke.onlyLasso = "الإعدادات تنشط فقط لأداة اللاسو.";
 
@@ -2035,11 +2064,14 @@ stroke.normalFilter.help = "استبعاد النقاط التي تختلف في
 يمكن أن يكون هذا الخيار مفيدًا لأداة مستندة إلى التسطيح، أو إذا كنت ترغب في تلوين سطح مسطح دون سيلان.";
 
 // Only paint the part of the mesh above a certain height
-stroke.depthFilter = "تغطية العمق";
-stroke.depthFilter.help = "استبعاد النقاط التي تقع أعلى أو أسفل مسافة معينة من المستوى المحسوب (أخذ عينات المنطقة).<br>على سبيل المثال، يمكن استخدامه لطلاء النتوءات أو التجاويف.";
-stroke.depthFilter.max = "المنطقة العلوية";
-stroke.depthFilter.min = "المنطقة السفلية";
-stroke.depthFilter.offset = "إزاحة الارتفاع";
+stroke.depth.enable = "تغطية العمق";
+stroke.depth.enable.help = "استبعاد النقاط التي تقع أعلى أو أسفل مسافة معينة من المستوى المحسوب (أخذ عينات المنطقة).
+
+على سبيل المثال، يمكن استخدامه لطلاء النتوءات أو التجاويف.";
+stroke.depth.offset = "إزاحة الارتفاع";
+stroke.depth.falloff = "انخفاض العمق";
+stroke.depth.max = "المنطقة العلوية";
+stroke.depth.min = "المنطقة السفلية";
 
 // Invert the pixel (black <-> white)
 stroke.alpha.invert = "عكس البكسلات";
@@ -2059,7 +2091,9 @@ stroke.alpha.fit.help = "هذا الخيار يكون وثيق الصلة فقط
 يمكنك تعطيل هذا الخيار إذا كنت ترغب في الحفاظ على تزامن الألفا والصور الأخرى، في حالة عدم تطابق نسبة العرض إلى الارتفاع بينها.";
 // Alpha rotation
 stroke.alpha.rotation = "الدوران";
-stroke.alpha.rotation.lock.help = "قفل اتجاه الألفا. <br>إذا كان الدوران غير مقفل، فسوف يتبع الاتجاه في الوقت الحقيقي.";
+stroke.alpha.rotation.lock.help = "قفل اتجاه الألفا. 
+
+إذا كان الدوران غير مقفل، فسوف يتبع الاتجاه في الوقت الحقيقي.";
 // Repeat the image
 stroke.alpha.tiling = "التكرار";
 // Scale the image (make it bigger or smaller)
@@ -2185,101 +2219,101 @@ symmetry.edit.help = "يمكنك تعيين مستوى التماثل بحرية
 
 هذه الميزة تجريبية قليلاً ويجب ألا تستخدمها غالبًا.";
 
-// Ideally <10 chars
+// Ideally short strings
 tool.dynamic = "دينتوپو";
-// Ideally <10 chars (Symmetry)
+// Ideally short strings (Symmetry)
 tool.symmetry = "تماثل";
-// Ideally <10 chars (Mirror primitive)
+// Ideally short strings (Mirror primitive)
 tool.mirror = "مرآة";
-// Ideally <10 chars
+// Ideally short strings
 tool.clay = "صلصال";
-// Ideally <10 chars (Subtract)
+// Ideally short strings (Subtract)
 tool.clay.sub = "طرح";
-// Ideally <10 chars
+// Ideally short strings
 tool.brush = "فرشاة";
-// Ideally <10 chars
+// Ideally short strings
 tool.move = "حرك";
-// Ideally <10 chars (Normal vector, perpendicular to surface)
+// Ideally short strings (Normal vector, perpendicular to surface)
 tool.move.normal = "عادي";
-// Ideally <10 chars
+// Ideally short strings
 tool.drag = "سحب";
-// Ideally <10 chars (Smooth the surface by erasing the details)
+// Ideally short strings (Smooth the surface by erasing the details)
 tool.smooth = "إملس";
-// Ideally <10 chars (Tries to smooth the topology by making the polygons more regular)
+// Ideally short strings (Tries to smooth the topology by making the polygons more regular)
 tool.smooth.relax = "استرخاء";
-// Ideally <10 chars (Paint mask)
+// Ideally short strings (Paint mask)
 tool.mask = "قناع";
-// Ideally <10 chars
+// Ideally short strings
 tool.mask.unmask = "إزالة القناع";
-// Ideally <10 chars (Selector Mask, use lasso/ellipse,etc shape to mask the mesh)
+// Ideally short strings (Selector Mask, use lasso/ellipse,etc shape to mask the mesh)
 tool.maskSelector = "محدد القناع";
-// Ideally <10 chars (Smudge the paint of the object)
+// Ideally short strings (Smudge the paint of the object)
 tool.smudge = "لطخ";
-// Ideally <10 chars (Flatten the surface)
+// Ideally short strings (Flatten the surface)
 tool.flatten = "سطح مستوى";
-// Ideally <10 chars (Flatten the surface, more strongly than Flatten)
+// Ideally short strings (Flatten the surface, more strongly than Flatten)
 tool.planar = "مستوٍ";
-// Ideally <10 chars (Flatten the surface by offsetting the surface in the opposite direction)
+// Ideally short strings (Flatten the surface by offsetting the surface in the opposite direction)
 tool.flatten.fill = "املأ";
-// Ideally <10 chars (Layer brush)
+// Ideally short strings (Layer brush)
 tool.layer = "طَبَقَة";
-// Ideally <10 chars
+// Ideally short strings
 tool.crease = "تجعيد";
-// Ideally <10 chars (Cut part of the mesh cleanly)
+// Ideally short strings (Cut part of the mesh cleanly)
 tool.trim = "اقتطع";
-// Ideally <10 chars (Cut part of the mesh cleanly into two separate meshes)
+// Ideally short strings (Cut part of the mesh cleanly into two separate meshes)
 tool.split = "قسم";
-// Ideally <10 chars (Project part of the object onto a curve)
+// Ideally short strings (Project part of the object onto a curve)
 tool.project = "مشروع";
-// Ideally <10 chars
+// Ideally short strings
 tool.inflate = "انتفخ";
-// Ideally <10 chars
+// Ideally short strings
 tool.pinch = "قرصة";
-// Ideally <10 chars
+// Ideally short strings
 tool.nudge = "دفعة";
-// Ideally <10 chars
+// Ideally short strings
 tool.stamp = "ختم";
-// Ideally <10 chars (Delete Layer, a tool that can cancel the Layer deformation/paint)
+// Ideally short strings (Delete Layer, a tool that can cancel the Layer deformation/paint)
 tool.clearLayer = "حذف طبقة";
-// Ideally <10 chars (Select multiple objects with a lasso tool)
+// Ideally short strings (Select multiple objects with a lasso tool)
 tool.select = "حدد";
-// Ideally <10 chars (Rotate, Translate and Scale the object)
+// Ideally short strings (Rotate, Translate and Scale the object)
 tool.gizmo = "أداة";
-// Ideally <10 chars
+// Ideally short strings
 tool.gizmo.editPivot = "محور دوران";
-// Ideally <10 chars (Snap angle)
+// Ideally short strings (Snap angle)
 tool.gizmo.rotateSnap = "ثابت";
-// Ideally <10 chars (Snap translation)
+// Ideally short strings (Snap translation)
 tool.gizmo.moveSnap = "ثابت";
-// Ideally <10 chars (Local/Relative space)
+// Ideally short strings (Local/Relative space)
 tool.gizmo.local = "محلي";
-// Ideally <10 chars (Align/Snap the gizmo to world axis)
+// Ideally short strings (Align/Snap the gizmo to world axis)
 tool.gizmo.align = "محاذاة";
-// Ideally <10 chars (Pin the gizmo, so that it stays in place when switching between objects)
+// Ideally short strings (Pin the gizmo, so that it stays in place when switching between objects)
 tool.gizmo.pin = "تثبيت";
-// Ideally <10 chars (Rotate, Translate and Scale the object)
+// Ideally short strings (Rotate, Translate and Scale the object)
 tool.transform = "تحويل";
-// Ideally <10 chars (Translate the object)
+// Ideally short strings (Translate the object)
 tool.transform.move = "تحرك";
-// Ideally <10 chars (Rotate the object)
+// Ideally short strings (Rotate the object)
 tool.transform.rotate = "دوّر";
-// Ideally <10 chars (Scale the object)
+// Ideally short strings (Scale the object)
 tool.transform.scale = "تدرج";
-// Ideally <10 chars (Snap the object on another object surface)
+// Ideally short strings (Snap the object on another object surface)
 tool.transform.snap = "ثابت";
-// Ideally <10 chars (Measure distance between 2 points)
+// Ideally short strings (Measure distance between 2 points)
 tool.measure = "قياس";
-// Ideally <10 chars (Lattice, deformer)
+// Ideally short strings (Lattice, deformer)
 tool.lattice = "شبكة";
 // If an option is shared among the tools
 tool.all = "الكل";
-// Ideally <10 chars (Quad Remesher)
+// Ideally short strings (Quad Remesher)
 tool.remesh = "مزود بالضمانات";
 tool.remesh.guides = "إرشادات";
 tool.remesh.density = "كثافة";
 tool.remesh.same = "نفسه";
 tool.remesh.half = "نصف";
-// Ideally <10 chars (FaceGroup)
+// Ideally short strings (FaceGroup)
 tool.faceGroup = "مجموعة الوجوه";
 tool.faceGroup.autoPick = "تحديد تلقائي";
 tool.faceGroup.flush = "إزالة غير المستخدم";
@@ -2290,35 +2324,35 @@ tool.faceGroup.skipArea = "مساحة السطح";
 tool.faceGroup.skipArea.help = "لا تنشئ مجموعة جديدة إذا كانت مساحة سطح المجموعة الجديدة أقل من هذا العتبة.
 
 يُعطى الحد كنسبة مئوية من المساحة الكلية للكائن.";
-// Ideally <10 chars (Hide)
+// Ideally short strings (Hide)
 tool.hide = "إخفاء";
-// Ideally <10 chars (View tool, do nothing in particular)
+// Ideally short strings (View tool, do nothing in particular)
 tool.view = "عرض";
-// Ideally <10 chars (Revolving surface along a line)
+// Ideally short strings (Revolving surface along a line)
 tool.lathe = "مخرطة";
-// Ideally <10 chars (Revolving surface along a curve)
+// Ideally short strings (Revolving surface along a curve)
 tool.tube = "أنبوب";
-// Ideally <10 chars (Insert object into the scene)
+// Ideally short strings (Insert object into the scene)
 tool.insert = "أدرج";
-// Ideally <10 chars (Flip/Invert/Negate the shape)
+// Ideally short strings (Flip/Invert/Negate the shape)
 tool.shape.flip = "عاكس";
-// Ideally <10 chars (No shape selected, same as Camera mode, does nothing in particular)
+// Ideally short strings (No shape selected, same as Camera mode, does nothing in particular)
 tool.shape.view = "عرض";
-// Ideally <10 chars (Lasso selection)
+// Ideally short strings (Lasso selection)
 tool.shape.lasso = "لاسو";
-// Ideally <10 chars (Curve selection, same as Lasso and it's an open shape)
+// Ideally short strings (Curve selection, same as Lasso and it's an open shape)
 tool.shape.curve = "منحنى";
-// Ideally <10 chars (Polygon selection, same as Lasso but with more precision)
+// Ideally short strings (Polygon selection, same as Lasso but with more precision)
 tool.shape.polygon = "مضلع";
-// Ideally <10 chars (Path selection, same as Lasso but with more precision and it's an open shape)
+// Ideally short strings (Path selection, same as Lasso but with more precision and it's an open shape)
 tool.shape.path = "مسار";
-// Ideally <10 chars (Rectangular selection)
+// Ideally short strings (Rectangular selection)
 tool.shape.rectangle = "مستطيل";
-// Ideally <10 chars (Ellipse selection)
+// Ideally short strings (Ellipse selection)
 tool.shape.ellipse = "بيضاوي";
-// Ideally <10 chars (Line selection, split the screen in half)
+// Ideally short strings (Line selection, split the screen in half)
 tool.shape.line = "خط";
-// Ideally <10 chars (Whether a shape is closed or not, a tube is open, a torus is closed)
+// Ideally short strings (Whether a shape is closed or not, a tube is open, a torus is closed)
 tool.shape.closed = "مغلق";
 
 // Radius of the tool (size)
@@ -2708,10 +2742,21 @@ binding.addSync = "مزامنة";
 binding.addSync.help = "بشكل افتراضي، سيستخدم قيمة التزامن المحددة في قائمة المشهد.";
 // Binding option
 binding.context.toggle = "تبديل السياق";
-binding.toggleTool = "تبديل اختصارات الأدوات";
-binding.toggleTool.help = "عند استخدام أحد اختصارات الأدوات، سيتم اختيار الأداة السابقة إذا كانت الأداة الموجودة الحالية مُفعّلة.";
-// When the key is tap once, the value will be toggled
-binding.toggleTap = "تبديل الاختصارات عند النقر على المفتاح";
+// quick sidebar tool shortcuts
+binding.quicks = "اختصارات سريعة";
+// quick regular tool shortcuts
+binding.tools = "اختصارات الأدوات";
+// When the key is tapped once, the value will be toggled
+binding.toggle = "تبديل الأداة السابقة";
+binding.toggle.help = "استخدم الرابط نفسه للعودة إلى الأداة الأخيرة.";
+// sticky keys
+binding.sticky = "مفاتيح ثابتة";
+binding.sticky.off = "احتفظ";
+binding.sticky.off.help = "احتفظ بالمفتاح لاستخدام الأداة ، حرر للعودة إلى الأداة السابقة.";
+binding.sticky.on = "تبديل";
+binding.sticky.on.help = "اضغط مرة واحدة للتبديل بين الأدوات.";
+binding.sticky.quick = "ضغط سريع";
+binding.sticky.quick.help = "احتفظ للاستخدام المؤقت ، اضغط سريعًا للتبديل.";
 // The binding force camera movement
 binding.forceCamera = "اجبار الكاميرا";
 binding.forceCamera.help = "اجبر تفاعل الكاميرا في حال حدوث تعارض مع رابط آخر. عادة ما يحدث ذلك إذا تم تعيين ذات الرابط لاختصار أداة أو إضافة/طرح.";
@@ -2721,6 +2766,8 @@ binding.pickMaterial = "اختيار المادة";
 binding.pickFaceGroup = "اختيار مجموعة الوجوه";
 // Edit the tool brush size/radius
 binding.editRadius = "نصف قطر الأداة";
+// Inverse direction zooming
+binding.invertZoomY = "عكس تكبير المحور Y";
 // Edit the tool brush size/radius
 binding.editIntensity = "شدة الأداة";
 // Controller dead zone

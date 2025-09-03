@@ -8,6 +8,8 @@ confirm.no = "Không";
 confirm.ok = "Đồng ý";
 // Cancel something after being asked (Question? [answer, cancel])
 confirm.cancel = "Hủy bỏ";
+// Restart nomad
+confirm.restart = "Sau khi thay đổi giá trị này, cần khởi động lại Nomad.";
 
 // Experimental feature
 experimental = "Thử nghiệm!";
@@ -123,7 +125,7 @@ item.lock = "Khóa";
 // No item selected
 item.none = "Không có";
 // Draggable, moveable
-item.draggable = "";
+item.draggable = "Có thể di chuyển";
 
 // Search something (text entry to filter item)
 search = "Tìm kiếm";
@@ -184,12 +186,14 @@ material.projection.triplanar = "Triplanar";
 
 // Prefer low power
 about.lowPower = "GPU tiêu thụ điện thấp";
-about.lowPower.confirm = "Sau khi thay đổi giá trị này, cần khởi động lại Nomad.";
 // Wintab wacom API
 about.wintab = "Sử dụng WinTab";
 about.wintab.help = "Nếu WinTab được bật, bạn nên tắt Windows Ink trong cài đặt Wacom của mình.
 
 Tương tự, nếu WinTab bị tắt, thì Windows Ink nên được bật trong cài đặt Wacom.";
+// Wacom Multi Touch API
+about.touch = "Sử dụng Wacom Đa Chạm";
+about.touch.help = "Kích hoạt tùy chọn này để hỗ trợ nhiều ngón tay trên bảng vẽ Wacom.";
 // Prefer low power
 about.fullScreen = "Toàn màn hình";
 // Minify
@@ -350,7 +354,17 @@ background.imageRotation = "Xoay vòng";
 // Scale of the reference image
 background.imageScale = "Tỉ lệ";
 // Auto adjust the reference when moving the camera
-background.syncLock = "Đồng bộ hóa với khóa máy ảnh";
+background.lock.image = "Đồng bộ hóa với khóa máy ảnh";
+background.lock.image.help = "Khi máy ảnh bị khóa với Snap Cube, hình ảnh tham chiếu sẽ theo dõi chuyển động của máy ảnh.";
+// When exiting camera lock
+background.lock.exit = "Đặt lại khi mở khóa:";
+background.lock.exit.none = "Điều chỉnh Fov";
+background.lock.exit.none.help = "Giữ nguyên hình ảnh và máy ảnh.
+Nếu đang ở chế độ phối cảnh, chỉ điều chỉnh trường nhìn.";
+background.lock.exit.all = "Đặt lại tất cả";
+background.lock.exit.all.help = "Đặt lại cả vị trí hình ảnh và máy ảnh.";
+background.lock.exit.perspective = "Nếu phối cảnh";
+background.lock.exit.perspective.help = "Nếu đang ở chế độ phối cảnh, đặt lại vị trí hình ảnh và máy ảnh.";
 
 // Blend: normal
 blend.normal = "Thường";
@@ -508,8 +522,8 @@ curve.pivot.self = "Tự thân";
 curve.pivot.children = "Con";
 
 // Set the desired FPS (frame per second, refresh rate)
-debug.limitFps = "Mục tiêu FPS";
-debug.limitFps.help = "Khi bị vô hiệu hóa, giá trị mặc định có nghĩa là nó sẽ đồng bộ với tần số làm mới của màn hình.";
+debug.targetFps = "Mục tiêu FPS";
+debug.targetFps.help = "Khi bị vô hiệu hóa, giá trị mặc định có nghĩa là nó sẽ đồng bộ với tần số làm mới của màn hình.";
 
 // Warning about UVs (using extra memory)
 debug.uvPrimitive.warning = "Tắt tùy chọn này nếu bạn không cần UVs.
@@ -532,6 +546,14 @@ debug.thumbnails = "Tạo ảnh nhỏ cho cửa hàng";
 
 // Open file explorer
 file.explore = "Khám phá";
+// Open file explorer
+file.scope = "Phạm vi";
+file.scope.internal = "Nội bộ";
+file.scope.internal.help = "Hành vi mặc định, giống như điện thoại di động.
+Dự án chỉ được lưu bên trong thư mục Nomad chính.";
+file.scope.external = "Tại chỗ";
+file.scope.external.help = "Khi nhập một dự án từ bên ngoài, việc lưu sẽ ghi đè lên tệp gốc.
+Tính năng tự động lưu không được hỗ trợ cho các dự án ngoài.";
 // Empty list: there is no projects
 file.project.load = "Tải lại dự án khi khởi động";
 // Empty list: there is no projects
@@ -798,6 +820,10 @@ gesture.finger = "Ngón tay";
 gesture.stylus = "Bút cảm ứng";
 // Mouse/Trackpad
 gesture.mouse = "Chuột";
+
+gesture.wheel = "Bánh xe chuột";
+gesture.wheel.speed3d = "Tốc độ (thu phóng 3d)";
+gesture.wheel.speed2d = "Tốc độ (giao diện 2d)";
 
 // long press to pick the color/material under the cursor
 gesture.dropper = "Chọn vật liệu";
@@ -1777,6 +1803,7 @@ settings.stats.right = "Phải";
 settings.stats.all = "Hiển thị toàn cảnh";
 // Grid
 settings.grid = "Lưới";
+settings.grid.divideThreshold = "Ngưỡng chia";
 // Cursor
 settings.cursor.title = "Con trỏ";
 settings.cursor.whileSculpting = "Hiển thị vòng tròn trong khi điêu khắc";
@@ -2003,16 +2030,18 @@ stroke.silhouette.closest = "Gần nhất";
 stroke.sameSide = "Chỉ đỉnh cùng phía";
 stroke.sameSide.help = "Bỏ qua các đỉnh chỉ theo hướng ngược lại của biến dạng.";
 // determine normal direction
-stroke.normal.direction = "";
-stroke.normal.direction.help = "";
-stroke.normal.direction.normal = "";
-stroke.normal.direction.normal.help = "";
-stroke.normal.direction.screen = "";
-stroke.normal.direction.screen.help = "";
-stroke.normal.direction.auto = "";
-stroke.normal.direction.auto.help = "";
-stroke.normal.direction.auto.threshold = "";
-stroke.normal.direction.auto.threshold.help = "";
+stroke.normal.direction = "Hướng";
+stroke.normal.direction.help = "Chỉ có liên quan nếu biến dạng bình thường được bật.
+
+Kiểm soát cách Nomad quyết định ký hiệu biến dạng (đẩy hoặc kéo).";
+stroke.normal.direction.normal = "Bình thường 3D";
+stroke.normal.direction.normal.help = "So sánh vị trí XY của con trỏ với pháp tuyến bề mặt được chiếu.";
+stroke.normal.direction.screen = "XY";
+stroke.normal.direction.screen.help = "Sử dụng vị trí XY của con trỏ trên màn hình để quyết định đẩy hay kéo.";
+stroke.normal.direction.auto = "Tự động";
+stroke.normal.direction.auto.help = "Tự động chọn phương pháp dựa trên góc pháp tuyến được chiếu.";
+stroke.normal.direction.auto.threshold = "Ngưỡng";
+stroke.normal.direction.auto.threshold.help = "Giới hạn góc được so sánh với pháp tuyến bề mặt để quyết định sử dụng phương pháp nào.";
 // small tip/warning
 stroke.onlyLasso = "Cài đặt chỉ hoạt động với công cụ dây thòng lọng.";
 
@@ -2040,13 +2069,14 @@ Nó sẽ thay đổi cách tính diện tích mặt phẳng (Lấy mẫu diện 
 Tùy chọn này có thể hữu ích cho công cụ dựa trên làm phẳng, hoặc nếu bạn muốn tô màu một bề mặt phẳng mà không bị lem.";
 
 // Only paint the part of the mesh above a certain height
-stroke.depthFilter = "Chặn độ sâu";
-stroke.depthFilter.help = "Loại trừ điểm nằm trên hoặc dưới một khoảng cách nhất định so với mặt phẳng tính toán (Lấy mẫu diện tích).
+stroke.depth.enable = "Chặn độ sâu";
+stroke.depth.enable.help = "Loại trừ điểm nằm trên hoặc dưới một khoảng cách nhất định so với mặt phẳng tính toán (Lấy mẫu diện tích).
 
 Ví dụ, nó có thể được sử dụng để vẽ sưng hoặc lõm.";
-stroke.depthFilter.max = "Khu vực trên";
-stroke.depthFilter.min = "Khu vực dưới";
-stroke.depthFilter.offset = "Độ lệch chiều cao";
+stroke.depth.offset = "Độ lệch chiều cao";
+stroke.depth.falloff = "Giảm độ sâu";
+stroke.depth.max = "Khu vực trên";
+stroke.depth.min = "Khu vực dưới";
 
 // Invert the pixel (black <-> white)
 stroke.alpha.invert = "Đảo ngược điểm ảnh";
@@ -2190,101 +2220,101 @@ symmetry.edit.help = "Bạn có thể tự do đặt mặt phẳng đối xứng
 
 Tính năng này vẫn đang thử nghiệm và có lẽ bạn không nên sử dụng.";
 
-// Ideally <10 chars
+// Ideally short strings
 tool.dynamic = "DynTopo";
-// Ideally <10 chars (Symmetry)
+// Ideally short strings (Symmetry)
 tool.symmetry = "Đối Xứng";
-// Ideally <10 chars (Mirror primitive)
+// Ideally short strings (Mirror primitive)
 tool.mirror = "Gương";
-// Ideally <10 chars
+// Ideally short strings
 tool.clay = "Đất sét";
-// Ideally <10 chars (Subtract)
+// Ideally short strings (Subtract)
 tool.clay.sub = "Trừ";
-// Ideally <10 chars
+// Ideally short strings
 tool.brush = "Cọ";
-// Ideally <10 chars
+// Ideally short strings
 tool.move = "Di chuyển";
-// Ideally <10 chars (Normal vector, perpendicular to surface)
+// Ideally short strings (Normal vector, perpendicular to surface)
 tool.move.normal = "Thường";
-// Ideally <10 chars
+// Ideally short strings
 tool.drag = "Kéo";
-// Ideally <10 chars (Smooth the surface by erasing the details)
+// Ideally short strings (Smooth the surface by erasing the details)
 tool.smooth = "Làm mịn";
-// Ideally <10 chars (Tries to smooth the topology by making the polygons more regular)
+// Ideally short strings (Tries to smooth the topology by making the polygons more regular)
 tool.smooth.relax = "Thư giãn";
-// Ideally <10 chars (Paint mask)
+// Ideally short strings (Paint mask)
 tool.mask = "Mặt nạ";
-// Ideally <10 chars
+// Ideally short strings
 tool.mask.unmask = "Gỡ mặt nạ";
-// Ideally <10 chars (Selector Mask, use lasso/ellipse,etc shape to mask the mesh)
+// Ideally short strings (Selector Mask, use lasso/ellipse,etc shape to mask the mesh)
 tool.maskSelector = "Chọn Mặt Nạ";
-// Ideally <10 chars (Smudge the paint of the object)
+// Ideally short strings (Smudge the paint of the object)
 tool.smudge = "Làm mờ";
-// Ideally <10 chars (Flatten the surface)
+// Ideally short strings (Flatten the surface)
 tool.flatten = "Làm phẳng";
-// Ideally <10 chars (Flatten the surface, more strongly than Flatten)
+// Ideally short strings (Flatten the surface, more strongly than Flatten)
 tool.planar = "Phẳng";
-// Ideally <10 chars (Flatten the surface by offsetting the surface in the opposite direction)
+// Ideally short strings (Flatten the surface by offsetting the surface in the opposite direction)
 tool.flatten.fill = "Đổ đầy";
-// Ideally <10 chars (Layer brush)
+// Ideally short strings (Layer brush)
 tool.layer = "Lớp";
-// Ideally <10 chars
+// Ideally short strings
 tool.crease = "Nhăn";
-// Ideally <10 chars (Cut part of the mesh cleanly)
+// Ideally short strings (Cut part of the mesh cleanly)
 tool.trim = "Cắt";
-// Ideally <10 chars (Cut part of the mesh cleanly into two separate meshes)
+// Ideally short strings (Cut part of the mesh cleanly into two separate meshes)
 tool.split = "Tách";
-// Ideally <10 chars (Project part of the object onto a curve)
+// Ideally short strings (Project part of the object onto a curve)
 tool.project = "Dự án";
-// Ideally <10 chars
+// Ideally short strings
 tool.inflate = "Bơm phồng";
-// Ideally <10 chars
+// Ideally short strings
 tool.pinch = "Nhéo";
-// Ideally <10 chars
+// Ideally short strings
 tool.nudge = "Thúc nhẹ";
-// Ideally <10 chars
+// Ideally short strings
 tool.stamp = "Dấu Triện";
-// Ideally <10 chars (Delete Layer, a tool that can cancel the Layer deformation/paint)
+// Ideally short strings (Delete Layer, a tool that can cancel the Layer deformation/paint)
 tool.clearLayer = "Xóa Lớp";
-// Ideally <10 chars (Select multiple objects with a lasso tool)
+// Ideally short strings (Select multiple objects with a lasso tool)
 tool.select = "Chọn";
-// Ideally <10 chars (Rotate, Translate and Scale the object)
+// Ideally short strings (Rotate, Translate and Scale the object)
 tool.gizmo = "Gizmo";
-// Ideally <10 chars
+// Ideally short strings
 tool.gizmo.editPivot = "Trục";
-// Ideally <10 chars (Snap angle)
+// Ideally short strings (Snap angle)
 tool.gizmo.rotateSnap = "Khớp";
-// Ideally <10 chars (Snap translation)
+// Ideally short strings (Snap translation)
 tool.gizmo.moveSnap = "Khớp";
-// Ideally <10 chars (Local/Relative space)
+// Ideally short strings (Local/Relative space)
 tool.gizmo.local = "Cục Bộ";
-// Ideally <10 chars (Align/Snap the gizmo to world axis)
+// Ideally short strings (Align/Snap the gizmo to world axis)
 tool.gizmo.align = "Căn Chỉnh";
-// Ideally <10 chars (Pin the gizmo, so that it stays in place when switching between objects)
+// Ideally short strings (Pin the gizmo, so that it stays in place when switching between objects)
 tool.gizmo.pin = "Ghim";
-// Ideally <10 chars (Rotate, Translate and Scale the object)
+// Ideally short strings (Rotate, Translate and Scale the object)
 tool.transform = "Biến Đổi";
-// Ideally <10 chars (Translate the object)
+// Ideally short strings (Translate the object)
 tool.transform.move = "Di Chuyển";
-// Ideally <10 chars (Rotate the object)
+// Ideally short strings (Rotate the object)
 tool.transform.rotate = "Xoay";
-// Ideally <10 chars (Scale the object)
+// Ideally short strings (Scale the object)
 tool.transform.scale = "Thu Phóng";
-// Ideally <10 chars (Snap the object on another object surface)
+// Ideally short strings (Snap the object on another object surface)
 tool.transform.snap = "Khớp";
-// Ideally <10 chars (Measure distance between 2 points)
+// Ideally short strings (Measure distance between 2 points)
 tool.measure = "Đo";
-// Ideally <10 chars (Lattice, deformer)
+// Ideally short strings (Lattice, deformer)
 tool.lattice = "Mạng";
 // If an option is shared among the tools
 tool.all = "Tất cả";
-// Ideally <10 chars (Quad Remesher)
+// Ideally short strings (Quad Remesher)
 tool.remesh = "Lưới Tứ Giác";
 tool.remesh.guides = "Hướng Dẫn";
 tool.remesh.density = "Mật Độ";
 tool.remesh.same = "Giống Nhau";
 tool.remesh.half = "Một Nửa";
-// Ideally <10 chars (FaceGroup)
+// Ideally short strings (FaceGroup)
 tool.faceGroup = "Nhóm Mặtt";
 tool.faceGroup.autoPick = "Tự Động Chọn";
 tool.faceGroup.flush = "Xóa Không Dùng";
@@ -2295,35 +2325,35 @@ tool.faceGroup.skipArea = "Diện tích bề mặt";
 tool.faceGroup.skipArea.help = "Không tạo nhóm mới nếu diện tích bề mặt của nhóm mới nhỏ hơn ngưỡng này.
 
 Ngưỡng được đưa ra dưới dạng phần trăm của tổng diện tích đối tượng.";
-// Ideally <10 chars (Hide)
+// Ideally short strings (Hide)
 tool.hide = "Ẩn";
-// Ideally <10 chars (View tool, do nothing in particular)
+// Ideally short strings (View tool, do nothing in particular)
 tool.view = "Xem";
-// Ideally <10 chars (Revolving surface along a line)
+// Ideally short strings (Revolving surface along a line)
 tool.lathe = "Tiện";
-// Ideally <10 chars (Revolving surface along a curve)
+// Ideally short strings (Revolving surface along a curve)
 tool.tube = "Ống";
-// Ideally <10 chars (Insert object into the scene)
+// Ideally short strings (Insert object into the scene)
 tool.insert = "Chèn";
-// Ideally <10 chars (Flip/Invert/Negate the shape)
+// Ideally short strings (Flip/Invert/Negate the shape)
 tool.shape.flip = "Lật";
-// Ideally <10 chars (No shape selected, same as Camera mode, does nothing in particular)
+// Ideally short strings (No shape selected, same as Camera mode, does nothing in particular)
 tool.shape.view = "Xem";
-// Ideally <10 chars (Lasso selection)
+// Ideally short strings (Lasso selection)
 tool.shape.lasso = "Dây thòng lọng";
-// Ideally <10 chars (Curve selection, same as Lasso and it's an open shape)
+// Ideally short strings (Curve selection, same as Lasso and it's an open shape)
 tool.shape.curve = "Đường Cong";
-// Ideally <10 chars (Polygon selection, same as Lasso but with more precision)
+// Ideally short strings (Polygon selection, same as Lasso but with more precision)
 tool.shape.polygon = "Đa giác";
-// Ideally <10 chars (Path selection, same as Lasso but with more precision and it's an open shape)
+// Ideally short strings (Path selection, same as Lasso but with more precision and it's an open shape)
 tool.shape.path = "Đường dẫn";
-// Ideally <10 chars (Rectangular selection)
+// Ideally short strings (Rectangular selection)
 tool.shape.rectangle = "Hình chữ nhật";
-// Ideally <10 chars (Ellipse selection)
+// Ideally short strings (Ellipse selection)
 tool.shape.ellipse = "Hình elip";
-// Ideally <10 chars (Line selection, split the screen in half)
+// Ideally short strings (Line selection, split the screen in half)
 tool.shape.line = "Đường thẳng";
-// Ideally <10 chars (Whether a shape is closed or not, a tube is open, a torus is closed)
+// Ideally short strings (Whether a shape is closed or not, a tube is open, a torus is closed)
 tool.shape.closed = "Đóng";
 
 // Radius of the tool (size)
@@ -2709,10 +2739,21 @@ binding.addSync = "Đồng bộ";
 binding.addSync.help = "Theo mặc định, nó sẽ sử dụng giá trị đồng bộ được thiết lập trong menu cảnh.";
 // Binding option
 binding.context.toggle = "Chuyển đổi ngữ cảnh";
-binding.toggleTool = "Chuyển đổi các phím tắt công cụ";
-binding.toggleTool.help = "Khi sử dụng một trong các phím tắt công cụ, công cụ trước đó sẽ được chọn nếu công cụ phím tắt hiện tại đang hoạt động.";
-// When the key is tap once, the value will be toggled
-binding.toggleTap = "Chuyển đổi phím tắt khi nhấn phím";
+// quick sidebar tool shortcuts
+binding.quicks = "Phím tắt nhanh";
+// quick regular tool shortcuts
+binding.tools = "Phím tắt công cụ";
+// When the key is tapped once, the value will be toggled
+binding.toggle = "Chuyển đổi công cụ trước";
+binding.toggle.help = "Sử dụng cùng một phím để chuyển trở lại công cụ cuối cùng.";
+// sticky keys
+binding.sticky = "Phím dính";
+binding.sticky.off = "Giữ";
+binding.sticky.off.help = "Giữ phím để sử dụng công cụ, thả để trở về công cụ trước.";
+binding.sticky.on = "Chuyển đổi";
+binding.sticky.on.help = "Nhấn một lần để thay đổi công cụ.";
+binding.sticky.quick = "Nhấn nhanh";
+binding.sticky.quick.help = "Giữ để sử dụng tạm thời, nhấn nhanh để thay đổi.";
 // The binding force camera movement
 binding.forceCamera = "Cưỡng ép camera";
 binding.forceCamera.help = "Cưỡng ép tương tác về máy ảnh trong trường hợp có xung đột với ràng buộc khác.
@@ -2724,6 +2765,8 @@ binding.pickMaterial = "Chọn Vật Liệu";
 binding.pickFaceGroup = "Chọn Nhóm Mặt";
 // Edit the tool brush size/radius
 binding.editRadius = "Bán Kính Công Cụ";
+// Inverse direction zooming
+binding.invertZoomY = "Lật thu phóng Y";
 // Edit the tool brush size/radius
 binding.editIntensity = "Cường Độ Công Cụ";
 // Controller dead zone

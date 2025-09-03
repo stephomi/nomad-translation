@@ -8,6 +8,8 @@ confirm.no = "ไม่";
 confirm.ok = "ตกลง";
 // Cancel something after being asked (Question? [answer, cancel])
 confirm.cancel = "ยกเลิก";
+// Restart nomad
+confirm.restart = "หลังจากเปลี่ยนค่าตัวนี้ คุณต้องรีสตาร์ท Nomad";
 
 // Experimental feature
 experimental = "ที่ทดลอง!";
@@ -123,7 +125,7 @@ item.lock = "ล็อค";
 // No item selected
 item.none = "ไม่มี";
 // Draggable, moveable
-item.draggable = "";
+item.draggable = "สามารถเคลื่อนย้ายได้";
 
 // Search something (text entry to filter item)
 search = "ค้นหา";
@@ -184,12 +186,14 @@ material.projection.triplanar = "สามระนาบ";
 
 // Prefer low power
 about.lowPower = "GPU พลังงานต่ำ";
-about.lowPower.confirm = "หลังจากเปลี่ยนค่าตัวนี้ คุณต้องรีสตาร์ท Nomad";
 // Wintab wacom API
 about.wintab = "ใช้ WinTab";
 about.wintab.help = "หากเปิดใช้ WinTab คุณควรปิด Windows Ink ในการตั้งค่า Wacom ของคุณ 
 
 ในทำนองเดียวกัน หาก WinTab ถูกปิดใช้แล้ว คุณควรเปิดใช้ Windows Ink ในการตั้งค่า Wacom";
+// Wacom Multi Touch API
+about.touch = "ใช้ Wacom Multi-Touch";
+about.touch.help = "เปิดใช้งานตัวเลือกนี้เพื่อรองรับการใช้งานหลายๆ นิ้วบนแท็บเล็ต Wacom";
 // Prefer low power
 about.fullScreen = "เต็มจอ";
 // Minify
@@ -350,7 +354,17 @@ background.imageRotation = "การหมุน";
 // Scale of the reference image
 background.imageScale = "สเกล";
 // Auto adjust the reference when moving the camera
-background.syncLock = "ซิงค์กับการล็อคกล้อง";
+background.lock.image = "ซิงค์กับการล็อคกล้อง";
+background.lock.image.help = "เมื่อกล้องถูกล็อคด้วย Snap Cube, ภาพอ้างอิงจะติดตามการเคลื่อนไหวของกล้อง";
+// When exiting camera lock
+background.lock.exit = "รีเซ็ตเมื่อปลดล็อค:";
+background.lock.exit.none = "ปรับ Fov";
+background.lock.exit.none.help = "คงภาพและกล้องไว้ 
+หากเป็นในเพอร์สเปกทีฟ, ปรับแค่สนามทัศน์";
+background.lock.exit.all = "รีเซ็ตทั้งหมด";
+background.lock.exit.all.help = "รีเซ็ตทั้งตำแหน่งภาพและกล้อง";
+background.lock.exit.perspective = "หากเป็นในเพอร์สเปกทีฟ";
+background.lock.exit.perspective.help = "หากเป็นในเพอร์สเปกทีฟ, รีเซ็ตตำแหน่งภาพและกล้อง";
 
 // Blend: normal
 blend.normal = "ปกติ";
@@ -508,8 +522,8 @@ curve.pivot.self = "เคิร์ฟ";
 curve.pivot.children = "โหนดลูก";
 
 // Set the desired FPS (frame per second, refresh rate)
-debug.limitFps = "เป้าหมาย FPS";
-debug.limitFps.help = "เมื่อปิดใช้งาน, ค่าเริ่มต้นหมายความว่าจะซิงค์กับอัตราการรีเฟรชของจอแสดงผล";
+debug.targetFps = "เป้าหมาย FPS";
+debug.targetFps.help = "เมื่อปิดใช้งาน, ค่าเริ่มต้นหมายความว่าจะซิงค์กับอัตราการรีเฟรชของจอแสดงผล";
 
 // Warning about UVs (using extra memory)
 debug.uvPrimitive.warning = "ปิดใช้งานตัวเลือกนี้หากคุณไม่ต้องการ UVs (หน่วยความจำเพิ่มเติม)";
@@ -530,6 +544,14 @@ debug.thumbnails = "สร้างภาพขนาดย่อของสโ
 
 // Open file explorer
 file.explore = "สำรวจ";
+// Open file explorer
+file.scope = "ขอบเขต";
+file.scope.internal = "ภายใน";
+file.scope.internal.help = "พฤติกรรมเริ่มต้น, เหมือนกับมือถือ 
+โครงการจะถูกบันทึกเฉพาะในโฟลเดอร์หลักของ Nomad";
+file.scope.external = "ในตำแหน่ง";
+file.scope.external.help = "เมื่อมีการนำเข้าโครงการจากภายนอก, การบันทึกจะเขียนทับไฟล์ต้นฉบับ 
+ไม่รองรับการบันทึกอัตโนมัติสำหรับโครงการภายนอก";
 // Empty list: there is no projects
 file.project.load = "โหลดโปรเจกต์เมื่อเริ่มต้น";
 // Empty list: there is no projects
@@ -794,6 +816,10 @@ gesture.finger = "นิ้ว";
 gesture.stylus = "สไตลัส";
 // Mouse/Trackpad
 gesture.mouse = "เมาส์";
+
+gesture.wheel = "วงล้อเมาส์";
+gesture.wheel.speed3d = "ความเร็ว (ซูม 3 มิติ)";
+gesture.wheel.speed2d = "ความเร็ว (อินเทอร์เฟซ 2 มิติ)";
 
 // long press to pick the color/material under the cursor
 gesture.dropper = "การเลือกวัสดุ";
@@ -1776,6 +1802,7 @@ settings.stats.right = "ขวา";
 settings.stats.all = "แสดงหน้าจอเต็ม";
 // Grid
 settings.grid = "เส้นตาราง";
+settings.grid.divideThreshold = "แยกเกณฑ์";
 // Cursor
 settings.cursor.title = "เคอร์เซอร์";
 settings.cursor.whileSculpting = "แสดงวงกลมขณะแกะสลัก";
@@ -2002,16 +2029,17 @@ stroke.silhouette.closest = "ที่ใกล้ที่สุด";
 stroke.sameSide = "จุดยอดขนาดเดียวกันเท่านั้น";
 stroke.sameSide.help = "ละเว้นจุดยอดที่ชี้ไปในทิศทางตรงกันข้ามกับดีฟอร์เมชัน";
 // determine normal direction
-stroke.normal.direction = "";
-stroke.normal.direction.help = "";
-stroke.normal.direction.normal = "";
-stroke.normal.direction.normal.help = "";
-stroke.normal.direction.screen = "";
-stroke.normal.direction.screen.help = "";
-stroke.normal.direction.auto = "";
-stroke.normal.direction.auto.help = "";
-stroke.normal.direction.auto.threshold = "";
-stroke.normal.direction.auto.threshold.help = "";
+stroke.normal.direction = "ทิศทาง";
+stroke.normal.direction.help = "เกี่ยวข้องเฉพาะเมื่อการเปลี่ยนรูปร่างปกติเปิดใช้งาน 
+ควบคุมวิธีการที่ Nomad ตัดสินใจเลือกสัญญาณการเปลี่ยนรูปร่าง (ดัน vs ดึง)";
+stroke.normal.direction.normal = "ปกติ 3D";
+stroke.normal.direction.normal.help = "เปรียบเทียบตำแหน่ง XY ของตัวชี้กับปกติบนพื้นผิวที่ฉาย";
+stroke.normal.direction.screen = "XY";
+stroke.normal.direction.screen.help = "ใช้ตำแหน่ง XY บนหน้าจอของตัวชี้ในการตัดสินใจดันหรือดึง";
+stroke.normal.direction.auto = "อัตโนมัติ";
+stroke.normal.direction.auto.help = "เลือกวิธีการโดยอัตโนมัติตามมุมของปกติที่ฉาย";
+stroke.normal.direction.auto.threshold = "เกณฑ์";
+stroke.normal.direction.auto.threshold.help = "จำกัดมุมเมื่อเปรียบเทียบกับปกติบนพื้นผิวเพื่อกำหนดว่าวิธีการไหนถูกใช้";
 // small tip/warning
 stroke.onlyLasso = "การตั้งค่านี้จะเปิดใช้งานเฉพาะเครื่องมือลัสโซ";
 
@@ -2036,13 +2064,14 @@ stroke.normalFilter.help = "
 การกรองความลึก";
 
 // Only paint the part of the mesh above a certain height
-stroke.depthFilter = "การมาสก์ความลึก";
-stroke.depthFilter.help = "ยกเว้นจุดที่อยู่เหนือหรือต่ำกว่าระยะทางหนึ่งๆ ของแท่นวางที่คำนวณได้ (การสุ่มพื้นที่)
+stroke.depth.enable = "การมาสก์ความลึก";
+stroke.depth.enable.help = "ยกเว้นจุดที่อยู่เหนือหรือต่ำกว่าระยะทางหนึ่งๆ ของแท่นวางที่คำนวณได้ (การสุ่มพื้นที่)
 
 เป็นตัวอย่าง, สามารถใช้เพื่อทาสีบนบุ๋มหรือหลุม.";
-stroke.depthFilter.max = "พื้นที่บน";
-stroke.depthFilter.min = "พื้นที่ล่าง";
-stroke.depthFilter.offset = "การเยื้องความสูง";
+stroke.depth.offset = "การเยื้องความสูง";
+stroke.depth.falloff = "การลดระดับความลึก";
+stroke.depth.max = "พื้นที่บน";
+stroke.depth.min = "พื้นที่ล่าง";
 
 // Invert the pixel (black <-> white)
 stroke.alpha.invert = "สลับพิกเซล";
@@ -2190,101 +2219,101 @@ symmetry.edit.help = "คุณสามารถตั้งค่าระน�
 
 คุณลักษณะนี้ยังคงเป็นแบบทดลองอยู่ และคุณอาจจะไม่ควรใช้คุณลักษณะนี้";
 
-// Ideally <10 chars
+// Ideally short strings
 tool.dynamic = "DynTopo";
-// Ideally <10 chars (Symmetry)
+// Ideally short strings (Symmetry)
 tool.symmetry = "สมมาตร";
-// Ideally <10 chars (Mirror primitive)
+// Ideally short strings (Mirror primitive)
 tool.mirror = "มิเรอร์";
-// Ideally <10 chars
+// Ideally short strings
 tool.clay = "ดินเหนียว";
-// Ideally <10 chars (Subtract)
+// Ideally short strings (Subtract)
 tool.clay.sub = "ซับ";
-// Ideally <10 chars
+// Ideally short strings
 tool.brush = "แปรง";
-// Ideally <10 chars
+// Ideally short strings
 tool.move = "ย้าย";
-// Ideally <10 chars (Normal vector, perpendicular to surface)
+// Ideally short strings (Normal vector, perpendicular to surface)
 tool.move.normal = "ปกติ";
-// Ideally <10 chars
+// Ideally short strings
 tool.drag = "ลาก";
-// Ideally <10 chars (Smooth the surface by erasing the details)
+// Ideally short strings (Smooth the surface by erasing the details)
 tool.smooth = "เรียบ";
-// Ideally <10 chars (Tries to smooth the topology by making the polygons more regular)
+// Ideally short strings (Tries to smooth the topology by making the polygons more regular)
 tool.smooth.relax = "อ่อนลง";
-// Ideally <10 chars (Paint mask)
+// Ideally short strings (Paint mask)
 tool.mask = "มาส์ก";
-// Ideally <10 chars
+// Ideally short strings
 tool.mask.unmask = "ไม่มาส์ก";
-// Ideally <10 chars (Selector Mask, use lasso/ellipse,etc shape to mask the mesh)
+// Ideally short strings (Selector Mask, use lasso/ellipse,etc shape to mask the mesh)
 tool.maskSelector = "SelMask";
-// Ideally <10 chars (Smudge the paint of the object)
+// Ideally short strings (Smudge the paint of the object)
 tool.smudge = "เกลี่ย";
-// Ideally <10 chars (Flatten the surface)
+// Ideally short strings (Flatten the surface)
 tool.flatten = "ทำให้เรียบ";
-// Ideally <10 chars (Flatten the surface, more strongly than Flatten)
+// Ideally short strings (Flatten the surface, more strongly than Flatten)
 tool.planar = "แบน";
-// Ideally <10 chars (Flatten the surface by offsetting the surface in the opposite direction)
+// Ideally short strings (Flatten the surface by offsetting the surface in the opposite direction)
 tool.flatten.fill = "เติม";
-// Ideally <10 chars (Layer brush)
+// Ideally short strings (Layer brush)
 tool.layer = "เลเยอร์";
-// Ideally <10 chars
+// Ideally short strings
 tool.crease = "รอยพับ";
-// Ideally <10 chars (Cut part of the mesh cleanly)
+// Ideally short strings (Cut part of the mesh cleanly)
 tool.trim = "ตกแต่ง";
-// Ideally <10 chars (Cut part of the mesh cleanly into two separate meshes)
+// Ideally short strings (Cut part of the mesh cleanly into two separate meshes)
 tool.split = "แยก";
-// Ideally <10 chars (Project part of the object onto a curve)
+// Ideally short strings (Project part of the object onto a curve)
 tool.project = "โปรเจ็กต์";
-// Ideally <10 chars
+// Ideally short strings
 tool.inflate = "พอง";
-// Ideally <10 chars
+// Ideally short strings
 tool.pinch = "กระจุก";
-// Ideally <10 chars
+// Ideally short strings
 tool.nudge = "นัดจ์";
-// Ideally <10 chars
+// Ideally short strings
 tool.stamp = "สแตมป์";
-// Ideally <10 chars (Delete Layer, a tool that can cancel the Layer deformation/paint)
+// Ideally short strings (Delete Layer, a tool that can cancel the Layer deformation/paint)
 tool.clearLayer = "ลบเลเยอร์";
-// Ideally <10 chars (Select multiple objects with a lasso tool)
+// Ideally short strings (Select multiple objects with a lasso tool)
 tool.select = "เลือก";
-// Ideally <10 chars (Rotate, Translate and Scale the object)
+// Ideally short strings (Rotate, Translate and Scale the object)
 tool.gizmo = "กิซโม่";
-// Ideally <10 chars
+// Ideally short strings
 tool.gizmo.editPivot = "จุดหมุน";
-// Ideally <10 chars (Snap angle)
+// Ideally short strings (Snap angle)
 tool.gizmo.rotateSnap = "สแนป";
-// Ideally <10 chars (Snap translation)
+// Ideally short strings (Snap translation)
 tool.gizmo.moveSnap = "สแนป";
-// Ideally <10 chars (Local/Relative space)
+// Ideally short strings (Local/Relative space)
 tool.gizmo.local = "โลคอล";
-// Ideally <10 chars (Align/Snap the gizmo to world axis)
+// Ideally short strings (Align/Snap the gizmo to world axis)
 tool.gizmo.align = "จัดเรียง";
-// Ideally <10 chars (Pin the gizmo, so that it stays in place when switching between objects)
+// Ideally short strings (Pin the gizmo, so that it stays in place when switching between objects)
 tool.gizmo.pin = "ปักหมุด";
-// Ideally <10 chars (Rotate, Translate and Scale the object)
+// Ideally short strings (Rotate, Translate and Scale the object)
 tool.transform = "ปรับแต่ง";
-// Ideally <10 chars (Translate the object)
+// Ideally short strings (Translate the object)
 tool.transform.move = "ย้าย";
-// Ideally <10 chars (Rotate the object)
+// Ideally short strings (Rotate the object)
 tool.transform.rotate = "หมุน";
-// Ideally <10 chars (Scale the object)
+// Ideally short strings (Scale the object)
 tool.transform.scale = "สเกล";
-// Ideally <10 chars (Snap the object on another object surface)
+// Ideally short strings (Snap the object on another object surface)
 tool.transform.snap = "สแนป";
-// Ideally <10 chars (Measure distance between 2 points)
+// Ideally short strings (Measure distance between 2 points)
 tool.measure = "วัด";
-// Ideally <10 chars (Lattice, deformer)
+// Ideally short strings (Lattice, deformer)
 tool.lattice = "ตาข่าย";
 // If an option is shared among the tools
 tool.all = "ทั้งหมด";
-// Ideally <10 chars (Quad Remesher)
+// Ideally short strings (Quad Remesher)
 tool.remesh = "Quad Remesher";
 tool.remesh.guides = "คู่มือ";
 tool.remesh.density = "ความหนาแน่น";
 tool.remesh.same = "Same";
 tool.remesh.half = "Half";
-// Ideally <10 chars (FaceGroup)
+// Ideally short strings (FaceGroup)
 tool.faceGroup = "กลุ่มหน้า";
 tool.faceGroup.autoPick = "เลือกอัตโนมัติ";
 tool.faceGroup.flush = "ลบที่ไม่ได้ใช้งาน";
@@ -2295,35 +2324,35 @@ tool.faceGroup.skipArea = "พื้นที่ผิว";
 tool.faceGroup.skipArea.help = "ไม่สร้างกลุ่มใหม่หากพื้นที่ผิวของกลุ่มใหม่น้อยกว่าเกณฑ์นี้
 
 เกณฑ์กำหนดเป็นเปอร์เซ็นต์ของพื้นที่ทั้งหมดของวัตถุ";
-// Ideally <10 chars (Hide)
+// Ideally short strings (Hide)
 tool.hide = "ซ่อน";
-// Ideally <10 chars (View tool, do nothing in particular)
+// Ideally short strings (View tool, do nothing in particular)
 tool.view = "มุมมอง";
-// Ideally <10 chars (Revolving surface along a line)
+// Ideally short strings (Revolving surface along a line)
 tool.lathe = "กลึง";
-// Ideally <10 chars (Revolving surface along a curve)
+// Ideally short strings (Revolving surface along a curve)
 tool.tube = "ท่อ";
-// Ideally <10 chars (Insert object into the scene)
+// Ideally short strings (Insert object into the scene)
 tool.insert = "แทรก";
-// Ideally <10 chars (Flip/Invert/Negate the shape)
+// Ideally short strings (Flip/Invert/Negate the shape)
 tool.shape.flip = "พลิก";
-// Ideally <10 chars (No shape selected, same as Camera mode, does nothing in particular)
+// Ideally short strings (No shape selected, same as Camera mode, does nothing in particular)
 tool.shape.view = "มุมมอง";
-// Ideally <10 chars (Lasso selection)
+// Ideally short strings (Lasso selection)
 tool.shape.lasso = "ลัสโซ";
-// Ideally <10 chars (Curve selection, same as Lasso and it's an open shape)
+// Ideally short strings (Curve selection, same as Lasso and it's an open shape)
 tool.shape.curve = "เคิร์ฟ";
-// Ideally <10 chars (Polygon selection, same as Lasso but with more precision)
+// Ideally short strings (Polygon selection, same as Lasso but with more precision)
 tool.shape.polygon = "โพลีกอน";
-// Ideally <10 chars (Path selection, same as Lasso but with more precision and it's an open shape)
+// Ideally short strings (Path selection, same as Lasso but with more precision and it's an open shape)
 tool.shape.path = "พาธ";
-// Ideally <10 chars (Rectangular selection)
+// Ideally short strings (Rectangular selection)
 tool.shape.rectangle = "สี่เหลี่ยมผืนผ้า";
-// Ideally <10 chars (Ellipse selection)
+// Ideally short strings (Ellipse selection)
 tool.shape.ellipse = "วงรี";
-// Ideally <10 chars (Line selection, split the screen in half)
+// Ideally short strings (Line selection, split the screen in half)
 tool.shape.line = "เส้น";
-// Ideally <10 chars (Whether a shape is closed or not, a tube is open, a torus is closed)
+// Ideally short strings (Whether a shape is closed or not, a tube is open, a torus is closed)
 tool.shape.closed = "ปิด";
 
 // Radius of the tool (size)
@@ -2638,7 +2667,11 @@ topology.uv.atlas.warning = "อาจช้ามาก กำหนดเป�
 topology.uv.bff.warning = "ทับซ้อนกันได้ถ้าถ้าเมชมีแฮนเดิ้ล!";
 // Solo patch
 topology.uv.bff.seamless = "แพทช์ที่ไม่มีรอยต่อ";
-topology.uv.bff.seamless.help = "ตัวเลือกนี้อาจทำให้เกิดการบิดเบือนที่สำคัญ<br><br>โดยทั่วไป, มันสามารถใช้ได้เมื่อกลุ่มใบหน้าถูกตั้งค่าอย่างรอบคอบ";
+topology.uv.bff.seamless.help = "ตัวเลือกนี้อาจทำให้เกิดการบิดเบือนที่สำคัญ
+
+
+
+โดยทั่วไป, มันสามารถใช้ได้เมื่อกลุ่มใบหน้าถูกตั้งค่าอย่างรอบคอบ";
 // Synonym: Point count? Singularity count ?
 topology.uv.bff.cones = "จำนวนโคน";
 topology.uv.bff.help = "ค่าที่สูงขึ้นจะลดการบิดเบือนของวัตถุที่ซับซ้อน
@@ -2715,10 +2748,21 @@ binding.addSync = "ซิงค์";
 binding.addSync.help = "ตามค่าเริ่มต้น จะใช้ค่าซิงค์ที่ตั้งไว้ในเมนูฉาก";
 // Binding option
 binding.context.toggle = "สลับบริบท";
-binding.toggleTool = "สลับทางลัดเครื่องมือ";
-binding.toggleTool.help = "เมื่อใช้ทางลัดเครื่องมือใดๆ หากเครื่องมือที่เป็นทางลัดกำลังทำงานอยู่ เครื่องมือก่อนหน้านี้จะถูกเลือก";
-// When the key is tap once, the value will be toggled
-binding.toggleTap = "เปิด/ปิดคำสั่งลัดด้วยการแตะปุ่ม";
+// quick sidebar tool shortcuts
+binding.quicks = "ทางลัดที่รวดเร็ว";
+// quick regular tool shortcuts
+binding.tools = "ทางลัดเครื่องมือ";
+// When the key is tapped once, the value will be toggled
+binding.toggle = "สลับเครื่องมือก่อนหน้า";
+binding.toggle.help = "ใช้การผูกเหมือนเดิมเพื่อสลับกลับไปยังเครื่องมือสุดท้าย";
+// sticky keys
+binding.sticky = "ปุ่มลอย";
+binding.sticky.off = "กดค้าง";
+binding.sticky.off.help = "กดค้างที่ปุ่มเพื่อใช้เครื่องมือ ปล่อยเพื่อกลับไปใช้เครื่องมือก่อนหน้า";
+binding.sticky.on = "สลับ";
+binding.sticky.on.help = "กดครั้งเดียวเพื่อสลับเครื่องมือ";
+binding.sticky.quick = "กดอย่างรวดเร็ว";
+binding.sticky.quick.help = "กดค้างเพื่อใช้ชั่วคราว กดอย่างรวดเร็วเพื่อสลับ";
 // The binding force camera movement
 binding.forceCamera = "บังคับกล้อง";
 binding.forceCamera.help = "บังคับการโต้ตอบของกล้องในกรณีที่มีความขัดแย้งกับการผูกอื่น 
@@ -2730,6 +2774,8 @@ binding.pickMaterial = "การเลือกวัสดุ";
 binding.pickFaceGroup = "เลือกกลุ่มหน้า";
 // Edit the tool brush size/radius
 binding.editRadius = "รัศมีเครื่องมือ";
+// Inverse direction zooming
+binding.invertZoomY = "กลับด้านการซูม Y";
 // Edit the tool brush size/radius
 binding.editIntensity = "ความเข้มของเครื่องมือ";
 // Controller dead zone

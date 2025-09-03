@@ -8,6 +8,8 @@ confirm.no = "Tidak";
 confirm.ok = "Oke";
 // Cancel something after being asked (Question? [answer, cancel])
 confirm.cancel = "Batal";
+// Restart nomad
+confirm.restart = "Setelah mengubah nilai ini, Anda perlu memulai ulang Nomad.";
 
 // Experimental feature
 experimental = "Eksperimental!";
@@ -123,7 +125,7 @@ item.lock = "Kunci";
 // No item selected
 item.none = "Tidak ada";
 // Draggable, moveable
-item.draggable = "";
+item.draggable = "Dapat Dipindahkan";
 
 // Search something (text entry to filter item)
 search = "Cari";
@@ -184,12 +186,14 @@ material.projection.triplanar = "Triplanar";
 
 // Prefer low power
 about.lowPower = "GPU daya rendah";
-about.lowPower.confirm = "Setelah mengubah nilai ini, Anda perlu memulai ulang Nomad.";
 // Wintab wacom API
 about.wintab = "Gunakan WinTab";
 about.wintab.help = "Jika WinTab diaktifkan, Anda mungkin harus menonaktifkan Windows Ink dalam pengaturan Wacom Anda.
 
 Sebaliknya, jika WinTab dinonaktifkan, maka Windows Ink harus diaktifkan dalam pengaturan Wacom";
+// Wacom Multi Touch API
+about.touch = "Gunakan Wacom Multi-Touch";
+about.touch.help = "Aktifkan opsi ini untuk mendukung penggunaan beberapa jari pada tablet Wacom.";
 // Prefer low power
 about.fullScreen = "Layar penuh";
 // Minify
@@ -350,7 +354,16 @@ background.imageRotation = "Rotasi";
 // Scale of the reference image
 background.imageScale = "Skala";
 // Auto adjust the reference when moving the camera
-background.syncLock = "Sinkronkan dengan kunci kamera";
+background.lock.image = "Sinkronkan dengan kunci kamera";
+background.lock.image.help = "Ketika kamera terkunci dengan Snap Cube, gambar referensi mengikuti pergerakan kamera.";
+// When exiting camera lock
+background.lock.exit = "Atur Ulang saat tidak terkunci:";
+background.lock.exit.none = "Sesuaikan Fov";
+background.lock.exit.none.help = "Pertahankan gambar dan posisi kamera. Jika dalam perspektif, hanya sesuaikan bidang pandang.";
+background.lock.exit.all = "Atur Ulang Semua";
+background.lock.exit.all.help = "Atur ulang gambar dan posisi kamera.";
+background.lock.exit.perspective = "Jika Perspektif";
+background.lock.exit.perspective.help = "Jika dalam perspektif, atur ulang gambar dan posisi kamera.";
 
 // Blend: normal
 blend.normal = "Normal";
@@ -508,8 +521,8 @@ curve.pivot.self = "Sendiri";
 curve.pivot.children = "Anak";
 
 // Set the desired FPS (frame per second, refresh rate)
-debug.limitFps = "Target FPS";
-debug.limitFps.help = "Ketika dinonaktifkan, nilai default berarti akan sinkron dengan laju penyegaran layar.";
+debug.targetFps = "Target FPS";
+debug.targetFps.help = "Ketika dinonaktifkan, nilai default berarti akan sinkron dengan laju penyegaran layar.";
 
 // Warning about UVs (using extra memory)
 debug.uvPrimitive.warning = "Nonaktifkan opsi ini jika Anda tidak memerlukan UVs.
@@ -532,6 +545,12 @@ debug.thumbnails = "Buat thumbnail toko";
 
 // Open file explorer
 file.explore = "Jelajahi";
+// Open file explorer
+file.scope = "Ruang Lingkup";
+file.scope.internal = "Internal";
+file.scope.internal.help = "Perilaku default, sama seperti di mobile. Proyek hanya disimpan di dalam folder utama Nomad.";
+file.scope.external = "Di Tempat";
+file.scope.external.help = "Saat mengimpor proyek dari luar, penyimpanan akan menimpa file asli. Auto Save tidak didukung untuk proyek eksternal.";
 // Empty list: there is no projects
 file.project.load = "Muat ulang proyek saat memulai";
 // Empty list: there is no projects
@@ -798,6 +817,10 @@ gesture.finger = "Jari";
 gesture.stylus = "Stylus";
 // Mouse/Trackpad
 gesture.mouse = "Mouse";
+
+gesture.wheel = "Roda mouse";
+gesture.wheel.speed3d = "Kecepatan (perbesaran 3d)";
+gesture.wheel.speed2d = "Kecepatan (antarmuka 2d)";
 
 // long press to pick the color/material under the cursor
 gesture.dropper = "Pemilihan material";
@@ -1780,6 +1803,7 @@ settings.stats.right = "Kanan";
 settings.stats.all = "Tampilkan seluruh adegan";
 // Grid
 settings.grid = "Kisi";
+settings.grid.divideThreshold = "Ambang batas pembagian";
 // Cursor
 settings.cursor.title = "Kursor";
 settings.cursor.whileSculpting = "Tampilkan lingkaran saat memahat";
@@ -2006,16 +2030,17 @@ stroke.silhouette.closest = "Terdekat";
 stroke.sameSide = "Hanya verteks sisi yang sama";
 stroke.sameSide.help = "Abaikan verteks yang menunjuk ke arah yang berlawanan arah dengan deformasi.";
 // determine normal direction
-stroke.normal.direction = "";
-stroke.normal.direction.help = "";
-stroke.normal.direction.normal = "";
-stroke.normal.direction.normal.help = "";
-stroke.normal.direction.screen = "";
-stroke.normal.direction.screen.help = "";
-stroke.normal.direction.auto = "";
-stroke.normal.direction.auto.help = "";
-stroke.normal.direction.auto.threshold = "";
-stroke.normal.direction.auto.threshold.help = "";
+stroke.normal.direction = "Arah";
+stroke.normal.direction.help = "Relevan hanya jika deformasi normal diaktifkan.
+Mengontrol bagaimana Nomad menentukan tanda deformasi (dorong vs tarik).";
+stroke.normal.direction.normal = "Normal 3D";
+stroke.normal.direction.normal.help = "Membandingkan posisi XY pointer dengan proyeksi normal permukaan.";
+stroke.normal.direction.screen = "XY";
+stroke.normal.direction.screen.help = "Menggunakan posisi XY layar pointer untuk menentukan dorong atau tarik.";
+stroke.normal.direction.auto = "Otomatis";
+stroke.normal.direction.auto.help = "Memilih metode secara otomatis berdasarkan sudut normal yang diproyeksikan.";
+stroke.normal.direction.auto.threshold = "Ambang Batas";
+stroke.normal.direction.auto.threshold.help = "Batas sudut dibandingkan dengan normal permukaan untuk menentukan metode yang digunakan.";
 // small tip/warning
 stroke.onlyLasso = "Pengaturan hanya aktif untuk alat lasso.";
 
@@ -2043,13 +2068,14 @@ Ini akan mengubah cara area bidang dihitung (Pengambilan sampel area).
 Opsi ini dapat berguna untuk alat berbasis perataan, atau jika Anda ingin mewarnai permukaan planar tanpa tumpahan.";
 
 // Only paint the part of the mesh above a certain height
-stroke.depthFilter = "Pemasangan kedalaman";
-stroke.depthFilter.help = "Tidak termasuk titik yang berada di atas atau di bawah jarak tertentu dari bidang yang dihitung (pengambilan sampel area).
+stroke.depth.enable = "Pemasangan kedalaman";
+stroke.depth.enable.help = "Tidak termasuk titik yang berada di atas atau di bawah jarak tertentu dari bidang yang dihitung (pengambilan sampel area).
 
 Sebagai contoh, ini dapat digunakan untuk melukis tonjolan atau lekukan.";
-stroke.depthFilter.max = "Area atas";
-stroke.depthFilter.min = "Area bawah";
-stroke.depthFilter.offset = "Penggeseran tinggi";
+stroke.depth.offset = "Penggeseran tinggi";
+stroke.depth.falloff = "Peredupan kedalaman";
+stroke.depth.max = "Area atas";
+stroke.depth.min = "Area bawah";
 
 // Invert the pixel (black <-> white)
 stroke.alpha.invert = "Balik piksel";
@@ -2197,101 +2223,101 @@ symmetry.edit.help = "Anda bisa dengan bebas menetapkan bidang simetri.
 
 Fitur ini agak eksperimental dan sebaiknya tidak digunakan.";
 
-// Ideally <10 chars
+// Ideally short strings
 tool.dynamic = "DynTopo";
-// Ideally <10 chars (Symmetry)
+// Ideally short strings (Symmetry)
 tool.symmetry = "Sim";
-// Ideally <10 chars (Mirror primitive)
+// Ideally short strings (Mirror primitive)
 tool.mirror = "Cermin";
-// Ideally <10 chars
+// Ideally short strings
 tool.clay = "Tanah Liat";
-// Ideally <10 chars (Subtract)
+// Ideally short strings (Subtract)
 tool.clay.sub = "Kurang";
-// Ideally <10 chars
+// Ideally short strings
 tool.brush = "Kuas";
-// Ideally <10 chars
+// Ideally short strings
 tool.move = "Pindah";
-// Ideally <10 chars (Normal vector, perpendicular to surface)
+// Ideally short strings (Normal vector, perpendicular to surface)
 tool.move.normal = "Normal";
-// Ideally <10 chars
+// Ideally short strings
 tool.drag = "Tarik";
-// Ideally <10 chars (Smooth the surface by erasing the details)
+// Ideally short strings (Smooth the surface by erasing the details)
 tool.smooth = "Haluskan";
-// Ideally <10 chars (Tries to smooth the topology by making the polygons more regular)
+// Ideally short strings (Tries to smooth the topology by making the polygons more regular)
 tool.smooth.relax = "Santai";
-// Ideally <10 chars (Paint mask)
+// Ideally short strings (Paint mask)
 tool.mask = "Topeng";
-// Ideally <10 chars
+// Ideally short strings
 tool.mask.unmask = "Lepas Topeng";
-// Ideally <10 chars (Selector Mask, use lasso/ellipse,etc shape to mask the mesh)
+// Ideally short strings (Selector Mask, use lasso/ellipse,etc shape to mask the mesh)
 tool.maskSelector = "SelTopeng";
-// Ideally <10 chars (Smudge the paint of the object)
+// Ideally short strings (Smudge the paint of the object)
 tool.smudge = "Bercak";
-// Ideally <10 chars (Flatten the surface)
+// Ideally short strings (Flatten the surface)
 tool.flatten = "Datar";
-// Ideally <10 chars (Flatten the surface, more strongly than Flatten)
+// Ideally short strings (Flatten the surface, more strongly than Flatten)
 tool.planar = "Dataran";
-// Ideally <10 chars (Flatten the surface by offsetting the surface in the opposite direction)
+// Ideally short strings (Flatten the surface by offsetting the surface in the opposite direction)
 tool.flatten.fill = "Isi";
-// Ideally <10 chars (Layer brush)
+// Ideally short strings (Layer brush)
 tool.layer = "Lapisan";
-// Ideally <10 chars
+// Ideally short strings
 tool.crease = "Kerut";
-// Ideally <10 chars (Cut part of the mesh cleanly)
+// Ideally short strings (Cut part of the mesh cleanly)
 tool.trim = "Pangkas";
-// Ideally <10 chars (Cut part of the mesh cleanly into two separate meshes)
+// Ideally short strings (Cut part of the mesh cleanly into two separate meshes)
 tool.split = "Pisah";
-// Ideally <10 chars (Project part of the object onto a curve)
+// Ideally short strings (Project part of the object onto a curve)
 tool.project = "Proyek";
-// Ideally <10 chars
+// Ideally short strings
 tool.inflate = "Kembung";
-// Ideally <10 chars
+// Ideally short strings
 tool.pinch = "Cubitan";
-// Ideally <10 chars
+// Ideally short strings
 tool.nudge = "Dorongan";
-// Ideally <10 chars
+// Ideally short strings
 tool.stamp = "Cap";
-// Ideally <10 chars (Delete Layer, a tool that can cancel the Layer deformation/paint)
+// Ideally short strings (Delete Layer, a tool that can cancel the Layer deformation/paint)
 tool.clearLayer = "HapusLapisan";
-// Ideally <10 chars (Select multiple objects with a lasso tool)
+// Ideally short strings (Select multiple objects with a lasso tool)
 tool.select = "Pilih";
-// Ideally <10 chars (Rotate, Translate and Scale the object)
+// Ideally short strings (Rotate, Translate and Scale the object)
 tool.gizmo = "Gizmo";
-// Ideally <10 chars
+// Ideally short strings
 tool.gizmo.editPivot = "Poros";
-// Ideally <10 chars (Snap angle)
+// Ideally short strings (Snap angle)
 tool.gizmo.rotateSnap = "Paskan";
-// Ideally <10 chars (Snap translation)
+// Ideally short strings (Snap translation)
 tool.gizmo.moveSnap = "Paskan";
-// Ideally <10 chars (Local/Relative space)
+// Ideally short strings (Local/Relative space)
 tool.gizmo.local = "Lokal";
-// Ideally <10 chars (Align/Snap the gizmo to world axis)
+// Ideally short strings (Align/Snap the gizmo to world axis)
 tool.gizmo.align = "Sejajarkan";
-// Ideally <10 chars (Pin the gizmo, so that it stays in place when switching between objects)
+// Ideally short strings (Pin the gizmo, so that it stays in place when switching between objects)
 tool.gizmo.pin = "Pin";
-// Ideally <10 chars (Rotate, Translate and Scale the object)
+// Ideally short strings (Rotate, Translate and Scale the object)
 tool.transform = "Ubah";
-// Ideally <10 chars (Translate the object)
+// Ideally short strings (Translate the object)
 tool.transform.move = "Pindah";
-// Ideally <10 chars (Rotate the object)
+// Ideally short strings (Rotate the object)
 tool.transform.rotate = "Putar";
-// Ideally <10 chars (Scale the object)
+// Ideally short strings (Scale the object)
 tool.transform.scale = "Skala";
-// Ideally <10 chars (Snap the object on another object surface)
+// Ideally short strings (Snap the object on another object surface)
 tool.transform.snap = "Paskan";
-// Ideally <10 chars (Measure distance between 2 points)
+// Ideally short strings (Measure distance between 2 points)
 tool.measure = "Ukuran";
-// Ideally <10 chars (Lattice, deformer)
+// Ideally short strings (Lattice, deformer)
 tool.lattice = "Kerangka";
 // If an option is shared among the tools
 tool.all = "Semua";
-// Ideally <10 chars (Quad Remesher)
+// Ideally short strings (Quad Remesher)
 tool.remesh = "Quad Remesher";
 tool.remesh.guides = "Panduan";
 tool.remesh.density = "Kepadatan";
 tool.remesh.same = "Sama";
 tool.remesh.half = "Setengah";
-// Ideally <10 chars (FaceGroup)
+// Ideally short strings (FaceGroup)
 tool.faceGroup = "Grup Wajah";
 tool.faceGroup.autoPick = "Auto-pilih";
 tool.faceGroup.flush = "Hapus yang tidak digunakan";
@@ -2302,35 +2328,35 @@ tool.faceGroup.skipArea = "Luas permukaan";
 tool.faceGroup.skipArea.help = "Jangan buat grup baru jika luas permukaan grup baru lebih kecil dari ambang batas ini.
 
 Ambang batas diberikan sebagai persentase dari total area objek.";
-// Ideally <10 chars (Hide)
+// Ideally short strings (Hide)
 tool.hide = "Sembunyi";
-// Ideally <10 chars (View tool, do nothing in particular)
+// Ideally short strings (View tool, do nothing in particular)
 tool.view = "Tampilan";
-// Ideally <10 chars (Revolving surface along a line)
+// Ideally short strings (Revolving surface along a line)
 tool.lathe = "Bubut";
-// Ideally <10 chars (Revolving surface along a curve)
+// Ideally short strings (Revolving surface along a curve)
 tool.tube = "Tabung";
-// Ideally <10 chars (Insert object into the scene)
+// Ideally short strings (Insert object into the scene)
 tool.insert = "Masukkan";
-// Ideally <10 chars (Flip/Invert/Negate the shape)
+// Ideally short strings (Flip/Invert/Negate the shape)
 tool.shape.flip = "Balik";
-// Ideally <10 chars (No shape selected, same as Camera mode, does nothing in particular)
+// Ideally short strings (No shape selected, same as Camera mode, does nothing in particular)
 tool.shape.view = "Tampilan";
-// Ideally <10 chars (Lasso selection)
+// Ideally short strings (Lasso selection)
 tool.shape.lasso = "Tali";
-// Ideally <10 chars (Curve selection, same as Lasso and it's an open shape)
+// Ideally short strings (Curve selection, same as Lasso and it's an open shape)
 tool.shape.curve = "Lengkung";
-// Ideally <10 chars (Polygon selection, same as Lasso but with more precision)
+// Ideally short strings (Polygon selection, same as Lasso but with more precision)
 tool.shape.polygon = "Poligon";
-// Ideally <10 chars (Path selection, same as Lasso but with more precision and it's an open shape)
+// Ideally short strings (Path selection, same as Lasso but with more precision and it's an open shape)
 tool.shape.path = "Jalur";
-// Ideally <10 chars (Rectangular selection)
+// Ideally short strings (Rectangular selection)
 tool.shape.rectangle = "Rect";
-// Ideally <10 chars (Ellipse selection)
+// Ideally short strings (Ellipse selection)
 tool.shape.ellipse = "Elips";
-// Ideally <10 chars (Line selection, split the screen in half)
+// Ideally short strings (Line selection, split the screen in half)
 tool.shape.line = "Garis";
-// Ideally <10 chars (Whether a shape is closed or not, a tube is open, a torus is closed)
+// Ideally short strings (Whether a shape is closed or not, a tube is open, a torus is closed)
 tool.shape.closed = "Tutup";
 
 // Radius of the tool (size)
@@ -2725,10 +2751,21 @@ binding.addSync = "Sinkron";
 binding.addSync.help = "Secara default, akan menggunakan nilai sinkron yang ditetapkan di menu scene.";
 // Binding option
 binding.context.toggle = "Alihkan konteks";
-binding.toggleTool = "Alihkan pintasan alat";
-binding.toggleTool.help = "Saat menggunakan salah satu pintasan alat, alat sebelumnya akan dipilih jika alat pintasan saat ini aktif.";
-// When the key is tap once, the value will be toggled
-binding.toggleTap = "Beralih pintasan pada ketukkan tombol";
+// quick sidebar tool shortcuts
+binding.quicks = "Jalan pintas cepat";
+// quick regular tool shortcuts
+binding.tools = "Jalan pintas alat";
+// When the key is tapped once, the value will be toggled
+binding.toggle = "Alihkan Alat Sebelumnya";
+binding.toggle.help = "Gunakan pengikatan yang sama untuk kembali ke alat terakhir.";
+// sticky keys
+binding.sticky = "Kunci lengket";
+binding.sticky.off = "Tahan";
+binding.sticky.off.help = "Tahan kunci untuk menggunakan alat, lepaskan untuk kembali ke alat sebelumnya.";
+binding.sticky.on = "Alihkan";
+binding.sticky.on.help = "Tekan sekali untuk mengganti alat.";
+binding.sticky.quick = "Tekan Cepat";
+binding.sticky.quick.help = "Tahan untuk penggunaan sementara, tekan cepat untuk beralih.";
 // The binding force camera movement
 binding.forceCamera = "Paksa Kamera";
 binding.forceCamera.help = "Paksa interaksi kamera jika ada konflik dengan pengikatan lain.
@@ -2740,6 +2777,8 @@ binding.pickMaterial = "Pilih Material";
 binding.pickFaceGroup = "Pilih Grup Wajah";
 // Edit the tool brush size/radius
 binding.editRadius = "Radius Alat";
+// Inverse direction zooming
+binding.invertZoomY = "Balikkan zoom Y";
 // Edit the tool brush size/radius
 binding.editIntensity = "Intensitas Alat";
 // Controller dead zone

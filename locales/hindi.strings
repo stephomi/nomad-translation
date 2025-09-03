@@ -8,6 +8,8 @@ confirm.no = "नहीं";
 confirm.ok = "ठीक";
 // Cancel something after being asked (Question? [answer, cancel])
 confirm.cancel = "रद्द करें";
+// Restart nomad
+confirm.restart = "इस मान को बदलने के बाद, आपको Nomad को पुनः आरंभ करने की आवश्यकता है।";
 
 // Experimental feature
 experimental = "प्रायोगिक!";
@@ -123,7 +125,7 @@ item.lock = "लॉक करें";
 // No item selected
 item.none = "नहीं";
 // Draggable, moveable
-item.draggable = "";
+item.draggable = "हिलाने योग्य";
 
 // Search something (text entry to filter item)
 search = "ढूंढिए";
@@ -184,12 +186,14 @@ material.projection.triplanar = "त्रिफ़लक";
 
 // Prefer low power
 about.lowPower = "कम शक्ति वाला GPU";
-about.lowPower.confirm = "इस मान को बदलने के बाद, आपको Nomad को पुनः आरंभ करने की आवश्यकता है।";
 // Wintab wacom API
 about.wintab = "WinTab का उपयोग करें";
 about.wintab.help = "यदि WinTab सक्षम है, तो आपको शायद अपनी Wacom सेटिंग्स में Windows Ink को निष्क्रिय करना चाहिए।
 
 इसी प्रकार, यदि WinTab अक्षम है, तो Wacom सेटिंग्स में Windows Ink को सक्षम होना चाहिए।";
+// Wacom Multi Touch API
+about.touch = "वाकॉम मल्टी-टच का उपयोग करें";
+about.touch.help = "वाकॉम टैबलेट पर कई उंगलियों का समर्थन करने के लिए इस विकल्प को सक्षम करें।";
 // Prefer low power
 about.fullScreen = "पूर्ण स्क्रीन";
 // Minify
@@ -350,7 +354,17 @@ background.imageRotation = "घुमाव";
 // Scale of the reference image
 background.imageScale = "स्केल";
 // Auto adjust the reference when moving the camera
-background.syncLock = "कैमरा लॉक के साथ सिंक करें";
+background.lock.image = "कैमरा लॉक के साथ सिंक करें";
+background.lock.image.help = "जब कैमरा स्नैप क्यूब के साथ लॉक होता है, संदर्भ छवि कैमरा मूवमेंट का अनुसरण करती है।";
+// When exiting camera lock
+background.lock.exit = "लॉक हटाने पर रीसेट करें:";
+background.lock.exit.none = "फील्ड ऑफ व्यू समायोजित करें";
+background.lock.exit.none.help = "छवि और कैमरा को जैसा है वैसा ही रखें।
+यदि पर्सपेक्टिव में है, तो केवल फील्ड ऑफ व्यू समायोजित करें।";
+background.lock.exit.all = "सभी रीसेट करें";
+background.lock.exit.all.help = "छवि और कैमरा पोजीशन दोनों को रीसेट करें।";
+background.lock.exit.perspective = "यदि पर्सपेक्टिव";
+background.lock.exit.perspective.help = "यदि पर्सपेक्टिव में है, तो छवि और कैमरा पोजीशन को रीसेट करें।";
 
 // Blend: normal
 blend.normal = "सामान्य";
@@ -460,8 +474,8 @@ camera.autoPivot.help = "कैमरे से इंटरैक्ट कर�
 camera.doubleTapFocus = "फ़ोकस";
 camera.doubleTapFocus.help = "वस्तु पर डबल टैप करने पर, कैमरा पैन करेगा और चुने गए बिंदु पर फ़ोकस करेगा.";
 // Disable XY panning when unzomming
-camera.centerZoomOut = "	 ";
-camera.panZoomOut.help = " 	 ";
+camera.centerZoomOut = "";
+camera.panZoomOut.help = "";
 
 // Toolbox context (when expanded), multiple objects are selected
 context.multiselection = "एकाधिक चयन";
@@ -508,8 +522,8 @@ curve.pivot.self = "वक्र";
 curve.pivot.children = "बच्चे";
 
 // Set the desired FPS (frame per second, refresh rate)
-debug.limitFps = "एफपीएस टारगेट करें";
-debug.limitFps.help = "अक्षम होने पर, डिफ़ॉल्ट मान का अर्थ है कि यह डिस्प्ले की रीफ़्रेश दर के साथ समन्वयित होगा।";
+debug.targetFps = "एफपीएस टारगेट करें";
+debug.targetFps.help = "अक्षम होने पर, डिफ़ॉल्ट मान का अर्थ है कि यह डिस्प्ले की रीफ़्रेश दर के साथ समन्वयित होगा।";
 
 // Warning about UVs (using extra memory)
 debug.uvPrimitive.warning = "यदि आपको UVs की आवश्यकता नहीं है, तो इस विकल्प को अक्षम करें (अतिरिक्त मेमोरी).";
@@ -530,6 +544,14 @@ debug.thumbnails = "स्टोर थंबनेल बनाएँ";
 
 // Open file explorer
 file.explore = "खोजें";
+// Open file explorer
+file.scope = "दायरा";
+file.scope.internal = "आंतरिक";
+file.scope.internal.help = "डिफ़ॉल्ट व्यवहार, मोबाइल के समान।
+प्रोजेक्ट केवल मुख्य नोमैड फ़ोल्डर के अंदर सहेजे जाते हैं।";
+file.scope.external = "स्थान पर";
+file.scope.external.help = "बाहरी स्रोत से प्रोजेक्ट आयात करने पर, सेव करने पर मूल फ़ाइल अधिलेखित हो जाएगी।
+बाहरी प्रोजेक्ट्स के लिए स्वतः सहेजना समर्थित नहीं है।";
 // Empty list: there is no projects
 file.project.load = "स्टार्टअप पर प्रोजेक्ट पुनः लोड करें";
 // Empty list: there is no projects
@@ -777,8 +799,8 @@ pressure.intensity = "तीव्रता";
 pressure.average = "दबाव स्मूदिंग";
 pressure.average.help = "हाथ से लिखने के दबाव की घटनाओं को समान करें ताकि और भी स्मूथ परिणाम मिल सकें।";
 // Limit pressure to 100%
-pressure.limit = "   100% ";
-pressure.limit.help = "    	   100% 	  .";
+pressure.limit = "";
+pressure.limit.help = "";
 
 // list of inputs allowing camera interaction
 gesture.camera = "कैमरा";
@@ -792,6 +814,10 @@ gesture.finger = "उंगली";
 gesture.stylus = "स्टाइलस";
 // Mouse/Trackpad
 gesture.mouse = "माउस";
+
+gesture.wheel = "माउस व्हील";
+gesture.wheel.speed3d = "गति (3डी ज़ूम)";
+gesture.wheel.speed2d = "गति (2डी इंटरफ़ेस)";
 
 // long press to pick the color/material under the cursor
 gesture.dropper = "मटीरीयल चुनाव";
@@ -1771,6 +1797,7 @@ settings.stats.right = "दायाँ";
 settings.stats.all = "पूरा दृश्य दिखाएँ";
 // Grid
 settings.grid = "जाल";
+settings.grid.divideThreshold = "विभाजन सीमा";
 // Cursor
 settings.cursor.title = "कर्सर";
 settings.cursor.whileSculpting = "गढ़ने के दौरान वृत दिखाएँ";
@@ -1997,16 +2024,18 @@ stroke.silhouette.closest = "सबसे नज़दीकी";
 stroke.sameSide = "उसी तरफ़ का शीर्ष बिंदु";
 stroke.sameSide.help = "विरूपण की विपरीत दिशा में इंगित करने वाले शीर्ष बिंदुओं को अनदेखा करें.";
 // determine normal direction
-stroke.normal.direction = "";
-stroke.normal.direction.help = "";
-stroke.normal.direction.normal = "";
-stroke.normal.direction.normal.help = "";
-stroke.normal.direction.screen = "";
-stroke.normal.direction.screen.help = "";
-stroke.normal.direction.auto = "";
-stroke.normal.direction.auto.help = "";
-stroke.normal.direction.auto.threshold = "";
-stroke.normal.direction.auto.threshold.help = "";
+stroke.normal.direction = "दिशा";
+stroke.normal.direction.help = "केवल तभी प्रासंगिक जब सामान्य विकृति सक्षम हो।
+
+यह नियंत्रित करता है कि नोमैड विकृति चिह्न (धक्का बनाम खींचो) कैसे तय करता है।";
+stroke.normal.direction.normal = "सामान्य 3डी";
+stroke.normal.direction.normal.help = "रेखांगत सतह सामान्य के साथ पॉइंटर की XY स्थिति तुलना करता है।";
+stroke.normal.direction.screen = "XY";
+stroke.normal.direction.screen.help = "धक्का या खींचो तय करने के लिए पॉइंटर की स्क्रीन XY स्थिति का उपयोग करता है।";
+stroke.normal.direction.auto = "स्वतः";
+stroke.normal.direction.auto.help = "प्रक्षिप्त सामान्य कोण के आधार पर विधि को स्वचालित रूप से चुनता है।";
+stroke.normal.direction.auto.threshold = "सीमा";
+stroke.normal.direction.auto.threshold.help = "यह तय करने के लिए सतह सामान्य के खिलाफ कोण सीमा तुलना की जाती है कि किस विधि का उपयोग किया जाए।";
 // small tip/warning
 stroke.onlyLasso = "सेटिंग्ज़ केवल लासो टूल के लिए सक्रिय हैं.";
 
@@ -2031,13 +2060,14 @@ stroke.normalFilter.help = "
 डेप्थ फ़िल्टरिंग";
 
 // Only paint the part of the mesh above a certain height
-stroke.depthFilter = "गहराई मास्किंग";
-stroke.depthFilter.help = "उन बिंदुओं को बाहर करें जो गणना किए गए तल (क्षेत्रफल नमूनाकरण) से एक निश्चित दूरी के ऊपर या नीचे हैं।
+stroke.depth.enable = "गहराई मास्किंग";
+stroke.depth.enable.help = "उन बिंदुओं को बाहर करें जो गणना किए गए तल (क्षेत्रफल नमूनाकरण) से एक निश्चित दूरी के ऊपर या नीचे हैं।
 
 उदाहरण के लिए, इसका उपयोग उभार या गड्ढों को पेंट करने के लिए किया जा सकता है।";
-stroke.depthFilter.max = "शीर्ष क्षेत्रफल";
-stroke.depthFilter.min = "तल क्षेत्रफल";
-stroke.depthFilter.offset = "ऊंचाई ऑफसेट";
+stroke.depth.offset = "ऊंचाई ऑफसेट";
+stroke.depth.falloff = "गहराई का पतन";
+stroke.depth.max = "शीर्ष क्षेत्रफल";
+stroke.depth.min = "तल क्षेत्रफल";
 
 // Invert the pixel (black <-> white)
 stroke.alpha.invert = "इन्वर्ट पिक्सेल";
@@ -2185,101 +2215,101 @@ symmetry.edit.help = "आप सममिति फलक को स्वतं
 
 यह फ़ीचर प्रायोगिक है और आपको शायद इसका उपयोग कभी नहीं करना चाहिये.";
 
-// Ideally <10 chars
+// Ideally short strings
 tool.dynamic = "डायनामिकटोपोलॉजी";
-// Ideally <10 chars (Symmetry)
+// Ideally short strings (Symmetry)
 tool.symmetry = "सममिति";
-// Ideally <10 chars (Mirror primitive)
+// Ideally short strings (Mirror primitive)
 tool.mirror = "प्रतिरूप";
-// Ideally <10 chars
+// Ideally short strings
 tool.clay = "क्ले";
-// Ideally <10 chars (Subtract)
+// Ideally short strings (Subtract)
 tool.clay.sub = "घटाएँ";
-// Ideally <10 chars
+// Ideally short strings
 tool.brush = "ब्रश";
-// Ideally <10 chars
+// Ideally short strings
 tool.move = "ले जाएँ";
-// Ideally <10 chars (Normal vector, perpendicular to surface)
+// Ideally short strings (Normal vector, perpendicular to surface)
 tool.move.normal = "सामान्य";
-// Ideally <10 chars
+// Ideally short strings
 tool.drag = "घसीटें";
-// Ideally <10 chars (Smooth the surface by erasing the details)
+// Ideally short strings (Smooth the surface by erasing the details)
 tool.smooth = "चिकना";
-// Ideally <10 chars (Tries to smooth the topology by making the polygons more regular)
+// Ideally short strings (Tries to smooth the topology by making the polygons more regular)
 tool.smooth.relax = "शिथिल";
-// Ideally <10 chars (Paint mask)
+// Ideally short strings (Paint mask)
 tool.mask = "मुखौटा";
-// Ideally <10 chars
+// Ideally short strings
 tool.mask.unmask = "मुखौटा हटाएँ";
-// Ideally <10 chars (Selector Mask, use lasso/ellipse,etc shape to mask the mesh)
+// Ideally short strings (Selector Mask, use lasso/ellipse,etc shape to mask the mesh)
 tool.maskSelector = "मुखौटाचयन";
-// Ideally <10 chars (Smudge the paint of the object)
+// Ideally short strings (Smudge the paint of the object)
 tool.smudge = "स्मज़";
-// Ideally <10 chars (Flatten the surface)
+// Ideally short strings (Flatten the surface)
 tool.flatten = "चपटा";
-// Ideally <10 chars (Flatten the surface, more strongly than Flatten)
+// Ideally short strings (Flatten the surface, more strongly than Flatten)
 tool.planar = "समतल";
-// Ideally <10 chars (Flatten the surface by offsetting the surface in the opposite direction)
+// Ideally short strings (Flatten the surface by offsetting the surface in the opposite direction)
 tool.flatten.fill = "भरें";
-// Ideally <10 chars (Layer brush)
+// Ideally short strings (Layer brush)
 tool.layer = "परत";
-// Ideally <10 chars
+// Ideally short strings
 tool.crease = "चुनट";
-// Ideally <10 chars (Cut part of the mesh cleanly)
+// Ideally short strings (Cut part of the mesh cleanly)
 tool.trim = "ट्रिम";
-// Ideally <10 chars (Cut part of the mesh cleanly into two separate meshes)
+// Ideally short strings (Cut part of the mesh cleanly into two separate meshes)
 tool.split = "विभाजन";
-// Ideally <10 chars (Project part of the object onto a curve)
+// Ideally short strings (Project part of the object onto a curve)
 tool.project = "प्रक्षेपण";
-// Ideally <10 chars
+// Ideally short strings
 tool.inflate = "फुलाएँ";
-// Ideally <10 chars
+// Ideally short strings
 tool.pinch = "पिंच";
-// Ideally <10 chars
+// Ideally short strings
 tool.nudge = "खिसकाएँ";
-// Ideally <10 chars
+// Ideally short strings
 tool.stamp = "ठप्पा";
-// Ideally <10 chars (Delete Layer, a tool that can cancel the Layer deformation/paint)
+// Ideally short strings (Delete Layer, a tool that can cancel the Layer deformation/paint)
 tool.clearLayer = "डिलीटलेयर";
-// Ideally <10 chars (Select multiple objects with a lasso tool)
+// Ideally short strings (Select multiple objects with a lasso tool)
 tool.select = "चुनें";
-// Ideally <10 chars (Rotate, Translate and Scale the object)
+// Ideally short strings (Rotate, Translate and Scale the object)
 tool.gizmo = "गिज़्मो";
-// Ideally <10 chars
+// Ideally short strings
 tool.gizmo.editPivot = "धुरी";
-// Ideally <10 chars (Snap angle)
+// Ideally short strings (Snap angle)
 tool.gizmo.rotateSnap = "स्नैप";
-// Ideally <10 chars (Snap translation)
+// Ideally short strings (Snap translation)
 tool.gizmo.moveSnap = "स्नैप";
-// Ideally <10 chars (Local/Relative space)
+// Ideally short strings (Local/Relative space)
 tool.gizmo.local = "स्थानीय";
-// Ideally <10 chars (Align/Snap the gizmo to world axis)
+// Ideally short strings (Align/Snap the gizmo to world axis)
 tool.gizmo.align = "संरेखित करें";
-// Ideally <10 chars (Pin the gizmo, so that it stays in place when switching between objects)
+// Ideally short strings (Pin the gizmo, so that it stays in place when switching between objects)
 tool.gizmo.pin = "पिन";
-// Ideally <10 chars (Rotate, Translate and Scale the object)
+// Ideally short strings (Rotate, Translate and Scale the object)
 tool.transform = "रूपांतरण";
-// Ideally <10 chars (Translate the object)
+// Ideally short strings (Translate the object)
 tool.transform.move = "ले जाएँ";
-// Ideally <10 chars (Rotate the object)
+// Ideally short strings (Rotate the object)
 tool.transform.rotate = "घुमाएँ";
-// Ideally <10 chars (Scale the object)
+// Ideally short strings (Scale the object)
 tool.transform.scale = "स्केल";
-// Ideally <10 chars (Snap the object on another object surface)
+// Ideally short strings (Snap the object on another object surface)
 tool.transform.snap = "स्नैप";
-// Ideally <10 chars (Measure distance between 2 points)
+// Ideally short strings (Measure distance between 2 points)
 tool.measure = "माप";
-// Ideally <10 chars (Lattice, deformer)
+// Ideally short strings (Lattice, deformer)
 tool.lattice = "जाली";
 // If an option is shared among the tools
 tool.all = "सभी";
-// Ideally <10 chars (Quad Remesher)
+// Ideally short strings (Quad Remesher)
 tool.remesh = "चतुर्भुज पुनर्गठनकर्ता";
 tool.remesh.guides = "मार्गदर्शक";
 tool.remesh.density = "घनत्व";
 tool.remesh.same = "Same";
 tool.remesh.half = "Half";
-// Ideally <10 chars (FaceGroup)
+// Ideally short strings (FaceGroup)
 tool.faceGroup = "फेस समूह";
 tool.faceGroup.autoPick = "स्वत: चयन";
 tool.faceGroup.flush = "अप्रयुक्त हटाएँ";
@@ -2290,35 +2320,35 @@ tool.faceGroup.skipArea = "सतह क्षेत्र";
 tool.faceGroup.skipArea.help = "यदि नए समूह का सतह क्षेत्रफल इस दहलीज से कम है तो नया समूह न बनाएं।
 
 दहलीज को वस्तु के कुल क्षेत्रफल के प्रतिशत के रूप में दिया गया है।";
-// Ideally <10 chars (Hide)
+// Ideally short strings (Hide)
 tool.hide = "छिपाएँ";
-// Ideally <10 chars (View tool, do nothing in particular)
+// Ideally short strings (View tool, do nothing in particular)
 tool.view = "दृश्य";
-// Ideally <10 chars (Revolving surface along a line)
+// Ideally short strings (Revolving surface along a line)
 tool.lathe = "लैथ";
-// Ideally <10 chars (Revolving surface along a curve)
+// Ideally short strings (Revolving surface along a curve)
 tool.tube = "नली";
-// Ideally <10 chars (Insert object into the scene)
+// Ideally short strings (Insert object into the scene)
 tool.insert = "सम्मिलित करें";
-// Ideally <10 chars (Flip/Invert/Negate the shape)
+// Ideally short strings (Flip/Invert/Negate the shape)
 tool.shape.flip = "पलटें";
-// Ideally <10 chars (No shape selected, same as Camera mode, does nothing in particular)
+// Ideally short strings (No shape selected, same as Camera mode, does nothing in particular)
 tool.shape.view = "दृश्य";
-// Ideally <10 chars (Lasso selection)
+// Ideally short strings (Lasso selection)
 tool.shape.lasso = "लासो";
-// Ideally <10 chars (Curve selection, same as Lasso and it's an open shape)
+// Ideally short strings (Curve selection, same as Lasso and it's an open shape)
 tool.shape.curve = "वक्र";
-// Ideally <10 chars (Polygon selection, same as Lasso but with more precision)
+// Ideally short strings (Polygon selection, same as Lasso but with more precision)
 tool.shape.polygon = "बहुभुज";
-// Ideally <10 chars (Path selection, same as Lasso but with more precision and it's an open shape)
+// Ideally short strings (Path selection, same as Lasso but with more precision and it's an open shape)
 tool.shape.path = "पथ";
-// Ideally <10 chars (Rectangular selection)
+// Ideally short strings (Rectangular selection)
 tool.shape.rectangle = "आयत";
-// Ideally <10 chars (Ellipse selection)
+// Ideally short strings (Ellipse selection)
 tool.shape.ellipse = "दीर्घवृत्त";
-// Ideally <10 chars (Line selection, split the screen in half)
+// Ideally short strings (Line selection, split the screen in half)
 tool.shape.line = "रेखा";
-// Ideally <10 chars (Whether a shape is closed or not, a tube is open, a torus is closed)
+// Ideally short strings (Whether a shape is closed or not, a tube is open, a torus is closed)
 tool.shape.closed = "बंद";
 
 // Radius of the tool (size)
@@ -2712,10 +2742,21 @@ binding.addSync = "सिंक करें";
 binding.addSync.help = "डिफ़ॉल्ट रूप से, यह दृश्य मेनू में सेट सिंक मान का उपयोग करेगा।";
 // Binding option
 binding.context.toggle = "संदर्भ टॉगल करें";
-binding.toggleTool = "टूल शॉर्टकट्स टॉगल करें";
-binding.toggleTool.help = "जब आप टूल शॉर्टकट्स में से किसी एक का उपयोग करते हैं, तो पिछला टूल चुना जाएगा यदि वर्तमान शॉर्टकट टूल सक्रिय है।";
-// When the key is tap once, the value will be toggled
-binding.toggleTap = "कुंजी टैप पर शॉर्टकट टॉगल करें";
+// quick sidebar tool shortcuts
+binding.quicks = "त्वरित शॉर्टकट्स";
+// quick regular tool shortcuts
+binding.tools = "उपकरण शॉर्टकट्स";
+// When the key is tapped once, the value will be toggled
+binding.toggle = "पिछला उपकरण टॉगल करें";
+binding.toggle.help = "एक ही बाइंडिंग का उपयोग करके अंतिम उपकरण पर वापस स्विच करें।";
+// sticky keys
+binding.sticky = "स्टिकी कुंजियाँ";
+binding.sticky.off = "पकड़ें";
+binding.sticky.off.help = "उपकरण का उपयोग करने के लिए कुंजी पकड़ें, वापस लौटने के लिए छोड़ें।";
+binding.sticky.on = "टॉगल करें";
+binding.sticky.on.help = "उपकरणों को स्विच करने के लिए एक बार दबाएँ।";
+binding.sticky.quick = "त्वरित प्रेस";
+binding.sticky.quick.help = "अस्थायी उपयोग के लिए पकड़ें, स्विच करने के लिए त्वरित प्रेस।";
 // The binding force camera movement
 binding.forceCamera = "कैमरे को मजबूर करें";
 binding.forceCamera.help = "कैमरा इंटरेक्शन को तब मजबूर करें जब किसी अन्य बाइंडिंग के साथ संघर्ष हो।
@@ -2727,10 +2768,12 @@ binding.pickMaterial = "मटीरीयल पिकर";
 binding.pickFaceGroup = "चेहरे समूह चुनें";
 // Edit the tool brush size/radius
 binding.editRadius = "टूल त्रिज्या";
+// Inverse direction zooming
+binding.invertZoomY = "ज़ूम Y फ्लिप करें";
 // Edit the tool brush size/radius
 binding.editIntensity = "टूल तीव्रता";
 // Controller dead zone
-binding.joystick = "";
+binding.joystick = "";
 binding.controller.deadZone = "स्टिक डेड जोन";
 binding.controller.deadZone.help = "यदि नियंत्रक स्टिक को बिना छुए भी कैमरा हिल रहा है तो इस मान को बढ़ाएँ।";
 // Snap the camera
@@ -2791,10 +2834,10 @@ nomad.mainFolder.warning = "फाइलें छुई नहीं जात�
 वे नकली, हटाए गए या स्थानांतरित नहीं होते हैं।";
 nomad.mainFolder.error = "हाँ चुनने के बाद, नोमाड बंद हो जाएगा और आप बस इसे पुनः शुरू कर सकते हैं।";
 
-license.title = "";
-license.retry = "";
-license.key = " ";
-license.activate = " ";
+license.title = "";
+license.retry = "";
+license.key = "";
+license.activate = "";
 // ----------------------------------------------
 license.newest = "नई संस्करण उपलब्ध!";
 license.encrypt.error = "एन्क्रिप्ट नहीं हो सका!";

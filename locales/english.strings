@@ -8,6 +8,8 @@ confirm.no = "No";
 confirm.ok = "Ok";
 // Cancel something after being asked (Question? [answer, cancel])
 confirm.cancel = "Cancel";
+// Restart nomad
+confirm.restart = "After changing this value, you need to restart Nomad.";
 
 // Experimental feature
 experimental = "Experimental!";
@@ -184,12 +186,14 @@ material.projection.triplanar = "Triplanar";
 
 // Prefer low power
 about.lowPower = "Low power GPU";
-about.lowPower.confirm = "After changing this value, you need to restart Nomad.";
 // Wintab wacom API
 about.wintab = "Use WinTab";
 about.wintab.help = "If WinTab is enabled, you should probably disable Windows Ink in your Wacom settings.
 
-Similarly, if WinTab is disabled, then Windows Ink should be enabled in the Wacom settings";
+Similarly, if WinTab is disabled, then Windows Ink should be enabled in the Wacom settings.";
+// Wacom Multi Touch API
+about.touch = "Use Wacom Multi-Touch";
+about.touch.help = "Enable this option to support multiple fingers on Wacom tablets.";
 // Prefer low power
 about.fullScreen = "Full Screen";
 // Minify
@@ -350,7 +354,17 @@ background.imageRotation = "Rotation";
 // Scale of the reference image
 background.imageScale = "Scale";
 // Auto adjust the reference when moving the camera
-background.syncLock = "Sync with camera lock";
+background.lock.image = "Sync on camera lock";
+background.lock.image.help = "When the camera is locked with the Snap Cube, the reference image follows camera movement.";
+// When exiting camera lock
+background.lock.exit = "Reset on unlock:";
+background.lock.exit.none = "Adjust Fov";
+background.lock.exit.none.help = "Keep image and camera as is.  
+If in perspective, only adjust field of view.";
+background.lock.exit.all = "Reset All";
+background.lock.exit.all.help = "Reset both image and camera position.";
+background.lock.exit.perspective = "If Perspective";
+background.lock.exit.perspective.help = "If in perspective, reset the image and camera position.";
 
 // Blend: normal
 blend.normal = "Normal";
@@ -508,8 +522,8 @@ curve.pivot.self = "Self";
 curve.pivot.children = "Children";
 
 // Set the desired FPS (frame per second, refresh rate)
-debug.limitFps = "Target FPS";
-debug.limitFps.help = "When disabled, the default value means it will sync with the display's refresh rate.";
+debug.targetFps = "Target FPS";
+debug.targetFps.help = "When disabled, the default value means it will sync with the display's refresh rate.";
 
 // Warning about UVs (using extra memory)
 debug.uvPrimitive.warning = "Disable this option if you don't need UVs.
@@ -532,6 +546,14 @@ debug.thumbnails = "Make store thumbnails";
 
 // Open file explorer
 file.explore = "Explore";
+// Open file explorer
+file.scope = "Scope";
+file.scope.internal = "Internal";
+file.scope.internal.help = "Default behavior, same as mobile.  
+Projects are saved only inside the main Nomad folder.";
+file.scope.external = "In Place";
+file.scope.external.help = "When importing a project from outside, saving will overwrite the original file.
+Auto Save is not supported for external projects.";
 // Empty list: there is no projects
 file.project.load = "Reload project on startup";
 // Empty list: there is no projects
@@ -798,6 +820,10 @@ gesture.finger = "Finger";
 gesture.stylus = "Stylus";
 // Mouse/Trackpad
 gesture.mouse = "Mouse";
+
+gesture.wheel = "Mouse wheel";
+gesture.wheel.speed3d = "Speed (3d zoom)";
+gesture.wheel.speed2d = "Speed (2d interface)";
 
 // long press to pick the color/material under the cursor
 gesture.dropper = "Material picking";
@@ -1780,6 +1806,7 @@ settings.stats.right = "Right";
 settings.stats.all = "Show full scene";
 // Grid
 settings.grid = "Grid";
+settings.grid.divideThreshold = "Divide threshold";
 // Cursor
 settings.cursor.title = "Cursor";
 settings.cursor.whileSculpting = "Show circle while sculpting";
@@ -2045,13 +2072,14 @@ It will change how the plane area is computed (Area sampling).
 This option can be useful for flatten-based tool, or if you want to color a planar surface without spilling.";
 
 // Only paint the part of the mesh above a certain height
-stroke.depthFilter = "Depth filter";
-stroke.depthFilter.help = "Exclude points that are above or below a certain distance of the computed plane (Area sampling).
+stroke.depth.enable = "Depth filter";
+stroke.depth.enable.help = "Exclude points that are above or below a certain distance of the computed plane (Area sampling).
 
 As an example, it can be used to paint bumps or cavities.";
-stroke.depthFilter.max = "Top area";
-stroke.depthFilter.min = "Bottom area";
-stroke.depthFilter.offset = "Height offset";
+stroke.depth.offset = "Height offset";
+stroke.depth.falloff = "Depth falloff";
+stroke.depth.max = "Top area";
+stroke.depth.min = "Bottom area";
 
 // Invert the pixel (black <-> white)
 stroke.alpha.invert = "Invert pixels";
@@ -2199,101 +2227,101 @@ symmetry.edit.help = "You can freely set the symmetry plane.
 
 This feature is a bit experimental and you should probably never use it.";
 
-// Ideally <10 chars
+// Ideally short strings
 tool.dynamic = "DynTopo";
-// Ideally <10 chars (Symmetry)
+// Ideally short strings (Symmetry)
 tool.symmetry = "Sym";
-// Ideally <10 chars (Mirror primitive)
+// Ideally short strings (Mirror primitive)
 tool.mirror = "Mirror";
-// Ideally <10 chars
+// Ideally short strings
 tool.clay = "Clay";
-// Ideally <10 chars (Subtract)
+// Ideally short strings (Subtract)
 tool.clay.sub = "Sub";
-// Ideally <10 chars
+// Ideally short strings
 tool.brush = "Brush";
-// Ideally <10 chars
+// Ideally short strings
 tool.move = "Move";
-// Ideally <10 chars (Normal vector, perpendicular to surface)
+// Ideally short strings (Normal vector, perpendicular to surface)
 tool.move.normal = "Normal";
-// Ideally <10 chars
+// Ideally short strings
 tool.drag = "Drag";
-// Ideally <10 chars (Smooth the surface by erasing the details)
+// Ideally short strings (Smooth the surface by erasing the details)
 tool.smooth = "Smooth";
-// Ideally <10 chars (Tries to smooth the topology by making the polygons more regular)
+// Ideally short strings (Tries to smooth the topology by making the polygons more regular)
 tool.smooth.relax = "Relax";
-// Ideally <10 chars (Paint mask)
+// Ideally short strings (Paint mask)
 tool.mask = "Mask";
-// Ideally <10 chars
+// Ideally short strings
 tool.mask.unmask = "Unmask";
-// Ideally <10 chars (Selector Mask, use lasso/ellipse,etc shape to mask the mesh)
+// Ideally short strings (Selector Mask, use lasso/ellipse,etc shape to mask the mesh)
 tool.maskSelector = "SelMask";
-// Ideally <10 chars (Smudge the paint of the object)
+// Ideally short strings (Smudge the paint of the object)
 tool.smudge = "Smudge";
-// Ideally <10 chars (Flatten the surface)
+// Ideally short strings (Flatten the surface)
 tool.flatten = "Flatten";
-// Ideally <10 chars (Flatten the surface, more strongly than Flatten)
+// Ideally short strings (Flatten the surface, more strongly than Flatten)
 tool.planar = "Planar";
-// Ideally <10 chars (Flatten the surface by offsetting the surface in the opposite direction)
+// Ideally short strings (Flatten the surface by offsetting the surface in the opposite direction)
 tool.flatten.fill = "Fill";
-// Ideally <10 chars (Layer brush)
+// Ideally short strings (Layer brush)
 tool.layer = "Layer";
-// Ideally <10 chars
+// Ideally short strings
 tool.crease = "Crease";
-// Ideally <10 chars (Cut part of the mesh cleanly)
+// Ideally short strings (Cut part of the mesh cleanly)
 tool.trim = "Trim";
-// Ideally <10 chars (Cut part of the mesh cleanly into two separate meshes)
+// Ideally short strings (Cut part of the mesh cleanly into two separate meshes)
 tool.split = "Split";
-// Ideally <10 chars (Project part of the object onto a curve)
+// Ideally short strings (Project part of the object onto a curve)
 tool.project = "Project";
-// Ideally <10 chars
+// Ideally short strings
 tool.inflate = "Inflate";
-// Ideally <10 chars
+// Ideally short strings
 tool.pinch = "Pinch";
-// Ideally <10 chars
+// Ideally short strings
 tool.nudge = "Nudge";
-// Ideally <10 chars
+// Ideally short strings
 tool.stamp = "Stamp";
-// Ideally <10 chars (Delete Layer, a tool that can cancel the Layer deformation/paint)
+// Ideally short strings (Delete Layer, a tool that can cancel the Layer deformation/paint)
 tool.clearLayer = "DelLayer";
-// Ideally <10 chars (Select multiple objects with a lasso tool)
+// Ideally short strings (Select multiple objects with a lasso tool)
 tool.select = "Select";
-// Ideally <10 chars (Rotate, Translate and Scale the object)
+// Ideally short strings (Rotate, Translate and Scale the object)
 tool.gizmo = "Gizmo";
-// Ideally <10 chars
+// Ideally short strings
 tool.gizmo.editPivot = "Pivot";
-// Ideally <10 chars (Snap angle)
+// Ideally short strings (Snap angle)
 tool.gizmo.rotateSnap = "Snap";
-// Ideally <10 chars (Snap translation)
+// Ideally short strings (Snap translation)
 tool.gizmo.moveSnap = "Snap";
-// Ideally <10 chars (Local/Relative space)
+// Ideally short strings (Local/Relative space)
 tool.gizmo.local = "Local";
-// Ideally <10 chars (Align/Snap the gizmo to world axis)
+// Ideally short strings (Align/Snap the gizmo to world axis)
 tool.gizmo.align = "Align";
-// Ideally <10 chars (Pin the gizmo, so that it stays in place when switching between objects)
+// Ideally short strings (Pin the gizmo, so that it stays in place when switching between objects)
 tool.gizmo.pin = "Pin";
-// Ideally <10 chars (Rotate, Translate and Scale the object)
+// Ideally short strings (Rotate, Translate and Scale the object)
 tool.transform = "Transform";
-// Ideally <10 chars (Translate the object)
+// Ideally short strings (Translate the object)
 tool.transform.move = "Move";
-// Ideally <10 chars (Rotate the object)
+// Ideally short strings (Rotate the object)
 tool.transform.rotate = "Rotate";
-// Ideally <10 chars (Scale the object)
+// Ideally short strings (Scale the object)
 tool.transform.scale = "Scale";
-// Ideally <10 chars (Snap the object on another object surface)
+// Ideally short strings (Snap the object on another object surface)
 tool.transform.snap = "Snap";
-// Ideally <10 chars (Measure distance between 2 points)
+// Ideally short strings (Measure distance between 2 points)
 tool.measure = "Measure";
-// Ideally <10 chars (Lattice, deformer)
+// Ideally short strings (Lattice, deformer)
 tool.lattice = "Lattice";
 // If an option is shared among the tools
 tool.all = "All";
-// Ideally <10 chars (Quad Remesher)
+// Ideally short strings (Quad Remesher)
 tool.remesh = "Quad Remesher";
 tool.remesh.guides = "Guides";
 tool.remesh.density = "Density";
 tool.remesh.same = "Same";
 tool.remesh.half = "Half";
-// Ideally <10 chars (FaceGroup)
+// Ideally short strings (FaceGroup)
 tool.faceGroup = "Face Group";
 tool.faceGroup.autoPick = "Auto-pick";
 tool.faceGroup.flush = "Remove unused";
@@ -2304,35 +2332,35 @@ tool.faceGroup.skipArea = "Surface area";
 tool.faceGroup.skipArea.help = "Do not create a new group if the surface area of the new group is inferor to this threshold.
 
 The threshold is given as percentage of the total area of the object.";
-// Ideally <10 chars (Hide)
+// Ideally short strings (Hide)
 tool.hide = "Hide";
-// Ideally <10 chars (View tool, do nothing in particular)
+// Ideally short strings (View tool, do nothing in particular)
 tool.view = "View";
-// Ideally <10 chars (Revolving surface along a line)
+// Ideally short strings (Revolving surface along a line)
 tool.lathe = "Lathe";
-// Ideally <10 chars (Revolving surface along a curve)
+// Ideally short strings (Revolving surface along a curve)
 tool.tube = "Tube";
-// Ideally <10 chars (Insert object into the scene)
+// Ideally short strings (Insert object into the scene)
 tool.insert = "Insert";
-// Ideally <10 chars (Flip/Invert/Negate the shape)
+// Ideally short strings (Flip/Invert/Negate the shape)
 tool.shape.flip = "Flip";
-// Ideally <10 chars (No shape selected, same as Camera mode, does nothing in particular)
+// Ideally short strings (No shape selected, same as Camera mode, does nothing in particular)
 tool.shape.view = "View";
-// Ideally <10 chars (Lasso selection)
+// Ideally short strings (Lasso selection)
 tool.shape.lasso = "Lasso";
-// Ideally <10 chars (Curve selection, same as Lasso and it's an open shape)
+// Ideally short strings (Curve selection, same as Lasso and it's an open shape)
 tool.shape.curve = "Curve";
-// Ideally <10 chars (Polygon selection, same as Lasso but with more precision)
+// Ideally short strings (Polygon selection, same as Lasso but with more precision)
 tool.shape.polygon = "Polygon";
-// Ideally <10 chars (Path selection, same as Lasso but with more precision and it's an open shape)
+// Ideally short strings (Path selection, same as Lasso but with more precision and it's an open shape)
 tool.shape.path = "Path";
-// Ideally <10 chars (Rectangular selection)
+// Ideally short strings (Rectangular selection)
 tool.shape.rectangle = "Rect";
-// Ideally <10 chars (Ellipse selection)
+// Ideally short strings (Ellipse selection)
 tool.shape.ellipse = "Ellipse";
-// Ideally <10 chars (Line selection, split the screen in half)
+// Ideally short strings (Line selection, split the screen in half)
 tool.shape.line = "Line";
-// Ideally <10 chars (Whether a shape is closed or not, a tube is open, a torus is closed)
+// Ideally short strings (Whether a shape is closed or not, a tube is open, a torus is closed)
 tool.shape.closed = "Closed";
 
 // Radius of the tool (size)
@@ -2727,10 +2755,21 @@ binding.addSync = "Sync";
 binding.addSync.help = "By default, it will use the sync value set in the scene menu.";
 // Binding option
 binding.context.toggle = "Toggle context";
-binding.toggleTool = "Toggle tool shortcuts";
-binding.toggleTool.help = "When using one of the tool shortcuts, the previous tool will be selected if the current shortcut tool is active.";
-// When the key is tap once, the value will be toggled
-binding.toggleTap = "Toggle shortcut on key tap";
+// quick sidebar tool shortcuts
+binding.quicks = "Quick shortcuts";
+// quick regular tool shortcuts
+binding.tools = "Tools shortcuts";
+// When the key is tapped once, the value will be toggled
+binding.toggle = "Toggle Previous Tool";
+binding.toggle.help = "Use the same binding to switch back to the last tool.";
+// sticky keys
+binding.sticky = "Sticky keys";
+binding.sticky.off = "Hold";
+binding.sticky.off.help = "Hold the key to use the tool, release to return to the previous tool.";
+binding.sticky.on = "Toggle";
+binding.sticky.on.help = "Press once to switch tools.";
+binding.sticky.quick = "Quick Press";
+binding.sticky.quick.help = "Hold to use temporarily, quick press to switch.";
 // The binding force camera movement
 binding.forceCamera = "Force camera";
 binding.forceCamera.help = "Force camera interaction in case there is a conflict with another binding.
@@ -2742,6 +2781,8 @@ binding.pickMaterial = "Pick Material";
 binding.pickFaceGroup = "Pick Face Group";
 // Edit the tool brush size/radius
 binding.editRadius = "Tool Radius";
+// Inverse direction zooming
+binding.invertZoomY = "Flip zoom Y";
 // Edit the tool brush size/radius
 binding.editIntensity = "Tool Intensity";
 // Controller dead zone
@@ -2879,15 +2920,15 @@ version.demo.disable = "Feature not enabled for demo.";
 // ----------------------------------------------
 version.demo = "Demo Test";
 version.demo.sculpt = "Sculpting";
-version.demo.sculpt.help = "All brushes are available but you cannot save or export.
+version.demo.sculpt.help = "All brushes are available, but you cannot save or export.
 
-This mode is mostly meant to experiment with the brushes or test pressure support.
+Use this mode to try brushes or test pressure support.
 
-Other features can limited as well (history, layers).";
+Other features may be limited (history, layers).";
 version.demo.file = "Import & Export";
-version.demo.file.help = "You can import and export model but sculpt brushes are disabled.
+version.demo.file.help = "You can import and export models, but sculpt brushes are disabled.
 
-This mode is mostly useful for mobile users who cannot open big .nom project caused by mobile memory constraint.";
+This mode is mainly for mobile users who cannot open large .nom projects due to memory limits.";
 // ----------------------------------------------
 // app store main page
 store.name = "Nomad Sculpt";
