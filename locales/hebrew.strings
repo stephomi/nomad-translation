@@ -18,6 +18,11 @@ status.exit = "שינויים לא נשמרו! לשמור לפני הסגירה?
 status.exit.yes = "שמור";
 status.exit.no = "אל תשמור";
 
+format.ascii = "אסכי";
+format.binary = "בינארי";
+
+color = "צבע";
+
 // On single tap (should be short)
 ontap = "בלחיצה";
 
@@ -166,6 +171,9 @@ material.normal = "נורמל";
 material.normal.flipY = "היפוך Y";
 // Ambient Occlusion (AO)
 material.occlusion = "אקלוזיה";
+material.unused = "לא בשימוש";
+// Displacement map
+material.displacement = "תזוזה";
 // Textures, basically images wrapped on models (synonym: Maps, Texture maps)
 material.textures = "טקסטורות";
 // Textures/Image
@@ -209,6 +217,8 @@ about.turntable.pivot.keep = "שמירה על הנוכחי";
 about.turntable.pivot.scene = "סצנה";
 // Make the entire scene turn around (speed of the animation)
 about.turntable.speed = "מהירות";
+// Speed easing (linear vs non-linaer)
+about.turntable.linear = "מהירות קבועה";
 // Stuffs that I used to make the app
 about.credits = "קרדיטים";
 // Link to open source projects that I used for the app
@@ -290,10 +300,6 @@ alert.editSymmetry = "הקש פשוט כדי לצאת ממצב עריכת סימ
 alert.mask.show = "הצג מסכה";
 // Hide the painted mask on the mesh
 alert.mask.hide = "הסתר מסכה";
-// Selection refers to the objects that are currently selected
-alert.selection.lock = "נעל בחירה";
-// Selection refers to the objects that are currently selected
-alert.selection.unlock = "שחרר בחירה";
 // Hide the objects that are not selected
 alert.selection.isolate = "בודד בחירה";
 // Show the objects that are hidden
@@ -338,6 +344,8 @@ background.blur = "טשטוש";
 background.exposure = "חשיפה";
 
 // Image that the artist uses as a reference
+background.reference = "תמונת התייחסות";
+// Image that the artist uses as a reference
 background.imageEnable = "תמונת התייחסות";
 // The image will be displayed in overlay (used as a reference by the artist)
 background.imageOverlay = "שכבות";
@@ -350,20 +358,16 @@ background.imageX = "מיקום X";
 // Y screen coordinate of the image reference
 background.imageY = "מיקום Y";
 // Rotation of the reference image
-background.imageRotation = "סיבוב";
+background.imageRotate = "סיבוב";
 // Scale of the reference image
 background.imageScale = "קנה מידה";
 // Auto adjust the reference when moving the camera
 background.lock.image = "סנכרן עם נעילת מצלמה";
 background.lock.image.help = "כאשר המצלמה נעולה עם Snap Cube, תמונת הייחוס עוקבת אחר תנועת המצלמה.";
 // When exiting camera lock
-background.lock.exit = "איפוס בעת ביטול נעילה:";
-background.lock.exit.none = "כוונן שדה ראייה (Fov)";
-background.lock.exit.none.help = "שמור על תמונה ומצלמה כפי שהן. אם בפרספקטיבה, כוונן רק את שדה הראייה.";
-background.lock.exit.all = "אפס הכל";
-background.lock.exit.all.help = "אפס תמונה ומצלמה למיקומם המקורי.";
-background.lock.exit.perspective = "אם בפרספקטיבה";
-background.lock.exit.perspective.help = "אם בפרספקטיבה, אפס את התמונה והמצלמה למיקומם המקורי.";
+background.lock.reset = "איפוס תצוגה בעת ביטול נעילה";
+// When exiting camera lock
+background.lock.roll = "גלגל";
 
 // Blend: normal
 blend.normal = "רגיל";
@@ -497,6 +501,13 @@ curve.merge = "מיזוג";
 curve.snap = "הצמדה";
 curve.snap.offset = "שינוי מיקום";
 curve.snap.offset.help = "ערך של 100% שווה לרדיוס הצינור.";
+curve.snap.normal = "יישור נורמל";
+curve.snap.normal.help = "משפיע רק על נקודות הבקרה הראשונה והאחרונה של העקום.
+
+מזיז נקודות שכנות כך שקצות הצינור ייושרו עם הנורמל של המשטח.
+
+המרחק לנקודה השכנה נשמר.";
+
 curve.snap.surface = "משטח";
 curve.snap.vertex = "קודקוד";
 curve.snap.grid = "רשת (אם מוצמדת)";
@@ -545,6 +556,8 @@ debug.thumbnails = "צור תמונות ממוזערות לחנות";
 
 // Open file explorer
 file.explore = "חקור";
+// Type format
+file.format = "פורמט";
 // Open file explorer
 file.scope = "תחום";
 file.scope.internal = "פנימי";
@@ -663,42 +676,42 @@ file.onlySelection.help = "כולל רק את הבחירה, במקום את כל
 // Tries to generate quad (rectangle polygon) from triangles
 file.convertToQuad = "בנייה מחדש של קוואד";
 file.convertToQuad.help = "שחזור קוואדים מתוך משולשים על ידי התאמת משולש (אם הם סמוכים בקבצים).";
-// ----------------------------------------------
+
 // Whether we include the textures in the exported file
 file.export.texture = "טקסטורות";
 // Baking means transfering/converting
 file.export.texture.help = "אפשרות זו אינה אופה את צבעי הוורטקס לתוך הטקסטורות.
 
 היא כוללת טקסטורות רק אם לאובייקט יש טקסטורות על החומר שלו.";
-// ----------------------------------------------
+
 file.export.color0 = "צבעי קודקוד";
 file.export.color1 = "צבע PBR";
 file.export.color1.help = "ייצא ריווי, מתכתיות וצבע מסכה. זה יתעלם על ידי תוכנות אחרות.";
-// ----------------------------------------------
+
 // Whether we include normals vector in the exported file
 file.export.normal = "נורמלים";
 file.export.normal.help = "סמן אפשרות זו אם ברצונך לפתוח את הקובץ בתוכנות אחרות.
 
 נומד תמיד מתעלם מהנורמלים כי הם יחושבו מחדש.";
-// ----------------------------------------------
+
 file.export.tangent = "משיקים";
 file.export.tangent.help = "סמן אפשרות זו אם ברצונך לפתוח את הקובץ בתוכנות אחרות. 
 
 גזירים משמשים רק אם למודל יש מפה נורמלית. 
 
 Nomad תמיד מתעלם מהגזירים שכן הוא יחשב מחדש.";
-// ----------------------------------------------
+
 file.export.nomad.help = "פורמט הקובץ הפנימי של נומד סקולפט.
 
 פורמט זה לא ייטען בתוכנות אחרות, זה בעיקר למטרות יבוא חוזר.";
-// ----------------------------------------------
+
 // Whether we include layers in the exported file (see glossary for layer)
 file.export.gltf.layer = "שכבות";
 file.export.gltf.layer.help = "ייצא שכבות כמורפים. נתמך באופן רשמי על ידי glTF כך שהוא אמור לעבוד גם בתוכנות אחרות.";
 // Whether we include painting of layers in the exported file (see glossary for layer)
 file.export.gltf.layerPaint = "ציור שכבה";
 file.export.gltf.layerPaint.help = "ייצוא ציור שכבות. בדרך כלל מתעלמים ממנו על ידי תוכנות אחרות.";
-// ----------------------------------------------
+
 file.export.obj.warning = "שכבות וציור נוסף (מרקם מתכתי ומסכה) יאבדו.";
 // Whether we include the vertex color in the exported file
 file.export.obj.color = "צבעי צמת ";
@@ -715,19 +728,22 @@ file.export.obj.archive = "סוג";
 file.export.obj.archive.folder = "תיקיה";
 file.export.obj.archive.zip = "Zip";
 file.export.obj.archive.help = "חלק מהאפליקציות (Google Drive, One Drive) לא תומכות ביבוא התיקיות, אולם ניתן להשתמש ב-Zip במקום.";
-// ----------------------------------------------
+
+file.export.fbx.format = "פורמט";
+file.export.fbx.format.help = "בינארי קטן יותר אך עלול לא לעבוד בכל התוכנות.";
+
 file.export.ply.warning = "שכבות וציור נוסף (מרקם מתכתי וכו') יאבדו.";
-// ----------------------------------------------
+
 file.export.stl.warning = "שכבות וציור נוסף (מרקם מתכתי וכו') יאבדו.";
 // Whether we include the vertex color in the exported file
 file.export.stl.color = "צבעי ורטיקס";
 file.export.stl.color.help = "תוכנות תלת-מימד מסוימות יוכלו לקרוא את זה, אך לא כולן.";
-// ----------------------------------------------
+
 file.export.usd.skew = "אפשר עקמומיות";
 file.export.usd.skew.help = "אפשר הטיה בהמרות המטריצות.
 
 כאשר בוטל, Nomad יפצל את המטריצות להטיה לשתי המרות נפרדות של קנה מידה והסתובבות.";
-// ----------------------------------------------
+
 // Advanced settings
 settings.advanced = "מתקדם";
 // Means that all these options will be resetted when the app restarts
@@ -759,7 +775,7 @@ file.render.showInterface = "הצג ממשק משתמש";
 file.render.renderRatio = "יחס עיבוד";
 file.render.renderRatio.help = "ערך של 1.0 אומר שנומאד יעבד ברזולוציה זהה לגודל התמונה המבוקשת למטה.
 
- השתמש באפשרות זו אם אינך יכול לעבד ברזולוציה מסוימת (קריסה עקב חוסר זיכרון).";
+השתמש באפשרות זו אם אינך יכול לעבד ברזולוציה מסוימת (קריסה עקב חוסר זיכרון).";
 // Desired size of the exported screenshot
 file.render.size = "גודל סופי";
 // Desired size of the exported screenshot (custom vs predefined size)
@@ -773,7 +789,7 @@ file.render.height = "גובה";
 // export screenshot of the scene
 file.render.warn = "רזולוציית הייצוא גבוהה ($0x$1)!
 
- ודא שהפרויקט שלך נשמר למקרה שהמכשיר שלך ייגמר זיכרון VRAM ויקרוס.";
+ודא שהפרויקט שלך נשמר למקרה שהמכשיר שלך ייגמר זיכרון VRAM ויקרוס.";
 // If true, then the exported screenshot will have transparency data in the image
 file.render.transparent = "רקע שקוף";
 file.render.transparent.help = "אפשרות זו יכולה להיות מועילה אם ברצונך להכניס את המש ל תוכנה ליצירת 2D.
@@ -857,6 +873,10 @@ gesture.pencilAction.none = "ללא";
 // Pencil button (or iOS pencil double tap) action: flip adding/substracting sculpt matter setting
 gesture.pencilAction.alt = "הוסף/הורד";
 
+// Idle long press with pencil, mouse, finger, etc
+gesture.longPress = "החזק לחיצה";
+
+
 // Enable Mask gesture by tapping once on the screen
 gesture.mask.oneTap = "קיצורי דרך בנגיעה אחת";
 gesture.mask.oneTap.help = "אפשר את קיצור המסכה על ידי הקשה על המסך פעם אחת, ללא צורך להחזיק את קיצור המסך של המסכה.
@@ -872,6 +892,8 @@ gesture.mask.holdStroke.help = "לחץ ארוך יחליף בין מסכה ו-Se
 בסוף המשיכה, הכלי הקודם ייבחר שוב.";
 gesture.mask.holdIdle = "כלי";
 gesture.mask.holdIdle.help = "לחץ ארוך ושחרור ללא תזוזה למעבר בין Mask ל-SelMask.";
+
+gesture.smooth.holdSelect.help = "לחיצה ארוכה תעבור לכלי הבחירה במשך משך בחירת הקו.";
 
 // Shortcut customization, choose the action that the shortcut will performan (select tool, etc)
 gesture.shortcut = "קיצור";
@@ -1036,8 +1058,14 @@ interface.preset.title = "הגדרות קבועות מראש";
 // Reset interface settings
 interface.resetAll = "איפוס סגנון";
 interface.resetAll.confirm = "לאפס את הגדרות הממשק?";
-// help popup when hovering
+// Dot menu hovering
+interface.hoverDot = "נקודה במעבר עכבר/עט";
+interface.hoverDot.help = "הצג נקודה קטנה בממשק כאשר מזוהה עט מרחף.";
+// Help popup when hovering
 interface.hoverHelp = "חלון עזרה במעבר";
+// Do not use windows native dialog
+interface.customDialog = "השתמש בדיאלוג של Nomad";
+interface.customDialog.help = "הצג את דיאלוג הטקסט של Nomad במקום האחד של ברירת המחדל.";
 // Interface option (main base color)
 interface.iconSupport = "כפתור בולט גבוהה";
 interface.iconSupport.help = "סגנון חלופי לכפתורים שהופך אותם ליותר נראים כאשר הם מופעלים.
@@ -1046,9 +1074,9 @@ interface.iconSupport.help = "סגנון חלופי לכפתורים שהופך 
 // Interface customization
 interface.flipTop = "שקיפות סרגל עליון";
 // Interface customization
-interface.flipBottom = "שקיפות סרגל תחתון";
-// Interface customization
 interface.flipMiddle = "שקיפות סרגלים צדדיים";
+// Interface customization
+interface.flipBottom = "שקיפות סרגל תחתון";
 // list of tools
 interface.toolbox = "תיבת כלים";
 // hide toolbox by default
@@ -1067,7 +1095,6 @@ interface.top.responsive = "רספונסיבי";
 interface.top.responsive.help = "אפשרות זו רלוונטית בעיקר למסכים קטנים.";
 interface.top.responsive.multiline = "רב-שורה";
 interface.top.responsive.scroll = "גלגל";
-interface.top.responsive.collapse = "קרוס";
 interface.top.alt = "סדר חלופי";
 interface.top.alt.help = "אייקון סדר חלופי עבור התפריט העליון.
 
@@ -1281,6 +1308,11 @@ material.alwaysUnlit = "תמיד לא מואר";
 // Inverse the side of the object triangles
 // https://en.wikipedia.org/wiki/Back-face_culling
 material.flipCulling = "היפוך קילול";
+// material (additive and blending) will write into depth
+material.preRefract = "מעבר קדם־שבירה";
+material.preRefract.help = "מאלץ חומרים שקופים להיצייר לפני מעבר השבירה.
+
+שימושי כאשר חומר נשבר מוצג לפני משטחים שקופים אחרים.";
 // How much light a surface will reflect (synonym: specular)
 material.reflectance = "החזריות";
 material.reflectance.help = "בקר את כמות ההחזר שהחומר יקבל עבור חומרים לא מתכתיים. 
@@ -1291,65 +1323,39 @@ material.preview = "תצוגה מקדימה של חומר בתצוגה";
 material.preview.help = "כשאתה משנה חומר, תוצג תצוגה מקדימה בתצוגה על האובייקט שנבחר.
 
 התצוגה המקדימה מוצגת בזמן שאתה מקיים אינטראקציה עם הצבע, החספוס, המתכתיות, השקיפות והעוצמה.";
-// Menu name
+// Menu names
 menu.files = "קבצים";
-// Menu name
-menu.scene = "סצנה";
-// Menu name
-menu.multires = "ריבוי רזולוציות";
-// Menu name
-menu.voxel = "ווקסל";
-// Menu name
-menu.dynamic = "דין טופו";
-// Menu name (Synonym: Misc, Other)
-menu.topology = "שונות";
-// Menu name
-menu.primitive = "פרימיטיבי";
-// Menu name
 menu.render = "הפקדה";
-// Menu name
+menu.turntable = "פטיפון";
+menu.scene = "סצנה";
+menu.multires = "ריבוי רזולוציות";
+menu.voxel = "ווקסל";
+menu.dynamic = "דין טופו";
+menu.topology = "שונות";
+menu.primitive = "פרימיטיבי";
+menu.render = "הפקדה";
 menu.material = "חומר";
-// Menu name
 menu.postprocess = "עיבוד לאחר";
-// Menu name
 menu.camera = "מצלמה";
-// Menu name
 menu.background = "רקע";
-// Menu name
 menu.tool = "כלי";
-// Menu name
 menu.stroke = "קו";
-// Menu name
 menu.alpha = "אלפא";
-// Menu name
 menu.filter = "מסנן";
-// Menu name
 menu.falloff = "דעיכת אינטנסיביות";
-// Menu name
 menu.paint = "צבע";
-// Menu name
 menu.symmetry = "סימטריה";
-// Menu name
 menu.operation = "פעולה";
-// Menu name (pencil pressure)
 menu.pressure = "לחץ";
-// Menu name
 menu.gesture = "מחווה";
-// Menu name
 menu.layers = "שכבות";
-// Menu name
 menu.settings = "הגדרות";
-// Menu name
 menu.interface = "ממשק";
-// Menu name
 menu.bindings = "הקשרים";
-// Menu name
+menu.shortcuts = "קיצור";
 menu.history = "היסטוריה";
-// Menu name
 menu.historySettings = "הגדרות";
-// Menu name
 menu.about = "אודות";
-// Menu name
 menu.debug = "ניפוי שגיאות";
 
 // Operation on the object (action)
@@ -1358,6 +1364,10 @@ mesh.holes = "חורים";
 mesh.holes.close = "סגור חורים";
 // Says how dense (number of triangles) the algorithm will use in order to fill holes
 mesh.holes.detail = "פרטים";
+// Says how dense (number of triangles) the algorithm will use in order to fill holes
+mesh.holes.group.new = "חדש";
+mesh.holes.group.reuse = "מיחזור";
+mesh.holes.group.mixed = "מעורב";
 // If the mesh has disconnected parts, it will be split/separated into objects
 mesh.separate = "הפרד";
 // When converting the object to a triplanar primitive, some object features will be lost
@@ -1390,6 +1400,8 @@ paint.preset.embed.help = "הטקסטורות נמצאות בתיקיית Nomad 
 
 ניתן להפעיל אפשרות זו כדי להעתיק את הטקסטורות לתוך ההגדרה. זה יכול להיות מועיל אם ברצונכם לשתף סט שהושלם מבלי לספק את הטקסטורות הנלוות.";
 paint.preset.embed.apply = "החל על כל החומרים";
+paint.preset.alpha = "כלול אלפא";
+paint.preset.alpha.help = "כולל את אלפא המברשת בקביעת החומר המוכנה.";
 // Factor/Opacity of paint tool
 paint.intensity = "עוצמת צבע";
 // Apply the paint on the object
@@ -1400,6 +1412,11 @@ paint.paintAll.help.hide = "האזור הנסתר לא יושפע.";
 paint.paintAll.help.opacity = "השתמש בפרמטר הצביעה של הכלי למעלה.";
 paint.paintAll.help.layer = "האזור הלא צבוע של שכבה לא יושפע.";
 paint.strokePainting.title = "צביעה";
+// Opaque opacity
+paint.opacityAlphaValue = "השתמש באלפא כערך";
+paint.opacityAlphaValue.help = "מחליף את ערך הגרייסקייל בערוץ האלפא ומאלץ אטימות ל־1.
+
+אם לטקסטורה אין ערוץ אלפא, אפשרות זו תתעלם.";
 // Brush stroke texture
 paint.texture.warningEnable = "יש להפעיל ציור מברשת כדי לאפשר הקרנת טקסטורה (תיבת סימון למעלה)!";
 paint.texture.warningIgnored = "הכלי הנוכחי אינו יכול להשתמש בטקסטורות!";
@@ -1793,12 +1810,20 @@ settings.snapCube.align.help = "יש ליישר את הנופים לציר הע�
 settings.stats = "סטטיסטיקות";
 settings.stats.right = "ימין";
 settings.stats.all = "הצג את כל הסצנה";
+// Handles are controls that you interact with in the viewport in order to edit something
+settings.handle = "ידית";
+settings.handles = "ידיות";
+// Shape draw thing
+settings.shape = "צורה";
+settings.shape.color = "צבע הפוליגון";
 // Grid
 settings.grid = "רשת";
-settings.grid.divideThreshold = "חלק סף";
+settings.grid.snapDivision = "סף חלוקת חיבור";
+settings.grid.snapDivision.help = "הסף מושווה למרחק עד לרשת.";
 // Cursor
 settings.cursor.title = "סמן";
-settings.cursor.whileSculpting = "הצג עיגול בזמן פיסול";
+// sculpting circle
+settings.cursor.circle = "מעגל";
 // A small indicator dot
 settings.cursor.showDot = "הצג נקודה קטנה";
 settings.cursor.showDot.help = "הנקודה יכולה להופיע כנקודת ציר המצלמה או בזמן פיסול.";
@@ -1922,8 +1947,6 @@ shortcut.voxelRemesh = "ווקסל";
 shortcut.wireframe = "חיווט";
 shortcut.cameraReset = "אפס";
 shortcut.cameraSnap = "צמד";
-shortcut.lockSelection = "נעול";
-shortcut.lockSelection.help = "כאשר מופעל, אתה לא יכול לשנות את הבחירה על ידי לחיצה על רשת.";
 shortcut.grid = "רשת";
 
 // Memory taken by the scene
@@ -2011,7 +2034,7 @@ stroke.protect.hide.help = "כאשר מוגדר על אוטומטי, אם תבנ
 stroke.culling = "ורטקס שפונה קדימה בלבד";
 stroke.culling.help = "אפשרות זו תתעלם מוורטקסים הפונים לאחור.
 
- זה יכול להיות שימושי אם רוצים לצבוע חלק מגיאומטריה דקה מבלי להשפיע על הצד השני.
+זה יכול להיות שימושי אם רוצים לצבוע חלק מגיאומטריה דקה מבלי להשפיע על הצד השני.
 
 זה עובד גם עבור פיסול, אך ייתכן שתתקלו במעט ארטיפקטים.";
 // Infinite depth, move everything under the circle, disregarding depth
@@ -2165,15 +2188,12 @@ symmetry.countY = "ספירה Y";
 symmetry.countZ = "ספירה Z";
 // method
 symmetry.method = "שיטה:";
-symmetry.method.help = "• מקומי
-מישור הסימטריה ינוע יחד עם ה'מֵש' בעת שימוש באחד הכלים להמרה (Gizmo או Transform).
-
-• גלובלי
-מישור הסימטריה קבוע ולא ינוע.";
 // Local means: in the coordinate of the scene (synonym: absolute)
 symmetry.method.world = "עולם";
+symmetry.method.world.help = "מישור הסימטריה קבוע ולא ינוע.";
 // Local means: in the coordinate of the object (synonym: relative)
 symmetry.method.local = "מקומי";
+symmetry.method.local.help = "מישור הסימטריה ינוע יחד עם ה'מֵש' בעת שימוש באחד הכלים להמרה (Gizmo או Transform).";
 // Move the object to the other side of the symmetry (mirror it as well)
 symmetry.flip = "הפוך אובייקט";
 // Cut half of the mesh
@@ -2380,10 +2400,13 @@ tool.smooth.stickyBorder = "קודקוד דביק בגבול";
 tool.smooth.screen = "חלקות מסך";
 tool.smooth.screen.help = "השתמש באפשרות זו כדי לקבל חלקות שאינה תלויה בטופולוגיה, גם בפוליגרף גבוה.";
 tool.smooth.screen.samples = "דוגמאות מסך";
+tool.smooth.taubin = "שמור על נפח";
+tool.smooth.taubin.shrink = "כווץ";
+tool.smooth.taubin.inflate = "נֵפַח";
 tool.smooth.stable = "החלקה יציבה";
 tool.smooth.stable.help = "מנסה להפוך את ההחלקה בלתי תלויה בטופולוגיה.
 
- מצבים זה עובד טוב ביותר עם צפיפות טופולוגיה משתנה ועם ערך עוצמת החלקה גבוהה.";
+מצבים זה עובד טוב ביותר עם צפיפות טופולוגיה משתנה ועם ערך עוצמת החלקה גבוהה.";
 
 tool.paint = "צבע";
 // Erase the painting
@@ -2710,7 +2733,7 @@ topology.bake.backup = "גיבוי";
 topology.reproject.title = "השלכה מחדש";
 topology.reproject.title.help = "השלך פרטי גילוף, ציור ושכבות מהאובייקטים הנראים הקרובים ביותר.
 
- מחשב לשימוש גם ברשת בעלת רזולוציה גבוהה, בדרך כלל עם טופולוגיה נקייה.";
+מחשב לשימוש גם ברשת בעלת רזולוציה גבוהה, בדרך כלל עם טופולוגיה נקייה.";
 // tweaking value
 topology.reproject.rayBias = "הטיית קרן";
 topology.reproject.rayBias.help = "שתי שיטות משמשות לרה-פרויקטציה:
@@ -2734,13 +2757,17 @@ topology.manifold.collapse = "מחק פנים קטנות";
 topology.manifold.title = "כפה רב גוניות";
 topology.manifold.title.help = "ניסית לנקות קצוות לא רב גוניות.
 
- זה יכול להיות שימושי עבור תוכנות חיצוניות שלא תומכות בקצוות שיש להם יותר משני פנים משותפים.";
+זה יכול להיות שימושי עבור תוכנות חיצוניות שלא תומכות בקצוות שיש להם יותר משני פנים משותפים.";
 
 // Reset key-bindings/shortcuts
 binding.reset = "אפס חיבורים";
 // Add node in a sync mode (synchronize instance)
 binding.addSync = "סנכרון";
 binding.addSync.help = "כברירת מחדל, הוא ישתמש בערך הסינכרון שנקבע בתפריט הסצנה.";
+// Add node in a sync mode (synchronize instance)
+binding.float.position = "מיקום";
+binding.float.position.keep = "שמור על הקודם";
+binding.float.position.cursor = "על הסמן";
 // Binding option
 binding.context.toggle = "החלף הקשר";
 // quick sidebar tool shortcuts
@@ -2750,6 +2777,9 @@ binding.tools = "קיצורי דרך לכלים";
 // When the key is tapped once, the value will be toggled
 binding.toggle = "מעבר לכלי הקודם";
 binding.toggle.help = "השתמש באותו קישור כדי לחזור לכלי האחרון.";
+// Control if hold+release reverts the tool
+binding.revert = "החזק הפוך";
+binding.revert.help = "בחר האם שחרור מפתח מוחזק תמיד יחזור לכלי הקודם, גם כאשר הכלי הזה כבר פעיל.";
 // sticky keys
 binding.sticky = "מפתחות דביקים";
 binding.sticky.off = "החזק";
@@ -2767,10 +2797,10 @@ binding.forceCamera.help = "כפה אינטראקציה עם המצלמה במק
 binding.pickMaterial = "בחירת חומר";
 // Same as Color Picker but it pick the material (color, roughness, metalness, etc)
 binding.pickFaceGroup = "בחירת קבוצת פנים";
-// Edit the tool brush size/radius
-binding.editRadius = "רדיוס כלי";
 // Inverse direction zooming
 binding.invertZoomY = "הפוך זום Y";
+// Edit the tool brush size/radius
+binding.editRadius = "רדיוס כלי";
 // Edit the tool brush size/radius
 binding.editIntensity = "עוצמת כלי";
 // Controller dead zone
@@ -2829,6 +2859,11 @@ widget.color.ring = "טבעת";
 widget.color.square = "מרובע";
 
 nomad.mainFolder = "תיקייה ראשית של Nomad";
+nomad.mainFolder.help = "אם תוסיף קבצים לתיקייה הראשית של Nomad, יש לאתחל את התוכנה כדי שהשינויים יחלו.
+
+קבצים מסוג שגוי בתיקיות המשנה עשויים לעבור אל can_be_deleted/.
+
+לדוגמה: תיקיית הפרויקטים מקבלת רק קבצים תלת-ממדיים, בעוד שאלפא או מאטקפ מקבלים רק תמונות.";
 nomad.mainFolder.warning = "הקבצים נשארים ללא פגע. 
 הם לא מועתקים, נמחקים או מועברים.";
 nomad.mainFolder.error = "לאחר שתבחר כן, Nomad ייסגר ותוכל להפעיל אותו מחדש בקלות.";
@@ -2837,39 +2872,44 @@ license.title = "רישיון";
 license.retry = "נסה שוב";
 license.key = "מפתח רישיון";
 license.activate = "הפעל רישיון";
-// ----------------------------------------------
+
 license.newest = "גרסה חדשה זמינה!";
 license.encrypt.error = "לא ניתן להצפין!";
-// ----------------------------------------------
+
 license.grace = "לא מקוון - תקופת החסד שנותרה:";
 license.grace.hours = "שעות";
 license.grace.days = "ימים";
-// ----------------------------------------------
+
 license.portal.title = "משתמשים קיימים";
 license.portal.label = "פורטל רישיון";
-// ----------------------------------------------
+license.portal.label.warning = "הפלטפורמה הזו מיועדת רק למשתמשים שרכשו את הגרסה ל-Windows/Mac. 
+
+רכישות מחנויות האפליקציות iOS/Android אינן חוצות פלטפורמות.";
+
 license.checkout.title = "משתמשים חדשים";
 license.checkout.label = "רכישת Nomad";
-// ----------------------------------------------
+
 license.device.error = "לא ניתן היה לקבל את מזהה המכשיר.";
 license.device.mismatch = "קוד מזהה מכשיר לא מתאים!";
-// ----------------------------------------------
+
 license.error429 = "יותר מדי בקשות (המתן).";
-// ----------------------------------------------
+
 license.validate.error404 = "מפתח הרישיון לא נמצא.";
 license.validate.error422 = "ישות בלתי ניתנת לעיבוד.";
-// ----------------------------------------------
+
 license.activate.error403 = "הגעת למספר המכשירים המקסימלי!
 אתה יכול לבטל את הפעלת מכשיר אחר בפורטל הרישיון שלך.";
 license.activate.error404 = "מפתח הרישיון לא נמצא.";
 license.activate.error422 = "ישות בלתי ניתנת לעיבוד.";
-// ----------------------------------------------
+
 // version
+version.check = "בדוק לעדכון";
+version.auto = "בדוק עדכונים באופן אוטומטי";
 version.update = "עדכון זמין!";
 version.restore = "שחזר רכישה";
 version.buyWeb = "גרסת האינטרנט היא רק הדגמה";
 version.buyFull = "שדרג לגרסה המלאה";
-// ----------------------------------------------
+
 // QuadRemesh
 version.qr.unlock = "פתח נעילה (רכוש, שחזר, ניסיון)";
 version.qr.desktop = "על שולחן העבודה, QuadRemesher מופץ על ידי Hexanomad, אך Hexanomad אינה מטפלת בהפצה או ברישוי.
@@ -2892,18 +2932,18 @@ version.qr.promo = "
 • ציור צפיפות $3
 
 כלי Quad Remesher פותח על ידי https://exoside.com.";
-// ----------------------------------------------
+
 version.trialLayer = "גרסת ניסיון: שכבה אחת לכל עצם";
 version.trialNoExport = "גרסת ניסיון: אין יצוא";
-// ----------------------------------------------
+
 version.fullFeatures = "• רכישה חד פעמית
 • ביטול/חידוש ללא הגבלה
 • שכבות ללא הגבלה
 • ייבוא וייצוא";
-// ----------------------------------------------
+
 version.demo.purpose = "גירסה זו נוצרה במיוחד למטרות הדגמה.";
 version.demo.disable = "התכונה לא מופעלת לדמו.";
-// ----------------------------------------------
+
 version.demo = "בדיקת הדמו";
 version.demo.sculpt = "פיסול";
 version.demo.sculpt.help = "כל המברשות זמינות אך אינך יכול לשמור או לייצא.
@@ -2915,69 +2955,68 @@ version.demo.file = "ייבוא וייצוא";
 version.demo.file.help = "אתה יכול לייבא ולייצא מודל אבל מברשות פיסול לא פעילות.
 
 מצב זה שימושי במיוחד למשתמשי מובייל שלא יכולים לפתוח פרויקט .nom גדול בגלל מגבלות זיכרון במובייל.";
-// ----------------------------------------------
+
 // app store main page
 store.name = "Nomad Sculpt";
 store.headline = "לפסל, לצייר וליצור ב-3D";
 store.tag = "פסול, 3D, נווד, צבע, מודול";
-// ----------------------------------------------
+
 store.description.sculpt = "• כלי פיסול
 חימר, שטוח, חלק, מסכה ועוד מברשות רבות יעזרו לך לעצב את היצירה שלך.
 אתה יכול גם להשתמש בכלי גזירה דקים עם לאסו, מלבן וצורות נוספות למטרות של תכסית קשה.";
-// ----------------------------------------------
+
 store.description.stroke = "• התאמה אישית של קווים
 מודעות נגרמים, אלפא, רעפים, לחץ עט ומאפּייני קווים נוספים ניתנים להתאמה אישית.
 תוכל גם לשמור ולטעון את ההגדרות המותאמות של הכלים שלך.";
-// ----------------------------------------------
+
 store.description.paint = "• כלים לצביעה
 צביעת וורטקס עם צבע, גסות ומתכת.
 תוכל גם לנהל בקלות את כל ההגדרות המובנות שלך.";
-// ----------------------------------------------
+
 store.description.layer = "• שכבות
 הקליטו את פעולות הפיסול והצבעה שלכם בשכבות נפרדות להקלת חזרה בזמן תהליך היצירה.
 משתנים של פיסול והצבעה נשמרים בהקלטה.";
-// ----------------------------------------------
+
 store.description.multires = "• פיסול בריבוי רזולוציות
 עבר חזרה וקדימה בין רמות שונות של רשת שלך לשם זרימת עבודה גמישה.";
-// ----------------------------------------------
+
 store.description.voxel = "• טשטוש ווקסל מחדש
 שנה את הרשת שלך במהירות כדי לקבל רמת פירוט אחידה.
 ניתן להפוך את זה לציונית מהירה של צורה מחוספסת בהתחלת תהליך ההפקה.";
-// ----------------------------------------------
+
 store.description.dynamic = "• טופולוגיה דינמית
 שפר את המכניקה המקומית תחת המברשת שלך כדי לקבל רמת פירוט אוטומטית.
 תוכל אפילו לשמור על השכבות שלך, כיוון שהן יעודכנו אוטומטית!";
-// ----------------------------------------------
+
 store.description.topology = "• הקטן
 הורד את מספר הפוליגונים תוך שמירת כמה שיותר פרטים.";
-// ----------------------------------------------
+
 store.description.group = "• קבוצת פנים
 חלקו את המֶש שלכם לתת קבוצות באמצעות כלי קבוצת פנים.";
-// ----------------------------------------------
+
 store.description.unwrap = "• פריסת UV אוטומטית
 הפירוק האוטומטי של UV יכול להשתמש בקבוצות פנים לצורך שליטה בתהליך הפירוק.";
-// ----------------------------------------------
+
 store.description.baking = "• באקינג
 ניתן להעביר נתוני וורטקס כגון צבע, מחוספסות, מתכתיות ופרטים קטנים לטקסטורות.
 ניתן גם לבצע את ההפך, העברת נתוני טקסטורות לוורטקסים או לשכבות.";
-// ----------------------------------------------
+
 store.description.primitive = "• צורה פרימיטיבית
 אפשר להתחיל צורות חדשות מהר באמצעות גליל, טבעת, צינור, ומכשירים פרימיטיביים אחרים.";
-// ----------------------------------------------
+
 store.description.rendering = "• רינדור PBR
 רינדור PBR יפה כברירת מחדל, עם תאורה וצללים.
 תמיד אפשר לעבור ל-MatCap לצורך צלילים סטנדרטיים יותר לצורך פיסול.";
-// ----------------------------------------------
+
 store.description.postprocess = "• עיבוד פוסט
 Reflection בשטח המסך, עומק שדה, חסימת סביבה, מיפוי טונים, ועוד.";
-// ----------------------------------------------
+
 store.description.files = "• יצוא וייבוא
 הפורמטים הנתמכים כוללים קבצי glTF, OBJ, STL או PLY.";
-// ----------------------------------------------
+
 store.description.interface = "• ממשק
 ממשק קל לשימוש, שתוכנן עבור חווית משתמש במכשירים ניידים. התאמה אישית אפשרית גם כן!";
-// ----------------------------------------------
+
 store.description.remesher = "• Quad Remesher (רכישה נפרדת בתוך האפליקציה בלבד)
 בצע מיון מחדש של האובייקט שלך בצורה אוטומטית עם רשת דומיננטית קוואדרטית העוקבת אחר עקמומיות הרשת.
 נתמך על ידי מדריכים, קבוצות פנים וצבעי צפיפות.";
-// ----------------------------------------------

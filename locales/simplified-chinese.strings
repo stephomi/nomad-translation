@@ -18,6 +18,11 @@ status.exit = "未保存的更改！关闭前要保存吗？";
 status.exit.yes = "保存";
 status.exit.no = "不保存";
 
+format.ascii = "Ascii";
+format.binary = "二进制";
+
+color = "颜色";
+
 // On single tap (should be short)
 ontap = "点击";
 
@@ -166,6 +171,9 @@ material.normal = "法線";
 material.normal.flipY = "翻转Y";
 // Ambient Occlusion (AO)
 material.occlusion = "环境光遮挡";
+material.unused = "未使用";
+// Displacement map
+material.displacement = "位移";
 // Textures, basically images wrapped on models (synonym: Maps, Texture maps)
 material.textures = "纹理";
 // Textures/Image
@@ -209,6 +217,8 @@ about.turntable.pivot.keep = "保持当前";
 about.turntable.pivot.scene = "场景";
 // Make the entire scene turn around (speed of the animation)
 about.turntable.speed = "相机速度";
+// Speed easing (linear vs non-linaer)
+about.turntable.linear = "均速";
 // Stuffs that I used to make the app
 about.credits = "鸣谢";
 // Link to open source projects that I used for the app
@@ -290,10 +300,6 @@ alert.editSymmetry = "简单点击退出编辑对称模式。";
 alert.mask.show = "显示遮罩";
 // Hide the painted mask on the mesh
 alert.mask.hide = "隐藏遮罩";
-// Selection refers to the objects that are currently selected
-alert.selection.lock = "锁定所选项";
-// Selection refers to the objects that are currently selected
-alert.selection.unlock = "解锁所选项";
 // Hide the objects that are not selected
 alert.selection.isolate = "隐藏未所选项";
 // Show the objects that are hidden
@@ -338,6 +344,8 @@ background.blur = "模糊";
 background.exposure = "曝光";
 
 // Image that the artist uses as a reference
+background.reference = "参考图像";
+// Image that the artist uses as a reference
 background.imageEnable = "参考图像";
 // The image will be displayed in overlay (used as a reference by the artist)
 background.imageOverlay = "覆盖";
@@ -350,21 +358,16 @@ background.imageX = "X轴位置";
 // Y screen coordinate of the image reference
 background.imageY = "Y轴位置";
 // Rotation of the reference image
-background.imageRotation = "旋转";
+background.imageRotate = "旋转";
 // Scale of the reference image
 background.imageScale = "缩放";
 // Auto adjust the reference when moving the camera
 background.lock.image = "与相机锁定同步";
 background.lock.image.help = "当相机与Snap Cube锁定时，参考图像会随相机移动。";
 // When exiting camera lock
-background.lock.exit = "解锁时重置:";
-background.lock.exit.none = "调整视角";
-background.lock.exit.none.help = "保持图像和相机不变。
-如果在透视中，仅调整视角。";
-background.lock.exit.all = "全部重置";
-background.lock.exit.all.help = "重置图像和相机位置。";
-background.lock.exit.perspective = "如果为透视视图";
-background.lock.exit.perspective.help = "如果处于透视视图，重置图像和相机位置。";
+background.lock.reset = "解锁时重置视图";
+// When exiting camera lock
+background.lock.roll = "滚动";
 
 // Blend: normal
 blend.normal = "法線";
@@ -498,6 +501,13 @@ curve.merge = "合并";
 curve.snap = "吸附";
 curve.snap.offset = "偏移";
 curve.snap.offset.help = "当偏移值为100%时，偏移后的距离即为圆管半径。";
+curve.snap.normal = "对齐法线";
+curve.snap.normal.help = "仅影响曲线的第一个和最后一个控制点。
+
+移动相邻点，使管状末端与表面法线对齐。
+
+到相邻点的距离将被保留。";
+
 curve.snap.surface = "表面";
 curve.snap.vertex = "顶点";
 curve.snap.grid = "网格（如果贴合）";
@@ -544,6 +554,8 @@ debug.thumbnails = "制作商店缩略图";
 
 // Open file explorer
 file.explore = "浏览";
+// Type format
+file.format = "格式";
 // Open file explorer
 file.scope = "范围";
 file.scope.internal = "内部";
@@ -667,39 +679,39 @@ file.onlySelection.help = "只导出当前选择部分，而不是整个场景�
 // Tries to generate quad (rectangle polygon) from triangles
 file.convertToQuad = "转换为四边形网格";
 file.convertToQuad.help = "通过将相邻的三角形合并的方式，将模型网格转换为四边形。";
-// ----------------------------------------------
+
 // Whether we include the textures in the exported file
 file.export.texture = "纹理";
 // Baking means transfering/converting
 file.export.texture.help = "此选项不会把Nomad里绘制的顶点颜色烘焙到贴图上。";
-// ----------------------------------------------
+
 file.export.color0 = "顶点颜色";
 file.export.color1 = "PBR绘画";
 file.export.color1.help = "导出粗糙度、金属强度和蒙版绘制。这将被其他软件忽略。";
-// ----------------------------------------------
+
 // Whether we include normals vector in the exported file
 file.export.normal = "法线";
 file.export.normal.help = "如想在其他软件上打开该文件，请勾选此选项。
 Nomad总是忽略法线，因为它将重新计算它们。";
-// ----------------------------------------------
+
 file.export.tangent = "正切";
 file.export.tangent.help = "如果您希望在其他软件中打开此文件，请勾选此选项。
 
 只有模型有法线贴图时，才会使用正切。
 
 Nomad总是忽略正切，因为它会重新计算正切。";
-// ----------------------------------------------
+
 file.export.nomad.help = "Nomad Sculpt 内部文件格式。
 
 此格式不会在其他软件上加载，主要用于重新导入。";
-// ----------------------------------------------
+
 // Whether we include layers in the exported file (see glossary for layer)
 file.export.gltf.layer = "图层";
 file.export.gltf.layer.help = "将图层作为变形体导出。官方支持glTF，所以它应该也能在其他软件上工作。";
 // Whether we include painting of layers in the exported file (see glossary for layer)
 file.export.gltf.layerPaint = "图层绘画";
 file.export.gltf.layerPaint.help = "将导出图层绘画。其他软件不会读取该属性。";
-// ----------------------------------------------
+
 file.export.obj.warning = "图层和额外的绘画（粗糙度、金属强度和蒙版）将会丢失。";
 // Whether we include the vertex color in the exported file
 file.export.obj.color = "顶点颜色";
@@ -716,19 +728,22 @@ file.export.obj.archive = "类型";
 file.export.obj.archive.folder = "文件夹";
 file.export.obj.archive.zip = "压缩文件";
 file.export.obj.archive.help = "某些应用程序（如Google Drive、One Drive等）不支持文件夹导入，因此您可以改用压缩文件。";
-// ----------------------------------------------
+
+file.export.fbx.format = "格式";
+file.export.fbx.format.help = "二进制文件较小，但可能无法在所有应用程序中使用。";
+
 file.export.ply.warning = "图层和额外的绘画（粗糙度、金属强度和蒙版）将会丢失。";
-// ----------------------------------------------
+
 file.export.stl.warning = "图层和额外的绘画（粗糙度、金属强度和蒙版）将会丢失。";
 // Whether we include the vertex color in the exported file
 file.export.stl.color = "顶点颜色";
 file.export.stl.color.help = "只有部分3D软件能够识别。";
-// ----------------------------------------------
+
 file.export.usd.skew = "允许倾斜";
 file.export.usd.skew.help = "在矩阵变换中允许倾斜。
 
 禁用时，Nomad将分解倾斜矩阵为两个独立的缩放和旋转变换。";
-// ----------------------------------------------
+
 // Advanced settings
 settings.advanced = "高级设置";
 // Means that all these options will be resetted when the app restarts
@@ -858,6 +873,10 @@ gesture.pencilAction.none = "无";
 // Pencil button (or iOS pencil double tap) action: flip adding/substracting sculpt matter setting
 gesture.pencilAction.alt = "添加或减去";
 
+// Idle long press with pencil, mouse, finger, etc
+gesture.longPress = "长按";
+
+
 // Enable Mask gesture by tapping once on the screen
 gesture.mask.oneTap = "单点快捷方式";
 gesture.mask.oneTap.help = "轻点屏幕一下就能启用蒙版快捷方式，无需长按蒙版按钮快捷方式。
@@ -873,6 +892,8 @@ gesture.mask.holdStroke.help = "长按将在 Mask 和 SelMask 之间切换，并
 在笔画结束时，将选择回之前的工具。";
 gesture.mask.holdIdle = "工具";
 gesture.mask.holdIdle.help = "长按并在不移动的情况下释放以在 Mask 和 SelMask 之间切换。";
+
+gesture.smooth.holdSelect.help = "长按将切换到选择工具用于选择笔画期间。";
 
 // Shortcut customization, choose the action that the shortcut will performan (select tool, etc)
 gesture.shortcut = "快捷手";
@@ -1037,8 +1058,14 @@ interface.preset.title = "预设";
 // Reset interface settings
 interface.resetAll = "重置界面风格";
 interface.resetAll.confirm = "确定要重置界面设置吗？";
-// help popup when hovering
+// Dot menu hovering
+interface.hoverDot = "悬停点";
+interface.hoverDot.help = "当检测到悬停的压感笔时，在界面中显示一个小点。";
+// Help popup when hovering
 interface.hoverHelp = "悬停显示帮助弹窗";
+// Do not use windows native dialog
+interface.customDialog = "使用Nomad对话框";
+interface.customDialog.help = "显示Nomad自己的文本对话框而不是原生的。";
 // Interface option (main base color)
 interface.iconSupport = "高对比度按钮";
 interface.iconSupport.help = "一种替代的按钮样式，当按钮启用时使它们更加显眼。
@@ -1047,9 +1074,9 @@ interface.iconSupport.help = "一种替代的按钮样式，当按钮启用时�
 // Interface customization
 interface.flipTop = "翻转顶部菜单栏";
 // Interface customization
-interface.flipBottom = "翻转底部菜单栏";
-// Interface customization
 interface.flipMiddle = "翻转侧边栏";
+// Interface customization
+interface.flipBottom = "翻转底部菜单栏";
 // list of tools
 interface.toolbox = "工具箱";
 // hide toolbox by default
@@ -1068,7 +1095,6 @@ interface.top.responsive = "响应式";
 interface.top.responsive.help = "此选项主要与小屏幕相关。";
 interface.top.responsive.multiline = "多行";
 interface.top.responsive.scroll = "滚动";
-interface.top.responsive.collapse = "折叠";
 interface.top.alt = "备用顺序";
 interface.top.alt.help = "顶部菜单的替代顺序图标。
 
@@ -1289,6 +1315,11 @@ material.alwaysUnlit = "不受光显示";
 // Inverse the side of the object triangles
 // https://en.wikipedia.org/wiki/Back-face_culling
 material.flipCulling = "翻转法线";
+// material (additive and blending) will write into depth
+material.preRefract = "预折射通道";
+material.preRefract.help = "强制将透明材质在折射通道之前绘制。
+
+当折射材质位于其他透明表面前方时非常有用。";
 // How much light a surface will reflect (synonym: specular)
 material.reflectance = "反射率";
 material.reflectance.help = "该参数能够控制非金属材质的高光效果。
@@ -1299,65 +1330,39 @@ material.preview = "预览材料颜色";
 material.preview.help = "当您修改材质时，选定对象的视口中将显示预览。
 
 在您与颜色、粗糙度、金属度、透明度和强度滑块交互时，预览将显示。";
-// Menu name
+// Menu names
 menu.files = "文件";
-// Menu name
-menu.scene = "场景";
-// Menu name
-menu.multires = "多重网格";
-// Menu name
-menu.voxel = "体素";
-// Menu name
-menu.dynamic = "动态网格";
-// Menu name (Synonym: Misc, Other)
-menu.topology = "杂项";
-// Menu name
-menu.primitive = "基本体";
-// Menu name
 menu.render = "渲染";
-// Menu name
+menu.turntable = "旋转展示";
+menu.scene = "场景";
+menu.multires = "多重网格";
+menu.voxel = "体素";
+menu.dynamic = "动态网格";
+menu.topology = "杂项";
+menu.primitive = "基本体";
+menu.render = "渲染";
 menu.material = "材料";
-// Menu name
 menu.postprocess = "后期处理";
-// Menu name
 menu.camera = "相机";
-// Menu name
 menu.background = "背景";
-// Menu name
 menu.tool = "工具";
-// Menu name
 menu.stroke = "笔刷";
-// Menu name
 menu.alpha = "Alpha";
-// Menu name
 menu.filter = "过滤器";
-// Menu name
 menu.falloff = "衰减";
-// Menu name
 menu.paint = "绘画";
-// Menu name
 menu.symmetry = "对称";
-// Menu name
 menu.operation = "操作";
-// Menu name (pencil pressure)
 menu.pressure = "压感";
-// Menu name
 menu.gesture = "手势";
-// Menu name
 menu.layers = "图层";
-// Menu name
 menu.settings = "设置";
-// Menu name
 menu.interface = "界面";
-// Menu name
 menu.bindings = "绑定";
-// Menu name
+menu.shortcuts = "快捷手";
 menu.history = "历史记录";
-// Menu name
 menu.historySettings = "设置";
-// Menu name
 menu.about = "关于";
-// Menu name
 menu.debug = "调试";
 
 // Operation on the object (action)
@@ -1366,6 +1371,10 @@ mesh.holes = "孔洞";
 mesh.holes.close = "封闭孔洞";
 // Says how dense (number of triangles) the algorithm will use in order to fill holes
 mesh.holes.detail = "细节";
+// Says how dense (number of triangles) the algorithm will use in order to fill holes
+mesh.holes.group.new = "新建";
+mesh.holes.group.reuse = "复用";
+mesh.holes.group.mixed = "混合";
 // If the mesh has disconnected parts, it will be split/separated into objects
 mesh.separate = "分离";
 // When converting the object to a triplanar primitive, some object features will be lost
@@ -1400,6 +1409,8 @@ paint.preset.embed.help = "纹理可以在 Nomad textures/ 文件夹中找到。
 您可以启用此选项以在材料预设中复制纹理。
 如果您想分享带有纹理的预设而不提供相关纹理，这可能很有用。";
 paint.preset.embed.apply = "应用于所有材料";
+paint.preset.alpha = "包含 Alpha";
+paint.preset.alpha.help = "在材质预设中包含笔刷 Alpha。";
 // Factor/Opacity of paint tool
 paint.intensity = "画笔强度";
 // Apply the paint on the object
@@ -1410,6 +1421,11 @@ paint.paintAll.help.hide = "隐藏区域将不受影响。";
 paint.paintAll.help.opacity = "使用上方的工具绘画因子。";
 paint.paintAll.help.layer = "图层的未绘区域将不受影响。";
 paint.strokePainting.title = "上漆";
+// Opaque opacity
+paint.opacityAlphaValue = "使用 Alpha 作为数值";
+paint.opacityAlphaValue.help = "将灰度值替换为 Alpha 通道并强制不透明度为 1。
+
+如果纹理没有 Alpha 通道，此选项将被忽略。";
 // Brush stroke texture
 paint.texture.warningEnable = "您需要先勾选菜单顶部的“纹理贴图”后才能使用贴图绘制功能！";
 paint.texture.warningIgnored = "当前工具无法使用纹理贴图功能！";
@@ -1802,12 +1818,21 @@ settings.snapCube.align.help = "将视图对齐到世界轴。如果启用，只
 settings.stats = "显示场景状态";
 settings.stats.right = "置于右侧";
 settings.stats.all = "显示全部";
+// Handles are controls that you interact with in the viewport in order to edit something
+settings.handle = "
+手柄";
+settings.handles = "手柄";
+// Shape draw thing
+settings.shape = "形状";
+settings.shape.color = "多边形颜色";
 // Grid
 settings.grid = "网格";
-settings.grid.divideThreshold = "细分阈值";
+settings.grid.snapDivision = "网格分割阈值";
+settings.grid.snapDivision.help = "阈值与到网格的距离进行比较。";
 // Cursor
 settings.cursor.title = "光标";
-settings.cursor.whileSculpting = "雕刻时显示圆圈";
+// sculpting circle
+settings.cursor.circle = "圆形";
 // A small indicator dot
 settings.cursor.showDot = "显示指示点";
 settings.cursor.showDot.help = "指示点会在您移动相机和雕刻时显示。";
@@ -1931,8 +1956,6 @@ shortcut.voxelRemesh = "体素";
 shortcut.wireframe = "线框";
 shortcut.cameraReset = "重设对称中心";
 shortcut.cameraSnap = "切换";
-shortcut.lockSelection = "锁定";
-shortcut.lockSelection.help = "启用后，您无法通过点击方式选择对象。";
 shortcut.grid = "世界网格";
 
 // Memory taken by the scene
@@ -2173,15 +2196,12 @@ symmetry.countY = "Y轴方向上的复制体个数";
 symmetry.countZ = "Z轴方向上的复制体个数";
 // method
 symmetry.method = "类型：";
-symmetry.method.help = "• 本体对称
-可使用轴向变换或自由变换等工具移动调整对称平面。
-
-• 世界对称
-对称平面是固定不动的。";
 // Local means: in the coordinate of the scene (synonym: absolute)
 symmetry.method.world = "世界对称";
+symmetry.method.world.help = "对称平面是固定不动的。";
 // Local means: in the coordinate of the object (synonym: relative)
 symmetry.method.local = "本体对称";
+symmetry.method.local.help = "可使用轴向变换或自由变换等工具移动调整对称平面。";
 // Move the object to the other side of the symmetry (mirror it as well)
 symmetry.flip = "翻转对象";
 // Cut half of the mesh
@@ -2388,6 +2408,9 @@ tool.smooth.stickyBorder = "边线粘性顶点";
 tool.smooth.screen = "屏幕平滑";
 tool.smooth.screen.help = "使用此选项可获得与拓扑无关的平滑效果，即使在高多边形下也是如此。";
 tool.smooth.screen.samples = "屏幕样本";
+tool.smooth.taubin = "保持体积";
+tool.smooth.taubin.shrink = "收缩";
+tool.smooth.taubin.inflate = "膨胀";
 tool.smooth.stable = "稳定平滑";
 tool.smooth.stable.help = "尝试使平滑独立于拓扑。
 
@@ -2455,7 +2478,7 @@ tool.gizmo.size = "部件尺寸";
 tool.gizmo.compact = "紧凑";
 // When enabled, tapping one the gizmo widget will open a numerical input popup
 tool.gizmo.allowInput = "数值输入";
-tool.gizmo.allowInput.help = "轻按任一变换工具时允许输入数值";
+tool.gizmo.allowInput.help = "轻按任一变换工具时允许输入数值。";
 // Angle threshold
 tool.gizmo.linearRollThreshold = "线性旋转阈值";
 tool.gizmo.linearRollThreshold.help = "此参数可影响模型旋转时的“跟手程度”。
@@ -2750,6 +2773,10 @@ binding.reset = "重设键位绑定";
 // Add node in a sync mode (synchronize instance)
 binding.addSync = "同步";
 binding.addSync.help = "默认情况下，将使用场景菜单中设置的同步值。";
+// Add node in a sync mode (synchronize instance)
+binding.float.position = "位置";
+binding.float.position.keep = "保留之前的";
+binding.float.position.cursor = "在光标上";
 // Binding option
 binding.context.toggle = "切换上下文";
 // quick sidebar tool shortcuts
@@ -2759,6 +2786,9 @@ binding.tools = "工具快捷键";
 // When the key is tapped once, the value will be toggled
 binding.toggle = "切换上一个工具";
 binding.toggle.help = "使用相同的绑定切换回上一个工具。";
+// Control if hold+release reverts the tool
+binding.revert = "按住还原";
+binding.revert.help = "选择是否释放按住的键时总是返回到之前的工具，即使该工具已经处于活动状态。";
 // sticky keys
 binding.sticky = "粘性按键";
 binding.sticky.off = "按住";
@@ -2776,10 +2806,10 @@ binding.forceCamera.help = "强制相机交互，以防与其他绑定发生冲�
 binding.pickMaterial = "材质选取器";
 // Same as Color Picker but it pick the material (color, roughness, metalness, etc)
 binding.pickFaceGroup = "选择面组";
-// Edit the tool brush size/radius
-binding.editRadius = "工具半径";
 // Inverse direction zooming
 binding.invertZoomY = "反转缩放Y";
+// Edit the tool brush size/radius
+binding.editRadius = "工具半径";
 // Edit the tool brush size/radius
 binding.editIntensity = "工具强度";
 // Controller dead zone
@@ -2840,6 +2870,11 @@ widget.color.ring = "环形";
 widget.color.square = "正方形";
 
 nomad.mainFolder = "Nomad主文件夹";
+nomad.mainFolder.help = "如果您将文件添加到Nomad主文件夹，请重新启动Nomad以应用更改。
+
+错误类型的文件可能会被移动到can_be_deleted/。
+
+例如：项目文件夹仅接受3D文件，而alphas或matcaps仅接受图像。";
 nomad.mainFolder.warning = "文件保持不变。
 它们没有被复制、删除或移动。";
 nomad.mainFolder.error = "选择'是'后，Nomad将关闭，您可以简单地重新启动它。";
@@ -2848,39 +2883,44 @@ license.title = "许可证";
 license.retry = "重试";
 license.key = "许可证密钥";
 license.activate = "激活许可证";
-// ----------------------------------------------
+
 license.newest = "新版本可用！";
 license.encrypt.error = "无法加密！";
-// ----------------------------------------------
+
 license.grace = "离线 - 剩余宽限期：";
 license.grace.hours = "小时";
 license.grace.days = "天";
-// ----------------------------------------------
+
 license.portal.title = "现有用户";
 license.portal.label = "许可证门户";
-// ----------------------------------------------
+license.portal.label.warning = "此门户仅供购买Windows/Mac版本的用户使用。
+
+从iOS/Android应用商店购买的商品不是跨平台的。";
+
 license.checkout.title = "新用户";
 license.checkout.label = "购买 Nomad";
-// ----------------------------------------------
+
 license.device.error = "无法获取设备 ID。";
 license.device.mismatch = "设备 ID 不匹配！";
-// ----------------------------------------------
+
 license.error429 = "请求过多（请稍候）。";
-// ----------------------------------------------
+
 license.validate.error404 = "许可证密钥未找到。";
 license.validate.error422 = "不可处理的实体。";
-// ----------------------------------------------
+
 license.activate.error403 = "已达到最大设备数！
 您可以在许可证门户上停用其他设备。";
 license.activate.error404 = "许可证密钥未找到。";
 license.activate.error422 = "不可处理的实体。";
-// ----------------------------------------------
+
 // version
+version.check = "检测更新";
+version.auto = "自动检查更新";
 version.update = "更新可用！";
 version.restore = "恢复购买";
 version.buyWeb = "该版本仅供演示";
 version.buyFull = "购买完整版本";
-// ----------------------------------------------
+
 // QuadRemesh
 version.qr.unlock = "解锁（购买、恢复、试用）";
 version.qr.desktop = "在桌面上，QuadRemesher由Hexanomad分发，但Hexanomad不处理销售或许可。
@@ -2903,18 +2943,18 @@ version.qr.promo = "
 • 密度绘制 $3
 
 四边形重构算法由https://exoside.com/开发。";
-// ----------------------------------------------
+
 version.trialLayer = "试用版本限制：每个物体仅允许添加一个图层";
 version.trialNoExport = "试用版本限制：不允许导出";
-// ----------------------------------------------
+
 version.fullFeatures = "购买完整版本后您可以：
 • 撤消或重做不受限制
 • 图层数量不受限制
 • 可以导入和导出文件";
-// ----------------------------------------------
+
 version.demo.purpose = "此版本专为演示用途而制作。";
 version.demo.disable = "演示版本不启用此功能。";
-// ----------------------------------------------
+
 version.demo = "演示测试";
 version.demo.sculpt = "雕刻";
 version.demo.sculpt.help = "所有画笔都可以使用，但不能保存或导出。
@@ -2926,70 +2966,69 @@ version.demo.file = "导入和导出";
 version.demo.file.help = "您可以导入和导出模型，但雕刻画笔被禁用。
 
 此模式对那些因移动设备内存限制而无法打开大型.nom项目的移动用户特别有用。";
-// ----------------------------------------------
+
 // app store main page
 store.name = "Nomad Sculpt • 3D雕刻建模";
 store.headline = "专业数字雕刻与模型绘画";
 store.tag = "sculpt, 3d, nomad, paint, modeling, 雕塑, 绘画, 模型, 设计, 创造";
-// ----------------------------------------------
+
 store.description.sculpt = "• 雕塑工具
 Clay, flatten, smooth, mask和许多其他画笔让您塑造您的创作。
 需要硬线吗？您还会找到一些套索/线/曲线切割工具。";
-// ----------------------------------------------
+
 store.description.stroke = "• 笔触自定义
 Falloff, alphas, tilings, pencil pressure以及其他笔触参数可以自定义。
 您也可以保存和加载您的工具预设。";
-// ----------------------------------------------
+
 store.description.paint = "• 绘画工具
 Vertex绘画包含颜色，粗糙度和金属性。
 您也可以轻松管理所有材质预设。";
-// ----------------------------------------------
+
 store.description.layer = "• 图层
 在单独的层中记录您的雕塑和绘画操作，以便在创作过程中更容易迭代。
 雕塑和绘画的更改都被记录下来。";
-// ----------------------------------------------
+
 store.description.multires = "• 多重网格
 在模型不同的分辨率之间随心切换，能让您拥有更流畅的创作体验。";
-// ----------------------------------------------
+
 store.description.voxel = "• 体素网格重构
 重构能够让重新计算您模型的网格布线。
 在您创作之初，可用来快速起稿。";
-// ----------------------------------------------
+
 store.description.dynamic = "• 动态拓扑
 在您的画笔下局部细化您的网格，以获得自动的细节水平。
 您甚至可以保留您的图层，因为它们将被自动更新！";
-// ----------------------------------------------
+
 store.description.topology = "• 简化
 在尽可能保留多的细节的情况下减少多边形数量。";
-// ----------------------------------------------
+
 store.description.group = "• 面部分组
 使用面部分组工具将您的网格分割成子组。";
-// ----------------------------------------------
+
 store.description.unwrap = "• 自动UV展开
 自动UV展开器可以使用面部分组来控制展开过程。";
-// ----------------------------------------------
+
 store.description.baking = "• 烘焙
 您可以将顶点数据如颜色，粗糙度，金属性和小尺度细节转移到纹理中。
 您也可以做相反的操作，将纹理数据转移到顶点数据或层中。";
-// ----------------------------------------------
+
 store.description.primitive = "• 原始形状
 圆柱，圆环，管，车床和其他原始形状可用于从头开始快速开始新形状。";
-// ----------------------------------------------
+
 store.description.rendering = "• PBR渲染
 默认美丽的PBR渲染，包含光照和阴影。
 您总是可以切换到MatCap，以便于雕塑目的使用更标准的着色。";
-// ----------------------------------------------
+
 store.description.postprocess = "• 后期处理
 屏幕空间反射，景深，环境遮蔽，色调映射等";
-// ----------------------------------------------
+
 store.description.files = "• 导出和导入
 支持的格式包括glTF、OBJ、STL或PLY文件。";
-// ----------------------------------------------
+
 store.description.interface = "• 界面
 易于使用的界面，为移动体验设计。
 也可以进行自定义！";
-// ----------------------------------------------
+
 store.description.remesher = "• 四边形重构（仅限应用内购买）
 自动使用符合网格曲率的四边形优势网格重新构建您的物体。
 它支持引导线，面部分组和密度绘画。";
-// ----------------------------------------------

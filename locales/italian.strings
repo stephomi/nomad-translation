@@ -18,6 +18,11 @@ status.exit = "Modifiche non salvate! Salvare prima di chiudere?";
 status.exit.yes = "Salva";
 status.exit.no = "Non salvare";
 
+format.ascii = "Ascii";
+format.binary = "Binario";
+
+color = "Colore";
+
 // On single tap (should be short)
 ontap = "Tocco";
 
@@ -166,6 +171,9 @@ material.normal = "Normale";
 material.normal.flipY = "Inverti Y";
 // Ambient Occlusion (AO)
 material.occlusion = "Occlusione";
+material.unused = "Non utilizzato";
+// Displacement map
+material.displacement = "Displacement";
 // Textures, basically images wrapped on models (synonym: Maps, Texture maps)
 material.textures = "Texture";
 // Textures/Image
@@ -209,6 +217,8 @@ about.turntable.pivot.keep = "Mantieni attuale";
 about.turntable.pivot.scene = "Scena";
 // Make the entire scene turn around (speed of the animation)
 about.turntable.speed = "Velocità";
+// Speed easing (linear vs non-linaer)
+about.turntable.linear = "Velocità costante";
 // Stuffs that I used to make the app
 about.credits = "Riconoscimenti";
 // Link to open source projects that I used for the app
@@ -290,10 +300,6 @@ alert.editSymmetry = "Tocco semplice per uscire dalla modalità di simmetria di 
 alert.mask.show = "Mostra maschera";
 // Hide the painted mask on the mesh
 alert.mask.hide = "Nascondi maschera";
-// Selection refers to the objects that are currently selected
-alert.selection.lock = "Blocca selezione";
-// Selection refers to the objects that are currently selected
-alert.selection.unlock = "Sblocca selezione";
 // Hide the objects that are not selected
 alert.selection.isolate = "Isola selezione";
 // Show the objects that are hidden
@@ -338,6 +344,8 @@ background.blur = "Sfocatura";
 background.exposure = "Esposizione";
 
 // Image that the artist uses as a reference
+background.reference = "Riferimento";
+// Image that the artist uses as a reference
 background.imageEnable = "Immagine di riferimento";
 // The image will be displayed in overlay (used as a reference by the artist)
 background.imageOverlay = "Sovrapponi";
@@ -350,21 +358,16 @@ background.imageX = "Posizione X";
 // Y screen coordinate of the image reference
 background.imageY = "Posizione Y";
 // Rotation of the reference image
-background.imageRotation = "Rotazione";
+background.imageRotate = "Rotazione";
 // Scale of the reference image
 background.imageScale = "Dimensione";
 // Auto adjust the reference when moving the camera
 background.lock.image = "Sincronizza con il blocco della camera";
 background.lock.image.help = "Quando la camera è bloccata con il Snap Cube, l'immagine di riferimento segue il movimento della camera.";
 // When exiting camera lock
-background.lock.exit = "Ripristina al sblocco:";
-background.lock.exit.none = "Regola Fov";
-background.lock.exit.none.help = "Mantieni l'immagine e la camera come sono. 
-Se in prospettiva, regola solo il campo visivo.";
-background.lock.exit.all = "Ripristina tutto";
-background.lock.exit.all.help = "Ripristina sia l'immagine che la posizione della camera.";
-background.lock.exit.perspective = "Se Prospettiva";
-background.lock.exit.perspective.help = "Se in prospettiva, ripristina l'immagine e la posizione della camera.";
+background.lock.reset = "Reimposta vista allo sblocco";
+// When exiting camera lock
+background.lock.roll = "Rotazione";
 
 // Blend: normal
 blend.normal = "Normale";
@@ -498,6 +501,13 @@ curve.merge = "Unisci";
 curve.snap = "Aggancio";
 curve.snap.offset = "Spostamento";
 curve.snap.offset.help = "Un valore di 100% è uguale al raggio del tubo.";
+curve.snap.normal = "Allinea normale";
+curve.snap.normal.help = "Influisce solo sui primi e ultimi punti di controllo della curva.
+
+Sposta i punti vicini in modo che le estremità del tubo siano allineate con la normale della superficie.
+
+La distanza dal punto vicino viene mantenuta.";
+
 curve.snap.surface = "Superficie";
 curve.snap.vertex = "Vertice";
 curve.snap.grid = "Griglia (se agganciata)";
@@ -544,6 +554,8 @@ debug.thumbnails = "Crea miniature per lo store";
 
 // Open file explorer
 file.explore = "Esplora";
+// Type format
+file.format = "Formato";
 // Open file explorer
 file.scope = "Ambito";
 file.scope.internal = "Interno";
@@ -664,40 +676,40 @@ file.onlySelection.help = "Includi solo la selezione, invece dell'intera scena."
 // Tries to generate quad (rectangle polygon) from triangles
 file.convertToQuad = "Ricostruisci quadrilatero";
 file.convertToQuad.help = "Ricostruisci quadrilateri da triangoli accoppiando i triangoli (se sono adiacenti nei file).";
-// ----------------------------------------------
+
 // Whether we include the textures in the exported file
 file.export.texture = "Texture";
 // Baking means transfering/converting
 file.export.texture.help = "Questa opzione non trasferisce i colori dei vertici nelle texture.";
-// ----------------------------------------------
+
 file.export.color0 = "Colori dei vertici";
 file.export.color1 = "Dipinti PBR";
 file.export.color1.help = "Esporta rugosità, metallicità e dipinti della maschera. Questo verrà ignorato da altri software.";
-// ----------------------------------------------
+
 // Whether we include normals vector in the exported file
 file.export.normal = "Normali";
 file.export.normal.help = "Selezionare questa opzione se si desidera aprire il file in un altro software.
 
 Nomad ignora sempre le normali poiché le ricalcolerà.";
-// ----------------------------------------------
+
 file.export.tangent = "Tangenti";
 file.export.tangent.help = "Selezionare questa opzione se si desidera aprire il file in un altro software.
 
 Le tangenti sono utilizzate solo se il modello ha una mappa normale.
 
 Nomad ignora sempre le tangenti poiché verranno ricomputate.";
-// ----------------------------------------------
+
 file.export.nomad.help = "Formato file interno di Nomad Sculpt.
 
 Questo formato non si aprirà su altri software, è principalmente per scopi di re-importazione.";
-// ----------------------------------------------
+
 // Whether we include layers in the exported file (see glossary for layer)
 file.export.gltf.layer = "Livelli";
 file.export.gltf.layer.help = "Esporta livelli come morph. Ufficialmente supportato da glTF, quindi dovrebbe funzionare anche su altri software.";
 // Whether we include painting of layers in the exported file (see glossary for layer)
 file.export.gltf.layerPaint = "Livelli dipinti";
 file.export.gltf.layerPaint.help = "Esporta livelli di dipinti. Solitamente viene ignorato da altri software.";
-// ----------------------------------------------
+
 file.export.obj.warning = "I livelli e la dipinti extra (rugosità, metallicità e maschera) andranno persi.";
 // Whether we include the vertex color in the exported file
 file.export.obj.color = "Colori dei vertici";
@@ -714,19 +726,22 @@ file.export.obj.archive = "Tipo";
 file.export.obj.archive.folder = "Cartella";
 file.export.obj.archive.zip = "Zip";
 file.export.obj.archive.help = "Alcune app (Google Drive, One Drive, ecc.) non supportano l'importazione di cartelle, quindi puoi usare Zip al loro posto.";
-// ----------------------------------------------
+
+file.export.fbx.format = "Formato";
+file.export.fbx.format.help = "Il binario è più piccolo, ma potrebbe non funzionare in tutte le applicazioni.";
+
 file.export.ply.warning = "I livelli e la dipinti extra (rugosità, metallicità e maschera) andranno persi.";
-// ----------------------------------------------
+
 file.export.stl.warning = "I livelli e la dipinti extra (rugosità, metallicità e maschera) andranno persi.";
 // Whether we include the vertex color in the exported file
 file.export.stl.color = "Colori dei vertici";
 file.export.stl.color.help = "Alcuni software 3D potranno leggerli, ma non tutti.";
-// ----------------------------------------------
+
 file.export.usd.skew = "Permetti distorsione";
 file.export.usd.skew.help = "Permetti distorsione nelle trasformazioni matriciali.
 
 Quando disabilitato, Nomad dividerà le matrici di distorsione in due trasformazioni separate di scalatura e rotazione.";
-// ----------------------------------------------
+
 // Advanced settings
 settings.advanced = "Avanzato";
 // Means that all these options will be resetted when the app restarts
@@ -856,6 +871,10 @@ gesture.pencilAction.none = "Nessuno";
 // Pencil button (or iOS pencil double tap) action: flip adding/substracting sculpt matter setting
 gesture.pencilAction.alt = "Agg./Sott.";
 
+// Idle long press with pencil, mouse, finger, etc
+gesture.longPress = "Pressione lunga";
+
+
 // Enable Mask gesture by tapping once on the screen
 gesture.mask.oneTap = "Scorciatoie con un tocco";
 gesture.mask.oneTap.help = "Consenti la scorciatoia Maschera toccando lo schermo una volta, senza dover tenere premuta la scorciatoia del pulsante maschera.
@@ -871,6 +890,8 @@ gesture.mask.holdStroke.help = "Una pressione prolungata attiverà l'alternanza 
 Al termine del tratto, verrà selezionato nuovamente lo strumento precedente.";
 gesture.mask.holdIdle = "Strumento";
 gesture.mask.holdIdle.help = "Premi a lungo e rilascia senza muoverti per passare tra Maschera e SelMaschera.";
+
+gesture.smooth.holdSelect.help = "La pressione lunga passerà allo strumento di selezione per la durata della selezione di tratto.";
 
 // Shortcut customization, choose the action that the shortcut will performan (select tool, etc)
 gesture.shortcut = "Scorciatoia";
@@ -1035,8 +1056,14 @@ interface.preset.title = "Preset";
 // Reset interface settings
 interface.resetAll = "Ripristina stile";
 interface.resetAll.confirm = "Ripristinare le impostazioni dell'interfaccia?";
-// help popup when hovering
+// Dot menu hovering
+interface.hoverDot = "Puntino al passaggio del cursore";
+interface.hoverDot.help = "Mostra un piccolo puntino nell'interfaccia quando viene rilevata una penna in hovering.";
+// Help popup when hovering
 interface.hoverHelp = "Finestra di aiuto al passaggio del mouse";
+// Do not use windows native dialog
+interface.customDialog = "Usa finestra di dialogo Nomad";
+interface.customDialog.help = "Mostra la finestra di dialogo di testo di Nomad invece di quella nativa.";
 // Interface option (main base color)
 interface.iconSupport = "Pulsante ad alto contrasto";
 interface.iconSupport.help = "Uno stile alternativo per i pulsanti che li rende più visibili quando sono abilitati.
@@ -1045,9 +1072,9 @@ Se impostato su Auto, Nomad utilizzerà questa modalità quando il contrasto dei
 // Interface customization
 interface.flipTop = "Inverti barra superiore";
 // Interface customization
-interface.flipBottom = "Inverti barra inferiore";
-// Interface customization
 interface.flipMiddle = "Inverti barre laterali";
+// Interface customization
+interface.flipBottom = "Inverti barra inferiore";
 // list of tools
 interface.toolbox = "Casella strumenti";
 // hide toolbox by default
@@ -1066,7 +1093,6 @@ interface.top.responsive = "Reattivo";
 interface.top.responsive.help = "Questa opzione è principalmente rilevante per schermi piccoli.";
 interface.top.responsive.multiline = "Multilinea";
 interface.top.responsive.scroll = "Scorri";
-interface.top.responsive.collapse = "Comprimi";
 interface.top.alt = "Ordine alternativo";
 interface.top.alt.help = "Icona ordine alternativa per il menu superiore.
 
@@ -1287,6 +1313,11 @@ material.alwaysUnlit = "Sempre non illuminato";
 // Inverse the side of the object triangles
 // https://en.wikipedia.org/wiki/Back-face_culling
 material.flipCulling = "Culling inverso";
+// material (additive and blending) will write into depth
+material.preRefract = "Passaggio di pre-rifrazione";
+material.preRefract.help = "Forza il disegno dei materiali trasparenti prima del passaggio di rifrazione.
+
+Utile quando un materiale rifrangente viene renderizzato davanti ad altre superfici trasparenti.";
 // How much light a surface will reflect (synonym: specular)
 material.reflectance = "Riflettanza";
 material.reflectance.help = "Controlla la quantità di riflessione che il materiale riceve per i materiali non metallici.
@@ -1297,65 +1328,39 @@ material.preview = "Anteprima colore del materiale";
 material.preview.help = "When you modify a material, a preview will be displayed in the viewport on the selected object.
 
 The preview is shown while you interact with the color, roughness, metalness, opacity and intensity sliders.";
-// Menu name
+// Menu names
 menu.files = "File";
-// Menu name
-menu.scene = "Scena";
-// Menu name
-menu.multires = "Multires";
-// Menu name
-menu.voxel = "Voxel";
-// Menu name
-menu.dynamic = "DynTopo";
-// Menu name (Synonym: Misc, Other)
-menu.topology = "Varie";
-// Menu name
-menu.primitive = "Primitiva";
-// Menu name
 menu.render = "Renderizza";
-// Menu name
+menu.turntable = "Piattaforma girevole";
+menu.scene = "Scena";
+menu.multires = "Multires";
+menu.voxel = "Voxel";
+menu.dynamic = "DynTopo";
+menu.topology = "Varie";
+menu.primitive = "Primitiva";
+menu.render = "Renderizza";
 menu.material = "Materiale";
-// Menu name
 menu.postprocess = "Post processing";
-// Menu name
 menu.camera = "Fotocamera";
-// Menu name
 menu.background = "Sfondo";
-// Menu name
 menu.tool = "Strumento";
-// Menu name
 menu.stroke = "Tratto";
-// Menu name
 menu.alpha = "Alfa";
-// Menu name
 menu.filter = "Filtro";
-// Menu name
 menu.falloff = "Decadimento";
-// Menu name
 menu.paint = "Dipinti";
-// Menu name
 menu.symmetry = "Simmetria";
-// Menu name
 menu.operation = "Azione";
-// Menu name (pencil pressure)
 menu.pressure = "Pressione";
-// Menu name
 menu.gesture = "Gesto";
-// Menu name
 menu.layers = "Livelli";
-// Menu name
 menu.settings = "Impostazioni";
-// Menu name
 menu.interface = "Interfaccia";
-// Menu name
 menu.bindings = "Collegamenti";
-// Menu name
+menu.shortcuts = "Scorciatoia";
 menu.history = "Cronologia";
-// Menu name
 menu.historySettings = "Impostazioni";
-// Menu name
 menu.about = "Info";
-// Menu name
 menu.debug = "Debug";
 
 // Operation on the object (action)
@@ -1364,6 +1369,10 @@ mesh.holes = "Aperture";
 mesh.holes.close = "Chiudi aperture";
 // Says how dense (number of triangles) the algorithm will use in order to fill holes
 mesh.holes.detail = "Dettaglio";
+// Says how dense (number of triangles) the algorithm will use in order to fill holes
+mesh.holes.group.new = "Nuovo";
+mesh.holes.group.reuse = "Riutilizza";
+mesh.holes.group.mixed = "Misto";
 // If the mesh has disconnected parts, it will be split/separated into objects
 mesh.separate = "Separa";
 // When converting the object to a triplanar primitive, some object features will be lost
@@ -1398,6 +1407,8 @@ When this option is off, the material preset only reference the texture inside t
 You can enable this option to make a copy of the textures inside the material preset.
 It can be useful if you want to share a textured preset without providing the associated textures.";
 paint.preset.embed.apply = "Apply to all materials";
+paint.preset.alpha = "Includi Alpha";
+paint.preset.alpha.help = "Include l’Alpha del pennello nel preset materiale.";
 // Factor/Opacity of paint tool
 paint.intensity = "Intensità dipinti";
 // Apply the paint on the object
@@ -1408,6 +1419,11 @@ paint.paintAll.help.hide = "L'area nascosta non sarà interessata.";
 paint.paintAll.help.opacity = "Utilizza il fattore di dipinti dello strumento sopra.";
 paint.paintAll.help.layer = "L'area non dipinta di un . non sarà interessata.";
 paint.strokePainting.title = "Dipinti";
+// Opaque opacity
+paint.opacityAlphaValue = "Usa Alpha come Valore";
+paint.opacityAlphaValue.help = "Sostituisce il valore in scala di grigi con il canale alpha e forza l’opacità a 1.
+
+Se la texture non ha un canale alpha, questa opzione verrà ignorata.";
 // Brush stroke texture
 paint.texture.warningEnable = "La dipinti a tratto deve essere abilitata per consentire la proiezione della trama (casella di controllo in alto)!";
 paint.texture.warningIgnored = "Lo strumento attuale non può utilizzare texture!";
@@ -1800,12 +1816,20 @@ In Auto, la restrizione avverrà solo se la camera è in modalità Orbita.";
 settings.stats = "Statistiche";
 settings.stats.right = "Destra";
 settings.stats.all = "Mostra l'intera scena";
+// Handles are controls that you interact with in the viewport in order to edit something
+settings.handle = "Maniglia";
+settings.handles = "Maniglie";
+// Shape draw thing
+settings.shape = "Forma";
+settings.shape.color = "Colore del poligono";
 // Grid
 settings.grid = "Griglia";
-settings.grid.divideThreshold = "Soglia di divisione";
+settings.grid.snapDivision = "Soglia di divisione della griglia";
+settings.grid.snapDivision.help = "La soglia è confrontata con la distanza dalla griglia.";
 // Cursor
 settings.cursor.title = "Cursore";
-settings.cursor.whileSculpting = "Mostra il cerchio mentre scolpisci";
+// sculpting circle
+settings.cursor.circle = "Cerchio";
 // A small indicator dot
 settings.cursor.showDot = "Mostra puntino";
 settings.cursor.showDot.help = "Il puntino può apparire come punto pivot della telecamera o quando stai scolpendo.";
@@ -1928,8 +1952,6 @@ shortcut.voxelRemesh = "Voxel";
 shortcut.wireframe = "Wire";
 shortcut.cameraReset = "Ripristina";
 shortcut.cameraSnap = "Aggancio";
-shortcut.lockSelection = "Blocca";
-shortcut.lockSelection.help = "Quando è abilitato, non è possibile modificare la selezione toccando una mesh.";
 shortcut.grid = "Griglia";
 
 // Memory taken by the scene
@@ -2170,15 +2192,12 @@ symmetry.countY = "Conteggio Y";
 symmetry.countZ = "Conteggio Z";
 // method
 symmetry.method = "Metodo:";
-symmetry.method.help = "• Locale
-Il piano di simmetria si sposta lungo la mesh quando si utilizza uno degli strumenti di trasformazione (Gizmo o Trasforma).
-
-• Mondo
-Il piano di simmetria è fisso e non si sposta.";
 // Local means: in the coordinate of the scene (synonym: absolute)
 symmetry.method.world = "Mondo";
+symmetry.method.world.help = "Il piano di simmetria è fisso e non si sposta.";
 // Local means: in the coordinate of the object (synonym: relative)
 symmetry.method.local = "Locale";
+symmetry.method.local.help = "Il piano di simmetria si sposta lungo la mesh quando si utilizza uno degli strumenti di trasformazione (Gizmo o Trasforma).";
 // Move the object to the other side of the symmetry (mirror it as well)
 symmetry.flip = "Rifletti oggetto";
 // Cut half of the mesh
@@ -2385,6 +2404,9 @@ tool.smooth.stickyBorder = "Vertice fisso sul bordo";
 tool.smooth.screen = "Lisciatura dello schermo";
 tool.smooth.screen.help = "Utilizza questa opzione per ottenere una lisciatura indipendente dalla topologia, anche con molti poligoni.";
 tool.smooth.screen.samples = "Campioni dello schermo";
+tool.smooth.taubin = "Preserva volume";
+tool.smooth.taubin.shrink = "Restringi";
+tool.smooth.taubin.inflate = "Gonfia";
 tool.smooth.stable = "Levigatura stabile";
 tool.smooth.stable.help = "Cerca di rendere la levigatura indipendente dalla topologia.
 
@@ -2452,7 +2474,7 @@ tool.gizmo.size = "Dimensione widget";
 tool.gizmo.compact = "Compatto";
 // When enabled, tapping one the gizmo widget will open a numerical input popup
 tool.gizmo.allowInput = "Inserimento numerico";
-tool.gizmo.allowInput.help = "Consente l'input numerico quando si tocca uno dei widget gizmo";
+tool.gizmo.allowInput.help = "Consente l'input numerico quando si tocca uno dei widget gizmo.";
 // Angle threshold
 tool.gizmo.linearRollThreshold = "Soglia scorrimento tangente";
 tool.gizmo.linearRollThreshold.help = "Soglia dell'angolo per scegliere tra il metodo di scorrimento lineare o circolare.
@@ -2745,6 +2767,10 @@ binding.reset = "Ripristina collegamenti";
 // Add node in a sync mode (synchronize instance)
 binding.addSync = "Sincronizza";
 binding.addSync.help = "Per impostazione predefinita, verrà utilizzato il valore di sincronizzazione impostato nel menu della scena.";
+// Add node in a sync mode (synchronize instance)
+binding.float.position = "Posizione";
+binding.float.position.keep = "Mantieni il precedente";
+binding.float.position.cursor = "Sul cursore";
 // Binding option
 binding.context.toggle = "Cambia contesto";
 // quick sidebar tool shortcuts
@@ -2754,6 +2780,9 @@ binding.tools = "Scorciatoie degli strumenti";
 // When the key is tapped once, the value will be toggled
 binding.toggle = "Attiva/Disattiva strumento precedente";
 binding.toggle.help = "Utilizzare lo stesso binding per tornare all'ultimo strumento.";
+// Control if hold+release reverts the tool
+binding.revert = "Tieni premuto per annullare";
+binding.revert.help = "Decidi se rilasciare un tasto premuto torna sempre allo strumento precedente, anche quando tale strumento era già attivo.";
 // sticky keys
 binding.sticky = "Tasti appiccicosi";
 binding.sticky.off = "Tenere premuto";
@@ -2771,10 +2800,10 @@ Questo può tipicamente accadere se lo stesso binding è assegnato a un collegam
 binding.pickMaterial = "Selettore materiale";
 // Same as Color Picker but it pick the material (color, roughness, metalness, etc)
 binding.pickFaceGroup = "Seleziona Gruppo di Facce";
-// Edit the tool brush size/radius
-binding.editRadius = "Raggio strumento";
 // Inverse direction zooming
 binding.invertZoomY = "Invertire zoom Y";
+// Edit the tool brush size/radius
+binding.editRadius = "Raggio strumento";
 // Edit the tool brush size/radius
 binding.editIntensity = "Intensità strumento";
 // Controller dead zone
@@ -2835,6 +2864,11 @@ widget.color.ring = "Anello";
 widget.color.square = "Quadrato";
 
 nomad.mainFolder = "Cartella principale di Nomad";
+nomad.mainFolder.help = "Se aggiungete file alla cartella principale di Nomad, riavviate Nomad affinché le modifiche abbiano effetto.
+
+File di tipo errato nelle sottocartelle possono essere spostati in can_be_deleted/.
+
+Ad esempio: la cartella dei progetti accetta solo file 3D, mentre alpha o matcap accettano solo immagini.";
 nomad.mainFolder.warning = "I file sono lasciati inalterati.
 Non sono copiati, cancellati o spostati.";
 nomad.mainFolder.error = "Dopo aver selezionato 'sì', Nomad si chiuderà e potrà essere facilmente riavviata.";
@@ -2843,39 +2877,44 @@ license.title = "Licenza";
 license.retry = "Riprova";
 license.key = "Chiave di licenza";
 license.activate = "Attiva licenza";
-// ----------------------------------------------
+
 license.newest = "Nuova versione disponibile!";
 license.encrypt.error = "Non è stato possibile criptare!";
-// ----------------------------------------------
+
 license.grace = "Offline - Periodo di grazia rimanente:";
 license.grace.hours = "ore";
 license.grace.days = "giorni";
-// ----------------------------------------------
+
 license.portal.title = "Utenti esistenti";
 license.portal.label = "Portale licenze";
-// ----------------------------------------------
+license.portal.label.warning = "Questo portale è solo per gli utenti che hanno acquistato la versione Windows/Mac.
+
+Gli acquisti dagli app store iOS/Android non sono multipiattaforma.";
+
 license.checkout.title = "Nuovi utenti";
 license.checkout.label = "Acquista Nomad";
-// ----------------------------------------------
+
 license.device.error = "Impossibile ottenere l'ID del dispositivo.";
 license.device.mismatch = "ID dispositivo non corrispondente!";
-// ----------------------------------------------
+
 license.error429 = "Troppe richieste (attendere).";
-// ----------------------------------------------
+
 license.validate.error404 = "Chiave di licenza non trovata.";
 license.validate.error422 = "Entità non processabile.";
-// ----------------------------------------------
+
 license.activate.error403 = "Numero massimo di dispositivi raggiunto!
 Puoi disattivare un altro dispositivo sul tuo portale licenze.";
 license.activate.error404 = "Chiave di licenza non trovata.";
 license.activate.error422 = "Entità non processabile.";
-// ----------------------------------------------
+
 // version
+version.check = "Controlla aggiornamenti";
+version.auto = "Controlla automaticamente gli aggiornamenti";
 version.update = "Aggiornamento disponibile!";
 version.restore = "Ripristina acquisto";
 version.buyWeb = "La versione Web è solo una demo";
 version.buyFull = "Aggiorna alla versione completa";
-// ----------------------------------------------
+
 // QuadRemesh
 version.qr.unlock = "Sblocca (acquisto, ripristino, prova)";
 version.qr.desktop = "Su desktop, il QuadRemesher è distribuito da Hexanomad, ma Hexanomad non gestisce le vendite o le licenze.
@@ -2898,18 +2937,18 @@ Puoi anche guidare la topologia risultante con:
 • Dipinti Densità $3
 
 Il Quad Remesher è sviluppato da https://exoside.com/.";
-// ----------------------------------------------
+
 version.trialLayer = "Versione di prova: 1 livello per mesh";
 version.trialNoExport = "Versione di prova: Nessuna esportazione";
-// ----------------------------------------------
+
 version.fullFeatures = "• Acquisto una tantum
 • Annulla/ripeti illimitati
 • Livelli illimitati
 • Esportazione e importazione";
-// ----------------------------------------------
+
 version.demo.purpose = "Questa versione è stata appositamente creata per scopi dimostrativi.";
 version.demo.disable = "Funzione non disponibile su questa versione demo.";
-// ----------------------------------------------
+
 version.demo = "Demo Test";
 version.demo.sculpt = "Scolpire";
 version.demo.sculpt.help = "Tutti i pennelli sono disponibili ma non è possibile salvare o esportare.
@@ -2927,72 +2966,71 @@ version.demo.file.help = "È possibile importare ed esportare il modello ma i pe
 
 
 Questa modalità è principalmente utile per gli utenti mobili che non possono aprire grandi progetti .nom a causa dei vincoli di memoria del dispositivo.";
-// ----------------------------------------------
+
 // app store main page
 store.name = "Nomad Sculpt";
 store.headline = "Scultura e dipingi in 3D";
 store.tag = "sculpt, 3d, nomad, paint, modeling, scultura, dipinti, modellazione";
-// ----------------------------------------------
+
 store.description.sculpt = "• Strumenti di scultura
 Creazione, appiattimento, levigatura, maschera e molti altri pennelli ti permetteranno di modellare la tua creazione.
 Puoi anche utilizzare lo strumento di taglio booleano trim con lasso, rettangolo e altre forme, per scopi di hardsurface.• • • Strumenti di scultura
 Creazione, appiattimento, levigatura, maschera e molti altri pennelli ti permetteranno di modellare la tua creazione.
 Puoi anche utilizzare lo strumento di taglio booleano trim con lasso, rettangolo e altre forme, per scopi di hardsurface.";
-// ----------------------------------------------
+
 store.description.stroke = "• Personalizzazione del tratto
 Dissolvenza, alphas, tassellature, pressione della matita e altri parametri del tratto possono essere personalizzati.
 Puoi anche salvare e caricare il tuo preset di strumenti.";
-// ----------------------------------------------
+
 store.description.paint = "• Strumenti di dipinti
 Verniciatura dei vertici con colore, roughness e metalness.
 Puoi gestire facilmente tutti i tuoi preset di materiale.";
-// ----------------------------------------------
+
 store.description.layer = "• Livelli
 Registra le tue operazioni di scultura e dipinti in livelli separati per iterazioni più facili durante il processo di creazione.
 Sia le modifiche alla scultura che alla dipinti vengono registrate.";
-// ----------------------------------------------
+
 store.description.multires = "• Scultura multirisoluzione
 Vai avanti e indietro tra molteplici risoluzioni della tua mesh per un flusso di lavoro flessibile.";
-// ----------------------------------------------
+
 store.description.voxel = "• Rimappatura voxel
 Rimappa rapidamente la tua mesh per ottenere un livello uniforme di dettaglio.
 Può essere utilizzato per schizzare rapidamente una forma approssimativa all'inizio del processo di creazione.";
-// ----------------------------------------------
+
 store.description.dynamic = "• Topologia dinamica
 Affina localmente la tua mesh sotto il tuo pennello per ottenere un livello automatico di dettaglio.
 Puoi persino mantenere i tuoi livelli, in quanto saranno automaticamente aggiornati!";
-// ----------------------------------------------
+
 store.description.topology = "• Decimare
 Riduci il numero di poligoni mantenendo il maggior numero di dettagli possibile.";
-// ----------------------------------------------
+
 store.description.group = "• Gruppo Facciale
 Segmenta la tua mesh in sottogruppi con lo strumento del gruppo facciale.";
-// ----------------------------------------------
+
 store.description.unwrap = "• Unwrap UV automatico
 L'unwrapper UV automatico può utilizzare i gruppi facciali per controllare il processo di unwrapping.";
-// ----------------------------------------------
+
 store.description.baking = "• Baking
 Puoi trasferire dati dei vertici come colore, roughness, metalness e dettagli a piccola scala in texture.
 Puoi anche fare il contrario, trasferendo dati di texture in dati dei vertici o livelli.";
-// ----------------------------------------------
+
 store.description.primitive = "• Forma primitiva
 Cilindro, toro, tubo, tornio e altre primitive possono essere usate per iniziare rapidamente nuove forme da zero.";
-// ----------------------------------------------
+
 store.description.rendering = "• Rendering PBR
 Bellissimo rendering PBR predefinito, con illuminazione e ombre.
 Puoi sempre passare a MatCap per un'ombreggiatura più standard per scopi di scultura.";
-// ----------------------------------------------
+
 store.description.postprocess = "• Post-elaborazione
 Reflection dello spazio schermo, Profondità di campo, Occlusione ambientale, Mappatura dei toni, ecc";
-// ----------------------------------------------
+
 store.description.files = "• Esportazione e Importazione
 I formati supportati includono file glTF, OBJ, STL o PLY.";
-// ----------------------------------------------
+
 store.description.interface = "• Interfaccia
 Interfaccia facile da usare, progettata per l'esperienza mobile.
 La personalizzazione è possibile!";
-// ----------------------------------------------
+
 store.description.remesher = "• Quad Remesher (acquisto in-app separato solo)
 Rimappa automaticamente il tuo oggetto con una mesh dominata da quad che segue le curvature della mesh.
 Supporta guide, gruppi facciali e dipinti di densità.";
-// ----------------------------------------------

@@ -18,6 +18,11 @@ status.exit = "저장되지 않은 변경 사항이 있습니다! 닫기 전에 
 status.exit.yes = "저장";
 status.exit.no = "저장 안 함";
 
+format.ascii = "아스키";
+format.binary = "바이너리";
+
+color = "색상";
+
 // On single tap (should be short)
 ontap = "탭 한 번";
 
@@ -166,6 +171,9 @@ material.normal = "보통";
 material.normal.flipY = "Y 좌표 뒤집기";
 // Ambient Occlusion (AO)
 material.occlusion = "오클루전";
+material.unused = "미사용";
+// Displacement map
+material.displacement = "변위";
 // Textures, basically images wrapped on models (synonym: Maps, Texture maps)
 material.textures = "텍스처";
 // Textures/Image
@@ -209,6 +217,8 @@ about.turntable.pivot.keep = "현재 유지";
 about.turntable.pivot.scene = "씬";
 // Make the entire scene turn around (speed of the animation)
 about.turntable.speed = "속도";
+// Speed easing (linear vs non-linaer)
+about.turntable.linear = "일정한 속도";
 // Stuffs that I used to make the app
 about.credits = "감사의 말";
 // Link to open source projects that I used for the app
@@ -290,10 +300,6 @@ alert.editSymmetry = "대칭 모드 편집을 종료하려면 간단히 탭하�
 alert.mask.show = "마스크 보기";
 // Hide the painted mask on the mesh
 alert.mask.hide = "마스크 가리기";
-// Selection refers to the objects that are currently selected
-alert.selection.lock = "선택 잠금";
-// Selection refers to the objects that are currently selected
-alert.selection.unlock = "선택 잠금해제";
 // Hide the objects that are not selected
 alert.selection.isolate = "선택 대상 분리";
 // Show the objects that are hidden
@@ -338,6 +344,8 @@ background.blur = "흐림 효과";
 background.exposure = "노출";
 
 // Image that the artist uses as a reference
+background.reference = "참조";
+// Image that the artist uses as a reference
 background.imageEnable = "참조 이미지";
 // The image will be displayed in overlay (used as a reference by the artist)
 background.imageOverlay = "오버레이";
@@ -350,21 +358,16 @@ background.imageX = "위치 X";
 // Y screen coordinate of the image reference
 background.imageY = "위치 Y";
 // Rotation of the reference image
-background.imageRotation = "회전";
+background.imageRotate = "회전";
 // Scale of the reference image
 background.imageScale = "비율";
 // Auto adjust the reference when moving the camera
 background.lock.image = "카메라 동기화 잠금";
 background.lock.image.help = "카메라가 Snap Cube와 잠겨있을 때, 참조 이미지는 카메라 움직임에 맞춰 따라갑니다.";
 // When exiting camera lock
-background.lock.exit = "잠금 해제 시 초기화:";
-background.lock.exit.none = "Fov 조정";
-background.lock.exit.none.help = "이미지와 카메라를 현재 상태로 유지합니다.
-만약 원근이라면, 시야 각도만 조정합니다.";
-background.lock.exit.all = "모두 초기화";
-background.lock.exit.all.help = "이미지와 카메라 위치 모두를 초기화합니다.";
-background.lock.exit.perspective = "원근 시";
-background.lock.exit.perspective.help = "원근 시, 이미지와 카메라 위치를 초기화합니다.";
+background.lock.reset = "잠금 해제 시 뷰 초기화";
+// When exiting camera lock
+background.lock.roll = "롤";
 
 // Blend: normal
 blend.normal = "정상";
@@ -498,6 +501,13 @@ curve.merge = "병합";
 curve.snap = "스냅";
 curve.snap.offset = "오프셋";
 curve.snap.offset.help = "값 '100%'은 튜브의 반지름과 같습니다.";
+curve.snap.normal = "법선 정렬";
+curve.snap.normal.help = "곡선의 첫 번째와 마지막 제어 포인트에만 영향을 줍니다.
+
+인접한 포인트를 이동하여 튜브의 끝점이 표면 법선과 정렬되도록 합니다.
+
+인접한 포인트까지의 거리는 유지됩니다.";
+
 curve.snap.surface = "표면";
 curve.snap.vertex = "버텍스";
 curve.snap.grid = "그리드 (스냅 시)";
@@ -544,6 +554,8 @@ debug.thumbnails = "스토어 썸네일 생성";
 
 // Open file explorer
 file.explore = "탐색하기";
+// Type format
+file.format = "형식";
 // Open file explorer
 file.scope = "범위";
 file.scope.internal = "내부";
@@ -664,40 +676,40 @@ file.onlySelection.help = "전체 씬 대신 선택 항목만 포함합니다.";
 // Tries to generate quad (rectangle polygon) from triangles
 file.convertToQuad = "사각형 재구성";
 file.convertToQuad.help = "삼각형의 짝을 짓는 방식으로 삼각형으로부터 사각형을 재구성합니다 (파일 안에서 인접한 경우).";
-// ----------------------------------------------
+
 // Whether we include the textures in the exported file
 file.export.texture = "텍스처";
 // Baking means transfering/converting
 file.export.texture.help = "이 옵션은 버텍스 색상을 텍스처로 베이킹하지 않습니다.";
-// ----------------------------------------------
+
 file.export.color0 = "버텍스 색상";
 file.export.color1 = "PBR 페인트";
 file.export.color1.help = "러프니스와 메탈릭, 마스크 페인팅을 내보냅니다. 다른 소프트웨어에서는 무시됩니다.";
-// ----------------------------------------------
+
 // Whether we include normals vector in the exported file
 file.export.normal = "노멀";
 file.export.normal.help = "다른 소프트웨어에서 파일을 열려면 이 옵션을 선택합니다.
 
 Nomad는 노멀을 다시 계산하므로 항상 무시합니다.";
-// ----------------------------------------------
+
 file.export.tangent = "접선";
 file.export.tangent.help = "다른 소프트웨어에서 파일을 열려면 이 옵션을 선택합니다.
 
 모델에 노멀 맵이 있는 경우에만 접선이 사용됩니다.
 
 Nomad는 접선을 무시하며, 다시 계산할 것입니다.";
-// ----------------------------------------------
+
 file.export.nomad.help = "노마드 스컬프트 내부 파일 포맷입니다.
 
 이 포맷은 다른 소프트웨어에서는 로드되지 않으며 주로 재가져오기 목적으로 사용됩니다.";
-// ----------------------------------------------
+
 // Whether we include layers in the exported file (see glossary for layer)
 file.export.gltf.layer = "레이어";
 file.export.gltf.layer.help = "레이어를 모프(morph)로 내보냅니다. glTF에서 공식적으로 지원하므로 다른 소프트웨어에서도 작동합니다.";
 // Whether we include painting of layers in the exported file (see glossary for layer)
 file.export.gltf.layerPaint = "레이어 페인트";
 file.export.gltf.layerPaint.help = "레이어 페인팅을 내보냅니다. 일반적으로 다른 소프트웨어에서는 무시됩니다.";
-// ----------------------------------------------
+
 file.export.obj.warning = "레이어 및 추가 페인팅 정보(러프니스, 메탈릭, 마스크)가 손실됩니다.";
 // Whether we include the vertex color in the exported file
 file.export.obj.color = "버텍스 색상";
@@ -714,19 +726,22 @@ file.export.obj.archive = "유형";
 file.export.obj.archive.folder = "폴더";
 file.export.obj.archive.zip = "압축";
 file.export.obj.archive.help = "일부 앱(Google Drive, One Drive 등)은 폴더 가져오기를 지원하지 않으므로 대신 압축을 사용할 수 있습니다.";
-// ----------------------------------------------
+
+file.export.fbx.format = "형식";
+file.export.fbx.format.help = "바이너리가 더 작지만 모든 애플리케이션에서 작동하지 않을 수 있습니다.";
+
 file.export.ply.warning = "레이어 및 추가 페인트(러프니스, 메탈릭, 마스크)가 손실됩니다.";
-// ----------------------------------------------
+
 file.export.stl.warning = "레이어 및 추가 페인트(러프니스, 메탈릭, 마스크)가 손실됩니다.";
 // Whether we include the vertex color in the exported file
 file.export.stl.color = "버텍스 색상";
 file.export.stl.color.help = "일부 3D 소프트웨어에서 열 수 있지만, 모든 소프트웨어에서 지원되는 것은 아닙니다.";
-// ----------------------------------------------
+
 file.export.usd.skew = "기울임 허용";
 file.export.usd.skew.help = "행렬 변환에서 기울임을 허용합니다.
 
 비활성화되면 Nomad는 기울임 행렬을 두 개의 별도 스케일링 및 회전 변환으로 분리합니다.";
-// ----------------------------------------------
+
 // Advanced settings
 settings.advanced = "고급";
 // Means that all these options will be resetted when the app restarts
@@ -856,6 +871,10 @@ gesture.pencilAction.none = "없음";
 // Pencil button (or iOS pencil double tap) action: flip adding/substracting sculpt matter setting
 gesture.pencilAction.alt = "더하기/빼기";
 
+// Idle long press with pencil, mouse, finger, etc
+gesture.longPress = "길게 누르기";
+
+
 // Enable Mask gesture by tapping once on the screen
 gesture.mask.oneTap = "싱글 탭 바로 가기";
 gesture.mask.oneTap.help = "씬을 한 번 탭하면 마스크 바로 가기가 허용되며, 마스크 버튼 바로 가기를 누르고 있지 않아도 됩니다.
@@ -871,6 +890,8 @@ gesture.mask.holdStroke.help = "길게 누르면 마스크와 셀마스크(SelMa
 스트로크가 끝나면 이전 도구가 다시 선택됩니다.";
 gesture.mask.holdIdle = "도구";
 gesture.mask.holdIdle.help = "움직이지 않고 길게 누르고 놓으면 마스크와 셀마스크(SelMask) 사이를 전환합니다.";
+
+gesture.smooth.holdSelect.help = "길게 누르면 선택 도구로 전환되어 스트로크 선택 중 계속됩니다.";
 
 // Shortcut customization, choose the action that the shortcut will performan (select tool, etc)
 gesture.shortcut = "바로 가기";
@@ -1033,8 +1054,14 @@ interface.preset.title = "프리셋";
 // Reset interface settings
 interface.resetAll = "스타일 초기화";
 interface.resetAll.confirm = "인터페이스 설정을 초기화하시겠습니까?";
-// help popup when hovering
+// Dot menu hovering
+interface.hoverDot = "호버 점";
+interface.hoverDot.help = "스타일러스 호버가 감지되면 UI에 작은 점을 표시합니다.";
+// Help popup when hovering
 interface.hoverHelp = "마우스를 올리면 도움말 팝업";
+// Do not use windows native dialog
+interface.customDialog = "Nomad 대화 상자 사용";
+interface.customDialog.help = "기본 대화 상자가 아닌 Nomad의 자체 텍스트 대화 상자를 표시합니다.";
 // Interface option (main base color)
 interface.iconSupport = "고대비 버튼";
 interface.iconSupport.help = "활성화되었을 때 더 잘 보이게 하는 버튼의 대체 스타일입니다.
@@ -1043,9 +1070,9 @@ interface.iconSupport.help = "활성화되었을 때 더 잘 보이게 하는 �
 // Interface customization
 interface.flipTop = "상단 바 반전";
 // Interface customization
-interface.flipBottom = "하단 바 반전";
-// Interface customization
 interface.flipMiddle = "측면 바 반전";
+// Interface customization
+interface.flipBottom = "하단 바 반전";
 // list of tools
 interface.toolbox = "도구 상자";
 // hide toolbox by default
@@ -1064,7 +1091,6 @@ interface.top.responsive = "반응형";
 interface.top.responsive.help = "이 옵션은 주로 작은 화면에 관련이 있습니다.";
 interface.top.responsive.multiline = "여러 줄";
 interface.top.responsive.scroll = "스크롤";
-interface.top.responsive.collapse = "축소";
 interface.top.alt = "대체 순서";
 interface.top.alt.help = "상단 메뉴의 대체 순서 아이콘.
 
@@ -1285,6 +1311,11 @@ material.alwaysUnlit = "항상 조명제외";
 // Inverse the side of the object triangles
 // https://en.wikipedia.org/wiki/Back-face_culling
 material.flipCulling = "컬링 반전";
+// material (additive and blending) will write into depth
+material.preRefract = "프리 리프랙트 패스";
+material.preRefract.help = "반사 굴절 재질이 굴절 패스 전에 렌더링되도록 강제합니다.
+
+굴절 재질이 다른 투명 표면 앞에 렌더링될 때 유용합니다.";
 // How much light a surface will reflect (synonym: specular)
 material.reflectance = "반사율";
 material.reflectance.help = "비금속 머티리얼에 대해 머티리얼이 받는 반사 양을 제어합니다.
@@ -1295,65 +1326,39 @@ material.preview = "머티리얼 색상 미리보기";
 material.preview.help = "When you modify a material, a preview will be displayed in the viewport on the selected object.
 
 The preview is shown while you interact with the color, roughness, metalness, opacity and intensity sliders.";
-// Menu name
+// Menu names
 menu.files = "파일";
-// Menu name
-menu.scene = "씬";
-// Menu name
-menu.multires = "다중해상도";
-// Menu name
-menu.voxel = "복셀";
-// Menu name
-menu.dynamic = "동적 토폴로지";
-// Menu name (Synonym: Misc, Other)
-menu.topology = "기타";
-// Menu name
-menu.primitive = "프리미티브";
-// Menu name
 menu.render = "렌더";
-// Menu name
+menu.turntable = "턴테이블";
+menu.scene = "씬";
+menu.multires = "다중해상도";
+menu.voxel = "복셀";
+menu.dynamic = "동적 토폴로지";
+menu.topology = "기타";
+menu.primitive = "프리미티브";
+menu.render = "렌더";
 menu.material = "머티리얼";
-// Menu name
 menu.postprocess = "포스트 프로세싱";
-// Menu name
 menu.camera = "카메라";
-// Menu name
 menu.background = "배경";
-// Menu name
 menu.tool = "도구";
-// Menu name
 menu.stroke = "스트로크";
-// Menu name
 menu.alpha = "알파";
-// Menu name
 menu.filter = "필터";
-// Menu name
 menu.falloff = "폴오프";
-// Menu name
 menu.paint = "페인트";
-// Menu name
 menu.symmetry = "대칭";
-// Menu name
 menu.operation = "작동";
-// Menu name (pencil pressure)
 menu.pressure = "압력";
-// Menu name
 menu.gesture = "제스처";
-// Menu name
 menu.layers = "레이어";
-// Menu name
 menu.settings = "설정";
-// Menu name
 menu.interface = "인터페이스";
-// Menu name
 menu.bindings = "바인딩";
-// Menu name
+menu.shortcuts = "바로 가기";
 menu.history = "작업 내역";
-// Menu name
 menu.historySettings = "설정";
-// Menu name
 menu.about = "정보";
-// Menu name
 menu.debug = "디버그";
 
 // Operation on the object (action)
@@ -1362,6 +1367,10 @@ mesh.holes = "구멍";
 mesh.holes.close = "구멍 닫기";
 // Says how dense (number of triangles) the algorithm will use in order to fill holes
 mesh.holes.detail = "디테일";
+// Says how dense (number of triangles) the algorithm will use in order to fill holes
+mesh.holes.group.new = "신규";
+mesh.holes.group.reuse = "재사용";
+mesh.holes.group.mixed = "혼합";
 // If the mesh has disconnected parts, it will be split/separated into objects
 mesh.separate = "분리";
 // When converting the object to a triplanar primitive, some object features will be lost
@@ -1396,6 +1405,8 @@ When this option is off, the material preset only reference the texture inside t
 You can enable this option to make a copy of the textures inside the material preset.
 It can be useful if you want to share a textured preset without providing the associated textures.";
 paint.preset.embed.apply = "Apply to all materials";
+paint.preset.alpha = "알파 포함";
+paint.preset.alpha.help = "브러시 알파를 머티리얼 프리셋에 포함합니다.";
 // Factor/Opacity of paint tool
 paint.intensity = "페인트 강도";
 // Apply the paint on the object
@@ -1406,6 +1417,11 @@ paint.paintAll.help.hide = "숨겨진 영역은 영향을 받지 않습니다.";
 paint.paintAll.help.opacity = "위의 도구 페인팅 인자를 사용하세요.";
 paint.paintAll.help.layer = "도장되지 않은 .의 영역은 영향을 받지 않습니다.";
 paint.strokePainting.title = "페인팅";
+// Opaque opacity
+paint.opacityAlphaValue = "알파를 값으로 사용";
+paint.opacityAlphaValue.help = "그레이스케일 값을 알파 채널로 대체하고 불투명도를 1로 고정합니다.
+
+텍스처에 알파 채널이 없으면 이 옵션은 무시됩니다.";
 // Brush stroke texture
 paint.texture.warningEnable = "텍스처 투영을 허용하려면 스트로크 페인팅을 활성화해야 합니다 (상단의 체크상자)!";
 paint.texture.warningIgnored = "현재 도구는 텍스처를 사용할 수 없습니다!";
@@ -1798,12 +1814,20 @@ settings.snapCube.align.help = "세계 축에 뷰를 정렬합니다. 활성화�
 settings.stats = "통계";
 settings.stats.right = "오른쪽";
 settings.stats.all = "전체 씬 보기";
+// Handles are controls that you interact with in the viewport in order to edit something
+settings.handle = "핸들";
+settings.handles = "핸들들";
+// Shape draw thing
+settings.shape = "모양";
+settings.shape.color = "다각형 색상";
 // Grid
 settings.grid = "격자";
-settings.grid.divideThreshold = "분할 임계값";
+settings.grid.snapDivision = "스냅 분할 임계값";
+settings.grid.snapDivision.help = "임계값은 그리드와의 거리와 비교됩니다.";
 // Cursor
 settings.cursor.title = "커서";
-settings.cursor.whileSculpting = "스컬프팅하는 동안 원 표시";
+// sculpting circle
+settings.cursor.circle = "원";
 // A small indicator dot
 settings.cursor.showDot = "작은 점 보기";
 settings.cursor.showDot.help = "카메라 피벗 포인트를 표시하거나 스컬프팅 중에 점이 표시될 수 있습니다.";
@@ -1924,8 +1948,6 @@ shortcut.voxelRemesh = "복셀";
 shortcut.wireframe = "와이어";
 shortcut.cameraReset = "초기화";
 shortcut.cameraSnap = "스냅";
-shortcut.lockSelection = "잠금";
-shortcut.lockSelection.help = "활성화되면 메시를 탭하더라도 선택 항목을 변경할 수 없습니다.";
 shortcut.grid = "격자";
 
 // Memory taken by the scene
@@ -2165,15 +2187,12 @@ symmetry.countY = "카운트 Y";
 symmetry.countZ = "카운트 Z";
 // method
 symmetry.method = "방법:";
-symmetry.method.help = "• 로컬
-트랜스폼 도구(기즈모 또는 트랜스폼) 중 하나를 사용하는 동안 대칭 평면은 메시를 따라 이동합니다.
-
-• 전역
-대칭 평면이 고정되어 이동하지 않습니다.";
 // Local means: in the coordinate of the scene (synonym: absolute)
 symmetry.method.world = "세계";
+symmetry.method.world.help = "대칭 평면이 고정되어 이동하지 않습니다.";
 // Local means: in the coordinate of the object (synonym: relative)
 symmetry.method.local = "로컬";
+symmetry.method.local.help = "트랜스폼 도구(기즈모 또는 트랜스폼) 중 하나를 사용하는 동안 대칭 평면은 메시를 따라 이동합니다.";
 // Move the object to the other side of the symmetry (mirror it as well)
 symmetry.flip = "오브젝트 뒤집기";
 // Cut half of the mesh
@@ -2380,6 +2399,9 @@ tool.smooth.stickyBorder = "버텍스를 테두리에 고정";
 tool.smooth.screen = "화면 평활화";
 tool.smooth.screen.help = "높은 폴리곤에서도 독립적으로 평활화를 적용하려면 이 옵션을 사용하세요.";
 tool.smooth.screen.samples = "화면 샘플";
+tool.smooth.taubin = "볼륨 보존";
+tool.smooth.taubin.shrink = "수축";
+tool.smooth.taubin.inflate = "팽창";
 tool.smooth.stable = "안정적 스무딩";
 tool.smooth.stable.help = "스무딩이 토폴로지에 독립적이도록 시도합니다.
 
@@ -2447,7 +2469,7 @@ tool.gizmo.size = "위젯 크기";
 tool.gizmo.compact = "콤팩트";
 // When enabled, tapping one the gizmo widget will open a numerical input popup
 tool.gizmo.allowInput = "수치 입력";
-tool.gizmo.allowInput.help = "기즈모 위젯 중 하나를 탭할 때 숫자 입력 허용";
+tool.gizmo.allowInput.help = "기즈모 위젯 중 하나를 탭할 때 숫자 입력 허용.";
 // Angle threshold
 tool.gizmo.linearRollThreshold = "탄젠트 롤 임계값";
 tool.gizmo.linearRollThreshold.help = "선형 또는 원형 롤 방법을 선택하기 위한 각도 임계값.
@@ -2740,6 +2762,10 @@ binding.reset = "바인딩 초기화";
 // Add node in a sync mode (synchronize instance)
 binding.addSync = "동기화";
 binding.addSync.help = "기본적으로 장면 메뉴에 설정된 동기화 값을 사용합니다.";
+// Add node in a sync mode (synchronize instance)
+binding.float.position = "위치";
+binding.float.position.keep = "이전 유지";
+binding.float.position.cursor = "커서에";
 // Binding option
 binding.context.toggle = "컨텍스트 전환";
 // quick sidebar tool shortcuts
@@ -2749,6 +2775,9 @@ binding.tools = "도구 바로가기";
 // When the key is tapped once, the value will be toggled
 binding.toggle = "이전 도구 전환";
 binding.toggle.help = "마지막 도구로 전환하려면 동일한 바인딩을 사용하십시오.";
+// Control if hold+release reverts the tool
+binding.revert = "되돌리기 고정";
+binding.revert.help = "유지하고 있는 키를 해제할 때도 이전 도구로 항상 돌아가는지 선택하십시오. 이전 도구가 이미 활성 상태였을 때도 마찬가지입니다.";
 // sticky keys
 binding.sticky = "스티키 키";
 binding.sticky.off = "길게 누르기";
@@ -2766,10 +2795,10 @@ binding.forceCamera.help = "카메라 상호작용을 강제로 실행하여 다
 binding.pickMaterial = "머티리얼 피커";
 // Same as Color Picker but it pick the material (color, roughness, metalness, etc)
 binding.pickFaceGroup = "페이스 그룹 선택";
-// Edit the tool brush size/radius
-binding.editRadius = "도구 반지름";
 // Inverse direction zooming
 binding.invertZoomY = "줌 Y 반전";
+// Edit the tool brush size/radius
+binding.editRadius = "도구 반지름";
 // Edit the tool brush size/radius
 binding.editIntensity = "도구 강도";
 // Controller dead zone
@@ -2830,6 +2859,11 @@ widget.color.ring = "링";
 widget.color.square = "사각형";
 
 nomad.mainFolder = "Nomad 메인 폴더";
+nomad.mainFolder.help = "Nomad 기본 폴더에 파일을 추가하면 변경 사항을 적용하려면 Nomad를 재시작하십시오.
+
+잘못된 유형의 파일이 하위 폴더에 있을 경우 can_be_deleted/로 이동될 수 있습니다.
+
+예를 들어, 프로젝트 폴더는 3D 파일만 허용하며, 알파나 매트캡은 이미지파일만 허용합니다.";
 nomad.mainFolder.warning = "파일은 그대로 남아 있습니다.
 복사, 삭제 또는 이동되지 않습니다.";
 nomad.mainFolder.error = "예를 선택한 후, Nomad는 닫혔다가 재시작됩니다.";
@@ -2838,39 +2872,42 @@ license.title = "라이센스";
 license.retry = "다시 시도";
 license.key = "라이센스 키";
 license.activate = "라이센스 활성화";
-// ----------------------------------------------
+
 license.newest = "새 버전이 제공됩니다!";
 license.encrypt.error = "암호화할 수 없습니다!";
-// ----------------------------------------------
+
 license.grace = "오프라인 - 남은 유예 기간:";
 license.grace.hours = "시간";
 license.grace.days = "일";
-// ----------------------------------------------
+
 license.portal.title = "기존 사용자";
 license.portal.label = "라이센스 포털";
-// ----------------------------------------------
+license.portal.label.warning = "이 포털은 Windows/Mac 버전을 구매한 사용자 전용입니다. iOS/Android 앱 스토어에서의 구매는 교차 플랫폼 기능을 지원하지 않습니다.";
+
 license.checkout.title = "신규 사용자";
 license.checkout.label = "노마드 구매하기";
-// ----------------------------------------------
+
 license.device.error = "디바이스 ID를 가져올 수 없습니다.";
 license.device.mismatch = "디바이스 ID 불일치!";
-// ----------------------------------------------
+
 license.error429 = "요청이 너무 많습니다 (기다려 주세요).";
-// ----------------------------------------------
+
 license.validate.error404 = "라이센스 키를 찾을 수 없습니다.";
 license.validate.error422 = "처리되지 않는 엔티티.";
-// ----------------------------------------------
+
 license.activate.error403 = "최대 기기 수에 도달했습니다!
 라이센스 포털에서 다른 기기의 활성화를 해제할 수 있습니다.";
 license.activate.error404 = "라이센스 키를 찾을 수 없습니다.";
 license.activate.error422 = "처리되지 않는 엔티티.";
-// ----------------------------------------------
+
 // version
+version.check = "업데이트 확인";
+version.auto = "자동으로 업데이트 확인하기";
 version.update = "업데이트가 가능합니다!";
 version.restore = "구매 복원";
 version.buyWeb = "웹 버전은 데모 목적으로만 사용할 수 있습니다";
 version.buyFull = "풀 버전으로 업그레이드";
-// ----------------------------------------------
+
 // QuadRemesh
 version.qr.unlock = "잠금 해제 (구매, 복원, 체험)";
 version.qr.desktop = "데스크톱에서는 QuadRemesher가 Hexanomad에 의해 배포되지만, Hexanomad는 판매 또는 라이선스를 처리하지 않습니다.
@@ -2893,87 +2930,86 @@ version.qr.promo = "
 • 밀도 페인팅 $3
 
 쿼드 리메셔는 https://exoside.com/에 의해 개발되었습니다.";
-// ----------------------------------------------
+
 version.trialLayer = "평가판: 메시 당 1개의 레이어";
 version.trialNoExport = "평가판: 익스포트 기능을 사용할 수 없음";
-// ----------------------------------------------
+
 version.fullFeatures = "• 일회성 구매
 • 무제한 실행 취소/다시 실행
 • 무제한 레이어
 • 익스포트 및 임포트";
-// ----------------------------------------------
+
 version.demo.purpose = "이 버전은 특별히 데모 목적으로 생성되었습니다.";
 version.demo.disable = "기능이 데모에서 활성화되지 않음.";
-// ----------------------------------------------
+
 version.demo = "데모 테스트";
 version.demo.sculpt = "스컬프팅";
 version.demo.sculpt.help = "모든 브러시를 사용할 수 있지만 저장 또는 내보내기를 할 수 없습니다. 이 모드는 대개 브러시를 실험하거나 압력 지원을 테스트하는 데 사용됩니다. 다른 기능도 제한될 수 있습니다 (히스토리, 레이어).";
 version.demo.file = "가져오기 및 내보내기";
 version.demo.file.help = "모델을 가져오고 내보낼 수 있지만 스컬프 브러시는 비활성화됩니다. 이 모드는 주로 모바일 메모리 제한으로 인해 .nom 프로젝트를 열 수 없는 모바일 사용자에게 유용합니다.";
-// ----------------------------------------------
+
 // app store main page
 store.name = "Nomad Sculpt";
 store.headline = "3D에서 조각, 그리기 및 창조하기";
 store.tag = "sculpt, 3d, nomad, paint, modeling, 조각, 페인트, 모델링";
-// ----------------------------------------------
+
 store.description.sculpt = "• 조각 도구들
 클레이, 평평하게 하기, 부드럽게 하기, 마스크하기와 다른 많은 브러쉬들이 당신의 창작물을 형성하는데 도움을 줄 것입니다.
 라쏘, 직사각형 및 다른 형태들로 트림 부울리언 커팅 도구를 사용하여 하드서페이스 목적으로도 사용할 수 있습니다.";
-// ----------------------------------------------
+
 store.description.stroke = "• 스트로크 커스터마이제이션
 Falloff, 알파, 타일링, 펜슬 압력 및 기타 스트로크 매개변수를 사용자 지정할 수 있습니다.
 도구 프리셋을 저장하고 불러올 수도 있습니다.";
-// ----------------------------------------------
+
 store.description.paint = "• 페인팅 도구들
 색깔, 거칠기 및 금속성과 함께하는 버텍스 페인팅.
 모든 소재 프리셋을 쉽게 관리할 수도 있습니다.";
-// ----------------------------------------------
+
 store.description.layer = "• 레이어
 조각 및 페인팅 작업을 별도의 레이어에 기록하여 창작 과정 동안 쉽게 반복할 수 있습니다.
 조각 및 페인팅 변경 사항 모두가 기록됩니다.";
-// ----------------------------------------------
+
 store.description.multires = "• 멀티레졸루션 조각
 유연한 작업 흐름을 위해 메쉬의 여러 해상도 사이를 왕복하세요.";
-// ----------------------------------------------
+
 store.description.voxel = "• 복셀 리메싱
 메시를 빠르게 리메시하여 균일한 세부 사항 수준을 얻습니다.
 창작 과정의 시작 부분에 거친 형태를 빠르게 스케치하는 데 사용할 수 있습니다.";
-// ----------------------------------------------
+
 store.description.dynamic = "• 다이내믹 토폴로지
 브러시 아래에서 메시를 지역적으로 세밀하게 하여 자동 수준의 디테일을 가져옵니다.
 레이어를 유지할 수도 있으며, 자동으로 업데이트됩니다!";
-// ----------------------------------------------
+
 store.description.topology = "• 디시메이트
 가능한 많은 세부 사항을 유지하면서 다각형 수를 줄입니다.";
-// ----------------------------------------------
+
 store.description.group = "• 페이스 그룹
 페이스 그룹 도구로 메시를 하위 그룹으로 분할합니다.";
-// ----------------------------------------------
+
 store.description.unwrap = "• 자동 UV 언랩
 자동 UV 언랩퍼는 페이스 그룹을 사용하여 언랩 프로세스를 제어할 수 있습니다.";
-// ----------------------------------------------
+
 store.description.baking = "• 베이킹
 색상, 거칠기, 금속성 및 작은 규모의 디테일과 같은 정점 데이터를 텍스처로 전송할 수 있습니다.
 반대의 경우도 마찬가지로, 텍스처 데이터를 정점 데이터나 레이어로 전송할 수 있습니다.";
-// ----------------------------------------------
+
 store.description.primitive = "• 기본 형태
 실린더, 도넛, 튜브, 선반 등의 기본 형태는 처음부터 새로운 형태를 빠르게 시작하는 데 사용될 수 있습니다.";
-// ----------------------------------------------
+
 store.description.rendering = "• PBR 렌더링
 기본적으로 아름다운 PBR 렌더링이 제공되며, 조명과 그림자가 포함됩니다.
 조각 목적으로 더 표준적인 셰이딩을 위해 MatCap으로 전환할 수 있습니다.";
-// ----------------------------------------------
+
 store.description.postprocess = "• 포스트 프로세싱
 스크린 스페이스 리플렉션, 깊이 필드, 앰비언트 오클루전, 톤 매핑 등";
-// ----------------------------------------------
+
 store.description.files = "• 내보내기 및 가져오기
 지원되는 형식에는 glTF, OBJ, STL 또는 PLY 파일이 포함됩니다.";
-// ----------------------------------------------
+
 store.description.interface = "• 인터페이스
 모바일 경험을 위해 설계된 사용하기 쉬운 인터페이스.
 커스터마이제이션도 가능합니다!";
-// ----------------------------------------------
+
 store.description.remesher = "• 쿼드 리메셔 (별도 앱 내 구매만)
 메쉬 곡률을 따르는 쿼드 지배 메쉬로 객체를 자동으로 리메시합니다.
 가이드, 페이스 그룹 및 밀도 페인트를 지원합니다.";
-// ----------------------------------------------

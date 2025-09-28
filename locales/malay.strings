@@ -18,6 +18,11 @@ status.exit = "Perubahan belum disimpan! Simpan sebelum tutup?";
 status.exit.yes = "Simpan";
 status.exit.no = "Jangan simpan";
 
+format.ascii = "Ascii";
+format.binary = "Binari";
+
+color = "Warna";
+
 // On single tap (should be short)
 ontap = "Pada ketikan";
 
@@ -166,6 +171,9 @@ material.normal = "Normal";
 material.normal.flipY = "Balikkan Y";
 // Ambient Occlusion (AO)
 material.occlusion = "Penghalangan";
+material.unused = "Tidak digunakan";
+// Displacement map
+material.displacement = "Sesaran";
 // Textures, basically images wrapped on models (synonym: Maps, Texture maps)
 material.textures = "Tekstur";
 // Textures/Image
@@ -209,6 +217,8 @@ about.turntable.pivot.keep = "Kekalkan semasa";
 about.turntable.pivot.scene = "Babak";
 // Make the entire scene turn around (speed of the animation)
 about.turntable.speed = "Kelajuan";
+// Speed easing (linear vs non-linaer)
+about.turntable.linear = "Kelajuan tetap";
 // Stuffs that I used to make the app
 about.credits = "Kredit";
 // Link to open source projects that I used for the app
@@ -290,10 +300,6 @@ alert.editSymmetry = "Ketukan mudah untuk keluar dari mod edit simetri.";
 alert.mask.show = "Tunjuk topeng";
 // Hide the painted mask on the mesh
 alert.mask.hide = "Sembunyikan mask";
-// Selection refers to the objects that are currently selected
-alert.selection.lock = "Kunci pilihan";
-// Selection refers to the objects that are currently selected
-alert.selection.unlock = "Buka kunci pilihan";
 // Hide the objects that are not selected
 alert.selection.isolate = "Pisahkan pilihan";
 // Show the objects that are hidden
@@ -338,6 +344,8 @@ background.blur = "Kabur";
 background.exposure = "Pendedahan";
 
 // Image that the artist uses as a reference
+background.reference = "Imej rujukan";
+// Image that the artist uses as a reference
 background.imageEnable = "Imej rujukan";
 // The image will be displayed in overlay (used as a reference by the artist)
 background.imageOverlay = "Sisipan";
@@ -350,21 +358,16 @@ background.imageX = "Posisi X";
 // Y screen coordinate of the image reference
 background.imageY = "Posisi Y";
 // Rotation of the reference image
-background.imageRotation = "Putaran";
+background.imageRotate = "Putaran";
 // Scale of the reference image
 background.imageScale = "Skala";
 // Auto adjust the reference when moving the camera
 background.lock.image = "Selaraskan dengan kunci kamera";
 background.lock.image.help = "Apabila kamera dikunci dengan Snap Cube, imej rujukan mengikuti pergerakan kamera.";
 // When exiting camera lock
-background.lock.exit = "Tetapkan semula apabila dibuka kunci:";
-background.lock.exit.none = "Sesuaikan Fov";
-background.lock.exit.none.help = "Kekalkan imej dan kamera seperti sedia ada.
-Jika dalam perspektif, hanya sesuaikan medan pandangan.";
-background.lock.exit.all = "Tetapkan Semula Semua";
-background.lock.exit.all.help = "Tetapkan semula kedua-dua kedudukan imej dan kamera.";
-background.lock.exit.perspective = "Jika Perspektif";
-background.lock.exit.perspective.help = "Jika dalam perspektif, tetapkan semula kedudukan imej dan kamera.";
+background.lock.reset = "Tetapkan semula pandangan apabila dibuka kunci";
+// When exiting camera lock
+background.lock.roll = "Gulung";
 
 // Blend: normal
 blend.normal = "Biasa";
@@ -498,6 +501,13 @@ curve.merge = "Gabungkan";
 curve.snap = "Ambil";
 curve.snap.offset = "Kesan";
 curve.snap.offset.help = "Nilai 100% adalah sama dengan radius tiub.";
+curve.snap.normal = "Jajar Normal";
+curve.snap.normal.help = "Hanya menjejaskan titik kawalan pertama dan terakhir pada lengkung.
+
+Menggerakkan titik bersebelahan supaya hujung tiub sejajar dengan normal permukaan.
+
+Jarak ke titik bersebelahan dikekalkan.";
+
 curve.snap.surface = "Permukaan";
 curve.snap.vertex = "Verteks";
 curve.snap.grid = "Grid (jika dipasang)";
@@ -546,6 +556,8 @@ debug.thumbnails = "Buat lakaran kenit kedai";
 
 // Open file explorer
 file.explore = "Teroka";
+// Type format
+file.format = "Format";
 // Open file explorer
 file.scope = "Skop";
 file.scope.internal = "Dalaman";
@@ -666,36 +678,36 @@ file.onlySelection.help = "Hanya sertakan pilihan, bukannya keseluruhan adegan."
 // Tries to generate quad (rectangle polygon) from triangles
 file.convertToQuad = "Bina semula quad";
 file.convertToQuad.help = "Bina semula quads dari segitiga dengan memasangkan segitiga (jika ia bersambungan dalam fail).";
-// ----------------------------------------------
+
 // Whether we include the textures in the exported file
 file.export.texture = "Tekstur";
 // Baking means transfering/converting
 file.export.texture.help = "Pilihan ini tidak 'bake' warna vertex ke dalam tekstur. Ia hanya termasuk tekstur jika objek mempunyai tekstur pada bahannya.";
-// ----------------------------------------------
+
 file.export.color0 = "Warna puncak";
 file.export.color1 = "PBR cat";
 file.export.color1.help = "Eksport kekasaran, kekodokan dan lukisan topeng. Ini akan diabaikan oleh perisian lain.";
-// ----------------------------------------------
+
 // Whether we include normals vector in the exported file
 file.export.normal = "Normal";
 file.export.normal.help = "Cek pilihan ini jika anda ingin membuka fail dalam perisian lain. Nomad sentiasa mengabaikan normals kerana ia akan mengira semula.";
-// ----------------------------------------------
+
 file.export.tangent = "Tangen";
 file.export.tangent.help = "Periksa pilihan ini jika anda ingin membuka fail dalam perisian lain.
 
 Tangen hanya digunakan jika model mempunyai peta biasa.
 
 Nomad sentiasa mengabaikan tangen kerana ia akan mengira semula.";
-// ----------------------------------------------
+
 file.export.nomad.help = "Format fail dalaman Nomad Sculpt. Format ini tidak akan dimuat pada perisian lain, ini kebanyakan untuk tujuan reimport.";
-// ----------------------------------------------
+
 // Whether we include layers in the exported file (see glossary for layer)
 file.export.gltf.layer = "Lapisan";
 file.export.gltf.layer.help = "Eksport lapisan sebagai morf. Rasmi disokong oleh glTF, jadi ia sepatutnya berfungsi juga pada perisian lain.";
 // Whether we include painting of layers in the exported file (see glossary for layer)
 file.export.gltf.layerPaint = "Mewarnai lapisan";
 file.export.gltf.layerPaint.help = "Eksport pewarnaan lapisan. Ia biasanya diabaikan oleh perisian lain.";
-// ----------------------------------------------
+
 file.export.obj.warning = "Lapisan dan pewarnaan tambahan (kekasaran, ketumpatan logam dan topeng) akan hilang.";
 // Whether we include the vertex color in the exported file
 file.export.obj.color = "Warna Verteks";
@@ -712,19 +724,22 @@ file.export.obj.archive = "Jenis";
 file.export.obj.archive.folder = "Folder";
 file.export.obj.archive.zip = "Zip";
 file.export.obj.archive.help = "Beberapa aplikasi (Google Drive, One Drive, dll.) tidak menyokong pengimportan folder, jadi anda boleh menggunakan Zip sebagai gantinya.";
-// ----------------------------------------------
+
+file.export.fbx.format = "Format";
+file.export.fbx.format.help = "Binari lebih kecil tetapi mungkin tidak berfungsi dalam setiap aplikasi.";
+
 file.export.ply.warning = "Lapisan dan pewarnaan tambahan (kekasaran, ketumpatan logam, dll.) akan hilang.";
-// ----------------------------------------------
+
 file.export.stl.warning = "Lapisan dan pewarnaan tambahan (kekasaran, ketumpatan logam, dll.) akan hilang.";
 // Whether we include the vertex color in the exported file
 file.export.stl.color = "Warna vertex";
 file.export.stl.color.help = "Sebahagian perisian 3D dapat membacanya tetapi tidak kesemua mereka.";
-// ----------------------------------------------
+
 file.export.usd.skew = "Benarkan senget";
 file.export.usd.skew.help = "Benarkan senget dalam transformasi matriks.
 
 Apabila dinyahdayakan, Nomad akan membahagikan matriks senget kepada dua transformasi berasingan iaitu skala dan putaran.";
-// ----------------------------------------------
+
 // Advanced settings
 settings.advanced = "Canggih";
 // Means that all these options will be resetted when the app restarts
@@ -852,6 +867,10 @@ gesture.pencilAction.none = "Tiada";
 // Pencil button (or iOS pencil double tap) action: flip adding/substracting sculpt matter setting
 gesture.pencilAction.alt = "Tambah/Kurang";
 
+// Idle long press with pencil, mouse, finger, etc
+gesture.longPress = "Tekan lama";
+
+
 // Enable Mask gesture by tapping once on the screen
 gesture.mask.oneTap = "Pintasan Satu Ketukan";
 gesture.mask.oneTap.help = "Benarkan pintasan Mask dengan menekan skrin sekali, tanpa perlu menahan pintasan butang mask.
@@ -867,6 +886,8 @@ gesture.mask.holdStroke.help = "Tekan lama akan bertukar antara Mask dan SelMask
 Pada akhir strok, alat sebelumnya dipilih semula.";
 gesture.mask.holdIdle = "Alat";
 gesture.mask.holdIdle.help = "Tekan lama dan lepaskan tanpa bergerak untuk bertukar antara Mask dan SelMask.";
+
+gesture.smooth.holdSelect.help = "Tekan lama akan bertukar kepada alat pilih untuk tempoh pemilihan stroke.";
 
 // Shortcut customization, choose the action that the shortcut will performan (select tool, etc)
 gesture.shortcut = "Pintasan";
@@ -1031,8 +1052,14 @@ interface.preset.title = "Pratetap";
 // Reset interface settings
 interface.resetAll = "Tetapkan Semula Gaya";
 interface.resetAll.confirm = "Tetapkan semula tetapan antara muka?";
-// help popup when hovering
+// Dot menu hovering
+interface.hoverDot = "Titik apung-hover";
+interface.hoverDot.help = "Tunjukkan satu titik kecil dalam UI apabila stylus apung-hover dikesan.";
+// Help popup when hovering
 interface.hoverHelp = "Bantuan popup pada hover";
+// Do not use windows native dialog
+interface.customDialog = "Gunakan Dialog Nomad";
+interface.customDialog.help = "Tunjukkan dialog teks Nomad sendiri dan bukannya yang Asli.";
 // Interface option (main base color)
 interface.iconSupport = "Butang Kontras Tinggi";
 interface.iconSupport.help = "Gaya alternatif untuk butang yang menjadikannya lebih jelas apabila ia diaktifkan.
@@ -1041,9 +1068,9 @@ Jika ditetapkan pada Auto, Nomad akan menggunakan mod ini apabila kontras warna 
 // Interface customization
 interface.flipTop = "Cermin bar atas";
 // Interface customization
-interface.flipBottom = "Cermin bar bawah";
-// Interface customization
 interface.flipMiddle = "Cermin bar sisi";
+// Interface customization
+interface.flipBottom = "Cermin bar bawah";
 // list of tools
 interface.toolbox = "Kotak alat";
 // hide toolbox by default
@@ -1062,7 +1089,6 @@ interface.top.responsive = "Responsif";
 interface.top.responsive.help = "Pilihan ini kebanyakannya relevan untuk skrin kecil.";
 interface.top.responsive.multiline = "Berbilang baris";
 interface.top.responsive.scroll = "Tatal";
-interface.top.responsive.collapse = "Himpun";
 interface.top.alt = "Urutan Alt";
 interface.top.alt.help = "Ikon urutan alternatif untuk menu atas.
 
@@ -1281,6 +1307,11 @@ material.alwaysUnlit = "Sentiasa tidak diterangi";
 // Inverse the side of the object triangles
 // https://en.wikipedia.org/wiki/Back-face_culling
 material.flipCulling = "Pengubahan pemotongan";
+// material (additive and blending) will write into depth
+material.preRefract = "Laluan pra-pembiasan";
+material.preRefract.help = "Memaksa bahan lut sinar dilukis sebelum laluan pembiasan.
+
+Berguna apabila bahan pembiasan dipaparkan di hadapan permukaan lut sinar lain.";
 // How much light a surface will reflect (synonym: specular)
 material.reflectance = "Pantulan";
 material.reflectance.help = "Kawal jumlah pantulan yang akan diterima oleh bahan untuk bahan bukan logam.
@@ -1291,65 +1322,39 @@ material.preview = "Pratonton paparan bahan";
 material.preview.help = "Apabila anda mengubah suai bahan, pratonton akan dipaparkan dalam paparan pada objek yang dipilih.
 
 Pratonton ditunjukkan semasa anda berinteraksi dengan gelangsar warna, kekasaran, logam, kelegapan dan intensiti.";
-// Menu name
+// Menu names
 menu.files = "Fail";
-// Menu name
-menu.scene = "Adegan";
-// Menu name
-menu.multires = "Pelbagai resolusi";
-// Menu name
-menu.voxel = "Voxel";
-// Menu name
-menu.dynamic = "DynTopo";
-// Menu name (Synonym: Misc, Other)
-menu.topology = "Pelbagai";
-// Menu name
-menu.primitive = "Primitif";
-// Menu name
 menu.render = "Penghasilan";
-// Menu name
+menu.turntable = "Pemain putar";
+menu.scene = "Adegan";
+menu.multires = "Pelbagai resolusi";
+menu.voxel = "Voxel";
+menu.dynamic = "DynTopo";
+menu.topology = "Pelbagai";
+menu.primitive = "Primitif";
+menu.render = "Penghasilan";
 menu.material = "Bahan";
-// Menu name
 menu.postprocess = "Pemprosesan Pasca";
-// Menu name
 menu.camera = "Kamera";
-// Menu name
 menu.background = "Latar Belakang";
-// Menu name
 menu.tool = "Alat";
-// Menu name
 menu.stroke = "Goresan";
-// Menu name
 menu.alpha = "Alpha";
-// Menu name
 menu.filter = "Penapis";
-// Menu name
 menu.falloff = "Pengurangan";
-// Menu name
 menu.paint = "Cat";
-// Menu name
 menu.symmetry = "Simetri";
-// Menu name
 menu.operation = "Operasi";
-// Menu name (pencil pressure)
 menu.pressure = "Tekanan";
-// Menu name
 menu.gesture = "Gaya Isyarat";
-// Menu name
 menu.layers = "Lapisan";
-// Menu name
 menu.settings = "Tetapan";
-// Menu name
 menu.interface = "Antara Muka";
-// Menu name
 menu.bindings = "Pengikatan";
-// Menu name
+menu.shortcuts = "Pintasan";
 menu.history = "Sejarah";
-// Menu name
 menu.historySettings = "Tetapan";
-// Menu name
 menu.about = "Tentang";
-// Menu name
 menu.debug = "Nyahpepijat";
 
 // Operation on the object (action)
@@ -1358,6 +1363,10 @@ mesh.holes = "Lubang";
 mesh.holes.close = "Tutup lubang";
 // Says how dense (number of triangles) the algorithm will use in order to fill holes
 mesh.holes.detail = "Perincian";
+// Says how dense (number of triangles) the algorithm will use in order to fill holes
+mesh.holes.group.new = "Baru";
+mesh.holes.group.reuse = "Guna semula";
+mesh.holes.group.mixed = "Campuran";
 // If the mesh has disconnected parts, it will be split/separated into objects
 mesh.separate = "Pisahkan";
 // When converting the object to a triplanar primitive, some object features will be lost
@@ -1386,6 +1395,8 @@ paint.usePainting = "Pewarnaan Goresan";
 paint.preset.embed = "Benamkan tekstur";
 paint.preset.embed.help = "Tekstur boleh didapati dalam folder Nomad textures/. Praset tetapan bahan terdapat dalam folder Nomad materials/. Apabila pilihan ini dimatikan, praset tetapan bahan hanya merujuk tekstur di dalam folder textures/. Anda boleh mengaktifkan pilihan ini untuk membuat salinan tekstur di dalam praset tetapan bahan. Ini berguna jika anda ingin berkongsi praset tekstur tanpa menyediakan tekstur berkaitan.";
 paint.preset.embed.apply = "Terapkan kepada semua bahan";
+paint.preset.alpha = "Sertakan Alfa";
+paint.preset.alpha.help = "Menyertakan Alfa berus dalam pratetap bahan.";
 // Factor/Opacity of paint tool
 paint.intensity = "Intensiti Cat";
 // Apply the paint on the object
@@ -1396,6 +1407,11 @@ paint.paintAll.help.hide = "Kawasan tersembunyi tidak akan terjejas.";
 paint.paintAll.help.opacity = "Gunakan faktor lukisan alat di atas.";
 paint.paintAll.help.layer = "Kawasan lapisan yang tidak dicat tidak akan terjejas.";
 paint.strokePainting.title = "Pewarnaan";
+// Opaque opacity
+paint.opacityAlphaValue = "Guna Alfa sebagai Nilai";
+paint.opacityAlphaValue.help = "Menggantikan nilai skala kelabu dengan saluran alfa dan memaksa kelegapan kepada 1.
+
+Jika tekstur tiada saluran alfa, pilihan ini akan diabaikan.";
 // Brush stroke texture
 paint.texture.warningEnable = "Pewarnaan goresan perlu diaktifkan untuk membenarkan unjuran tekstur (tanda sah pada bahagian atas)!";
 paint.texture.warningIgnored = "Alat semasa tidak boleh menggunakan tekstur!";
@@ -1788,12 +1804,20 @@ Pada Auto, had hanya berlaku jika kamera berada dalam mod Orbit.";
 settings.stats = "Statistik";
 settings.stats.right = "Kanan";
 settings.stats.all = "Tunjukkan keseluruhan adegan";
+// Handles are controls that you interact with in the viewport in order to edit something
+settings.handle = "Pemegang";
+settings.handles = "Pemegang-pemegang";
+// Shape draw thing
+settings.shape = "Bentuk";
+settings.shape.color = "Warna Poligon";
 // Grid
 settings.grid = "Grid";
-settings.grid.divideThreshold = "Ambang bahagian";
+settings.grid.snapDivision = "Ambang pembahagian segerak";
+settings.grid.snapDivision.help = "Ambang dibandingkan dengan jarak ke grid.";
 // Cursor
 settings.cursor.title = "Kursor";
-settings.cursor.whileSculpting = "Tunjukkan bulatan semasa menyusun";
+// sculpting circle
+settings.cursor.circle = "Bulat";
 // A small indicator dot
 settings.cursor.showDot = "Tunjukkan titik kecil";
 settings.cursor.showDot.help = "Titik boleh muncul sebagai titik putaran kamera atau semasa anda menyusun.";
@@ -1916,8 +1940,6 @@ shortcut.voxelRemesh = "Voxel";
 shortcut.wireframe = "Wayar";
 shortcut.cameraReset = "Tetap semula";
 shortcut.cameraSnap = "Lekat";
-shortcut.lockSelection = "Kunci";
-shortcut.lockSelection.help = "Apabila diaktifkan, anda tidak boleh menukar pilihan dengan mengetik pada mesh.";
 shortcut.grid = "Grid";
 
 // Memory taken by the scene
@@ -2161,15 +2183,12 @@ symmetry.countY = "Kiraan Y";
 symmetry.countZ = "Kiraan Z";
 // method
 symmetry.method = "Kaedah:";
-symmetry.method.help = "• Tempatan
-Satah simetri akan bergerak sepanjang mesh apabila anda menggunakan salah satu alat transformasi (Gizmo atau Transform).
-
-• Dunia
-Satah simetri adalah tetap dan tidak akan bergerak.";
 // Local means: in the coordinate of the scene (synonym: absolute)
 symmetry.method.world = "Dunia";
+symmetry.method.world.help = "Satah simetri adalah tetap dan tidak akan bergerak.";
 // Local means: in the coordinate of the object (synonym: relative)
 symmetry.method.local = "Tempatan";
+symmetry.method.local.help = "Satah simetri akan bergerak sepanjang mesh apabila anda menggunakan salah satu alat transformasi (Gizmo atau Transform).";
 // Move the object to the other side of the symmetry (mirror it as well)
 symmetry.flip = "Balikkan objek";
 // Cut half of the mesh
@@ -2376,6 +2395,9 @@ tool.smooth.stickyBorder = "Vertex melekat pada sempadan";
 tool.smooth.screen = "Pelarasan layar";
 tool.smooth.screen.help = "Gunakan pilihan ini untuk mendapatkan pelicinan yang tidak bergantung pada topologi, walaupun pada poli tinggi.";
 tool.smooth.screen.samples = "Sampel layar";
+tool.smooth.taubin = "Kekalkan isipadu";
+tool.smooth.taubin.shrink = "Mengecilkan";
+tool.smooth.taubin.inflate = "Kembang";
 tool.smooth.stable = "Melicinkan stabil";
 tool.smooth.stable.help = "Mencuba untuk menjadikan topologi licin bebas.
 
@@ -2443,7 +2465,7 @@ tool.gizmo.size = "Saiz Gizmo";
 tool.gizmo.compact = "Padat";
 // When enabled, tapping one the gizmo widget will open a numerical input popup
 tool.gizmo.allowInput = "Input berangka";
-tool.gizmo.allowInput.help = "Benarkan input berangka apabila menekan salah satu widget gizmo";
+tool.gizmo.allowInput.help = "Benarkan input berangka apabila menekan salah satu widget gizmo.";
 // Angle threshold
 tool.gizmo.linearRollThreshold = "Ambang gulung tangent";
 tool.gizmo.linearRollThreshold.help = "Ambang sudut untuk memilih antara kaedah gulung linear atau bulat.
@@ -2737,6 +2759,10 @@ binding.reset = "Tetapkan semula pengikatan";
 // Add node in a sync mode (synchronize instance)
 binding.addSync = "Padu sesuaikan";
 binding.addSync.help = "Secara lalai, ia akan menggunakan nilai padu yang ditetapkan dalam menu pemandangan.";
+// Add node in a sync mode (synchronize instance)
+binding.float.position = "Kedudukan";
+binding.float.position.keep = "Kekal sebelumnya";
+binding.float.position.cursor = "Pada kursor";
 // Binding option
 binding.context.toggle = "Tukar konteks";
 // quick sidebar tool shortcuts
@@ -2746,6 +2772,9 @@ binding.tools = "Pintasan alat";
 // When the key is tapped once, the value will be toggled
 binding.toggle = "Tukar Alat Sebelumnya";
 binding.toggle.help = "Gunakan nama pintasan yang sama untuk bertukar kembali ke alat terakhir.";
+// Control if hold+release reverts the tool
+binding.revert = "Pegang Kembalikan";
+binding.revert.help = "Pilih jika melepaskan kekunci yang ditekan sentiasa kembali ke alat sebelumnya, walaupun alat itu sudah aktif.";
 // sticky keys
 binding.sticky = "Kekunci melekit";
 binding.sticky.off = "Tahan";
@@ -2763,10 +2792,10 @@ Ia biasanya boleh berlaku jika pengikatan yang sama diberikan sebagai pintasan a
 binding.pickMaterial = "Pilih Bahan";
 // Same as Color Picker but it pick the material (color, roughness, metalness, etc)
 binding.pickFaceGroup = "Pilih Kumpulan Muka";
-// Edit the tool brush size/radius
-binding.editRadius = "Jejari Alatan";
 // Inverse direction zooming
 binding.invertZoomY = "Balikkan zum Y";
+// Edit the tool brush size/radius
+binding.editRadius = "Jejari Alatan";
 // Edit the tool brush size/radius
 binding.editIntensity = "Keamatan Alatan";
 // Controller dead zone
@@ -2827,6 +2856,11 @@ widget.color.ring = "Cincin";
 widget.color.square = "Segi Empat";
 
 nomad.mainFolder = "Folder utama Nomad";
+nomad.mainFolder.help = "Jika anda menambah fail ke folder utama Nomad, mulakan semula Nomad untuk perubahan dilaksanakan.
+
+Fail jenis salah dalam subfolder mungkin dipindahkan ke can_be_deleted/.
+
+Sebagai contoh: folder projek menerima hanya fail 3D, manakala alpha atau matcap menerima hanya imej.";
 nomad.mainFolder.warning = "Fail dibiarkan tidak terubah.
 Mereka tidak disalin, dihapus atau dipindahkan.";
 nomad.mainFolder.error = "Setelah anda memilih ya, Nomad akan ditutup dan anda boleh melancarkannya semula.";
@@ -2835,39 +2869,44 @@ license.title = "Lesen";
 license.retry = "Cuba lagi";
 license.key = "Kunci lesen";
 license.activate = "Aktifkan lesen";
-// ----------------------------------------------
+
 license.newest = "Versi baru tersedia!";
 license.encrypt.error = "Tidak dapat menyulitkan!";
-// ----------------------------------------------
+
 license.grace = "Luar talian - Tempoh rahmat yang tinggal:";
 license.grace.hours = "Jam";
 license.grace.days = "Hari";
-// ----------------------------------------------
+
 license.portal.title = "Pengguna sedia ada";
 license.portal.label = "Portal lesen";
-// ----------------------------------------------
+license.portal.label.warning = "Portal ini hanya untuk pengguna yang membeli versi Windows/Mac.
+
+Pembelian dari kedai aplikasi iOS/Android tidak merentas platform.";
+
 license.checkout.title = "Pengguna baru";
 license.checkout.label = "Beli Nomad";
-// ----------------------------------------------
+
 license.device.error = "Tidak dapat mendapatkan ID peranti.";
 license.device.mismatch = "ID peranti tidak sepadan!";
-// ----------------------------------------------
+
 license.error429 = "Terlalu banyak permintaan (tunggu).";
-// ----------------------------------------------
+
 license.validate.error404 = "Kunci lesen tidak ditemui.";
 license.validate.error422 = "Entiti tidak boleh diproses.";
-// ----------------------------------------------
+
 license.activate.error403 = "Bilangan maksimum peranti telah dicapai!
 Anda boleh menyahaktifkan peranti lain di portal lesen anda.";
 license.activate.error404 = "Kunci lesen tidak ditemui.";
 license.activate.error422 = "Entiti tidak boleh diproses.";
-// ----------------------------------------------
+
 // version
+version.check = "Semak untuk kemas kini";
+version.auto = "Semak kemas kini secara automatik";
 version.update = "Kemaskini tersedia!";
 version.restore = "Pulihkan pembelian";
 version.buyWeb = "Versi web hanyalah demo";
 version.buyFull = "Naik taraf ke versi penuh";
-// ----------------------------------------------
+
 // QuadRemesh
 version.qr.unlock = "Buka kunci (pembelian, pemulihan, percubaan)";
 version.qr.desktop = "Di desktop, QuadRemesher diedarkan oleh Hexanomad, tetapi Hexanomad tidak mengurus jualan atau pelesenan.
@@ -2890,18 +2929,18 @@ Anda juga boleh membimbing topologi hasil dengan:
 • Lukisan Ketumpatan $3
 
 Quad Remesher dibangunkan oleh https://exoside.com/.";
-// ----------------------------------------------
+
 version.trialLayer = "Versi percubaan: 1 lapisan setiap objek";
 version.trialNoExport = "Versi percubaan: Tiada eksport";
-// ----------------------------------------------
+
 version.fullFeatures = "• Pembelian satu kali
 • Batalkan/ulangi tanpa had
 • Lapisan tanpa had
 • Eksport & import";
-// ----------------------------------------------
+
 version.demo.purpose = "Versi ini dibuat khusus untuk tujuan demonstrasi.";
 version.demo.disable = "Ciri tidak diaktifkan untuk demo.";
-// ----------------------------------------------
+
 version.demo = "Demo Ujian";
 version.demo.sculpt = "Ukiran";
 version.demo.sculpt.help = "Semua berus tersedia tetapi anda tidak boleh menyimpan atau mengeksport.
@@ -2913,70 +2952,69 @@ version.demo.file = "Import & Eksport";
 version.demo.file.help = "Anda boleh mengimport dan mengeksport model tetapi berus ukiran tidak tersedia.
 
 Mod ini berguna terutamanya untuk pengguna mudah alih yang tidak dapat membuka projek .nom besar disebabkan oleh kekangan memori mudah alih.";
-// ----------------------------------------------
+
 // app store main page
 store.name = "Nomad Sculpt";
 store.headline = "Mengukir, melukis dan mencipta dalam 3D";
 store.tag = "mengukir, 3d, nomad, melukis, pemodelan";
-// ----------------------------------------------
+
 store.description.sculpt = "• Alat pemodelan
 Tanah liat, ratakan, licin, tutup dan banyak berus lain akan membolehkan anda membentuk ciptaan anda.
 Anda juga boleh menggunakan alat pemotong boolean trim dengan lasso, segi empat tepat dan bentuk lain, untuk tujuan permukaan keras.";
-// ----------------------------------------------
+
 store.description.stroke = "• Penyesuaian Strok
 Falloff, alpha, tiling, tekanan pensel dan parameter strok lain boleh disesuaikan.
 Anda juga boleh menyimpan dan memuatkan tetapan alat anda.";
-// ----------------------------------------------
+
 store.description.paint = "• Alat melukis
 Lukisan vertex dengan warna, kekasaran dan metalness.
 Anda juga boleh mengurus semua pratetap bahan anda.";
-// ----------------------------------------------
+
 store.description.layer = "• Lapisan
 Rekod operasi mengukir dan melukis anda dalam lapisan berasingan untuk pengulangan yang lebih mudah semasa proses penciptaan.
 Kedua-dua perubahan mengukir dan melukis dicatatkan.";
-// ----------------------------------------------
+
 store.description.multires = "• Pemodelan multiresolusi
 Pergi ke depan dan belakang antara pelbagai resolusi mesh anda untuk aliran kerja yang fleksibel.";
-// ----------------------------------------------
+
 store.description.voxel = "• Voxel remeshing
 Remesh dengan cepat mesh anda untuk mendapatkan tahap perincian seragam.
 Ia boleh digunakan untuk melakar bentuk kasar dengan cepat pada permulaan proses penciptaan.";
-// ----------------------------------------------
+
 store.description.dynamic = "• Topologi dinamik
 Perbaiki secara tempatan mesh anda di bawah berus anda untuk mendapatkan tahap perincian automatik.
 Anda boleh mengekalkan lapisan anda, kerana ia akan dikemas kini secara automatik!";
-// ----------------------------------------------
+
 store.description.topology = "• Decimate
 Kurangkan bilangan poligon dengan mengekalkan sebanyak mungkin perincian.";
-// ----------------------------------------------
+
 store.description.group = "• Kumpulan Muka
 Segmentasikan mesh anda menjadi subkumpulan dengan alat kumpulan muka.";
-// ----------------------------------------------
+
 store.description.unwrap = "• Pemukaan UV automatik
 Pemukaan UV automatik boleh menggunakan kumpulan muka untuk mengawal proses pembukaan.";
-// ----------------------------------------------
+
 store.description.baking = "• Baking
 Anda boleh memindahkan data bucu seperti warna, kekasaran, metalness dan perincian berskala kecil ke dalam tekstur.
 Anda juga boleh melakukan sebaliknya, memindahkan data tekstur ke dalam data bucu atau lapisan.";
-// ----------------------------------------------
+
 store.description.primitive = "• Bentuk Primitif
 Silinder, torus, tiub, mesen bubut dan primitif lain boleh digunakan untuk memulakan bentuk baru dengan cepat.";
-// ----------------------------------------------
+
 store.description.rendering = "• Rendering PBR
 Rendering PBR yang cantik secara lalai, dengan pencahayaan dan bayang-bayang.
 Anda sentiasa boleh bertukar kepada matcap untuk shading yang lebih standard untuk tujuan mengukir.";
-// ----------------------------------------------
+
 store.description.postprocess = "• Pemprosesan Pasca
 Cerapan Ruang Skrin, Kedalaman Medan, Sekatan Ambien, Pemetaan Ton, dll.";
-// ----------------------------------------------
+
 store.description.files = "• Mengeksport dan Mengimport
 Format yang disokong termasuk fail glTF, OBJ, STL atau PLY.";
-// ----------------------------------------------
+
 store.description.interface = "• Antaramuka
 Antaramuka mudah digunakan, direka untuk pengalaman mudah alih.
 Penyesuaian juga mungkin!";
-// ----------------------------------------------
+
 store.description.remesher = "• Quad Remesher (pembelian dalam aplikasi berasingan sahaja)
 Remesh objek anda secara automatik dengan mesh dominan quad yang mengikuti kelengkungan mesh.
 Ia menyokong panduan, kumpulan muka dan lukisan ketumpatan.";
-// ----------------------------------------------

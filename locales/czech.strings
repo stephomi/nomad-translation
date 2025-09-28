@@ -18,6 +18,11 @@ status.exit = "Neuložené změny! Uložit před zavřením?";
 status.exit.yes = "Uložit";
 status.exit.no = "Neukládat";
 
+format.ascii = "Ascii";
+format.binary = "Binární";
+
+color = "Barva";
+
 // On single tap (should be short)
 ontap = "Na dotek";
 
@@ -166,6 +171,9 @@ material.normal = "Normála";
 material.normal.flipY = "FlipY";
 // Ambient Occlusion (AO)
 material.occlusion = "Okluze";
+material.unused = "Nepoužito";
+// Displacement map
+material.displacement = "Displacement";
 // Textures, basically images wrapped on models (synonym: Maps, Texture maps)
 material.textures = "Textury";
 // Textures/Image
@@ -209,6 +217,8 @@ about.turntable.pivot.keep = "Zachovat aktuální";
 about.turntable.pivot.scene = "Scéna";
 // Make the entire scene turn around (speed of the animation)
 about.turntable.speed = "Rychlost";
+// Speed easing (linear vs non-linaer)
+about.turntable.linear = "Konstantní rychlost";
 // Stuffs that I used to make the app
 about.credits = "Kredity";
 // Link to open source projects that I used for the app
@@ -290,10 +300,6 @@ alert.editSymmetry = "Jednoduché klepnutí pro ukončení režimu úpravy symet
 alert.mask.show = "Zobrazit masku";
 // Hide the painted mask on the mesh
 alert.mask.hide = "Skrýt masku";
-// Selection refers to the objects that are currently selected
-alert.selection.lock = "Uzamknout výběr";
-// Selection refers to the objects that are currently selected
-alert.selection.unlock = "Odemknout výběr";
 // Hide the objects that are not selected
 alert.selection.isolate = "Izolovat výběr";
 // Show the objects that are hidden
@@ -338,6 +344,8 @@ background.blur = "Rozmazání";
 background.exposure = "Expozice";
 
 // Image that the artist uses as a reference
+background.reference = "Referenční obrázek";
+// Image that the artist uses as a reference
 background.imageEnable = "Referenční obrázek";
 // The image will be displayed in overlay (used as a reference by the artist)
 background.imageOverlay = "Překrytí";
@@ -350,21 +358,16 @@ background.imageX = "Pozice X";
 // Y screen coordinate of the image reference
 background.imageY = "Pozice Y";
 // Rotation of the reference image
-background.imageRotation = "Rotace";
+background.imageRotate = "Rotace";
 // Scale of the reference image
 background.imageScale = "Měřítko";
 // Auto adjust the reference when moving the camera
 background.lock.image = "Synchronizovat s uzamčením kamery";
 background.lock.image.help = "Když je kamera uzamčena pomocí Snap Cube, referenční obrázek sleduje pohyb kamery.";
 // When exiting camera lock
-background.lock.exit = "Resetovat při odemknutí:";
-background.lock.exit.none = "Upravit šířku zorného pole";
-background.lock.exit.none.help = "Nechte obrázek a kameru tak, jak jsou. 
-Pokud je v perspektivě, upravte pouze šířku zorného pole.";
-background.lock.exit.all = "Resetovat vše";
-background.lock.exit.all.help = "Resetujte jak obrázek, tak pozici kamery.";
-background.lock.exit.perspective = "Pokud Perspektiva";
-background.lock.exit.perspective.help = "Pokud je v perspektivě, resetujte obrázek a pozici kamery.";
+background.lock.reset = "Resetovat zobrazení při odemknutí";
+// When exiting camera lock
+background.lock.roll = "Otáčet";
 
 // Blend: normal
 blend.normal = "Normální";
@@ -498,6 +501,13 @@ curve.merge = "Sloučit";
 curve.snap = "Zachycení";
 curve.snap.offset = "Posunutí";
 curve.snap.offset.help = "Hodnota 100 % odpovídá poloměru trubice.";
+curve.snap.normal = "Zarovnat normálu";
+curve.snap.normal.help = "Ovlivní pouze první a poslední řídicí bod křivky.
+
+Posune sousední body tak, aby konce tubusu byly zarovnány s povrchovou normálou.
+
+Vzdálenost k sousednímu bodu je zachována.";
+
 curve.snap.surface = "Povrch";
 curve.snap.vertex = "Vrchol";
 curve.snap.grid = "Mřížka (pokud připojeno)";
@@ -546,6 +556,8 @@ debug.thumbnails = "Vytvořit náhledy obchodu";
 
 // Open file explorer
 file.explore = "Prozkoumat";
+// Type format
+file.format = "Formát";
 // Open file explorer
 file.scope = "Dosah";
 file.scope.internal = "Interní";
@@ -665,42 +677,42 @@ file.onlySelection.help = "Zahrnout pouze výběr, místo celé scény.";
 // Tries to generate quad (rectangle polygon) from triangles
 file.convertToQuad = "Rekonstruovat čtyřúhelník";
 file.convertToQuad.help = "Rekonstruujte čtyřúhelníky z trojúhelníků spárováním trojúhelníků (pokud jsou v souborech sousední).";
-// ----------------------------------------------
+
 // Whether we include the textures in the exported file
 file.export.texture = "Textury";
 // Baking means transfering/converting
 file.export.texture.help = "Tato volba nezapéká barvy vrcholů do textur.
 
 Include textury pouze, pokud má objekt textury na svém materiálu.";
-// ----------------------------------------------
+
 file.export.color0 = "Barvy vrcholů";
 file.export.color1 = "PBR barva";
 file.export.color1.help = "Exportujte drsnost, kovovost a malování masky. To bude ignorováno jiným softwarem.";
-// ----------------------------------------------
+
 // Whether we include normals vector in the exported file
 file.export.normal = "Normály";
 file.export.normal.help = "Zkontrolujte tuto volbu, pokud chcete otevřít soubor v jiných softwarech.
 
 Nomad vždy ignoruje normály, protože je znovu přepočítává.";
-// ----------------------------------------------
+
 file.export.tangent = "Tečny";
 file.export.tangent.help = "Zvolte tuto možnost, pokud chcete otevřít soubor v jiných programech.
 
 Tečny jsou použity pouze pokud má model normální mapu.
 
 Nomad vždy ignoruje tečny, protože je přepočítá.";
-// ----------------------------------------------
+
 file.export.nomad.help = "Vnitřní formát souborů Nomad Sculpt.
 
 Tento formát se nebude načítat v jiných softwarech, je to hlavně pro účely znovuimportování.";
-// ----------------------------------------------
+
 // Whether we include layers in the exported file (see glossary for layer)
 file.export.gltf.layer = "Vrstvy";
 file.export.gltf.layer.help = "Exportujte vrstvy jako morphy. Oficiálně podporováno glTF, takže by to mělo fungovat i v jiných softwarech.";
 // Whether we include painting of layers in the exported file (see glossary for layer)
 file.export.gltf.layerPaint = "Malování vrstev";
 file.export.gltf.layerPaint.help = "Exportujte malování vrstev. Obecně to jiné softwary ignorují.";
-// ----------------------------------------------
+
 file.export.obj.warning = "Vrstvy a další malování (hrubost, kovovost a maska) budou ztraceny.";
 // Whether we include the vertex color in the exported file
 file.export.obj.color = "Barvy vrcholů";
@@ -717,19 +729,22 @@ file.export.obj.archive = "Typ";
 file.export.obj.archive.folder = "Složka";
 file.export.obj.archive.zip = "Zip";
 file.export.obj.archive.help = "Některé aplikace (Google Drive, One Drive atd.) nepodporují import složek, takže místo toho můžete použít Zip.";
-// ----------------------------------------------
+
+file.export.fbx.format = "Formát";
+file.export.fbx.format.help = "Binární je menší, ale nemusí fungovat ve všech aplikacích.";
+
 file.export.ply.warning = "Vrstvy a další malování (hrubost, kovovost atd.) budou ztraceny.";
-// ----------------------------------------------
+
 file.export.stl.warning = "Vrstvy a další malování (hrubost, kovovost atd.) budou ztraceny.";
 // Whether we include the vertex color in the exported file
 file.export.stl.color = "Barvy vrcholů";
 file.export.stl.color.help = "Některé 3D softwary to budou umět přečíst, ale ne všechny.";
-// ----------------------------------------------
+
 file.export.usd.skew = "Povolit zkosení";
 file.export.usd.skew.help = "Povolit zkosení v maticových transformacích.
 
 Pokud je deaktivováno, Nomad rozdělí matice zkosení na dvě samostatné transformace škálování a rotace.";
-// ----------------------------------------------
+
 // Advanced settings
 settings.advanced = "Rozšířené";
 // Means that all these options will be resetted when the app restarts
@@ -859,6 +874,10 @@ gesture.pencilAction.none = "Žádné";
 // Pencil button (or iOS pencil double tap) action: flip adding/substracting sculpt matter setting
 gesture.pencilAction.alt = "Přidat/Odebrat";
 
+// Idle long press with pencil, mouse, finger, etc
+gesture.longPress = "Dlouhý stisk";
+
+
 // Enable Mask gesture by tapping once on the screen
 gesture.mask.oneTap = "Zkratky jedním dotykem";
 gesture.mask.oneTap.help = "Povolit zkratku Masky klepnutím na obrazovku jednou, aniž by bylo nutné držet zkratku tlačítka masky.
@@ -874,6 +893,8 @@ gesture.mask.holdStroke.help = "Dlouhým stisknutím přepnete mezi Mask a SelMa
 Na konci tahu se znovu vybere předchozí nástroj.";
 gesture.mask.holdIdle = "Nástroj";
 gesture.mask.holdIdle.help = "Dlouhé stisknutí a uvolnění bez pohybu pro přepínání mezi Mask a SelMask.";
+
+gesture.smooth.holdSelect.help = "Dlouhý stisk přepne na nástroj výběru po dobu výběrového tahu.";
 
 // Shortcut customization, choose the action that the shortcut will performan (select tool, etc)
 gesture.shortcut = "Zkratka";
@@ -1034,19 +1055,25 @@ interface.preset.title = "Přednastavení";
 // Reset interface settings
 interface.resetAll = "Resetovat styl";
 interface.resetAll.confirm = "Resetovat nastavení rozhraní?";
-// help popup when hovering
+// Dot menu hovering
+interface.hoverDot = "Tečka při najetí kurzorem";
+interface.hoverDot.help = "Zobrazí v rozhraní malou tečku, když je detekováno vznášející se pero.";
+// Help popup when hovering
 interface.hoverHelp = "Vyskakovací okno nápovědy při přejíždění kurzorem";
+// Do not use windows native dialog
+interface.customDialog = "Použít Nomad dialog";
+interface.customDialog.help = "Zobrazí vlastní textový dialog Nomad místo nativního.";
 // Interface option (main base color)
 interface.iconSupport = "Tlačítko vysokého kontrastu";
 interface.iconSupport.help = "Alternativní styl pro tlačítka, který je činí viditelnějšími při aktivaci.
 
- Při nastavení na automatiku Nomad použije tento režim, když je kontrast barev UI mezi aktivními a neaktivními nízký.";
+Při nastavení na automatiku Nomad použije tento režim, když je kontrast barev UI mezi aktivními a neaktivními nízký.";
 // Interface customization
 interface.flipTop = "Zrcadlit horní panel";
 // Interface customization
-interface.flipBottom = "Zrcadlit dolní panel";
-// Interface customization
 interface.flipMiddle = "Zrcadlit boční panely";
+// Interface customization
+interface.flipBottom = "Zrcadlit dolní panel";
 // list of tools
 interface.toolbox = "Nástroje";
 // hide toolbox by default
@@ -1065,7 +1092,6 @@ interface.top.responsive = "Responzivní";
 interface.top.responsive.help = "Tato možnost je většinou relevantní pro malé obrazovky.";
 interface.top.responsive.multiline = "Víceřádkový";
 interface.top.responsive.scroll = "Posun";
-interface.top.responsive.collapse = "Kolaps";
 interface.top.alt = "Alternativní pořadí";
 interface.top.alt.help = "Alternativní ikona pořadí pro horní nabídku.
 
@@ -1246,14 +1272,14 @@ material.opacity = "Neprůhlednost";
 material.type.opaque = "Neprůhledný";
 material.type.opaque.help = "Toto je výchozí typ materiálu.
 
- Na malované vrcholy alpha, textury neprůhlednosti nebo alpha kanál barevného kanálu se přesto pohlíží pomocí přerušování.
+Na malované vrcholy alpha, textury neprůhlednosti nebo alpha kanál barevného kanálu se přesto pohlíží pomocí přerušování.
 
- Ignorovat se bude pouze hlavní posuvník neprůhlednosti.";
+Ignorovat se bude pouze hlavní posuvník neprůhlednosti.";
 // Fully opaque material
 material.type.shadowCatcher = "Stínový zachytávač";
 material.type.shadowCatcher.help = "Způsobí, že objekt je zcela průhledný, kromě stínů, které vrhají světla.
 
- Tento režim se obvykle používá na rovinné geometrii.";
+Tento režim se obvykle používá na rovinné geometrii.";
 material.type.shadowCatcher.warning = "Ve vaší scéně nejsou žádná světla se stíny, Shadow Caster bude neaktivní.
 
 Pokud je stínochytač plně kovový, může stínochytač odrážet scénu, pokud je aktivován Post Process SSR (Reflexe).";
@@ -1286,6 +1312,11 @@ material.alwaysUnlit = "Vždy nezapálené";
 // Inverse the side of the object triangles
 // https://en.wikipedia.org/wiki/Back-face_culling
 material.flipCulling = "Inverzní odstranění";
+// material (additive and blending) will write into depth
+material.preRefract = "Předrefrakční průchod";
+material.preRefract.help = "Vynutí vykreslení průhledných materiálů před refrakčním průchodem.
+
+Užitečné, když je refrakční materiál vykreslen před jinými průhlednými povrchy.";
 // How much light a surface will reflect (synonym: specular)
 material.reflectance = "Odrazivost";
 material.reflectance.help = "Ovládací množství odrazu, které materiál přijme pro nemetalické materiály.
@@ -1296,65 +1327,39 @@ material.preview = "Náhled materiálu ve viewportu";
 material.preview.help = "Při úpravě materiálu se v náhledu na zvoleném objektu zobrazí ve viewportu.
 
 Náhled se zobrazuje při interakci se slidery barvy, hrubosti, kovovosti, neprůhlednosti a intenzity.";
-// Menu name
+// Menu names
 menu.files = "Soubory";
-// Menu name
-menu.scene = "Scéna";
-// Menu name
-menu.multires = "Multires";
-// Menu name
-menu.voxel = "Voxel";
-// Menu name
-menu.dynamic = "DynTopo";
-// Menu name (Synonym: Misc, Other)
-menu.topology = "Míšeniny";
-// Menu name
-menu.primitive = "Primitive";
-// Menu name
 menu.render = "Render";
-// Menu name
+menu.turntable = "Gramofon";
+menu.scene = "Scéna";
+menu.multires = "Multires";
+menu.voxel = "Voxel";
+menu.dynamic = "DynTopo";
+menu.topology = "Míšeniny";
+menu.primitive = "Primitive";
+menu.render = "Render";
 menu.material = "Materiál";
-// Menu name
 menu.postprocess = "PostProcess";
-// Menu name
 menu.camera = "Kamera";
-// Menu name
 menu.background = "Pozadí";
-// Menu name
 menu.tool = "Nástroj";
-// Menu name
 menu.stroke = "Tah";
-// Menu name
 menu.alpha = "Alfa";
-// Menu name
 menu.filter = "Filtr";
-// Menu name
 menu.falloff = "Pád";
-// Menu name
 menu.paint = "Barva";
-// Menu name
 menu.symmetry = "Symetrie";
-// Menu name
 menu.operation = "Operace";
-// Menu name (pencil pressure)
 menu.pressure = "Tlak";
-// Menu name
 menu.gesture = "Gesto";
-// Menu name
 menu.layers = "Vrstvy";
-// Menu name
 menu.settings = "Nastavení";
-// Menu name
 menu.interface = "Rozhraní";
-// Menu name
 menu.bindings = "Vazby";
-// Menu name
+menu.shortcuts = "Zkratka";
 menu.history = "Historie";
-// Menu name
 menu.historySettings = "Nastavení";
-// Menu name
 menu.about = "O aplikaci";
-// Menu name
 menu.debug = "Ladění";
 
 // Operation on the object (action)
@@ -1363,6 +1368,10 @@ mesh.holes = "Otvy";
 mesh.holes.close = "Zavřít otvy";
 // Says how dense (number of triangles) the algorithm will use in order to fill holes
 mesh.holes.detail = "Detail";
+// Says how dense (number of triangles) the algorithm will use in order to fill holes
+mesh.holes.group.new = "Nový";
+mesh.holes.group.reuse = "Znovu použít";
+mesh.holes.group.mixed = "Smíšené";
 // If the mesh has disconnected parts, it will be split/separated into objects
 mesh.separate = "Oddělit";
 // When converting the object to a triplanar primitive, some object features will be lost
@@ -1395,6 +1404,8 @@ Když je tato možnost vypnutá, předvolba materiálu pouze odkazuje na textury
 
 Můžete zapnout tuto možnost pro vytvoření kopie textur uvnitř předvolby materiálu. To může být užitečné, pokud chcete sdílet texturovanou předvolbu, aniž byste poskytli související textury.";
 paint.preset.embed.apply = "Použít na všechny materiály";
+paint.preset.alpha = "Zahrnout alfu";
+paint.preset.alpha.help = "Zahrne alfu štětce do přednastavení materiálu.";
 // Factor/Opacity of paint tool
 paint.intensity = "Intenzita barvy";
 // Apply the paint on the object
@@ -1405,6 +1416,11 @@ paint.paintAll.help.hide = "Skrytá oblast nebude ovlivněna.";
 paint.paintAll.help.opacity = "Použijte faktor malby nástrojem výše.";
 paint.paintAll.help.layer = "Nepobarevná oblast vrstvy nebude ovlivněna.";
 paint.strokePainting.title = "Malování";
+// Opaque opacity
+paint.opacityAlphaValue = "Použít alfu jako hodnotu";
+paint.opacityAlphaValue.help = "Nahradí odstín šedi alfa kanálem a vynutí krytí na 1.
+
+Pokud textura nemá alfa kanál, tato volba se ignoruje.";
 // Brush stroke texture
 paint.texture.warningEnable = "Tahové malování musí být povoleno, aby bylo možné použít texturovou projekci (zaškrtávací políčko nahoře)!";
 paint.texture.warningIgnored = "Současný nástroj nemůže používat textury!";
@@ -1797,12 +1813,20 @@ Při automatickém omezení bude omezení platit pouze při režimu oběžné dr
 settings.stats = "Statistiky";
 settings.stats.right = "Vpravo";
 settings.stats.all = "Zobrazit celou scénu";
+// Handles are controls that you interact with in the viewport in order to edit something
+settings.handle = "Úchop";
+settings.handles = "Úchopy";
+// Shape draw thing
+settings.shape = "Tvar";
+settings.shape.color = "Barva polygonu";
 // Grid
 settings.grid = "Mřížka";
-settings.grid.divideThreshold = "Rozdělovací práh";
+settings.grid.snapDivision = "Prahová hodnota rozdělení záchytu";
+settings.grid.snapDivision.help = "Prahová hodnota se porovnává s vzdáleností k mřížce.";
 // Cursor
 settings.cursor.title = "Kurzor";
-settings.cursor.whileSculpting = "Zobrazit kruh při sochařství";
+// sculpting circle
+settings.cursor.circle = "Kruh";
 // A small indicator dot
 settings.cursor.showDot = "Zobrazit malou tečku";
 settings.cursor.showDot.help = "Tečka se může objevit jako výchozí bod kamery nebo při sochařství.";
@@ -1925,8 +1949,6 @@ shortcut.voxelRemesh = "Voxel";
 shortcut.wireframe = "Drát";
 shortcut.cameraReset = "Obnovit";
 shortcut.cameraSnap = "Snímek";
-shortcut.lockSelection = "Zamknout";
-shortcut.lockSelection.help = "Když je povoleno, nemůžete změnit výběr klepnutím na síť.";
 shortcut.grid = "Mřížka";
 
 // Memory taken by the scene
@@ -2170,15 +2192,12 @@ symmetry.countY = "Počet Y";
 symmetry.countZ = "Počet Z";
 // method
 symmetry.method = "Metoda:";
-symmetry.method.help = "• Lokální
-Rovina symetrie se pohybuje spolu s síťovým modelem, pokud použijete jeden z nástrojů transformace (Gizmo nebo Transformace).
-
-• Světový
-Rovina symetrie je pevná a nebude se pohybovat.";
 // Local means: in the coordinate of the scene (synonym: absolute)
 symmetry.method.world = "Svět";
+symmetry.method.world.help = "Rovina symetrie je pevná a nebude se pohybovat.";
 // Local means: in the coordinate of the object (synonym: relative)
 symmetry.method.local = "Lokální";
+symmetry.method.local.help = "Rovina symetrie se pohybuje spolu s síťovým modelem, pokud použijete jeden z nástrojů transformace (Gizmo nebo Transformace).";
 // Move the object to the other side of the symmetry (mirror it as well)
 symmetry.flip = "Převrátit objekt";
 // Cut half of the mesh
@@ -2385,6 +2404,9 @@ tool.smooth.stickyBorder = "Neek čára na okraji";
 tool.smooth.screen = "Vyhlazování obrazovky";
 tool.smooth.screen.help = "Použijte tuto volbu k dosažení vyhlazování nezávislého na topologii, i při vysokém polygonu.";
 tool.smooth.screen.samples = "Ukázky obrazovky";
+tool.smooth.taubin = "Zachovat objem";
+tool.smooth.taubin.shrink = "Zmenšit";
+tool.smooth.taubin.inflate = "Zvětšit";
 tool.smooth.stable = "Stabilní vyhlazení";
 tool.smooth.stable.help = "Snaží se učinit vyhlazení nezávislým na topologii.
 
@@ -2452,7 +2474,7 @@ tool.gizmo.size = "Velikost Gizmo";
 tool.gizmo.compact = "Kompaktní";
 // When enabled, tapping one the gizmo widget will open a numerical input popup
 tool.gizmo.allowInput = "Číselný vstup";
-tool.gizmo.allowInput.help = "Povolí číselný vstup při klepnutí na jeden z widgetů Gizmo";
+tool.gizmo.allowInput.help = "Povolí číselný vstup při klepnutí na jeden z widgetů Gizmo.";
 // Angle threshold
 tool.gizmo.linearRollThreshold = "Práh sklopení tangenty";
 tool.gizmo.linearRollThreshold.help = "Práh úhlu pro volbu mezi lineární nebo kruhovou metodou sklopení. Hodnoty nad tímto prahem budou používat kruhovou metodu. Pokud upřednostňujete lineární sklopení (směr tangenty), nastavte tuto hodnotu na 90°.";
@@ -2735,6 +2757,10 @@ binding.reset = "Resetovat přiřazení kláves";
 // Add node in a sync mode (synchronize instance)
 binding.addSync = "Synchronizovat";
 binding.addSync.help = "Ve výchozím nastavení se použije hodnota synchronizace nastavená v menu scény.";
+// Add node in a sync mode (synchronize instance)
+binding.float.position = "Pozice";
+binding.float.position.keep = "Zachovat předchozí";
+binding.float.position.cursor = "Na kurzoru";
 // Binding option
 binding.context.toggle = "Přepnout kontext";
 // quick sidebar tool shortcuts
@@ -2744,6 +2770,9 @@ binding.tools = "Nástrojové zkratky";
 // When the key is tapped once, the value will be toggled
 binding.toggle = "Přepnout předchozí nástroj";
 binding.toggle.help = "Použijte stejné propojení k přepnutí zpět na poslední nástroj.";
+// Control if hold+release reverts the tool
+binding.revert = "Držet Revert";
+binding.revert.help = "Zvolte, zda po uvolnění držené klávesy vždy vracet zpět na předchozí nástroj, i když byl tento nástroj již aktivní.";
 // sticky keys
 binding.sticky = "Lepící klávesy";
 binding.sticky.off = "Držet";
@@ -2761,10 +2790,10 @@ To se může typicky stát, pokud je stejný binding přiřazen zkratce nástroj
 binding.pickMaterial = "Vybrat materiál";
 // Same as Color Picker but it pick the material (color, roughness, metalness, etc)
 binding.pickFaceGroup = "Vybrat skupinu ploch";
-// Edit the tool brush size/radius
-binding.editRadius = "Poloměr nástroje";
 // Inverse direction zooming
 binding.invertZoomY = "Překlopit zoom Y";
+// Edit the tool brush size/radius
+binding.editRadius = "Poloměr nástroje";
 // Edit the tool brush size/radius
 binding.editIntensity = "Intenzita nástroje";
 // Controller dead zone
@@ -2825,6 +2854,11 @@ widget.color.ring = "Kruh";
 widget.color.square = "Čtverec";
 
 nomad.mainFolder = "Hlavní složka Nomad";
+nomad.mainFolder.help = "Pokud přidáte soubory do hlavní složky Nomad, restartujte Nomad, aby se změny projevily.
+
+Soubory nesprávného typu v podsložkách mohou být přesunuty do může_být_smazáno/.
+
+Například: složka projektů přijímá pouze 3D soubory, zatímco alfy nebo matcappy přijímají pouze obrázky.";
 nomad.mainFolder.warning = "Soubory zůstávají nedotčené.
 Nejsou kopírovány, mazány ani přesouvány.";
 nomad.mainFolder.error = "Po výběru ano se Nomad zavře a můžete jej jednoduše znovu spustit.";
@@ -2833,39 +2867,44 @@ license.title = "Licence";
 license.retry = "Opakovat pokus";
 license.key = "Licenční klíč";
 license.activate = "Aktivovat licenci";
-// ----------------------------------------------
+
 license.newest = "Nová verze k dispozici!";
 license.encrypt.error = "Nelze zašifrovat!";
-// ----------------------------------------------
+
 license.grace = "Offline - Zbývající období odkladu:";
 license.grace.hours = "hodin";
 license.grace.days = "dní";
-// ----------------------------------------------
+
 license.portal.title = "Stávající uživatelé";
 license.portal.label = "Portál licencí";
-// ----------------------------------------------
+license.portal.label.warning = "Tento portál je pouze pro uživatele, kteří si zakoupili verzi pro Windows/Mac.
+
+Nákupy z obchodů aplikací iOS/Android nejsou kompatibilní mezi platformami.";
+
 license.checkout.title = "Noví uživatelé";
 license.checkout.label = "Zakoupit Nomad";
-// ----------------------------------------------
+
 license.device.error = "Nelze získat ID zařízení.";
 license.device.mismatch = "Nesoulad ID zařízení!";
-// ----------------------------------------------
+
 license.error429 = "Příliš mnoho žádostí (počkat).";
-// ----------------------------------------------
+
 license.validate.error404 = "Licenční klíč nebyl nalezen.";
 license.validate.error422 = "Nezpracovatelný subjekt.";
-// ----------------------------------------------
+
 license.activate.error403 = "Byl dosažen maximální počet zařízení!
 Na svém portálu licencí můžete deaktivovat jiné zařízení.";
 license.activate.error404 = "Licenční klíč nebyl nalezen.";
 license.activate.error422 = "Nezpracovatelný subjekt.";
-// ----------------------------------------------
+
 // version
+version.check = "Zkontrolovat aktualizaci";
+version.auto = "Automaticky kontrolovat aktualizace";
 version.update = "Aktualizace k dispozici!";
 version.restore = "Obnovit nákup";
 version.buyWeb = "Webová verze je pouze ukázka";
 version.buyFull = "Upgradovat na plnou verzi";
-// ----------------------------------------------
+
 // QuadRemesh
 version.qr.unlock = "Odemknout (koupit, obnovit, zkušební verze)";
 version.qr.desktop = "Na počítači je QuadRemesher distribuován společností Hexanomad, ale Hexanomad nezpracovává prodeje ani licence.
@@ -2888,18 +2927,18 @@ Můžete také řídit výslednou topologii pomocí:
 • Malování hustoty $3
 
 Quad Remesher vyvíjí https://exoside.com/.";
-// ----------------------------------------------
+
 version.trialLayer = "Zkušební verze: 1 vrstva na objekt";
 version.trialNoExport = "Zkušební verze: Nelze exportovat";
-// ----------------------------------------------
+
 version.fullFeatures = "• Jednorázový nákup
 • Neomezené vrátit/znovu
 • Neomezené vrstvy
 • Export & import";
-// ----------------------------------------------
+
 version.demo.purpose = "Tato verze byla vytvořena specificky pro demonstrační účely.";
 version.demo.disable = "Funkce není dostupná v demoverzi.";
-// ----------------------------------------------
+
 version.demo = "Demo Test";
 version.demo.sculpt = "Sochaření";
 version.demo.sculpt.help = "Všechny štětce jsou k dispozici, ale nemůžete ukládat ani exportovat. 
@@ -2911,70 +2950,69 @@ version.demo.file = "Import & Export";
 version.demo.file.help = "Můžete importovat a exportovat model, ale sochařské štětce jsou deaktivované. 
 
 Tento režim je hlavně užitečný pro mobilní uživatele, kteří nemohou otevřít velké .nom projekty způsobené omezeními paměti mobilních zařízení.";
-// ----------------------------------------------
+
 // app store main page
 store.name = "Nomad Sculpt";
 store.headline = "Sculptujte, malujte a tvořte ve 3D";
 store.tag = "sclupt, 3d, nomad, malování, modelování";
-// ----------------------------------------------
+
 store.description.sculpt = "• Nástroje pro sochání
 Jíl, vyrovnání, uhlazení, maska a mnoho dalších štětců umožní tvarovat vaši tvorbu.
 Pro potřeby tvrdších povrchů můžete také použít nástroj pro ořezávání boolean řezáním s lasem, obdélníkem a dalšími tvary.";
-// ----------------------------------------------
+
 store.description.stroke = "• Úprava tahu
 Průběh, alfa, dlaždice, tlak tužky a další parametry tahu lze přizpůsobit.
 Můžete také uložit a načíst předvolbu svých nástrojů.";
-// ----------------------------------------------
+
 store.description.paint = "• Malířské nástroje
 Vertex malování s barvou, drsností a kovovostí.
 Můžete také snadno spravovat všechny své předvolby materiálů.";
-// ----------------------------------------------
+
 store.description.layer = "• Vrstvy
 Zaznamenejte své operace modelování a malování do samostatných vrstev pro snadnější iteraci v průběhu procesu tvorby.
 Jsou zaznamenány jak změny modelování, tak i malování.";
-// ----------------------------------------------
+
 store.description.multires = "• Sochání ve více rozlišeních
 Přecházejte mezi více úrovněmi rozlišení vaší sítě pro flexibilní pracovní postup.";
-// ----------------------------------------------
+
 store.description.voxel = "• Voxel remeshing
 Rychle remeshujte svou síť, abyste dosáhli jednotné úrovně detailů.
 Lze použít k rychlému načrtnutí hrubého tvaru na začátku procesu tvorby.";
-// ----------------------------------------------
+
 store.description.dynamic = "• Dynamická topologie
 Vylepšete místně svou mesh pod štětcem pro automatickou úroveň detailu.
 Můžete dokonce zachovat své vrstvy, protože se automaticky aktualizují!";
-// ----------------------------------------------
+
 store.description.topology = "• Decimace
 Snižte počet polygonů při zachování co nejvíce detailů.";
-// ----------------------------------------------
+
 store.description.group = "• Skupina ploch
 Segmentujte svou síť na podskupiny pomocí nástroje skupiny ploch.";
-// ----------------------------------------------
+
 store.description.unwrap = "• Automatické UV odvíjení
 Automatický UV odvíječ může použít skupiny ploch pro kontrolu procesu odvíjení.";
-// ----------------------------------------------
+
 store.description.baking = "• Pečení
 Můžete přenášet data vrcholů, jako jsou barva, drsnost, kovovost a malé detaily, na textury.
 Můžete také udělat opak, přenést data textur na data vrcholů nebo vrstvy.";
-// ----------------------------------------------
+
 store.description.primitive = "• Primitivní tvar
 Lze použít válec, torus, trubka, soustruh a další tvary pro rychlé zahájení nových tvarů od začátku.";
-// ----------------------------------------------
+
 store.description.rendering = "• PBR rendering
 Výchozí krásné PBR rendering, s osvětlením a stíny.
 Vždy můžete přepnout na matcap pro standardnější stínování pro účely sochání.";
-// ----------------------------------------------
+
 store.description.postprocess = "• Post processing
 Screen Space Reflection, Depth of Field, Ambient Occlusion, Tone mapping, atd.";
-// ----------------------------------------------
+
 store.description.files = "• Export a Import
 Podporované formáty zahrnují soubory glTF, OBJ, STL nebo PLY.";
-// ----------------------------------------------
+
 store.description.interface = "• Rozhraní
 Jednoduché rozhraní, navržené pro mobilní použití.
 Je možná i vlastní úprava!";
-// ----------------------------------------------
+
 store.description.remesher = "• Quad Remesher (pouze samostatný nákup v aplikaci)
 Automaticky remeshujte svůj objekt pomocí čtyřdominantní sítě, která sleduje zakřivení sítě.
 Podporuje vodítka, skupiny plošek a malování hustoty.";
-// ----------------------------------------------

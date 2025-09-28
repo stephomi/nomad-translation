@@ -18,6 +18,11 @@ status.exit = "Kaydedilmemiş değişiklikler! Kapatmadan önce kaydetmek ister 
 status.exit.yes = "Kaydet";
 status.exit.no = "Kaydetme";
 
+format.ascii = "Ascii";
+format.binary = "İkili";
+
+color = "Renk";
+
 // On single tap (should be short)
 ontap = "Dokunuşta";
 
@@ -166,6 +171,9 @@ material.normal = "Normal";
 material.normal.flipY = "Y'yi Ters Çevir";
 // Ambient Occlusion (AO)
 material.occlusion = "Emilim";
+material.unused = "Kullanılmayan";
+// Displacement map
+material.displacement = "Yer Değiştirme";
 // Textures, basically images wrapped on models (synonym: Maps, Texture maps)
 material.textures = "Doku";
 // Textures/Image
@@ -211,6 +219,8 @@ about.turntable.pivot.keep = "Mevcut olanı koru";
 about.turntable.pivot.scene = "Görünüm";
 // Make the entire scene turn around (speed of the animation)
 about.turntable.speed = "Hız";
+// Speed easing (linear vs non-linaer)
+about.turntable.linear = "Sabit hız";
 // Stuffs that I used to make the app
 about.credits = "Katkıda bulunanlar";
 // Link to open source projects that I used for the app
@@ -292,10 +302,6 @@ alert.editSymmetry = "Düzenleme simetrisi modundan çıkmak için basitçe doku
 alert.mask.show = "Maskeyi göster";
 // Hide the painted mask on the mesh
 alert.mask.hide = "Maskeyi gizle";
-// Selection refers to the objects that are currently selected
-alert.selection.lock = "Seçimi kilitle";
-// Selection refers to the objects that are currently selected
-alert.selection.unlock = "Seçimin kilidini aç";
 // Hide the objects that are not selected
 alert.selection.isolate = "Seçimi soyutla";
 // Show the objects that are hidden
@@ -340,6 +346,8 @@ background.blur = "Bulanıklık";
 background.exposure = "Pozlandırma";
 
 // Image that the artist uses as a reference
+background.reference = "Referans";
+// Image that the artist uses as a reference
 background.imageEnable = "Referans görüntüsü";
 // The image will be displayed in overlay (used as a reference by the artist)
 background.imageOverlay = "Kaplama";
@@ -352,21 +360,16 @@ background.imageX = "X Konumu";
 // Y screen coordinate of the image reference
 background.imageY = "Y Konumu";
 // Rotation of the reference image
-background.imageRotation = "Döndürme";
+background.imageRotate = "Döndürme";
 // Scale of the reference image
 background.imageScale = "Ölçek";
 // Auto adjust the reference when moving the camera
 background.lock.image = "Kamera kilidi ile senkronize et";
 background.lock.image.help = "Kamera Snap Cube ile kilitlendiğinde, referans görüntüsü kamera hareketini takip eder.";
 // When exiting camera lock
-background.lock.exit = "Kilidi açınca sıfırla:";
-background.lock.exit.none = "Fov Ayarla";
-background.lock.exit.none.help = "Görüntü ve kamerayı olduğu gibi bırak.  
-Perspektifte iseniz, sadece görüş alanını ayarlayın.";
-background.lock.exit.all = "Tümünü Sıfırla";
-background.lock.exit.all.help = "Hem görüntüyü hem kamerayı sıfırla.";
-background.lock.exit.perspective = "Eğer Perspektifse";
-background.lock.exit.perspective.help = "Eğer perspektif modundaysanız, görüntü ve kamera pozisyonunu sıfırlayın.";
+background.lock.reset = "Kilidi açınca görünümü sıfırla";
+// When exiting camera lock
+background.lock.roll = "Yuvarla";
 
 // Blend: normal
 blend.normal = "Normal";
@@ -500,6 +503,13 @@ curve.merge = "Birleştir";
 curve.snap = "Yasla";
 curve.snap.offset = "Kaydırma";
 curve.snap.offset.help = "100% değeri tüpün yarıçapına eşittir.";
+curve.snap.normal = "Normali Hizala";
+curve.snap.normal.help = "Yalnızca eğrinin ilk ve son kontrol noktalarını etkiler.
+
+Komşu noktaları hareket ettirerek, tüp uçlarının yüzey normaliyle hizalanmasını sağlar.
+
+Komşu noktaya olan mesafe korunur.";
+
 curve.snap.surface = "Yüzey";
 curve.snap.vertex = "Verteks";
 curve.snap.grid = "Izgara (yaslandığında)";
@@ -546,6 +556,8 @@ debug.thumbnails = "Mağaza boyutu küçük resimler oluştur";
 
 // Open file explorer
 file.explore = "Keşfet";
+// Type format
+file.format = "Format";
 // Open file explorer
 file.scope = "Alan";
 file.scope.internal = "Dahili";
@@ -666,40 +678,40 @@ file.onlySelection.help = "Tüm görünüm yerine, sadece seçimi dâhil eder.";
 // Tries to generate quad (rectangle polygon) from triangles
 file.convertToQuad = "Dörtgen oluştur";
 file.convertToQuad.help = "Üçgenleri eşleştirerek (dosyalarda yan yana iseler), üçgenlerden dörtgenler oluşturur.";
-// ----------------------------------------------
+
 // Whether we include the textures in the exported file
 file.export.texture = "Dokuları";
 // Baking means transfering/converting
 file.export.texture.help = "Bu seçenek verteks renklerini dokulara dönüştürmez.";
-// ----------------------------------------------
+
 file.export.color0 = "Verteks renklerini";
 file.export.color1 = "pbr boyamasını";
 file.export.color1.help = "Pürüzlük, metaliklik seviyesi ve maske boyamayı dışa aktarır. Bu diğer yazılımlar tarafından göz ardı edilir.";
-// ----------------------------------------------
+
 // Whether we include normals vector in the exported file
 file.export.normal = "Normalleri";
 file.export.normal.help = "Dosyayı diğer yazılımlarda açmak istiyorsanız, bu seçeneği belirleyin.
 
 Tekrardan hesaplayacağı için, Nomad normalleri her zaman göz ardı eder.";
-// ----------------------------------------------
+
 file.export.tangent = "Teğetler";
 file.export.tangent.help = "Bu dosyayı başka yazılımlarda açmak istiyorsanız bu seçeneği işaretleyin.
 
 Teğetler, yalnızca model normal haritaya sahipse kullanılır.
 
 Nomad, bunları tekrar hesaplayacağı için teğetleri daima görmezden gelir.";
-// ----------------------------------------------
+
 file.export.nomad.help = "Nomad Sculpt dahili dosya formatı.
 
 Bu format başka yazılımlarda yüklenmez, bu çoğunlukla yeniden içe aktarma amaçları içindir.";
-// ----------------------------------------------
+
 // Whether we include layers in the exported file (see glossary for layer)
 file.export.gltf.layer = "Katmanları";
 file.export.gltf.layer.help = "Katmanları biçimler olarak dışa aktarır. glTF tarafından resmi olarak desteklenir, dolayısıyla diğer yazılımlarda da çalışması gerekir.";
 // Whether we include painting of layers in the exported file (see glossary for layer)
 file.export.gltf.layerPaint = "Katman boyamasını";
 file.export.gltf.layerPaint.help = "Katman boyamayı dışa aktarır. Diğer yazılımlar tarafından genellikle göz ardı edilir.";
-// ----------------------------------------------
+
 file.export.obj.warning = "Katmanlar ve ekstra boyama (pürüzlük ve metaliklik seviyesi ve maske) kaybolur.";
 // Whether we include the vertex color in the exported file
 file.export.obj.color = "Verteks renklerini";
@@ -716,19 +728,22 @@ file.export.obj.archive = "Tür";
 file.export.obj.archive.folder = "Klasör";
 file.export.obj.archive.zip = "Zip";
 file.export.obj.archive.help = "Bazı uygulamalar (Google Drive, One Drive, vb.) klasör içe aktarmayı desteklemez, bu yüzden bunun yerine Zip kullanabilirsiniz.";
-// ----------------------------------------------
+
+file.export.fbx.format = "Format";
+file.export.fbx.format.help = "İkili format daha küçüktür ancak her uygulamada çalışmayabilir.";
+
 file.export.ply.warning = "Katmanlar ve ekstra boyama (pürüzlük ve metaliklik seviyesi ve maske) kaybolur.";
-// ----------------------------------------------
+
 file.export.stl.warning = "Katmanlar ve ekstra boyama (pürüzlük ve metaliklik seviyesi ve maske) kaybolur.";
 // Whether we include the vertex color in the exported file
 file.export.stl.color = "Verteks renklerini";
 file.export.stl.color.help = "Bazı 3D yazılımları bunu okuyabilir, ama hepsi okuyamaz.";
-// ----------------------------------------------
+
 file.export.usd.skew = "Kaymayı İzin Ver";
 file.export.usd.skew.help = "Matris dönüşümlerinde kaymayı izin ver.
 
 Devre dışı bırakıldığında, Nomad kayma matrislerini iki ayrı ölçekleme ve döndürme dönüşümüne böler.";
-// ----------------------------------------------
+
 // Advanced settings
 settings.advanced = "Gelişmiş";
 // Means that all these options will be resetted when the app restarts
@@ -857,6 +872,10 @@ gesture.pencilAction.none = "Yok";
 // Pencil button (or iOS pencil double tap) action: flip adding/substracting sculpt matter setting
 gesture.pencilAction.alt = "Ekle/Çıkar";
 
+// Idle long press with pencil, mouse, finger, etc
+gesture.longPress = "Uzun basılı tut";
+
+
 // Enable Mask gesture by tapping once on the screen
 gesture.mask.oneTap = "Tek dokunmalı";
 gesture.mask.oneTap.help = "Ekrana bir kez dokunduğunuzda, Maske düğmesi kısayolunu basılı tutmaya gerek kalmadan maske kısayoluna izin verir.
@@ -872,6 +891,8 @@ gesture.mask.holdStroke.help = "Uzun basma Mask ve SelMask arasında geçiş yap
 Çizginin sonunda, önceki alet tekrar seçilir.";
 gesture.mask.holdIdle = "Araç";
 gesture.mask.holdIdle.help = "Mask ve SelMask arasında geçiş yapmak için hareket ettirmeden uzun basın ve bırakın.";
+
+gesture.smooth.holdSelect.help = "Uzun basılı tut, vuruş seçim süresi boyunca seçim aracına geçecektir.";
 
 // Shortcut customization, choose the action that the shortcut will performan (select tool, etc)
 gesture.shortcut = "Kısayolu";
@@ -1036,8 +1057,14 @@ interface.preset.title = "Önayarlar";
 // Reset interface settings
 interface.resetAll = "Stili sıfırla";
 interface.resetAll.confirm = "Arayüz ayarları sıfırlansın mı?";
-// help popup when hovering
+// Dot menu hovering
+interface.hoverDot = "Vurma noktası";
+interface.hoverDot.help = "Kayan kalem algılandığında arayüzde küçük bir nokta göster.";
+// Help popup when hovering
 interface.hoverHelp = "Üzerine gelindiğinde yardım açılır penceresi";
+// Do not use windows native dialog
+interface.customDialog = "Nomad İletişim Kutusunu Kullan";
+interface.customDialog.help = "Nomad'ın kendi metin iletişim kutusunu Yerel olan yerine göster.";
 // Interface option (main base color)
 interface.iconSupport = "Yüksek Kontrastlı Düğme";
 interface.iconSupport.help = "Düğmelerin etkin olduklarında daha görünür olmalarını sağlayan alternatif bir stil.
@@ -1046,9 +1073,9 @@ Otomatik olarak ayarlandığında, Nomad düşük kontrastlı UI renklerinde etk
 // Interface customization
 interface.flipTop = "Üst çubuğu aynala";
 // Interface customization
-interface.flipBottom = "Alt çubuğu aynala";
-// Interface customization
 interface.flipMiddle = "Yan çubukları aynala";
+// Interface customization
+interface.flipBottom = "Alt çubuğu aynala";
 // list of tools
 interface.toolbox = "Araç kutusunu";
 // hide toolbox by default
@@ -1067,7 +1094,6 @@ interface.top.responsive = "Duyarlı";
 interface.top.responsive.help = "Bu seçenek çoğunlukla küçük ekranlar için geçerlidir.";
 interface.top.responsive.multiline = "Çok Satırlı";
 interface.top.responsive.scroll = "Kaydır";
-interface.top.responsive.collapse = "Daralt";
 interface.top.alt = "Farklı Sıralama";
 interface.top.alt.help = "Üst menü için alternatif sıralama simgesi.
 
@@ -1288,6 +1314,11 @@ material.alwaysUnlit = "Her zaman karanlık";
 // Inverse the side of the object triangles
 // https://en.wikipedia.org/wiki/Back-face_culling
 material.flipCulling = "Ters culling";
+// material (additive and blending) will write into depth
+material.preRefract = "Ön kırılma geçişi";
+material.preRefract.help = "Saydam malzemelerin kırılma geçişinden önce çizilmeye zorlanmasını sağlar.
+
+Kırılmalı bir malzeme diğer saydam yüzeylerin önünde işlendiğinde kullanışlıdır.";
 // How much light a surface will reflect (synonym: specular)
 material.reflectance = "Yansıtıcılık";
 material.reflectance.help = "Malzemenin metalik olmayan malzemelerden alacağı yansıma miktarını kontrol eder.
@@ -1298,65 +1329,39 @@ material.preview = "Malzeme rengi önzileme";
 material.preview.help = "When you modify a material, a preview will be displayed in the viewport on the selected object.
 
 The preview is shown while you interact with the color, roughness, metalness, opacity and intensity sliders.";
-// Menu name
+// Menu names
 menu.files = "Dosyalar";
-// Menu name
-menu.scene = "Görünüm";
-// Menu name
-menu.multires = "Çoklu Çözünürlük";
-// Menu name
-menu.voxel = "Voksel";
-// Menu name
-menu.dynamic = "DinTopo";
-// Menu name (Synonym: Misc, Other)
-menu.topology = "Çeşitli";
-// Menu name
-menu.primitive = "Primitif";
-// Menu name
 menu.render = "İşle";
-// Menu name
+menu.turntable = "Döner platform";
+menu.scene = "Görünüm";
+menu.multires = "Çoklu Çözünürlük";
+menu.voxel = "Voksel";
+menu.dynamic = "DinTopo";
+menu.topology = "Çeşitli";
+menu.primitive = "Primitif";
+menu.render = "İşle";
 menu.material = "Malzeme";
-// Menu name
 menu.postprocess = "Süreç sonrası işlemler";
-// Menu name
 menu.camera = "Kamera";
-// Menu name
 menu.background = "Arka Plan";
-// Menu name
 menu.tool = "Araç";
-// Menu name
 menu.stroke = "Darbe";
-// Menu name
 menu.alpha = "Alfa";
-// Menu name
 menu.filter = "Filtre";
-// Menu name
 menu.falloff = "Düşüş";
-// Menu name
 menu.paint = "Boya";
-// Menu name
 menu.symmetry = "Simetri";
-// Menu name
 menu.operation = "İşlem";
-// Menu name (pencil pressure)
 menu.pressure = "Basım Şiddeti";
-// Menu name
 menu.gesture = "Hareket";
-// Menu name
 menu.layers = "Katmanlar";
-// Menu name
 menu.settings = "Ayarlar";
-// Menu name
 menu.interface = "Arayüz";
-// Menu name
 menu.bindings = "Atamalar";
-// Menu name
+menu.shortcuts = "Kısayolu";
 menu.history = "Geçmiş";
-// Menu name
 menu.historySettings = "Ayarlar";
-// Menu name
 menu.about = "Hakkında";
-// Menu name
 menu.debug = "Ayıkla";
 
 // Operation on the object (action)
@@ -1365,6 +1370,10 @@ mesh.holes = "Delikleri";
 mesh.holes.close = "Delikleri kapat";
 // Says how dense (number of triangles) the algorithm will use in order to fill holes
 mesh.holes.detail = "Detay";
+// Says how dense (number of triangles) the algorithm will use in order to fill holes
+mesh.holes.group.new = "Yeni";
+mesh.holes.group.reuse = "Yeniden kullan";
+mesh.holes.group.mixed = "Karışık";
 // If the mesh has disconnected parts, it will be split/separated into objects
 mesh.separate = "Ayır";
 // When converting the object to a triplanar primitive, some object features will be lost
@@ -1399,6 +1408,8 @@ When this option is off, the material preset only reference the texture inside t
 You can enable this option to make a copy of the textures inside the material preset.
 It can be useful if you want to share a textured preset without providing the associated textures.";
 paint.preset.embed.apply = "Apply to all materials";
+paint.preset.alpha = "Alfa Kanalını Dahil Et";
+paint.preset.alpha.help = "Fırça alfa kanalını malzeme ön ayarına dahil eder.";
 // Factor/Opacity of paint tool
 paint.intensity = "Boyama yoğunluğu";
 // Apply the paint on the object
@@ -1409,6 +1420,11 @@ paint.paintAll.help.hide = "Gizlenmiş alan etkilenmeyecek.";
 paint.paintAll.help.opacity = "Yukarıdaki araç boyama faktörünü kullanın.";
 paint.paintAll.help.layer = "Bir . boyanmamış alanı etkilenmeyecek.";
 paint.strokePainting.title = "Boyama";
+// Opaque opacity
+paint.opacityAlphaValue = "Alfayı Değer Olarak Kullan";
+paint.opacityAlphaValue.help = "Gri tonlamalı değeri alfa kanalıyla değiştirir ve opaklığı 1’e zorlar.
+
+Dokusunda alfa kanalı yoksa bu seçenek yok sayılır.";
 // Brush stroke texture
 paint.texture.warningEnable = "Doku projeksiyonuna izin vermek için darbe boyamanın etkinleştirilmesi gerekir (onay kutusu yukarıda)!";
 paint.texture.warningIgnored = "Geçerli araç dokuları kullanamaz!";
@@ -1801,12 +1817,20 @@ Otomatikte, kısıtlama sadece kamera Yörünge modundayken gerçekleşir.";
 settings.stats = "İstatistik";
 settings.stats.right = "Sağ";
 settings.stats.all = "Tam görünüm göster";
+// Handles are controls that you interact with in the viewport in order to edit something
+settings.handle = "Tutamak";
+settings.handles = "Tutamaklar";
+// Shape draw thing
+settings.shape = "Biçim";
+settings.shape.color = "Poligon rengi";
 // Grid
 settings.grid = "Izgara";
-settings.grid.divideThreshold = "Bölme eşiği";
+settings.grid.snapDivision = "Bölümün eşiğini yakala";
+settings.grid.snapDivision.help = "Eşik, ızgaraya olan mesafeye karşı karşılaştırılır.";
 // Cursor
 settings.cursor.title = "İmleç";
-settings.cursor.whileSculpting = "Şekillendirirken daireyi göster";
+// sculpting circle
+settings.cursor.circle = "Daire";
 // A small indicator dot
 settings.cursor.showDot = "Küçük noktayı göster";
 settings.cursor.showDot.help = "Nokta kamera eksen noktası olarak veya siz şekillendirme yaparken görünebilir.";
@@ -1929,8 +1953,6 @@ shortcut.voxelRemesh = "Voksel";
 shortcut.wireframe = "Taslak";
 shortcut.cameraReset = "Sıfırla";
 shortcut.cameraSnap = "Yasla";
-shortcut.lockSelection = "Kilitle";
-shortcut.lockSelection.help = "Etkinleştirildiğinde, bir ağ örgüsüne dokunarak seçimi değiştiremezsiniz.";
 shortcut.grid = "Izgara";
 
 // Memory taken by the scene
@@ -2171,15 +2193,12 @@ symmetry.countY = "Sayı Y";
 symmetry.countZ = "Sayı Z";
 // method
 symmetry.method = "Yöntem:";
-symmetry.method.help = "• Yerel
-Dönüştürme araçlarından birini (Gizmo veya Dönüştürme) kullandığınızda simetri düzlemi ağ örgüsü boyunca hareket eder.
-
-• Dünya
-Simetri düzlemi sabitlenir ve hareket etmez.";
 // Local means: in the coordinate of the scene (synonym: absolute)
 symmetry.method.world = "Dünya";
+symmetry.method.world.help = "Simetri düzlemi sabitlenir ve hareket etmez.";
 // Local means: in the coordinate of the object (synonym: relative)
 symmetry.method.local = "Yerel";
+symmetry.method.local.help = "Dönüştürme araçlarından birini (Gizmo veya Dönüştürme) kullandığınızda simetri düzlemi ağ örgüsü boyunca hareket eder.";
 // Move the object to the other side of the symmetry (mirror it as well)
 symmetry.flip = "Nesneyi ters çevir";
 // Cut half of the mesh
@@ -2386,6 +2405,9 @@ tool.smooth.stickyBorder = "Sınırda yapışkan verteks";
 tool.smooth.screen = "Ekran düzleştirme";
 tool.smooth.screen.help = "Yüksek poligonlu durumlarda bile bağımsız düzleştirme alabilmek için bu seçeneği kullanın.";
 tool.smooth.screen.samples = "Ekran örnekleri";
+tool.smooth.taubin = "Hacmi koru";
+tool.smooth.taubin.shrink = "Küçült";
+tool.smooth.taubin.inflate = "Şişir";
 tool.smooth.stable = "Stabil düzleştirme";
 tool.smooth.stable.help = "Düzleştirmeyi topoloji bağımsız hale getirmeye çalışır.
 
@@ -2453,7 +2475,7 @@ tool.gizmo.size = "Araç boyutu";
 tool.gizmo.compact = "Kompakt";
 // When enabled, tapping one the gizmo widget will open a numerical input popup
 tool.gizmo.allowInput = "Sayısal girdi";
-tool.gizmo.allowInput.help = "Gizmo araçlarından birine dokunduğunuzda sayısal girdiye izin verir";
+tool.gizmo.allowInput.help = "Gizmo araçlarından birine dokunduğunuzda sayısal girdiye izin verir.";
 // Angle threshold
 tool.gizmo.linearRollThreshold = "Tanjant ilerleme açı eşiği";
 tool.gizmo.linearRollThreshold.help = "Lineer veya dairesel ilerleme yöntemleri arasında seçim için açı eşiği.
@@ -2746,6 +2768,10 @@ binding.reset = "Atamaları sıfırla";
 // Add node in a sync mode (synchronize instance)
 binding.addSync = "Senkronize";
 binding.addSync.help = "Varsayılan olarak, sahne menüsünde ayarlanan senkronizasyon değerini kullanacaktır.";
+// Add node in a sync mode (synchronize instance)
+binding.float.position = "Konum";
+binding.float.position.keep = "Öncekini tut";
+binding.float.position.cursor = "İmleçte";
 // Binding option
 binding.context.toggle = "Bağlamı değiştir";
 // quick sidebar tool shortcuts
@@ -2755,6 +2781,9 @@ binding.tools = "Araç kısayolları";
 // When the key is tapped once, the value will be toggled
 binding.toggle = "Önceki Aracı Değiştir";
 binding.toggle.help = "Son araca geri dönmek için aynı bağı kullanın.";
+// Control if hold+release reverts the tool
+binding.revert = "Geriye çek";
+binding.revert.help = "Bir tuş bırakıldığında, önceki araca geri dönüp dönülmeyeceğini seçin, bu araç zaten aktif olsa bile.";
 // sticky keys
 binding.sticky = "Yapışkan tuşlar";
 binding.sticky.off = "Beklet";
@@ -2772,10 +2801,10 @@ Bu genellikle aynı bağlamanın bir araç kısayoluna ya da Ekle/Çıkar'a atan
 binding.pickMaterial = "Malzeme Seçici";
 // Same as Color Picker but it pick the material (color, roughness, metalness, etc)
 binding.pickFaceGroup = "Yüz Grubu Seç";
-// Edit the tool brush size/radius
-binding.editRadius = "Araç Yarıçapı";
 // Inverse direction zooming
 binding.invertZoomY = "Zoom Y’yi Ters Çevir";
+// Edit the tool brush size/radius
+binding.editRadius = "Araç Yarıçapı";
 // Edit the tool brush size/radius
 binding.editIntensity = "Araç yoğunluğu";
 // Controller dead zone
@@ -2836,6 +2865,11 @@ widget.color.ring = "Halka";
 widget.color.square = "Kare";
 
 nomad.mainFolder = "Nomad ana klasörü";
+nomad.mainFolder.help = "Dosyaları Nomad ana klasörüne eklediğinizde, değişikliklerin uygulanması için Nomad'ı yeniden başlatın.
+
+Alt klasörlerdeki yanlış türdeki dosyalar, silinebilir_klasöre taşınabilir.
+
+Örneğin: projeler klasörü yalnızca 3D dosyalarını kabul ederken, alfalar veya matcaps yalnızca görüntüleri kabul eder.";
 nomad.mainFolder.warning = "Dosyalar dokunulmadan kalır.
 Kopyalanmaz, silinmez veya taşınmaz.";
 nomad.mainFolder.error = "Evet'i seçtikten sonra, Nomad kapanacak ve sadece yeniden başlatmanız yeterli olacak.";
@@ -2844,39 +2878,44 @@ license.title = "Lisans";
 license.retry = "Tekrar dene";
 license.key = "Lisans anahtarı";
 license.activate = "Lisansı etkinleştir";
-// ----------------------------------------------
+
 license.newest = "Yeni versiyon mevcut!";
 license.encrypt.error = "Şifreleme yapılamadı!";
-// ----------------------------------------------
+
 license.grace = "Çevrimdışı - Kalan ek süre:";
 license.grace.hours = "saatler";
 license.grace.days = "günler";
-// ----------------------------------------------
+
 license.portal.title = "Mevcut kullanıcılar";
 license.portal.label = "Lisans portalı";
-// ----------------------------------------------
+license.portal.label.warning = "Bu portal, sadece Windows/Mac sürümünü satın alan kullanıcılar içindir.
+
+iOS/Android uygulama mağazalarından yapılan satın alımlar çapraz platform olarak çalışmaz.";
+
 license.checkout.title = "Yeni kullanıcılar";
 license.checkout.label = "Nomad'ı Satın Al";
-// ----------------------------------------------
+
 license.device.error = "Cihaz kimliği alınamadı.";
 license.device.mismatch = "Cihaz kimliği eşleşmiyor!";
-// ----------------------------------------------
+
 license.error429 = "Çok fazla istek (bekleyin).";
-// ----------------------------------------------
+
 license.validate.error404 = "Lisans anahtarı bulunamadı.";
 license.validate.error422 = "İşlenemez Varlık.";
-// ----------------------------------------------
+
 license.activate.error403 = "Maksimum cihaz sayısına ulaşıldı!
 Lisans portalınızda başka bir cihazı devre dışı bırakabilirsiniz.";
 license.activate.error404 = "Lisans anahtarı bulunamadı.";
 license.activate.error422 = "İşlenemez Varlık.";
-// ----------------------------------------------
+
 // version
+version.check = "Güncellemeleri kontrol et";
+version.auto = "Güncellemeleri otomatik olarak denetle";
 version.update = "Güncelleme mevcut!";
 version.restore = "Satın almayı geri yükle";
 version.buyWeb = "Web versiyonu sadece bir demodur";
 version.buyFull = "Tam sürüme yükselt";
-// ----------------------------------------------
+
 // QuadRemesh
 version.qr.unlock = "Kilit Aç (satın al, geri yükle, deneme)";
 version.qr.desktop = "Masaüstünde QuadRemesher, Hexanomad tarafından dağıtılmaktadır, ancak Hexanomad satış veya lisanslamayı yönetmez.
@@ -2899,18 +2938,18 @@ Sonuçlanan topolojiyi şu şekilde yönlendirebilirsiniz:
 • Yoğunluk boyaması $3
 
 Quad Remesher, https://exoside.com/ tarafından geliştirilmiştir.";
-// ----------------------------------------------
+
 version.trialLayer = "Deneme sürümü: Ağ örgüsü başına 1 katman";
 version.trialNoExport = "Deneme sürümü: dışa aktarma yok";
-// ----------------------------------------------
+
 version.fullFeatures = "• Tek sefer satın alma
 • Sınırsız geri alma/yineleme
 • Sınırsız katman
 • İçe ve dışa aktarma";
-// ----------------------------------------------
+
 version.demo.purpose = "Bu sürüm yalnızca demo amaçlı tasarlanmıştır.";
 version.demo.disable = "Özellik bu demo için etkin değil.";
-// ----------------------------------------------
+
 version.demo = "Demo Test";
 version.demo.sculpt = "Şekillendirme";
 version.demo.sculpt.help = "Bütün fırçalar kullanılabilir ama kaydedemez veya dışa aktaramazsınız.
@@ -2922,70 +2961,69 @@ version.demo.file = "İçe Aktarma & Dışa Aktarma";
 version.demo.file.help = "Modeli içe aktarabilir ve dışa aktarabilirsiniz, ancak şekil fırçaları devre dışıdır.
 
 Bu mod, çoğunlukla mobil bellek sıkıntısından dolayı büyük .nom projelerini açamayan mobil kullanıcılar için yararlıdır.";
-// ----------------------------------------------
+
 // app store main page
 store.name = "Nomad Sculpt";
 store.headline = "3D'de şekillendir ve boyama";
 store.tag = "sculpt, 3d, nomad, paint, modeling, şekillendirme, boyama, modelleme";
-// ----------------------------------------------
+
 store.description.sculpt = "• Şekillendirme araçları
 Kil, düzleştir, yumuşat, mask ve birçok diğer fırçalar yaratımını şekillendirmeni sağlar.
 Hardsurface amaçları için lasso, dikdörtgen ve diğer şekillerle trim boolean kesme aracını da kullanabilirsin.";
-// ----------------------------------------------
+
 store.description.stroke = "• Fırça özelleştirmesi
 Falloff, alphas, döşeme, kalem basıncı ve diğer fırça parametreleri özelleştirilebilir.
 Araç önceden ayarlarını da kaydedip yükleyebilirsin.";
-// ----------------------------------------------
+
 store.description.paint = "• Boyama araçları
 Vertex boyama ile renk, roughness ve metalness.
 Tüm malzeme ön ayarlarını kolaylıkla yönetebilirsin de.";
-// ----------------------------------------------
+
 store.description.layer = "• Katmanlar
 Yaratım işlemleri sırasında şekillendirme ve boyama işlemlerini ayrı katmanlarda kaydederek iterasyonu kolaylaştır.
 Hem şekillendirme hem de boyama değişiklikleri kaydedilir.";
-// ----------------------------------------------
+
 store.description.multires = "• Çoklu Çözünürlük Oymacılığı
 Ağınızın birden fazla çözünürlüğü arasında ileri geri gidin ve esnek bir çalışma akışı için.";
-// ----------------------------------------------
+
 store.description.voxel = "• Voxel yeniden örgüleme
 Ağını hızlıca yeniden örgüleyerek uniform detay seviyesi elde et.
 Yaratım sürecinin başında kabaca bir şekil çizmek için kullanılabilir.";
-// ----------------------------------------------
+
 store.description.dynamic = "• Dinamik topoloji
 Fırçan altındaki ağı yerel olarak iyileştirerek otomatik bir detay seviyesi elde et.
 Katmanlarını bile koruyabilirsin, otomatik olarak güncelleneceklerdir!";
-// ----------------------------------------------
+
 store.description.topology = "• Seyreltme
 Detayları mümkün olduğunca koruyarak çokgen sayısını azalt.";
-// ----------------------------------------------
+
 store.description.group = "• Yüz Grubu
 Ağını yüz grubu aracı ile alt gruplara ayır.";
-// ----------------------------------------------
+
 store.description.unwrap = "• Otomatik UV açma
 Otomatik UV açıcı yüz gruplarını açma işlemini kontrol etmek için kullanabilir.";
-// ----------------------------------------------
+
 store.description.baking = "• Pişirme
 Renk, roughness, metalness ve küçük ölçekli detay gibi tepe verilerini doku içine aktarabilirsin.
 Tersini de yapabilir, doku verilerini tepe verisi veya katmanlara aktarabilirsin.";
-// ----------------------------------------------
+
 store.description.primitive = "• İlkel şekil
 Silindir, torus, tüp, torna ve diğer ilkel şekiller yeni şekiller başlatmak için hızlı bir şekilde kullanılabilir.";
-// ----------------------------------------------
+
 store.description.rendering = "• PBR görüntüleme
 Varsayılan olarak güzel PBR görüntüleme, aydınlatma ve gölgeler ile.
 Daha standart bir gölgelendirme için şekillendirme amaçlarına yönelik MatCap'e geçebilirsin.";
-// ----------------------------------------------
+
 store.description.postprocess = "• Son işlem
 Ekran Alanı Yansıması, Alan Derinliği, Ortamsal Engel, Ton eşleme, vb.";
-// ----------------------------------------------
+
 store.description.files = "• Dışa ve İçe Aktarma
 Desteklenen formatlar glTF, OBJ, STL veya PLY dosyalarını içerir.";
-// ----------------------------------------------
+
 store.description.interface = "• Arayüz
 Mobil deneyim için tasarlanmış kullanımı kolay arayüz.
 Özelleştirme de mümkündür!";
-// ----------------------------------------------
+
 store.description.remesher = "• Dörtgen Yeniden Örgüleme (yalnızca ayrı iç satın alım ile)
 Nesneni ağ eğrilerini takip eden dörtgen dominant bir ağ ile otomatik olarak yeniden örgüle.
 Kılavuzları, yüz gruplarını ve yoğunluk boyamayı destekler.";
-// ----------------------------------------------
