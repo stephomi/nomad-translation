@@ -209,6 +209,8 @@ about.turntable.pivot.keep = "Behåll nuvarande";
 about.turntable.pivot.scene = "Scen";
 // Make the entire scene turn around (speed of the animation)
 about.turntable.speed = "Hastighet";
+// Speed easing (linear vs non-linaer)
+about.turntable.linear = "Konstant hastighet";
 // Stuffs that I used to make the app
 about.credits = "Krediter";
 // Link to open source projects that I used for the app
@@ -337,6 +339,8 @@ background.environment = "Miljö";
 background.blur = "Oskärpa";
 background.exposure = "Exponering";
 
+// Image that the artist uses as a reference
+background.reference = "Referensbild";
 // Image that the artist uses as a reference
 background.imageEnable = "Referensbild";
 // The image will be displayed in overlay (used as a reference by the artist)
@@ -860,6 +864,10 @@ gesture.pencilAction.none = "Ingen";
 // Pencil button (or iOS pencil double tap) action: flip adding/substracting sculpt matter setting
 gesture.pencilAction.alt = "Lägg till/Subtrahera";
 
+// Idle long press with pencil, mouse, finger, etc
+gesture.longPress = "Håll intryckt";
+
+
 // Enable Mask gesture by tapping once on the screen
 gesture.mask.oneTap = "Enkeltapp kortkommandon";
 gesture.mask.oneTap.help = "Tillåt Mask-genvägen genom att trycka en gång på skärmen, utan att behöva hålla ned maskningsknappen.
@@ -875,6 +883,8 @@ gesture.mask.holdStroke.help = "Långtryck växlar mellan Mask och SelMask och b
 I slutet av draget väljs det föregående verktyget tillbaka.";
 gesture.mask.holdIdle = "Verktyg";
 gesture.mask.holdIdle.help = "Håll in och släpp utan att röra på dig för att växla mellan Mask och SelMask.";
+
+gesture.smooth.holdSelect.help = "Håll intryckt för att växla till väljverktyg under strokevalet.";
 
 // Shortcut customization, choose the action that the shortcut will performan (select tool, etc)
 gesture.shortcut = "Kortkommando";
@@ -1039,8 +1049,11 @@ interface.preset.title = "Förinställningar";
 // Reset interface settings
 interface.resetAll = "Återställ stil";
 interface.resetAll.confirm = "Återställa gränssnittsinställningar?";
-// help popup when hovering
+// Help popup when hovering
 interface.hoverHelp = "Hjälp-popup vid hovrande";
+// Do not use windows native dialog
+interface.customDialog = "Använd Nomad-dialog";
+interface.customDialog.help = "Visa Nomads egna textdialog istället för den inbyggda.";
 // Interface option (main base color)
 interface.iconSupport = "Högkontrast-knapp";
 interface.iconSupport.help = "En alternativ stil för knappar som gör dem mer synliga när de är aktiverade.
@@ -1049,9 +1062,9 @@ Om inställd på Auto, kommer Nomad att använda det här läget när UI-kontras
 // Interface customization
 interface.flipTop = "Spegelvänd toppfält";
 // Interface customization
-interface.flipBottom = "Spegelvänd bottenfält";
-// Interface customization
 interface.flipMiddle = "Spegelvänd sidofält";
+// Interface customization
+interface.flipBottom = "Spegelvänd bottenfält";
 // list of tools
 interface.toolbox = "Verktygslåda";
 // hide toolbox by default
@@ -1070,7 +1083,6 @@ interface.top.responsive = "Responsiv";
 interface.top.responsive.help = "Detta alternativ är mest relevant för små skärmar.";
 interface.top.responsive.multiline = "Flerradig";
 interface.top.responsive.scroll = "Skrolla";
-interface.top.responsive.collapse = "Kollapsa";
 interface.top.alt = "Alternativ ordning";
 interface.top.alt.help = "Alternativ ordningsikon för toppmenyn.
 
@@ -1300,65 +1312,37 @@ material.preview = "Materialvisningsfönster förhandsvisning";
 material.preview.help = "När du modifierar ett material kommer en förhandsvisning att visas i visningsfönstret på det valda objektet.
 
 Förhandsvisningen visas medan du interagerar med reglagen för färg, grovhet, metallinnehåll, opacitet och intensitet.";
-// Menu name
+// Menu names
 menu.files = "Filer";
-// Menu name
 menu.scene = "Scen";
-// Menu name
 menu.multires = "Multiresolution";
-// Menu name
 menu.voxel = "Voxel";
-// Menu name
 menu.dynamic = "DynTopo";
-// Menu name (Synonym: Misc, Other)
 menu.topology = "Blandat";
-// Menu name
 menu.primitive = "Grundform";
-// Menu name
 menu.render = "Rendera";
-// Menu name
 menu.material = "Material";
-// Menu name
 menu.postprocess = "Efterbehandling";
-// Menu name
 menu.camera = "Kamera";
-// Menu name
 menu.background = "Bakgrund";
-// Menu name
 menu.tool = "Verktyg";
-// Menu name
 menu.stroke = "Penseldrag";
-// Menu name
 menu.alpha = "Alpha";
-// Menu name
 menu.filter = "Filter";
-// Menu name
 menu.falloff = "Avmattning";
-// Menu name
 menu.paint = "Måla";
-// Menu name
 menu.symmetry = "Symmetri";
-// Menu name
 menu.operation = "Operation";
-// Menu name (pencil pressure)
 menu.pressure = "Tryck";
-// Menu name
 menu.gesture = "Gest";
-// Menu name
 menu.layers = "Lager";
-// Menu name
 menu.settings = "Inställningar";
-// Menu name
 menu.interface = "Gränssnitt";
-// Menu name
 menu.bindings = "Bindningar";
-// Menu name
+menu.shortcuts = "Kortkommando";
 menu.history = "Historik";
-// Menu name
 menu.historySettings = "Inställningar";
-// Menu name
 menu.about = "Om";
-// Menu name
 menu.debug = "Debugga";
 
 // Operation on the object (action)
@@ -1800,12 +1784,20 @@ På Auto kommer begränsningen endast att ske om kameran är i Orbit-läge.";
 settings.stats = "Statistik";
 settings.stats.right = "Höger";
 settings.stats.all = "Visa fullständig scen";
+// Handles are controls that you interact with in the viewport in order to edit something
+settings.handle = "Handtag";
+settings.handles = "Handtag";
+// Shape draw thing
+settings.shape = "Form";
+settings.shape.color = "Polygonfärg";
 // Grid
 settings.grid = "Rutnät";
-settings.grid.divideThreshold = "Dela tröskelvärde";
+settings.grid.snapDivision = "Gräns för snappning av delningströskel";
+settings.grid.snapDivision.help = "Tröskeln jämförs mot avståndet till rutnätet.";
 // Cursor
 settings.cursor.title = "Markör";
-settings.cursor.whileSculpting = "Visa cirkel vid skulptering";
+// sculpting circle
+settings.cursor.circle = "Cirkel";
 // A small indicator dot
 settings.cursor.showDot = "Visa liten prick";
 settings.cursor.showDot.help = "Pricken kan visas som kamerans vridpunkt eller när du skulpterar.";
@@ -2173,15 +2165,12 @@ symmetry.countY = "Antal Y";
 symmetry.countZ = "Antal Z";
 // method
 symmetry.method = "Metod:";
-symmetry.method.help = "• Lokal
-Symmetriplanen kommer att röra sig längs med mesh när du använder ett av omvandlingsverktygen (Gizmo eller Transformera).
-
-• Värld
-Symmetriplanen är fast och kommer inte att röra sig.";
 // Local means: in the coordinate of the scene (synonym: absolute)
 symmetry.method.world = "Värld";
+symmetry.method.world.help = "Symmetriplanen är fast och kommer inte att röra sig.";
 // Local means: in the coordinate of the object (synonym: relative)
 symmetry.method.local = "Lokal";
+symmetry.method.local.help = "Symmetriplanen kommer att röra sig längs med mesh när du använder ett av omvandlingsverktygen (Gizmo eller Transformera).";
 // Move the object to the other side of the symmetry (mirror it as well)
 symmetry.flip = "Vänd objekt";
 // Cut half of the mesh
@@ -2388,6 +2377,9 @@ tool.smooth.stickyBorder = "Klistrig vertice på kanten";
 tool.smooth.screen = "Skärmutjämning";
 tool.smooth.screen.help = "Använd detta alternativ för att få topologioberoende utjämning, även vid höga poly.";
 tool.smooth.screen.samples = "Skärmexempel";
+tool.smooth.taubin = "Bevara volymen";
+tool.smooth.taubin.shrink = "Krymp";
+tool.smooth.taubin.inflate = "Blås upp";
 tool.smooth.stable = "Stabil utjämning";
 tool.smooth.stable.help = "Försöker göra utjämningen oberoende av topologi.
 
@@ -2749,6 +2741,10 @@ binding.reset = "Återställ bindningar";
 // Add node in a sync mode (synchronize instance)
 binding.addSync = "Sync";
 binding.addSync.help = "Som standard kommer den att använda synkvärdet som ställs in i scene-menyn.";
+// Add node in a sync mode (synchronize instance)
+binding.float.position = "Position";
+binding.float.position.keep = "Behåll tidigare";
+binding.float.position.cursor = "På markören";
 // Binding option
 binding.context.toggle = "Växla kontext";
 // quick sidebar tool shortcuts
@@ -2758,6 +2754,9 @@ binding.tools = "Verktygsgenvägar";
 // When the key is tapped once, the value will be toggled
 binding.toggle = "Växla föregående verktyg";
 binding.toggle.help = "Använd samma bindning för att växla tillbaka till det senaste verktyget.";
+// Control if hold+release reverts the tool
+binding.revert = "Håll Återställ";
+binding.revert.help = "Välj om släppning av en hållen tangent alltid går tillbaka till föregående verktyg, även när det verktyget redan var aktivt.";
 // sticky keys
 binding.sticky = "Klistertangenter";
 binding.sticky.off = "Håll";
@@ -2837,6 +2836,11 @@ widget.color.ring = "Ring";
 widget.color.square = "Kvadrat";
 
 nomad.mainFolder = "Nomad huvudmapp";
+nomad.mainFolder.help = "Om du lägger till filer i Nomads huvudmapp, starta om Nomad för att ändringarna ska gälla.
+
+Filer av fel typ i undermappar kan flyttas till can_be_deleted/.
+
+Till exempel: mappen för projekt accepterar endast 3D-filer, medan alphas eller matcaps accepterar endast bilder.";
 nomad.mainFolder.warning = "Filer lämnas orörda.
 De kopieras, tas inte bort eller flyttas.";
 nomad.mainFolder.error = "Efter att du valt ja, kommer Nomad att stängas och du kan enkelt starta om den.";

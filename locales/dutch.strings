@@ -209,6 +209,8 @@ about.turntable.pivot.keep = "Huidige behouden";
 about.turntable.pivot.scene = "Scène";
 // Make the entire scene turn around (speed of the animation)
 about.turntable.speed = "Snelheid";
+// Speed easing (linear vs non-linaer)
+about.turntable.linear = "Constante snelheid";
 // Stuffs that I used to make the app
 about.credits = "Credits";
 // Link to open source projects that I used for the app
@@ -337,6 +339,8 @@ background.environment = "Omgeving";
 background.blur = "Vervagen";
 background.exposure = "Belichting";
 
+// Image that the artist uses as a reference
+background.reference = "Referentiebeeld";
 // Image that the artist uses as a reference
 background.imageEnable = "Referentiebeeld";
 // The image will be displayed in overlay (used as a reference by the artist)
@@ -860,6 +864,10 @@ gesture.pencilAction.none = "Geen";
 // Pencil button (or iOS pencil double tap) action: flip adding/substracting sculpt matter setting
 gesture.pencilAction.alt = "Toevoegen/Aftrekken";
 
+// Idle long press with pencil, mouse, finger, etc
+gesture.longPress = "Lang indrukken";
+
+
 // Enable Mask gesture by tapping once on the screen
 gesture.mask.oneTap = "Snelle toetsen";
 gesture.mask.oneTap.help = "Sta de Mask-snelkoppeling toe door eenmaal op het scherm te tikken, zonder de sneltoets voor de mask te hoeven vasthouden.
@@ -875,6 +883,8 @@ gesture.mask.holdStroke.help = "Lang indrukken schakelt tussen Mask en SelMask e
 Aan het einde van de streek wordt het vorige gereedschap opnieuw geselecteerd.";
 gesture.mask.holdIdle = "Gereedschap";
 gesture.mask.holdIdle.help = "Lang indrukken en loslaten zonder te bewegen om te wisselen tussen Mask en SelMask.";
+
+gesture.smooth.holdSelect.help = "Lang indrukken zal schakelen naar het selecteer gereedschap voor de duur van het selectieproces.";
 
 // Shortcut customization, choose the action that the shortcut will performan (select tool, etc)
 gesture.shortcut = "Snelkoppeling";
@@ -1039,8 +1049,11 @@ interface.preset.title = "Voorinstellingen";
 // Reset interface settings
 interface.resetAll = "Stijl opnieuw instellen";
 interface.resetAll.confirm = "Interface-instellingen opnieuw instellen?";
-// help popup when hovering
+// Help popup when hovering
 interface.hoverHelp = "Hulp pop-up bij zweven";
+// Do not use windows native dialog
+interface.customDialog = "Gebruik Nomad Dialoog";
+interface.customDialog.help = "Toon Nomad's eigen tekstdialoog in plaats van de Native.";
 // Interface option (main base color)
 interface.iconSupport = "Knop met hoog contrast";
 interface.iconSupport.help = "Een alternatieve stijl voor knoppen die ze beter zichtbaar maakt wanneer ze zijn ingeschakeld.
@@ -1049,9 +1062,9 @@ Als deze op Auto is ingesteld, zal Nomad deze modus gebruiken wanneer het UI-kle
 // Interface customization
 interface.flipTop = "Spiegel bovenste balk";
 // Interface customization
-interface.flipBottom = "Spiegel onderste balk";
-// Interface customization
 interface.flipMiddle = "Spiegel zijbalken";
+// Interface customization
+interface.flipBottom = "Spiegel onderste balk";
 // list of tools
 interface.toolbox = "Gereedschapskist";
 // hide toolbox by default
@@ -1070,7 +1083,6 @@ interface.top.responsive = "Responsief";
 interface.top.responsive.help = "Deze optie is vooral relevant voor kleine schermen.";
 interface.top.responsive.multiline = "Meerdere lijnen";
 interface.top.responsive.scroll = "Scroll";
-interface.top.responsive.collapse = "Inklappen";
 interface.top.alt = "Alternatieve volgorde";
 interface.top.alt.help = "Alternatief pictogram voor de volgorde van het topmenu.
 
@@ -1301,65 +1313,37 @@ material.preview = "Materiaalviewportvoorbeeld";
 material.preview.help = "Wanneer je een materiaal wijzigt, wordt er een voorbeeld weergegeven in de viewport op het geselecteerde object.
 
 Het voorbeeld wordt getoond terwijl je werkt met de schuifregelaars voor kleur, ruwheid, metalness, transparantie en intensiteit.";
-// Menu name
+// Menu names
 menu.files = "Bestanden";
-// Menu name
 menu.scene = "Scène";
-// Menu name
 menu.multires = "Multires";
-// Menu name
 menu.voxel = "Voxel";
-// Menu name
 menu.dynamic = "DynTopo";
-// Menu name (Synonym: Misc, Other)
 menu.topology = "Overige";
-// Menu name
 menu.primitive = "Oer";
-// Menu name
 menu.render = "Render";
-// Menu name
 menu.material = "Materiaal";
-// Menu name
 menu.postprocess = "Nabewerking";
-// Menu name
 menu.camera = "Camera";
-// Menu name
 menu.background = "Achtergrond";
-// Menu name
 menu.tool = "Gereedschap";
-// Menu name
 menu.stroke = "Streep";
-// Menu name
 menu.alpha = "Alpha";
-// Menu name
 menu.filter = "Filter";
-// Menu name
 menu.falloff = "Afname";
-// Menu name
 menu.paint = "Schilderen";
-// Menu name
 menu.symmetry = "Symmetrie";
-// Menu name
 menu.operation = "Operatie";
-// Menu name (pencil pressure)
 menu.pressure = "Druk";
-// Menu name
 menu.gesture = "Gebaar";
-// Menu name
 menu.layers = "Lagen";
-// Menu name
 menu.settings = "Instellingen";
-// Menu name
 menu.interface = "Interface";
-// Menu name
 menu.bindings = "Aanwijzingen";
-// Menu name
+menu.shortcuts = "Snelkoppeling";
 menu.history = "Geschiedenis";
-// Menu name
 menu.historySettings = "Instellingen";
-// Menu name
 menu.about = "Over";
-// Menu name
 menu.debug = "Debuggen";
 
 // Operation on the object (action)
@@ -1803,12 +1787,20 @@ In Automatisch zal de beperking alleen plaatsvinden als de camera in Orbit-modus
 settings.stats = "Statistieken";
 settings.stats.right = "Rechts";
 settings.stats.all = "Toon volledige scène";
+// Handles are controls that you interact with in the viewport in order to edit something
+settings.handle = "Handvat";
+settings.handles = "Handvatten";
+// Shape draw thing
+settings.shape = "Vorm";
+settings.shape.color = "Polygoonkleur";
 // Grid
 settings.grid = "Raster";
-settings.grid.divideThreshold = "Deeldrempel";
+settings.grid.snapDivision = "Snap verdelingsdrempel";
+settings.grid.snapDivision.help = "De drempel wordt vergeleken met de afstand tot het raster.";
 // Cursor
 settings.cursor.title = "Cursor";
-settings.cursor.whileSculpting = "Toon cirkel tijdens beeldhouwen";
+// sculpting circle
+settings.cursor.circle = "Cirkel";
 // A small indicator dot
 settings.cursor.showDot = "Toon kleine stip";
 settings.cursor.showDot.help = "De stip kan verschijnen als het draaipunt van de camera of wanneer je aan het beeldhouwen bent.";
@@ -2175,15 +2167,12 @@ symmetry.countY = "Aantal Y";
 symmetry.countZ = "Aantal Z";
 // method
 symmetry.method = "Methode:";
-symmetry.method.help = "• Lokaal
-Het symmetrievlak beweegt mee met het mesh wanneer je een van de transformatiegereedschappen (Gizmo of Transformeren) gebruikt.
-
-• Wereld
-Het symmetrievlak is vast en zal niet bewegen.";
 // Local means: in the coordinate of the scene (synonym: absolute)
 symmetry.method.world = "Wereld";
+symmetry.method.world.help = "Het symmetrievlak is vast en zal niet bewegen.";
 // Local means: in the coordinate of the object (synonym: relative)
 symmetry.method.local = "Lokaal";
+symmetry.method.local.help = "Het symmetrievlak beweegt mee met het mesh wanneer je een van de transformatiegereedschappen (Gizmo of Transformeren) gebruikt.";
 // Move the object to the other side of the symmetry (mirror it as well)
 symmetry.flip = "Object omkeren";
 // Cut half of the mesh
@@ -2390,6 +2379,9 @@ tool.smooth.stickyBorder = "Plakkend hoekpunt op rand";
 tool.smooth.screen = "Schermgladstrijken";
 tool.smooth.screen.help = "Gebruik deze optie om topologieonafhankelijke gladstrijken te krijgen, zelfs bij hoge poly's.";
 tool.smooth.screen.samples = "Schermmonsters";
+tool.smooth.taubin = "Volume behouden";
+tool.smooth.taubin.shrink = "Krimpen";
+tool.smooth.taubin.inflate = "Plop";
 tool.smooth.stable = "Stabiel gladstrijken";
 tool.smooth.stable.help = "Probeert de gladstrijking topologie-onafhankelijk te maken.
 
@@ -2748,6 +2740,10 @@ binding.reset = "Bindings resetten";
 // Add node in a sync mode (synchronize instance)
 binding.addSync = "Synchronisatie";
 binding.addSync.help = "Standaard wordt de synchronisatiewaarde gebruikt die is ingesteld in het scene-menu.";
+// Add node in a sync mode (synchronize instance)
+binding.float.position = "Positie";
+binding.float.position.keep = "Vorige behouden";
+binding.float.position.cursor = "Op cursor";
 // Binding option
 binding.context.toggle = "Context schakelen";
 // quick sidebar tool shortcuts
@@ -2757,6 +2753,9 @@ binding.tools = "Tools sneltoetsen";
 // When the key is tapped once, the value will be toggled
 binding.toggle = "Wissel Vorige Tool";
 binding.toggle.help = "Gebruik dezelfde binding om terug te schakelen naar het laatste gereedschap.";
+// Control if hold+release reverts the tool
+binding.revert = "Vasthouden Terugkeren";
+binding.revert.help = "Kies of het loslaten van een ingedrukte toets altijd terugkeert naar het vorige gereedschap, zelfs als dat gereedschap al actief was.";
 // sticky keys
 binding.sticky = "Sticky toetsen";
 binding.sticky.off = "Vast,";
@@ -2838,6 +2837,11 @@ widget.color.ring = "Ring";
 widget.color.square = "Vierkant";
 
 nomad.mainFolder = "Nomad hoofdmap";
+nomad.mainFolder.help = "Als je bestanden toevoegt aan de Nomad hoofdmappen, herstart Nomad om de wijzigingen door te voeren.
+
+Bestanden van het verkeerde type in submappen kunnen verplaatst worden naar kan_verwijderd_worden/.
+
+Bijvoorbeeld: de projectenmappen accepteren alleen 3D-bestanden, terwijl alphas of matcaps alleen afbeeldingen accepteren.";
 nomad.mainFolder.warning = "Bestanden blijven onaangeroerd.
 Ze worden niet gekopieerd, verwijderd of verplaatst.";
 nomad.mainFolder.error = "Nadat je ja hebt geselecteerd, sluit Nomad af en kun je het eenvoudig opnieuw starten.";
