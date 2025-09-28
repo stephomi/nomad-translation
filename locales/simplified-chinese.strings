@@ -209,6 +209,8 @@ about.turntable.pivot.keep = "保持当前";
 about.turntable.pivot.scene = "场景";
 // Make the entire scene turn around (speed of the animation)
 about.turntable.speed = "相机速度";
+// Speed easing (linear vs non-linaer)
+about.turntable.linear = "";
 // Stuffs that I used to make the app
 about.credits = "鸣谢";
 // Link to open source projects that I used for the app
@@ -1037,8 +1039,11 @@ interface.preset.title = "预设";
 // Reset interface settings
 interface.resetAll = "重置界面风格";
 interface.resetAll.confirm = "确定要重置界面设置吗？";
-// help popup when hovering
+// Help popup when hovering
 interface.hoverHelp = "悬停显示帮助弹窗";
+// Do not use windows native dialog
+interface.customDialog = "";
+interface.customDialog.help = "";
 // Interface option (main base color)
 interface.iconSupport = "高对比度按钮";
 interface.iconSupport.help = "一种替代的按钮样式，当按钮启用时使它们更加显眼。
@@ -1299,65 +1304,37 @@ material.preview = "预览材料颜色";
 material.preview.help = "当您修改材质时，选定对象的视口中将显示预览。
 
 在您与颜色、粗糙度、金属度、透明度和强度滑块交互时，预览将显示。";
-// Menu name
+// Menu names
 menu.files = "文件";
-// Menu name
 menu.scene = "场景";
-// Menu name
 menu.multires = "多重网格";
-// Menu name
 menu.voxel = "体素";
-// Menu name
 menu.dynamic = "动态网格";
-// Menu name (Synonym: Misc, Other)
 menu.topology = "杂项";
-// Menu name
 menu.primitive = "基本体";
-// Menu name
 menu.render = "渲染";
-// Menu name
 menu.material = "材料";
-// Menu name
 menu.postprocess = "后期处理";
-// Menu name
 menu.camera = "相机";
-// Menu name
 menu.background = "背景";
-// Menu name
 menu.tool = "工具";
-// Menu name
 menu.stroke = "笔刷";
-// Menu name
 menu.alpha = "Alpha";
-// Menu name
 menu.filter = "过滤器";
-// Menu name
 menu.falloff = "衰减";
-// Menu name
 menu.paint = "绘画";
-// Menu name
 menu.symmetry = "对称";
-// Menu name
 menu.operation = "操作";
-// Menu name (pencil pressure)
 menu.pressure = "压感";
-// Menu name
 menu.gesture = "手势";
-// Menu name
 menu.layers = "图层";
-// Menu name
 menu.settings = "设置";
-// Menu name
 menu.interface = "界面";
-// Menu name
 menu.bindings = "绑定";
-// Menu name
+menu.shortcuts = "快捷手";
 menu.history = "历史记录";
-// Menu name
 menu.historySettings = "设置";
-// Menu name
 menu.about = "关于";
-// Menu name
 menu.debug = "调试";
 
 // Operation on the object (action)
@@ -1804,10 +1781,12 @@ settings.stats.right = "置于右侧";
 settings.stats.all = "显示全部";
 // Grid
 settings.grid = "网格";
-settings.grid.divideThreshold = "细分阈值";
+settings.grid.snapDivision = "网格分割阈值";
+settings.grid.snapDivision.help = "阈值与到网格的距离进行比较。";
 // Cursor
 settings.cursor.title = "光标";
-settings.cursor.whileSculpting = "雕刻时显示圆圈";
+// sculpting circle
+settings.cursor.circle = "圆形";
 // A small indicator dot
 settings.cursor.showDot = "显示指示点";
 settings.cursor.showDot.help = "指示点会在您移动相机和雕刻时显示。";
@@ -2388,6 +2367,9 @@ tool.smooth.stickyBorder = "边线粘性顶点";
 tool.smooth.screen = "屏幕平滑";
 tool.smooth.screen.help = "使用此选项可获得与拓扑无关的平滑效果，即使在高多边形下也是如此。";
 tool.smooth.screen.samples = "屏幕样本";
+tool.smooth.taubin = "保持体积";
+tool.smooth.taubin.shrink = "收缩";
+tool.smooth.taubin.inflate = "膨胀";
 tool.smooth.stable = "稳定平滑";
 tool.smooth.stable.help = "尝试使平滑独立于拓扑。
 
@@ -2750,6 +2732,10 @@ binding.reset = "重设键位绑定";
 // Add node in a sync mode (synchronize instance)
 binding.addSync = "同步";
 binding.addSync.help = "默认情况下，将使用场景菜单中设置的同步值。";
+// Add node in a sync mode (synchronize instance)
+binding.float.position = "位置";
+binding.float.position.keep = "保留之前的";
+binding.float.position.cursor = "在光标上";
 // Binding option
 binding.context.toggle = "切换上下文";
 // quick sidebar tool shortcuts
@@ -2759,6 +2745,9 @@ binding.tools = "工具快捷键";
 // When the key is tapped once, the value will be toggled
 binding.toggle = "切换上一个工具";
 binding.toggle.help = "使用相同的绑定切换回上一个工具。";
+// Control if hold+release reverts the tool
+binding.revert = "按住还原";
+binding.revert.help = "选择是否释放按住的键时总是返回到之前的工具，即使该工具已经处于活动状态。";
 // sticky keys
 binding.sticky = "粘性按键";
 binding.sticky.off = "按住";
@@ -2840,6 +2829,7 @@ widget.color.ring = "环形";
 widget.color.square = "正方形";
 
 nomad.mainFolder = "Nomad主文件夹";
+nomad.mainFolder.help = "";
 nomad.mainFolder.warning = "文件保持不变。
 它们没有被复制、删除或移动。";
 nomad.mainFolder.error = "选择'是'后，Nomad将关闭，您可以简单地重新启动它。";

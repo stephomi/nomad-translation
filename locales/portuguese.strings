@@ -209,6 +209,8 @@ about.turntable.pivot.keep = "Manter atual";
 about.turntable.pivot.scene = "Cena";
 // Make the entire scene turn around (speed of the animation)
 about.turntable.speed = "Velocidade";
+// Speed easing (linear vs non-linaer)
+about.turntable.linear = "";
 // Stuffs that I used to make the app
 about.credits = "Créditos";
 // Link to open source projects that I used for the app
@@ -1035,8 +1037,11 @@ interface.preset.title = "Pré‑ajustes";
 // Reset interface settings
 interface.resetAll = "Redefinir estilo";
 interface.resetAll.confirm = "Redefinir ajustes da interface?";
-// help popup when hovering
+// Help popup when hovering
 interface.hoverHelp = "Ajuda pop-up ao passar o mouse";
+// Do not use windows native dialog
+interface.customDialog = "";
+interface.customDialog.help = "";
 // Interface option (main base color)
 interface.iconSupport = "Botão de alto contraste";
 interface.iconSupport.help = "Um estilo alternativo para botões que os torna mais visíveis quando estão ativados.
@@ -1296,65 +1301,37 @@ material.preview = "Pré‑visualização da cor do material";
 material.preview.help = "When you modify a material, a preview will be displayed in the viewport on the selected object.
 
 The preview is shown while you interact with the color, roughness, metalness, opacity and intensity sliders.";
-// Menu name
+// Menu names
 menu.files = "Arquivo";
-// Menu name
 menu.scene = "Cena";
-// Menu name
 menu.multires = "Multirres";
-// Menu name
 menu.voxel = "Voxel";
-// Menu name
 menu.dynamic = "TopoDin";
-// Menu name (Synonym: Misc, Other)
 menu.topology = "Diversos";
-// Menu name
 menu.primitive = "Primitiva";
-// Menu name
 menu.render = "Renderizar";
-// Menu name
 menu.material = "Material";
-// Menu name
 menu.postprocess = "Pós-processamento";
-// Menu name
 menu.camera = "Câmera";
-// Menu name
 menu.background = "Fundo";
-// Menu name
 menu.tool = "Ferramenta";
-// Menu name
 menu.stroke = "Traçado";
-// Menu name
 menu.alpha = "Alfa";
-// Menu name
 menu.filter = "Filtro";
-// Menu name
 menu.falloff = "Decaimento";
-// Menu name
 menu.paint = "Pintura";
-// Menu name
 menu.symmetry = "Simetria";
-// Menu name
 menu.operation = "Operação";
-// Menu name (pencil pressure)
 menu.pressure = "Pressão";
-// Menu name
 menu.gesture = "Gesto";
-// Menu name
 menu.layers = "Camadas";
-// Menu name
 menu.settings = "Ajustes";
-// Menu name
 menu.interface = "Interface";
-// Menu name
 menu.bindings = "Atalhos";
-// Menu name
+menu.shortcuts = "Atalho";
 menu.history = "Histórico";
-// Menu name
 menu.historySettings = "Ajustes";
-// Menu name
 menu.about = "Sobre";
-// Menu name
 menu.debug = "Depurar";
 
 // Operation on the object (action)
@@ -1801,10 +1778,12 @@ settings.stats.right = "Direita";
 settings.stats.all = "Mostrar cena completa";
 // Grid
 settings.grid = "Grade";
-settings.grid.divideThreshold = "Limite de divisão";
+settings.grid.snapDivision = "Limite de divisão por encaixe";
+settings.grid.snapDivision.help = "O limite é comparado com a distância até a grade.";
 // Cursor
 settings.cursor.title = "Cursor";
-settings.cursor.whileSculpting = "Mostrar círculo ao esculpir";
+// sculpting circle
+settings.cursor.circle = "Círculo";
 // A small indicator dot
 settings.cursor.showDot = "Mostrar ponto pequeno";
 settings.cursor.showDot.help = "O ponto pode aparecer como ponto pivô da câmera ou enquanto você esculpe.";
@@ -2384,6 +2363,9 @@ tool.smooth.stickyBorder = "Vértice persistente na borda";
 tool.smooth.screen = "Suavização da tela";
 tool.smooth.screen.help = "Use esta opção para obter uma suavização independente de topologia, mesmo em alta poligonalidade.";
 tool.smooth.screen.samples = "Amostras da tela";
+tool.smooth.taubin = "Preservar volume";
+tool.smooth.taubin.shrink = "Encolher";
+tool.smooth.taubin.inflate = "Inflar";
 tool.smooth.stable = "Suavização estável";
 tool.smooth.stable.help = "Tenta tornar a suavização independente da topologia.
 
@@ -2746,6 +2728,10 @@ binding.reset = "Redefinir vínculos";
 // Add node in a sync mode (synchronize instance)
 binding.addSync = "Sincronizar";
 binding.addSync.help = "Por padrão, será usado o valor de sincronização definido no menu de cena.";
+// Add node in a sync mode (synchronize instance)
+binding.float.position = "Posição";
+binding.float.position.keep = "Reter anterior";
+binding.float.position.cursor = "No cursor";
 // Binding option
 binding.context.toggle = "Alternar contexto";
 // quick sidebar tool shortcuts
@@ -2755,6 +2741,9 @@ binding.tools = "Atalhos de ferramentas";
 // When the key is tapped once, the value will be toggled
 binding.toggle = "Alternar ferramenta anterior";
 binding.toggle.help = "Use a mesma combinação para voltar à última ferramenta.";
+// Control if hold+release reverts the tool
+binding.revert = "Segurar e Reverter";
+binding.revert.help = "Escolha se ao soltar uma tecla pressionada sempre volta para a ferramenta anterior, mesmo quando essa ferramenta já estava ativa.";
 // sticky keys
 binding.sticky = "Teclas fixas";
 binding.sticky.off = "Segurar";
@@ -2836,6 +2825,7 @@ widget.color.ring = "Anel";
 widget.color.square = "Quadrado";
 
 nomad.mainFolder = "Pasta principal do Nomad";
+nomad.mainFolder.help = "";
 nomad.mainFolder.warning = "Os arquivos são deixados intactos.
 Eles não são copiados, excluídos ou movidos.";
 nomad.mainFolder.error = "Depois de selecionar sim, o Nomad será fechado e você poderá simplesmente reiniciá-lo.";

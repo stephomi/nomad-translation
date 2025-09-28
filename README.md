@@ -27,10 +27,10 @@ opencc -i "locales/simplified-chinese.strings" -o "locales/traditional-chinese.s
 
 <!-- 
 # Integration
-
 ```
 crowdin download && ./../../build/nomad a
 crowdin upload
 crowdin upload translations --auto-approve-imported --import-eq-suggestions
 ```
  -->
+ 

@@ -209,6 +209,8 @@ about.turntable.pivot.keep = "現在の状態を保持";
 about.turntable.pivot.scene = "シーン";
 // Make the entire scene turn around (speed of the animation)
 about.turntable.speed = "速度";
+// Speed easing (linear vs non-linaer)
+about.turntable.linear = "";
 // Stuffs that I used to make the app
 about.credits = "クレジット";
 // Link to open source projects that I used for the app
@@ -1035,8 +1037,11 @@ interface.preset.title = "プリセット";
 // Reset interface settings
 interface.resetAll = "スタイルをリセット";
 interface.resetAll.confirm = "インターフェース設定をリセットしますか？";
-// help popup when hovering
+// Help popup when hovering
 interface.hoverHelp = "ホバー時のヘルプポップアップ";
+// Do not use windows native dialog
+interface.customDialog = "";
+interface.customDialog.help = "";
 // Interface option (main base color)
 interface.iconSupport = "ハイコントラストボタン";
 interface.iconSupport.help = "有効の時にボタンがより目立つようにする代替スタイル。
@@ -1297,65 +1302,37 @@ material.preview = "マテリアルのカラーのプレビュー";
 material.preview.help = "When you modify a material, a preview will be displayed in the viewport on the selected object.
 
 The preview is shown while you interact with the color, roughness, metalness, opacity and intensity sliders.";
-// Menu name
+// Menu names
 menu.files = "ファイル";
-// Menu name
 menu.scene = "シーン";
-// Menu name
 menu.multires = "マルチレゾ";
-// Menu name
 menu.voxel = "ボクセル";
-// Menu name
 menu.dynamic = "DynTopo";
-// Menu name (Synonym: Misc, Other)
 menu.topology = "その他";
-// Menu name
 menu.primitive = "プリミティブ";
-// Menu name
 menu.render = "レンダリング";
-// Menu name
 menu.material = "マテリアル";
-// Menu name
 menu.postprocess = "ポストプロセス";
-// Menu name
 menu.camera = "カメラ";
-// Menu name
 menu.background = "背景";
-// Menu name
 menu.tool = "ツール";
-// Menu name
 menu.stroke = "ストローク";
-// Menu name
 menu.alpha = "アルファ";
-// Menu name
 menu.filter = "フィルタ";
-// Menu name
 menu.falloff = "フォールオフ";
-// Menu name
 menu.paint = "ペイント";
-// Menu name
 menu.symmetry = "対称";
-// Menu name
 menu.operation = "操作";
-// Menu name (pencil pressure)
 menu.pressure = "筆圧";
-// Menu name
 menu.gesture = "ジェスチャ";
-// Menu name
 menu.layers = "レイヤー";
-// Menu name
 menu.settings = "設定";
-// Menu name
 menu.interface = "インターフェース";
-// Menu name
 menu.bindings = "バインド";
-// Menu name
+menu.shortcuts = "ショートカット";
 menu.history = "履歴";
-// Menu name
 menu.historySettings = "設定";
-// Menu name
 menu.about = "情報";
-// Menu name
 menu.debug = "デバッグ";
 
 // Operation on the object (action)
@@ -1801,10 +1778,12 @@ settings.stats.right = "右";
 settings.stats.all = "シーン全体を表示";
 // Grid
 settings.grid = "グリッド";
-settings.grid.divideThreshold = "分割しきい値";
+settings.grid.snapDivision = "スナップ分割しきい値";
+settings.grid.snapDivision.help = "しきい値はグリッドまでの距離と比較されます。";
 // Cursor
 settings.cursor.title = "カーソル";
-settings.cursor.whileSculpting = "スカルプト中、円を表示";
+// sculpting circle
+settings.cursor.circle = "円";
 // A small indicator dot
 settings.cursor.showDot = "小さなドットを表示";
 settings.cursor.showDot.help = "ドットは、カメラの回転軸のポイントとして、またはスカルプト中に表示されます。";
@@ -2381,6 +2360,9 @@ tool.smooth.stickyBorder = "ボーダーの頂点を接着";
 tool.smooth.screen = "画面の平滑化";
 tool.smooth.screen.help = "高ポリで独立したトポロジーの平滑化を行う場合、このオプションを使用してください。";
 tool.smooth.screen.samples = "画面サンプル";
+tool.smooth.taubin = "ボリュームを保持";
+tool.smooth.taubin.shrink = "収縮";
+tool.smooth.taubin.inflate = "膨張";
 tool.smooth.stable = "安定したスムージング";
 tool.smooth.stable.help = "スムージングがトポロジーに依存しないように試みます。
 
@@ -2741,6 +2723,10 @@ binding.reset = "バインドをリセット";
 // Add node in a sync mode (synchronize instance)
 binding.addSync = "同期";
 binding.addSync.help = "デフォルトでは、シーンメニューで設定された同期値を使用します。";
+// Add node in a sync mode (synchronize instance)
+binding.float.position = "位置";
+binding.float.position.keep = "前回を保持";
+binding.float.position.cursor = "カーソル上";
 // Binding option
 binding.context.toggle = "コンテキストの切り替え";
 // quick sidebar tool shortcuts
@@ -2750,6 +2736,9 @@ binding.tools = "ツールショートカット";
 // When the key is tapped once, the value will be toggled
 binding.toggle = "前のツールに切り替える";
 binding.toggle.help = "同じバインディングを使って最後のツールに戻ります。";
+// Control if hold+release reverts the tool
+binding.revert = "保持して戻す";
+binding.revert.help = "保持したキーを放すと、前のツールに戻るかどうかを選択します。";
 // sticky keys
 binding.sticky = "固定キー";
 binding.sticky.off = "押す";
@@ -2831,6 +2820,7 @@ widget.color.ring = "リング";
 widget.color.square = "スクエア";
 
 nomad.mainFolder = "Nomadメインフォルダ";
+nomad.mainFolder.help = "";
 nomad.mainFolder.warning = "ファイルはそのままにしておきます。
 コピー、削除、移動はしません。";
 nomad.mainFolder.error = "はいを選択すると、Nomadは閉じて、簡単に再起動できます。";

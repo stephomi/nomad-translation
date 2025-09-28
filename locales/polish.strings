@@ -209,6 +209,8 @@ about.turntable.pivot.keep = "Zachowaj aktualne";
 about.turntable.pivot.scene = "Scena";
 // Make the entire scene turn around (speed of the animation)
 about.turntable.speed = "Szybkość";
+// Speed easing (linear vs non-linaer)
+about.turntable.linear = "";
 // Stuffs that I used to make the app
 about.credits = "Autorzy";
 // Link to open source projects that I used for the app
@@ -1035,8 +1037,11 @@ interface.preset.title = "Ustawienia wstępne";
 // Reset interface settings
 interface.resetAll = "Zresetuj styl";
 interface.resetAll.confirm = "Zresetować ustawienia interfejsu?";
-// help popup when hovering
+// Help popup when hovering
 interface.hoverHelp = "Okienko pomocy po najechaniu kursorem";
+// Do not use windows native dialog
+interface.customDialog = "";
+interface.customDialog.help = "";
 // Interface option (main base color)
 interface.iconSupport = "Przycisk wysokiego kontrastu";
 interface.iconSupport.help = "Alternatywny styl dla przycisków, który sprawia, że są one bardziej widoczne, gdy są aktywne.
@@ -1297,65 +1302,37 @@ material.preview = "Podgląd koloru materiału";
 material.preview.help = "When you modify a material, a preview will be displayed in the viewport on the selected object.
 
 The preview is shown while you interact with the color, roughness, metalness, opacity and intensity sliders.";
-// Menu name
+// Menu names
 menu.files = "Pliki";
-// Menu name
 menu.scene = "Scena";
-// Menu name
 menu.multires = "Wielokrotna rozdzielczość";
-// Menu name
 menu.voxel = "Woksel";
-// Menu name
 menu.dynamic = "DynTopo";
-// Menu name (Synonym: Misc, Other)
 menu.topology = "Różne";
-// Menu name
 menu.primitive = "Prymityw";
-// Menu name
 menu.render = "Renderuj";
-// Menu name
 menu.material = "Materiał";
-// Menu name
 menu.postprocess = "Postprocessing";
-// Menu name
 menu.camera = "Aparat";
-// Menu name
 menu.background = "Tło";
-// Menu name
 menu.tool = "Narzędzie";
-// Menu name
 menu.stroke = "Pociągnięcie";
-// Menu name
 menu.alpha = "Alfa";
-// Menu name
 menu.filter = "Filtr";
-// Menu name
 menu.falloff = "Zanikanie";
-// Menu name
 menu.paint = "Farba";
-// Menu name
 menu.symmetry = "Symetria";
-// Menu name
 menu.operation = "Operacja";
-// Menu name (pencil pressure)
 menu.pressure = "Nacisk";
-// Menu name
 menu.gesture = "Gest";
-// Menu name
 menu.layers = "Warstwy";
-// Menu name
 menu.settings = "Ustawienia";
-// Menu name
 menu.interface = "Interfejs";
-// Menu name
 menu.bindings = "Powiązania";
-// Menu name
+menu.shortcuts = "Skrót";
 menu.history = "Historia";
-// Menu name
 menu.historySettings = "Ustawienia";
-// Menu name
 menu.about = "Informacje";
-// Menu name
 menu.debug = "Debuguj";
 
 // Operation on the object (action)
@@ -1802,10 +1779,12 @@ settings.stats.right = "W prawo";
 settings.stats.all = "Pokaż pełną scenę";
 // Grid
 settings.grid = "Siatka";
-settings.grid.divideThreshold = "Próg podziału";
+settings.grid.snapDivision = "Próg podziału siatki";
+settings.grid.snapDivision.help = "Próg jest porównywany z odległością do siatki.";
 // Cursor
 settings.cursor.title = "Kursor";
-settings.cursor.whileSculpting = "Pokaż okrąg podczas rzeźbienia";
+// sculpting circle
+settings.cursor.circle = "Okrąg";
 // A small indicator dot
 settings.cursor.showDot = "Pokaż małą kropkę";
 settings.cursor.showDot.help = "Kropka może pojawić się jako punkt obrotu kamery lub podczas rzeźbienia.";
@@ -2385,6 +2364,9 @@ tool.smooth.stickyBorder = "Lepki wierzchołek na granicy";
 tool.smooth.screen = "Wygładzanie ekranu";
 tool.smooth.screen.help = "Użyj tej opcji, aby uzyskać wygładzanie niezależne od topologii, nawet przy wysokiej liczbie wielokątów.";
 tool.smooth.screen.samples = "Próbki ekranu";
+tool.smooth.taubin = "Zachowaj objętość";
+tool.smooth.taubin.shrink = "Pomniejsz";
+tool.smooth.taubin.inflate = "Napełnij";
 tool.smooth.stable = "Stabilne wygładzanie";
 tool.smooth.stable.help = "Stara się uczynić wygładzanie niezależnym od topologii.
 
@@ -2745,6 +2727,10 @@ binding.reset = "Resetuj powiązania";
 // Add node in a sync mode (synchronize instance)
 binding.addSync = "Synchronizacja";
 binding.addSync.help = "Domyślnie, będzie używał wartości synchronizacji ustawionej w menu sceny.";
+// Add node in a sync mode (synchronize instance)
+binding.float.position = "Pozycja";
+binding.float.position.keep = "Zachowaj poprzedni";
+binding.float.position.cursor = "Na kursora";
 // Binding option
 binding.context.toggle = "Przełącz kontekst";
 // quick sidebar tool shortcuts
@@ -2754,6 +2740,9 @@ binding.tools = "Skróty narzędzi";
 // When the key is tapped once, the value will be toggled
 binding.toggle = "Przełącz poprzednie narzędzie";
 binding.toggle.help = "Użyj tego samego skrótu, aby wrócić do ostatniego narzędzia.";
+// Control if hold+release reverts the tool
+binding.revert = "Przytrzymaj Cofnij";
+binding.revert.help = "Wybierz, czy puszczenie przytrzymanego klawisza zawsze wraca do poprzedniego narzędzia, nawet jeśli to narzędzie było już aktywne.";
 // sticky keys
 binding.sticky = "Klawisze lepne";
 binding.sticky.off = "Przytrzymaj";
@@ -2835,6 +2824,7 @@ widget.color.ring = "Pierścień";
 widget.color.square = "Kwadrat";
 
 nomad.mainFolder = "Główny folder Nomad";
+nomad.mainFolder.help = "";
 nomad.mainFolder.warning = "Pliki pozostają nietknięte.
 Nie są kopiowane, usuwane ani przenoszone.";
 nomad.mainFolder.error = "Po wybraniu tak, Nomad zostanie zamknięty, a Ty możesz go po prostu ponownie uruchomić.";

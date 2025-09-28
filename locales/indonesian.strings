@@ -209,6 +209,8 @@ about.turntable.pivot.keep = "Tetap aktif";
 about.turntable.pivot.scene = "Skena";
 // Make the entire scene turn around (speed of the animation)
 about.turntable.speed = "Kecepatan";
+// Speed easing (linear vs non-linaer)
+about.turntable.linear = "";
 // Stuffs that I used to make the app
 about.credits = "Kredit";
 // Link to open source projects that I used for the app
@@ -1036,8 +1038,11 @@ interface.preset.title = "Preset";
 // Reset interface settings
 interface.resetAll = "Atur ulang gaya";
 interface.resetAll.confirm = "Setel ulang pengaturan antarmuka?";
-// help popup when hovering
+// Help popup when hovering
 interface.hoverHelp = "Popup bantuan saat melayang";
+// Do not use windows native dialog
+interface.customDialog = "";
+interface.customDialog.help = "";
 // Interface option (main base color)
 interface.iconSupport = "Tombol kontras tinggi";
 interface.iconSupport.help = "Gaya alternatif untuk tombol yang membuatnya lebih terlihat saat diaktifkan.
@@ -1298,65 +1303,37 @@ material.preview = "Pratinjau tampilan material";
 material.preview.help = "Saat Anda memodifikasi material, pratinjau akan ditampilkan di viewport pada objek yang dipilih.
 
 Pratinjau ditampilkan saat Anda berinteraksi dengan penggeser warna, kehalusan, kilauan logam, opasitas, dan intensitas.";
-// Menu name
+// Menu names
 menu.files = "File";
-// Menu name
 menu.scene = "Pemandangan";
-// Menu name
 menu.multires = "Multiresolusi";
-// Menu name
 menu.voxel = "Voxel";
-// Menu name
 menu.dynamic = "DynTopo";
-// Menu name (Synonym: Misc, Other)
 menu.topology = "Lainnya";
-// Menu name
 menu.primitive = "Primitif";
-// Menu name
 menu.render = "Render";
-// Menu name
 menu.material = "Material";
-// Menu name
 menu.postprocess = "PascaProses";
-// Menu name
 menu.camera = "Kamera";
-// Menu name
 menu.background = "Latar Belakang";
-// Menu name
 menu.tool = "Alat";
-// Menu name
 menu.stroke = "Garis";
-// Menu name
 menu.alpha = "Alpha";
-// Menu name
 menu.filter = "Filter";
-// Menu name
 menu.falloff = "Penurunan";
-// Menu name
 menu.paint = "Lukis";
-// Menu name
 menu.symmetry = "Simetri";
-// Menu name
 menu.operation = "Operasi";
-// Menu name (pencil pressure)
 menu.pressure = "Tekanan";
-// Menu name
 menu.gesture = "Gestur";
-// Menu name
 menu.layers = "Lapisan";
-// Menu name
 menu.settings = "Pengaturan";
-// Menu name
 menu.interface = "Antarmuka";
-// Menu name
 menu.bindings = "Pengikatan";
-// Menu name
+menu.shortcuts = "Jalan pintas";
 menu.history = "Sejarah";
-// Menu name
 menu.historySettings = "Pengaturan";
-// Menu name
 menu.about = "Tentang";
-// Menu name
 menu.debug = "Debug";
 
 // Operation on the object (action)
@@ -1803,10 +1780,12 @@ settings.stats.right = "Kanan";
 settings.stats.all = "Tampilkan seluruh adegan";
 // Grid
 settings.grid = "Kisi";
-settings.grid.divideThreshold = "Ambang batas pembagian";
+settings.grid.snapDivision = "Ambang batas pembagian jepretan";
+settings.grid.snapDivision.help = "Ambang batas ini dibandingkan dengan jarak ke grid.";
 // Cursor
 settings.cursor.title = "Kursor";
-settings.cursor.whileSculpting = "Tampilkan lingkaran saat memahat";
+// sculpting circle
+settings.cursor.circle = "Lingkaran";
 // A small indicator dot
 settings.cursor.showDot = "Tampilkan titik kecil";
 settings.cursor.showDot.help = "Titik dapat muncul sebagai titik pivot kamera atau saat Anda memahat.";
@@ -2388,6 +2367,9 @@ tool.smooth.stickyBorder = "Vertex yang menempel pada batas";
 tool.smooth.screen = "Melembutkan layar";
 tool.smooth.screen.help = "Gunakan opsi ini untuk mendapatkan penghalusan yang tidak bergantung pada topologi, bahkan pada poligon tinggi.";
 tool.smooth.screen.samples = "Sampel layar";
+tool.smooth.taubin = "Pertahankan volume";
+tool.smooth.taubin.shrink = "Menyusut";
+tool.smooth.taubin.inflate = "Kembung";
 tool.smooth.stable = "Pelembutan stabil";
 tool.smooth.stable.help = "Mencoba membuat topologi pelembutan menjadi independen.
 
@@ -2749,6 +2731,10 @@ binding.reset = "Reset pengikatan";
 // Add node in a sync mode (synchronize instance)
 binding.addSync = "Sinkron";
 binding.addSync.help = "Secara default, akan menggunakan nilai sinkron yang ditetapkan di menu scene.";
+// Add node in a sync mode (synchronize instance)
+binding.float.position = "Posisi";
+binding.float.position.keep = "Pertahankan sebelumnya";
+binding.float.position.cursor = "Pada kursor";
 // Binding option
 binding.context.toggle = "Alihkan konteks";
 // quick sidebar tool shortcuts
@@ -2758,6 +2744,9 @@ binding.tools = "Jalan pintas alat";
 // When the key is tapped once, the value will be toggled
 binding.toggle = "Alihkan Alat Sebelumnya";
 binding.toggle.help = "Gunakan pengikatan yang sama untuk kembali ke alat terakhir.";
+// Control if hold+release reverts the tool
+binding.revert = "Tahan Pemulihan";
+binding.revert.help = "Pilih apakah melepaskan kunci yang ditahan akan selalu kembali ke alat sebelumnya, bahkan ketika alat itu sudah aktif.";
 // sticky keys
 binding.sticky = "Kunci lengket";
 binding.sticky.off = "Tahan";
@@ -2839,6 +2828,7 @@ widget.color.ring = "Cincin";
 widget.color.square = "Persegi";
 
 nomad.mainFolder = "Folder utama Nomad";
+nomad.mainFolder.help = "";
 nomad.mainFolder.warning = "File dibiarkan tidak tersentuh.
 Mereka tidak disalin, dihapus, atau dipindahkan.";
 nomad.mainFolder.error = "Setelah Anda memilih ya, Nomad akan menutup dan Anda bisa melanjutkan dengan meluncurkannya kembali.";

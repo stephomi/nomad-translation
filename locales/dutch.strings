@@ -209,6 +209,8 @@ about.turntable.pivot.keep = "Huidige behouden";
 about.turntable.pivot.scene = "Scène";
 // Make the entire scene turn around (speed of the animation)
 about.turntable.speed = "Snelheid";
+// Speed easing (linear vs non-linaer)
+about.turntable.linear = "";
 // Stuffs that I used to make the app
 about.credits = "Credits";
 // Link to open source projects that I used for the app
@@ -1039,8 +1041,11 @@ interface.preset.title = "Voorinstellingen";
 // Reset interface settings
 interface.resetAll = "Stijl opnieuw instellen";
 interface.resetAll.confirm = "Interface-instellingen opnieuw instellen?";
-// help popup when hovering
+// Help popup when hovering
 interface.hoverHelp = "Hulp pop-up bij zweven";
+// Do not use windows native dialog
+interface.customDialog = "";
+interface.customDialog.help = "";
 // Interface option (main base color)
 interface.iconSupport = "Knop met hoog contrast";
 interface.iconSupport.help = "Een alternatieve stijl voor knoppen die ze beter zichtbaar maakt wanneer ze zijn ingeschakeld.
@@ -1301,65 +1306,37 @@ material.preview = "Materiaalviewportvoorbeeld";
 material.preview.help = "Wanneer je een materiaal wijzigt, wordt er een voorbeeld weergegeven in de viewport op het geselecteerde object.
 
 Het voorbeeld wordt getoond terwijl je werkt met de schuifregelaars voor kleur, ruwheid, metalness, transparantie en intensiteit.";
-// Menu name
+// Menu names
 menu.files = "Bestanden";
-// Menu name
 menu.scene = "Scène";
-// Menu name
 menu.multires = "Multires";
-// Menu name
 menu.voxel = "Voxel";
-// Menu name
 menu.dynamic = "DynTopo";
-// Menu name (Synonym: Misc, Other)
 menu.topology = "Overige";
-// Menu name
 menu.primitive = "Oer";
-// Menu name
 menu.render = "Render";
-// Menu name
 menu.material = "Materiaal";
-// Menu name
 menu.postprocess = "Nabewerking";
-// Menu name
 menu.camera = "Camera";
-// Menu name
 menu.background = "Achtergrond";
-// Menu name
 menu.tool = "Gereedschap";
-// Menu name
 menu.stroke = "Streep";
-// Menu name
 menu.alpha = "Alpha";
-// Menu name
 menu.filter = "Filter";
-// Menu name
 menu.falloff = "Afname";
-// Menu name
 menu.paint = "Schilderen";
-// Menu name
 menu.symmetry = "Symmetrie";
-// Menu name
 menu.operation = "Operatie";
-// Menu name (pencil pressure)
 menu.pressure = "Druk";
-// Menu name
 menu.gesture = "Gebaar";
-// Menu name
 menu.layers = "Lagen";
-// Menu name
 menu.settings = "Instellingen";
-// Menu name
 menu.interface = "Interface";
-// Menu name
 menu.bindings = "Aanwijzingen";
-// Menu name
+menu.shortcuts = "Snelkoppeling";
 menu.history = "Geschiedenis";
-// Menu name
 menu.historySettings = "Instellingen";
-// Menu name
 menu.about = "Over";
-// Menu name
 menu.debug = "Debuggen";
 
 // Operation on the object (action)
@@ -1805,10 +1782,12 @@ settings.stats.right = "Rechts";
 settings.stats.all = "Toon volledige scène";
 // Grid
 settings.grid = "Raster";
-settings.grid.divideThreshold = "Deeldrempel";
+settings.grid.snapDivision = "Snap verdelingsdrempel";
+settings.grid.snapDivision.help = "De drempel wordt vergeleken met de afstand tot het raster.";
 // Cursor
 settings.cursor.title = "Cursor";
-settings.cursor.whileSculpting = "Toon cirkel tijdens beeldhouwen";
+// sculpting circle
+settings.cursor.circle = "Cirkel";
 // A small indicator dot
 settings.cursor.showDot = "Toon kleine stip";
 settings.cursor.showDot.help = "De stip kan verschijnen als het draaipunt van de camera of wanneer je aan het beeldhouwen bent.";
@@ -2390,6 +2369,9 @@ tool.smooth.stickyBorder = "Plakkend hoekpunt op rand";
 tool.smooth.screen = "Schermgladstrijken";
 tool.smooth.screen.help = "Gebruik deze optie om topologieonafhankelijke gladstrijken te krijgen, zelfs bij hoge poly's.";
 tool.smooth.screen.samples = "Schermmonsters";
+tool.smooth.taubin = "Volume behouden";
+tool.smooth.taubin.shrink = "Krimpen";
+tool.smooth.taubin.inflate = "Plop";
 tool.smooth.stable = "Stabiel gladstrijken";
 tool.smooth.stable.help = "Probeert de gladstrijking topologie-onafhankelijk te maken.
 
@@ -2748,6 +2730,10 @@ binding.reset = "Bindings resetten";
 // Add node in a sync mode (synchronize instance)
 binding.addSync = "Synchronisatie";
 binding.addSync.help = "Standaard wordt de synchronisatiewaarde gebruikt die is ingesteld in het scene-menu.";
+// Add node in a sync mode (synchronize instance)
+binding.float.position = "Positie";
+binding.float.position.keep = "Vorige behouden";
+binding.float.position.cursor = "Op cursor";
 // Binding option
 binding.context.toggle = "Context schakelen";
 // quick sidebar tool shortcuts
@@ -2757,6 +2743,9 @@ binding.tools = "Tools sneltoetsen";
 // When the key is tapped once, the value will be toggled
 binding.toggle = "Wissel Vorige Tool";
 binding.toggle.help = "Gebruik dezelfde binding om terug te schakelen naar het laatste gereedschap.";
+// Control if hold+release reverts the tool
+binding.revert = "Vasthouden Terugkeren";
+binding.revert.help = "Kies of het loslaten van een ingedrukte toets altijd terugkeert naar het vorige gereedschap, zelfs als dat gereedschap al actief was.";
 // sticky keys
 binding.sticky = "Sticky toetsen";
 binding.sticky.off = "Vast,";
@@ -2838,6 +2827,7 @@ widget.color.ring = "Ring";
 widget.color.square = "Vierkant";
 
 nomad.mainFolder = "Nomad hoofdmap";
+nomad.mainFolder.help = "";
 nomad.mainFolder.warning = "Bestanden blijven onaangeroerd.
 Ze worden niet gekopieerd, verwijderd of verplaatst.";
 nomad.mainFolder.error = "Nadat je ja hebt geselecteerd, sluit Nomad af en kun je het eenvoudig opnieuw starten.";

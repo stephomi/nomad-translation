@@ -209,6 +209,8 @@ about.turntable.pivot.keep = "현재 유지";
 about.turntable.pivot.scene = "씬";
 // Make the entire scene turn around (speed of the animation)
 about.turntable.speed = "속도";
+// Speed easing (linear vs non-linaer)
+about.turntable.linear = "";
 // Stuffs that I used to make the app
 about.credits = "감사의 말";
 // Link to open source projects that I used for the app
@@ -1033,8 +1035,11 @@ interface.preset.title = "프리셋";
 // Reset interface settings
 interface.resetAll = "스타일 초기화";
 interface.resetAll.confirm = "인터페이스 설정을 초기화하시겠습니까?";
-// help popup when hovering
+// Help popup when hovering
 interface.hoverHelp = "마우스를 올리면 도움말 팝업";
+// Do not use windows native dialog
+interface.customDialog = "";
+interface.customDialog.help = "";
 // Interface option (main base color)
 interface.iconSupport = "고대비 버튼";
 interface.iconSupport.help = "활성화되었을 때 더 잘 보이게 하는 버튼의 대체 스타일입니다.
@@ -1295,65 +1300,37 @@ material.preview = "머티리얼 색상 미리보기";
 material.preview.help = "When you modify a material, a preview will be displayed in the viewport on the selected object.
 
 The preview is shown while you interact with the color, roughness, metalness, opacity and intensity sliders.";
-// Menu name
+// Menu names
 menu.files = "파일";
-// Menu name
 menu.scene = "씬";
-// Menu name
 menu.multires = "다중해상도";
-// Menu name
 menu.voxel = "복셀";
-// Menu name
 menu.dynamic = "동적 토폴로지";
-// Menu name (Synonym: Misc, Other)
 menu.topology = "기타";
-// Menu name
 menu.primitive = "프리미티브";
-// Menu name
 menu.render = "렌더";
-// Menu name
 menu.material = "머티리얼";
-// Menu name
 menu.postprocess = "포스트 프로세싱";
-// Menu name
 menu.camera = "카메라";
-// Menu name
 menu.background = "배경";
-// Menu name
 menu.tool = "도구";
-// Menu name
 menu.stroke = "스트로크";
-// Menu name
 menu.alpha = "알파";
-// Menu name
 menu.filter = "필터";
-// Menu name
 menu.falloff = "폴오프";
-// Menu name
 menu.paint = "페인트";
-// Menu name
 menu.symmetry = "대칭";
-// Menu name
 menu.operation = "작동";
-// Menu name (pencil pressure)
 menu.pressure = "압력";
-// Menu name
 menu.gesture = "제스처";
-// Menu name
 menu.layers = "레이어";
-// Menu name
 menu.settings = "설정";
-// Menu name
 menu.interface = "인터페이스";
-// Menu name
 menu.bindings = "바인딩";
-// Menu name
+menu.shortcuts = "바로 가기";
 menu.history = "작업 내역";
-// Menu name
 menu.historySettings = "설정";
-// Menu name
 menu.about = "정보";
-// Menu name
 menu.debug = "디버그";
 
 // Operation on the object (action)
@@ -1800,10 +1777,12 @@ settings.stats.right = "오른쪽";
 settings.stats.all = "전체 씬 보기";
 // Grid
 settings.grid = "격자";
-settings.grid.divideThreshold = "분할 임계값";
+settings.grid.snapDivision = "스냅 분할 임계값";
+settings.grid.snapDivision.help = "임계값은 그리드와의 거리와 비교됩니다.";
 // Cursor
 settings.cursor.title = "커서";
-settings.cursor.whileSculpting = "스컬프팅하는 동안 원 표시";
+// sculpting circle
+settings.cursor.circle = "원";
 // A small indicator dot
 settings.cursor.showDot = "작은 점 보기";
 settings.cursor.showDot.help = "카메라 피벗 포인트를 표시하거나 스컬프팅 중에 점이 표시될 수 있습니다.";
@@ -2380,6 +2359,9 @@ tool.smooth.stickyBorder = "버텍스를 테두리에 고정";
 tool.smooth.screen = "화면 평활화";
 tool.smooth.screen.help = "높은 폴리곤에서도 독립적으로 평활화를 적용하려면 이 옵션을 사용하세요.";
 tool.smooth.screen.samples = "화면 샘플";
+tool.smooth.taubin = "볼륨 보존";
+tool.smooth.taubin.shrink = "수축";
+tool.smooth.taubin.inflate = "팽창";
 tool.smooth.stable = "안정적 스무딩";
 tool.smooth.stable.help = "스무딩이 토폴로지에 독립적이도록 시도합니다.
 
@@ -2740,6 +2722,10 @@ binding.reset = "바인딩 초기화";
 // Add node in a sync mode (synchronize instance)
 binding.addSync = "동기화";
 binding.addSync.help = "기본적으로 장면 메뉴에 설정된 동기화 값을 사용합니다.";
+// Add node in a sync mode (synchronize instance)
+binding.float.position = "위치";
+binding.float.position.keep = "이전 유지";
+binding.float.position.cursor = "커서에";
 // Binding option
 binding.context.toggle = "컨텍스트 전환";
 // quick sidebar tool shortcuts
@@ -2749,6 +2735,9 @@ binding.tools = "도구 바로가기";
 // When the key is tapped once, the value will be toggled
 binding.toggle = "이전 도구 전환";
 binding.toggle.help = "마지막 도구로 전환하려면 동일한 바인딩을 사용하십시오.";
+// Control if hold+release reverts the tool
+binding.revert = "되돌리기 고정";
+binding.revert.help = "유지하고 있는 키를 해제할 때도 이전 도구로 항상 돌아가는지 선택하십시오. 이전 도구가 이미 활성 상태였을 때도 마찬가지입니다.";
 // sticky keys
 binding.sticky = "스티키 키";
 binding.sticky.off = "길게 누르기";
@@ -2830,6 +2819,7 @@ widget.color.ring = "링";
 widget.color.square = "사각형";
 
 nomad.mainFolder = "Nomad 메인 폴더";
+nomad.mainFolder.help = "";
 nomad.mainFolder.warning = "파일은 그대로 남아 있습니다.
 복사, 삭제 또는 이동되지 않습니다.";
 nomad.mainFolder.error = "예를 선택한 후, Nomad는 닫혔다가 재시작됩니다.";
