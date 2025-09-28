@@ -18,6 +18,9 @@ status.exit = "Nicht gespeicherte Änderungen! Vor dem Schließen speichern?";
 status.exit.yes = "Speichern";
 status.exit.no = "Nicht speichern";
 
+format.ascii = "Ascii";
+format.binary = "Binär";
+
 // On single tap (should be short)
 ontap = "Tap";
 
@@ -166,6 +169,8 @@ material.normal = "Normal";
 material.normal.flipY = "Y umdrehen";
 // Ambient Occlusion (AO)
 material.occlusion = "Verdeckung";
+// Displacement map
+material.displacement = "Verschiebung";
 // Textures, basically images wrapped on models (synonym: Maps, Texture maps)
 material.textures = "Texturen";
 // Textures/Image
@@ -209,6 +214,8 @@ about.turntable.pivot.keep = "Aktuelle beibehalten";
 about.turntable.pivot.scene = "Szene";
 // Make the entire scene turn around (speed of the animation)
 about.turntable.speed = "Geschwindigkeit";
+// Speed easing (linear vs non-linaer)
+about.turntable.linear = "Konstante Geschwindigkeit";
 // Stuffs that I used to make the app
 about.credits = "Informationen";
 // Link to open source projects that I used for the app
@@ -337,6 +344,8 @@ background.environment = "Umgebung";
 background.blur = "Unschärfe";
 background.exposure = "Belichtung";
 
+// Image that the artist uses as a reference
+background.reference = "Referenz";
 // Image that the artist uses as a reference
 background.imageEnable = "Referenzbild";
 // The image will be displayed in overlay (used as a reference by the artist)
@@ -672,7 +681,7 @@ file.export.texture.help = "Mit dieser Option werden keine Vertex-Farben in die 
 // ----------------------------------------------
 file.export.color0 = "Vertex-Farben";
 file.export.color1 = "PBR-Bemalung";
-file.export.color1.help = "Exportiert „Matt“ und „Metallisch“ sowie Maskierungsbemalung. Dies wird von anderen Programmen ignoriert.";
+file.export.color1.help = "Exportiert „Matt“, „Metallisch“ sowie Maskierungsbemalung. Dies wird von anderen Programmen ignoriert.";
 // ----------------------------------------------
 // Whether we include normals vector in the exported file
 file.export.normal = "Normale";
@@ -714,6 +723,9 @@ file.export.obj.archive = "Typ";
 file.export.obj.archive.folder = "Ordner";
 file.export.obj.archive.zip = "Zip";
 file.export.obj.archive.help = "Einige Apps (Google Drive, One Drive usw.) unterstützen keinen Ordnerimport, daher können Sie stattdessen Zip verwenden.";
+// ----------------------------------------------
+file.export.fbx.format = "Format";
+file.export.fbx.format.help = "Binär ist kleiner, funktioniert aber möglicherweise nicht in jeder Anwendung.";
 // ----------------------------------------------
 file.export.ply.warning = "Layer und zusätzliches Painting (Roughness, Metalness, Masken) gehen verloren.";
 // ----------------------------------------------
@@ -856,6 +868,10 @@ gesture.pencilAction.none = "Nichts";
 // Pencil button (or iOS pencil double tap) action: flip adding/substracting sculpt matter setting
 gesture.pencilAction.alt = "Add/Sub";
 
+// Idle long press with pencil, mouse, finger, etc
+gesture.longPress = "Lange drücken";
+
+
 // Enable Mask gesture by tapping once on the screen
 gesture.mask.oneTap = "Shortcuts mit einem Tippen";
 gesture.mask.oneTap.help = "Nutze den Maskieren-Shortcut, indem du einmal auf den Bildschirm tippst. So musst du nicht die Maskieren-Taste gedrückt halten.
@@ -871,6 +887,8 @@ gesture.mask.holdStroke.help = "Ein langer Druck wechselt zwischen Maske und Sel
 Am Ende des Strichs wird das vorherige Werkzeug wieder ausgewählt.";
 gesture.mask.holdIdle = "Werkzeug";
 gesture.mask.holdIdle.help = "Lange drücken und ohne Bewegung loslassen, um zwischen Maske und SelMaske zu wechseln.";
+
+gesture.smooth.holdSelect.help = "Lange drücken wird das Auswahlwerkzeug für die Dauer der Strichauswahl wechseln.";
 
 // Shortcut customization, choose the action that the shortcut will performan (select tool, etc)
 gesture.shortcut = "Shortcut";
@@ -1035,8 +1053,11 @@ interface.preset.title = "Presets";
 // Reset interface settings
 interface.resetAll = "Reset Interface";
 interface.resetAll.confirm = "Alle Interface-Einstellungen zurücksetzen?";
-// help popup when hovering
+// Help popup when hovering
 interface.hoverHelp = "Hilfs-Popup bei Hover";
+// Do not use windows native dialog
+interface.customDialog = "Nomad-Dialog verwenden";
+interface.customDialog.help = "Zeige Nomads eigenen Textdialog anstelle des nativen Dialogs.";
 // Interface option (main base color)
 interface.iconSupport = "Kontrastreicher Knopf";
 interface.iconSupport.help = "Ein alternativer Stil für Knöpfe, der sie sichtbarer macht, wenn sie aktiviert sind.
@@ -1045,9 +1066,9 @@ Wenn auf Auto eingestellt, wird Nomad diesen Modus verwenden, wenn der UI-Farben
 // Interface customization
 interface.flipTop = "Oben spiegeln";
 // Interface customization
-interface.flipBottom = "Unten spiegeln";
-// Interface customization
 interface.flipMiddle = "Mitte spiegeln";
+// Interface customization
+interface.flipBottom = "Unten spiegeln";
 // list of tools
 interface.toolbox = "Toolbox";
 // hide toolbox by default
@@ -1066,7 +1087,6 @@ interface.top.responsive = "Responsive";
 interface.top.responsive.help = "Diese Option ist hauptsächlich für kleine Bildschirme relevant.";
 interface.top.responsive.multiline = "Mehrzeilig";
 interface.top.responsive.scroll = "Scrollen";
-interface.top.responsive.collapse = "Einklappen";
 interface.top.alt = "Alternative Anordnung";
 interface.top.alt.help = "Alternatives Anordnungssymbol für das obere Menü.
 
@@ -1297,65 +1317,37 @@ material.preview = "Material-Picker Vorschau";
 material.preview.help = "Wenn Sie ein Material ändern, wird eine Vorschau im Viewport auf dem ausgewählten Objekt angezeigt.
 
 Die Vorschau wird angezeigt, während Sie mit den Reglern für Farbe, Roughness, Metalness, Opazität und Intensität interagieren.";
-// Menu name
+// Menu names
 menu.files = "Dateien";
-// Menu name
 menu.scene = "Szene";
-// Menu name
 menu.multires = "Multiaufl.";
-// Menu name
 menu.voxel = "Voxel";
-// Menu name
 menu.dynamic = "Dyntopo";
-// Menu name (Synonym: Misc, Other)
 menu.topology = "Verschiedenes";
-// Menu name
 menu.primitive = "Grundformen";
-// Menu name
 menu.render = "Render";
-// Menu name
 menu.material = "Material";
-// Menu name
 menu.postprocess = "Nachbearbeitung";
-// Menu name
 menu.camera = "Kamera";
-// Menu name
 menu.background = "Hintergrund";
-// Menu name
 menu.tool = "Werkzeug";
-// Menu name
 menu.stroke = "Strich";
-// Menu name
 menu.alpha = "Alpha";
-// Menu name
 menu.filter = "Filter";
-// Menu name
 menu.falloff = "Falloff";
-// Menu name
 menu.paint = "Zeichnen";
-// Menu name
 menu.symmetry = "Symmetrie";
-// Menu name
 menu.operation = "Aktion";
-// Menu name (pencil pressure)
 menu.pressure = "Druck";
-// Menu name
 menu.gesture = "Gesten";
-// Menu name
 menu.layers = "Layer";
-// Menu name
 menu.settings = "Einstellungen";
-// Menu name
 menu.interface = "Oberfläche";
-// Menu name
 menu.bindings = "Tastenbelegung";
-// Menu name
+menu.shortcuts = "Shortcut";
 menu.history = "Verlauf";
-// Menu name
 menu.historySettings = "Einstellungen";
-// Menu name
 menu.about = "Über";
-// Menu name
 menu.debug = "Bereinigen";
 
 // Operation on the object (action)
@@ -1798,12 +1790,20 @@ Bei Auto wird die Einschränkung nur erfolgen, wenn die Kamera im Orbit-Modus is
 settings.stats = "Statistik";
 settings.stats.right = "Rechts";
 settings.stats.all = "Gesamte Szene anzeigen";
+// Handles are controls that you interact with in the viewport in order to edit something
+settings.handle = "Griff";
+settings.handles = "Griffe";
+// Shape draw thing
+settings.shape = "Form";
+settings.shape.color = "Polygonfarbe";
 // Grid
 settings.grid = "Raster";
-settings.grid.divideThreshold = "Schwelle aufteilen";
+settings.grid.snapDivision = "Schwelle für Teilungsraster ";
+settings.grid.snapDivision.help = "Die Schwelle wird mit dem Abstand zum Raster verglichen.";
 // Cursor
 settings.cursor.title = "Cursor";
-settings.cursor.whileSculpting = "Kreis anzeigen beim Sculpten";
+// sculpting circle
+settings.cursor.circle = "Kreis";
 // A small indicator dot
 settings.cursor.showDot = "Kleinen Punkt anzeigen";
 settings.cursor.showDot.help = "Der Punkt kann als Kameradrehpunkt erscheinen oder wenn Sie sculpten.";
@@ -2168,16 +2168,12 @@ symmetry.countY = "Anzahl Y";
 symmetry.countZ = "Anzahl Z";
 // method
 symmetry.method = "Methode:";
-symmetry.method.help = "• Lokal
-Die Symmetrieebene wird entlang des Meshes verschoben, wenn Sie eines der Transformationswerkzeuge (Transform oder Gizmo) verwenden.
-
-
-• Welt
-The symmetry plane is fixed and will not move.";
 // Local means: in the coordinate of the scene (synonym: absolute)
 symmetry.method.world = "Welt";
+symmetry.method.world.help = "The symmetry plane is fixed and will not move.";
 // Local means: in the coordinate of the object (synonym: relative)
 symmetry.method.local = "Lokal";
+symmetry.method.local.help = "Die Symmetrieebene wird entlang des Meshes verschoben, wenn Sie eines der Transformationswerkzeuge (Transform oder Gizmo) verwenden.";
 // Move the object to the other side of the symmetry (mirror it as well)
 symmetry.flip = "Objekt umdrehen";
 // Cut half of the mesh
@@ -2384,6 +2380,9 @@ tool.smooth.stickyBorder = "Sticky Vertex am Rand";
 tool.smooth.screen = "Bildschirmglättung";
 tool.smooth.screen.help = "Verwenden Sie diese Option, um eine topologieunabhängige Glättung zu erzielen, selbst bei hoher Poly-Zahl.";
 tool.smooth.screen.samples = "Bildschirm-Samples";
+tool.smooth.taubin = "Volumen bewahren";
+tool.smooth.taubin.shrink = "Schrumpfen";
+tool.smooth.taubin.inflate = "Aufblähen";
 tool.smooth.stable = "Stabiles Glätten";
 tool.smooth.stable.help = "Versucht das Glätten topologieunabhängig zu machen.
 
@@ -2744,6 +2743,10 @@ binding.reset = "Tastenbelegung zurücksetzen";
 // Add node in a sync mode (synchronize instance)
 binding.addSync = "Synchronisieren";
 binding.addSync.help = "Standardmäßig wird der im Szenenmenü eingestellte Synchronisierungswert verwendet.";
+// Add node in a sync mode (synchronize instance)
+binding.float.position = "Position";
+binding.float.position.keep = "Vorheriges behalten";
+binding.float.position.cursor = "Am Cursor";
 // Binding option
 binding.context.toggle = "Kontext umschalten";
 // quick sidebar tool shortcuts
@@ -2753,6 +2756,9 @@ binding.tools = "Werkzeuge-Verknüpfungen";
 // When the key is tapped once, the value will be toggled
 binding.toggle = "Vorheriges Werkzeug umschalten";
 binding.toggle.help = "Den gleichen Schalter verwenden, um zum letzten Werkzeug zurückzukehren.";
+// Control if hold+release reverts the tool
+binding.revert = "Zurückhalten ";
+binding.revert.help = "Wählen Sie aus, ob das Loslassen einer gehaltenen Taste immer zum vorherigen Werkzeug zurückkehrt, auch wenn dieses bereits aktiv war.";
 // sticky keys
 binding.sticky = "Haftende Tasten";
 binding.sticky.off = "Halten";
@@ -2834,6 +2840,11 @@ widget.color.ring = "Ring";
 widget.color.square = "Quadrat";
 
 nomad.mainFolder = "Hauptordner von Nomad";
+nomad.mainFolder.help = "Falls Sie Dateien in den Nomad-Hauptordner hinzufügen, starten Sie Nomad neu, damit die Änderungen übernommen werden.
+
+Dateien des falschen Typs in Unterordnern können in den Ordner kann_gelöscht_werden/ verschoben werden.
+
+Zum Beispiel: Der Projektordner akzeptiert nur 3D-Dateien, während Alphas oder Matcaps nur Bilder akzeptiert.";
 nomad.mainFolder.warning = "Dateien bleiben unberührt.
 Sie werden nicht kopiert, gelöscht oder verschoben.";
 nomad.mainFolder.error = "Nachdem Sie Ja auswählen, wird Nomad geschlossen und Sie können es einfach neu starten.";
@@ -2852,6 +2863,9 @@ license.grace.days = "Tage";
 // ----------------------------------------------
 license.portal.title = "Bestehende Nutzer";
 license.portal.label = "Lizenzportal";
+license.portal.label.warning = "Dieses Portal ist nur für Benutzer, die die Windows/Mac Version gekauft haben.
+
+Käufe aus den iOS/Android App-Stores sind nicht plattformübergreifend.";
 // ----------------------------------------------
 license.checkout.title = "Neue Nutzer";
 license.checkout.label = "Nomad kaufen";
@@ -2871,6 +2885,7 @@ license.activate.error404 = "Der Lizenzschlüssel wurde nicht gefunden.";
 license.activate.error422 = "Unverarbeitbare Entität.";
 // ----------------------------------------------
 // version
+version.check = "Nach Updates suchen";
 version.update = "Aktualisierung verfügbar!";
 version.restore = "Kauf wiederherstellen";
 version.buyWeb = "Die Web-Version ist nur eine Demo";

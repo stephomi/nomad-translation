@@ -18,6 +18,9 @@ status.exit = "Unsaved changes! Save before closing?";
 status.exit.yes = "Save";
 status.exit.no = "Don't save";
 
+format.ascii = "Ascii";
+format.binary = "Binary";
+
 // On single tap (should be short)
 ontap = "On tap";
 
@@ -166,6 +169,8 @@ material.normal = "Normal";
 material.normal.flipY = "FlipY";
 // Ambient Occlusion (AO)
 material.occlusion = "Occlusion";
+// Displacement map
+material.displacement = "Displacement";
 // Textures, basically images wrapped on models (synonym: Maps, Texture maps)
 material.textures = "Textures";
 // Textures/Image
@@ -202,13 +207,15 @@ about.minify.help = "You can also tap your screen with 4 fingers, if your device
 // Turntable will rotate the whole scene on itself (as it if was on a turntable)
 about.turntable = "Turntable";
 // Rotation center of the turntable
-about.turntable.pivot = "Rotation center";
+about.turntable.pivot = "Rotation pivot";
 // Keep current pivot
 about.turntable.pivot.keep = "Keep current";
 // Turntable pivot will be at the center of the scene
 about.turntable.pivot.scene = "Scene";
 // Make the entire scene turn around (speed of the animation)
 about.turntable.speed = "Speed";
+// Speed easing (linear vs non-linaer)
+about.turntable.linear = "Contant speed";
 // Stuffs that I used to make the app
 about.credits = "Credits";
 // Link to open source projects that I used for the app
@@ -337,6 +344,8 @@ background.environment = "Environment";
 background.blur = "Blur";
 background.exposure = "Exposure";
 
+// Image that the artist uses as a reference
+background.reference = "Reference";
 // Image that the artist uses as a reference
 background.imageEnable = "Reference image";
 // The image will be displayed in overlay (used as a reference by the artist)
@@ -719,6 +728,9 @@ file.export.obj.archive.folder = "Folder";
 file.export.obj.archive.zip = "Zip";
 file.export.obj.archive.help = "Some apps (Google Drive, One Drive, etc) don't support folder import, so you can use Zip instead.";
 // ----------------------------------------------
+file.export.fbx.format = "Format";
+file.export.fbx.format.help = "Binary is smaller but might not work in every applications.";
+// ----------------------------------------------
 file.export.ply.warning = "Layers and extra painting (roughness, metalness, etc) will be lost.";
 // ----------------------------------------------
 file.export.stl.warning = "Layers and extra painting (roughness, metalness, etc) will be lost.";
@@ -860,6 +872,10 @@ gesture.pencilAction.none = "None";
 // Pencil button (or iOS pencil double tap) action: flip adding/substracting sculpt matter setting
 gesture.pencilAction.alt = "Add/Sub";
 
+// Idle long press with pencil, mouse, finger, etc
+gesture.longPress = "Long press";
+
+
 // Enable Mask gesture by tapping once on the screen
 gesture.mask.oneTap = "One tap shortcuts";
 gesture.mask.oneTap.help = "Allow the Mask shortcut by tapping the screen once, without having to hold the mask button shortcut.
@@ -875,6 +891,8 @@ gesture.mask.holdStroke.help = "Long press will toggle between Mask and SelMask 
 At the end of the stroke, the previous tool is selected back.";
 gesture.mask.holdIdle = "Tool";
 gesture.mask.holdIdle.help = "Long press and release without moving to switch between Mask and SelMask.";
+
+gesture.smooth.holdSelect.help = "Long press will switch to the select tool for the duration of stroke selection.";
 
 // Shortcut customization, choose the action that the shortcut will performan (select tool, etc)
 gesture.shortcut = "Shortcut";
@@ -1039,8 +1057,11 @@ interface.preset.title = "Presets";
 // Reset interface settings
 interface.resetAll = "Reset style";
 interface.resetAll.confirm = "Reset interface settings?";
-// help popup when hovering
+// Help popup when hovering
 interface.hoverHelp = "Help popup on hover";
+// Do not use windows native dialog
+interface.customDialog = "Use Nomad Dialog";
+interface.customDialog.help = "Show Nomad's own text dialog instead of the Native one.";
 // Interface option (main base color)
 interface.iconSupport = "High-contrast button";
 interface.iconSupport.help = "An alternative style for buttons that makes them more visible when they are enabled.
@@ -1049,9 +1070,9 @@ If set on Auto, Nomad will use this mode when the UI color contrast between enab
 // Interface customization
 interface.flipTop = "Mirror top bar";
 // Interface customization
-interface.flipBottom = "Mirror bottom bar";
-// Interface customization
 interface.flipMiddle = "Mirror side bars";
+// Interface customization
+interface.flipBottom = "Mirror bottom bar";
 // list of tools
 interface.toolbox = "Toolbox";
 // hide toolbox by default
@@ -1070,7 +1091,6 @@ interface.top.responsive = "Responsive";
 interface.top.responsive.help = "This option is mostly relevant for small screen.";
 interface.top.responsive.multiline = "Multiline";
 interface.top.responsive.scroll = "Scroll";
-interface.top.responsive.collapse = "Collapse";
 interface.top.alt = "Alt order";
 interface.top.alt.help = "Alternative order icon for top menu.
 
@@ -1301,65 +1321,37 @@ material.preview = "Material viewport preview";
 material.preview.help = "When you modify a material, a preview will be displayed in the viewport on the selected object.
 
 The preview is shown while you interact with the color, roughness, metalness, opacity and intensity sliders.";
-// Menu name
+// Menu names
 menu.files = "Files";
-// Menu name
 menu.scene = "Scene";
-// Menu name
 menu.multires = "Multires";
-// Menu name
 menu.voxel = "Voxel";
-// Menu name
 menu.dynamic = "DynTopo";
-// Menu name (Synonym: Misc, Other)
 menu.topology = "Misc";
-// Menu name
 menu.primitive = "Primitive";
-// Menu name
 menu.render = "Render";
-// Menu name
 menu.material = "Material";
-// Menu name
 menu.postprocess = "PostProcess";
-// Menu name
 menu.camera = "Camera";
-// Menu name
 menu.background = "Background";
-// Menu name
 menu.tool = "Tool";
-// Menu name
 menu.stroke = "Stroke";
-// Menu name
 menu.alpha = "Alpha";
-// Menu name
 menu.filter = "Filter";
-// Menu name
 menu.falloff = "Falloff";
-// Menu name
 menu.paint = "Paint";
-// Menu name
 menu.symmetry = "Symmetry";
-// Menu name
 menu.operation = "Operation";
-// Menu name (pencil pressure)
 menu.pressure = "Pressure";
-// Menu name
 menu.gesture = "Gesture";
-// Menu name
 menu.layers = "Layers";
-// Menu name
 menu.settings = "Settings";
-// Menu name
 menu.interface = "Interface";
-// Menu name
 menu.bindings = "Bindings";
-// Menu name
+menu.shortcuts = "Shortcuts";
 menu.history = "History";
-// Menu name
 menu.historySettings = "Settings";
-// Menu name
 menu.about = "About";
-// Menu name
 menu.debug = "Debug";
 
 // Operation on the object (action)
@@ -1804,12 +1796,20 @@ On Auto, the restriction will happen only if the camera is in Orbit mode.";
 settings.stats = "Stats";
 settings.stats.right = "Right";
 settings.stats.all = "Show full scene";
+// Handles are controls that you interact with in the viewport in order to edit something
+settings.handle = "Handle";
+settings.handles = "Handles";
+// Shape draw thing
+settings.shape = "Shape";
+settings.shape.color = "Polygon color";
 // Grid
 settings.grid = "Grid";
-settings.grid.divideThreshold = "Divide threshold";
+settings.grid.snapDivision = "Snap division threshold";
+settings.grid.snapDivision.help = "The threshold is compared against the distance to the grid.";
 // Cursor
 settings.cursor.title = "Cursor";
-settings.cursor.whileSculpting = "Show circle while sculpting";
+// sculpting circle
+settings.cursor.circle = "Circle";
 // A small indicator dot
 settings.cursor.showDot = "Show small dot";
 settings.cursor.showDot.help = "The dot can appear as the camera pivot point or when you are sculpting.";
@@ -2177,15 +2177,12 @@ symmetry.countY = "Count Y";
 symmetry.countZ = "Count Z";
 // method
 symmetry.method = "Method:";
-symmetry.method.help = "• Local
-The symmetry plane will move along the mesh when you use one of the transform tools (Gizmo or Transform).
-
-• World
-The symmetry plane is fixed and will not move.";
 // Local means: in the coordinate of the scene (synonym: absolute)
 symmetry.method.world = "World";
+symmetry.method.world.help = "The symmetry plane is fixed and will not move.";
 // Local means: in the coordinate of the object (synonym: relative)
 symmetry.method.local = "Local";
+symmetry.method.local.help = "The symmetry plane will move along the mesh when you use one of the transform tools (Gizmo or Transform).";
 // Move the object to the other side of the symmetry (mirror it as well)
 symmetry.flip = "Flip object";
 // Cut half of the mesh
@@ -2392,6 +2389,9 @@ tool.smooth.stickyBorder = "Sticky vertex on border";
 tool.smooth.screen = "Screen smoothing";
 tool.smooth.screen.help = "Use this option to get topology independent smoothing, even at high poly.";
 tool.smooth.screen.samples = "Screen samples";
+tool.smooth.taubin = "Preserve volume";
+tool.smooth.taubin.shrink = "Shrink";
+tool.smooth.taubin.inflate = "Inflate";
 tool.smooth.stable = "Stable smoothing";
 tool.smooth.stable.help = "Tries to make the smoothing topology independent.
 
@@ -2753,6 +2753,10 @@ binding.reset = "Reset bindings";
 // Add node in a sync mode (synchronize instance)
 binding.addSync = "Sync";
 binding.addSync.help = "By default, it will use the sync value set in the scene menu.";
+// Add node in a sync mode (synchronize instance)
+binding.float.position = "Position";
+binding.float.position.keep = "Retain previous";
+binding.float.position.cursor = "On cursor";
 // Binding option
 binding.context.toggle = "Toggle context";
 // quick sidebar tool shortcuts
@@ -2762,6 +2766,9 @@ binding.tools = "Tools shortcuts";
 // When the key is tapped once, the value will be toggled
 binding.toggle = "Toggle Previous Tool";
 binding.toggle.help = "Use the same binding to switch back to the last tool.";
+// Control if hold+release reverts the tool
+binding.revert = "Hold Revert";
+binding.revert.help = "Choose if releasing a held key always goes back to the previous tool, even when that tool was already active.";
 // sticky keys
 binding.sticky = "Sticky keys";
 binding.sticky.off = "Hold";
@@ -2843,6 +2850,11 @@ widget.color.ring = "Ring";
 widget.color.square = "Square";
 
 nomad.mainFolder = "Nomad main folder";
+nomad.mainFolder.help = "If you add files to the Nomad main folder, restart Nomad for the changes to apply.
+
+Files of the wrong type in subfolders may be moved to can_be_deleted/.
+
+For example: the projects folder accepts only 3D files, while alphas or matcaps accept only images.";
 nomad.mainFolder.warning = "Files are left untouched.
 They are not copied, deleted or moved.";
 nomad.mainFolder.error = "After you select yes, Nomad will close and you can simply relaunch it.";
@@ -2861,6 +2873,9 @@ license.grace.days = "days";
 // ----------------------------------------------
 license.portal.title = "Existing users";
 license.portal.label = "License portal";
+license.portal.label.warning = "This portal is only for users who bought the Windows/Mac version.
+
+Purchases from the iOS/Android app stores are not cross-platform.";
 // ----------------------------------------------
 license.checkout.title = "New users";
 license.checkout.label = "Purchase Nomad";
@@ -2879,6 +2894,7 @@ license.activate.error404 = "The license key was not found.";
 license.activate.error422 = "Unprocessable Entity.";
 // ----------------------------------------------
 // version
+version.check = "Check for update";
 version.update = "Update available!";
 version.restore = "Restore purchase";
 version.buyWeb = "Web version is only a demo";

@@ -18,6 +18,9 @@ status.exit = "¡Cambios no guardados! ¿Desea guardar antes de cerrar?";
 status.exit.yes = "Guardar";
 status.exit.no = "No guardar";
 
+format.ascii = "Ascii";
+format.binary = "Binario";
+
 // On single tap (should be short)
 ontap = "Pulsación";
 
@@ -166,6 +169,8 @@ material.normal = "Normal";
 material.normal.flipY = "Invertir Y";
 // Ambient Occlusion (AO)
 material.occlusion = "Oclusión";
+// Displacement map
+material.displacement = "Desplazamiento";
 // Textures, basically images wrapped on models (synonym: Maps, Texture maps)
 material.textures = "Texturas";
 // Textures/Image
@@ -209,6 +214,8 @@ about.turntable.pivot.keep = "Mantener actual";
 about.turntable.pivot.scene = "Escena";
 // Make the entire scene turn around (speed of the animation)
 about.turntable.speed = "Velocidad";
+// Speed easing (linear vs non-linaer)
+about.turntable.linear = "Velocidad constante";
 // Stuffs that I used to make the app
 about.credits = "Créditos";
 // Link to open source projects that I used for the app
@@ -337,6 +344,8 @@ background.environment = "Entorno";
 background.blur = "Borroso";
 background.exposure = "Exposición";
 
+// Image that the artist uses as a reference
+background.reference = "Referencia";
 // Image that the artist uses as a reference
 background.imageEnable = "Imagen de referencia";
 // The image will be displayed in overlay (used as a reference by the artist)
@@ -715,6 +724,9 @@ file.export.obj.archive.folder = "Carpeta";
 file.export.obj.archive.zip = "Zip";
 file.export.obj.archive.help = "Algunas aplicaciones (Google Drive, One Drive, etc.) no admiten la importación de carpetas, por lo que puedes usar Zip en su lugar.";
 // ----------------------------------------------
+file.export.fbx.format = "Formato";
+file.export.fbx.format.help = "El formato binario es más pequeño pero podría no funcionar en todas las aplicaciones.";
+// ----------------------------------------------
 file.export.ply.warning = "Se perderán las capas y la pintura pintura (rugosidad, metálico y máscara).";
 // ----------------------------------------------
 file.export.stl.warning = "Se perderán las capas y la pintura pintura (rugosidad, metálico y máscara).";
@@ -856,6 +868,10 @@ gesture.pencilAction.none = "Ninguno";
 // Pencil button (or iOS pencil double tap) action: flip adding/substracting sculpt matter setting
 gesture.pencilAction.alt = "Añadir/Restar";
 
+// Idle long press with pencil, mouse, finger, etc
+gesture.longPress = "Pulsación larga";
+
+
 // Enable Mask gesture by tapping once on the screen
 gesture.mask.oneTap = "Atajos de un toque";
 gesture.mask.oneTap.help = "Permite usar el atajo de Máscara tocando una vez la pantalla, sin necesidad de mantener pulsado el atajo del botón de máscara.
@@ -871,6 +887,8 @@ gesture.mask.holdStroke.help = "Una pulsación larga alternará entre Máscara y
 Al final del trazo, se selecciona de nuevo la herramienta anterior.";
 gesture.mask.holdIdle = "Herramienta";
 gesture.mask.holdIdle.help = "Pulsación larga y suelta sin mover para cambiar entre Máscara y SelMáscara.";
+
+gesture.smooth.holdSelect.help = "La pulsación larga cambiará al modo de selección durante la duración de la selección de trazos.";
 
 // Shortcut customization, choose the action that the shortcut will performan (select tool, etc)
 gesture.shortcut = "Atajo";
@@ -1035,8 +1053,11 @@ interface.preset.title = "Ajustes predeterminados";
 // Reset interface settings
 interface.resetAll = "Restablecer interfaz";
 interface.resetAll.confirm = "¿Restablecer la configuración de la interfaz?";
-// help popup when hovering
+// Help popup when hovering
 interface.hoverHelp = "Ayuda emergente al pasar el cursor";
+// Do not use windows native dialog
+interface.customDialog = "Usar cuadro de diálogo Nomad";
+interface.customDialog.help = "Muestra el cuadro de diálogo propio de Nomad en lugar del nativo.";
 // Interface option (main base color)
 interface.iconSupport = "Botón de alto contraste";
 interface.iconSupport.help = "Un estilo alternativo para botones que los hace más visibles cuando están habilitados.
@@ -1045,9 +1066,9 @@ Si se configura en Auto, Nomad usará este modo cuando el contraste de color de 
 // Interface customization
 interface.flipTop = "voltear superior";
 // Interface customization
-interface.flipBottom = "voltear inferior";
-// Interface customization
 interface.flipMiddle = "voltear medio";
+// Interface customization
+interface.flipBottom = "voltear inferior";
 // list of tools
 interface.toolbox = "Caja de herramientas";
 // hide toolbox by default
@@ -1066,7 +1087,6 @@ interface.top.responsive = "Adaptable";
 interface.top.responsive.help = "Esta opción es principalmente relevante para pantallas pequeñas.";
 interface.top.responsive.multiline = "Multilínea";
 interface.top.responsive.scroll = "Desplazar";
-interface.top.responsive.collapse = "Colapsar";
 interface.top.alt = "Orden alternativo";
 interface.top.alt.help = "Icono de orden alternativo para el menú superior.
 
@@ -1295,65 +1315,37 @@ material.preview = "Vista previa del Selector de materiales";
 material.preview.help = "When you modify a material, a preview will be displayed in the viewport on the selected object.
 
 The preview is shown while you interact with the color, roughness, metalness, opacity and intensity sliders.";
-// Menu name
+// Menu names
 menu.files = "Archivos";
-// Menu name
 menu.scene = "Escena";
-// Menu name
 menu.multires = "Multiresolución";
-// Menu name
 menu.voxel = "Vóxel";
-// Menu name
 menu.dynamic = "DynTopo";
-// Menu name (Synonym: Misc, Other)
 menu.topology = "Miscelánea";
-// Menu name
 menu.primitive = "Primitivo";
-// Menu name
 menu.render = "Renderizado";
-// Menu name
 menu.material = "Material";
-// Menu name
 menu.postprocess = "Posprocesado";
-// Menu name
 menu.camera = "Cámara";
-// Menu name
 menu.background = "Fondo";
-// Menu name
 menu.tool = "Herramienta";
-// Menu name
 menu.stroke = "Trazo";
-// Menu name
 menu.alpha = "Alfa";
-// Menu name
 menu.filter = "Filtro";
-// Menu name
 menu.falloff = "Disminución";
-// Menu name
 menu.paint = "Pintura";
-// Menu name
 menu.symmetry = "Simetría";
-// Menu name
 menu.operation = "Acción";
-// Menu name (pencil pressure)
 menu.pressure = "Presión";
-// Menu name
 menu.gesture = "Gesto";
-// Menu name
 menu.layers = "Capas";
-// Menu name
 menu.settings = "Configuración";
-// Menu name
 menu.interface = "Interfaz";
-// Menu name
 menu.bindings = "Atajos";
-// Menu name
+menu.shortcuts = "Atajo";
 menu.history = "Historia";
-// Menu name
 menu.historySettings = "Configuración";
-// Menu name
 menu.about = "Acerca de";
-// Menu name
 menu.debug = "Depurar";
 
 // Operation on the object (action)
@@ -1796,12 +1788,20 @@ En Automático, la restricción ocurrirá solo si la cámara está en modo Órbi
 settings.stats = "Estadísticas";
 settings.stats.right = "Derecho";
 settings.stats.all = "Mostrar escena completa";
+// Handles are controls that you interact with in the viewport in order to edit something
+settings.handle = "Mango";
+settings.handles = "Mangos";
+// Shape draw thing
+settings.shape = "Forma";
+settings.shape.color = "Color del polígono";
 // Grid
 settings.grid = "Cuadrícula";
-settings.grid.divideThreshold = "Umbral de división";
+settings.grid.snapDivision = "Umbral de división de ajuste";
+settings.grid.snapDivision.help = "El umbral se compara con la distancia a la cuadrícula.";
 // Cursor
 settings.cursor.title = "Cursor";
-settings.cursor.whileSculpting = "Mostrar círculo mientras esculpes";
+// sculpting circle
+settings.cursor.circle = "Círculo";
 // A small indicator dot
 settings.cursor.showDot = "Mostrar punto pequeño";
 settings.cursor.showDot.help = "El punto puede aparecer como el punto de pivote de la cámara o cuando estás esculpiendo.";
@@ -2166,16 +2166,12 @@ symmetry.countY = "Cantidad Y";
 symmetry.countZ = "Cantidad Z";
 // method
 symmetry.method = "Método:";
-symmetry.method.help = "• Local
-El plano de simetría se moverá a lo largo de la malla cuando utilice una de las herramientas de transformación (Gizmo o Transformar).
-
-
-• Mundo
-El plano de simetría es fijo y no se mueve.";
 // Local means: in the coordinate of the scene (synonym: absolute)
 symmetry.method.world = "Mundo";
+symmetry.method.world.help = "El plano de simetría es fijo y no se mueve.";
 // Local means: in the coordinate of the object (synonym: relative)
 symmetry.method.local = "Local";
+symmetry.method.local.help = "El plano de simetría se moverá a lo largo de la malla cuando utilice una de las herramientas de transformación (Gizmo o Transformar).";
 // Move the object to the other side of the symmetry (mirror it as well)
 symmetry.flip = "Voltear objeto";
 // Cut half of the mesh
@@ -2382,6 +2378,9 @@ tool.smooth.stickyBorder = "Vértice pegajoso  en el borde";
 tool.smooth.screen = "Suavizado de pantalla";
 tool.smooth.screen.help = "Utiliza esta opción para obtener un suavizado independiente de la topología, incluso en alta poligonización.";
 tool.smooth.screen.samples = "Muestras de pantalla";
+tool.smooth.taubin = "Preservar volumen";
+tool.smooth.taubin.shrink = "Encoger";
+tool.smooth.taubin.inflate = "Inflar";
 tool.smooth.stable = "Suavizado estable";
 tool.smooth.stable.help = "Intenta hacer que el suavizado sea independiente de la topología.
 
@@ -2742,6 +2741,10 @@ binding.reset = "Restablecer atajos";
 // Add node in a sync mode (synchronize instance)
 binding.addSync = "Sincronizar";
 binding.addSync.help = "Por defecto, usará el valor de sincronización establecido en el menú de escenas.";
+// Add node in a sync mode (synchronize instance)
+binding.float.position = "Posición";
+binding.float.position.keep = "Retener anterior";
+binding.float.position.cursor = "En el cursor";
 // Binding option
 binding.context.toggle = "Alternar contexto";
 // quick sidebar tool shortcuts
@@ -2751,6 +2754,9 @@ binding.tools = "Atajos de herramientas";
 // When the key is tapped once, the value will be toggled
 binding.toggle = "Alternar herramienta anterior";
 binding.toggle.help = "Use el mismo comando para regresar a la última herramienta.";
+// Control if hold+release reverts the tool
+binding.revert = "Mantener Revertir";
+binding.revert.help = "Elija si al soltar una tecla siempre se vuelve a la herramienta anterior, incluso cuando esa herramienta ya estaba activa.";
 // sticky keys
 binding.sticky = "Teclas fijas";
 binding.sticky.off = "Mantener";
@@ -2832,6 +2838,11 @@ widget.color.ring = "Anillo";
 widget.color.square = "Cuadrado";
 
 nomad.mainFolder = "Carpeta principal de Nomad";
+nomad.mainFolder.help = "Si agregas archivos a la carpeta principal de Nomad, reinicia Nomad para que los cambios se apliquen.
+
+Archivos de tipo incorrecto en subcarpetas pueden ser movidos a puede_eliminarse/.
+
+Por ejemplo: la carpeta de proyectos solo acepta archivos 3D, mientras que alphas o matcaps solo aceptan imágenes.";
 nomad.mainFolder.warning = "Los archivos quedan intactos.
 No se copian, eliminan ni mueven.";
 nomad.mainFolder.error = "Después de seleccionar sí, Nomad se cerrará y podrás reiniciarlo simplemente.";
@@ -2850,6 +2861,9 @@ license.grace.days = "días";
 // ----------------------------------------------
 license.portal.title = "Usuarios existentes";
 license.portal.label = "Portal de licencias";
+license.portal.label.warning = "Este portal es solo para usuarios que compraron la versión para Windows/Mac. 
+
+Las compras de las tiendas de aplicaciones de iOS/Android no son multiplataforma.";
 // ----------------------------------------------
 license.checkout.title = "Nuevos usuarios";
 license.checkout.label = "Comprar Nomad";
@@ -2868,6 +2882,7 @@ license.activate.error404 = "Clave de licencia no encontrada.";
 license.activate.error422 = "Entidad no procesable.";
 // ----------------------------------------------
 // version
+version.check = "Buscar actualización";
 version.update = "¡Actualización disponible!";
 version.restore = "Restaurar compra";
 version.buyWeb = "La versión web es solo una demostración";

@@ -18,6 +18,9 @@ status.exit = "Perubahan yang belum disimpan! Simpan sebelum menutup?";
 status.exit.yes = "Simpan";
 status.exit.no = "Jangan simpan";
 
+format.ascii = "Ascii";
+format.binary = "Biner";
+
 // On single tap (should be short)
 ontap = "Pada tap";
 
@@ -166,6 +169,8 @@ material.normal = "Normal";
 material.normal.flipY = "BalikY";
 // Ambient Occlusion (AO)
 material.occlusion = "Okulasi";
+// Displacement map
+material.displacement = "Perpindahan";
 // Textures, basically images wrapped on models (synonym: Maps, Texture maps)
 material.textures = "Tekstur";
 // Textures/Image
@@ -209,6 +214,8 @@ about.turntable.pivot.keep = "Tetap aktif";
 about.turntable.pivot.scene = "Skena";
 // Make the entire scene turn around (speed of the animation)
 about.turntable.speed = "Kecepatan";
+// Speed easing (linear vs non-linaer)
+about.turntable.linear = "Kecepatan konstan";
 // Stuffs that I used to make the app
 about.credits = "Kredit";
 // Link to open source projects that I used for the app
@@ -337,6 +344,8 @@ background.environment = "Lingkungan";
 background.blur = "Buram";
 background.exposure = "Paparan";
 
+// Image that the artist uses as a reference
+background.reference = "Referensi";
 // Image that the artist uses as a reference
 background.imageEnable = "Gambar referensi";
 // The image will be displayed in overlay (used as a reference by the artist)
@@ -673,7 +682,7 @@ Ini hanya termasuk tekstur jika objek memiliki tekstur pada materiilnya.";
 // ----------------------------------------------
 file.export.color0 = "Warna vertex";
 file.export.color1 = "Cat PBR";
-file.export.color1.help = "Ekspor kekasaran, kilap dan pewarnaan mask. Ini akan diabaikan oleh perangkat lunak lain.";
+file.export.color1.help = "Ekspor kekasaran, metalness dan pewarnaan mask. Ini akan diabaikan oleh perangkat lunak lain.";
 // ----------------------------------------------
 // Whether we include normals vector in the exported file
 file.export.normal = "Norma";
@@ -715,6 +724,9 @@ file.export.obj.archive = "Jenis";
 file.export.obj.archive.folder = "Folder";
 file.export.obj.archive.zip = "Zip";
 file.export.obj.archive.help = "Beberapa aplikasi (Google Drive, One Drive, dll.) tidak mendukung impor folder, jadi Anda bisa menggunakan Zip sebagai gantinya.";
+// ----------------------------------------------
+file.export.fbx.format = "Format";
+file.export.fbx.format.help = "Biner lebih kecil tetapi mungkin tidak berfungsi di setiap aplikasi.";
 // ----------------------------------------------
 file.export.ply.warning = "Lapisan dan pengecatan tambahan (kesat, logam, dll) akan hilang.";
 // ----------------------------------------------
@@ -857,6 +869,10 @@ gesture.pencilAction.none = "Tidak ada";
 // Pencil button (or iOS pencil double tap) action: flip adding/substracting sculpt matter setting
 gesture.pencilAction.alt = "Tambah/Kurang";
 
+// Idle long press with pencil, mouse, finger, etc
+gesture.longPress = "Tekan lama";
+
+
 // Enable Mask gesture by tapping once on the screen
 gesture.mask.oneTap = "Jalan pintas satu ketuk";
 gesture.mask.oneTap.help = "Izinkan pintasan Mask dengan mengetuk layar sekali, tanpa harus menahan pintasan tombol mask.
@@ -872,6 +888,8 @@ gesture.mask.holdStroke.help = "Tekan panjang akan beralih antara Mask dan SelMa
 Di akhir garis, alat sebelumnya dipilih kembali.";
 gesture.mask.holdIdle = "Alat";
 gesture.mask.holdIdle.help = "Tekan panjang dan lepaskan tanpa bergerak untuk beralih antara Mask dan SelMask.";
+
+gesture.smooth.holdSelect.help = "Tekan lama akan beralih ke alat pilih selama durasi pemilihan sapuan.";
 
 // Shortcut customization, choose the action that the shortcut will performan (select tool, etc)
 gesture.shortcut = "Jalan pintas";
@@ -1036,8 +1054,11 @@ interface.preset.title = "Preset";
 // Reset interface settings
 interface.resetAll = "Atur ulang gaya";
 interface.resetAll.confirm = "Setel ulang pengaturan antarmuka?";
-// help popup when hovering
+// Help popup when hovering
 interface.hoverHelp = "Popup bantuan saat melayang";
+// Do not use windows native dialog
+interface.customDialog = "Gunakan Dialog Nomad";
+interface.customDialog.help = "Tampilkan dialog teks milik Nomad sendiri alih-alih yang Bawaan.";
 // Interface option (main base color)
 interface.iconSupport = "Tombol kontras tinggi";
 interface.iconSupport.help = "Gaya alternatif untuk tombol yang membuatnya lebih terlihat saat diaktifkan.
@@ -1046,9 +1067,9 @@ Jika diatur ke Auto, Nomad akan menggunakan mode ini ketika kontras warna antarm
 // Interface customization
 interface.flipTop = "Cermin bilah atas";
 // Interface customization
-interface.flipBottom = "Cermin bilah bawah";
-// Interface customization
 interface.flipMiddle = "Cermin bilah samping";
+// Interface customization
+interface.flipBottom = "Cermin bilah bawah";
 // list of tools
 interface.toolbox = "Kotak peralatan";
 // hide toolbox by default
@@ -1067,7 +1088,6 @@ interface.top.responsive = "Responsif";
 interface.top.responsive.help = "Opsi ini lebih relevan untuk layar kecil.";
 interface.top.responsive.multiline = "Multiline";
 interface.top.responsive.scroll = "Gulir";
-interface.top.responsive.collapse = "Runtuhkan";
 interface.top.alt = "Urutan alternatif";
 interface.top.alt.help = "Ikon urutan alternatif untuk menu atas.
 
@@ -1298,65 +1318,37 @@ material.preview = "Pratinjau tampilan material";
 material.preview.help = "Saat Anda memodifikasi material, pratinjau akan ditampilkan di viewport pada objek yang dipilih.
 
 Pratinjau ditampilkan saat Anda berinteraksi dengan penggeser warna, kehalusan, kilauan logam, opasitas, dan intensitas.";
-// Menu name
+// Menu names
 menu.files = "File";
-// Menu name
 menu.scene = "Pemandangan";
-// Menu name
 menu.multires = "Multiresolusi";
-// Menu name
 menu.voxel = "Voxel";
-// Menu name
 menu.dynamic = "DynTopo";
-// Menu name (Synonym: Misc, Other)
 menu.topology = "Lainnya";
-// Menu name
 menu.primitive = "Primitif";
-// Menu name
 menu.render = "Render";
-// Menu name
 menu.material = "Material";
-// Menu name
 menu.postprocess = "PascaProses";
-// Menu name
 menu.camera = "Kamera";
-// Menu name
 menu.background = "Latar Belakang";
-// Menu name
 menu.tool = "Alat";
-// Menu name
 menu.stroke = "Garis";
-// Menu name
 menu.alpha = "Alpha";
-// Menu name
 menu.filter = "Filter";
-// Menu name
 menu.falloff = "Penurunan";
-// Menu name
 menu.paint = "Lukis";
-// Menu name
 menu.symmetry = "Simetri";
-// Menu name
 menu.operation = "Operasi";
-// Menu name (pencil pressure)
 menu.pressure = "Tekanan";
-// Menu name
 menu.gesture = "Gestur";
-// Menu name
 menu.layers = "Lapisan";
-// Menu name
 menu.settings = "Pengaturan";
-// Menu name
 menu.interface = "Antarmuka";
-// Menu name
 menu.bindings = "Pengikatan";
-// Menu name
+menu.shortcuts = "Jalan pintas";
 menu.history = "Sejarah";
-// Menu name
 menu.historySettings = "Pengaturan";
-// Menu name
 menu.about = "Tentang";
-// Menu name
 menu.debug = "Debug";
 
 // Operation on the object (action)
@@ -1801,12 +1793,20 @@ Di Auto, pembatasan akan terjadi jika kamera dalam mode Orbit.";
 settings.stats = "Statistik";
 settings.stats.right = "Kanan";
 settings.stats.all = "Tampilkan seluruh adegan";
+// Handles are controls that you interact with in the viewport in order to edit something
+settings.handle = "Gagang";
+settings.handles = "Gagang-gagang";
+// Shape draw thing
+settings.shape = "Bentuk";
+settings.shape.color = "Warna Poligon";
 // Grid
 settings.grid = "Kisi";
-settings.grid.divideThreshold = "Ambang batas pembagian";
+settings.grid.snapDivision = "Ambang batas pembagian jepretan";
+settings.grid.snapDivision.help = "Ambang batas ini dibandingkan dengan jarak ke grid.";
 // Cursor
 settings.cursor.title = "Kursor";
-settings.cursor.whileSculpting = "Tampilkan lingkaran saat memahat";
+// sculpting circle
+settings.cursor.circle = "Lingkaran";
 // A small indicator dot
 settings.cursor.showDot = "Tampilkan titik kecil";
 settings.cursor.showDot.help = "Titik dapat muncul sebagai titik pivot kamera atau saat Anda memahat.";
@@ -2173,15 +2173,12 @@ symmetry.countY = "Jumlah Y";
 symmetry.countZ = "Jumlah Z";
 // method
 symmetry.method = "Metode:";
-symmetry.method.help = "• Lokal
-Bidang simetri akan bergerak seiring dengan mesh saat Anda menggunakan salah satu alat transform (Gizmo atau Transform).
-
-• Dunia
-Bidang simetri tetap dan tidak akan bergerak.";
 // Local means: in the coordinate of the scene (synonym: absolute)
 symmetry.method.world = "Dunia";
+symmetry.method.world.help = "Bidang simetri tetap dan tidak akan bergerak.";
 // Local means: in the coordinate of the object (synonym: relative)
 symmetry.method.local = "Lokal";
+symmetry.method.local.help = "Bidang simetri akan bergerak seiring dengan mesh saat Anda menggunakan salah satu alat transform (Gizmo atau Transform).";
 // Move the object to the other side of the symmetry (mirror it as well)
 symmetry.flip = "Balik objek";
 // Cut half of the mesh
@@ -2388,6 +2385,9 @@ tool.smooth.stickyBorder = "Vertex yang menempel pada batas";
 tool.smooth.screen = "Melembutkan layar";
 tool.smooth.screen.help = "Gunakan opsi ini untuk mendapatkan penghalusan yang tidak bergantung pada topologi, bahkan pada poligon tinggi.";
 tool.smooth.screen.samples = "Sampel layar";
+tool.smooth.taubin = "Pertahankan volume";
+tool.smooth.taubin.shrink = "Menyusut";
+tool.smooth.taubin.inflate = "Kembung";
 tool.smooth.stable = "Pelembutan stabil";
 tool.smooth.stable.help = "Mencoba membuat topologi pelembutan menjadi independen.
 
@@ -2749,6 +2749,10 @@ binding.reset = "Reset pengikatan";
 // Add node in a sync mode (synchronize instance)
 binding.addSync = "Sinkron";
 binding.addSync.help = "Secara default, akan menggunakan nilai sinkron yang ditetapkan di menu scene.";
+// Add node in a sync mode (synchronize instance)
+binding.float.position = "Posisi";
+binding.float.position.keep = "Pertahankan sebelumnya";
+binding.float.position.cursor = "Pada kursor";
 // Binding option
 binding.context.toggle = "Alihkan konteks";
 // quick sidebar tool shortcuts
@@ -2758,6 +2762,9 @@ binding.tools = "Jalan pintas alat";
 // When the key is tapped once, the value will be toggled
 binding.toggle = "Alihkan Alat Sebelumnya";
 binding.toggle.help = "Gunakan pengikatan yang sama untuk kembali ke alat terakhir.";
+// Control if hold+release reverts the tool
+binding.revert = "Tahan Pemulihan";
+binding.revert.help = "Pilih apakah melepaskan kunci yang ditahan akan selalu kembali ke alat sebelumnya, bahkan ketika alat itu sudah aktif.";
 // sticky keys
 binding.sticky = "Kunci lengket";
 binding.sticky.off = "Tahan";
@@ -2839,6 +2846,11 @@ widget.color.ring = "Cincin";
 widget.color.square = "Persegi";
 
 nomad.mainFolder = "Folder utama Nomad";
+nomad.mainFolder.help = "Jika Anda menambahkan file ke folder utama Nomad, mulai ulang Nomad agar perubahan diterapkan. 
+
+File dengan tipe salah dalam subfolder bisa dipindahkan ke dalam can_be_deleted/. 
+
+Misalnya: folder proyek hanya menerima file 3D, sedangkan alphas atau matcaps hanya menerima gambar.";
 nomad.mainFolder.warning = "File dibiarkan tidak tersentuh.
 Mereka tidak disalin, dihapus, atau dipindahkan.";
 nomad.mainFolder.error = "Setelah Anda memilih ya, Nomad akan menutup dan Anda bisa melanjutkan dengan meluncurkannya kembali.";
@@ -2857,6 +2869,9 @@ license.grace.days = "hari";
 // ----------------------------------------------
 license.portal.title = "Pengguna yang sudah ada";
 license.portal.label = "Portal lisensi";
+license.portal.label.warning = "Portal ini hanya untuk pengguna yang membeli versi Windows/Mac.
+
+Pembelian dari toko aplikasi iOS/Android tidak lintas platform.";
 // ----------------------------------------------
 license.checkout.title = "Pengguna baru";
 license.checkout.label = "Beli Nomad";
@@ -2875,6 +2890,7 @@ license.activate.error404 = "Kunci lisensi tidak ditemukan.";
 license.activate.error422 = "Entity tidak dapat diproses.";
 // ----------------------------------------------
 // version
+version.check = "Periksa pembaruan";
 version.update = "Pembaruan tersedia!";
 version.restore = "Pulihkan pembelian";
 version.buyWeb = "Versi web hanya untuk demonstrasi";
