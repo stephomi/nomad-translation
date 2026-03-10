@@ -1395,6 +1395,12 @@ mesh.static = "Меш";
 mesh.multires = "Мультиразрешение";
 // Dynamic topology
 mesh.dynamic = "Дин. топ.";
+// merge radius for 3d points
+mesh.snap.pos = "Радиус сварки позиции";
+mesh.snap.pos.help = "Объединять близлежащие точки по расстоянию во время операций, таких как булевы операции, Объединить, Децимировать или Manifold.";
+// merge radius for 2d uvs
+mesh.snap.uv = "Радиус сварки UV";
+mesh.snap.uv.help = "Объединять близлежащие UV по расстоянию во время операций, таких как булевы операции, Объединить, Децимировать или Manifold.";
 
 // Disable this option to have per-tool material settings (instead of shared settings)
 paint.useGlobal = "Глобальный материал";
@@ -1595,6 +1601,7 @@ primitive.tube = "Трубка";
 primitive.plane = "Плоскость";
 primitive.triplanar = "Трипланарность";
 primitive.needValidate = "Примитивы должны быть утверждены!";
+primitive.curveFlip = "Отразить кривую";
 
 // If enabled, we can edit primitive inside the viewport
 primitive.edit = "Правка";
@@ -1627,6 +1634,8 @@ primitive.radius = "Радиус";
 primitive.radius.sync = "Тот же радиус";
 primitive.radius.start = "Начало радиуса";
 primitive.radius.end = "Конец радиуса";
+// Dimension (as in box size)
+primitive.dimension = "Размер";
 // Size (of cube x dimension)
 primitive.size = "Размер";
 primitive.sizeX = "Размер X";
@@ -1726,10 +1735,11 @@ scene.iconSize.min = "Мин.";
 // Max size of icon
 scene.iconSize.max = "Макс.";
 // display hierarchy lines (visibility helper)
-scene.showHierarchy = "Линии иерархии";
-scene.showHierarchy.help = "Отображать линию между родителем и его детьми во вьюпорте.";
-scene.showHierarchyNomadPivot = "Использовать pivot Nomad";
-scene.showHierarchyNomadPivot.help = "Pivot Nomad • это точка опоры, используемая инструментами Transform и Gizmo.
+scene.hierarchy = "Линии иерархии";
+scene.hierarchy.help = "Отображать линию между родителем и его детьми во вьюпорте.";
+scene.hierarchy.thickness = "Толщина";
+scene.hierarchy.nomadPivot = "Использовать pivot Nomad";
+scene.hierarchy.nomadPivot.help = "Pivot Nomad • это точка опоры, используемая инструментами Transform и Gizmo.
 
 Если эта опция отключена, будет использоваться естественный базовый pivot.
 В некоторых случаях этот базовый pivot может находиться далеко от центра самого объекта!";
@@ -1774,6 +1784,8 @@ scene.noneButNeedOne = "Нет выбранного объекта, выбери
 // Need to select one object only
 scene.onlyOneObject = "Несколько объектов выбрано, выберите один объект.";
 // Boolean operation
+scene.overlaps = "Очистить пересечения";
+scene.overlaps.help = "Объединить самопересечения в чистую поверхность.";
 scene.boolean = "Boolean";
 scene.boolean.help = "Merge, subtract or intersect objects by performing a boolean operation.
 
@@ -2704,6 +2716,9 @@ UV-развертка";
 topology.uv.title = "Раскрытие UV";
 // UV Unwrap but as a Verb
 topology.uv.unwrap = "Развернуть";
+// atlas options
+topology.uv.atlas.maxStretch = "Макс. растяжение";
+topology.uv.atlas.gutter = "Отступ между островами";
 // The operation can be very slow
 topology.uv.atlas.warning = "Может занять большое количество времени, у цели <100т вершин!";
 // Handles are topological holes (synonym: genus, hole)
@@ -2787,6 +2802,11 @@ topology.manifold.title.help = "Попытается очистить non-manifo
 
 // Reset key-bindings/shortcuts
 binding.reset = "Сбросить привязки";
+// Toggle between
+binding.panZoom = "Масштабирование (при отпускании)";
+binding.panZoom.help = "Переключаться на масштабирование при отпускании горячей клавиши.";
+binding.zoomPan = "Перемещение (при отпускании)";
+binding.zoomPan.help = "Переключаться на перемещение при отпускании горячей клавиши.";
 // Add node in a sync mode (synchronize instance)
 binding.addSync = "Синхронизация";
 binding.addSync.help = "По умолчанию, будет использоваться синхронизационное значение, установленное в меню сцены.";
@@ -2829,10 +2849,13 @@ binding.invertZoomY = "Инвертировать масштабирование
 binding.editRadius = "Радиус инструмента";
 // Edit the tool brush size/radius
 binding.editIntensity = "Интенсивность инструмента";
-// Controller dead zone
+// Dead zones
+binding.drift = "Мёртвые зоны (дрейф)";
+binding.drift.help = "Увеличьте эти значения, если камера движется, даже если контроллер оставлен нетронутым.";
 binding.joystick = "Джойстик";
-binding.controller.deadZone = "Мертвая зона джойстика";
-binding.controller.deadZone.help = "Увеличьте это значение, если камера продолжает двигаться, даже если джойстик контроллера не трогают.";
+binding.gamepad = "Геймпад";
+binding.spacemouse = "SpaceMouse";
+binding.button = "Кнопка";
 // Snap the camera
 binding.view.front = "Вид спереди";
 binding.view.left = "Вид слева";
@@ -2920,6 +2943,7 @@ license.device.mismatch = "Несоответствие ID устройства!
 
 license.error429 = "Слишком много запросов (ожидание).";
 
+license.validate = "Проверить";
 license.validate.error404 = "Лицензионный ключ не найден.";
 license.validate.error422 = "Непроцессируемый объект.";
 
@@ -2961,6 +2985,10 @@ Quad Remesher разработан https://exoside.com/.";
 
 version.trialLayer = "Пробная версия: 1 слой на меш";
 version.trialNoExport = "Пробная версия: экспорт невозможен";
+
+version.webUnlock = "Веб-версия официально не поддерживается так же, как нативные приложения.
+
+Разблокируйте полную версию, введя лицензионный ключ Polar.sh";
 
 version.fullFeatures = "• Однократная покупка
 • Бесконечное количество отмен/возвратов
@@ -3047,3 +3075,20 @@ store.description.interface = "• Интерфейс
 store.description.remesher = "• Quad Remesher (доступно только с отдельной покупкой в приложении)
 Автоматически ретопологируйте ваш объект с преобладанием четырехугольной сетки, которая следует за кривизной сетки.
 Поддерживаются руководства, группы лиц и рисование плотности.";
+
+store.steam = "Nomad Sculpt — это приложение для 3D-скульптинга, созданное для скорости и простоты.
+Вы можете естественно набрасывать, формировать и дорабатывать формы — как при блокинге идей, так и при работе над мелкими деталями.
+
+• Кисти для скульптинга (clay, flatten, smooth, mask, trim и т. д.)
+• Динамическая топология и воксельный ремешинг для гибких рабочих процессов
+• Мультирезолюционный скульптинг
+• Система слоёв для скульптинга и рисования
+• Рисование по вершинам (цвет, roughness, metalness)
+• Полностью настраиваемые кисти (alpha, falloff, pressure, tiling)
+• Примитивы (трубка, токарное тело, цилиндр, тор…)
+• Автоматическая UV-развёртка (с поддержкой групп граней)
+• Запекание (вершины ↔ текстуры)
+• Децимация
+• Группы граней для сегментации меша
+• PBR-рендеринг + matcap + постобработка
+• Импорт/экспорт (glTF, OBJ, FBX, STL, PLY)";

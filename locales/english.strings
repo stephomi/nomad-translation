@@ -1399,6 +1399,12 @@ mesh.static = "Mesh";
 mesh.multires = "Multires";
 // Dynamic topology
 mesh.dynamic = "DynTopo";
+// merge radius for 3d points
+mesh.snap.pos = "Position Weld Radius";
+mesh.snap.pos.help = "Merge nearby points by distance during operations like Boolean, Join, Decimate, or Manifold.";
+// merge radius for 2d uvs
+mesh.snap.uv = "UV Weld Radius";
+mesh.snap.uv.help = "Merge nearby UV by distance during operations like Boolean, Join, Decimate, or Manifold.";
 
 // Disable this option to have per-tool material settings (instead of shared settings)
 paint.useGlobal = "Global material";
@@ -1599,6 +1605,7 @@ primitive.tube = "Tube";
 primitive.plane = "Plane";
 primitive.triplanar = "Triplanar";
 primitive.needValidate = "Primitive should be validated!";
+primitive.curveFlip = "Flip curve";
 
 // If enabled, we can edit primitive inside the viewport
 primitive.edit = "Edit";
@@ -1631,6 +1638,8 @@ primitive.radius = "Radius";
 primitive.radius.sync = "Same radius";
 primitive.radius.start = "Radius start";
 primitive.radius.end = "Radius end";
+// Dimension (as in box size)
+primitive.dimension = "Dimension";
 // Size (of cube x dimension)
 primitive.size = "Size";
 primitive.sizeX = "Size X";
@@ -1730,10 +1739,11 @@ scene.iconSize.min = "Min";
 // Max size of icon
 scene.iconSize.max = "Max";
 // display hierarchy lines (visibility helper)
-scene.showHierarchy = "Hierarchy lines";
-scene.showHierarchy.help = "Display a line between parent and its children in the viewport.";
-scene.showHierarchyNomadPivot = "Use Nomad pivot";
-scene.showHierarchyNomadPivot.help = "The Nomad pivot is the pivot used by the Transform and Gizmo tools.
+scene.hierarchy = "Hierarchy lines";
+scene.hierarchy.help = "Display a line between parent and its children in the viewport.";
+scene.hierarchy.thickness = "Thickness";
+scene.hierarchy.nomadPivot = "Use Nomad pivot";
+scene.hierarchy.nomadPivot.help = "The Nomad pivot is the pivot used by the Transform and Gizmo tools.
 
 If this option is disabled, it will use the natural base pivot.
 In some case this base pivot can be far away from the object center itself!";
@@ -1778,6 +1788,8 @@ scene.noneButNeedOne = "No selected object, please select one object.";
 // Need to select one object only
 scene.onlyOneObject = "Multiple objects are selected, please select only one object.";
 // Boolean operation
+scene.overlaps = "Clean Overlaps";
+scene.overlaps.help = "Merge self-intersections into a clean surface.";
 scene.boolean = "Boolean";
 scene.boolean.help = "Merge, subtract or intersect objects by performing a boolean operation.
 
@@ -2713,6 +2725,9 @@ If a hole has fewer vertices than this value, then it will be filled.";
 topology.uv.title = "UV Unwrap";
 // UV Unwrap but as a Verb
 topology.uv.unwrap = "Unwrap";
+// atlas options
+topology.uv.atlas.maxStretch = "Max Stretch";
+topology.uv.atlas.gutter = "Island Spacing";
 // The operation can be very slow
 topology.uv.atlas.warning = "Can be very slow, target <100k vertices!";
 // Handles are topological holes (synonym: genus, hole)
@@ -2796,6 +2811,11 @@ It can be useful for external softwares that don't support edges that have more 
 
 // Reset key-bindings/shortcuts
 binding.reset = "Reset bindings";
+// Toggle between
+binding.panZoom = "Zooming (on release)";
+binding.panZoom.help = "Switch to zooming on hotkey release.";
+binding.zoomPan = "Translating (on release)";
+binding.zoomPan.help = "Switch to translation on hotkey release.";
 // Add node in a sync mode (synchronize instance)
 binding.addSync = "Sync";
 binding.addSync.help = "By default, it will use the sync value set in the scene menu.";
@@ -2838,10 +2858,13 @@ binding.invertZoomY = "Flip zoom Y";
 binding.editRadius = "Tool Radius";
 // Edit the tool brush size/radius
 binding.editIntensity = "Tool Intensity";
-// Controller dead zone
+// Dead zones
+binding.drift = "Dead zones (drift)";
+binding.drift.help = "Raise these values if the camera is moving even if the controller is left untouched.";
 binding.joystick = "Joystick";
-binding.controller.deadZone = "Stick dead zone";
-binding.controller.deadZone.help = "Raise this value if the camera is moving even if the controller stick is left untouched.";
+binding.gamepad = "Gamepad";
+binding.spacemouse = "SpaceMouse";
+binding.button = "Button";
 // Snap the camera
 binding.view.front = "Front View";
 binding.view.left = "Left View";
@@ -2931,6 +2954,7 @@ license.device.mismatch = "Mismatch device ID!";
 
 license.error429 = "Too many request (wait).";
 
+license.validate = "Validate";
 license.validate.error404 = "The license key was not found.";
 license.validate.error422 = "Unprocessable Entity.";
 
@@ -2972,6 +2996,10 @@ The Quad Remesher is developed by https://exoside.com/.";
 
 version.trialLayer = "Trial version: 1 layer per object";
 version.trialNoExport = "Trial version: No export";
+
+version.webUnlock = "The web version is not officially supported like the native apps.
+
+Unlock the full version by entering your Polar.sh license key";
 
 version.fullFeatures = "• One time purchase
 • Unlimited undo/redo
@@ -3058,3 +3086,20 @@ Customization is possible as well!";
 store.description.remesher = "• Quad Remesher (separate in-app purchase only)
 Remesh your object automatically with a quad dominant mesh that follows the mesh curvatures.
 It supports guides, face groups and density painting.";
+
+store.steam = "Nomad Sculpt is a 3D sculpting app built for speed and simplicity.
+You can sketch, shape, and refine forms naturally, whether blocking ideas or working on fine details.
+
+• Sculpting brushes (clay, flatten, smooth, mask, trim, etc.)
+• Dynamic topology & voxel remeshing for flexible workflows
+• Multiresolution sculpting
+• Layer system for sculpting and painting
+• Vertex painting (color, roughness, metalness)
+• Fully customizable brushes (alphas, falloff, pressure, tiling)
+• Primitive shapes (tube, lathe, cylinder, torus…)
+• Automatic UV unwrapping (with face groups support)
+• Baking (vertex ↔ textures)
+• Decimation
+• Face groups for mesh segmentation
+• PBR rendering + matcap + post-processing
+• Import/export (glTF, OBJ, FBX, STL, PLY)";

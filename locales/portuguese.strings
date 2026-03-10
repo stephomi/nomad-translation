@@ -1394,6 +1394,12 @@ mesh.static = "Malha";
 mesh.multires = "Multirresolução";
 // Dynamic topology
 mesh.dynamic = "TopoDin";
+// merge radius for 3d points
+mesh.snap.pos = "Raio de soldagem de posição";
+mesh.snap.pos.help = "Mescla pontos próximos por distância durante operações como Booleano, Unir, Dizimar ou Manifold.";
+// merge radius for 2d uvs
+mesh.snap.uv = "Raio de soldagem de UV";
+mesh.snap.uv.help = "Mescla UV próximas por distância durante operações como Booleano, Unir, Dizimar ou Manifold.";
 
 // Disable this option to have per-tool material settings (instead of shared settings)
 paint.useGlobal = "Material global";
@@ -1594,6 +1600,7 @@ primitive.tube = "Tubo";
 primitive.plane = "Plano";
 primitive.triplanar = "Triplano";
 primitive.needValidate = "As primitivas devem ser validadas!";
+primitive.curveFlip = "Inverter curva";
 
 // If enabled, we can edit primitive inside the viewport
 primitive.edit = "Editar";
@@ -1626,6 +1633,8 @@ primitive.radius = "Raio";
 primitive.radius.sync = "Mesmo raio";
 primitive.radius.start = "Início do raio";
 primitive.radius.end = "Fim do raio";
+// Dimension (as in box size)
+primitive.dimension = "Dimensão";
 // Size (of cube x dimension)
 primitive.size = "Tamanho";
 primitive.sizeX = "Tamanho X";
@@ -1725,10 +1734,11 @@ scene.iconSize.min = "Mín.";
 // Max size of icon
 scene.iconSize.max = "Máx.";
 // display hierarchy lines (visibility helper)
-scene.showHierarchy = "Linhas de hierarquia";
-scene.showHierarchy.help = "Exibir uma linha entre o pai e seus filhos no viewport.";
-scene.showHierarchyNomadPivot = "Usar pivô do Nomad";
-scene.showHierarchyNomadPivot.help = "O pivô do Nomad é o pivô usado pelas ferramentas de Transformação e Gizmo.
+scene.hierarchy = "Linhas de hierarquia";
+scene.hierarchy.help = "Exibir uma linha entre o pai e seus filhos no viewport.";
+scene.hierarchy.thickness = "Espessura";
+scene.hierarchy.nomadPivot = "Usar pivô do Nomad";
+scene.hierarchy.nomadPivot.help = "O pivô do Nomad é o pivô usado pelas ferramentas de Transformação e Gizmo.
 
 Se esta opção estiver desativada, ele usará o pivô de base natural.
 Em alguns casos, esse pivô de base pode estar longe do centro do objeto!";
@@ -1773,6 +1783,8 @@ scene.noneButNeedOne = "Nenhum objeto selecionado. Selecione um objeto.";
 // Need to select one object only
 scene.onlyOneObject = "Vários objetos selecionados. Selecione apenas um objeto.";
 // Boolean operation
+scene.overlaps = "Limpar sobreposições";
+scene.overlaps.help = "Mesclar auto-interseções em uma superfície limpa.";
 scene.boolean = "Booleano";
 scene.boolean.help = "Merge, subtract or intersect objects by performing a boolean operation.
 
@@ -2709,6 +2721,9 @@ Cálculo de UV";
 topology.uv.title = "Cálcular UV";
 // UV Unwrap but as a Verb
 topology.uv.unwrap = "Cálcular";
+// atlas options
+topology.uv.atlas.maxStretch = "Alongamento máximo";
+topology.uv.atlas.gutter = "Espaçamento entre ilhas";
 // The operation can be very slow
 topology.uv.atlas.warning = "Pode ser muito lento. Use menos de 100k vértices como destino.";
 // Handles are topological holes (synonym: genus, hole)
@@ -2792,6 +2807,11 @@ Pode ser útil para softwares externos que não suportam arestas que têm mais d
 
 // Reset key-bindings/shortcuts
 binding.reset = "Redefinir vínculos";
+// Toggle between
+binding.panZoom = "Zoom (ao soltar)";
+binding.panZoom.help = "Mudar para zoom ao soltar a tecla de atalho.";
+binding.zoomPan = "Translação (ao soltar)";
+binding.zoomPan.help = "Mudar para translação ao soltar a tecla de atalho.";
 // Add node in a sync mode (synchronize instance)
 binding.addSync = "Sincronizar";
 binding.addSync.help = "Por padrão, será usado o valor de sincronização definido no menu de cena.";
@@ -2834,10 +2854,13 @@ binding.invertZoomY = "Inverter o zoom Y";
 binding.editRadius = "Raio da Ferramenta";
 // Edit the tool brush size/radius
 binding.editIntensity = "Intensidade da Ferramenta";
-// Controller dead zone
+// Dead zones
+binding.drift = "Zonas mortas (deriva)";
+binding.drift.help = "Aumente estes valores se a câmera estiver se movendo mesmo que o controle seja deixado sem tocar.";
 binding.joystick = "Joystick";
-binding.controller.deadZone = "Zona morta do controle";
-binding.controller.deadZone.help = "Aumente este valor se a câmera estiver se movendo mesmo que o stick do controle não seja tocado.";
+binding.gamepad = "Gamepad";
+binding.spacemouse = "SpaceMouse";
+binding.button = "Botão";
 // Snap the camera
 binding.view.front = "Vista Frontal";
 binding.view.left = "Vista Lateral";
@@ -2927,6 +2950,7 @@ license.device.mismatch = "Identificador de dispositivo incompatível!";
 
 license.error429 = "Muitas solicitações (aguarde).";
 
+license.validate = "Validar";
 license.validate.error404 = "A chave de licença não foi encontrada.";
 license.validate.error422 = "Entidade não processável.";
 
@@ -2968,6 +2992,10 @@ O Quad Remesher é desenvolvido por https://exoside.com/.";
 
 version.trialLayer = "Versão de avaliação: 1 camada por malha";
 version.trialNoExport = "Versão de avaliação: proibido exportar";
+
+version.webUnlock = "A versão web não é oficialmente suportada como as aplicações nativas.
+
+Desbloqueie a versão completa introduzindo a sua chave de licença Polar.sh";
 
 version.fullFeatures = "• Compra única
 • Desfazer/refazer ilimitado
@@ -3054,3 +3082,20 @@ A personalização também é possível!";
 store.description.remesher = "• Quad Remesher (compra dentro do aplicativo separadamente)
 Refaz a malha do seu objeto automaticamente com uma malha dominante de quads que segue as curvaturas da malha.
 Suporta guias, grupos de faces e pintura de densidade.";
+
+store.steam = "Nomad Sculpt é um app de escultura 3D criado para velocidade e simplicidade.
+Você pode esboçar, moldar e refinar formas de maneira natural, seja bloqueando ideias ou trabalhando em detalhes finos.
+
+• Pincéis de escultura (argila, achatar, suavizar, máscara, aparar, etc.)
+• Topologia dinâmica e remalhagem por voxel para fluxos de trabalho flexíveis
+• Escultura multirresolução
+• Sistema de camadas para escultura e pintura
+• Pintura de vértices (cor, rugosidade, metalness)
+• Pincéis totalmente personalizáveis (alphas, queda, pressão, ladrilhamento)
+• Formas primitivas (tubo, torno, cilindro, toro…)
+• Desdobramento UV automático (com suporte a grupos de faces)
+• Baking (vértices ↔ texturas)
+• Decimação
+• Grupos de faces para segmentação da malha
+• Renderização PBR + MatCap + pós-processamento
+• Importar/exportar (glTF, OBJ, FBX, STL, PLY)";

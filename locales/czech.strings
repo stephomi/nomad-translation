@@ -1394,6 +1394,12 @@ mesh.static = "Síť";
 mesh.multires = "Multires";
 // Dynamic topology
 mesh.dynamic = "DynTopo";
+// merge radius for 3d points
+mesh.snap.pos = "Poloměr svaření pozice";
+mesh.snap.pos.help = "Slučuje blízké body podle vzdálenosti během operací jako Boolean, Spojit, Decimovat nebo Manifold.";
+// merge radius for 2d uvs
+mesh.snap.uv = "Poloměr svaření UV";
+mesh.snap.uv.help = "Slučuje blízké UV podle vzdálenosti během operací jako Boolean, Spojit, Decimovat nebo Manifold.";
 
 // Disable this option to have per-tool material settings (instead of shared settings)
 paint.useGlobal = "Globální materiál";
@@ -1592,6 +1598,7 @@ primitive.tube = "Trubka";
 primitive.plane = "Rovina";
 primitive.triplanar = "Trojpásmový";
 primitive.needValidate = "Primitiv by měl být ověřen!";
+primitive.curveFlip = "Převrátit křivku";
 
 // If enabled, we can edit primitive inside the viewport
 primitive.edit = "Upravit";
@@ -1624,6 +1631,8 @@ primitive.radius = "Poloměr";
 primitive.radius.sync = "Stejný poloměr";
 primitive.radius.start = "Počáteční poloměr";
 primitive.radius.end = "Koncový poloměr";
+// Dimension (as in box size)
+primitive.dimension = "Rozměry";
 // Size (of cube x dimension)
 primitive.size = "Velikost";
 primitive.sizeX = "Velikost X";
@@ -1723,10 +1732,11 @@ scene.iconSize.min = "Min";
 // Max size of icon
 scene.iconSize.max = "Max";
 // display hierarchy lines (visibility helper)
-scene.showHierarchy = "Hierarchické linie";
-scene.showHierarchy.help = "Zobrazit linii mezi rodičem a jeho potomky ve viewportu.";
-scene.showHierarchyNomadPivot = "Použij Nomad pivot";
-scene.showHierarchyNomadPivot.help = "Nomad pivot je pivot používaný nástroji Transform a Gizmo.
+scene.hierarchy = "Hierarchické linie";
+scene.hierarchy.help = "Zobrazit linii mezi rodičem a jeho potomky ve viewportu.";
+scene.hierarchy.thickness = "Tloušťka";
+scene.hierarchy.nomadPivot = "Použij Nomad pivot";
+scene.hierarchy.nomadPivot.help = "Nomad pivot je pivot používaný nástroji Transform a Gizmo.
 
 Pokud je tato možnost zakázána, bude použita přirozená základní otočná plocha.
 V některých případech může být tento základní pivot daleko od středu objektu!";
@@ -1771,6 +1781,8 @@ scene.noneButNeedOne = "Žádný vybraný objekt, prosím vyberte jeden objekt."
 // Need to select one object only
 scene.onlyOneObject = "Je vybráno více objektů, vyberte prosím pouze jeden objekt.";
 // Boolean operation
+scene.overlaps = "Vyčistit překryvy";
+scene.overlaps.help = "Sloučí vlastní průniky do čistého povrchu.";
 scene.boolean = "Booleovský";
 scene.boolean.help = "Slučte, odečtěte nebo protě se spojte objekty pomocí booleovské operace. 
 
@@ -2697,6 +2709,9 @@ topology.qremesh.hole.help = "Algoritmus může někdy vyprodukovat nechtěné o
 topology.uv.title = "UV Rozbalení";
 // UV Unwrap but as a Verb
 topology.uv.unwrap = "Rozbalit";
+// atlas options
+topology.uv.atlas.maxStretch = "Maximální protažení";
+topology.uv.atlas.gutter = "Rozestup ostrovů";
 // The operation can be very slow
 topology.uv.atlas.warning = "Může být velmi pomalý, cílové <100k vrcholů!";
 // Handles are topological holes (synonym: genus, hole)
@@ -2778,6 +2793,11 @@ To se může hodit pro externí programy, které nepodporují hrany, které sdí
 
 // Reset key-bindings/shortcuts
 binding.reset = "Resetovat přiřazení kláves";
+// Toggle between
+binding.panZoom = "Přiblížení (při uvolnění)";
+binding.panZoom.help = "Přepne na přibližování po uvolnění klávesové zkratky.";
+binding.zoomPan = "Posun (při uvolnění)";
+binding.zoomPan.help = "Přepne na posun po uvolnění klávesové zkratky.";
 // Add node in a sync mode (synchronize instance)
 binding.addSync = "Synchronizovat";
 binding.addSync.help = "Ve výchozím nastavení se použije hodnota synchronizace nastavená v menu scény.";
@@ -2820,10 +2840,13 @@ binding.invertZoomY = "Překlopit zoom Y";
 binding.editRadius = "Poloměr nástroje";
 // Edit the tool brush size/radius
 binding.editIntensity = "Intenzita nástroje";
-// Controller dead zone
+// Dead zones
+binding.drift = "Mrtvé zóny (drift)";
+binding.drift.help = "Zvyšte tyto hodnoty, pokud se kamera pohybuje, i když se s ovladačem nic neděje.";
 binding.joystick = "Joystick";
-binding.controller.deadZone = "Mrtvá zóna ovladače joysticku";
-binding.controller.deadZone.help = "Zvyšte tuto hodnotu, pokud se kamera pohybuje, i když se s ovladačem nic neděje.";
+binding.gamepad = "Gamepad";
+binding.spacemouse = "SpaceMouse";
+binding.button = "Tlačítko";
 // Snap the camera
 binding.view.front = "Přední pohled";
 binding.view.left = "Levý pohled";
@@ -2913,6 +2936,7 @@ license.device.mismatch = "Nesoulad ID zařízení!";
 
 license.error429 = "Příliš mnoho žádostí (počkat).";
 
+license.validate = "Ověřit";
 license.validate.error404 = "Licenční klíč nebyl nalezen.";
 license.validate.error422 = "Nezpracovatelný subjekt.";
 
@@ -2954,6 +2978,10 @@ Quad Remesher vyvíjí https://exoside.com/.";
 
 version.trialLayer = "Zkušební verze: 1 vrstva na objekt";
 version.trialNoExport = "Zkušební verze: Nelze exportovat";
+
+version.webUnlock = "Webová verze není oficiálně podporována jako nativní aplikace.
+
+Odemkněte plnou verzi zadáním svého licenčního klíče Polar.sh";
 
 version.fullFeatures = "• Jednorázový nákup
 • Neomezené vrátit/znovu
@@ -3040,3 +3068,20 @@ Je možná i vlastní úprava!";
 store.description.remesher = "• Quad Remesher (pouze samostatný nákup v aplikaci)
 Automaticky remeshujte svůj objekt pomocí čtyřdominantní sítě, která sleduje zakřivení sítě.
 Podporuje vodítka, skupiny plošek a malování hustoty.";
+
+store.steam = "Nomad Sculpt je 3D aplikace pro sochařství vytvořená pro rychlost a jednoduchost.
+Můžete přirozeně skicovat, tvarovat a dolaďovat formy, ať už si blokujete nápady, nebo pracujete na jemných detailech.
+
+• Sochařské štětce (clay, flatten, smooth, mask, trim atd.)
+• Dynamická topologie a voxelový remeshing pro flexibilní pracovní postupy
+• Multiresolution sochařství
+• Systém vrstev pro sochařství a malování
+• Vertex painting (barva, roughness, metalness)
+• Plně přizpůsobitelné štětce (alphas, falloff, tlak, dlaždicování)
+• Primitivní tvary (tube, lathe, cylinder, torus…)
+• Automatické rozbalení UV (s podporou skupin ploch)
+• Baking (vertex ↔ textury)
+• Decimation
+• Skupiny ploch pro segmentaci mesh
+• PBR rendering + matcap + post-processing
+• Import/export (glTF, OBJ, FBX, STL, PLY)";
