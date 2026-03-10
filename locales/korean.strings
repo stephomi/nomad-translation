@@ -1593,6 +1593,7 @@ primitive.tube = "튜브";
 primitive.plane = "평면";
 primitive.triplanar = "트라이플레이너";
 primitive.needValidate = "프리미티브를 전에 유효성 검사를 해야 합니다!";
+primitive.curveFlip = "곡선 뒤집기";
 
 // If enabled, we can edit primitive inside the viewport
 primitive.edit = "편집";
@@ -1625,6 +1626,8 @@ primitive.radius = "반지름";
 primitive.radius.sync = "동일한 반지름";
 primitive.radius.start = "반지름 시작";
 primitive.radius.end = "반지름 종료";
+// Dimension (as in box size)
+primitive.dimension = "치수";
 // Size (of cube x dimension)
 primitive.size = "크기";
 primitive.sizeX = "크기 X";
@@ -1724,10 +1727,11 @@ scene.iconSize.min = "최소";
 // Max size of icon
 scene.iconSize.max = "최대";
 // display hierarchy lines (visibility helper)
-scene.showHierarchy = "계층선";
-scene.showHierarchy.help = "뷰포트에서 부모와 자식 사이에 선을 표시합니다.";
-scene.showHierarchyNomadPivot = "Nomad 피벗 사용";
-scene.showHierarchyNomadPivot.help = "Nomad 피벗은 변환 및 기즈모 도구에서 사용되는 피벗입니다.
+scene.hierarchy = "계층선";
+scene.hierarchy.help = "뷰포트에서 부모와 자식 사이에 선을 표시합니다.";
+scene.hierarchy.thickness = "두께";
+scene.hierarchy.nomadPivot = "Nomad 피벗 사용";
+scene.hierarchy.nomadPivot.help = "Nomad 피벗은 변환 및 기즈모 도구에서 사용되는 피벗입니다.
 
 이 옵션을 비활성화하면, 자연스러운 기본 피벗을 사용합니다.
 어떤 경우에는 이 기본 피벗이 객체 중심에서 멀리 떨어져 있을 수 있습니다!";
@@ -2703,6 +2707,9 @@ UV 언랩";
 topology.uv.title = "UV 언랩";
 // UV Unwrap but as a Verb
 topology.uv.unwrap = "언랩";
+// atlas options
+topology.uv.atlas.maxStretch = "최대 늘어남";
+topology.uv.atlas.gutter = "아일랜드 간격";
 // The operation can be very slow
 topology.uv.atlas.warning = "매우 느릴 수 있습니다. 버텍스 10만 개 이하를 목표로 하세요!";
 // Handles are topological holes (synonym: genus, hole)
@@ -2786,6 +2793,11 @@ topology.manifold.title.help = "비매니폴드 엣지를 정리하려고 시도
 
 // Reset key-bindings/shortcuts
 binding.reset = "바인딩 초기화";
+// Toggle between
+binding.panZoom = "줌(키를 놓을 때)";
+binding.panZoom.help = "핫키를 놓으면 줌으로 전환합니다.";
+binding.zoomPan = "이동(키를 놓을 때)";
+binding.zoomPan.help = "핫키를 놓으면 이동으로 전환합니다.";
 // Add node in a sync mode (synchronize instance)
 binding.addSync = "동기화";
 binding.addSync.help = "기본적으로 장면 메뉴에 설정된 동기화 값을 사용합니다.";
@@ -2828,10 +2840,13 @@ binding.invertZoomY = "줌 Y 반전";
 binding.editRadius = "도구 반지름";
 // Edit the tool brush size/radius
 binding.editIntensity = "도구 강도";
-// Controller dead zone
+// Dead zones
+binding.drift = "데드 존(드리프트)";
+binding.drift.help = "컨트롤러를 건드리지 않았는데도 카메라가 움직인다면 이 값들을 높이십시오.";
 binding.joystick = "조이스틱";
-binding.controller.deadZone = "스틱 데드 존";
-binding.controller.deadZone.help = "조이스틱이 가만히 있어도 카메라가 움직인다면 이 값을 높이십시오.";
+binding.gamepad = "게임패드";
+binding.spacemouse = "SpaceMouse";
+binding.button = "버튼";
 // Snap the camera
 binding.view.front = "전면 보기";
 binding.view.left = "좌측 보기";
@@ -2919,6 +2934,7 @@ license.device.mismatch = "디바이스 ID 불일치!";
 
 license.error429 = "요청이 너무 많습니다 (기다려 주세요).";
 
+license.validate = "검증";
 license.validate.error404 = "라이센스 키를 찾을 수 없습니다.";
 license.validate.error422 = "처리되지 않는 엔티티.";
 
@@ -2960,6 +2976,10 @@ version.qr.promo = "
 
 version.trialLayer = "평가판: 메시 당 1개의 레이어";
 version.trialNoExport = "평가판: 익스포트 기능을 사용할 수 없음";
+
+version.webUnlock = "웹 버전은 네이티브 앱만큼 공식적으로 지원되지 않습니다.
+
+Polar.sh 라이선스 키를 입력하여 전체 버전을 잠금 해제하세요";
 
 version.fullFeatures = "• 일회성 구매
 • 무제한 실행 취소/다시 실행
@@ -3040,3 +3060,20 @@ store.description.interface = "• 인터페이스
 store.description.remesher = "• 쿼드 리메셔 (별도 앱 내 구매만)
 메쉬 곡률을 따르는 쿼드 지배 메쉬로 객체를 자동으로 리메시합니다.
 가이드, 페이스 그룹 및 밀도 페인트를 지원합니다.";
+
+store.steam = "Nomad Sculpt는 속도와 단순함을 위해 설계된 3D 조각 앱입니다.
+아이디어를 빠르게 형태로 잡을 때든, 섬세한 디테일을 다듬을 때든 자연스럽게 스케치하고, 형태를 만들고, 정교하게 다듬을 수 있습니다.
+
+• 조각 브러시(클레이, 플래튼, 스무스, 마스크, 트림 등)
+• 유연한 워크플로를 위한 다이내믹 토폴로지 및 Voxel 리메싱
+• Multiresolution 조각
+• 조각 및 페인팅을 위한 Layer 시스템
+• 버텍스 페인팅(색상, Roughness, Metalness)
+• 완전 커스터마이즈 가능한 브러시(Alpha, 폴오프, 압력, 타일링)
+• 프리미티브 형태(튜브, 선반, 실린더, 토러스…)
+• 자동 UV 언래핑(페이스 그룹 지원)
+• Baking(버텍스 ↔ 텍스처)
+• 디시메이션
+• 메쉬 분할을 위한 페이스 그룹
+• PBR 렌더링 + MatCap + 후처리
+• 가져오기/내보내기(glTF, OBJ, FBX, STL, PLY)";

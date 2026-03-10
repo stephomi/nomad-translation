@@ -1593,6 +1593,7 @@ primitive.tube = "أنبوب";
 primitive.plane = "سطح مستو";
 primitive.triplanar = "ثلاثي السطح";
 primitive.needValidate = "يجب التحقق من البدائية!";
+primitive.curveFlip = "عكس المنحنى";
 
 // If enabled, we can edit primitive inside the viewport
 primitive.edit = "تحرير";
@@ -1623,6 +1624,8 @@ primitive.radius = "نصف القطر";
 primitive.radius.sync = "نفس نصف القطر";
 primitive.radius.start = "بدء نصف القطر";
 primitive.radius.end = "نهاية نصف القطر";
+// Dimension (as in box size)
+primitive.dimension = "الأبعاد";
 // Size (of cube x dimension)
 primitive.size = "الحجم";
 primitive.sizeX = "حجم X";
@@ -1722,10 +1725,11 @@ scene.iconSize.min = "صغرى";
 // Max size of icon
 scene.iconSize.max = "كبرى";
 // display hierarchy lines (visibility helper)
-scene.showHierarchy = "خطوط التسلسل الهرمي";
-scene.showHierarchy.help = "عرض خط بين الوالد وأطفاله في العرض.";
-scene.showHierarchyNomadPivot = "استخدم محور Nomad";
-scene.showHierarchyNomadPivot.help = "محور Nomad هو المحور الذي تستخدمه أدوات التحويل وGizmo.
+scene.hierarchy = "خطوط التسلسل الهرمي";
+scene.hierarchy.help = "عرض خط بين الوالد وأطفاله في العرض.";
+scene.hierarchy.thickness = "السُّمْك";
+scene.hierarchy.nomadPivot = "استخدم محور Nomad";
+scene.hierarchy.nomadPivot.help = "محور Nomad هو المحور الذي تستخدمه أدوات التحويل وGizmo.
 
 إذا تم تعطيل هذا الخيار ، فسيستخدم المحور الأساسي الطبيعي.
 في بعض الحالات ، قد يكون هذا المحور البعيد بعيدًا عن مركز الكائن نفسه!";
@@ -2700,6 +2704,9 @@ topology.qremesh.hole.help = "يمكن أن تُنتج الخوارزمية أح
 topology.uv.title = "تغليف UV";
 // UV Unwrap but as a Verb
 topology.uv.unwrap = "تغليف";
+// atlas options
+topology.uv.atlas.maxStretch = "أقصى تمدد";
+topology.uv.atlas.gutter = "تباعد الجزر";
 // The operation can be very slow
 topology.uv.atlas.warning = "قد تكون العملية بطيئة جدًا، الهدف < 100k رؤوس!";
 // Handles are topological holes (synonym: genus, hole)
@@ -2716,8 +2723,8 @@ topology.uv.bff.help = "القيمة الأعلى ستقلل التشويه لل
 القيمة الأعلى تعني وقت حساب أطول.";
 topology.uv.delete = "حذف UVs";
 
-topology.uv.inspector = "إظهار خريطة ‎UV‎ بعد عملية الفك (Unwrap)";
-topology.uv.inspector.help = "يبدّل عرض معاين خريطة ‎UV‎ بعد عملية الفك (Unwrap).";
+topology.uv.inspector = "إظهار خريطة UV بعد عملية الفك";
+topology.uv.inspector.help = "يبدّل عرض معاين خريطة UV بعد عملية الفك.";
 
 // Transfer the vertex painting in the texture, bake means "create texture (from mesh data)"
 topology.bake.title = "خبز";
@@ -2783,6 +2790,11 @@ topology.manifold.title.help = "يحاول تنظيف الحواف غير الم
 
 // Reset key-bindings/shortcuts
 binding.reset = "إعادة تعيين التوجيهات";
+// Toggle between
+binding.panZoom = "التكبير/التصغير (عند الإفلات)";
+binding.panZoom.help = "بدّل إلى التكبير/التصغير عند إفلات مفتاح الاختصار.";
+binding.zoomPan = "الترجمة (عند الإفلات)";
+binding.zoomPan.help = "بدّل إلى الترجمة عند إفلات مفتاح الاختصار.";
 // Add node in a sync mode (synchronize instance)
 binding.addSync = "مزامنة";
 binding.addSync.help = "بشكل افتراضي، سيستخدم قيمة التزامن المحددة في قائمة المشهد.";
@@ -2823,10 +2835,13 @@ binding.invertZoomY = "عكس تكبير المحور Y";
 binding.editRadius = "نصف قطر الأداة";
 // Edit the tool brush size/radius
 binding.editIntensity = "شدة الأداة";
-// Controller dead zone
+// Dead zones
+binding.drift = "المناطق الميتة (الانجراف)";
+binding.drift.help = "ارفع هذه القيم إذا كانت الكاميرا تتحرك حتى إذا تُركت وحدة التحكم دون لمس.";
 binding.joystick = "عصا التحكم";
-binding.controller.deadZone = "منطقة ميتة للمتحكم";
-binding.controller.deadZone.help = "رفع هذه القيمة إذا كانت الكاميرا تتحرك حتى إذا لم يتم لمس عصا التحكم.";
+binding.gamepad = "يد التحكم";
+binding.spacemouse = "SpaceMouse";
+binding.button = "زر";
 // Snap the camera
 binding.view.front = "عرض أمامي";
 binding.view.left = "عرض يسار";
@@ -2916,6 +2931,7 @@ license.device.mismatch = "عدم تطابق معرّف الجهاز!";
 
 license.error429 = "عدد الطلبات كبير جداً (انتظر).";
 
+license.validate = "تأكيد";
 license.validate.error404 = "لم يتم العثور على مفتاح الرخصة.";
 license.validate.error422 = "كيان غير قابل للمعالجة.";
 
@@ -2957,6 +2973,10 @@ version.qr.promo = "
 
 version.trialLayer = "نسخة تجريبية: طبقة واحدة لكل كائن";
 version.trialNoExport = "نسخة تجريبية: لا يوجد تصدير";
+
+version.webUnlock = "إصدار الويب غير مدعوم رسميًا مثل التطبيقات الأصلية.
+
+افتح الإصدار الكامل بإدخال مفتاح ترخيص Polar.sh الخاص بك";
 
 version.fullFeatures = "• شراء مرة واحدة 
 • تراجع/إعادة لا محدودة 
@@ -3043,3 +3063,20 @@ store.description.interface = "• واجهة مستخدم
 store.description.remesher = "• Quad Remesher (شراء داخل التطبيق منفصل فقط)
 قم بإعادة تشكيل الكائن تلقائيًا باستخدام شبكة رباعية تتبع انحناءات الشبكة.
 يدعم الأدلة، مجموعات الوجه ودهان الكثافة.";
+
+store.steam = "Nomad Sculpt هو تطبيق نحت ثلاثي الأبعاد مصمم للسرعة والبساطة.
+يمكنك الرسم، والتشكيل، وصقل الأشكال بشكل طبيعي، سواء عند وضع الأفكار الأساسية أو العمل على التفاصيل الدقيقة.
+
+• فُرش النحت (طين، تسطيح، تنعيم، قناع، تشذيب، إلخ)
+• الطوبولوجيا الديناميكية وإعادة تشكيل الشبكة باستخدام Voxel لسير عمل مرن
+• النحت متعدد الدقة
+• نظام Layer للنحت والرسم
+• طلاء الرؤوس (اللون، Roughness، Metalness)
+• فُرش قابلة للتخصيص بالكامل (Alpha، التدرّج، الضغط، التبليط)
+• أشكال بدائية (أنبوب، مخرطة، أسطوانة، طورس…)
+• فكّ التفاف UV تلقائيًا (مع دعم مجموعات الوجوه)
+• Baking (الرؤوس ↔ القوام)
+• تقليل المضلعات
+• مجموعات الوجوه لتقسيم Mesh
+• عرض PBR + MatCap + ما بعد المعالجة
+• استيراد/تصدير (glTF، OBJ، FBX، STL، PLY)";
