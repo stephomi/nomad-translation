@@ -318,8 +318,6 @@ alert.forcePainting.fill = "Boyamayı gösterme etkin, [Tümünü boya] kullanı
 alert.forcePainting.tool = "Boyamayı gösterme etkin, nesne boyandı.";
 // See Glossary (Multiresolution)
 alert.multiresLost = "Çoklu çözünürlük kaybolacak!";
-// Boolean cut mode will ignore some features
-alert.booleanIgnored = "Boolean, maskeleme veya gizleme alanlarını göz ardı edecek!";
 // The user is starting an operation that can lead to a crash
 alert.range.warning = "Detay değeri yüksek ve çok bellek gerektirebilir!";
 // Autosave popup
@@ -1396,6 +1394,12 @@ mesh.static = "Doku Örgüsü";
 mesh.multires = "Çoklu Çözünürlük";
 // Dynamic topology
 mesh.dynamic = "DinTopo";
+// merge radius for 3d points
+mesh.snap.pos = "Pozisyon Kaynaştırma Yarıçapı";
+mesh.snap.pos.help = "Boolean, Birleştir, Seyrelt veya Manifold gibi işlemler sırasında mesafeye göre yakındaki noktaları birleştirir.";
+// merge radius for 2d uvs
+mesh.snap.uv = "UV Kaynaştırma Yarıçapı";
+mesh.snap.uv.help = "Boolean, Birleştir, Seyrelt veya Manifold gibi işlemler sırasında mesafeye göre yakındaki UV öğelerini birleştirir.";
 
 // Disable this option to have per-tool material settings (instead of shared settings)
 paint.useGlobal = "Global malzeme";
@@ -1596,6 +1600,7 @@ primitive.tube = "Tüp";
 primitive.plane = "Düzlem";
 primitive.triplanar = "Üç düzlemli";
 primitive.needValidate = "Primitiflerin doğrulanması gerekir!";
+primitive.curveFlip = "Eğriyi çevir";
 
 // If enabled, we can edit primitive inside the viewport
 primitive.edit = "Düzenle";
@@ -1628,6 +1633,8 @@ primitive.radius = "Yarıçap";
 primitive.radius.sync = "Aynı yarıçap";
 primitive.radius.start = "Yarıçap başlangıcı";
 primitive.radius.end = "Yarıçap sonu";
+// Dimension (as in box size)
+primitive.dimension = "Boyut";
 // Size (of cube x dimension)
 primitive.size = "Büyüklük";
 primitive.sizeX = "X Büyüklüğü";
@@ -1727,10 +1734,11 @@ scene.iconSize.min = "Min";
 // Max size of icon
 scene.iconSize.max = "Maks";
 // display hierarchy lines (visibility helper)
-scene.showHierarchy = "Hiyerarşi çizgileri";
-scene.showHierarchy.help = "Ebeveyn ile çocukları arasında görünümde bir çizgi göster.";
-scene.showHierarchyNomadPivot = "Nomad pivotunu kullan";
-scene.showHierarchyNomadPivot.help = "Nomad pivotu, Dönüşüm ve Kontrol çubuğu araçları tarafından kullanılan pivotudur.
+scene.hierarchy = "Hiyerarşi çizgileri";
+scene.hierarchy.help = "Ebeveyn ile çocukları arasında görünümde bir çizgi göster.";
+scene.hierarchy.thickness = "Kalınlık";
+scene.hierarchy.nomadPivot = "Nomad pivotunu kullan";
+scene.hierarchy.nomadPivot.help = "Nomad pivotu, Dönüşüm ve Kontrol çubuğu araçları tarafından kullanılan pivotudur.
 
 Bu seçenek devre dışı bırakılırsa, doğal temel pivot kullanılacaktır.
 Bazı durumlarda bu temel pivot, nesnenin kendisi merkezinden uzakta olabilir!";
@@ -1775,6 +1783,8 @@ scene.noneButNeedOne = "Hiçbir nesne seçili değil, lütfen bir nesne seçin."
 // Need to select one object only
 scene.onlyOneObject = "Birden çok nesne seçili, lütfen bir nesne seçin.";
 // Boolean operation
+scene.overlaps = "Çakışmaları Temizle";
+scene.overlaps.help = "Kendi kendine kesişmeleri temiz bir yüzeye birleştirir.";
 scene.boolean = "Boolean";
 scene.boolean.help = "Merge, subtract or intersect objects by performing a boolean operation.
 
@@ -2352,12 +2362,19 @@ tool.measure = "Ölç";
 tool.lattice = "Kafes";
 // If an option is shared among the tools
 tool.all = "Tümü";
+
+tool.trim.detail.protect = "Kesim detayını kullan";
+tool.trim.detail.protect.help = "Yukarıdaki detay değeri, maskelenmiş ve gizli yüzlerin sınırlarına da uygulanır.
+
+Devre dışı bırakıldığında, kesim hassasiyeti alttaki ağ topolojisini takip eder.";
+
 // Ideally short strings (Quad Remesher)
 tool.remesh = "Quad Remesher";
 tool.remesh.guides = "Rehberler";
 tool.remesh.density = "Yoğunluk";
 tool.remesh.same = "Same";
 tool.remesh.half = "Half";
+
 // Ideally short strings (FaceGroup)
 tool.faceGroup = "Yüz Grubu";
 tool.faceGroup.autoPick = "Otomatik seç";
@@ -2709,6 +2726,9 @@ UV hesapla";
 topology.uv.title = "UV Açma";
 // UV Unwrap but as a Verb
 topology.uv.unwrap = "Hesapla";
+// atlas options
+topology.uv.atlas.maxStretch = "Maks. Esneme";
+topology.uv.atlas.gutter = "Ada Aralığı";
 // The operation can be very slow
 topology.uv.atlas.warning = "Çok yavaş olabilir, hedef < 100k verteks!";
 // Handles are topological holes (synonym: genus, hole)
@@ -2792,6 +2812,11 @@ Bu, 2'den fazla yüzeyi ortak olan kenarları desteklemeyen harici yazılımlar 
 
 // Reset key-bindings/shortcuts
 binding.reset = "Atamaları sıfırla";
+// Toggle between
+binding.panZoom = "Yakınlaştırma (bırakınca)";
+binding.panZoom.help = "Kısayol tuşunu bıraktığınızda yakınlaştırmaya geçer.";
+binding.zoomPan = "Kaydırma (bırakınca)";
+binding.zoomPan.help = "Kısayol tuşunu bıraktığınızda kaydırmaya geçer.";
 // Add node in a sync mode (synchronize instance)
 binding.addSync = "Senkronize";
 binding.addSync.help = "Varsayılan olarak, sahne menüsünde ayarlanan senkronizasyon değerini kullanacaktır.";
@@ -2834,10 +2859,13 @@ binding.invertZoomY = "Zoom Y’yi Ters Çevir";
 binding.editRadius = "Araç Yarıçapı";
 // Edit the tool brush size/radius
 binding.editIntensity = "Araç yoğunluğu";
-// Controller dead zone
+// Dead zones
+binding.drift = "Ölü bölgeler (drift)";
+binding.drift.help = "Denetleyiciye dokunulmasa bile Kamera hareket ediyorsa bu değerleri artırın.";
 binding.joystick = "Joystick";
-binding.controller.deadZone = "Ölü bölgeyi yapıştır";
-binding.controller.deadZone.help = "Kameranın hareket ettiği durumlarda, denetleyici çubuğu hareket ettirilmeden bile bu değeri artırın.";
+binding.gamepad = "Gamepad";
+binding.spacemouse = "SpaceMouse";
+binding.button = "Düğme";
 // Snap the camera
 binding.view.front = "Ön Görünüm";
 binding.view.left = "Sol Görünüm";
@@ -2927,6 +2955,7 @@ license.device.mismatch = "Cihaz kimliği eşleşmiyor!";
 
 license.error429 = "Çok fazla istek (bekleyin).";
 
+license.validate = "Doğrula";
 license.validate.error404 = "Lisans anahtarı bulunamadı.";
 license.validate.error422 = "İşlenemez Varlık.";
 
@@ -2968,6 +2997,10 @@ Quad Remesher, https://exoside.com/ tarafından geliştirilmiştir.";
 
 version.trialLayer = "Deneme sürümü: Ağ örgüsü başına 1 katman";
 version.trialNoExport = "Deneme sürümü: dışa aktarma yok";
+
+version.webUnlock = "Web sürümü, yerel uygulamalar gibi resmi olarak desteklenmemektedir.
+
+Polar.sh lisans anahtarınızı girerek tam sürümün kilidini açın";
 
 version.fullFeatures = "• Tek sefer satın alma
 • Sınırsız geri alma/yineleme
@@ -3054,3 +3087,20 @@ Mobil deneyim için tasarlanmış kullanımı kolay arayüz.
 store.description.remesher = "• Dörtgen Yeniden Örgüleme (yalnızca ayrı iç satın alım ile)
 Nesneni ağ eğrilerini takip eden dörtgen dominant bir ağ ile otomatik olarak yeniden örgüle.
 Kılavuzları, yüz gruplarını ve yoğunluk boyamayı destekler.";
+
+store.steam = "Nomad Sculpt, hız ve sadelik için geliştirilmiş bir 3D heykel uygulamasıdır.
+Fikirleri bloklarken ya da ince detaylar üzerinde çalışırken, formları doğal bir şekilde taslaklayabilir, şekillendirebilir ve geliştirebilirsiniz.
+
+• Heykel fırçaları (kil, düzleştir, yumuşat, Mask, kes, vb.)
+• Esnek iş akışları için dinamik topoloji ve Voxel yeniden ağ oluşturma
+• Multiresolution heykel
+• Heykel ve boyama için Layer sistemi
+• Vertex boyama (renk, Roughness, Metalness)
+• Tamamen özelleştirilebilir fırçalar (Alpha'lar, falloff, basınç, döşeme)
+• Primitif şekiller (tüp, torna, silindir, torus…)
+• Otomatik UV açma (yüz grupları desteği ile)
+• Baking (vertex ↔ dokular)
+• Desimasyon
+• Mesh segmentasyonu için yüz grupları
+• PBR render + MatCap + post-processing
+• İçe/dışa aktarma (glTF, OBJ, FBX, STL, PLY)";

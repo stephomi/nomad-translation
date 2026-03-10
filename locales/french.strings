@@ -316,8 +316,6 @@ alert.forcePainting.fill = "Option Afficher la peinture activée, la fonction [T
 alert.forcePainting.tool = "Option Afficher la peinture activée, l'objet a été peint.";
 // See Glossary (Multiresolution)
 alert.multiresLost = "La multirésolution sera perdue !";
-// Boolean cut mode will ignore some features
-alert.booleanIgnored = "Le mode de découpe Boolean ignorera les zones masquées ou cachées !";
 // The user is starting an operation that can lead to a crash
 alert.range.warning = "Le niveau de détail est élevé et peut nécessiter beaucoup de mémoire !";
 // Autosave popup
@@ -1395,6 +1393,12 @@ mesh.static = "Maillage";
 mesh.multires = "Multires";
 // Dynamic topology
 mesh.dynamic = "DynTopo";
+// merge radius for 3d points
+mesh.snap.pos = "Rayon de soudure de position";
+mesh.snap.pos.help = "Fusionne les points proches en fonction de la distance lors d’opérations telles que Booléen, Joindre, Décimer ou Manifold.";
+// merge radius for 2d uvs
+mesh.snap.uv = "Rayon de soudure UV";
+mesh.snap.uv.help = "Fusionne les UV proches en fonction de la distance lors d’opérations telles que Booléen, Joindre, Décimer ou Manifold.";
 
 // Disable this option to have per-tool material settings (instead of shared settings)
 paint.useGlobal = "Matériau général";
@@ -1595,6 +1599,7 @@ primitive.tube = "Tube";
 primitive.plane = "Plan";
 primitive.triplanar = "Triplanaire";
 primitive.needValidate = "La primitive doit être validée!";
+primitive.curveFlip = "Inverser la courbe";
 
 // If enabled, we can edit primitive inside the viewport
 primitive.edit = "Modifier";
@@ -1627,6 +1632,8 @@ primitive.radius = "Rayon";
 primitive.radius.sync = "Même rayon";
 primitive.radius.start = "Début du rayon";
 primitive.radius.end = "Fin du rayon";
+// Dimension (as in box size)
+primitive.dimension = "Dimension";
 // Size (of cube x dimension)
 primitive.size = "Taille";
 primitive.sizeX = "Taille X";
@@ -1726,10 +1733,11 @@ scene.iconSize.min = "Min";
 // Max size of icon
 scene.iconSize.max = "Max";
 // display hierarchy lines (visibility helper)
-scene.showHierarchy = "Lignes hiérarchiques";
-scene.showHierarchy.help = "Afficher une ligne entre le parent et ses enfants dans le viewport.";
-scene.showHierarchyNomadPivot = "Utiliser le pivot Nomad";
-scene.showHierarchyNomadPivot.help = "Le pivot Nomad est le pivot utilisé par les outils de Transformation et Gizmo.
+scene.hierarchy = "Lignes hiérarchiques";
+scene.hierarchy.help = "Afficher une ligne entre le parent et ses enfants dans le viewport.";
+scene.hierarchy.thickness = "Épaisseur";
+scene.hierarchy.nomadPivot = "Utiliser le pivot Nomad";
+scene.hierarchy.nomadPivot.help = "Le pivot Nomad est le pivot utilisé par les outils de Transformation et Gizmo.
 
 Si cette option est désactivée, il utilisera le pivot de base naturel.
 Dans certains cas, ce pivot de base peut être loin du centre de l'objet lui-même!";
@@ -1774,6 +1782,8 @@ scene.noneButNeedOne = "Aucun objet sélectionné, veuillez sélectionner un obj
 // Need to select one object only
 scene.onlyOneObject = "Plusieurs objets sont sélectionnés, veuillez ne sélectionner qu'un seul objet.";
 // Boolean operation
+scene.overlaps = "Nettoyer les chevauchements";
+scene.overlaps.help = "Fusionner les auto-intersections pour obtenir une surface propre.";
 scene.boolean = "Booléen";
 scene.boolean.help = "Fusionnez, soustrayez ou intersectez des objets en effectuant une opération booléenne.
 
@@ -2351,12 +2361,19 @@ tool.measure = "Mesurer";
 tool.lattice = "Treillis";
 // If an option is shared among the tools
 tool.all = "Tout";
+
+tool.trim.detail.protect = "Utiliser les détails de coupe";
+tool.trim.detail.protect.help = "La valeur de détail ci-dessus est également appliquée aux bordures des faces masquées et cachées.
+
+Lorsque cette option est désactivée, la précision de coupe suit la topologie du maillage sous-jacent.";
+
 // Ideally short strings (Quad Remesher)
 tool.remesh = "Quad Remesher";
 tool.remesh.guides = "Guides";
 tool.remesh.density = "Densité";
 tool.remesh.same = "Identique";
 tool.remesh.half = "Moitié";
+
 // Ideally short strings (FaceGroup)
 tool.faceGroup = "Groupe de faces";
 tool.faceGroup.autoPick = "Sélection auto";
@@ -2708,6 +2725,9 @@ Dépliage UV";
 topology.uv.title = "Déplier UV";
 // UV Unwrap but as a Verb
 topology.uv.unwrap = "Déplier";
+// atlas options
+topology.uv.atlas.maxStretch = "Étirement max.";
+topology.uv.atlas.gutter = "Espacement des îlots";
 // The operation can be very slow
 topology.uv.atlas.warning = "L'opération peut être très lente, ciblez moins de 100 000 sommets !";
 // Handles are topological holes (synonym: genus, hole)
@@ -2791,6 +2811,11 @@ Cela peut être utile pour les logiciels externes qui ne prennent pas en charge 
 
 // Reset key-bindings/shortcuts
 binding.reset = "Réinitialiser les raccourcis";
+// Toggle between
+binding.panZoom = "Zoom (au relâchement)";
+binding.panZoom.help = "Passer au zoom au relâchement du raccourci clavier.";
+binding.zoomPan = "Translation (au relâchement)";
+binding.zoomPan.help = "Passer à la translation au relâchement du raccourci clavier.";
 // Add node in a sync mode (synchronize instance)
 binding.addSync = "Synchroniser";
 binding.addSync.help = "Par défaut, il utilisera la valeur de synchronisation définie dans le menu de la scène.";
@@ -2833,10 +2858,13 @@ binding.invertZoomY = "Inverser zoom Y";
 binding.editRadius = "Rayon de l'outil";
 // Edit the tool brush size/radius
 binding.editIntensity = "Intensité de l'outil";
-// Controller dead zone
+// Dead zones
+binding.drift = "Zones mortes (dérive)";
+binding.drift.help = "Augmentez ces valeurs si la caméra bouge même si le contrôleur est laissé intact.";
 binding.joystick = "Joystick";
-binding.controller.deadZone = "Zone morte du stick";
-binding.controller.deadZone.help = "Augmentez cette valeur si la caméra bouge même si le stick du contrôleur reste intact.";
+binding.gamepad = "Manette de jeu";
+binding.spacemouse = "SpaceMouse";
+binding.button = "Bouton";
 // Snap the camera
 binding.view.front = "Vue de Face";
 binding.view.left = "Vue de Gauche";
@@ -2924,6 +2952,7 @@ license.device.mismatch = "Identification de l'appareil inadéquate !";
 
 license.error429 = "Trop de demandes (attendez).";
 
+license.validate = "Valider";
 license.validate.error404 = "La clé de licence n’a pas été trouvée.";
 license.validate.error422 = "Entité non traitable.";
 
@@ -2965,6 +2994,10 @@ Le Quad Remesher est développé par https://exoside.com/.";
 
 version.trialLayer = "Version d'essai : 1 calque par maillage";
 version.trialNoExport = "Version d'essai : pas d'exportation";
+
+version.webUnlock = "La version web nest pas officiellement prise en charge comme les applications natives.
+
+D e9verrouillez la version compl e8te en saisissant votre cl e9 de licence Polar.sh";
 
 version.fullFeatures = "• Achat définitif
 • Opérations Annuler/Rétablir illimitées
@@ -3051,3 +3084,20 @@ La personnalisation est possible également !";
 store.description.remesher = "• Quad Remesher (achat in-app séparé uniquement)
 Remesh automatiquement votre objet avec un mesh dominant en quads qui suit les courbures du mesh.
 Il prend en charge les guides, les face groups et la peinture de densité.";
+
+store.steam = "Nomad Sculpt est une application de sculpture 3D conçue pour la rapidité et la simplicité.
+Vous pouvez esquisser, modeler et affiner des formes naturellement, que ce soit pour bloquer des idées ou travailler les détails fins.
+
+• Brosses de sculpture (argile, aplatir, lisser, masque, tailler, etc.)
+• Topologie dynamique et remeshing voxel pour des workflows flexibles
+• Sculpture multirésolution
+• Système de calques pour la sculpture et la peinture
+• Peinture de sommets (couleur, rugosité, métallisation)
+• Brosses entièrement personnalisables (alphas, atténuation, pression, pavage)
+• Formes primitives (tube, tour, cylindre, tore…)
+• Dépliage UV automatique (avec prise en charge des groupes de faces)
+• Baking (sommets ↔ textures)
+• Décimation
+• Groupes de faces pour la segmentation du maillage
+• Rendu PBR + MatCap + post-traitement
+• Import/export (glTF, OBJ, FBX, STL, PLY)";

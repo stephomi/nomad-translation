@@ -316,8 +316,6 @@ alert.forcePainting.fill = "显示图层绘画已打开";
 alert.forcePainting.tool = "显示绘画，该对象已被画";
 // See Glossary (Multiresolution)
 alert.multiresLost = "高分辨率将丢失！";
-// Boolean cut mode will ignore some features
-alert.booleanIgnored = "布尔操作将忽略被遮罩或隐藏的区域！";
 // The user is starting an operation that can lead to a crash
 alert.range.warning = "过高的分辨率将会占用大量内存！";
 // Autosave popup
@@ -1397,6 +1395,12 @@ mesh.static = "静态模型";
 mesh.multires = "多分辨率";
 // Dynamic topology
 mesh.dynamic = "动态模型";
+// merge radius for 3d points
+mesh.snap.pos = "位置焊接半径";
+mesh.snap.pos.help = "在布尔、合并、减面或流形等操作期间，按距离合并附近的点。";
+// merge radius for 2d uvs
+mesh.snap.uv = "UV 焊接半径";
+mesh.snap.uv.help = "在布尔、合并、减面或流形等操作期间，按距离合并附近的 UV。";
 
 // Disable this option to have per-tool material settings (instead of shared settings)
 paint.useGlobal = "应用全局材料";
@@ -1597,6 +1601,7 @@ primitive.tube = "圆管";
 primitive.plane = "平面";
 primitive.triplanar = "三面体";
 primitive.needValidate = "基本体需转换为可编辑对象后!";
+primitive.curveFlip = "翻转曲线";
 
 // If enabled, we can edit primitive inside the viewport
 primitive.edit = "编辑";
@@ -1629,6 +1634,8 @@ primitive.radius = "半径";
 primitive.radius.sync = "相同半径";
 primitive.radius.start = "起始半径";
 primitive.radius.end = "结束半径";
+// Dimension (as in box size)
+primitive.dimension = "尺寸";
 // Size (of cube x dimension)
 primitive.size = "尺寸";
 primitive.sizeX = "尺寸 X";
@@ -1728,10 +1735,11 @@ scene.iconSize.min = "最小值";
 // Max size of icon
 scene.iconSize.max = "最大";
 // display hierarchy lines (visibility helper)
-scene.showHierarchy = "层级线";
-scene.showHierarchy.help = "在视口中显示父项与其子项之间的线条。";
-scene.showHierarchyNomadPivot = "使用Nomad枢轴";
-scene.showHierarchyNomadPivot.help = "Nomad枢轴是变换和操作杆工具使用的枢轴。
+scene.hierarchy = "层级线";
+scene.hierarchy.help = "在视口中显示父项与其子项之间的线条。";
+scene.hierarchy.thickness = "厚度";
+scene.hierarchy.nomadPivot = "使用Nomad枢轴";
+scene.hierarchy.nomadPivot.help = "Nomad枢轴是变换和操作杆工具使用的枢轴。
 
 如果此选项被禁用，它将使用自然基础枢轴。
 在某些情况下，这个基础枢轴可能远离对象中心！";
@@ -1776,6 +1784,8 @@ scene.noneButNeedOne = "未选中任何对象，请至少选中一个对象。";
 // Need to select one object only
 scene.onlyOneObject = "您选择了多个对象，无法修改图层。";
 // Boolean operation
+scene.overlaps = "清理重叠";
+scene.overlaps.help = "将自相交合并为干净的表面。";
 scene.boolean = "布尔";
 scene.boolean.help = "Merge, subtract or intersect objects by performing a boolean operation.
 
@@ -2355,12 +2365,19 @@ tool.measure = "测量";
 tool.lattice = "格子";
 // If an option is shared among the tools
 tool.all = "全部";
+
+tool.trim.detail.protect = "使用切割细节";
+tool.trim.detail.protect.help = "以上的细节值也会应用于已遮罩和隐藏面的边界。
+
+禁用时，切割精度将遵循底层网格拓扑。";
+
 // Ideally short strings (Quad Remesher)
 tool.remesh = "四边形重构";
 tool.remesh.guides = "引导线";
 tool.remesh.density = "密度";
 tool.remesh.same = "相同";
 tool.remesh.half = "一半";
+
 // Ideally short strings (FaceGroup)
 tool.faceGroup = "面组";
 tool.faceGroup.autoPick = "自动选择";
@@ -2713,6 +2730,9 @@ UV展开";
 topology.uv.title = "UV自动展开";
 // UV Unwrap but as a Verb
 topology.uv.unwrap = "展开";
+// atlas options
+topology.uv.atlas.maxStretch = "最大拉伸";
+topology.uv.atlas.gutter = "岛屿间距";
 // The operation can be very slow
 topology.uv.atlas.warning = "可能需要等待很长时间。
 仅限于顶点数小于100k的对象。";
@@ -2797,6 +2817,11 @@ topology.manifold.title.help = "尝试清理非流形边缘。
 
 // Reset key-bindings/shortcuts
 binding.reset = "重设键位绑定";
+// Toggle between
+binding.panZoom = "缩放（松开时）";
+binding.panZoom.help = "在松开快捷键时切换为缩放。";
+binding.zoomPan = "平移（松开时）";
+binding.zoomPan.help = "在松开快捷键时切换为平移。";
 // Add node in a sync mode (synchronize instance)
 binding.addSync = "同步";
 binding.addSync.help = "默认情况下，将使用场景菜单中设置的同步值。";
@@ -2839,10 +2864,13 @@ binding.invertZoomY = "反转缩放Y";
 binding.editRadius = "工具半径";
 // Edit the tool brush size/radius
 binding.editIntensity = "工具强度";
-// Controller dead zone
+// Dead zones
+binding.drift = "死区（漂移）";
+binding.drift.help = "如果即使在控制器未被触碰的情况下相机仍在移动，请提高这些值。";
 binding.joystick = "游戏杆";
-binding.controller.deadZone = "摇杆死区";
-binding.controller.deadZone.help = "如果即使在控制器摇杆未被触碰的情况下相机仍在移动，请提高此值。";
+binding.gamepad = "游戏手柄";
+binding.spacemouse = "SpaceMouse";
+binding.button = "按钮";
 // Snap the camera
 binding.view.front = "正面视图";
 binding.view.left = "左视图";
@@ -2932,6 +2960,7 @@ license.device.mismatch = "设备 ID 不匹配！";
 
 license.error429 = "请求过多（请稍候）。";
 
+license.validate = "验证";
 license.validate.error404 = "许可证密钥未找到。";
 license.validate.error422 = "不可处理的实体。";
 
@@ -2973,6 +3002,10 @@ version.qr.promo = "
 
 version.trialLayer = "试用版本限制：每个物体仅允许添加一个图层";
 version.trialNoExport = "试用版本限制：不允许导出";
+
+version.webUnlock = "网页版不像原生应用那样获得官方支持。
+
+输入你的 Polar.sh 许可证密钥以解锁完整版本";
 
 version.fullFeatures = "购买完整版本后您可以：
 • 撤消或重做不受限制
@@ -3059,3 +3092,20 @@ store.description.interface = "• 界面
 store.description.remesher = "• 四边形重构（仅限应用内购买）
 自动使用符合网格曲率的四边形优势网格重新构建您的物体。
 它支持引导线，面部分组和密度绘画。";
+
+store.steam = "Nomad Sculpt 是一款为速度与简洁而打造的 3D 雕刻应用。
+无论是快速搭建想法，还是打磨精细细节，你都可以以自然的方式进行草绘、塑形并细化形体。
+
+• 雕刻笔刷（黏土、压平、平滑、遮罩、修剪等）
+• 动态拓扑与体素重网格化，带来更灵活的工作流
+• 多分辨率雕刻
+• 用于雕刻与绘制的图层系统
+• 顶点绘制（颜色、粗糙度、金属度）
+• 完全可自定义的笔刷（Alpha、衰减、压力、平铺）
+• 基本体形状（管、车削体、圆柱体、圆环体……）
+• 自动 UV 展开（支持面组）
+• 烘焙（顶点 ↔ 纹理）
+• 减面
+• 用于 Mesh 分割的面组
+• PBR 渲染 + MatCap + 后期处理
+• 导入/导出（glTF、OBJ、FBX、STL、PLY）";

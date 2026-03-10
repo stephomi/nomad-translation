@@ -316,8 +316,6 @@ alert.forcePainting.fill = "Tampilkan pengecatan diaktifkan, [Warnai semua] digu
 alert.forcePainting.tool = "Tampilkan pengecatan diaktifkan, objek telah dicat.";
 // See Glossary (Multiresolution)
 alert.multiresLost = "Multiresolusi akan hilang!";
-// Boolean cut mode will ignore some features
-alert.booleanIgnored = "Boolean akan mengabaikan area yang di-mask atau disembunyikan!";
 // The user is starting an operation that can lead to a crash
 alert.range.warning = "Nilai detail tinggi dan mungkin memerlukan banyak memori!";
 // Autosave popup
@@ -1397,6 +1395,12 @@ mesh.static = "Mesh";
 mesh.multires = "Multires";
 // Dynamic topology
 mesh.dynamic = "DynTopo";
+// merge radius for 3d points
+mesh.snap.pos = "Radius Las Posisi";
+mesh.snap.pos.help = "Gabungkan titik-titik terdekat berdasarkan jarak selama operasi seperti Boolean, Gabung, Decimate, atau Manifold.";
+// merge radius for 2d uvs
+mesh.snap.uv = "Radius Las UV";
+mesh.snap.uv.help = "Gabungkan UV terdekat berdasarkan jarak selama operasi seperti Boolean, Gabung, Decimate, atau Manifold.";
 
 // Disable this option to have per-tool material settings (instead of shared settings)
 paint.useGlobal = "Material global";
@@ -1597,6 +1601,7 @@ primitive.tube = "Tabung";
 primitive.plane = "Bidang";
 primitive.triplanar = "Triplanar";
 primitive.needValidate = "Primitif harus divalidasi!";
+primitive.curveFlip = "Balikkan kurva";
 
 // If enabled, we can edit primitive inside the viewport
 primitive.edit = "Sunting";
@@ -1629,6 +1634,8 @@ primitive.radius = "Radius";
 primitive.radius.sync = "Radius sama";
 primitive.radius.start = "Awal radius";
 primitive.radius.end = "Akhir radius";
+// Dimension (as in box size)
+primitive.dimension = "Dimensi";
 // Size (of cube x dimension)
 primitive.size = "Ukuran";
 primitive.sizeX = "Ukuran X";
@@ -1728,10 +1735,11 @@ scene.iconSize.min = "Min";
 // Max size of icon
 scene.iconSize.max = "Maks";
 // display hierarchy lines (visibility helper)
-scene.showHierarchy = "Garis Hirarki";
-scene.showHierarchy.help = "Tampilkan garis antara induk dan anaknya di jendela pandang.";
-scene.showHierarchyNomadPivot = "Gunakan pivot Nomad";
-scene.showHierarchyNomadPivot.help = "Pivot Nomad adalah pivot yang digunakan oleh alat Transform dan Gizmo.
+scene.hierarchy = "Garis Hirarki";
+scene.hierarchy.help = "Tampilkan garis antara induk dan anaknya di jendela pandang.";
+scene.hierarchy.thickness = "Ketebalan";
+scene.hierarchy.nomadPivot = "Gunakan pivot Nomad";
+scene.hierarchy.nomadPivot.help = "Pivot Nomad adalah pivot yang digunakan oleh alat Transform dan Gizmo.
 
 Jika opsi ini dinonaktifkan, akan menggunakan pivot dasar natural.
 Dalam beberapa kasus, pivot dasar ini bisa jauh dari pusat objeknya!";
@@ -1776,6 +1784,8 @@ scene.noneButNeedOne = "Tidak ada objek yang dipilih, silakan pilih satu objek."
 // Need to select one object only
 scene.onlyOneObject = "Beberapa objek dipilih, silakan pilih hanya satu objek.";
 // Boolean operation
+scene.overlaps = "Bersihkan Tumpang Tindih";
+scene.overlaps.help = "Gabungkan perpotongan sendiri menjadi permukaan yang bersih.";
 scene.boolean = "Boolean";
 scene.boolean.help = "Gabungkan, kurangi, atau silangkan objek dengan melakukan operasi boolean.
 
@@ -2352,12 +2362,19 @@ tool.measure = "Ukuran";
 tool.lattice = "Kerangka";
 // If an option is shared among the tools
 tool.all = "Semua";
+
+tool.trim.detail.protect = "Gunakan detail potong";
+tool.trim.detail.protect.help = "Nilai detail di atas juga diterapkan pada batas wajah yang dimask dan disembunyikan.
+
+Saat dinonaktifkan, presisi pemotongan mengikuti topologi Mesh yang mendasarinya.";
+
 // Ideally short strings (Quad Remesher)
 tool.remesh = "Quad Remesher";
 tool.remesh.guides = "Panduan";
 tool.remesh.density = "Kepadatan";
 tool.remesh.same = "Sama";
 tool.remesh.half = "Setengah";
+
 // Ideally short strings (FaceGroup)
 tool.faceGroup = "Grup Wajah";
 tool.faceGroup.autoPick = "Auto-pilih";
@@ -2710,6 +2727,9 @@ Jika suatu lubang memiliki lebih sedikit puncak dari nilai ini, maka akan diisi.
 topology.uv.title = "Buka UV";
 // UV Unwrap but as a Verb
 topology.uv.unwrap = "Buka";
+// atlas options
+topology.uv.atlas.maxStretch = "Peregangan Maks";
+topology.uv.atlas.gutter = "Jarak Antarpulau";
 // The operation can be very slow
 topology.uv.atlas.warning = "Dapat sangat lambat, target <100k puncak!";
 // Handles are topological holes (synonym: genus, hole)
@@ -2793,6 +2813,11 @@ Ini bisa berguna untuk perangkat lunak eksternal yang tidak mendukung tepi denga
 
 // Reset key-bindings/shortcuts
 binding.reset = "Reset pengikatan";
+// Toggle between
+binding.panZoom = "Zoom (saat dilepas)";
+binding.panZoom.help = "Beralih ke zoom saat tombol pintas dilepas.";
+binding.zoomPan = "Menggeser (saat dilepas)";
+binding.zoomPan.help = "Beralih ke pergeseran saat tombol pintas dilepas.";
 // Add node in a sync mode (synchronize instance)
 binding.addSync = "Sinkron";
 binding.addSync.help = "Secara default, akan menggunakan nilai sinkron yang ditetapkan di menu scene.";
@@ -2835,10 +2860,13 @@ binding.invertZoomY = "Balikkan zoom Y";
 binding.editRadius = "Radius Alat";
 // Edit the tool brush size/radius
 binding.editIntensity = "Intensitas Alat";
-// Controller dead zone
+// Dead zones
+binding.drift = "Zona mati (drift)";
+binding.drift.help = "Tingkatkan nilai ini jika Kamera bergerak meskipun pengontrol dibiarkan tanpa disentuh.";
 binding.joystick = "Joystick";
-binding.controller.deadZone = "Stik zona mati";
-binding.controller.deadZone.help = "Tingkatkan nilai ini jika kamera bergerak meskipun stik pengontrol tidak disentuh.";
+binding.gamepad = "Gamepad";
+binding.spacemouse = "SpaceMouse";
+binding.button = "Tombol";
 // Snap the camera
 binding.view.front = "Tampilan Depan";
 binding.view.left = "Tampilan Kiri";
@@ -2928,6 +2956,7 @@ license.device.mismatch = "ID perangkat tidak cocok!";
 
 license.error429 = "Terlalu banyak permintaan (tunggu).";
 
+license.validate = "Validasi";
 license.validate.error404 = "Kunci lisensi tidak ditemukan.";
 license.validate.error422 = "Entity tidak dapat diproses.";
 
@@ -2969,6 +2998,10 @@ Quad Remesher dikembangkan oleh https://exoside.com/.";
 
 version.trialLayer = "Versi uji coba: 1 lapis per objek";
 version.trialNoExport = "Versi percobaan: Tidak ada ekspor";
+
+version.webUnlock = "Versi web tidak didukung secara resmi seperti aplikasi native.
+
+Buka kunci versi lengkap dengan memasukkan kunci lisensi Polar.sh Anda";
 
 version.fullFeatures = "• Pembelian satu kali
 • Undo/Redo tanpa batas
@@ -3055,3 +3088,20 @@ Personalisasi juga memungkinkan!";
 store.description.remesher = "• Quad Remesher (pembelian dalam aplikasi terpisah hanya)
 Remesh objek Anda secara otomatis dengan mesh dominan yang mengikuti kurvatur mesh.
 Mendukung panduan, grup wajah, dan pewarnaan densitas.";
+
+store.steam = "Nomad Sculpt adalah aplikasi pemahatan 3D yang dibuat untuk kecepatan dan kesederhanaan.
+Anda dapat membuat sketsa, membentuk, dan menyempurnakan bentuk secara natural, baik saat memblokir ide maupun mengerjakan detail halus.
+
+• Kuas sculpting (clay, flatten, smooth, mask, trim, dll.)
+• Topologi dinamis & remeshing voxel untuk alur kerja yang fleksibel
+• Sculpting multiresolution
+• Sistem layer untuk sculpting dan painting
+• Painting vertex (warna, roughness, metalness)
+• Kuas yang sepenuhnya dapat dikustomisasi (alpha, falloff, pressure, tiling)
+• Bentuk primitif (tube, lathe, cylinder, torus…)
+• Unwrapping UV otomatis (dengan dukungan face groups)
+• Baking (vertex ↔ tekstur)
+• Decimation
+• Face groups untuk segmentasi mesh
+• Rendering PBR + matcap + pascapemrosesan
+• Impor/ekspor (glTF, OBJ, FBX, STL, PLY)";
