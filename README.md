@@ -15,14 +15,3 @@ Empty strings `""` will use english as a fallback.
 # Note
 Emojis are not supported.
 Language specific comments starts with `// NOTE:` or `// TODO:`.
-
-<!-- 
-# Integration
-```
-crowdin upload && crowdin upload translations --auto-approve-imported --import-eq-suggestions
-crowdin pre-translate --method ai --ai-prompt=130
-crowdin download
-opencc -i "locales/simplified-chinese.strings" -o "locales/traditional-chinese.strings" -c s2twp
-```
- -->
- 
