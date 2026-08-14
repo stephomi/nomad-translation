@@ -115,10 +115,18 @@ alert.forcePainting.tool = "Visualizzazione pittura attivata: l'oggetto è stato
 alert.gizmo.editObject = "Modalità modifica oggetto.";
 // In this mode, the user moves the Gizmo's pivot instead of the object
 alert.gizmo.editPivot = "Modalità modifica pivot.";
+// Button that turns the heightmap render off
+alert.heightmap.hide = "";
+// The viewport renders the depth of the scene instead of the shaded objects
+alert.heightmapOn = "";
 // The user decided to display hidden faces
 alert.hideIgnored = "Nascondi viene ignorato!";
 // Error when an algorithm needs the object to have a hole (usually to fill it)
 alert.hole.nothing = "L'oggetto non ha aperture!";
+// Button that turns the inspector off
+alert.inspect.hide = "";
+// The viewport renders a material channel instead of the shaded objects
+alert.inspectOn = "";
 // The lattice deformation was applied with a different mask or visibility state
 // (the gui appends the icon of the changed states)
 alert.lattice.desync = "Il reticolo non è sincronizzato!";
@@ -208,6 +216,9 @@ background.imageAlpha = "Opacità";
 background.imageEnable = "Immagine di riferimento";
 // The image will be displayed in overlay (used as a reference by the artist)
 background.imageOverlay = "Sovrapposizione";
+// Apply the post process effects on the reference image
+background.imagePostProcess = "Post processing";
+background.imagePostProcess.help = "Applica gli effetti di post processing all’immagine di riferimento. Disattiva l’opzione per mantenere i colori originali.";
 background.imageReset = "Ripristina impostazioni";
 // Rotation of the reference image
 background.imageRotate = "Rotazione";
@@ -286,6 +297,8 @@ binding.rotateLighting = "Ruota illuminazione";
 // Select all the objects in the scene
 binding.selectAll = "Seleziona tutto";
 binding.snap.toggle = "Attiva/disattiva la modifica della curva";
+// Same as binding.snap.toggle, on a small shortcut button
+binding.snap.toggle.short = "";
 // Snap the view (while rotating)
 binding.snapViewOnRotate = "Aggancia vista (durante la rotazione)";
 binding.spacemouse = "SpaceMouse";
@@ -371,6 +384,8 @@ camera.doubleTapBackgroundFocus.toggle = "Attiva/Disattiva";
 camera.doubleTapFocus.help = "Quando si tocca due volte l'oggetto, la telecamera esegue una panoramica e una messa a fuoco sul punto selezionato.";
 // When we double tap on the object with the finger/stylus
 camera.doubleTapMesh = "Tocca due volte l'oggetto";
+// Same as camera.doubleTapMesh, on a small shortcut button
+camera.doubleTapMesh.short = "";
 // When double tapping with the finger/stylus, the camera pivot will be updated
 camera.doubleTapPivot = "Al doppio tocco";
 camera.doubleTapPivot.help = "Aggiorna il pivot di rotazione quando si tocca due volte la superficie dell'oggetto.";
@@ -465,8 +480,6 @@ cube.right = "Destra";
 cube.top = "Superiore";
 
 curve.bspline = "B-spline";
-// Curve type, https://en.wikipedia.org/wiki/Centripetal_Catmull%E2%80%93Rom_spline
-curve.catmull = "Catmull-Rom";
 // Merge or collapse one point into another
 curve.merge = "Unisci";
 curve.pivot = "Pivot";
@@ -527,12 +540,22 @@ curve.uniform.help = "La curva verrà campionata a intervalli regolari, per gara
 
 È possibile disabilitare questa opzione per controllare un po' i loop dei bordi aggiungendo nuovi punti di controllo sulla curva.";
 
+// Debug section to import/export the icons of the interface
+debug.customIcons = "";
+// Short label for the section shortcut bar
+debug.customIcons.short = "";
+// Debug section for optional features
+debug.feature = "";
 // Debug graphics options
 debug.graphics = "Grafica";
 // Debug option, overrides the rendering to display the depth buffer
 debug.heightmap = "Heightmap";
 // Debug option: display a window with debugging logs
 debug.logs = "Log";
+// Logs window option: break long lines to fit the panel width
+debug.logs.wrap = "";
+// Debug section for multithreading and speed options
+debug.performance = "";
 // Model shortcut window
 debug.shortcut = "Finestra scorciatoie";
 // Set the desired FPS (frame per second, refresh rate)
@@ -540,6 +563,8 @@ debug.targetFps = "FPS obiettivo";
 debug.targetFps.help = "Quando disabilitato, il valore predefinito significa che si sincronizzerà con il tasso di aggiornamento del display.";
 // Debug options, generate screenshots with size compatible with the iOS store
 debug.thumbnails = "Crea miniature per lo store";
+// Same as debug.thumbnails, on a small shortcut button
+debug.thumbnails.short = "";
 // Debug option, Normalize means transforming the data so that it fits in [0-1] the range
 debug.uvNormalize = "Normalizza UVs";
 debug.uvNormalize.help = "Nomad normalizzerà le UV all'interno del riquadro [0-1].";
@@ -638,8 +663,10 @@ file.export.gltf.layer.help = "Esporta livelli come morph. Ufficialmente support
 // Whether we include painting of layers in the exported file (see glossary for layer)
 file.export.gltf.layerPaint = "Pittura dei livelli";
 file.export.gltf.layerPaint.help = "Esporta la pittura dei livelli. Di solito viene ignorata dagli altri software.";
-file.export.nomad.assets = "";
-file.export.nomad.assets.help = "";
+file.export.nomad.assets = "Incorpora MatCap e ambiente";
+file.export.nomad.assets.help = "Include i MatCap personalizzati e l’ambiente nel file, in modo che abbia lo stesso aspetto su un altro dispositivo.
+
+Le risorse integrate non vengono mai incorporate, perché fanno parte di Nomad.";
 file.export.nomad.help = "Formato file interno di Nomad Sculpt.
 
 Questo formato non si aprirà su altri software, è principalmente per scopi di re-importazione.";
@@ -776,11 +803,8 @@ file.project.unsaved = "Vi sono modifiche non salvate!";
 file.render = "Renderizza";
 // height of exported screenshot
 file.render.height = "Altezza";
-// Resolution ratio of the exported screenshot
-file.render.renderRatio = "Rapporto di rendering";
-file.render.renderRatio.help = "Un valore di 1.0 significa che Nomad eseguirà il rendering alla stessa risoluzione delle dimensioni dell'immagine richieste di seguito.
-
-Utilizzare questa opzione se non è possibile eseguire il rendering con una determinata risoluzione (arresto anomalo per mancanza di memoria).";
+// Warning shown when the requested export resolution is too large for the memory left on the device
+file.render.lowMemory = "";
 // Screen resolution parameters for the export screenshot features
 file.render.screenResolution = "Schermo";
 // If we include the App Interface in the exported screenshot
@@ -790,7 +814,7 @@ file.render.size = "Dimensione finale";
 // Desired size of the exported screenshot (custom vs predefined size)
 file.render.size.custom = "Personalizzata";
 // Save the heightmap render as a new brush alpha instead of exporting it as a file
-file.render.toAlpha = "";
+file.render.toAlpha = "Salva come alfa";
 // If true, then the exported screenshot will have transparency data in the image
 file.render.transparent = "Sfondo trasparente";
 file.render.transparent.help = "Questa opzione può essere utile se vuoi inserire la mesh in un software di creazione 2D.
@@ -933,6 +957,8 @@ gesture.wheel.speed3d = "Velocità (zoom 3d)";
 
 // History, list of undo/redo
 history = "Cronologia";
+// Button deleting every operation of the history, freeing the memory and the disk space they use
+history.clear = "Cancella cronologia";
 // Long press on a state of the history list: deletes it and every older one, $0 is a number of operations
 history.delete.confirm = "Eliminare $0 operazione/i dalla cronologia?";
 history.delete.help = "Premi a lungo una voce della cronologia per eliminarla definitivamente insieme a tutta la cronologia precedente.";
@@ -952,17 +978,26 @@ history.include.postProcess.help = "Include le modifiche di post-produzione nell
 // include shading parameters (MatCap & HDRIs) editing in the undo/redo
 history.include.shading = "Shading";
 history.include.shading.help = "Include le modalità PBR, MatCap e Unlit, oltre a MatCap e HDRI.";
+// How much disk space the history is allowed to use, past it the oldest operations are deleted
+history.limitDisk = "Limite di archiviazione";
+history.limitDisk.help = "La quantità massima di spazio di archiviazione che la cronologia Annulla/Ripeti di questo progetto può utilizzare.
+
+Quando viene raggiunto il limite, le operazioni meno recenti vengono eliminate definitivamente.
+
+Il nuovo limite viene applicato dopo la registrazione dell’operazione successiva.";
 // How much memory the history is allowed to use before the older states are moved to the disk
-history.limitMemory = "Limite di memoria";
-history.limitMemory.help = "Quantità di cronologia conservata in memoria.
+history.limitMemory = "Limite RAM";
+history.limitMemory.help = "La quantità massima di cronologia Annulla/Ripeti conservata nella RAM.
 
-Gli stati meno recenti vengono spostati sul disco e ricaricati quando annulli; non vengono eliminati.
+Gli stati meno recenti vengono spostati nello spazio di archiviazione e ricaricati quando necessario; non vengono eliminati.
 
-La cronologia verrà aggiornata alla prossima operazione registrata.";
+Il nuovo limite viene applicato dopo la successiva modifica o azione Annulla/Ripeti.";
 // Where the undo history is kept when the project is saved (it survives reopening the project)
 history.persist = "Salva cronologia";
 history.persist.embedded = "Incorpora";
-history.persist.embedded.help = "La cronologia viene memorizzata nel file del progetto. Il file è più grande, ma la cronologia lo accompagna.";
+history.persist.embedded.help = "La cronologia viene memorizzata nel file del progetto: file più grande e operazioni di salvataggio e caricamento più lente.
+
+Preferisci Disattivato o Separata, a meno che la cronologia non debba essere trasferita con il file.";
 history.persist.help = "Conserva la cronologia degli annullamenti quando il progetto viene salvato, così rimane disponibile alla riapertura.";
 history.persist.off = "Disattivato";
 history.persist.off.help = "Il progetto viene salvato senza la cronologia.";
@@ -1058,8 +1093,10 @@ interface.inset.title.help = "È possibile modificare questi valori solo se si r
 
 Se il cursore è disabilitato, Nomad utilizzerà i valori dell'area sicura restituiti dal dispositivo stesso.";
 // Move a floating panel by dragging inside it, instead of using its bar
-interface.panelDrag = "";
-interface.panelDrag.help = "";
+interface.panelDrag = "Trascina corpo pannello";
+interface.panelDrag.help = "Un pannello fluttuante viene sempre spostato trascinando la sua barra. Questa opzione consente di trascinarne anche il corpo.
+
+Con Auto, un dito o uno stilo sposta il pannello solo quando il trascinamento è più orizzontale che verticale, quindi un trascinamento verticale continua a scorrere il contenuto. Imposta Sì per trascinare anche con il mouse, in qualsiasi direzione.";
 // Interface option (if the menus are transparent or opaque)
 interface.panelTransparent = "Pannello trasparente";
 // Width of the interface panels
@@ -1118,9 +1155,11 @@ item.delete.used = "Immagine utilizzata";
 // Draggable, movable
 item.draggable = "Spostabile";
 // Show the folders of a list as a column on its side, instead of a drop down menu
-item.folderColumn = "";
+item.folderColumn = "Colonna cartelle";
+// Show the folders of a drop down menu as small chips filling the width, instead of one per line
+item.folderCompact = "Cartelle compatte";
 // Show a list of items as one group of items per folder, instead of a single list
-item.folderGroup = "";
+item.folderGroup = "Raggruppa per cartella";
 // Hide an item (object, layer, etc)
 item.hide = "Nascondi";
 // Make an item instance, similar to clone but keeps the underlying geometry (Synonym: link? soft clone?)
@@ -1155,17 +1194,17 @@ item.reset.confirm = "Conferma ripristino?";
 // Save an item (object, tool, etc)
 item.save = "Salva";
 item.save.confirm = "Conferma salvataggio?";
-item.saveLibrary = "";
+item.saveLibrary = "Salva nella libreria";
 // Select an item (object, layer, etc)
 item.select = "Seleziona";
 // Show an item (object, layer, etc)
 item.show = "Mostra";
 // Show the name of every item under its preview image
-item.showName = "";
+item.showName = "Mostra nomi";
 // Order a list of items alphabetically
-item.sortName = "";
+item.sortName = "Per nome";
 // Order a list of items with the most recently modified first
-item.sortRecent = "";
+item.sortRecent = "Più recente";
 // Convert the item type (mesh, light) to a simple Node type
 item.toNode = "In Nodo";
 // Uninstance the object, make the object real
@@ -1259,13 +1298,10 @@ light.angle = "Angolo";
 light.attachment = "Collegamento";
 // The light will move along the camera
 light.attachment.camera = "Fotocamera";
+light.attachment.camera.help = "L'orientamento della luce dipende dalla visuale della telecamera.";
 // The light will stay still even if the user moves the camera
 light.attachment.fixed = "Fisso";
-light.attachment.help = "• Fisso
-L'orientamento della luce non cambierà.
-
-• Telecamera
-L'orientamento della luce dipende dalla visuale della telecamera.";
+light.attachment.fixed.help = "L'orientamento della luce non cambierà.";
 // Color of light
 light.color = "Colore";
 // Contact shadows are more precise shadows on small distance (synonym: cavity shadows?)
@@ -1322,7 +1358,7 @@ light.visible = "Mostra";
 
 link.address = "Questo dispositivo";
 link.approve = "Accetta";
-link.bridges = "Script bridge";
+link.bridges = "Script bridge (GitHub)";
 link.cameras = "Fotocamere";
 link.copyRepository = "Copia URL del repository";
 link.deny = "Rifiuta";
@@ -1335,7 +1371,7 @@ link.goz.notInstalled = "Installa prima GoZ in ZBrush (Preferenze > GoZ)";
 link.goz.received = "$0 oggetto/i ricevuto/i da ZBrush";
 link.goz.sent = "$0 oggetto/i inviato/i a ZBrush";
 link.goz.waiting = "In attesa dell’esportazione di ZBrush";
-link.help.others = "Le altre app (ZBrush ecc.) si connettono a un host Nomad nello stesso modo.
+link.help.others = "Le altre app (ZBrush, Marmoset Toolbag ecc.) si connettono a un host Nomad nello stesso modo.
 
 Un bridge è uno script Python che viene eseguito sullo stesso computer dell’app.
 Gli script di esempio e il protocollo sono disponibili su GitHub; usali come punto di partenza.";
@@ -1660,6 +1696,8 @@ paint.useGlobal.help = "Se questa opzione è attivata, il materiale selezionato 
 Si noti che tiene conto solo delle impostazioni di rugosità, metallicità e colore.";
 // The current tool will paint the object if this option is enabled
 paint.usePainting = "Pittura del tratto";
+// Paint with the color, roughness, metalness and opacity baked inside the VDM stamp
+paint.vdmMaterial = "";
 
 position.bottom = "Basso";
 position.center = "Centrato";
@@ -1701,6 +1739,8 @@ Se il valore è pari a 0, tutto riceverà un bagliore diffuso.";
 // https://en.wikipedia.org/wiki/Chromatic_aberration
 postprocess.chromatic = "Aberrazione cromatica";
 postprocess.chromatic.factor = "Intensità";
+// Short label for the section shortcut bar
+postprocess.chromatic.short = "";
 // Accentuate the edges of the model
 postprocess.curvature = "Curvatura";
 // Color/Strength of convex curvature
@@ -1709,6 +1749,8 @@ postprocess.curvature.bump = "Rilievo";
 postprocess.curvature.cavity = "Cavità";
 // Main strength of curvature
 postprocess.curvature.factor = "Fattore";
+// Short label for the section shortcut bar
+postprocess.curvature.short = "";
 // Color curves
 postprocess.curve = "Gradazione colore";
 postprocess.curve.blue = "Blu";
@@ -1718,6 +1760,8 @@ postprocess.curve.luminance = "Principale";
 postprocess.curve.red = "Rosso";
 // Reset color grading curves
 postprocess.curve.resetAll = "Ripristina tutto";
+// Short label for the section shortcut bar
+postprocess.curve.short = "";
 // Denoise
 postprocess.denoise = "Denoiser";
 postprocess.denoise.help = "Applica un passaggio di riduzione del rumore dopo che tutti i fotogrammi sono stati accumulati.";
@@ -1728,11 +1772,17 @@ postprocess.dithering.help = "Riduce gli artefatti di banding (ad es. gradiente,
 // Depth of Field (bokeh)
 // https://en.wikipedia.org/wiki/Depth_of_field
 postprocess.dof = "Profondità di campo";
+// f-number, a lower value opens the lens and blurs more
+postprocess.dof.aperture = "";
 // The blur factor behind the focused point
 postprocess.dof.blurFar = "Sfocatura lontana";
 // The blur factor in front of the focused point
 postprocess.dof.blurNear = "Sfocatura vicina";
 postprocess.dof.focusTip = "Tocca un oggetto per cambiare il punto di messa a fuoco.";
+// Drive the blur with a single camera aperture instead of the two blur factors
+postprocess.dof.physical = "";
+// Short label for the section shortcut bar (no need to translate "DoF")
+postprocess.dof.short = "";
 // Full resolution (1:1 resolution) instead of half resolution
 postprocess.fullResolution = "Piena risoluzione";
 // Filmic Grain
@@ -1746,6 +1796,8 @@ postprocess.maxSamples.help = "Migliora la qualità del post-processing al costo
 postprocess.pixelArt = "Pixel Art";
 // Override frame accumulation feature
 postprocess.pixelArt.allowAccumulate = "Consenti campionamento fotogrammi";
+// Short label for the section shortcut bar
+postprocess.pixelArt.short = "";
 // Quality vs performance
 postprocess.quality = "Qualità";
 postprocess.quality.help = "Attivare queste opzioni per migliorare la qualità a scapito delle prestazioni.";
@@ -1765,6 +1817,8 @@ postprocess.scanline.spacing = "Spaziatura";
 // https://en.wikipedia.org/wiki/Unsharp_masking
 postprocess.sharpness = "Nitidezza";
 postprocess.sharpness.factor = "Intensità";
+// Short label for the section shortcut bar
+postprocess.sharpness.short = "";
 // Screen-space ambient occlusion (SSAO)
 // https://en.wikipedia.org/wiki/Ambient_occlusion
 postprocess.ssao = "Occlusione ambientale";
@@ -1772,16 +1826,22 @@ postprocess.ssao = "Occlusione ambientale";
 postprocess.ssao.factor = "Intensità";
 // How far the effect spreads
 postprocess.ssao.radius = "Dimensioni";
+// Short label for the section shortcut bar (no need to translate "SSAO")
+postprocess.ssao.short = "";
 // Adjustment for ssao
 postprocess.ssao.thickness = "Spessore";
 postprocess.ssao.thickness.help = "Quanto spessore di profondità viene presunto per gli occlusori, come percentuale del raggio AO.";
 // Screen-Space Global Illumination (no need to translate "SSGI")
 postprocess.ssgi = "Illuminazione globale (SSGI)";
+// Short label for the section shortcut bar (no need to translate "SSGI")
+postprocess.ssgi.short = "";
 // Thickness threshold for ssgi tracing algorithm (synonym: threshold, bias)
 postprocess.ssgi.tolerance = "Tolleranza";
 postprocess.ssgi.warning = "SSGI richiede la modalità di shading PBR.";
 // Screen-Space Reflection (no need to translate "SSR")
 postprocess.ssr = "Riflessione (SSR)";
+// Short label for the section shortcut bar (no need to translate "SSR")
+postprocess.ssr.short = "";
 postprocess.ssr.warning = "SSR richiede la modalità di shading PBR.";
 // Temporal Anti-Aliasing (no need to translate "TAA")
 postprocess.taa = "Anti-aliasing (TAA)";
@@ -1796,6 +1856,8 @@ postprocess.tone.mapping.neutral = "Neutrale";
 // No tonemapping operator is used
 postprocess.tone.mapping.none = "Nessuno";
 postprocess.tone.saturation = "Saturazione";
+// Short label for the section shortcut bar
+postprocess.tone.short = "";
 // Darkening at the edges
 postprocess.vignette = "Vignettatura";
 // How sharp the edge of the effect is
@@ -2086,10 +2148,16 @@ settings.grid.snapDivision = "Soglia di divisione della griglia";
 settings.grid.snapDivision.help = "La soglia è confrontata con la distanza dalla griglia.";
 // Snap eligible tool points to the grid
 settings.grid.snapGrid = "Aggancia alla griglia";
+// Same as settings.grid.snapGrid, on a small shortcut button
+settings.grid.snapGrid.short = "";
 // Snap eligible tool points to nearby existing points when the camera is aligned
 settings.grid.snapPointAlign = "Aggancia ai punti (vista allineata)";
+// Same as settings.grid.snapPointAlign, on a small shortcut button
+settings.grid.snapPointAlign.short = "";
 // Snap eligible tool points to nearby existing points when the camera is not aligned
 settings.grid.snapPointFree = "Aggancia ai punti (visualizzazione libera)";
+// Same as settings.grid.snapPointFree, on a small shortcut button
+settings.grid.snapPointFree.short = "";
 // Handles are controls that you interact with in the viewport in order to edit something
 settings.handle = "Maniglia";
 settings.handles = "Maniglie";
@@ -2165,13 +2233,18 @@ In Auto, la restrizione avverrà solo se la camera è in modalità Orbita.";
 // Move the navigation cube to the bottom of the screen
 settings.snapCube.bottom = "Basso";
 // Extra snapping views on the edges and corners of the navigation cube
-settings.snapCube.edgeCorner = "";
-settings.snapCube.edgeCorner.help = "";
+settings.snapCube.edgeCorner = "Bordi e angoli";
+settings.snapCube.edgeCorner.help = "Aggiunge viste di aggancio sui bordi e sugli angoli del cubo (zone color ambra).";
 // Flip the camera (rotate 180° to see the other side)
 settings.snapCube.flip = "Ribalta 180°";
 settings.snapCube.flip.help = "Ribalta la vista se la vista è già agganciata.";
 // Move the navigation cube on the left side of the screen
 settings.snapCube.left = "Sinistra";
+// Dragging the navigation cube rotates like the Turntable mode, even if the camera is in Trackball
+settings.snapCube.turntable = "Trascinamento a piattaforma girevole";
+settings.snapCube.turntable.help = "Trascinando il cubo, la fotocamera ruota senza inclinarsi lateralmente e si ferma su ogni vista di scatto.
+
+Disattiva questa opzione per trascinare il cubo usando invece la rotazione Trackball. In entrambi i casi, il trascinamento rimane orizzontale o verticale.";
 // Stats (information logs about the scene displayed on screen)
 settings.stats = "Statistiche";
 settings.stats.all = "Mostra l'intera scena";
@@ -2637,6 +2710,8 @@ symmetry.showLine = "Mostra linea";
 symmetry.showPlane = "Mostra piano";
 // after mirroring, separate into multiple output (synonym: split, separate)
 symmetry.split = "Dividi";
+// How many times the sculpt repeats across the object, so it tiles seamlessly (synonym: wrap, repeat)
+symmetry.tile.title = "";
 symmetry.toolIgnore = "Lo strumento attuale ignora la simmetria.";
 
 // Three-state toggle button (auto, no, yes)
@@ -2798,15 +2873,29 @@ Utilizzerà i dati del livello per limitare lo spostamento sulle pennellate.";
 tool.mask = "Maschera";
 // Blur the painted mask
 tool.mask.blur = "Sfoca";
+// Mask the open boundary of the mesh (the edge of a plane, the rim of a hole)
+tool.mask.border = "";
+// Strengthen the mask intensity without changing its shape (opposite of Dilute)
+tool.mask.boost = "";
+// Negative side of the Cavity slider: only the raised areas stay paintable
+tool.mask.bumps = "";
+// Rebuild the mask from the surface curvature: only the recessed areas stay paintable
+tool.mask.cavity = "";
 // Clear the painted mask
 tool.mask.clear = "Cancella";
 tool.mask.clearAll = "Pulisci tutto";
+// Weaken the mask intensity without changing its shape (opposite of Boost)
+tool.mask.dilute = "";
 // Mask or Unmask a region (leave other region that unconnected intact)
 tool.mask.flipConnected = "Inverti maschera (collegata)";
+// Enlarge the masked area, one ring of vertices at a time
+tool.mask.grow = "";
 // Invert the painted mask
 tool.mask.invert = "Inverti";
 // Sharpen the edge of the painted mask area
 tool.mask.sharpen = "Aumenta nitidezza";
+// Reduce the masked area, one ring of vertices at a time (opposite of Grow)
+tool.mask.shrink = "";
 // Ideally short strings
 tool.mask.unmask = "Togli masch.";
 // Ideally short strings (Selector Mask, use lasso/ellipse,etc shape to mask the mesh)
@@ -2821,6 +2910,9 @@ tool.matrix.action.origin = "Sposta origine";
 tool.matrix.action.origin.help = "Sposta la mesh all'origine del mondo.";
 tool.matrix.action.reset = "Ripristina";
 tool.matrix.action.reset.help = "Reimposta la trasformazione della mesh su identità.";
+// Move the pivot alone, the objects stand still
+tool.matrix.editPivot = "";
+tool.matrix.editPivot.help = "";
 tool.matrix.rotation = "Rotazione";
 tool.matrix.scale = "Scala";
 // Synonym: shear, https://en.wikipedia.org/wiki/Shear_matrix or https://en.wikipedia.org/wiki/Shear_mapping
@@ -2889,8 +2981,6 @@ tool.polish = "Polish";
 tool.project = "Proietta";
 // Radius of the tool (size)
 tool.radius = "Raggio";
-// Ideally short strings (Quad Remesher)
-tool.remesh = "Quad Remesher";
 tool.remesh.density = "Densità";
 tool.remesh.guides = "Guide";
 tool.remesh.half = "Metà";
@@ -2987,6 +3077,10 @@ tool.trim.detail.protect.help = "Non smussare e semplificare il bordo del taglio
 Mantiene la topologia originale della mesh vicino alle facce mascherate e nascoste.";
 // Ideally short strings (Revolving surface along a curve)
 tool.tube = "Tubo";
+// Ideally short strings (Vector displacement stamp)
+tool.vdm = "";
+// Scales only the height of the vdm stamp, lateral displacement is unchanged
+tool.vdm.height = "";
 // Ideally short strings (View tool, do nothing in particular)
 tool.view = "Vista";
 // Always display the camera shortcut buttons on the viewport
@@ -2994,8 +3088,6 @@ tool.view.stickyCamera = "Scorciatoia fotocamera (sempre)";
 
 // Topology
 topology = "Topologia";
-// Name of the quad remeshing engine, should probably stay untranslated
-topology.autoremesher = "AutoRemesher";
 topology.autoremesher.adaptivity = "Adattività";
 topology.autoremesher.adaptivity.help = "Adatta la densità dei quad alla curvatura.
 
@@ -3045,6 +3137,12 @@ Per scegliere quali oggetti saranno utilizzati per il baking, verrà applicata l
 - tutti gli oggetti selezionati e l'oggetto principale selezionato saranno sottoposti a baking (il più evidenziato nel menu della scena)
 - se viene selezionato un solo oggetto, allora Nomad considererà tutti gli oggetti visibili al suo posto
 - altrimenti, se tutti gli oggetti sono nascosti (ad esempio usando Solo), verrà presa in considerazione l'intera scena";
+// Warning shown after a VDM bake, the border of the plane is its outer edge
+topology.bake.vdm.border = "";
+// Error shown when a VDM bake fails
+topology.bake.vdm.failed = "";
+// Bake here means "create a VDM (from a sculpted plane)"
+topology.bake.vdm.help = "";
 // Synonym: Simplify (Decimate reduce the number of triangles/quads while retaining details as much as possible)
 topology.decimate = "Decima";
 topology.decimate.boundary = "Mantieni bordi";
@@ -3096,8 +3194,6 @@ topology.dynamic.useFalloff = "Usa decadimento tratto";
 // Whether the pencil pressure can impact the level of detail
 topology.dynamic.usePressure = "Usa la pressione sul raggio";
 topology.dynamic.usePressure.help = "Scegliere questa opzione se si desidera che l'impatto della pressione della penna sul raggio dello strumento influisca sul livello di dettaglio.";
-// Instant quad remesher
-topology.instant = "Instant Mesh";
 topology.instant.angle = "Angolo piega";
 topology.instant.hole = "Riempimento massimo aperture";
 topology.instant.hole.help = "L'algoritmo può talvolta produrre fori indesiderati.
@@ -3144,8 +3240,6 @@ topology.multires.up = "Livello Multires →";
 topology.nonManifold = "Non-manifold";
 // Quad remesher
 topology.quadRemesh = "Remeshing quad";
-// Name of the quad remeshing engine, should probably stay untranslated
-topology.quadriflow = "QuadriFlow";
 topology.quadriflow.adaptiveScale = "Scala adattiva";
 topology.quadriflow.adaptiveScale.help = "Adatta le dimensioni dei quad alla curvatura della superficie.";
 topology.quadriflow.keepSharp = "Mantieni bordi netti";

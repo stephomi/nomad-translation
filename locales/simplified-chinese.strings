@@ -115,10 +115,18 @@ alert.forcePainting.tool = "已显示绘画，并在对象上进行了绘制。"
 alert.gizmo.editObject = "对象编辑模式。";
 // In this mode, the user moves the Gizmo's pivot instead of the object
 alert.gizmo.editPivot = "轴心编辑模式。";
+// Button that turns the heightmap render off
+alert.heightmap.hide = "";
+// The viewport renders the depth of the scene instead of the shaded objects
+alert.heightmapOn = "";
 // The user decided to display hidden faces
 alert.hideIgnored = "隐藏被忽略了！";
 // Error when an algorithm needs the object to have a hole (usually to fill it)
 alert.hole.nothing = "该对象没有孔洞！";
+// Button that turns the inspector off
+alert.inspect.hide = "";
+// The viewport renders a material channel instead of the shaded objects
+alert.inspectOn = "";
 // The lattice deformation was applied with a different mask or visibility state
 // (the gui appends the icon of the changed states)
 alert.lattice.desync = "格子未同步！";
@@ -208,6 +216,9 @@ background.imageAlpha = "不透明度";
 background.imageEnable = "参考图像";
 // The image will be displayed in overlay (used as a reference by the artist)
 background.imageOverlay = "覆盖";
+// Apply the post process effects on the reference image
+background.imagePostProcess = "后期处理";
+background.imagePostProcess.help = "对参考图像应用后期处理效果。将其关闭可保留原始颜色。";
 background.imageReset = "重置参数";
 // Rotation of the reference image
 background.imageRotate = "旋转";
@@ -286,6 +297,8 @@ binding.rotateLighting = "旋转照明";
 // Select all the objects in the scene
 binding.selectAll = "全选";
 binding.snap.toggle = "切换曲线编辑";
+// Same as binding.snap.toggle, on a small shortcut button
+binding.snap.toggle.short = "";
 // Snap the view (while rotating)
 binding.snapViewOnRotate = "视图吸附（旋转时）";
 binding.spacemouse = "SpaceMouse";
@@ -371,6 +384,8 @@ camera.doubleTapBackgroundFocus.toggle = "切换";
 camera.doubleTapFocus.help = "双击物体表面后视图中心将移动至该点。";
 // When we double tap on the object with the finger/stylus
 camera.doubleTapMesh = "双击对象";
+// Same as camera.doubleTapMesh, on a small shortcut button
+camera.doubleTapMesh.short = "";
 // When double tapping with the finger/stylus, the camera pivot will be updated
 camera.doubleTapPivot = "双击后更改";
 camera.doubleTapPivot.help = "双击对象表面以更改旋转轴心。";
@@ -465,8 +480,6 @@ cube.right = "右";
 cube.top = "顶";
 
 curve.bspline = "B样条";
-// Curve type, https://en.wikipedia.org/wiki/Centripetal_Catmull%E2%80%93Rom_spline
-curve.catmull = "Catmull-Rom";
 // Merge or collapse one point into another
 curve.merge = "合并";
 curve.pivot = "轴心";
@@ -527,12 +540,22 @@ curve.uniform.help = "曲线将以规律间隔进行采样，以确保均匀密�
 
 您可以禁用此选项，通过在曲线上添加新的控制点来稍微控制边缘环。";
 
+// Debug section to import/export the icons of the interface
+debug.customIcons = "";
+// Short label for the section shortcut bar
+debug.customIcons.short = "";
+// Debug section for optional features
+debug.feature = "";
 // Debug graphics options
 debug.graphics = "图形";
 // Debug option, overrides the rendering to display the depth buffer
 debug.heightmap = "高度图";
 // Debug option: display a window with debugging logs
 debug.logs = "调试日志";
+// Logs window option: break long lines to fit the panel width
+debug.logs.wrap = "";
+// Debug section for multithreading and speed options
+debug.performance = "";
 // Model shortcut window
 debug.shortcut = "快捷窗口";
 // Set the desired FPS (frame per second, refresh rate)
@@ -540,6 +563,8 @@ debug.targetFps = "目标 FPS";
 debug.targetFps.help = "禁用时，默认值意味着它将与显示器的刷新率同步。";
 // Debug options, generate screenshots with size compatible with the iOS store
 debug.thumbnails = "制作商店缩略图";
+// Same as debug.thumbnails, on a small shortcut button
+debug.thumbnails.short = "";
 // Debug option, Normalize means transforming the data so that it fits in [0-1] the range
 debug.uvNormalize = "规范化 UV";
 debug.uvNormalize.help = "Nomad将会让所有选定面的UV适配 [0-1] 纹理空间。";
@@ -638,8 +663,10 @@ file.export.gltf.layer.help = "将图层作为变形体导出。官方支持glTF
 // Whether we include painting of layers in the exported file (see glossary for layer)
 file.export.gltf.layerPaint = "图层绘画";
 file.export.gltf.layerPaint.help = "将导出图层绘画。其他软件不会读取该属性。";
-file.export.nomad.assets = "";
-file.export.nomad.assets.help = "";
+file.export.nomad.assets = "嵌入 MatCap 和环境";
+file.export.nomad.assets.help = "在文件中包含自定义 MatCap 和环境，使其在其他设备上保持相同外观。
+
+内置资源不会被嵌入，因为它们属于 Nomad 的一部分。";
 file.export.nomad.help = "Nomad Sculpt 内部文件格式。
 
 此格式不会在其他软件上加载，主要用于重新导入。";
@@ -776,11 +803,8 @@ file.project.unsaved = "更改未保存！";
 file.render = "渲染";
 // height of exported screenshot
 file.render.height = "高度";
-// Resolution ratio of the exported screenshot
-file.render.renderRatio = "渲染比例";
-file.render.renderRatio.help = "当该值为1.0时，软件渲染的图像分辨率保持不变。
-
-如果你不能以特定的分辨率渲染，请使用这个选项（因为缺乏内存而崩溃）。";
+// Warning shown when the requested export resolution is too large for the memory left on the device
+file.render.lowMemory = "";
 // Screen resolution parameters for the export screenshot features
 file.render.screenResolution = "屏幕分辨率";
 // If we include the App Interface in the exported screenshot
@@ -790,7 +814,7 @@ file.render.size = "渲染尺寸";
 // Desired size of the exported screenshot (custom vs predefined size)
 file.render.size.custom = "自定";
 // Save the heightmap render as a new brush alpha instead of exporting it as a file
-file.render.toAlpha = "";
+file.render.toAlpha = "另存为 Alpha";
 // If true, then the exported screenshot will have transparency data in the image
 file.render.transparent = "透明背景";
 file.render.transparent.help = "打开此选项可以让您更方便地把渲染图导入到平面设计软件。
@@ -933,6 +957,8 @@ gesture.wheel.speed3d = "速度（3d 缩放）";
 
 // History, list of undo/redo
 history = "历史记录";
+// Button deleting every operation of the history, freeing the memory and the disk space they use
+history.clear = "清除历史记录";
 // Long press on a state of the history list: deletes it and every older one, $0 is a number of operations
 history.delete.confirm = "从历史记录中删除 $0 个操作？";
 history.delete.help = "长按历史记录项可将其及所有更早的历史记录永久删除。";
@@ -952,17 +978,26 @@ history.include.postProcess.help = "将后处理编辑纳入撤销/重做历史�
 // include shading parameters (MatCap & HDRIs) editing in the undo/redo
 history.include.shading = "渲染模式";
 history.include.shading.help = "包括 PBR、MatCap 和 Unlit 模式，以及 MatCap 和 HDRI。";
+// How much disk space the history is allowed to use, past it the oldest operations are deleted
+history.limitDisk = "存储空间限制";
+history.limitDisk.help = "此项目的撤销/重做历史记录可使用的最大存储空间。
+
+达到限制时，最早的操作将被永久删除。
+
+新限制将在记录下一个操作后生效。";
 // How much memory the history is allowed to use before the older states are moved to the disk
 history.limitMemory = "内存限制";
-history.limitMemory.help = "历史记录在内存中保留的量。
+history.limitMemory.help = "内存中保留的撤销/重做历史记录的最大容量。
 
-较旧的状态会移到磁盘，并在撤销时重新加载；它们不会被删除。
+较旧的状态会移至存储空间，并在需要时重新加载；它们不会被删除。
 
-历史记录将在下一个被记录的操作中更新。";
+新限制将在下一次编辑、撤销或重做后生效。";
 // Where the undo history is kept when the project is saved (it survives reopening the project)
 history.persist = "保存历史记录";
 history.persist.embedded = "嵌入";
-history.persist.embedded.help = "历史记录存储在项目文件中。文件会变大，但历史记录会随文件一起传输。";
+history.persist.embedded.help = "历史记录存储在项目文件中：文件更大，保存和加载更慢。
+
+除非历史记录必须随文件一起传输，否则建议选择关闭或单独存储。";
 history.persist.help = "保存项目时保留撤销历史记录，以便重新打开项目后仍可使用。";
 history.persist.off = "关闭";
 history.persist.off.help = "保存项目时不包含历史记录。";
@@ -1058,8 +1093,10 @@ interface.inset.title.help = "只有屏幕边缘的按钮存在问题时，您�
 
 如果滑块已停用，Nomad将使用设备本身返回有效区域值。";
 // Move a floating panel by dragging inside it, instead of using its bar
-interface.panelDrag = "";
-interface.panelDrag.help = "";
+interface.panelDrag = "拖动面板主体";
+interface.panelDrag.help = "浮动面板始终通过拖动其栏来移动。此选项还允许拖动面板主体。
+
+在“自动”模式下，仅当拖动方向更偏水平而非垂直时，手指或触控笔才会移动面板，因此垂直拖动仍可滚动内容。设为“是”还可使用鼠标向任意方向拖动。";
 // Interface option (if the menus are transparent or opaque)
 interface.panelTransparent = "面板透明度";
 // Width of the interface panels
@@ -1118,9 +1155,11 @@ item.delete.used = "图像正在使用";
 // Draggable, movable
 item.draggable = "可移动的";
 // Show the folders of a list as a column on its side, instead of a drop down menu
-item.folderColumn = "";
+item.folderColumn = "文件夹列";
+// Show the folders of a drop down menu as small chips filling the width, instead of one per line
+item.folderCompact = "紧凑显示文件夹";
 // Show a list of items as one group of items per folder, instead of a single list
-item.folderGroup = "";
+item.folderGroup = "按文件夹分组";
 // Hide an item (object, layer, etc)
 item.hide = "隐藏";
 // Make an item instance, similar to clone but keeps the underlying geometry (Synonym: link? soft clone?)
@@ -1155,17 +1194,17 @@ item.reset.confirm = "确认要重置吗？";
 // Save an item (object, tool, etc)
 item.save = "保存";
 item.save.confirm = "确认保存？";
-item.saveLibrary = "";
+item.saveLibrary = "保存到库";
 // Select an item (object, layer, etc)
 item.select = "选择";
 // Show an item (object, layer, etc)
 item.show = "显示";
 // Show the name of every item under its preview image
-item.showName = "";
+item.showName = "显示名称";
 // Order a list of items alphabetically
-item.sortName = "";
+item.sortName = "按名称";
 // Order a list of items with the most recently modified first
-item.sortRecent = "";
+item.sortRecent = "最近修改";
 // Convert the item type (mesh, light) to a simple Node type
 item.toNode = "转为节点";
 // Uninstance the object, make the object real
@@ -1259,13 +1298,10 @@ light.angle = "角度";
 light.attachment = "跟随方式";
 // The light will move along the camera
 light.attachment.camera = "随相机移动";
+light.attachment.camera.help = "灯光方向随着相机视角而改变。";
 // The light will stay still even if the user moves the camera
 light.attachment.fixed = "固定";
-light.attachment.help = "• 固定
-灯光方向不会改变。
-
-• 随相机移动
-灯光方向随着相机视角而改变。";
+light.attachment.fixed.help = "灯光方向不会改变。";
 // Color of light
 light.color = "颜色";
 // Contact shadows are more precise shadows on small distance (synonym: cavity shadows?)
@@ -1322,7 +1358,7 @@ light.visible = "显示";
 
 link.address = "此设备";
 link.approve = "接受";
-link.bridges = "桥接脚本";
+link.bridges = "桥接脚本（GitHub）";
 link.cameras = "相机";
 link.copyRepository = "复制存储库 URL";
 link.deny = "拒绝";
@@ -1335,7 +1371,7 @@ link.goz.notInstalled = "请先在 ZBrush 中安装 GoZ（偏好设置 > GoZ）"
 link.goz.received = "已从 ZBrush 接收 $0 个对象";
 link.goz.sent = "已向 ZBrush 发送 $0 个对象";
 link.goz.waiting = "正在等待 ZBrush 导出";
-link.help.others = "其他应用（ZBrush 等）以相同方式连接到 Nomad 主机。
+link.help.others = "其他应用（ZBrush、Marmoset Toolbag 等）以相同方式连接到 Nomad 主机。
 
 桥接是一个 Python 脚本，它与该应用在同一台计算机上运行。
 示例脚本和协议位于 GitHub 上，可将它们用作起点。";
@@ -1660,6 +1696,8 @@ paint.useGlobal.help = "如勾选此选项，其他工具的材质也将会与�
 注意，它只考虑到粗糙度、金属度和颜色的设置。";
 // The current tool will paint the object if this option is enabled
 paint.usePainting = "笔触绘画";
+// Paint with the color, roughness, metalness and opacity baked inside the VDM stamp
+paint.vdmMaterial = "";
 
 position.bottom = "底部";
 position.center = "中心";
@@ -1701,6 +1739,8 @@ postprocess.bloom.threshold.help = "泛光阈值能够判断泛光的光线强�
 // https://en.wikipedia.org/wiki/Chromatic_aberration
 postprocess.chromatic = "色彩偏差";
 postprocess.chromatic.factor = "强度";
+// Short label for the section shortcut bar
+postprocess.chromatic.short = "";
 // Accentuate the edges of the model
 postprocess.curvature = "曲率描边";
 // Color/Strength of convex curvature
@@ -1709,6 +1749,8 @@ postprocess.curvature.bump = "凸起";
 postprocess.curvature.cavity = "凹陷";
 // Main strength of curvature
 postprocess.curvature.factor = "系数";
+// Short label for the section shortcut bar
+postprocess.curvature.short = "";
 // Color curves
 postprocess.curve = "调色";
 postprocess.curve.blue = "蓝";
@@ -1718,6 +1760,8 @@ postprocess.curve.luminance = "主要";
 postprocess.curve.red = "红";
 // Reset color grading curves
 postprocess.curve.resetAll = "全部重置";
+// Short label for the section shortcut bar
+postprocess.curve.short = "";
 // Denoise
 postprocess.denoise = "去噪器";
 postprocess.denoise.help = "在所有帧累积之后应用去噪过程。";
@@ -1728,11 +1772,17 @@ postprocess.dithering.help = "减少条纹伪影（例如渐变、暗角）。�
 // Depth of Field (bokeh)
 // https://en.wikipedia.org/wiki/Depth_of_field
 postprocess.dof = "景深";
+// f-number, a lower value opens the lens and blurs more
+postprocess.dof.aperture = "";
 // The blur factor behind the focused point
 postprocess.dof.blurFar = "远景模糊";
 // The blur factor in front of the focused point
 postprocess.dof.blurNear = "近景模糊";
 postprocess.dof.focusTip = "点击对象表面可以改变焦点。";
+// Drive the blur with a single camera aperture instead of the two blur factors
+postprocess.dof.physical = "";
+// Short label for the section shortcut bar (no need to translate "DoF")
+postprocess.dof.short = "";
 // Full resolution (1:1 resolution) instead of half resolution
 postprocess.fullResolution = "完整分辨率";
 // Filmic Grain
@@ -1746,6 +1796,8 @@ postprocess.maxSamples.help = "以性能为代价提升后期处理质量。";
 postprocess.pixelArt = "像素画";
 // Override frame accumulation feature
 postprocess.pixelArt.allowAccumulate = "允许帧采样";
+// Short label for the section shortcut bar
+postprocess.pixelArt.short = "";
 // Quality vs performance
 postprocess.quality = "质量";
 postprocess.quality.help = "激活这些选项可以提升质量，但会影响性能。";
@@ -1765,6 +1817,8 @@ postprocess.scanline.spacing = "间距";
 // https://en.wikipedia.org/wiki/Unsharp_masking
 postprocess.sharpness = "锐化";
 postprocess.sharpness.factor = "强度";
+// Short label for the section shortcut bar
+postprocess.sharpness.short = "";
 // Screen-space ambient occlusion (SSAO)
 // https://en.wikipedia.org/wiki/Ambient_occlusion
 postprocess.ssao = "环境光遮蔽（AO）";
@@ -1772,16 +1826,22 @@ postprocess.ssao = "环境光遮蔽（AO）";
 postprocess.ssao.factor = "强度";
 // How far the effect spreads
 postprocess.ssao.radius = "范围";
+// Short label for the section shortcut bar (no need to translate "SSAO")
+postprocess.ssao.short = "";
 // Adjustment for ssao
 postprocess.ssao.thickness = "厚度";
 postprocess.ssao.thickness.help = "遮挡物所假定的深度厚度，以 AO 半径的百分比表示。";
 // Screen-Space Global Illumination (no need to translate "SSGI")
 postprocess.ssgi = "全局光照(SSGI)";
+// Short label for the section shortcut bar (no need to translate "SSGI")
+postprocess.ssgi.short = "";
 // Thickness threshold for ssgi tracing algorithm (synonym: threshold, bias)
 postprocess.ssgi.tolerance = "容差";
 postprocess.ssgi.warning = "SSGI仅在PBR着色模式下可用。";
 // Screen-Space Reflection (no need to translate "SSR")
 postprocess.ssr = "屏幕空间反射（SSR）";
+// Short label for the section shortcut bar (no need to translate "SSR")
+postprocess.ssr.short = "";
 postprocess.ssr.warning = "SSR仅在PBR渲染模式下有效。";
 // Temporal Anti-Aliasing (no need to translate "TAA")
 postprocess.taa = "时间性抗锯齿（TAA）";
@@ -1796,6 +1856,8 @@ postprocess.tone.mapping.neutral = "中性";
 // No tonemapping operator is used
 postprocess.tone.mapping.none = "无";
 postprocess.tone.saturation = "饱和度";
+// Short label for the section shortcut bar
+postprocess.tone.short = "";
 // Darkening at the edges
 postprocess.vignette = "晕影";
 // How sharp the edge of the effect is
@@ -2086,10 +2148,16 @@ settings.grid.snapDivision = "网格分割阈值";
 settings.grid.snapDivision.help = "阈值与到网格的距离进行比较。";
 // Snap eligible tool points to the grid
 settings.grid.snapGrid = "吸附到网格";
+// Same as settings.grid.snapGrid, on a small shortcut button
+settings.grid.snapGrid.short = "";
 // Snap eligible tool points to nearby existing points when the camera is aligned
 settings.grid.snapPointAlign = "吸附到点（对齐视图）";
+// Same as settings.grid.snapPointAlign, on a small shortcut button
+settings.grid.snapPointAlign.short = "";
 // Snap eligible tool points to nearby existing points when the camera is not aligned
 settings.grid.snapPointFree = "吸附到点（自由视图）";
+// Same as settings.grid.snapPointFree, on a small shortcut button
+settings.grid.snapPointFree.short = "";
 // Handles are controls that you interact with in the viewport in order to edit something
 settings.handle = "手柄";
 settings.handles = "手柄";
@@ -2165,13 +2233,18 @@ settings.snapCube.align.help = "将视图对齐到世界轴。如果启用，只
 // Move the navigation cube to the bottom of the screen
 settings.snapCube.bottom = "置于底部";
 // Extra snapping views on the edges and corners of the navigation cube
-settings.snapCube.edgeCorner = "";
-settings.snapCube.edgeCorner.help = "";
+settings.snapCube.edgeCorner = "边和角";
+settings.snapCube.edgeCorner.help = "在立方体的边和角上添加吸附视图（琥珀色区域）。";
 // Flip the camera (rotate 180° to see the other side)
 settings.snapCube.flip = "翻转180°";
 settings.snapCube.flip.help = "如果视图已经对准，则翻转视图。";
 // Move the navigation cube on the left side of the screen
 settings.snapCube.left = "置于左侧";
+// Dragging the navigation cube rotates like the Turntable mode, even if the camera is in Trackball
+settings.snapCube.turntable = "转盘式拖动";
+settings.snapCube.turntable.help = "拖动方位视图时，摄像机旋转但不会侧倾，并会在每个吸附视图处停留。
+
+关闭此选项可改用轨迹球旋转方式拖动方位视图。两种情况下，拖动都保持水平或垂直。";
 // Stats (information logs about the scene displayed on screen)
 settings.stats = "显示场景状态";
 settings.stats.all = "显示全部";
@@ -2637,6 +2710,8 @@ symmetry.showLine = "显示线条";
 symmetry.showPlane = "显示平面";
 // after mirroring, separate into multiple output (synonym: split, separate)
 symmetry.split = "分割";
+// How many times the sculpt repeats across the object, so it tiles seamlessly (synonym: wrap, repeat)
+symmetry.tile.title = "";
 symmetry.toolIgnore = "当前工具不适用对称。";
 
 // Three-state toggle button (auto, no, yes)
@@ -2798,15 +2873,29 @@ tool.layer.removeInfluence.help = "仅当选中图层时此功能才能启用。
 tool.mask = "蒙版";
 // Blur the painted mask
 tool.mask.blur = "模糊";
+// Mask the open boundary of the mesh (the edge of a plane, the rim of a hole)
+tool.mask.border = "";
+// Strengthen the mask intensity without changing its shape (opposite of Dilute)
+tool.mask.boost = "";
+// Negative side of the Cavity slider: only the raised areas stay paintable
+tool.mask.bumps = "";
+// Rebuild the mask from the surface curvature: only the recessed areas stay paintable
+tool.mask.cavity = "";
 // Clear the painted mask
 tool.mask.clear = "清除";
 tool.mask.clearAll = "清除全部";
+// Weaken the mask intensity without changing its shape (opposite of Boost)
+tool.mask.dilute = "";
 // Mask or Unmask a region (leave other region that unconnected intact)
 tool.mask.flipConnected = "反转已连接区域";
+// Enlarge the masked area, one ring of vertices at a time
+tool.mask.grow = "";
 // Invert the painted mask
 tool.mask.invert = "反转";
 // Sharpen the edge of the painted mask area
 tool.mask.sharpen = "锐化";
+// Reduce the masked area, one ring of vertices at a time (opposite of Grow)
+tool.mask.shrink = "";
 // Ideally short strings
 tool.mask.unmask = "消除蒙版";
 // Ideally short strings (Selector Mask, use lasso/ellipse,etc shape to mask the mesh)
@@ -2821,6 +2910,9 @@ tool.matrix.action.origin = "移至原点";
 tool.matrix.action.origin.help = "将网格移到世界原点。";
 tool.matrix.action.reset = "重设";
 tool.matrix.action.reset.help = "重设对象的所有变换。";
+// Move the pivot alone, the objects stand still
+tool.matrix.editPivot = "";
+tool.matrix.editPivot.help = "";
 tool.matrix.rotation = "旋转";
 tool.matrix.scale = "缩放";
 // Synonym: shear, https://en.wikipedia.org/wiki/Shear_matrix or https://en.wikipedia.org/wiki/Shear_mapping
@@ -2889,8 +2981,6 @@ tool.polish = "抛光";
 tool.project = "投影";
 // Radius of the tool (size)
 tool.radius = "半径";
-// Ideally short strings (Quad Remesher)
-tool.remesh = "四边形重构";
 tool.remesh.density = "密度";
 tool.remesh.guides = "引导线";
 tool.remesh.half = "一半";
@@ -2987,6 +3077,10 @@ tool.trim.detail.protect.help = "不要平滑和简化切割边界。
 在蒙版和隐藏面附近保留原始网格拓扑。";
 // Ideally short strings (Revolving surface along a curve)
 tool.tube = "圆管";
+// Ideally short strings (Vector displacement stamp)
+tool.vdm = "";
+// Scales only the height of the vdm stamp, lateral displacement is unchanged
+tool.vdm.height = "";
 // Ideally short strings (View tool, do nothing in particular)
 tool.view = "浏览模式";
 // Always display the camera shortcut buttons on the viewport
@@ -2994,8 +3088,6 @@ tool.view.stickyCamera = "相机快捷键（始终）";
 
 // Topology
 topology = "拓扑";
-// Name of the quad remeshing engine, should probably stay untranslated
-topology.autoremesher = "AutoRemesher";
 topology.autoremesher.adaptivity = "自适应性";
 topology.autoremesher.adaptivity.help = "使四边形密度适应曲率。
 
@@ -3045,6 +3137,12 @@ topology.bake.title.help = "纹理烘焙会投影场景中的其他可见对象�
 - 使用所有选中对象，主选对象为烘焙目标（场景菜单中高亮最强的对象）
 - 如果只选中一个对象，Nomad 会改用所有可见对象
 - 否则，如果所有对象均被隐藏（例如使用独显），则使用整个场景";
+// Warning shown after a VDM bake, the border of the plane is its outer edge
+topology.bake.vdm.border = "";
+// Error shown when a VDM bake fails
+topology.bake.vdm.failed = "";
+// Bake here means "create a VDM (from a sculpted plane)"
+topology.bake.vdm.help = "";
 // Synonym: Simplify (Decimate reduce the number of triangles/quads while retaining details as much as possible)
 topology.decimate = "网格简化";
 topology.decimate.boundary = "保留边界";
@@ -3096,8 +3194,6 @@ topology.dynamic.useFalloff = "使用笔触衰减";
 // Whether the pencil pressure can impact the level of detail
 topology.dynamic.usePressure = "在半径上使用压感";
 topology.dynamic.usePressure.help = "如果您想让笔压对工具半径的影响也影响到细节层次，请启用此选项。";
-// Instant quad remesher
-topology.instant = "Instant Mesh";
 topology.instant.angle = "折痕角度";
 topology.instant.hole = "最大填洞";
 topology.instant.hole.help = "该算法有时会产生不需要的孔洞。
@@ -3144,8 +3240,6 @@ topology.multires.up = "多重分辨率级别 →";
 topology.nonManifold = "非流形";
 // Quad remesher
 topology.quadRemesh = "四边形重构";
-// Name of the quad remeshing engine, should probably stay untranslated
-topology.quadriflow = "QuadriFlow";
 topology.quadriflow.adaptiveScale = "自适应缩放";
 topology.quadriflow.adaptiveScale.help = "使四边形大小适应表面曲率。";
 topology.quadriflow.keepSharp = "保留锐边";

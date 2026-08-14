@@ -115,10 +115,18 @@ alert.forcePainting.tool = "“ペイントを表示”が有効で、オブジ�
 alert.gizmo.editObject = "オブジェクト編集モード。";
 // In this mode, the user moves the Gizmo's pivot instead of the object
 alert.gizmo.editPivot = "ピボット編集モード。";
+// Button that turns the heightmap render off
+alert.heightmap.hide = "";
+// The viewport renders the depth of the scene instead of the shaded objects
+alert.heightmapOn = "";
 // The user decided to display hidden faces
 alert.hideIgnored = "非表示は無視されています！";
 // Error when an algorithm needs the object to have a hole (usually to fill it)
 alert.hole.nothing = "オブジェクトに穴がありません。";
+// Button that turns the inspector off
+alert.inspect.hide = "";
+// The viewport renders a material channel instead of the shaded objects
+alert.inspectOn = "";
 // The lattice deformation was applied with a different mask or visibility state
 // (the gui appends the icon of the changed states)
 alert.lattice.desync = "ラティスが同期されていません！";
@@ -208,6 +216,9 @@ background.imageAlpha = "不透明度";
 background.imageEnable = "参照イメージ";
 // The image will be displayed in overlay (used as a reference by the artist)
 background.imageOverlay = "オーバーレイ";
+// Apply the post process effects on the reference image
+background.imagePostProcess = "ポストプロセス";
+background.imagePostProcess.help = "参照イメージにポストプロセス効果を適用します。元の色を維持するには無効にしてください。";
 background.imageReset = "設定をリセット";
 // Rotation of the reference image
 background.imageRotate = "回転";
@@ -286,6 +297,8 @@ binding.rotateLighting = "ライティングを回転";
 // Select all the objects in the scene
 binding.selectAll = "すべてを選択";
 binding.snap.toggle = "カーブ編集の切り替え";
+// Same as binding.snap.toggle, on a small shortcut button
+binding.snap.toggle.short = "";
 // Snap the view (while rotating)
 binding.snapViewOnRotate = "スナップビュー (回転中)";
 binding.spacemouse = "SpaceMouse";
@@ -371,6 +384,8 @@ camera.doubleTapBackgroundFocus.toggle = "切り替える";
 camera.doubleTapFocus.help = "オブジェクトをダブルタップすると、カメラはパンし、選択したポイントにフォーカスします。";
 // When we double tap on the object with the finger/stylus
 camera.doubleTapMesh = "オブジェクトをダブルタップ";
+// Same as camera.doubleTapMesh, on a small shortcut button
+camera.doubleTapMesh.short = "";
 // When double tapping with the finger/stylus, the camera pivot will be updated
 camera.doubleTapPivot = "ダブルタップでアップデート";
 camera.doubleTapPivot.help = "オブジェクトの表面をダブルタップすると、回転軸をアップデートします。";
@@ -465,8 +480,6 @@ cube.right = "右";
 cube.top = "上";
 
 curve.bspline = "B-スプライン曲線";
-// Curve type, https://en.wikipedia.org/wiki/Centripetal_Catmull%E2%80%93Rom_spline
-curve.catmull = "Catmull-Rom";
 // Merge or collapse one point into another
 curve.merge = "結合";
 curve.pivot = "回転軸";
@@ -527,12 +540,22 @@ curve.uniform.help = "カーブは均等な間隔でサンプリングされ、�
 
 このオプションを無効にすると、カーブに新しい制御点を追加することでエッジループを少し制御できます。";
 
+// Debug section to import/export the icons of the interface
+debug.customIcons = "";
+// Short label for the section shortcut bar
+debug.customIcons.short = "";
+// Debug section for optional features
+debug.feature = "";
 // Debug graphics options
 debug.graphics = "グラフィック";
 // Debug option, overrides the rendering to display the depth buffer
 debug.heightmap = "ハイトマップ";
 // Debug option: display a window with debugging logs
 debug.logs = "ログ";
+// Logs window option: break long lines to fit the panel width
+debug.logs.wrap = "";
+// Debug section for multithreading and speed options
+debug.performance = "";
 // Model shortcut window
 debug.shortcut = "ショートカットウィンドウ";
 // Set the desired FPS (frame per second, refresh rate)
@@ -540,6 +563,8 @@ debug.targetFps = "目標FPS";
 debug.targetFps.help = "無効にすると、デフォルト値はディスプレイのリフレッシュレートと同期することを意味します。";
 // Debug options, generate screenshots with size compatible with the iOS store
 debug.thumbnails = "ストアのサムネールを作成";
+// Same as debug.thumbnails, on a small shortcut button
+debug.thumbnails.short = "";
 // Debug option, Normalize means transforming the data so that it fits in [0-1] the range
 debug.uvNormalize = "UVを標準化";
 debug.uvNormalize.help = "Nomadは [0-1] のタイル内のUVを標準化します。";
@@ -638,8 +663,10 @@ file.export.gltf.layer.help = "レイヤーをモーフとして書き出しま�
 // Whether we include painting of layers in the exported file (see glossary for layer)
 file.export.gltf.layerPaint = "レイヤーペイント";
 file.export.gltf.layerPaint.help = "レイヤーペイントを書き出します。通常、他のソフトウェアでは無視されます。";
-file.export.nomad.assets = "";
-file.export.nomad.assets.help = "";
+file.export.nomad.assets = "MatCapと環境を埋め込む";
+file.export.nomad.assets.help = "カスタムMatCapと環境をファイルに含め、別のデバイスでも同じ外観になるようにします。
+
+組み込みアセットはNomadの一部であるため、埋め込まれません。";
 file.export.nomad.help = "Nomad Sculpt内部ファイル形式。
 
 この形式は他のソフトウェアでは読み込めません。これは主にNomadの再読み込み用です。";
@@ -776,11 +803,8 @@ file.project.unsaved = "変更内容が保存されていません！";
 file.render = "レンダリング";
 // height of exported screenshot
 file.render.height = "高さ";
-// Resolution ratio of the exported screenshot
-file.render.renderRatio = "レンダーの比率";
-file.render.renderRatio.help = "値が 1.0 の場合、Nomadが下で指定したイメージサイズと同じ解像度でレンダーすることを意味します。
-
-特定の解像度でレンダーできない場合（メモリ不足でクラッシュするなど）、このオプションを使用してください。";
+// Warning shown when the requested export resolution is too large for the memory left on the device
+file.render.lowMemory = "";
 // Screen resolution parameters for the export screenshot features
 file.render.screenResolution = "スクリーン";
 // If we include the App Interface in the exported screenshot
@@ -790,7 +814,7 @@ file.render.size = "最終サイズ";
 // Desired size of the exported screenshot (custom vs predefined size)
 file.render.size.custom = "カスタム";
 // Save the heightmap render as a new brush alpha instead of exporting it as a file
-file.render.toAlpha = "";
+file.render.toAlpha = "アルファとして保存";
 // If true, then the exported screenshot will have transparency data in the image
 file.render.transparent = "透明な背景";
 file.render.transparent.help = "このオプションは2D製作ソフトウェアでメッシュを挿入したい場合、便利です。
@@ -933,6 +957,8 @@ gesture.wheel.speed3d = "速度 (3D ズーム)";
 
 // History, list of undo/redo
 history = "履歴";
+// Button deleting every operation of the history, freeing the memory and the disk space they use
+history.clear = "履歴を消去";
 // Long press on a state of the history list: deletes it and every older one, $0 is a number of operations
 history.delete.confirm = "履歴から$0件の操作を削除しますか？";
 history.delete.help = "履歴項目を長押しすると、その項目とそれ以前の履歴が完全に削除されます。";
@@ -952,17 +978,26 @@ history.include.postProcess.help = "ポストプロセスの編集を元に戻�
 // include shading parameters (MatCap & HDRIs) editing in the undo/redo
 history.include.shading = "シェーディング";
 history.include.shading.help = "PBR、MatCap、Unlit モード、および MatCap と HDRI を含めます。";
+// How much disk space the history is allowed to use, past it the oldest operations are deleted
+history.limitDisk = "ストレージ上限";
+history.limitDisk.help = "このプロジェクトの取り消し／やり直し履歴が使用できるストレージの最大量です。
+
+上限に達すると、古い操作から完全に削除されます。
+
+新しい上限は、次の操作が記録された後に適用されます。";
 // How much memory the history is allowed to use before the older states are moved to the disk
-history.limitMemory = "メモリ制限";
-history.limitMemory.help = "メモリに保持する履歴の量です。
+history.limitMemory = "RAM上限";
+history.limitMemory.help = "RAMに保持される取り消し／やり直し履歴の最大量です。
 
-古い状態はディスクに移動され、取り消し時に再読み込みされます。削除はされません。
+古い状態はストレージに移動され、必要に応じて再読み込みされます。削除はされません。
 
-履歴は次に操作が記録されたときに更新されます。";
+新しい上限は、次に編集、取り消し、またはやり直しを行った後に適用されます。";
 // Where the undo history is kept when the project is saved (it survives reopening the project)
 history.persist = "履歴を保存";
 history.persist.embedded = "埋め込む";
-history.persist.embedded.help = "履歴はプロジェクトファイル内に保存されます。ファイルは大きくなりますが、履歴も一緒に移動します。";
+history.persist.embedded.help = "履歴はプロジェクトファイル内に保存されます。ファイルサイズが大きくなり、保存と読み込みが遅くなります。
+
+履歴をファイルと一緒に持ち運ぶ必要がない場合は、オフまたは分離を推奨します。";
 history.persist.help = "プロジェクトを保存するときに取り消し履歴を保持し、開き直した後も利用できるようにします。";
 history.persist.off = "オフ";
 history.persist.off.help = "プロジェクトを履歴なしで保存します。";
@@ -1058,8 +1093,10 @@ interface.inset.title.help = "画面の端のボタン操作に問題がある�
 
 スライダーが無効の場合、Nomadはデバイスそのものによる安全なエリアの値を使用します。";
 // Move a floating panel by dragging inside it, instead of using its bar
-interface.panelDrag = "";
-interface.panelDrag.help = "";
+interface.panelDrag = "パネル本体をドラッグ";
+interface.panelDrag.help = "フローティングパネルは常にバーをドラッグして移動します。このオプションを有効にすると、パネル本体もドラッグできます。
+
+自動では、指またはスタイラスによるドラッグが縦方向より横方向に大きい場合のみパネルを移動するため、縦方向のドラッグでは引き続き内容をスクロールできます。マウスでも任意の方向にドラッグするには「はい」に設定します。";
 // Interface option (if the menus are transparent or opaque)
 interface.panelTransparent = "透明パネル";
 // Width of the interface panels
@@ -1118,9 +1155,11 @@ item.delete.used = "使用中の画像";
 // Draggable, movable
 item.draggable = "移動可能";
 // Show the folders of a list as a column on its side, instead of a drop down menu
-item.folderColumn = "";
+item.folderColumn = "フォルダー列";
+// Show the folders of a drop down menu as small chips filling the width, instead of one per line
+item.folderCompact = "コンパクトなフォルダー";
 // Show a list of items as one group of items per folder, instead of a single list
-item.folderGroup = "";
+item.folderGroup = "フォルダーでグループ化";
 // Hide an item (object, layer, etc)
 item.hide = "隠す";
 // Make an item instance, similar to clone but keeps the underlying geometry (Synonym: link? soft clone?)
@@ -1155,17 +1194,17 @@ item.reset.confirm = "リセットしますか？";
 // Save an item (object, tool, etc)
 item.save = "保存";
 item.save.confirm = "保存しますか？";
-item.saveLibrary = "";
+item.saveLibrary = "ライブラリに保存";
 // Select an item (object, layer, etc)
 item.select = "選択";
 // Show an item (object, layer, etc)
 item.show = "表示";
 // Show the name of every item under its preview image
-item.showName = "";
+item.showName = "名前を表示";
 // Order a list of items alphabetically
-item.sortName = "";
+item.sortName = "名前順";
 // Order a list of items with the most recently modified first
-item.sortRecent = "";
+item.sortRecent = "最近の項目";
 // Convert the item type (mesh, light) to a simple Node type
 item.toNode = "ノードに";
 // Uninstance the object, make the object real
@@ -1259,13 +1298,10 @@ light.angle = "アングル";
 light.attachment = "追従先";
 // The light will move along the camera
 light.attachment.camera = "カメラ";
+light.attachment.camera.help = "ライトの方向はカメラビューによって変化します。";
 // The light will stay still even if the user moves the camera
 light.attachment.fixed = "固定";
-light.attachment.help = "• 固定
-ライトの方向は変化しません。
-
-• カメラ
-ライトの方向はカメラビューによって変化します。";
+light.attachment.fixed.help = "ライトの方向は変化しません。";
 // Color of light
 light.color = "カラー";
 // Contact shadows are more precise shadows on small distance (synonym: cavity shadows?)
@@ -1322,7 +1358,7 @@ light.visible = "表示";
 
 link.address = "このデバイス";
 link.approve = "承認";
-link.bridges = "ブリッジスクリプト";
+link.bridges = "ブリッジスクリプト（GitHub）";
 link.cameras = "カメラ";
 link.copyRepository = "リポジトリURLをコピー";
 link.deny = "拒否";
@@ -1335,7 +1371,7 @@ link.goz.notInstalled = "先にZBrushでGoZをインストールしてくださ�
 link.goz.received = "ZBrushから$0個のオブジェクトを受信しました";
 link.goz.sent = "ZBrushへ$0個のオブジェクトを送信しました";
 link.goz.waiting = "ZBrushの書き出しを待機中";
-link.help.others = "他のアプリ（ZBrushなど）も同じ方法でNomadホストに接続します。
+link.help.others = "他のアプリ（ZBrush、Marmoset Toolbagなど）も同じ方法でNomadホストに接続します。
 
 ブリッジはPythonスクリプトで、そのアプリと同じコンピュータ上で実行されます。
 サンプルスクリプトとプロトコルはGitHubにあります。出発点として使用してください。";
@@ -1660,6 +1696,8 @@ paint.useGlobal.help = "このオプションを有効にすると、選択中�
 但し、粗さ、メタリック、およびカラー設定のみが考慮されますので、ご注意ください。";
 // The current tool will paint the object if this option is enabled
 paint.usePainting = "ストロークペイント";
+// Paint with the color, roughness, metalness and opacity baked inside the VDM stamp
+paint.vdmMaterial = "";
 
 position.bottom = "下";
 position.center = "中央揃え";
@@ -1701,6 +1739,8 @@ postprocess.bloom.threshold.help = "ピクセルがブルームを発するか�
 // https://en.wikipedia.org/wiki/Chromatic_aberration
 postprocess.chromatic = "色収差";
 postprocess.chromatic.factor = "強さ";
+// Short label for the section shortcut bar
+postprocess.chromatic.short = "";
 // Accentuate the edges of the model
 postprocess.curvature = "曲率";
 // Color/Strength of convex curvature
@@ -1709,6 +1749,8 @@ postprocess.curvature.bump = "バンプ";
 postprocess.curvature.cavity = "キャビティ";
 // Main strength of curvature
 postprocess.curvature.factor = "係数";
+// Short label for the section shortcut bar
+postprocess.curvature.short = "";
 // Color curves
 postprocess.curve = "カラーグレーディング";
 postprocess.curve.blue = "ブルー";
@@ -1718,6 +1760,8 @@ postprocess.curve.luminance = "メイン";
 postprocess.curve.red = "レッド";
 // Reset color grading curves
 postprocess.curve.resetAll = "すべてをリセット";
+// Short label for the section shortcut bar
+postprocess.curve.short = "";
 // Denoise
 postprocess.denoise = "ノイズ除去";
 postprocess.denoise.help = "すべてのフレームが蓄積された後、ノイズ除去処理を適用します。";
@@ -1728,11 +1772,17 @@ postprocess.dithering.help = "バンディング（グラデーションやビ�
 // Depth of Field (bokeh)
 // https://en.wikipedia.org/wiki/Depth_of_field
 postprocess.dof = "被写界深度";
+// f-number, a lower value opens the lens and blurs more
+postprocess.dof.aperture = "";
 // The blur factor behind the focused point
 postprocess.dof.blurFar = "背景のぼかし";
 // The blur factor in front of the focused point
 postprocess.dof.blurNear = "前景のぼかし";
 postprocess.dof.focusTip = "オブジェクトをタップすると、焦点を変更できます。";
+// Drive the blur with a single camera aperture instead of the two blur factors
+postprocess.dof.physical = "";
+// Short label for the section shortcut bar (no need to translate "DoF")
+postprocess.dof.short = "";
 // Full resolution (1:1 resolution) instead of half resolution
 postprocess.fullResolution = "フル解像度";
 // Filmic Grain
@@ -1746,6 +1796,8 @@ postprocess.maxSamples.help = "パフォーマンスと引き換えに、ポス�
 postprocess.pixelArt = "ピクセルアート";
 // Override frame accumulation feature
 postprocess.pixelArt.allowAccumulate = "フレームのサンプリングを許可";
+// Short label for the section shortcut bar
+postprocess.pixelArt.short = "";
 // Quality vs performance
 postprocess.quality = "クオリティ";
 postprocess.quality.help = "これらのオプションをアクティベートすると、クオリティは向上しますが、パフォーマンスは低下します。";
@@ -1765,6 +1817,8 @@ postprocess.scanline.spacing = "間隔";
 // https://en.wikipedia.org/wiki/Unsharp_masking
 postprocess.sharpness = "シャープ";
 postprocess.sharpness.factor = "強さ";
+// Short label for the section shortcut bar
+postprocess.sharpness.short = "";
 // Screen-space ambient occlusion (SSAO)
 // https://en.wikipedia.org/wiki/Ambient_occlusion
 postprocess.ssao = "アンビエントオクルージョン";
@@ -1772,16 +1826,22 @@ postprocess.ssao = "アンビエントオクルージョン";
 postprocess.ssao.factor = "強さ";
 // How far the effect spreads
 postprocess.ssao.radius = "サイズ";
+// Short label for the section shortcut bar (no need to translate "SSAO")
+postprocess.ssao.short = "";
 // Adjustment for ssao
 postprocess.ssao.thickness = "厚さ";
 postprocess.ssao.thickness.help = "オクルーダーに対して想定される深度の厚さを、AO半径に対する割合として指定します。";
 // Screen-Space Global Illumination (no need to translate "SSGI")
 postprocess.ssgi = "グローバルイルミネーション (SSGI)";
+// Short label for the section shortcut bar (no need to translate "SSGI")
+postprocess.ssgi.short = "";
 // Thickness threshold for ssgi tracing algorithm (synonym: threshold, bias)
 postprocess.ssgi.tolerance = "許容値";
 postprocess.ssgi.warning = "SSGIにはPBRシェーディングモードが必要です。";
 // Screen-Space Reflection (no need to translate "SSR")
 postprocess.ssr = "反射 (SSR)";
+// Short label for the section shortcut bar (no need to translate "SSR")
+postprocess.ssr.short = "";
 postprocess.ssr.warning = "SSRにはPBRシェーディングモードが必要です。";
 // Temporal Anti-Aliasing (no need to translate "TAA")
 postprocess.taa = "アンチエイリアス (TAA)";
@@ -1796,6 +1856,8 @@ postprocess.tone.mapping.neutral = "ニュートラル";
 // No tonemapping operator is used
 postprocess.tone.mapping.none = "なし";
 postprocess.tone.saturation = "彩度";
+// Short label for the section shortcut bar
+postprocess.tone.short = "";
 // Darkening at the edges
 postprocess.vignette = "ビネット";
 // How sharp the edge of the effect is
@@ -2086,10 +2148,16 @@ settings.grid.snapDivision = "スナップ分割しきい値";
 settings.grid.snapDivision.help = "しきい値はグリッドまでの距離と比較されます。";
 // Snap eligible tool points to the grid
 settings.grid.snapGrid = "グリッドにスナップ";
+// Same as settings.grid.snapGrid, on a small shortcut button
+settings.grid.snapGrid.short = "";
 // Snap eligible tool points to nearby existing points when the camera is aligned
 settings.grid.snapPointAlign = "ポイントにスナップ (整列ビュー)";
+// Same as settings.grid.snapPointAlign, on a small shortcut button
+settings.grid.snapPointAlign.short = "";
 // Snap eligible tool points to nearby existing points when the camera is not aligned
 settings.grid.snapPointFree = "ポイントにスナップ (自由に表示)";
+// Same as settings.grid.snapPointFree, on a small shortcut button
+settings.grid.snapPointFree.short = "";
 // Handles are controls that you interact with in the viewport in order to edit something
 settings.handle = "ハンドル";
 settings.handles = "ハンドル";
@@ -2165,13 +2233,18 @@ settings.snapCube.align.help = "ビューを世界軸に揃えます。有効に
 // Move the navigation cube to the bottom of the screen
 settings.snapCube.bottom = "下";
 // Extra snapping views on the edges and corners of the navigation cube
-settings.snapCube.edgeCorner = "";
-settings.snapCube.edgeCorner.help = "";
+settings.snapCube.edgeCorner = "辺と角";
+settings.snapCube.edgeCorner.help = "キューブの辺と角にスナップビューを追加します（琥珀色の領域）。";
 // Flip the camera (rotate 180° to see the other side)
 settings.snapCube.flip = "180°回転";
 settings.snapCube.flip.help = "ビューが既にスナップされている場合はビューを反転します。";
 // Move the navigation cube on the left side of the screen
 settings.snapCube.left = "左";
+// Dragging the navigation cube rotates like the Turntable mode, even if the camera is in Trackball
+settings.snapCube.turntable = "ターンテーブルドラッグ";
+settings.snapCube.turntable.help = "キューブをドラッグすると、カメラをロールさせずに回転し、各スナップビューで止まります。
+
+無効にすると、代わりにトラックボール回転でキューブをドラッグします。どちらの場合も、ドラッグは水平または垂直に保たれます。";
 // Stats (information logs about the scene displayed on screen)
 settings.stats = "統計情報";
 settings.stats.all = "シーン全体を表示";
@@ -2637,6 +2710,8 @@ symmetry.showLine = "線を表示";
 symmetry.showPlane = "平面を表示";
 // after mirroring, separate into multiple output (synonym: split, separate)
 symmetry.split = "分割";
+// How many times the sculpt repeats across the object, so it tiles seamlessly (synonym: wrap, repeat)
+symmetry.tile.title = "";
 symmetry.toolIgnore = "現在使用中のツールは対称を無視します。";
 
 // Three-state toggle button (auto, no, yes)
@@ -2798,15 +2873,29 @@ tool.layer.removeInfluence.help = "このオプションはレイヤーが選択
 tool.mask = "マスク";
 // Blur the painted mask
 tool.mask.blur = "ブラー";
+// Mask the open boundary of the mesh (the edge of a plane, the rim of a hole)
+tool.mask.border = "";
+// Strengthen the mask intensity without changing its shape (opposite of Dilute)
+tool.mask.boost = "";
+// Negative side of the Cavity slider: only the raised areas stay paintable
+tool.mask.bumps = "";
+// Rebuild the mask from the surface curvature: only the recessed areas stay paintable
+tool.mask.cavity = "";
 // Clear the painted mask
 tool.mask.clear = "クリア";
 tool.mask.clearAll = "全てクリア";
+// Weaken the mask intensity without changing its shape (opposite of Boost)
+tool.mask.dilute = "";
 // Mask or Unmask a region (leave other region that unconnected intact)
 tool.mask.flipConnected = "接続部分を反転";
+// Enlarge the masked area, one ring of vertices at a time
+tool.mask.grow = "";
 // Invert the painted mask
 tool.mask.invert = "反転";
 // Sharpen the edge of the painted mask area
 tool.mask.sharpen = "シャープ";
+// Reduce the masked area, one ring of vertices at a time (opposite of Grow)
+tool.mask.shrink = "";
 // Ideally short strings
 tool.mask.unmask = "マスク解除";
 // Ideally short strings (Selector Mask, use lasso/ellipse,etc shape to mask the mesh)
@@ -2821,6 +2910,9 @@ tool.matrix.action.origin = "原点を移動";
 tool.matrix.action.origin.help = "メッシュをワールドの原点に移動させます。";
 tool.matrix.action.reset = "リセット";
 tool.matrix.action.reset.help = "メッシュ変換を初期の状況にリセットします。";
+// Move the pivot alone, the objects stand still
+tool.matrix.editPivot = "";
+tool.matrix.editPivot.help = "";
 tool.matrix.rotation = "回転";
 tool.matrix.scale = "スケール";
 // Synonym: shear, https://en.wikipedia.org/wiki/Shear_matrix or https://en.wikipedia.org/wiki/Shear_mapping
@@ -2889,8 +2981,6 @@ tool.polish = "ポリッシュ";
 tool.project = "プロジェクト";
 // Radius of the tool (size)
 tool.radius = "半径";
-// Ideally short strings (Quad Remesher)
-tool.remesh = "クワッドリメッシャー";
 tool.remesh.density = "密度";
 tool.remesh.guides = "ガイド";
 tool.remesh.half = "半分";
@@ -2987,6 +3077,10 @@ tool.trim.detail.protect.help = "カット境界をスムージングおよび�
 マスクおよび非表示の面付近で、元のメッシュのトポロジーを保持します。";
 // Ideally short strings (Revolving surface along a curve)
 tool.tube = "チューブ";
+// Ideally short strings (Vector displacement stamp)
+tool.vdm = "";
+// Scales only the height of the vdm stamp, lateral displacement is unchanged
+tool.vdm.height = "";
 // Ideally short strings (View tool, do nothing in particular)
 tool.view = "表示";
 // Always display the camera shortcut buttons on the viewport
@@ -2994,8 +3088,6 @@ tool.view.stickyCamera = "カメラショートカット（常時）";
 
 // Topology
 topology = "トポロジー";
-// Name of the quad remeshing engine, should probably stay untranslated
-topology.autoremesher = "AutoRemesher";
 topology.autoremesher.adaptivity = "適応性";
 topology.autoremesher.adaptivity.help = "四角形の密度を曲率に合わせます。
 
@@ -3045,6 +3137,12 @@ topology.bake.title.help = "テクスチャベイクは、シーン内の他の�
 - 選択中の全オブジェクトを使用し、メインの選択オブジェクトがベイク対象になります（シーンメニューで最も強いハイライト）
 - 選択が1つだけの場合、Nomadは代わりにすべての可視オブジェクトを使用します
 - それ以外で全オブジェクトが非表示の場合（Solo使用時など）、シーン全体を使用します";
+// Warning shown after a VDM bake, the border of the plane is its outer edge
+topology.bake.vdm.border = "";
+// Error shown when a VDM bake fails
+topology.bake.vdm.failed = "";
+// Bake here means "create a VDM (from a sculpted plane)"
+topology.bake.vdm.help = "";
 // Synonym: Simplify (Decimate reduce the number of triangles/quads while retaining details as much as possible)
 topology.decimate = "デシメイト";
 topology.decimate.boundary = "境界を保持する";
@@ -3096,8 +3194,6 @@ topology.dynamic.useFalloff = "ストロークのフォールオフを使用";
 // Whether the pencil pressure can impact the level of detail
 topology.dynamic.usePressure = "半径に筆圧を使用";
 topology.dynamic.usePressure.help = "筆圧をツールの半径に影響させ、ディテールのレベルに影響を与えたい場合、このオプションを使用してください。";
-// Instant quad remesher
-topology.instant = "Instant Mesh";
 topology.instant.angle = "クリース角度";
 topology.instant.hole = "最大穴埋め";
 topology.instant.hole.help = "アルゴリズムは、意図しない穴を生成することがあります。
@@ -3144,8 +3240,6 @@ topology.multires.up = "マルチレゾレベル →";
 topology.nonManifold = "非多様体";
 // Quad remesher
 topology.quadRemesh = "クワッドリメッシュ";
-// Name of the quad remeshing engine, should probably stay untranslated
-topology.quadriflow = "QuadriFlow";
 topology.quadriflow.adaptiveScale = "適応スケール";
 topology.quadriflow.adaptiveScale.help = "四角形のサイズをサーフェスの曲率に合わせます。";
 topology.quadriflow.keepSharp = "シャープを保持";

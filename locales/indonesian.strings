@@ -115,10 +115,18 @@ alert.forcePainting.tool = "Tampilkan pengecatan diaktifkan, objek telah dicat."
 alert.gizmo.editObject = "Edit mode objek.";
 // In this mode, the user moves the Gizmo's pivot instead of the object
 alert.gizmo.editPivot = "Edit mode pivot.";
+// Button that turns the heightmap render off
+alert.heightmap.hide = "";
+// The viewport renders the depth of the scene instead of the shaded objects
+alert.heightmapOn = "";
 // The user decided to display hidden faces
 alert.hideIgnored = "Sembunyikan diabaikan!";
 // Error when an algorithm needs the object to have a hole (usually to fill it)
 alert.hole.nothing = "Objek tidak memiliki lubang!";
+// Button that turns the inspector off
+alert.inspect.hide = "";
+// The viewport renders a material channel instead of the shaded objects
+alert.inspectOn = "";
 // The lattice deformation was applied with a different mask or visibility state
 // (the gui appends the icon of the changed states)
 alert.lattice.desync = "Lattice tidak sinkron!";
@@ -208,6 +216,9 @@ background.imageAlpha = "Opasitas";
 background.imageEnable = "Gambar referensi";
 // The image will be displayed in overlay (used as a reference by the artist)
 background.imageOverlay = "Overlay";
+// Apply the post process effects on the reference image
+background.imagePostProcess = "Pemrosesan pasca";
+background.imagePostProcess.help = "Menerapkan efek pemrosesan pasca pada gambar referensi. Nonaktifkan untuk mempertahankan warna asli.";
 background.imageReset = "Reset pengaturan";
 // Rotation of the reference image
 background.imageRotate = "Rotasi";
@@ -286,6 +297,8 @@ binding.rotateLighting = "Putar pencahayaan";
 // Select all the objects in the scene
 binding.selectAll = "Pilih Semua";
 binding.snap.toggle = "Beralih pengeditan kurva";
+// Same as binding.snap.toggle, on a small shortcut button
+binding.snap.toggle.short = "";
 // Snap the view (while rotating)
 binding.snapViewOnRotate = "Snap tampilan (saat berputar)";
 binding.spacemouse = "SpaceMouse";
@@ -371,6 +384,8 @@ camera.doubleTapBackgroundFocus.toggle = "Alihkan";
 camera.doubleTapFocus.help = "Saat mengetuk dua kali pada objek, kamera akan bergerak dan fokus pada titik yang dipilih.";
 // When we double tap on the object with the finger/stylus
 camera.doubleTapMesh = "Ketuk dua kali pada objek";
+// Same as camera.doubleTapMesh, on a small shortcut button
+camera.doubleTapMesh.short = "";
 // When double tapping with the finger/stylus, the camera pivot will be updated
 camera.doubleTapPivot = "Ketika mengetuk dua kali";
 camera.doubleTapPivot.help = "Perbarui poros rotasi saat mengetuk dua kali pada permukaan objek.";
@@ -465,8 +480,6 @@ cube.right = "Kanan";
 cube.top = "Atas";
 
 curve.bspline = "B-spline";
-// Curve type, https://en.wikipedia.org/wiki/Centripetal_Catmull%E2%80%93Rom_spline
-curve.catmull = "Catmull-Rom";
 // Merge or collapse one point into another
 curve.merge = "Gabungkan";
 curve.pivot = "Poros";
@@ -527,12 +540,22 @@ curve.uniform.help = "Kurva akan diambil sampel pada jarak teratur, untuk memast
 
 Anda dapat menonaktifkan opsi ini untuk sedikit mengontrol loop tepi dengan menambahkan titik kontrol baru pada kurva.";
 
+// Debug section to import/export the icons of the interface
+debug.customIcons = "";
+// Short label for the section shortcut bar
+debug.customIcons.short = "";
+// Debug section for optional features
+debug.feature = "";
 // Debug graphics options
 debug.graphics = "Grafik";
 // Debug option, overrides the rendering to display the depth buffer
 debug.heightmap = "Peta Tinggi";
 // Debug option: display a window with debugging logs
 debug.logs = "Log";
+// Logs window option: break long lines to fit the panel width
+debug.logs.wrap = "";
+// Debug section for multithreading and speed options
+debug.performance = "";
 // Model shortcut window
 debug.shortcut = "Jendela pintasan";
 // Set the desired FPS (frame per second, refresh rate)
@@ -540,6 +563,8 @@ debug.targetFps = "Target FPS";
 debug.targetFps.help = "Ketika dinonaktifkan, nilai default berarti akan sinkron dengan laju penyegaran layar.";
 // Debug options, generate screenshots with size compatible with the iOS store
 debug.thumbnails = "Buat thumbnail toko";
+// Same as debug.thumbnails, on a small shortcut button
+debug.thumbnails.short = "";
 // Debug option, Normalize means transforming the data so that it fits in [0-1] the range
 debug.uvNormalize = "Normalisasi UVs";
 debug.uvNormalize.help = "Nomad akan menormalisasi UVs di dalam ubin [0-1].";
@@ -638,8 +663,10 @@ file.export.gltf.layer.help = "Ekspor lapisan sebagai morph. Resmi didukung oleh
 // Whether we include painting of layers in the exported file (see glossary for layer)
 file.export.gltf.layerPaint = "Melukis lapisan";
 file.export.gltf.layerPaint.help = "Ekspor pengecatan lapisan. Biasanya diabaikan oleh perangkat lunak lain.";
-file.export.nomad.assets = "";
-file.export.nomad.assets.help = "";
+file.export.nomad.assets = "Sematkan MatCap & lingkungan";
+file.export.nomad.assets.help = "Sertakan MatCap kustom dan lingkungan di dalam file agar tampilannya sama di perangkat lain.
+
+Aset bawaan tidak pernah disematkan karena merupakan bagian dari Nomad.";
 file.export.nomad.help = "Format file internal Nomad Sculpt.
 
 Format ini tidak akan memuat di perangkat lunak lain, ini terutama untuk tujuan impor ulang.";
@@ -776,11 +803,8 @@ file.project.unsaved = "Perubahan yang tidak disimpan!";
 file.render = "Render";
 // height of exported screenshot
 file.render.height = "Tinggi";
-// Resolution ratio of the exported screenshot
-file.render.renderRatio = "Rasio render";
-file.render.renderRatio.help = "Nilai 1,0 berarti bahwa Nomad akan merender pada resolusi yang sama dengan ukuran gambar yang diminta di bawah.
-
-Gunakan opsi ini jika Anda tidak dapat merender pada resolusi tertentu (crash karena kurangnya memori).";
+// Warning shown when the requested export resolution is too large for the memory left on the device
+file.render.lowMemory = "";
 // Screen resolution parameters for the export screenshot features
 file.render.screenResolution = "Layar";
 // If we include the App Interface in the exported screenshot
@@ -790,7 +814,7 @@ file.render.size = "Ukuran akhir";
 // Desired size of the exported screenshot (custom vs predefined size)
 file.render.size.custom = "Kustom";
 // Save the heightmap render as a new brush alpha instead of exporting it as a file
-file.render.toAlpha = "";
+file.render.toAlpha = "Simpan sebagai alfa";
 // If true, then the exported screenshot will have transparency data in the image
 file.render.transparent = "Latar belakang transparan";
 file.render.transparent.help = "Pilihan ini berguna jika Anda ingin memasukkan mesh ke dalam perangkat lunak pembuatan 2D.
@@ -933,6 +957,8 @@ gesture.wheel.speed3d = "Kecepatan (perbesaran 3d)";
 
 // History, list of undo/redo
 history = "Riwayat";
+// Button deleting every operation of the history, freeing the memory and the disk space they use
+history.clear = "Hapus riwayat";
 // Long press on a state of the history list: deletes it and every older one, $0 is a number of operations
 history.delete.confirm = "Hapus $0 operasi dari riwayat?";
 history.delete.help = "Tekan lama entri riwayat untuk menghapusnya secara permanen beserta semua riwayat yang lebih lama.";
@@ -952,17 +978,26 @@ history.include.postProcess.help = "Menyertakan edit PostProcess dalam riwayat u
 // include shading parameters (MatCap & HDRIs) editing in the undo/redo
 history.include.shading = "Shading";
 history.include.shading.help = "Menyertakan mode PBR, MatCap, dan Unlit, serta MatCap dan HDRI.";
+// How much disk space the history is allowed to use, past it the oldest operations are deleted
+history.limitDisk = "Batas penyimpanan";
+history.limitDisk.help = "Jumlah maksimum penyimpanan yang dapat digunakan oleh riwayat Urungkan/Ulangi proyek ini.
+
+Ketika batas tercapai, operasi paling lama dihapus secara permanen.
+
+Batas baru diterapkan setelah operasi berikutnya direkam.";
 // How much memory the history is allowed to use before the older states are moved to the disk
-history.limitMemory = "Batas memori";
-history.limitMemory.help = "Jumlah riwayat yang disimpan dalam memori.
+history.limitMemory = "Batas RAM";
+history.limitMemory.help = "Jumlah maksimum riwayat Urungkan/Ulangi yang disimpan dalam RAM.
 
-Status yang lebih lama dipindahkan ke disk dan dimuat kembali saat Anda mengurungkan; status tersebut tidak dihapus.
+Status yang lebih lama dipindahkan ke penyimpanan dan dimuat kembali saat diperlukan; status tersebut tidak dihapus.
 
-Riwayat akan diperbarui pada operasi berikutnya yang direkam.";
+Batas baru diterapkan setelah pengeditan, pengurungan, atau pengulangan berikutnya.";
 // Where the undo history is kept when the project is saved (it survives reopening the project)
 history.persist = "Simpan riwayat";
 history.persist.embedded = "Sematkan";
-history.persist.embedded.help = "Riwayat disimpan di dalam file proyek. File menjadi lebih besar, tetapi riwayat ikut bersamanya.";
+history.persist.embedded.help = "Riwayat disimpan di dalam file proyek: ukuran file lebih besar serta penyimpanan dan pemuatan lebih lambat.
+
+Pilih Nonaktif atau Terpisah kecuali riwayat harus ikut bersama file.";
 history.persist.help = "Pertahankan riwayat urungkan saat proyek disimpan agar tetap tersedia setelah proyek dibuka kembali.";
 history.persist.off = "Nonaktif";
 history.persist.off.help = "Proyek disimpan tanpa riwayatnya.";
@@ -1058,8 +1093,10 @@ interface.inset.title.help = "Anda hanya dapat mengubah nilai-nilai ini jika And
 
 Jika penggeser dinonaktifkan, Nomad akan menggunakan nilai area aman yang dikembalikan oleh perangkat itu sendiri.";
 // Move a floating panel by dragging inside it, instead of using its bar
-interface.panelDrag = "";
-interface.panelDrag.help = "";
+interface.panelDrag = "Seret badan panel";
+interface.panelDrag.help = "Panel mengambang selalu dipindahkan dengan menyeret bilahnya. Opsi ini juga memungkinkan Anda menyeret badan panel.
+
+Pada Otomatis, jari atau stylus memindahkan panel hanya saat seretan lebih horizontal daripada vertikal, sehingga seretan vertikal tetap menggulirkan konten. Atur ke Ya agar panel juga dapat diseret dengan mouse ke segala arah.";
 // Interface option (if the menus are transparent or opaque)
 interface.panelTransparent = "Panel transparan";
 // Width of the interface panels
@@ -1118,9 +1155,11 @@ item.delete.used = "Gambar digunakan";
 // Draggable, movable
 item.draggable = "Dapat Dipindahkan";
 // Show the folders of a list as a column on its side, instead of a drop down menu
-item.folderColumn = "";
+item.folderColumn = "Kolom folder";
+// Show the folders of a drop down menu as small chips filling the width, instead of one per line
+item.folderCompact = "Folder ringkas";
 // Show a list of items as one group of items per folder, instead of a single list
-item.folderGroup = "";
+item.folderGroup = "Kelompokkan menurut folder";
 // Hide an item (object, layer, etc)
 item.hide = "Sembunyikan";
 // Make an item instance, similar to clone but keeps the underlying geometry (Synonym: link? soft clone?)
@@ -1155,17 +1194,17 @@ item.reset.confirm = "Konfirmasi reset?";
 // Save an item (object, tool, etc)
 item.save = "Simpan";
 item.save.confirm = "Konfirmasi simpan?";
-item.saveLibrary = "";
+item.saveLibrary = "Simpan ke pustaka";
 // Select an item (object, layer, etc)
 item.select = "Pilih";
 // Show an item (object, layer, etc)
 item.show = "Tampilkan";
 // Show the name of every item under its preview image
-item.showName = "";
+item.showName = "Tampilkan nama";
 // Order a list of items alphabetically
-item.sortName = "";
+item.sortName = "Menurut nama";
 // Order a list of items with the most recently modified first
-item.sortRecent = "";
+item.sortRecent = "Terbaru";
 // Convert the item type (mesh, light) to a simple Node type
 item.toNode = "Ke Node";
 // Uninstance the object, make the object real
@@ -1259,13 +1298,10 @@ light.angle = "Sudut";
 light.attachment = "Lampiran";
 // The light will move along the camera
 light.attachment.camera = "Kamera";
+light.attachment.camera.help = "Orientasi lampu bergantung pada sudut pandang kamera.";
 // The light will stay still even if the user moves the camera
 light.attachment.fixed = "Tetap";
-light.attachment.help = "• Ditetapkan
-Orientasi lampu tidak akan berubah.
-
-• Kamera
-Orientasi lampu bergantung pada sudut pandang kamera.";
+light.attachment.fixed.help = "Orientasi lampu tidak akan berubah.";
 // Color of light
 light.color = "Warna";
 // Contact shadows are more precise shadows on small distance (synonym: cavity shadows?)
@@ -1322,7 +1358,7 @@ light.visible = "Tampilkan";
 
 link.address = "Perangkat ini";
 link.approve = "Terima";
-link.bridges = "Skrip bridge";
+link.bridges = "Skrip bridge (GitHub)";
 link.cameras = "Kamera";
 link.copyRepository = "Salin URL repositori";
 link.deny = "Tolak";
@@ -1335,7 +1371,7 @@ link.goz.notInstalled = "Instal GoZ di ZBrush terlebih dahulu (Preferensi > GoZ)
 link.goz.received = "Menerima $0 objek dari ZBrush";
 link.goz.sent = "Mengirim $0 objek ke ZBrush";
 link.goz.waiting = "Menunggu ekspor ZBrush";
-link.help.others = "Aplikasi lain (ZBrush, dll.) terhubung ke host Nomad dengan cara yang sama.
+link.help.others = "Aplikasi lain (ZBrush, Marmoset Toolbag, dll.) terhubung ke host Nomad dengan cara yang sama.
 
 Bridge adalah skrip Python yang berjalan di komputer yang sama dengan aplikasi tersebut.
 Skrip contoh dan protokol tersedia di GitHub; gunakan sebagai titik awal.";
@@ -1660,6 +1696,8 @@ paint.useGlobal.help = "Jika opsi ini diaktifkan, material yang dipilih akan sam
 Perhatikan bahwa ini hanya memperhitungkan kekasaran, kemetalan, dan warna.";
 // The current tool will paint the object if this option is enabled
 paint.usePainting = "Lukisan garis";
+// Paint with the color, roughness, metalness and opacity baked inside the VDM stamp
+paint.vdmMaterial = "";
 
 position.bottom = "Bawah";
 position.center = "Tengah";
@@ -1701,6 +1739,8 @@ Jika nilai sama dengan 0, semuanya akan menerima kembang.";
 // https://en.wikipedia.org/wiki/Chromatic_aberration
 postprocess.chromatic = "Aberasi Kromatik";
 postprocess.chromatic.factor = "Kekuatan";
+// Short label for the section shortcut bar
+postprocess.chromatic.short = "";
 // Accentuate the edges of the model
 postprocess.curvature = "Kelengkungan";
 // Color/Strength of convex curvature
@@ -1709,6 +1749,8 @@ postprocess.curvature.bump = "Tonjolan";
 postprocess.curvature.cavity = "Rongga";
 // Main strength of curvature
 postprocess.curvature.factor = "Faktor";
+// Short label for the section shortcut bar
+postprocess.curvature.short = "";
 // Color curves
 postprocess.curve = "Grading warna";
 postprocess.curve.blue = "Biru";
@@ -1718,6 +1760,8 @@ postprocess.curve.luminance = "Utama";
 postprocess.curve.red = "Merah";
 // Reset color grading curves
 postprocess.curve.resetAll = "Atur Ulang Semua";
+// Short label for the section shortcut bar
+postprocess.curve.short = "";
 // Denoise
 postprocess.denoise = "Denoiser";
 postprocess.denoise.help = "Terapkan pengurangan bising setelah semua bingkai terkumpul.";
@@ -1728,11 +1772,17 @@ postprocess.dithering.help = "Mengurangi artefak banding (misalnya gradasi, viny
 // Depth of Field (bokeh)
 // https://en.wikipedia.org/wiki/Depth_of_field
 postprocess.dof = "Kedalaman bidang";
+// f-number, a lower value opens the lens and blurs more
+postprocess.dof.aperture = "";
 // The blur factor behind the focused point
 postprocess.dof.blurFar = "Pengaburan jauh";
 // The blur factor in front of the focused point
 postprocess.dof.blurNear = "Pengaburan dekat";
 postprocess.dof.focusTip = "Ketuk objek untuk mengubah titik fokus.";
+// Drive the blur with a single camera aperture instead of the two blur factors
+postprocess.dof.physical = "";
+// Short label for the section shortcut bar (no need to translate "DoF")
+postprocess.dof.short = "";
 // Full resolution (1:1 resolution) instead of half resolution
 postprocess.fullResolution = "Resolusi penuh";
 // Filmic Grain
@@ -1746,6 +1796,8 @@ postprocess.maxSamples.help = "Meningkatkan kualitas post-processing dengan kons
 postprocess.pixelArt = "Seni Piksel";
 // Override frame accumulation feature
 postprocess.pixelArt.allowAccumulate = "Izinkan pengambilan sampel bingkai";
+// Short label for the section shortcut bar
+postprocess.pixelArt.short = "";
 // Quality vs performance
 postprocess.quality = "Kualitas";
 postprocess.quality.help = "Aktifkan opsi-opsi ini untuk meningkatkan kualitas dengan mengorbankan kinerja.";
@@ -1765,6 +1817,8 @@ postprocess.scanline.spacing = "Jarak";
 // https://en.wikipedia.org/wiki/Unsharp_masking
 postprocess.sharpness = "Ketajaman";
 postprocess.sharpness.factor = "Kekuatan";
+// Short label for the section shortcut bar
+postprocess.sharpness.short = "";
 // Screen-space ambient occlusion (SSAO)
 // https://en.wikipedia.org/wiki/Ambient_occlusion
 postprocess.ssao = "Oklusi ambien";
@@ -1772,16 +1826,22 @@ postprocess.ssao = "Oklusi ambien";
 postprocess.ssao.factor = "Kekuatan";
 // How far the effect spreads
 postprocess.ssao.radius = "Ukuran";
+// Short label for the section shortcut bar (no need to translate "SSAO")
+postprocess.ssao.short = "";
 // Adjustment for ssao
 postprocess.ssao.thickness = "Ketebalan";
 postprocess.ssao.thickness.help = "Seberapa besar ketebalan kedalaman yang diasumsikan untuk penghalang, sebagai persentase dari radius AO.";
 // Screen-Space Global Illumination (no need to translate "SSGI")
 postprocess.ssgi = "Pencahayaan Global (SSGI)";
+// Short label for the section shortcut bar (no need to translate "SSGI")
+postprocess.ssgi.short = "";
 // Thickness threshold for ssgi tracing algorithm (synonym: threshold, bias)
 postprocess.ssgi.tolerance = "Toleransi";
 postprocess.ssgi.warning = "SSGI memerlukan mode pencahayaan PBR.";
 // Screen-Space Reflection (no need to translate "SSR")
 postprocess.ssr = "Refleksi (SSR)";
+// Short label for the section shortcut bar (no need to translate "SSR")
+postprocess.ssr.short = "";
 postprocess.ssr.warning = "SSR memerlukan mode pencahayaan PBR.";
 // Temporal Anti-Aliasing (no need to translate "TAA")
 postprocess.taa = "Anti-aliasing (TAA)";
@@ -1796,6 +1856,8 @@ postprocess.tone.mapping.neutral = "Netral";
 // No tonemapping operator is used
 postprocess.tone.mapping.none = "Tidak ada";
 postprocess.tone.saturation = "Kejenuhan";
+// Short label for the section shortcut bar
+postprocess.tone.short = "";
 // Darkening at the edges
 postprocess.vignette = "Vinyet";
 // How sharp the edge of the effect is
@@ -2086,10 +2148,16 @@ settings.grid.snapDivision = "Ambang pembagian snap";
 settings.grid.snapDivision.help = "Ambang batas ini dibandingkan dengan jarak ke grid.";
 // Snap eligible tool points to the grid
 settings.grid.snapGrid = "Snap ke grid";
+// Same as settings.grid.snapGrid, on a small shortcut button
+settings.grid.snapGrid.short = "";
 // Snap eligible tool points to nearby existing points when the camera is aligned
 settings.grid.snapPointAlign = "Snap ke titik (tampilan sejajar)";
+// Same as settings.grid.snapPointAlign, on a small shortcut button
+settings.grid.snapPointAlign.short = "";
 // Snap eligible tool points to nearby existing points when the camera is not aligned
 settings.grid.snapPointFree = "Snap ke titik (tampilan bebas)";
+// Same as settings.grid.snapPointFree, on a small shortcut button
+settings.grid.snapPointFree.short = "";
 // Handles are controls that you interact with in the viewport in order to edit something
 settings.handle = "Gagang";
 settings.handles = "Gagang-gagang";
@@ -2165,13 +2233,18 @@ Di Auto, pembatasan akan terjadi jika kamera dalam mode Orbit.";
 // Move the navigation cube to the bottom of the screen
 settings.snapCube.bottom = "Bawah";
 // Extra snapping views on the edges and corners of the navigation cube
-settings.snapCube.edgeCorner = "";
-settings.snapCube.edgeCorner.help = "";
+settings.snapCube.edgeCorner = "Tepi & sudut";
+settings.snapCube.edgeCorner.help = "Tambahkan tampilan snap pada tepi dan sudut kubus (zona ambar).";
 // Flip the camera (rotate 180° to see the other side)
 settings.snapCube.flip = "Balik 180°";
 settings.snapCube.flip.help = "Balikkan tampilan jika tampilan sudah diselaraskan.";
 // Move the navigation cube on the left side of the screen
 settings.snapCube.left = "Kiri";
+// Dragging the navigation cube rotates like the Turntable mode, even if the camera is in Trackball
+settings.snapCube.turntable = "Seret meja putar";
+settings.snapCube.turntable.help = "Menyeret kubus akan memutar kamera tanpa memiringkannya dan berhenti pada setiap tampilan snap.
+
+Nonaktifkan opsi ini untuk menyeret kubus dengan rotasi Bola jejak. Dalam kedua kasus, seretan tetap horizontal atau vertikal.";
 // Stats (information logs about the scene displayed on screen)
 settings.stats = "Statistik";
 settings.stats.all = "Tampilkan seluruh adegan";
@@ -2637,6 +2710,8 @@ symmetry.showLine = "Tampilkan garis";
 symmetry.showPlane = "Tampilkan bidang";
 // after mirroring, separate into multiple output (synonym: split, separate)
 symmetry.split = "Pisah";
+// How many times the sculpt repeats across the object, so it tiles seamlessly (synonym: wrap, repeat)
+symmetry.tile.title = "";
 symmetry.toolIgnore = "Alat saat ini mengabaikan simetri.";
 
 // Three-state toggle button (auto, no, yes)
@@ -2798,15 +2873,29 @@ Akan menggunakan data lapisan untuk membatasi perpindahan pada sapuan.";
 tool.mask = "Topeng";
 // Blur the painted mask
 tool.mask.blur = "Kabur";
+// Mask the open boundary of the mesh (the edge of a plane, the rim of a hole)
+tool.mask.border = "";
+// Strengthen the mask intensity without changing its shape (opposite of Dilute)
+tool.mask.boost = "";
+// Negative side of the Cavity slider: only the raised areas stay paintable
+tool.mask.bumps = "";
+// Rebuild the mask from the surface curvature: only the recessed areas stay paintable
+tool.mask.cavity = "";
 // Clear the painted mask
 tool.mask.clear = "Bersihkan";
 tool.mask.clearAll = "Hapus semua";
+// Weaken the mask intensity without changing its shape (opposite of Boost)
+tool.mask.dilute = "";
 // Mask or Unmask a region (leave other region that unconnected intact)
 tool.mask.flipConnected = "Balik masker (terhubung)";
+// Enlarge the masked area, one ring of vertices at a time
+tool.mask.grow = "";
 // Invert the painted mask
 tool.mask.invert = "Balik";
 // Sharpen the edge of the painted mask area
 tool.mask.sharpen = "Mempertajam";
+// Reduce the masked area, one ring of vertices at a time (opposite of Grow)
+tool.mask.shrink = "";
 // Ideally short strings
 tool.mask.unmask = "Lepas Topeng";
 // Ideally short strings (Selector Mask, use lasso/ellipse,etc shape to mask the mesh)
@@ -2821,6 +2910,9 @@ tool.matrix.action.origin = "Pindahkan ke asal";
 tool.matrix.action.origin.help = "Pindahkan mesh ke asal dunia.";
 tool.matrix.action.reset = "Atur Ulang";
 tool.matrix.action.reset.help = "Atur ulang transformasi mesh ke identitas.";
+// Move the pivot alone, the objects stand still
+tool.matrix.editPivot = "";
+tool.matrix.editPivot.help = "";
 tool.matrix.rotation = "Rotasi";
 tool.matrix.scale = "Skala";
 // Synonym: shear, https://en.wikipedia.org/wiki/Shear_matrix or https://en.wikipedia.org/wiki/Shear_mapping
@@ -2889,8 +2981,6 @@ tool.polish = "Poles";
 tool.project = "Proyeksi";
 // Radius of the tool (size)
 tool.radius = "Jari-jari";
-// Ideally short strings (Quad Remesher)
-tool.remesh = "Quad Remesher";
 tool.remesh.density = "Kepadatan";
 tool.remesh.guides = "Panduan";
 tool.remesh.half = "Setengah";
@@ -2987,6 +3077,10 @@ tool.trim.detail.protect.help = "Jangan haluskan dan sederhanakan batas potongan
 Mempertahankan topologi mesh asli di dekat face yang diberi mask dan disembunyikan.";
 // Ideally short strings (Revolving surface along a curve)
 tool.tube = "Tabung";
+// Ideally short strings (Vector displacement stamp)
+tool.vdm = "";
+// Scales only the height of the vdm stamp, lateral displacement is unchanged
+tool.vdm.height = "";
 // Ideally short strings (View tool, do nothing in particular)
 tool.view = "Tampilan";
 // Always display the camera shortcut buttons on the viewport
@@ -2994,8 +3088,6 @@ tool.view.stickyCamera = "Pintasan kamera (selalu)";
 
 // Topology
 topology = "Topologi";
-// Name of the quad remeshing engine, should probably stay untranslated
-topology.autoremesher = "AutoRemesher";
 topology.autoremesher.adaptivity = "Adaptivitas";
 topology.autoremesher.adaptivity.help = "Sesuaikan kepadatan quad dengan kelengkungan.
 
@@ -3045,6 +3137,12 @@ Untuk memilih objek mana yang digunakan untuk baking, logika berikut ini akan di
 - semua objek yang dipilih dan objek utama yang dipilih akan dibake (sorotan terkuat di menu scene)
 - jika hanya ada satu objek yang dipilih, maka Nomad akan mempertimbangkan semua objek yang terlihat
 - jika semua objek disembunyikan (misalnya dengan menggunakan Solo), maka seluruh scene akan dipertimbangkan";
+// Warning shown after a VDM bake, the border of the plane is its outer edge
+topology.bake.vdm.border = "";
+// Error shown when a VDM bake fails
+topology.bake.vdm.failed = "";
+// Bake here means "create a VDM (from a sculpted plane)"
+topology.bake.vdm.help = "";
 // Synonym: Simplify (Decimate reduce the number of triangles/quads while retaining details as much as possible)
 topology.decimate = "Desimasi";
 topology.decimate.boundary = "Pertahankan batas";
@@ -3096,8 +3194,6 @@ topology.dynamic.useFalloff = "Gunakan penurunan sapuan";
 // Whether the pencil pressure can impact the level of detail
 topology.dynamic.usePressure = "Gunakan tekanan pada radius";
 topology.dynamic.usePressure.help = "Gunakan opsi ini jika Anda ingin tekanan pena pada radius alat memengaruhi tingkat detail.";
-// Instant quad remesher
-topology.instant = "Instant Mesh";
 topology.instant.angle = "Sudut lipatan";
 topology.instant.hole = "Maksimal isi lubang";
 topology.instant.hole.help = "Algoritma kadang dapat menghasilkan lubang yang tidak diinginkan.
@@ -3144,8 +3240,6 @@ topology.multires.up = "Level Multires →";
 topology.nonManifold = "Non-manifold";
 // Quad remesher
 topology.quadRemesh = "Remesh Kuad";
-// Name of the quad remeshing engine, should probably stay untranslated
-topology.quadriflow = "QuadriFlow";
 topology.quadriflow.adaptiveScale = "Skala adaptif";
 topology.quadriflow.adaptiveScale.help = "Sesuaikan ukuran quad dengan kelengkungan permukaan.";
 topology.quadriflow.keepSharp = "Pertahankan ketajaman";

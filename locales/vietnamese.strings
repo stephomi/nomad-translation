@@ -115,10 +115,18 @@ alert.forcePainting.tool = "Hiển thị vẽ đã kích hoạt, đối tượng
 alert.gizmo.editObject = "Chỉnh sửa chế độ đối tượng.";
 // In this mode, the user moves the Gizmo's pivot instead of the object
 alert.gizmo.editPivot = "Chỉnh sửa chế độ trục.";
+// Button that turns the heightmap render off
+alert.heightmap.hide = "";
+// The viewport renders the depth of the scene instead of the shaded objects
+alert.heightmapOn = "";
 // The user decided to display hidden faces
 alert.hideIgnored = "Ẩn bị bỏ qua!";
 // Error when an algorithm needs the object to have a hole (usually to fill it)
 alert.hole.nothing = "Đối tượng không có lỗ!";
+// Button that turns the inspector off
+alert.inspect.hide = "";
+// The viewport renders a material channel instead of the shaded objects
+alert.inspectOn = "";
 // The lattice deformation was applied with a different mask or visibility state
 // (the gui appends the icon of the changed states)
 alert.lattice.desync = "Lattice chưa được đồng bộ!";
@@ -208,6 +216,9 @@ background.imageAlpha = "Độ mờ đục";
 background.imageEnable = "Hình ảnh tham khảo";
 // The image will be displayed in overlay (used as a reference by the artist)
 background.imageOverlay = "Lớp phủ";
+// Apply the post process effects on the reference image
+background.imagePostProcess = "Hậu kỳ";
+background.imagePostProcess.help = "Áp dụng các hiệu ứng hậu kỳ cho hình ảnh tham khảo. Tắt tùy chọn này để giữ nguyên màu gốc.";
 background.imageReset = "Đặt lại cài đặt";
 // Rotation of the reference image
 background.imageRotate = "Xoay vòng";
@@ -286,6 +297,8 @@ binding.rotateLighting = "Quay ánh sáng";
 // Select all the objects in the scene
 binding.selectAll = "Chọn Tất Cả";
 binding.snap.toggle = "Chuyển đổi chỉnh sửa đường cong";
+// Same as binding.snap.toggle, on a small shortcut button
+binding.snap.toggle.short = "";
 // Snap the view (while rotating)
 binding.snapViewOnRotate = "Bắt dính góc nhìn (khi xoay)";
 binding.spacemouse = "SpaceMouse";
@@ -371,6 +384,8 @@ camera.doubleTapBackgroundFocus.toggle = "Chuyển đổi";
 camera.doubleTapFocus.help = "Khi chạm hai lần vào đối tượng, camera sẽ dịch và tập trung vào điểm đã chọn.";
 // When we double tap on the object with the finger/stylus
 camera.doubleTapMesh = "Chạm hai lần vào đối tượng";
+// Same as camera.doubleTapMesh, on a small shortcut button
+camera.doubleTapMesh.short = "";
 // When double tapping with the finger/stylus, the camera pivot will be updated
 camera.doubleTapPivot = "Khi chạm hai lần";
 camera.doubleTapPivot.help = "Cập nhật tâm xoay khi chạm hai lần trên bề mặt đối tượng.";
@@ -465,8 +480,6 @@ cube.right = "Phải";
 cube.top = "Đỉnh";
 
 curve.bspline = "B-spline";
-// Curve type, https://en.wikipedia.org/wiki/Centripetal_Catmull%E2%80%93Rom_spline
-curve.catmull = "Catmull-Rom";
 // Merge or collapse one point into another
 curve.merge = "Gộp";
 curve.pivot = "Trục xoay";
@@ -527,12 +540,22 @@ curve.uniform.help = "Đường cong sẽ được lấy mẫu ở khoảng các
 
 Bạn có thể vô hiệu hóa tùy chọn này để kiểm soát một chút vòng lặp biên bằng cách thêm các điểm điều khiển mới trên đường cong.";
 
+// Debug section to import/export the icons of the interface
+debug.customIcons = "";
+// Short label for the section shortcut bar
+debug.customIcons.short = "";
+// Debug section for optional features
+debug.feature = "";
 // Debug graphics options
 debug.graphics = "Đồ họa";
 // Debug option, overrides the rendering to display the depth buffer
 debug.heightmap = "Bản đồ chiều cao";
 // Debug option: display a window with debugging logs
 debug.logs = "Nhật ký";
+// Logs window option: break long lines to fit the panel width
+debug.logs.wrap = "";
+// Debug section for multithreading and speed options
+debug.performance = "";
 // Model shortcut window
 debug.shortcut = "Cửa sổ phím tắt";
 // Set the desired FPS (frame per second, refresh rate)
@@ -540,6 +563,8 @@ debug.targetFps = "Mục tiêu FPS";
 debug.targetFps.help = "Khi bị vô hiệu hóa, giá trị mặc định có nghĩa là nó sẽ đồng bộ với tần số làm mới của màn hình.";
 // Debug options, generate screenshots with size compatible with the iOS store
 debug.thumbnails = "Tạo ảnh nhỏ cho cửa hàng";
+// Same as debug.thumbnails, on a small shortcut button
+debug.thumbnails.short = "";
 // Debug option, Normalize means transforming the data so that it fits in [0-1] the range
 debug.uvNormalize = "Bình thường hóa UVs";
 debug.uvNormalize.help = "Nomad sẽ bình thường hóa UVs trong khung [0-1].";
@@ -638,8 +663,10 @@ file.export.gltf.layer.help = "Xuất các lớp dưới dạng biến đổi. C
 // Whether we include painting of layers in the exported file (see glossary for layer)
 file.export.gltf.layerPaint = "Vẽ lớp";
 file.export.gltf.layerPaint.help = "Xuất các lớp tranh. Thông thường không được phần mềm khác đọc.";
-file.export.nomad.assets = "";
-file.export.nomad.assets.help = "";
+file.export.nomad.assets = "Nhúng MatCap và môi trường";
+file.export.nomad.assets.help = "Bao gồm MatCap tùy chỉnh và môi trường trong tệp để tệp hiển thị giống nhau trên thiết bị khác.
+
+Các tài nguyên tích hợp không bao giờ được nhúng vì chúng là một phần của Nomad.";
 file.export.nomad.help = "Định dạng tệp nội bộ Nomad Sculpt.
 
 Định dạng này sẽ không tải trên các phần mềm khác, chủ yếu dùng cho mục đích nhập lại.";
@@ -776,11 +803,8 @@ file.project.unsaved = "Thay đổi chưa lưu!";
 file.render = "Kết xuất";
 // height of exported screenshot
 file.render.height = "Chiều cao";
-// Resolution ratio of the exported screenshot
-file.render.renderRatio = "Tỷ lệ kết xuất";
-file.render.renderRatio.help = "Giá trị 1.0 có nghĩa là Nomad sẽ kết xuất ở cùng độ phân giải như kích thước hình ảnh yêu cầu bên dưới.
-
-Sử dụng tùy chọn này nếu bạn không thể kết xuất ở độ phân giải nhất định (do thiếu bộ nhớ gây ra sự cố).";
+// Warning shown when the requested export resolution is too large for the memory left on the device
+file.render.lowMemory = "";
 // Screen resolution parameters for the export screenshot features
 file.render.screenResolution = "Màn hình";
 // If we include the App Interface in the exported screenshot
@@ -790,7 +814,7 @@ file.render.size = "Kích thước cuối cùng";
 // Desired size of the exported screenshot (custom vs predefined size)
 file.render.size.custom = "Tùy chỉnh";
 // Save the heightmap render as a new brush alpha instead of exporting it as a file
-file.render.toAlpha = "";
+file.render.toAlpha = "Lưu dưới dạng alpha";
 // If true, then the exported screenshot will have transparency data in the image
 file.render.transparent = "Nền trong suốt";
 file.render.transparent.help = "Tùy chọn này có thể hữu ích nếu bạn muốn chèn lưới vào phần mềm sáng tạo 2D.
@@ -933,6 +957,8 @@ gesture.wheel.speed3d = "Tốc độ (thu phóng 3d)";
 
 // History, list of undo/redo
 history = "Lịch sử";
+// Button deleting every operation of the history, freeing the memory and the disk space they use
+history.clear = "Xóa lịch sử";
 // Long press on a state of the history list: deletes it and every older one, $0 is a number of operations
 history.delete.confirm = "Xóa $0 thao tác khỏi lịch sử?";
 history.delete.help = "Nhấn giữ một mục lịch sử để xóa vĩnh viễn mục đó và toàn bộ lịch sử cũ hơn.";
@@ -952,17 +978,26 @@ history.include.postProcess.help = "Bao gồm các chỉnh sửa hậu kỳ tron
 // include shading parameters (MatCap & HDRIs) editing in the undo/redo
 history.include.shading = "Tô bóng";
 history.include.shading.help = "Bao gồm các chế độ PBR, MatCap và Unlit, cùng với MatCap và HDRI.";
+// How much disk space the history is allowed to use, past it the oldest operations are deleted
+history.limitDisk = "Giới hạn lưu trữ";
+history.limitDisk.help = "Dung lượng lưu trữ tối đa mà lịch sử Hoàn tác/Làm lại của dự án này có thể sử dụng.
+
+Khi đạt giới hạn, các thao tác cũ nhất sẽ bị xóa vĩnh viễn.
+
+Giới hạn mới được áp dụng sau khi thao tác tiếp theo được ghi lại.";
 // How much memory the history is allowed to use before the older states are moved to the disk
-history.limitMemory = "Giới hạn bộ nhớ";
-history.limitMemory.help = "Lượng lịch sử được giữ trong bộ nhớ.
+history.limitMemory = "Giới hạn RAM";
+history.limitMemory.help = "Lượng lịch sử Hoàn tác/Làm lại tối đa được giữ trong RAM.
 
-Các trạng thái cũ hơn được chuyển sang ổ đĩa và tải lại khi bạn hoàn tác; chúng không bị xóa.
+Các trạng thái cũ hơn được chuyển sang bộ nhớ lưu trữ và tải lại khi cần; chúng không bị xóa.
 
-Lịch sử sẽ được cập nhật ở thao tác được ghi tiếp theo.";
+Giới hạn mới được áp dụng sau lần chỉnh sửa, hoàn tác hoặc làm lại tiếp theo.";
 // Where the undo history is kept when the project is saved (it survives reopening the project)
 history.persist = "Lưu lịch sử";
 history.persist.embedded = "Nhúng";
-history.persist.embedded.help = "Lịch sử được lưu bên trong tệp dự án. Tệp sẽ lớn hơn nhưng lịch sử sẽ đi cùng tệp.";
+history.persist.embedded.help = "Lịch sử được lưu bên trong tệp dự án: tệp lớn hơn, quá trình lưu và tải chậm hơn.
+
+Ưu tiên Tắt hoặc Tách riêng, trừ khi lịch sử cần đi cùng tệp.";
 history.persist.help = "Giữ lịch sử hoàn tác khi lưu dự án để lịch sử vẫn còn sau khi mở lại dự án.";
 history.persist.off = "Tắt";
 history.persist.off.help = "Dự án được lưu mà không có lịch sử.";
@@ -1058,8 +1093,10 @@ interface.inset.title.help = "Bạn chỉ có thể thay đổi các giá trị 
 
 Nếu thanh trượt bị vô hiệu hóa, Nomad sẽ sử dụng các giá trị khu vực an toàn do chính thiết bị trả về.";
 // Move a floating panel by dragging inside it, instead of using its bar
-interface.panelDrag = "";
-interface.panelDrag.help = "";
+interface.panelDrag = "Kéo phần thân bảng";
+interface.panelDrag.help = "Bảng nổi luôn được di chuyển bằng cách kéo thanh của bảng. Tùy chọn này cũng cho phép kéo phần thân bảng.
+
+Ở chế độ Tự động, ngón tay hoặc bút cảm ứng chỉ di chuyển bảng khi thao tác kéo theo chiều ngang nhiều hơn chiều dọc, vì vậy kéo dọc vẫn cuộn nội dung. Đặt thành Có để cũng kéo bằng chuột theo mọi hướng.";
 // Interface option (if the menus are transparent or opaque)
 interface.panelTransparent = "Bảng điều khiển trong suốt";
 // Width of the interface panels
@@ -1118,9 +1155,11 @@ item.delete.used = "Hình ảnh đã được sử dụng";
 // Draggable, movable
 item.draggable = "Có thể di chuyển";
 // Show the folders of a list as a column on its side, instead of a drop down menu
-item.folderColumn = "";
+item.folderColumn = "Cột thư mục";
+// Show the folders of a drop down menu as small chips filling the width, instead of one per line
+item.folderCompact = "Thư mục nhỏ gọn";
 // Show a list of items as one group of items per folder, instead of a single list
-item.folderGroup = "";
+item.folderGroup = "Nhóm theo thư mục";
 // Hide an item (object, layer, etc)
 item.hide = "Ẩn";
 // Make an item instance, similar to clone but keeps the underlying geometry (Synonym: link? soft clone?)
@@ -1155,17 +1194,17 @@ item.reset.confirm = "Xác nhận đặt lại?";
 // Save an item (object, tool, etc)
 item.save = "Lưu";
 item.save.confirm = "Xác nhận lưu?";
-item.saveLibrary = "";
+item.saveLibrary = "Lưu vào thư viện";
 // Select an item (object, layer, etc)
 item.select = "Chọn";
 // Show an item (object, layer, etc)
 item.show = "Hiển thị";
 // Show the name of every item under its preview image
-item.showName = "";
+item.showName = "Hiển thị tên";
 // Order a list of items alphabetically
-item.sortName = "";
+item.sortName = "Theo tên";
 // Order a list of items with the most recently modified first
-item.sortRecent = "";
+item.sortRecent = "Gần đây nhất";
 // Convert the item type (mesh, light) to a simple Node type
 item.toNode = "Tới nút";
 // Uninstance the object, make the object real
@@ -1259,13 +1298,10 @@ light.angle = "Góc";
 light.attachment = "Gắn kèm";
 // The light will move along the camera
 light.attachment.camera = "Máy quay";
+light.attachment.camera.help = "Hướng ánh sáng phụ thuộc vào góc nhìn của máy ảnh.";
 // The light will stay still even if the user moves the camera
 light.attachment.fixed = "Cố định";
-light.attachment.help = "• Cố định
-Hướng ánh sáng sẽ không thay đổi.
-
-• Camera
-Hướng ánh sáng phụ thuộc vào góc nhìn của máy ảnh.";
+light.attachment.fixed.help = "Hướng ánh sáng sẽ không thay đổi.";
 // Color of light
 light.color = "Màu sắc";
 // Contact shadows are more precise shadows on small distance (synonym: cavity shadows?)
@@ -1322,7 +1358,7 @@ light.visible = "Hiển thị";
 
 link.address = "Thiết bị này";
 link.approve = "Chấp nhận";
-link.bridges = "Tập lệnh cầu nối";
+link.bridges = "Tập lệnh cầu nối (GitHub)";
 link.cameras = "Camera";
 link.copyRepository = "Sao chép URL kho lưu trữ";
 link.deny = "Từ chối";
@@ -1335,7 +1371,7 @@ link.goz.notInstalled = "Trước tiên hãy cài đặt GoZ trong ZBrush (Tùy 
 link.goz.received = "Đã nhận $0 đối tượng từ ZBrush";
 link.goz.sent = "Đã gửi $0 đối tượng đến ZBrush";
 link.goz.waiting = "Đang chờ ZBrush xuất";
-link.help.others = "Các ứng dụng khác (ZBrush, v.v.) kết nối với máy chủ Nomad theo cùng một cách.
+link.help.others = "Các ứng dụng khác (ZBrush, Marmoset Toolbag, v.v.) kết nối với máy chủ Nomad theo cùng một cách.
 
 Cầu nối là một tập lệnh Python chạy trên cùng máy tính với ứng dụng đó.
 Các tập lệnh mẫu và giao thức có trên GitHub; hãy dùng chúng làm điểm bắt đầu.";
@@ -1660,6 +1696,8 @@ paint.useGlobal.help = "Nếu bật tùy chọn này, vật liệu đã chọn s
 Lưu ý rằng nó chỉ xem xét các cài đặt độ thô, độ kim loại và màu sắc.";
 // The current tool will paint the object if this option is enabled
 paint.usePainting = "Vẽ nét";
+// Paint with the color, roughness, metalness and opacity baked inside the VDM stamp
+paint.vdmMaterial = "";
 
 position.bottom = "Dưới";
 position.center = "Giữa";
@@ -1701,6 +1739,8 @@ Nếu giá trị là 0, tất cả sẽ nhận bloom.";
 // https://en.wikipedia.org/wiki/Chromatic_aberration
 postprocess.chromatic = "Sai sắc";
 postprocess.chromatic.factor = "Độ mạnh";
+// Short label for the section shortcut bar
+postprocess.chromatic.short = "";
 // Accentuate the edges of the model
 postprocess.curvature = "Độ cong";
 // Color/Strength of convex curvature
@@ -1709,6 +1749,8 @@ postprocess.curvature.bump = "Lồi";
 postprocess.curvature.cavity = "Khoang";
 // Main strength of curvature
 postprocess.curvature.factor = "Yếu tố";
+// Short label for the section shortcut bar
+postprocess.curvature.short = "";
 // Color curves
 postprocess.curve = "Chỉnh màu";
 postprocess.curve.blue = "Xanh dương";
@@ -1718,6 +1760,8 @@ postprocess.curve.luminance = "Chính";
 postprocess.curve.red = "Đỏ";
 // Reset color grading curves
 postprocess.curve.resetAll = "Đặt lại tất cả";
+// Short label for the section shortcut bar
+postprocess.curve.short = "";
 // Denoise
 postprocess.denoise = "Bộ lọc khử nhiễu";
 postprocess.denoise.help = "Áp dụng một lần khử nhiễu sau khi tất cả các khung hình đã được tích lũy.";
@@ -1728,11 +1772,17 @@ postprocess.dithering.help = "Giảm hiện tượng sọc màu (ví dụ: chuy�
 // Depth of Field (bokeh)
 // https://en.wikipedia.org/wiki/Depth_of_field
 postprocess.dof = "Chiều sâu trường ảnh";
+// f-number, a lower value opens the lens and blurs more
+postprocess.dof.aperture = "";
 // The blur factor behind the focused point
 postprocess.dof.blurFar = "Mờ xa";
 // The blur factor in front of the focused point
 postprocess.dof.blurNear = "Mờ gần";
 postprocess.dof.focusTip = "Chạm vào vật thể để thay đổi điểm lấy nét.";
+// Drive the blur with a single camera aperture instead of the two blur factors
+postprocess.dof.physical = "";
+// Short label for the section shortcut bar (no need to translate "DoF")
+postprocess.dof.short = "";
 // Full resolution (1:1 resolution) instead of half resolution
 postprocess.fullResolution = "Độ phân giải đầy đủ";
 // Filmic Grain
@@ -1746,6 +1796,8 @@ postprocess.maxSamples.help = "Cải thiện chất lượng hậu kỳ với ch
 postprocess.pixelArt = "Nghệ thuật pixel";
 // Override frame accumulation feature
 postprocess.pixelArt.allowAccumulate = "Cho phép lấy mẫu khung hình";
+// Short label for the section shortcut bar
+postprocess.pixelArt.short = "";
 // Quality vs performance
 postprocess.quality = "Chất lượng";
 postprocess.quality.help = "Kích hoạt các tùy chọn này để cải thiện chất lượng, gây tổn hại đến hiệu suất.";
@@ -1765,6 +1817,8 @@ postprocess.scanline.spacing = "Khoảng cách";
 // https://en.wikipedia.org/wiki/Unsharp_masking
 postprocess.sharpness = "Độ nét";
 postprocess.sharpness.factor = "Độ mạnh";
+// Short label for the section shortcut bar
+postprocess.sharpness.short = "";
 // Screen-space ambient occlusion (SSAO)
 // https://en.wikipedia.org/wiki/Ambient_occlusion
 postprocess.ssao = "Tắc sáng môi trường";
@@ -1772,16 +1826,22 @@ postprocess.ssao = "Tắc sáng môi trường";
 postprocess.ssao.factor = "Độ mạnh";
 // How far the effect spreads
 postprocess.ssao.radius = "Kích thước";
+// Short label for the section shortcut bar (no need to translate "SSAO")
+postprocess.ssao.short = "";
 // Adjustment for ssao
 postprocess.ssao.thickness = "Độ dày";
 postprocess.ssao.thickness.help = "Độ dày theo chiều sâu được giả định cho các vật thể gây che khuất, tính theo phần trăm bán kính AO.";
 // Screen-Space Global Illumination (no need to translate "SSGI")
 postprocess.ssgi = "Chiếu sáng toàn cầu (SSGI)";
+// Short label for the section shortcut bar (no need to translate "SSGI")
+postprocess.ssgi.short = "";
 // Thickness threshold for ssgi tracing algorithm (synonym: threshold, bias)
 postprocess.ssgi.tolerance = "Dung sai";
 postprocess.ssgi.warning = "SSGI yêu cầu chế độ đổ bóng PBR.";
 // Screen-Space Reflection (no need to translate "SSR")
 postprocess.ssr = "Phản chiếu (SSR)";
+// Short label for the section shortcut bar (no need to translate "SSR")
+postprocess.ssr.short = "";
 postprocess.ssr.warning = "SSR yêu cầu chế độ đổ bóng PBR.";
 // Temporal Anti-Aliasing (no need to translate "TAA")
 postprocess.taa = "Khử răng cưa (TAA)";
@@ -1796,6 +1856,8 @@ postprocess.tone.mapping.neutral = "Trung tính";
 // No tonemapping operator is used
 postprocess.tone.mapping.none = "Không có";
 postprocess.tone.saturation = "Bão hòa";
+// Short label for the section shortcut bar
+postprocess.tone.short = "";
 // Darkening at the edges
 postprocess.vignette = "Tối góc";
 // How sharp the edge of the effect is
@@ -2086,10 +2148,16 @@ settings.grid.snapDivision = "Ngưỡng chia snap";
 settings.grid.snapDivision.help = "Ngưỡng này được so sánh với khoảng cách đến lưới.";
 // Snap eligible tool points to the grid
 settings.grid.snapGrid = "Bắt dính vào lưới";
+// Same as settings.grid.snapGrid, on a small shortcut button
+settings.grid.snapGrid.short = "";
 // Snap eligible tool points to nearby existing points when the camera is aligned
 settings.grid.snapPointAlign = "Bắt dính vào điểm (chế độ xem căn chỉnh)";
+// Same as settings.grid.snapPointAlign, on a small shortcut button
+settings.grid.snapPointAlign.short = "";
 // Snap eligible tool points to nearby existing points when the camera is not aligned
 settings.grid.snapPointFree = "Bắt dính vào điểm (chế độ xem tự do)";
+// Same as settings.grid.snapPointFree, on a small shortcut button
+settings.grid.snapPointFree.short = "";
 // Handles are controls that you interact with in the viewport in order to edit something
 settings.handle = "Tay cầm";
 settings.handles = "Tay cầm";
@@ -2165,13 +2233,18 @@ settings.snapCube.align.help = "Căn góc nhìn theo trục thế giới. Khi b�
 // Move the navigation cube to the bottom of the screen
 settings.snapCube.bottom = "Dưới";
 // Extra snapping views on the edges and corners of the navigation cube
-settings.snapCube.edgeCorner = "";
-settings.snapCube.edgeCorner.help = "";
+settings.snapCube.edgeCorner = "Cạnh và góc";
+settings.snapCube.edgeCorner.help = "Thêm các góc nhìn bắt dính trên cạnh và góc của khối lập phương (vùng màu hổ phách).";
 // Flip the camera (rotate 180° to see the other side)
 settings.snapCube.flip = "Lật 180°";
 settings.snapCube.flip.help = "Lật góc nhìn nếu góc nhìn đã được snap.";
 // Move the navigation cube on the left side of the screen
 settings.snapCube.left = "Trái";
+// Dragging the navigation cube rotates like the Turntable mode, even if the camera is in Trackball
+settings.snapCube.turntable = "Kéo kiểu bàn xoay";
+settings.snapCube.turntable.help = "Kéo khối sẽ xoay camera mà không làm camera nghiêng quanh trục nhìn và dừng ở từng góc nhìn snap.
+
+Tắt tùy chọn này để kéo khối bằng kiểu xoay Bi lăn. Trong cả hai trường hợp, thao tác kéo vẫn theo chiều ngang hoặc dọc.";
 // Stats (information logs about the scene displayed on screen)
 settings.stats = "Thống kê";
 settings.stats.all = "Hiển thị toàn cảnh";
@@ -2637,6 +2710,8 @@ symmetry.showLine = "Hiển thị đường";
 symmetry.showPlane = "Hiển thị mặt phẳng";
 // after mirroring, separate into multiple output (synonym: split, separate)
 symmetry.split = "Tách";
+// How many times the sculpt repeats across the object, so it tiles seamlessly (synonym: wrap, repeat)
+symmetry.tile.title = "";
 symmetry.toolIgnore = "Công cụ hiện tại bỏ qua đối xứng.";
 
 // Three-state toggle button (auto, no, yes)
@@ -2798,15 +2873,29 @@ Nó dùng dữ liệu lớp để giới hạn độ dịch chuyển trên các 
 tool.mask = "Mặt nạ";
 // Blur the painted mask
 tool.mask.blur = "Làm mờ";
+// Mask the open boundary of the mesh (the edge of a plane, the rim of a hole)
+tool.mask.border = "";
+// Strengthen the mask intensity without changing its shape (opposite of Dilute)
+tool.mask.boost = "";
+// Negative side of the Cavity slider: only the raised areas stay paintable
+tool.mask.bumps = "";
+// Rebuild the mask from the surface curvature: only the recessed areas stay paintable
+tool.mask.cavity = "";
 // Clear the painted mask
 tool.mask.clear = "Xóa";
 tool.mask.clearAll = "Xóa tất cả";
+// Weaken the mask intensity without changing its shape (opposite of Boost)
+tool.mask.dilute = "";
 // Mask or Unmask a region (leave other region that unconnected intact)
 tool.mask.flipConnected = "Đảo ngược mặt nạ (kết nối)";
+// Enlarge the masked area, one ring of vertices at a time
+tool.mask.grow = "";
 // Invert the painted mask
 tool.mask.invert = "Đảo ngược";
 // Sharpen the edge of the painted mask area
 tool.mask.sharpen = "Làm sắc";
+// Reduce the masked area, one ring of vertices at a time (opposite of Grow)
+tool.mask.shrink = "";
 // Ideally short strings
 tool.mask.unmask = "Gỡ mặt nạ";
 // Ideally short strings (Selector Mask, use lasso/ellipse,etc shape to mask the mesh)
@@ -2821,6 +2910,9 @@ tool.matrix.action.origin = "Di chuyển về gốc";
 tool.matrix.action.origin.help = "Di chuyển mesh về điểm gốc thế giới.";
 tool.matrix.action.reset = "Thiết lập lại";
 tool.matrix.action.reset.help = "Đặt lại biến đổi của mesh về mặc định.";
+// Move the pivot alone, the objects stand still
+tool.matrix.editPivot = "";
+tool.matrix.editPivot.help = "";
 tool.matrix.rotation = "Xoay";
 tool.matrix.scale = "Tỷ lệ";
 // Synonym: shear, https://en.wikipedia.org/wiki/Shear_matrix or https://en.wikipedia.org/wiki/Shear_mapping
@@ -2889,8 +2981,6 @@ tool.polish = "Đánh bóng";
 tool.project = "Chiếu";
 // Radius of the tool (size)
 tool.radius = "Bán kính";
-// Ideally short strings (Quad Remesher)
-tool.remesh = "Quad Remesher";
 tool.remesh.density = "Mật Độ";
 tool.remesh.guides = "Hướng Dẫn";
 tool.remesh.half = "Một Nửa";
@@ -2987,6 +3077,10 @@ tool.trim.detail.protect.help = "Không làm mịn và đơn giản hóa ranh gi
 Giữ nguyên cấu trúc liên kết của lưới gần các mặt đã mặt nạ và bị ẩn.";
 // Ideally short strings (Revolving surface along a curve)
 tool.tube = "Ống";
+// Ideally short strings (Vector displacement stamp)
+tool.vdm = "";
+// Scales only the height of the vdm stamp, lateral displacement is unchanged
+tool.vdm.height = "";
 // Ideally short strings (View tool, do nothing in particular)
 tool.view = "Xem";
 // Always display the camera shortcut buttons on the viewport
@@ -2994,8 +3088,6 @@ tool.view.stickyCamera = "Phím tắt camera (luôn luôn)";
 
 // Topology
 topology = "Tô pô";
-// Name of the quad remeshing engine, should probably stay untranslated
-topology.autoremesher = "AutoRemesher";
 topology.autoremesher.adaptivity = "Độ thích ứng";
 topology.autoremesher.adaptivity.help = "Điều chỉnh mật độ tứ giác theo độ cong.
 
@@ -3045,6 +3137,12 @@ Sau thao tác, màu đỉnh được chuyển vào một lớp mới bị tắt 
 - dùng mọi đối tượng đã chọn, đối tượng chọn chính là đích bake (được tô sáng nhất trong menu Cảnh)
 - nếu chỉ chọn một đối tượng, Nomad sẽ dùng mọi đối tượng hiển thị
 - nếu mọi đối tượng đều bị ẩn (ví dụ khi dùng Solo), Nomad sẽ dùng toàn bộ cảnh";
+// Warning shown after a VDM bake, the border of the plane is its outer edge
+topology.bake.vdm.border = "";
+// Error shown when a VDM bake fails
+topology.bake.vdm.failed = "";
+// Bake here means "create a VDM (from a sculpted plane)"
+topology.bake.vdm.help = "";
 // Synonym: Simplify (Decimate reduce the number of triangles/quads while retaining details as much as possible)
 topology.decimate = "Tinh giảm";
 topology.decimate.boundary = "Bảo vệ đường viền";
@@ -3096,8 +3194,6 @@ topology.dynamic.useFalloff = "Sử dụng sự suy giảm nét";
 // Whether the pencil pressure can impact the level of detail
 topology.dynamic.usePressure = "Sử dụng áp lực trên bán kính";
 topology.dynamic.usePressure.help = "Sử dụng tùy chọn này nếu bạn muốn áp lực bút lên bán kính công cụ ảnh hưởng đến mức độ chi tiết.";
-// Instant quad remesher
-topology.instant = "Instant Mesh";
 topology.instant.angle = "Góc gấp nếp";
 topology.instant.hole = "Lấp đầy lỗ tối đa";
 topology.instant.hole.help = "Thuật toán đôi khi có thể tạo ra các lỗ không mong muốn.
@@ -3144,8 +3240,6 @@ topology.multires.up = "Cấp độ Multires →";
 topology.nonManifold = "Non-manifold";
 // Quad remesher
 topology.quadRemesh = "Tái định hình tứ giác";
-// Name of the quad remeshing engine, should probably stay untranslated
-topology.quadriflow = "QuadriFlow";
 topology.quadriflow.adaptiveScale = "Tỷ lệ thích ứng";
 topology.quadriflow.adaptiveScale.help = "Điều chỉnh kích thước tứ giác theo độ cong của bề mặt.";
 topology.quadriflow.keepSharp = "Giữ cạnh sắc";

@@ -115,10 +115,18 @@ alert.forcePainting.tool = "Show painting activated, the object was painted.";
 alert.gizmo.editObject = "Edit object mode.";
 // In this mode, the user moves the Gizmo's pivot instead of the object
 alert.gizmo.editPivot = "Edit pivot mode.";
+// Button that turns the heightmap render off
+alert.heightmap.hide = "Hide heightmap";
+// The viewport renders the depth of the scene instead of the shaded objects
+alert.heightmapOn = "Heightmap is on!";
 // The user decided to display hidden faces
 alert.hideIgnored = "Hide is ignored!";
 // Error when an algorithm needs the object to have a hole (usually to fill it)
 alert.hole.nothing = "The object has no holes!";
+// Button that turns the inspector off
+alert.inspect.hide = "Hide inspector";
+// The viewport renders a material channel instead of the shaded objects
+alert.inspectOn = "Inspector is on!";
 // The lattice deformation was applied with a different mask or visibility state
 // (the gui appends the icon of the changed states)
 alert.lattice.desync = "Lattice is out of sync!";
@@ -208,6 +216,9 @@ background.imageAlpha = "Opacity";
 background.imageEnable = "Reference image";
 // The image will be displayed in overlay (used as a reference by the artist)
 background.imageOverlay = "Overlay";
+// Apply the post process effects on the reference image
+background.imagePostProcess = "Post process";
+background.imagePostProcess.help = "Applies the post process effects on the reference image, disable it to keep the original colors.";
 background.imageReset = "Reset settings";
 // Rotation of the reference image
 background.imageRotate = "Rotation";
@@ -286,6 +297,8 @@ binding.rotateLighting = "Rotate lighting";
 // Select all the objects in the scene
 binding.selectAll = "Select All";
 binding.snap.toggle = "Toggle curve editing";
+// Same as binding.snap.toggle, on a small shortcut button
+binding.snap.toggle.short = "Curve edit";
 // Snap the view (while rotating)
 binding.snapViewOnRotate = "Snap view (while rotating)";
 binding.spacemouse = "SpaceMouse";
@@ -371,6 +384,8 @@ camera.doubleTapBackgroundFocus.toggle = "Toggle";
 camera.doubleTapFocus.help = "When double tapping on the object, the camera will pan and focus on the picked point.";
 // When we double tap on the object with the finger/stylus
 camera.doubleTapMesh = "Double tap on object";
+// Same as camera.doubleTapMesh, on a small shortcut button
+camera.doubleTapMesh.short = "Focus";
 // When double tapping with the finger/stylus, the camera pivot will be updated
 camera.doubleTapPivot = "When double tapping";
 camera.doubleTapPivot.help = "Update the rotation pivot when double tapping on the object surface.";
@@ -465,8 +480,6 @@ cube.right = "Right";
 cube.top = "Top";
 
 curve.bspline = "B-spline";
-// Curve type, https://en.wikipedia.org/wiki/Centripetal_Catmull%E2%80%93Rom_spline
-curve.catmull = "Catmull-Rom";
 // Merge or collapse one point into another
 curve.merge = "Merge";
 curve.pivot = "Pivot";
@@ -527,12 +540,22 @@ curve.uniform.help = "The curve will be sampled at regular spacing, to ensure un
 
 You can disable this option to control a bit the edge loops by adding new control points on the curve.";
 
+// Debug section to import/export the icons of the interface
+debug.customIcons = "Custom icons";
+// Short label for the section shortcut bar
+debug.customIcons.short = "Icons";
+// Debug section for optional features
+debug.feature = "Feature";
 // Debug graphics options
 debug.graphics = "Graphics";
 // Debug option, overrides the rendering to display the depth buffer
 debug.heightmap = "Heightmap";
 // Debug option: display a window with debugging logs
 debug.logs = "Logs";
+// Logs window option: break long lines to fit the panel width
+debug.logs.wrap = "Word Wrap";
+// Debug section for multithreading and speed options
+debug.performance = "Performance";
 // Model shortcut window
 debug.shortcut = "Shortcut window";
 // Set the desired FPS (frame per second, refresh rate)
@@ -540,6 +563,8 @@ debug.targetFps = "Target FPS";
 debug.targetFps.help = "When disabled, the default value means it will sync with the display's refresh rate.";
 // Debug options, generate screenshots with size compatible with the iOS store
 debug.thumbnails = "Make store thumbnails";
+// Same as debug.thumbnails, on a small shortcut button
+debug.thumbnails.short = "Thumbnails";
 // Debug option, Normalize means transforming the data so that it fits in [0-1] the range
 debug.uvNormalize = "Normalize UVs";
 debug.uvNormalize.help = "Nomad will normalize the UVs inside the [0-1] tile.";
@@ -778,11 +803,8 @@ file.project.unsaved = "Unsaved changes!";
 file.render = "Render";
 // height of exported screenshot
 file.render.height = "Height";
-// Resolution ratio of the exported screenshot
-file.render.renderRatio = "Render ratio";
-file.render.renderRatio.help = "A value of 1.0 means that Nomad will render at the same resolution as the requested image size below.
-
-Use this option if you cannot render at certain resolutions because of limited memory.";
+// Warning shown when the requested export resolution is too large for the memory left on the device
+file.render.lowMemory = "This size may not fit in the memory left on this device.";
 // Screen resolution parameters for the export screenshot features
 file.render.screenResolution = "Screen";
 // If we include the App Interface in the exported screenshot
@@ -936,6 +958,8 @@ gesture.wheel.speed3d = "Speed (3d zoom)";
 
 // History, list of undo/redo
 history = "History";
+// Button deleting every operation of the history, freeing the memory and the disk space they use
+history.clear = "Clear history";
 // Long press on a state of the history list: deletes it and every older one, $0 is a number of operations
 history.delete.confirm = "Delete $0 operation(s) from the history?";
 history.delete.help = "Long press a history entry to permanently delete it and all older history.";
@@ -955,17 +979,26 @@ history.include.postProcess.help = "Includes PostProcess edits in the undo/redo 
 // include shading parameters (MatCap & HDRIs) editing in the undo/redo
 history.include.shading = "Shading";
 history.include.shading.help = "Includes the PBR, MatCap and Unlit mode, MatCaps and HDRIs.";
+// How much disk space the history is allowed to use, past it the oldest operations are deleted
+history.limitDisk = "Storage limit";
+history.limitDisk.help = "The maximum amount of storage used by this project's undo/redo history.
+
+When the limit is reached, the oldest operations are permanently deleted.
+
+The new limit takes effect after the next recorded operation.";
 // How much memory the history is allowed to use before the older states are moved to the disk
-history.limitMemory = "Memory limit";
-history.limitMemory.help = "How much of the history is kept in memory.
+history.limitMemory = "RAM limit";
+history.limitMemory.help = "The maximum amount of undo/redo history kept in RAM.
 
-Older states are moved to the disk and loaded back when you undo, they are not deleted.
+Older states are moved to storage and loaded again when needed; they are not deleted.
 
-The history will be updated on the next recorded operation.";
+The new limit takes effect after the next edit, undo, or redo.";
 // Where the undo history is kept when the project is saved (it survives reopening the project)
 history.persist = "Save history";
 history.persist.embedded = "Embed";
-history.persist.embedded.help = "The history is stored inside the project file. Bigger file, but the history travels with it.";
+history.persist.embedded.help = "The history is stored inside the project file: bigger file, slower save and load.
+
+Prefer Off or Separate unless the history must travel with the file.";
 history.persist.help = "Keep the undo history when the project is saved, so it survives reopening the project.";
 history.persist.off = "Off";
 history.persist.off.help = "The project is saved without its history.";
@@ -1124,6 +1157,8 @@ item.delete.used = "Image used";
 item.draggable = "Movable";
 // Show the folders of a list as a column on its side, instead of a drop down menu
 item.folderColumn = "Folder column";
+// Show the folders of a drop down menu as small chips filling the width, instead of one per line
+item.folderCompact = "Compact folders";
 // Show a list of items as one group of items per folder, instead of a single list
 item.folderGroup = "Group by folder";
 // Hide an item (object, layer, etc)
@@ -1264,13 +1299,10 @@ light.angle = "Angle";
 light.attachment = "Attachment";
 // The light will move along the camera
 light.attachment.camera = "Camera";
+light.attachment.camera.help = "Light orientation depends on the camera view.";
 // The light will stay still even if the user moves the camera
 light.attachment.fixed = "Fixed";
-light.attachment.help = "• Fixed
-Light orientation won't change.
-
-• Camera
-Light orientation depends on the camera view.";
+light.attachment.fixed.help = "Light orientation won't change.";
 // Color of light
 light.color = "Color";
 // Contact shadows are more precise shadows on small distance (synonym: cavity shadows?)
@@ -1327,7 +1359,7 @@ light.visible = "Show";
 
 link.address = "This device";
 link.approve = "Accept";
-link.bridges = "Bridge scripts";
+link.bridges = "Bridge scripts (GitHub)";
 link.cameras = "Cameras";
 link.copyRepository = "Copy repository URL";
 link.deny = "Decline";
@@ -1340,7 +1372,7 @@ link.goz.notInstalled = "Install GoZ in ZBrush first (Preferences > GoZ)";
 link.goz.received = "Received $0 object(s) from ZBrush";
 link.goz.sent = "Sent $0 object(s) to ZBrush";
 link.goz.waiting = "Waiting for ZBrush's export";
-link.help.others = "Other apps (ZBrush, etc) connect to a Nomad host the same way.
+link.help.others = "Other apps (ZBrush, Marmoset Toolbag, etc) connect to a Nomad host the same way.
 
 A bridge is a Python script, it runs on the computer next to that app.
 Example scripts and the protocol are on GitHub, use them as a starting point.";
@@ -1665,6 +1697,8 @@ paint.useGlobal.help = "If this option is enabled, the selected material will be
 Note that it only takes into account roughness, metalness and color settings.";
 // The current tool will paint the object if this option is enabled
 paint.usePainting = "Stroke painting";
+// Paint with the color, roughness, metalness and opacity baked inside the VDM stamp
+paint.vdmMaterial = "Stamp material";
 
 position.bottom = "Bottom";
 position.center = "Center";
@@ -1706,6 +1740,8 @@ If the value is at 0, everything will receive bloom.";
 // https://en.wikipedia.org/wiki/Chromatic_aberration
 postprocess.chromatic = "Chromatic Aberration";
 postprocess.chromatic.factor = "Strength";
+// Short label for the section shortcut bar
+postprocess.chromatic.short = "Chroma";
 // Accentuate the edges of the model
 postprocess.curvature = "Curvature";
 // Color/Strength of convex curvature
@@ -1714,6 +1750,8 @@ postprocess.curvature.bump = "Bump";
 postprocess.curvature.cavity = "Cavity";
 // Main strength of curvature
 postprocess.curvature.factor = "Factor";
+// Short label for the section shortcut bar
+postprocess.curvature.short = "Cavity";
 // Color curves
 postprocess.curve = "Color Grading";
 postprocess.curve.blue = "Blue";
@@ -1723,6 +1761,8 @@ postprocess.curve.luminance = "Main";
 postprocess.curve.red = "Red";
 // Reset color grading curves
 postprocess.curve.resetAll = "Reset All";
+// Short label for the section shortcut bar
+postprocess.curve.short = "Curves";
 // Denoise
 postprocess.denoise = "Denoiser";
 postprocess.denoise.help = "Apply a denoising pass after all the frames are accumulated.";
@@ -1733,11 +1773,17 @@ postprocess.dithering.help = "Reduces banding artifacts (e.g. gradient, vignette
 // Depth of Field (bokeh)
 // https://en.wikipedia.org/wiki/Depth_of_field
 postprocess.dof = "Depth Of Field";
+// f-number, a lower value opens the lens and blurs more
+postprocess.dof.aperture = "Aperture";
 // The blur factor behind the focused point
 postprocess.dof.blurFar = "Far blur";
 // The blur factor in front of the focused point
 postprocess.dof.blurNear = "Near blur";
 postprocess.dof.focusTip = "Tap an object to change the focus point.";
+// Drive the blur with a single camera aperture instead of the two blur factors
+postprocess.dof.physical = "Aperture mode";
+// Short label for the section shortcut bar (no need to translate "DoF")
+postprocess.dof.short = "DoF";
 // Full resolution (1:1 resolution) instead of half resolution
 postprocess.fullResolution = "Full Resolution";
 // Filmic Grain
@@ -1751,6 +1797,8 @@ postprocess.maxSamples.help = "Improves post-processing quality at the cost of p
 postprocess.pixelArt = "Pixel Art";
 // Override frame accumulation feature
 postprocess.pixelArt.allowAccumulate = "Allow frame sampling";
+// Short label for the section shortcut bar
+postprocess.pixelArt.short = "Pixels";
 // Quality vs performance
 postprocess.quality = "Quality";
 postprocess.quality.help = "Activate these options to improve the quality to the detriment of performance.";
@@ -1770,6 +1818,8 @@ postprocess.scanline.spacing = "Spacing";
 // https://en.wikipedia.org/wiki/Unsharp_masking
 postprocess.sharpness = "Sharpness";
 postprocess.sharpness.factor = "Strength";
+// Short label for the section shortcut bar
+postprocess.sharpness.short = "Sharpen";
 // Screen-space ambient occlusion (SSAO)
 // https://en.wikipedia.org/wiki/Ambient_occlusion
 postprocess.ssao = "Ambient Occlusion";
@@ -1777,16 +1827,22 @@ postprocess.ssao = "Ambient Occlusion";
 postprocess.ssao.factor = "Strength";
 // How far the effect spreads
 postprocess.ssao.radius = "Size";
+// Short label for the section shortcut bar (no need to translate "SSAO")
+postprocess.ssao.short = "SSAO";
 // Adjustment for ssao
 postprocess.ssao.thickness = "Thickness";
 postprocess.ssao.thickness.help = "How much depth thickness is assumed for occluders, as a percentage of the AO radius.";
 // Screen-Space Global Illumination (no need to translate "SSGI")
 postprocess.ssgi = "Global Illumination (SSGI)";
+// Short label for the section shortcut bar (no need to translate "SSGI")
+postprocess.ssgi.short = "SSGI";
 // Thickness threshold for ssgi tracing algorithm (synonym: threshold, bias)
 postprocess.ssgi.tolerance = "Tolerance";
 postprocess.ssgi.warning = "SSGI requires PBR shading mode.";
 // Screen-Space Reflection (no need to translate "SSR")
 postprocess.ssr = "Reflection (SSR)";
+// Short label for the section shortcut bar (no need to translate "SSR")
+postprocess.ssr.short = "SSR";
 postprocess.ssr.warning = "SSR requires PBR shading mode.";
 // Temporal Anti-Aliasing (no need to translate "TAA")
 postprocess.taa = "Anti-aliasing (TAA)";
@@ -1801,6 +1857,8 @@ postprocess.tone.mapping.neutral = "Neutral";
 // No tonemapping operator is used
 postprocess.tone.mapping.none = "None";
 postprocess.tone.saturation = "Saturation";
+// Short label for the section shortcut bar
+postprocess.tone.short = "Tone";
 // Darkening at the edges
 postprocess.vignette = "Vignette";
 // How sharp the edge of the effect is
@@ -2091,10 +2149,16 @@ settings.grid.snapDivision = "Snap division threshold";
 settings.grid.snapDivision.help = "The threshold is compared against the distance to the grid.";
 // Snap eligible tool points to the grid
 settings.grid.snapGrid = "Snap to grid";
+// Same as settings.grid.snapGrid, on a small shortcut button
+settings.grid.snapGrid.short = "Snap grid";
 // Snap eligible tool points to nearby existing points when the camera is aligned
 settings.grid.snapPointAlign = "Snap to points (aligned view)";
+// Same as settings.grid.snapPointAlign, on a small shortcut button
+settings.grid.snapPointAlign.short = "Snap points (aligned)";
 // Snap eligible tool points to nearby existing points when the camera is not aligned
 settings.grid.snapPointFree = "Snap to points (free view)";
+// Same as settings.grid.snapPointFree, on a small shortcut button
+settings.grid.snapPointFree.short = "Snap points (free)";
 // Handles are controls that you interact with in the viewport in order to edit something
 settings.handle = "Handle";
 settings.handles = "Handles";
@@ -2177,6 +2241,11 @@ settings.snapCube.flip = "Flip 180°";
 settings.snapCube.flip.help = "Flip the view if the view is already snapped.";
 // Move the navigation cube on the left side of the screen
 settings.snapCube.left = "Left";
+// Dragging the navigation cube rotates like the Turntable mode, even if the camera is in Trackball
+settings.snapCube.turntable = "Turntable drag";
+settings.snapCube.turntable.help = "Dragging the cube rotates without rolling the camera, and holds on each snapping view.
+
+Disable it to drag the cube with the Trackball rotation instead. The drag stays horizontal or vertical in both cases.";
 // Stats (information logs about the scene displayed on screen)
 settings.stats = "Stats";
 settings.stats.all = "Show full scene";
@@ -2642,6 +2711,8 @@ symmetry.showLine = "Show line";
 symmetry.showPlane = "Show plane";
 // after mirroring, separate into multiple output (synonym: split, separate)
 symmetry.split = "Split";
+// How many times the sculpt repeats across the object, so it tiles seamlessly (synonym: wrap, repeat)
+symmetry.tile.title = "Tile";
 symmetry.toolIgnore = "The current tool ignores symmetry.";
 
 // Three-state toggle button (auto, no, yes)
@@ -2803,15 +2874,29 @@ It will use the layer data to limit the displacement over strokes.";
 tool.mask = "Mask";
 // Blur the painted mask
 tool.mask.blur = "Blur";
+// Strengthen the mask intensity without changing its shape (opposite of Dilute)
+tool.mask.boost = "Boost";
+// Mask the open boundary of the mesh (the edge of a plane, the rim of a hole)
+tool.mask.border = "Border";
+// Negative side of the Cavity slider: only the raised areas stay paintable
+tool.mask.bumps = "Bumps";
+// Rebuild the mask from the surface curvature: only the recessed areas stay paintable
+tool.mask.cavity = "Cavity";
 // Clear the painted mask
 tool.mask.clear = "Clear";
 tool.mask.clearAll = "Clear all";
+// Weaken the mask intensity without changing its shape (opposite of Boost)
+tool.mask.dilute = "Dilute";
 // Mask or Unmask a region (leave other region that unconnected intact)
 tool.mask.flipConnected = "Invert mask (connected)";
+// Enlarge the masked area, one ring of vertices at a time
+tool.mask.grow = "Grow";
 // Invert the painted mask
 tool.mask.invert = "Invert";
 // Sharpen the edge of the painted mask area
 tool.mask.sharpen = "Sharpen";
+// Reduce the masked area, one ring of vertices at a time (opposite of Grow)
+tool.mask.shrink = "Shrink";
 // Ideally short strings
 tool.mask.unmask = "Unmask";
 // Ideally short strings (Selector Mask, use lasso/ellipse,etc shape to mask the mesh)
@@ -2826,6 +2911,9 @@ tool.matrix.action.origin = "Move origin";
 tool.matrix.action.origin.help = "Move the mesh to the world origin.";
 tool.matrix.action.reset = "Reset";
 tool.matrix.action.reset.help = "Reset the mesh transform to identity.";
+// Move the pivot alone, the objects stand still
+tool.matrix.editPivot = "Edit";
+tool.matrix.editPivot.help = "Move the pivot alone, the objects stand still.";
 tool.matrix.rotation = "Rotation";
 tool.matrix.scale = "Scale";
 // Synonym: shear, https://en.wikipedia.org/wiki/Shear_matrix or https://en.wikipedia.org/wiki/Shear_mapping
@@ -2894,8 +2982,6 @@ tool.polish = "Polish";
 tool.project = "Project";
 // Radius of the tool (size)
 tool.radius = "Radius";
-// Ideally short strings (Quad Remesher)
-tool.remesh = "Quad Remesher";
 tool.remesh.density = "Density";
 tool.remesh.guides = "Guides";
 tool.remesh.half = "Half";
@@ -2992,6 +3078,10 @@ tool.trim.detail.protect.help = "Do not smooth and simplify the cut boundary.
 Keeps the original mesh topology near masked and hidden faces.";
 // Ideally short strings (Revolving surface along a curve)
 tool.tube = "Tube";
+// Ideally short strings (Vector displacement stamp)
+tool.vdm = "VDM";
+// Scales only the height of the vdm stamp, lateral displacement is unchanged
+tool.vdm.height = "Height";
 // Ideally short strings (View tool, do nothing in particular)
 tool.view = "View";
 // Always display the camera shortcut buttons on the viewport
@@ -2999,8 +3089,6 @@ tool.view.stickyCamera = "Camera shortcut (always)";
 
 // Topology
 topology = "Topology";
-// Name of the quad remeshing engine, should probably stay untranslated
-topology.autoremesher = "AutoRemesher";
 topology.autoremesher.adaptivity = "Adaptivity";
 topology.autoremesher.adaptivity.help = "Adapt the quad density to the curvature.
 
@@ -3050,6 +3138,21 @@ In order to choose which objects are used for baking, the following logic will a
 - all selected objects are used, and the main selected object is the bake target (strongest highlight in the Scene menu)
 - if there is only one selected object, then Nomad will consider all visible objects instead
 - otherwise, if every object is hidden (for example by using Solo), the entire scene will be taken into account";
+// Warning shown after a VDM bake, the border of the plane is its outer edge
+topology.bake.vdm.border = "The sculpt reaches the border of the plane, the VDM will show a hard edge when stamped.";
+// Error shown when a VDM bake fails
+topology.bake.vdm.failed = "Failed to create the VDM.";
+// Bake here means "create a VDM (from a sculpted plane)"
+topology.bake.vdm.help = "Creates a VDM from the selected object and adds it to the VDM library.
+
+Here is the typical workflow:
+• Add a Plane
+• Sculpt your shape on it, keeping the border flat
+• Bake it!
+
+The UV of the plane defines the square that is baked, so the object needs UV.
+
+Sculpting in a layer gives the most accurate result, since the flat plane is still there underneath.";
 // Synonym: Simplify (Decimate reduce the number of triangles/quads while retaining details as much as possible)
 topology.decimate = "Decimate";
 topology.decimate.boundary = "Preserve boundary";
@@ -3101,8 +3204,6 @@ topology.dynamic.useFalloff = "Use stroke falloff";
 // Whether the pencil pressure can impact the level of detail
 topology.dynamic.usePressure = "Use pressure on radius";
 topology.dynamic.usePressure.help = "Use this option if you want the pen pressure on tool radius to impact the level of detail.";
-// Instant quad remesher
-topology.instant = "Instant Mesh";
 topology.instant.angle = "Crease angle";
 topology.instant.hole = "Max fill hole";
 topology.instant.hole.help = "The algorithm can sometimes produce unwanted holes.
@@ -3149,8 +3250,6 @@ topology.multires.up = "Multires level →";
 topology.nonManifold = "Non-manifold";
 // Quad remesher
 topology.quadRemesh = "Quad Remesh";
-// Name of the quad remeshing engine, should probably stay untranslated
-topology.quadriflow = "QuadriFlow";
 topology.quadriflow.adaptiveScale = "Adaptive Scale";
 topology.quadriflow.adaptiveScale.help = "Adapt the quad size to the curvature of the surface.";
 topology.quadriflow.keepSharp = "Keep Sharp";
