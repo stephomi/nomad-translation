@@ -109,16 +109,22 @@ alert.extract.none = "لا يوجد شيء للاستخراج!";
 alert.extract.split.none = "لا يوجد شيء للتقسيم!";
 // Painting on the object was hidden but the user did paint the object
 alert.forcePainting.fill = "تم تفعيل عرض الرسم، واستُخدم [رسم الكل].";
-// Painting on the object was hidden but the user started to paint on the object
-alert.forcePainting.tool = "تم تفعيل عرض الرسم، وقد تم رسم الكائن.";
 // The pivot is the Gizmo's 3D position
 alert.gizmo.editObject = "وضع تحرير الجسم.";
 // In this mode, the user moves the Gizmo's pivot instead of the object
 alert.gizmo.editPivot = "وضع تحرير المحور.";
+// Button that turns the heightmap render off
+alert.heightmap.hide = "إخفاء خريطة الارتفاع";
+// The viewport renders the depth of the scene instead of the shaded objects
+alert.heightmapOn = "خريطة الارتفاع مفعّلة!";
 // The user decided to display hidden faces
 alert.hideIgnored = "تم تجاهل الإخفاء!";
 // Error when an algorithm needs the object to have a hole (usually to fill it)
 alert.hole.nothing = "الكائن ليس لديه فتحات!";
+// Button that turns the inspector off
+alert.inspect.hide = "إخفاء الفاحص";
+// The viewport renders a material channel instead of the shaded objects
+alert.inspectOn = "الفاحص مفعّل!";
 // The lattice deformation was applied with a different mask or visibility state
 // (the gui appends the icon of the changed states)
 alert.lattice.desync = "الشبكة غير متزامنة!";
@@ -127,8 +133,6 @@ alert.lattice.sync = "تحديث الشبكة";
 // No operation occurred because the mesh is already manifold
 alert.manifold.already = "الشبكة Manifold بالفعل!";
 alert.mask.full = "قناع = 100%!";
-// Hide the painted mask on the mesh
-alert.mask.hide = "إخفاء القناع";
 // Show the painted mask on the mesh
 alert.mask.show = "إظهار القناع";
 // The user decided to hide the masking on the objects
@@ -137,6 +141,7 @@ alert.maskingHidden = "القناع مخفي!";
 alert.matrix.clone = "سيتم تكرار الكائن";
 // Helper popup telling the user that the object will be instanced
 alert.matrix.instance = "سيتم استنساخ الكائن";
+alert.mesh.empty = "الشبكة بلا وجوه.";
 // Empty mesh
 alert.mirror.empty = "مخرجات فارغة!";
 // Mesh already mirrored
@@ -157,8 +162,6 @@ alert.selection.isolate = "عزل التحديد";
 alert.selection.showAll = "إظهار الكل";
 // The object needs to have two parts disconnected
 alert.separate.fail = "لم يمكن الفصل: الكائن يحتوي على جزء واحد فقط!";
-// Visibility of the object is off (but should be on)
-alert.shape.notVisible = "الكائن الحالي غير مرئي!";
 // The user has selected a tool that is more intuitive to use when the camera is in orthographic mode
 alert.shapeOrthographic = "فكّر في استخدام كاميرا متعامدة لتجنب تشوه المنظور عند استخدام إسقاط الشاشة.";
 // The trial version has a limited number of undo operations
@@ -167,10 +170,10 @@ alert.state.trial = "نسخة تجريبية: تم إلغاء التراجع";
 alert.trim.full = "القص تم إلغاؤه: الكائن مقصوص بالكامل.";
 // The user tried to trim an object but the selected region didn't touch the object
 alert.trim.nothing = "لا يوجد شيء للقص.";
+// The remesher rebuilds the mesh without a UV layout, the painting is kept as vertex colors
+alert.uvLost = "ستُفقد إحداثيات UV!";
 // List of disabled features when View Mode is selected
 alert.view.disabled = "الميزات المعطلة في وضع العرض:";
-// Primitive widgets are small viewport controls used to modify a primitive
-alert.view.disabled.widgetPrimitive = "عناصر تحكم المجسمات الأولية";
 alert.voxel.empty = "تم إلغاء إعادة الشبك: الشبكة الناتجة لا تحتوي على أوجه.";
 // Should not happen or very rarely, input here is an object
 alert.voxel.invalidInput = "إدخال غير صالح!";
@@ -208,6 +211,9 @@ background.imageAlpha = "التعتيم";
 background.imageEnable = "صورة المرجع";
 // The image will be displayed in overlay (used as a reference by the artist)
 background.imageOverlay = "تراكب";
+// Apply the post process effects on the reference image
+background.imagePostProcess = "مابعد المعالجة";
+background.imagePostProcess.help = "يطبّق تأثيرات ما بعد المعالجة على الصورة المرجعية. عطّله للحفاظ على الألوان الأصلية.";
 background.imageReset = "إعادة تعيين الإعدادات";
 // Rotation of the reference image
 background.imageRotate = "الدوران";
@@ -286,6 +292,8 @@ binding.rotateLighting = "تدوير الإضاءة";
 // Select all the objects in the scene
 binding.selectAll = "تحديد الكل";
 binding.snap.toggle = "تبديل تحرير المنحنى";
+// Same as binding.snap.toggle, on a small shortcut button
+binding.snap.toggle.short = "تحرير المنحنى";
 // Snap the view (while rotating)
 binding.snapViewOnRotate = "تثبيت الرؤية (أثناء التدوير)";
 binding.spacemouse = "SpaceMouse";
@@ -368,9 +376,10 @@ camera.doubleTapBackgroundFocus.scene = "المشهد";
 camera.doubleTapBackgroundFocus.selection = "اختيار";
 // When we double tap on the background with the finger/stylus
 camera.doubleTapBackgroundFocus.toggle = "تبديل";
-camera.doubleTapFocus.help = "عند النقر المزدوج على الجسم، تتحرك الكاميرا وتركّز على النقطة المختارة.";
 // When we double tap on the object with the finger/stylus
 camera.doubleTapMesh = "النقر المزدوج على الكائن";
+// Same as camera.doubleTapMesh, on a small shortcut button
+camera.doubleTapMesh.short = "تركيز";
 // When double tapping with the finger/stylus, the camera pivot will be updated
 camera.doubleTapPivot = "عند النقر المزدوج";
 camera.doubleTapPivot.help = "تحديث محور التدوير عند النقر المزدوج على سطح الكائن.";
@@ -380,11 +389,8 @@ camera.firstPerson = "الشخص الأول";
 camera.focal = "العدسة $0مم (مستشعر 35مم)";
 // Focus on the camera
 camera.focus = "تركيز";
-// Focus on a saved camera
-camera.focusOn = "التركيز على $0";
 // camera Vertical Field of View
 camera.fov = "مجال الرؤية الرأسي";
-camera.panZoomOut.help = "عند تعطيل هذا الخيار، سيتم الاحتفاظ بموقع المحور دون تغيير.";
 // The Camera pivot is the point around which the camera rotates
 camera.pivot = "تحديث المحور...";
 // Camera projection, Orthographic or Perspective
@@ -427,12 +433,7 @@ clipboard.copy = "نسخ";
 clipboard.paste = "لصق";
 
 color = "اللون";
-color.alpha = "ألفا";
-color.blue = "أزرق";
-color.brightness = "السطوع";
-color.green = "أخضر";
 color.hue = "تدرّج لوني";
-color.red = "أحمر";
 color.saturation = "تشبّع";
 color.value = "القيمة";
 
@@ -442,8 +443,6 @@ confirm = "تأكيد؟";
 confirm.cancel = "إلغاء";
 // Asking to cancel (should be short)
 confirm.cancel.ask = "إلغاء؟";
-// Answer to a question (Are you sure you want to do that? [yes, no, cancel])
-confirm.no = "لا";
 // The generic ok in a confirm box (The next operation is dangerous. [ok, cancel])
 confirm.ok = "حسناً";
 // Restart nomad
@@ -453,8 +452,6 @@ confirm.yes = "نعم";
 
 // Toolbox context (when expanded), multiple objects are selected
 context.multiselection = "اختيار متعدد";
-// There is 0 nodes/items selected
-context.noSelection = "لا اختيار";
 
 cube.back = "خلف";
 cube.bottom = "أسفل";
@@ -465,8 +462,17 @@ cube.right = "يمين";
 cube.top = "أعلى";
 
 curve.bspline = "B-السبلين";
-// Curve type, https://en.wikipedia.org/wiki/Centripetal_Catmull%E2%80%93Rom_spline
-curve.catmull = "کتامل-روم";
+curve.editor = "محرر المنحنى";
+curve.ik = "IK";
+curve.ik.help = "الحركيات العكسية (IK): اسحب نقطة لتغيير وضعية الأنبوب، فتتبعها النقاط المتصلة.";
+curve.ik.lockRoot = "قفل الجذر";
+curve.ik.lockRoot.help = "يثبّت النقطة الأولى أثناء تغيير الوضعية. اسحب القفل لتحريك الأنبوب كله. عطّله ليتبع الجذر الحركة.";
+curve.ik.stretch = "تمدد";
+curve.ik.stretch.help = "أقصى طول إضافي للمقطع، يُقاس عند بدء كل سحب. عند 0% تبقى أطوال المقاطع ثابتة. زِده لسحب نقطة أبعد قبل أن تتبعها النقاط المجاورة.";
+curve.influence.falloff = "تلاشي";
+curve.influence.falloff.help = "يمنح 0 جميع النقاط المتأثرة تأثيرًا متساويًا. يقلل 100 التأثير بسلاسة نحو حافة النطاق.";
+curve.influence.range = "نطاق";
+curve.influence.range.help = "يؤثر في نقاط التحكم القريبة على طول المنحنى. نسبة من طول المنحنى؛ يحرر 0 النقطة الممسوكة فقط. مقابض القيم تستخدم وضع N.";
 // Merge or collapse one point into another
 curve.merge = "دمج";
 curve.pivot = "محور";
@@ -484,21 +490,20 @@ curve.sharpness = "الحدة";
 curve.shift = "إزاحة";
 // snap
 curve.snap = "محاذاة";
-// whether the tube body stays on the surface between its control points, and along which direction
+// whether the curve body (tube or repeated objects) stays on the surface between its control points, and along which direction
 curve.snap.follow = "المتابعة";
-curve.snap.follow.help = "ما يفعله الأنبوب بين نقاط التحكم الخاصة به.";
+curve.snap.follow.help = "سلوك المنحنى بين نقاط التحكم.";
 curve.snap.follow.normal = "نورمال";
-curve.snap.follow.normal.help = "يظل الأنبوب على السطح، مدفوعًا إليه على طول العمودي على السطح.
+curve.snap.follow.normal.help = "يبقى المنحنى على السطح بإسقاطه عليه على امتداد العمودي على السطح.
 
-يسلك أقصر طريق إلى السطح، مما يعمل جيدًا مع الأشكال التي تنظر إليها من الحافة.";
-// only the control points snap, the body of the tube is left alone
+يسلك أقصر طريق إلى السطح، مما يعمل أيضًا مع الأشكال التي تنظر إليها من الجانب.";
+// only the control points snap, the body of the curve is left alone
 curve.snap.follow.points = "النقاط";
-curve.snap.follow.points.help = "تلتصق نقاط التحكم فقط بالسطح.
+curve.snap.follow.points.help = "تلتصق نقاط التحكم وحدها بالسطح.
 
-بينها، يحافظ الأنبوب على الشكل الذي رسمته، لذا يمكنه اختراق السطح أو الطفو فوقه.";
+بينها، يحتفظ المنحنى بالشكل الذي رسمته، لذا قد يخترق السطح أو يطفو فوقه.";
 curve.snap.follow.view = "عرض";
-curve.snap.follow.view.help = "يظل الأنبوب على السطح، مدفوعًا إليه على طول الاتجاه الذي كنت تنظر منه عندما رسمته.";
-curve.snap.grid = "الشبكة (عند المحاذاة)";
+curve.snap.follow.view.help = "يبقى المنحنى على السطح بإسقاطه عليه في اتجاه نظرك وقت رسمه.";
 curve.snap.normal = "محاذاة العمودي";
 curve.snap.normal.help = "يؤثر فقط على أول وآخر نقاط تحكم في المنحنى.
 
@@ -506,40 +511,89 @@ curve.snap.normal.help = "يؤثر فقط على أول وآخر نقاط تحك
 
 يتم الحفاظ على المسافة إلى النقطة المجاورة.";
 curve.snap.offset = "الإزاحة";
-curve.snap.offset.help = "قيمة 100% تعادل نصف قطر الأنبوب.";
+curve.snap.offset.help = "تعادل قيمة 100% نصف قطر الأنبوب، أو نصف حجم الأجسام المكررة في الاتجاه نحو السطح.";
 curve.snap.surface = "السطح";
 curve.snap.vertex = "رأس";
 curve.spiral = "حلزوني";
 curve.spiral.angle = "إزاحة الزاوية";
+curve.spiral.braid = "ضفيرة";
+curve.spiral.core = "قلب";
+curve.spiral.depth = "عمق";
+curve.spiral.groups = "مجموعة وجوه لكل جديلة";
+curve.spiral.hardness = "الصلابة";
 curve.spiral.offset = "الإزاحة";
+curve.spiral.pack = "رصّ";
+curve.spiral.ribbon = "شريط";
+curve.spiral.rope = "حبل";
 curve.spiral.scale = "المقياس";
+curve.spiral.sleeve = "غلاف";
+curve.spiral.sleeve.help = "غلاف مضفّر";
+curve.spiral.strands = "جدائل";
 curve.spiral.twist = "زاوية الالتواء";
-// Spline curve, https://en.wikipedia.org/wiki/Spline_(mathematics)
-curve.spline = "السبلين";
 // Display the falloff curve in a symmetric way
 curve.symmetric.help = "عرض المنحنى بشكل متماثل.
 
 هذا الخيار هو إشارة بصرية فقط، ولا يؤثر على الانخفاض نفسه";
 curve.twist = "التواء";
-// Regular spaced sampling
-curve.uniform = "موحد";
-curve.uniform.help = "سيتم أخذ عينات من المنحنى بتباعد منتظم لضمان كثافة موحدة.
+curve.warp = "تشويه سطحي";
+curve.warp.help = "يلائم نهايتي الأنبوب مع مواضع متطابقة على أقرب جوانب الخلايا ويحاذي النقاط المجاورة. يضيف نقاطًا إن بقي أقل من أربع. يستخدم التواء بنقطتين عندما تحتاج المقاطع الطرفية إلى محاذاة. يتطلب أنبوبًا مفتوحًا وتفعيل التشويه السطحي للسطح.";
 
-يمكنك تعطيل هذا الخيار للتحكم قليلاً في حلقات الحافة عن طريق إضافة نقاط تحكم جديدة على المنحنى.";
-
-// Debug graphics options
-debug.graphics = "الرسوميات";
+debug.androidInputs = "تسجيل الأحداث";
+debug.angleNormal = "عموديات ملساء موزونة بالزاوية";
+debug.compressMultires = "nom: ضغط متعدد الدقة";
+debug.compressMultires.help = "يقلل حجم المشاريع وملفات تصدير nomad عند استخدام متعدد الدقة.
+لا يمكن فتحها في إصدارات Nomad القديمة.
+قد يُزال هذا الخيار ويُفعّل افتراضيًا مستقبلًا.";
+// Debug section to import/export the icons of the interface
+debug.customIcons = "أيقونات مخصصة";
+debug.customIcons.export = "تصدير أيقونات الأدوات";
+debug.customIcons.export.done = "تم تصدير $0 من أيقونات الأدوات";
+debug.customIcons.export.help = "ينسخ ملفات tool_<tool>.png الأساسية إلى 'tmp_session/icons' دون كتابة فوق الموجود.
+يمكنك تحريرها هناك وتطبيقها بإعادة التحميل.";
+debug.customIcons.import = "استيراد أيقونات";
+debug.customIcons.import.help = "يستورد ملفات png إلى 'tmp_session/icons'، وتُحذف عند إعادة التشغيل.
+يستبدل كل ملف الأيقونة الأساسية ذات الاسم نفسه.";
+debug.customIcons.reload = "إعادة تحميل الأيقونات";
+// Short label for the section shortcut bar
+debug.customIcons.short = "الأيقونات";
+// Debug option: draw all the copies of a repeater in a single draw call
+debug.drawInstance = "رسم التكرارات بمثيلات";
+// Debug section for optional features
+debug.feature = "ميزة";
+debug.flipQuad = "عكس قطر الرباعي (بالنقر)";
+debug.forceTrial = "محاكاة النسخة التجريبية";
+debug.fps = "FPS";
 // Debug option, overrides the rendering to display the depth buffer
 debug.heightmap = "خريطة الارتفاع";
+debug.icons = "إظهار الأيقونات";
 // Debug option: display a window with debugging logs
 debug.logs = "السجلات";
+// Logs window option: break long lines to fit the panel width
+debug.logs.wrap = "التفاف الكلمات";
+debug.parallel = "تعدد الخيوط: عام";
+debug.parallelSculpt = "تعدد الخيوط: نحت";
+debug.pathTrace = "تصيير: تتبع المسارات";
+// Debug section for multithreading and speed options
+debug.performance = "الأداء";
+debug.picking = "انتقاء الواجهة";
+debug.postprocess.format = "تنسيق";
+debug.postprocess.format.16bit = "16 بت";
+debug.postprocess.format.8bit = "8 بت";
+debug.postprocess.reuse = "إعادة استخدام المخازن";
+debug.refractionBackWriteDepth = "كتابة عمق الانكسار (الخلف)";
+debug.review = "نافذة تقييم التطبيق";
 // Model shortcut window
 debug.shortcut = "نافذة اختصار";
 // Set the desired FPS (frame per second, refresh rate)
 debug.targetFps = "FPS المستهدف";
 debug.targetFps.help = "عند تعطيله، يعني القيمة الافتراضية أنه سيتم المزامنة مع معدل تحديث الشاشة.";
+debug.targetFps.unit = "hz";
 // Debug options, generate screenshots with size compatible with the iOS store
 debug.thumbnails = "إنشاء مصغرات المتجر";
+// Same as debug.thumbnails, on a small shortcut button
+debug.thumbnails.short = "المصغرات";
+debug.toolboxShowAll = "صندوق الأدوات: إظهار الكل";
+debug.uv = "UV";
 // Debug option, Normalize means transforming the data so that it fits in [0-1] the range
 debug.uvNormalize = "تطبيع UVs";
 debug.uvNormalize.help = "سيقوم Nomad بتطبيع UVs داخل النطاق [0-1].";
@@ -560,42 +614,56 @@ extract = "استخراج";
 extract.action = "إجراء الإغلاق";
 // Close the mesh with a hole-filling algorithm
 extract.action.fill = "ملء";
-extract.action.help = "• لا شيء
-قم ببساطة باستخراج الجزء وترك الجزء المستخرج مفتوحًا.
-
-• ملء
-يتم ملء وتنعيم الثقب.
-لا تستخدم هذا الخيار للأسطح المسطحة.
-
-• القشرة
-أغلق الشكل المستخرج باستخدام قيمة السمك.
-
-• طبقة
-استخراج فرق الطبقة (فقط من القائمة الفرعية للطبقة).";
+extract.action.fill.help = "يملأ الثقب وينعّمه. لا تستخدمه للأسطح المستوية.";
 // Close the mesh by using the layer data as a difference thickness
 extract.action.layer = "طبقة";
+extract.action.layer.help = "يستخرج فرق الطبقة.";
 // Do not close the mesh (leave it open)
 extract.action.none = "لا شيء";
+extract.action.none.help = "يستخرج الجزء ويتركه مفتوحًا.";
 // Close the mesh by adding a thickness on the surface
 extract.action.shell = "غلاف";
+extract.action.shell.help = "يغلق الشكل المستخرج باستخدام قيمة السُمك.";
+extract.bevel = "شطف";
+extract.bevel.help = "عرض الحافة الأمامية المائلة. عمقها محدود بنصف السُمك. فعّل مقطع الشطف لتشكيل الحافة.";
+extract.bevel.profile = "مقطع الشطف";
+extract.bevel.segments = "تقسيمات الشطف";
+extract.bevel.segments.help = "يقسّم الشطف. يبقى الجدار المستقيم دون تغيير.";
+extract.borders = "حدود";
 // Carve the mask into the surface
 extract.carve = "النحت";
 // topology of extracted mesh
 extract.edgeLoop = "حلقة الحافة (الجانب)";
 extract.edgeLoop.auto = "حلقة الحافة التلقائية";
 extract.edgeLoop.division = "التقسيم";
+extract.faceGroup.active = "نشط";
+extract.faceGroup.polish = "تلميع";
+extract.faceGroup.polish.help = "ينعّم حدود مجموعات الوجوه قبل استخراج الألواح. الاسترخاء يتبع السطح.";
+extract.gap = "فجوة";
+extract.gap.help = "يحرك كل حد إلى الداخل على طول السطح. للألواح المتجاورة، استخدم نصف الفجوة المطلوبة.";
+extract.group.target = "هدف";
+extract.inset = "إزاحة للداخل";
+extract.inset.help = "يحرك حد الاستخراج إلى الداخل دون تغيير القناع المرسوم.";
 // Smoothing strategy
 extract.polish.all = "الكل";
 extract.polish.border = "الحدود فقط";
 extract.polish.sharp = "حافة حادة";
-// Smooth the border in a way that it matches completely with its dual
-extract.polish.syncBorder = "تزامن الحافة";
 // Preview extract
 extract.preview = "معاينة";
+extract.profile = "مقطع جانبي";
+extract.profile.width = "عرض";
+extract.side.bevel = "شطف";
+extract.side.bevel.help = "عرض الحافة الأمامية المائلة. عمقها محدود بنصف الارتفاع.";
+extract.side.divisions = "تقسيمات الجدار";
+extract.side.profile = "المقطع";
+extract.side.straight = "مستقيم";
+extract.sides = "جوانب";
 // Extract two new meshes from the painted mask and the unmasked area
 extract.split = "تقسيم";
 // The thickness of the extracted mesh (from the painted mask)
 extract.thickness = "السماكة";
+extract.units.height = "% الارتفاع";
+extract.units.height.help = "يبدّل بين نسبة من الارتفاع ووحدات العالم. يحافظ التبديل على الحجم الحالي.";
 
 // Auto save section
 file.autoSave = "حفظ تلقائي";
@@ -617,9 +685,6 @@ file.colorSpace = "نظام الألوان";
 file.colorSpace.help = "حاول تبديل هذا الخيار إذا كانت الألوان تبدو غير صحيحة.";
 file.colorSpace.linear = "خطّي";
 file.colorSpace.srgb = "sRGB";
-// Tries to generate quad (rectangle polygon) from triangles
-file.convertToQuad = "إعادة بناء الرباعيات";
-file.convertToQuad.help = "أعد بناء الرباعيات من المثلثات عن طريق إقران المثلثات (إذا كانت متجاورة في الملفات).";
 // Open file explorer
 file.explore = "استكشاف";
 // Export scene file
@@ -638,8 +703,10 @@ file.export.gltf.layer.help = "تصدير الطبقات كمورفس. مدعو�
 // Whether we include painting of layers in the exported file (see glossary for layer)
 file.export.gltf.layerPaint = "رسم الطبقات";
 file.export.gltf.layerPaint.help = "تصدير رسم الطبقات. عادة ما يتم تجاهله بواسطة البرامج الأخرى.";
-file.export.nomad.assets = "";
-file.export.nomad.assets.help = "";
+file.export.nomad.assets = "تضمين الموارد";
+file.export.nomad.assets.help = "تضمين موارد Matcap والبيئات والخطوط المخصصة في الملف.
+
+لا يتم تضمين الموارد المرفقة مع Nomad.";
 file.export.nomad.help = "تنسيق ملف نوماد سكلبت الداخلي.
 
 لن يتم تحميل هذا التنسيق في برامج أخرى ، وهذا في الغالب لأغراض إعادة الاستيراد.";
@@ -695,15 +762,13 @@ file.export.usd.skew.help = "السماح بالانحراف في تحويلات
 عند التعطيل، سوف يقوم نوماد بتقسيم مصفوفات الانحراف إلى تحويلات منفصلة للقياس والدوران.";
 // Type format
 file.format = "صيغة";
-// The user imports a scene file that will be added/appended the current scene
-file.import.add = "إضافة إلى المشهد";
-file.import.add.confirm = "استيراد ملف جديد؟";
 file.import.applyAll = "تطبيق على الكل";
 // Load interface preference settings when opening a scene file
 file.import.guiSettings = "تحميل إعدادات الواجهة";
 file.import.guiSettings.help = "عند فتح أو استيراد ملف مشروع، سيتم تحميل جميع الإعدادات المتعلقة بالواجهة المدمجة في المشروع.";
 file.import.help = "تنسيق مدعوم:";
-file.import.ignore = "تجاهل";
+file.import.keepFolders = "الاحتفاظ بالمجلدات";
+file.import.keepFolders.help = "يبقي الموارد المستوردة في مجلداتها. ملفات ZIP التي ليس لها مجلد خارجي واحد تستخدم اسم ZIP.";
 // Do not fiddle with the object topology when loading the file
 file.import.keepTopology = "الحفاظ على الطبولوجيا";
 file.import.keepTopology.help = "استخدم هذا الخيار إذا لم ترد أن يعدّل Nomad طوبولوجيا الشبكة المستوردة.
@@ -776,11 +841,8 @@ file.project.unsaved = "تغييرات غير محفوظة!";
 file.render = "التصيير";
 // height of exported screenshot
 file.render.height = "ارتفاع";
-// Resolution ratio of the exported screenshot
-file.render.renderRatio = "نسبة التصيير";
-file.render.renderRatio.help = "قيمة 1.0 تعني أن نوماد سيقوم بالتصيير بنفس دقة حجم الصورة المطلوب أدناه.
-
-استخدم هذا الخيار إذا لم تتمكن من التصيير عند دقة معينة (تعطل بسبب نقص الذاكرة).";
+// Warning shown when the requested export resolution is too large for the memory left on the device
+file.render.lowMemory = "قد لا يتسع هذا الحجم للذاكرة المتبقية على هذا الجهاز.";
 // Screen resolution parameters for the export screenshot features
 file.render.screenResolution = "شاشة";
 // If we include the App Interface in the exported screenshot
@@ -790,7 +852,7 @@ file.render.size = "الحجم النهائي";
 // Desired size of the exported screenshot (custom vs predefined size)
 file.render.size.custom = "مخصص";
 // Save the heightmap render as a new brush alpha instead of exporting it as a file
-file.render.toAlpha = "";
+file.render.toAlpha = "حفظ كألفا";
 // If true, then the exported screenshot will have transparency data in the image
 file.render.transparent = "خلفية شفافة";
 file.render.transparent.help = "يمكن أن تكون هذه الخيار مفيدة إذا كنت ترغب في إدراج الشبكة في برنامج إنشاء ثنائي الأبعاد.
@@ -816,6 +878,43 @@ file.select.include = "شمل";
 file.select.selected = "المحدد";
 file.select.unselected = "غير محدد";
 file.select.visible = "مرئي";
+
+fog = "الضباب";
+fog.ambient = "البيئة";
+fog.ambient.help = "يتحكم في مقدار إضاءة البيئة للضباب.";
+fog.anisotropy = "اتجاه التشتت";
+fog.anisotropy.help = "يتحكم في الاتجاه الذي يشتت فيه الضباب الضوء، ويُسمى أيضًا تباين الخواص.
+
+• القيم الموجبة تجعل الضباب أكثر سطوعًا عند النظر نحو مصدر ضوء.
+• القيم السالبة تجعله أكثر سطوعًا عند النظر بعيدًا عنه.
+• تشتت القيمة صفر الضوء بالتساوي في جميع الاتجاهات.";
+fog.color = "لون";
+fog.color.help = "يحدد لون الضباب والضوء الذي يشتته.";
+fog.density = "كثافة";
+fog.density.help = "يتحكم في سرعة ازدياد كثافة الضباب مع المسافة.";
+fog.detail = "ضجيج";
+fog.detail.help = "يمزج الضجيج بالضباب لتقسيمه إلى بقع. لا يغيّر الكثافة الإجمالية.";
+fog.detail.scale = "الحجم";
+fog.detail.scale.help = "يضبط حجم نمط الضجيج.";
+fog.help = "يضيف عمقًا جويًا ويجعل حزم الضوء مرئية.
+
+حزم ضوء أكثر وضوحًا:
+• قلّل قيمة البيئة واستخدم ضوءًا كشافًا أو نقطيًا قويًا.
+• زد الكثافة حتى يصبح الضباب واضحًا.
+• لرؤية الحزم في ضباب أخف، اضبط اتجاه التشتت على قيمة موجبة مرتفعة ووجّه الكاميرا نحو مصدر الضوء.";
+fog.opacity = "أقصى تعتيم";
+fog.opacity.help = "يحد من مقدار تغطية الضباب للمشهد، حتى عند الكثافة العالية.";
+fog.shape = "الشكل";
+fog.shape.help = "يتحكم في موضع انتشار الضباب في المشهد.";
+fog.shape.uniform = "موحد";
+fog.shape.uniform.help = "يملأ المشهد بالكامل بالضباب.";
+fog.shape.vertical = "عمودي";
+fog.shape.vertical.bottom = "أسفل";
+fog.shape.vertical.bottom.help = "يحدد ارتفاع الحافة السفلية لنطاق الضباب.";
+fog.shape.vertical.help = "يحصر الضباب داخل نطاق عمودي ذي حافتين علوية وسفلية ناعمتين.";
+fog.shape.vertical.preview.help = "يعرض نطاق الضباب في منفذ العرض أثناء ضبط حافتيه.";
+fog.shape.vertical.top = "أعلى";
+fog.shape.vertical.top.help = "يحدد ارتفاع الحافة العلوية لنطاق الضباب.";
 
 format.ascii = "أسكي";
 format.binary = "ثنائي";
@@ -882,8 +981,6 @@ gesture.pencilAction.android = "زر القلم";
 // Action when using the Pencil double tap
 gesture.pencilAction.ios = "النقر المزدوج بالقلم";
 gesture.pencilAction.ios.help = "تنشط فقط لقلم Apple الجيل الثاني.";
-// Pencil button (or iOS Pencil double tap) action: nothing
-gesture.pencilAction.none = "لا شيء";
 // list of inputs allowing sculpting interaction
 gesture.sculpt = "نحت";
 // Select object
@@ -893,6 +990,8 @@ gesture.shortcut = "اختصار";
 gesture.smooth.holdSelect.help = "الضغط الطويل سيبدل إلى أداة التحديد أثناء فترة تحديد الضربة.";
 // Hold the pointer at the end of a stroke to snap it into a line or a curve
 gesture.strokeSnap = "التقاط الضربة";
+gesture.strokeSnap.delay = "مهلة الضغط المطوّل";
+gesture.strokeSnap.delay.help = "مدة الثبات قبل محاذاة ضربة أو تحرير شكل.";
 gesture.strokeSnap.help = "ثبّت المؤشر عند نهاية ضربة لالتقاطها وتحويلها إلى خط مستقيم أو منحنى ناعم.
 
 واصل السحب لتدوير الضربة الملتقطة وتغيير حجمها حول نقطة بدايتها.";
@@ -924,15 +1023,14 @@ gesture.trackpad.two.orbit.help = "يُدير إصبعان العرض مداري
 // Two fingers pan (translate) the view
 gesture.trackpad.two.pan = "تحريك";
 gesture.trackpad.two.pan.help = "يُحرّك إصبعان العرض، ويؤدي رفع أحدهما إلى تدويره مداريًا. كما هو الحال في الجهاز اللوحي.";
-// If enabled, the pressure will be taken into account even if it's not coming from a recognized stylus
-gesture.unknownPressure = "السماح بضغوطات غير معترف بها";
-gesture.unknownPressure.help = "اختر هذه الخيار إذا كانت الضغط لا يعمل مع قلمك أو إذا كنت بحاجة لضغط الإصبع.";
 gesture.wheel = "عجلة الفأرة";
 gesture.wheel.speed2d = "السرعة (واجهة 2D)";
 gesture.wheel.speed3d = "السرعة (تكبير 3D)";
 
 // History, list of undo/redo
 history = "السجل";
+// Button deleting every operation of the history, freeing the memory and the disk space they use
+history.clear = "مسح السجل";
 // Long press on a state of the history list: deletes it and every older one, $0 is a number of operations
 history.delete.confirm = "هل تريد حذف $0 عملية من السجل؟";
 history.delete.help = "اضغط مطولًا على إدخال في السجل لحذفه نهائيًا وحذف كل السجل الأقدم منه.";
@@ -952,17 +1050,26 @@ history.include.postProcess.help = "يتضمن تعديلات المعالجة �
 // include shading parameters (MatCap & HDRIs) editing in the undo/redo
 history.include.shading = "التظليل";
 history.include.shading.help = "يتضمن أوضاع PBR وMatCap وUnlit، وخرائط MatCap وصور HDRI.";
+// How much disk space the history is allowed to use, past it the oldest operations are deleted
+history.limitDisk = "حد التخزين";
+history.limitDisk.help = "الحد الأقصى لمساحة التخزين التي يمكن أن يستخدمها سجل التراجع/الإعادة لهذا المشروع.
+
+عند بلوغ الحد، تُحذف أقدم العمليات نهائيًا.
+
+يُطبَّق الحد الجديد بعد تسجيل العملية التالية.";
 // How much memory the history is allowed to use before the older states are moved to the disk
-history.limitMemory = "حد الذاكرة";
-history.limitMemory.help = "مقدار السجل الذي يتم الاحتفاظ به في الذاكرة.
+history.limitMemory = "حد ذاكرة RAM";
+history.limitMemory.help = "الحد الأقصى لسجل التراجع/الإعادة المحتفظ به في ذاكرة RAM.
 
-تُنقل الحالات الأقدم إلى القرص ويُعاد تحميلها عند التراجع؛ ولا يتم حذفها.
+تُنقل الحالات الأقدم إلى مساحة التخزين ويُعاد تحميلها عند الحاجة؛ ولا يتم حذفها.
 
-سيتم تحديث السجل عند تسجيل العملية التالية.";
+يُطبَّق الحد الجديد بعد عملية التعديل أو التراجع أو الإعادة التالية.";
 // Where the undo history is kept when the project is saved (it survives reopening the project)
 history.persist = "حفظ السجل";
 history.persist.embedded = "تضمين";
-history.persist.embedded.help = "يتم تخزين السجل داخل ملف المشروع. يصبح الملف أكبر، لكن السجل ينتقل معه.";
+history.persist.embedded.help = "يُخزَّن السجل داخل ملف المشروع: ملف أكبر، وحفظ وتحميل أبطأ.
+
+يُفضّل استخدام إيقاف أو منفصل ما لم يكن من الضروري أن ينتقل السجل مع الملف.";
 history.persist.help = "الاحتفاظ بسجل التراجع عند حفظ المشروع ليظل متاحًا بعد إعادة فتح المشروع.";
 history.persist.off = "إيقاف";
 history.persist.off.help = "يتم حفظ المشروع من دون سجله.";
@@ -970,6 +1077,18 @@ history.persist.separate = "منفصل";
 history.persist.separate.help = "يتم تخزين السجل في بيانات المشروع على هذا الجهاز. يظل ملف المشروع صغيرًا.";
 // Redo
 history.redo = "إعادة";
+// Slider + play button: rewinds to the root and redoes the operations one by one, the value is a number of operations per second
+history.replay = "إعادة التشغيل";
+// Option of the replay popup: the camera follows the replayed operations even when the history "Restore camera" setting is off
+history.replay.camera = "استعادة الكاميرا";
+history.replay.camera.help = "تتبع الكاميرا العمليات المعاد تشغيلها حتى عندما يكون خيار استعادة الكاميرا في السجل معطّلًا.";
+// Popup opened by the play button, above its two options
+history.replay.confirm = "إعادة تشغيل السجل؟";
+history.replay.help = "يرجع إلى البداية، ثم يعيد العمليات واحدة تلو الأخرى بهذه السرعة (عمليات في الثانية).
+انقر على الزر مرة أخرى للإيقاف. التراجع أو الإعادة أو النقر على إدخال يوقف التشغيل أيضًا.";
+// Option of the replay popup: runs backwards, undoing from the current state to the root
+history.replay.reverse = "عكس";
+history.replay.reverse.help = "يتراجع عن العمليات من الحالة الحالية إلى البداية بدلًا من إعادة تشغيلها من البداية.";
 // When enabled, undoing an operation also restores the camera position
 history.restoreCamera = "استعادة الكاميرا";
 history.restoreCamera.help = "قم بتمكين هذا الخيار لاستعادة زاوية عرض الكاميرا المحفوظة عند التراجع/الإعادة عن إجراء.";
@@ -1015,25 +1134,52 @@ inspect.short = "فحص";
 
 // Interface customization
 interface = "واجهة المستخدم";
+interface.accent.solid = "لون تمييز ممتلئ";
+interface.accent.thin = "لون تمييز رفيع";
+interface.accentStrength = "قوة التمييز";
+interface.accentStrength.help = "يمزج لون التمييز الممتلئ نحو اللون الأساسي مع إبقاء التعبئة معتمة. لا يتغير لون التمييز المختار.";
+interface.appearance = "المظهر";
 // Interface option (panel blurriness, if the menus are transparent)
 interface.blurFactor = "قوة الضبابية";
+interface.button = "مفاتيح تبديل";
+interface.button.soft = "ناعم";
+interface.button.solid = "ممتلئ";
+interface.buttonFill = "تعبئة الأزرار";
+interface.buttonFill.help = "لون خلفية الأزرار والخيارات المحددة في وضع لون تمييز رفيع. تحتفظ ألوان الأدوات والمحاور المخصصة بلون تحديد ثابت.";
+interface.buttonSupportContrast = "عتامة خلفية الأزرار";
+interface.buttonSupportContrast.help = "يفتح أو يغمق خلفيات الأزرار بمعزل عن خلفيات أشرطة التمرير والخيارات.";
+interface.checkbox = "مربع اختيار";
+interface.checkbox.accent = "لون التمييز";
+interface.checkbox.fill = "تعبئة";
+interface.checkbox.outline = "الخط المحيط";
 // Interface option (main base color)
-interface.colorBase = "أساس اللون";
+interface.colorBase = "قاعدة";
 // Interface option (color of panels, if the menus are transparent)
-interface.colorBaseTransparent = "لوحة التحكم بالألوان";
+interface.colorBaseTransparent = "لون اللوحات";
 // Interface option (accent widget color)
-interface.colorSelect = "عنصر تحكم اللون";
-// UI customization: each item row fits on a single line (synonym: inlined)
-interface.compact = "واجهة المستخدم: مضغوطة";
+interface.colorSelect = "لون التمييز";
+interface.colors = "ألوان";
+interface.colors.action = "إجراء";
+interface.colors.disabled = "معطّل";
+interface.colors.filled = "شريط تمرير ممتلئ";
+interface.colors.idle = "خامل";
+interface.colors.infinite = "شريط تمرير بلا نهاية";
+interface.colors.options = "خيارات";
+interface.colors.preview = "معاينة";
+interface.colors.reset = "إعادة تعيين الألوان";
+interface.colors.stepped = "شريط تمرير متدرج";
 // Spacing between widgets
 interface.cursorStep = "المسافة الرأسية";
+interface.customColorFill = "مطابقة الألوان المخصصة";
+interface.customColorFill.help = "يلوّن خلفيات الأدوات والمحاور المحددة بلون نصها أو أيقونتها. عطّله لاستخدام لون تمييز الواجهة.
+
+تخصيص الاختصارات يستخدم لون تمييز الواجهة دائمًا.";
 // Do not use windows native dialog
 interface.customDialog = "استخدم حوار Nomad";
 interface.customDialog.help = "اظهر مربع الحوار الخاص بـ Nomad بدلاً من النافذة الأصلية.";
-// UI customization: each row of the list will be bigger
-interface.expandList = "واجهة مستخدم: توسيع القائمة";
-// UI customization: each row of the list will be bigger
-interface.expandList.help = "فقط خيار لواجهة المستخدم لتسهيل إدارة القائمة.";
+// Interface customization: soft shadow cast by the panels on the scene
+interface.dropShadow = "ظل اللوحات";
+interface.dropShadow.help = "تلقي اللوحات ظلًا لتمييزها عن المشهد.";
 // Interface customization
 interface.flipBottom = "عكس الشريط السفلي";
 // Interface customization
@@ -1042,53 +1188,72 @@ interface.flipMiddle = "عكس الأشرطة الجانبية";
 interface.flipTop = "عكس الشريط العلوي";
 // Size of fonts
 interface.fontScale = "مقياس الخط";
+interface.glass = "زجاج";
+interface.glass.help = "يضيف انكسارًا عند الحواف ولمعانًا إلى اللوحات الشفافة. يظهر أكثر مع تمويه منخفض.";
 // Dot menu hovering
 interface.hoverDot = "نقطة التمرير";
 interface.hoverDot.help = "إظهار نقطة صغيرة في واجهة المستخدم عند اكتشاف قلم تحويم.";
 // Help popup when hovering
 interface.hoverHelp = "نافذة المساعدة عند التمرير";
-// Interface option (main base color)
-interface.iconSupport = "زر ذو تباين عالٍ";
-interface.iconSupport.help = "نمط بديل للأزرار يجعلها أكثر وضوحًا عندما تكون مفعلة.
-
-إذا تم ضبطه على تلقائي، سيستخدم Nomad هذا الوضع عندما يكون تباين الألوان في واجهة المستخدم بين المفعَّل والمُعطَّل منخفضًا.";
 // Inset
 interface.inset.title = "إزاحات الحواف";
 interface.inset.title.help = "يمكنك تغيير هذه القيم فقط إذا كنت تواجه مشاكل في التفاعل مع الأزرار على حواف الشاشة.
 
 إذا تم تعطيل شريط التمرير، سيستخدم Nomad قيم المنطقة الآمنة التي يعيدها الجهاز نفسه.";
+interface.layout = "تخطيط";
+interface.navigation = "علامات تبويب";
+interface.navigation.soft = "ناعم";
+interface.navigation.solid = "ممتلئ";
+interface.navigation.underline = "تسطير";
 // Move a floating panel by dragging inside it, instead of using its bar
-interface.panelDrag = "";
-interface.panelDrag.help = "";
+interface.panelDrag = "سحب جسم اللوحة";
+interface.panelDrag.help = "يتم دائمًا نقل اللوحة العائمة بسحب شريطها، ويتيح لك هذا الخيار سحب جسمها أيضًا.
+
+في الوضع «تلقائي»، لا ينقل الإصبع أو القلم اللوحة إلا عندما يكون السحب أفقيًا أكثر منه عموديًا، لذلك يظل السحب العمودي يمرر المحتوى. اضبطه على «نعم» للسحب بالماوس أيضًا، في أي اتجاه.";
 // Interface option (if the menus are transparent or opaque)
 interface.panelTransparent = "لوحة شفافة";
 // Width of the interface panels
 interface.panelWidth = "عرض اللوحة";
 // Interface color style
 interface.preset.title = "إعدادات مسبقة";
+// Interface option, outline drawn around a row of options and between its slots
+interface.radioBorder = "محيط الخيارات";
 // Reset interface settings
 interface.resetAll = "إعادة تعيين النمط";
 interface.resetAll.confirm = "هل تريد إعادة تعيين إعدادات الواجهة؟";
+interface.resetAppearance = "إعادة تعيين المظهر";
+interface.resetLayout = "إعادة تعيين التخطيط";
 // Resize window (should be short)
 interface.resize = "تغيير الحجم";
 // Scale the interface
 interface.scale = "المقياس العام";
+// Interface option, strength of the outline drawn around a selected button or a slider bar
+interface.selectBorder = "محيط التحديد";
+// Interface option, strength of the accent tint behind a selected button or inside a slider bar
+interface.selectFill = "تعبئة التحديد";
 // Show the drag bar of a floating shortcut window
 interface.shortcut.bar = "شريط";
 // The shortcut bar at the bottom of the screen (section title and row name)
 interface.shortcut.bottom = "إضافة اختصارات (الأسفل)...";
 // Floating shortcut windows (section title)
 interface.shortcut.float = "إضافة اختصارات (النافذة)...";
+// Interface option, the slider track is an outline instead of a filled plate
+interface.sliderBorder = "محيط أشرطة التمرير";
+interface.sliderFill = "تعبئة أشرطة التمرير";
+interface.sliderFill.help = "عتامة أشرطة التمرير الممتلئة في وضع لون تمييز رفيع. يبقي التمييز الممتلئ التعبئة معتمة. علامات أشرطة التمرير غير المنتهية تستخدم 50% دائمًا.";
+interface.supportContrast = "عتامة الخلفية";
+interface.supportContrast.help = "يفتح أو يغمق مسارات أشرطة التمرير وخلفيات الخيارات وحقول القيم مقارنة بلوحتها.";
+interface.textAlpha = "عتامة النص";
+interface.textAlpha.help = "يخفف تباين النص والأيقونات مع اللوحات.";
 // list of tools
 interface.toolbox = "صندوق الأدوات";
 // Colored text and icon
 interface.toolbox.color = "ملون";
-// Interface customization (the toolbox is a grid, we can adjust the column count)
-interface.toolbox.columns = "الأعمدة";
 // hide toolbox by default
 interface.toolbox.hide = "مخفي";
 // Reset the tool's order in the toolbox
 interface.toolbox.resetOrder = "إعادة تعيين الترتيب";
+interface.toolboxColors = "ألوان الأدوات";
 // Interface customization (the toolbox is a grid, we can adjust the column count)
 interface.top.alt = "ترتيب بديل";
 interface.top.alt.help = "أيقونة ترتيب بديلة للقائمة العلوية.
@@ -1115,12 +1280,22 @@ item.delete.confirm = "تأكيد الحذف؟";
 item.delete.confirm.yes = "نعم، حذف";
 // When we delete the item but the image is used somewhere
 item.delete.used = "الصورة المستخدمة";
-// Draggable, movable
-item.draggable = "قابل للنقل";
+// Short button label, turns a stamp (alpha or VDM) back into a plane that can be sculpted again
+item.edit = "تحرير";
+item.edit.help = "يضيف سطحًا مستويًا مشكّلًا بهذا الختم، مع طبقة نحت ورباعي أضلاع لكل بكسل.
+
+انحته، ثم اخبزه مجددًا عبر `طوبولوجيا -> خبز -> VDM`.";
+// Short button label, opens a popup to correct the pixels of an imported image
+item.fix = "تصحيح";
+item.fix.help = "يصحّح الصورة نفسها: القيمة المتوسطة، والعكس، والتدوير.
+
+تُعاد كتابة الملف، لذا تقرأ التطبيقات الأخرى الصورة المصحّحة أيضًا.";
 // Show the folders of a list as a column on its side, instead of a drop down menu
-item.folderColumn = "";
+item.folderColumn = "عمود المجلدات";
+// Show the folders of a drop down menu as small chips filling the width, instead of one per line
+item.folderCompact = "مجلدات مدمجة";
 // Show a list of items as one group of items per folder, instead of a single list
-item.folderGroup = "";
+item.folderGroup = "تجميع حسب المجلد";
 // Hide an item (object, layer, etc)
 item.hide = "إخفاء";
 // Make an item instance, similar to clone but keeps the underlying geometry (Synonym: link? soft clone?)
@@ -1129,6 +1304,7 @@ item.instance = "مثيل";
 item.lastSave = "آخر حفظ";
 // Reload last save of an item (object, tool, etc)
 item.lastSave.confirm = "تحميل آخر حفظ؟";
+item.load = "تحميل";
 // The item is locked (either it cannot be selected, edited, or we preserve its details)
 item.lock = "قفل";
 // Merge an item with another one below (layer)
@@ -1143,6 +1319,8 @@ item.next = "التالي";
 item.none = "لا شيء";
 // The order of an item in a list
 item.order = "ترتيب";
+// Size of the preview images of a list of items, in pixels
+item.previewSize = "حجم المعاينة";
 // Focus on previous item
 item.previous = "سابق";
 // Rename an item (object, tool, etc)
@@ -1155,19 +1333,19 @@ item.reset.confirm = "تأكيد إعادة الضبط؟";
 // Save an item (object, tool, etc)
 item.save = "حفظ";
 item.save.confirm = "تأكيد الحفظ؟";
-item.saveLibrary = "";
+item.saveLibrary = "حفظ في المكتبة";
 // Select an item (object, layer, etc)
 item.select = "اختيار";
 // Show an item (object, layer, etc)
 item.show = "عرض";
 // Show the name of every item under its preview image
-item.showName = "";
+item.showName = "إظهار الأسماء";
+// The show button of the curve/primitive handlers only toggles them all, instead of picking one kind
+item.showOnOff = "تشغيل/إيقاف فقط";
 // Order a list of items alphabetically
-item.sortName = "";
+item.sortName = "حسب الاسم";
 // Order a list of items with the most recently modified first
-item.sortRecent = "";
-// Convert the item type (mesh, light) to a simple Node type
-item.toNode = "إلى العقدة";
+item.sortRecent = "الأحدث";
 // Uninstance the object, make the object real
 item.uninstance = "إلغاء المثيل";
 // Unselect an item (object, layer, etc)
@@ -1240,14 +1418,11 @@ license.grace = "غير متصل - المدة المتبقية للنعمة:";
 license.grace.days = "أيام";
 license.grace.hours = "ساعات";
 license.key = "مفتاح الرخصة";
-license.newest = "نسخة جديدة متاحة!";
 license.portal.label = "بوابة الرخصة";
 license.portal.label.warning = "هذه البوابة مخصصة فقط للمستخدمين الذين اشتروا إصدار Windows/Mac.
 
 المشتريات من متاجر تطبيقات iOS/Android ليست متعددة المنصات.";
 license.portal.title = "المستخدمون الحاليون";
-license.retry = "إعادة المحاولة";
-license.title = "الرخصة";
 license.validate = "تأكيد";
 license.validate.error404 = "لم يتم العثور على مفتاح الرخصة.";
 license.validate.error422 = "كيان غير قابل للمعالجة.";
@@ -1259,13 +1434,10 @@ light.angle = "زاوية";
 light.attachment = "التعلق";
 // The light will move along the camera
 light.attachment.camera = "الكاميرا";
+light.attachment.camera.help = "يتوقف اتجاه الضوء على عرض الكاميرا.";
 // The light will stay still even if the user moves the camera
 light.attachment.fixed = "ثابت";
-light.attachment.help = "• ثابت
-لن يتغير اتجاه الضوء.
-
-• كاميرا
-يتوقف اتجاه الضوء على عرض الكاميرا.";
+light.attachment.fixed.help = "لن يتغير اتجاه الضوء.";
 // Color of light
 light.color = "اللون";
 // Contact shadows are more precise shadows on small distance (synonym: cavity shadows?)
@@ -1279,17 +1451,13 @@ light.kelvin = "كلفن";
 light.position = "موقع";
 // Move the light in front of the camera (but keeps its inner orientation)
 light.resetPosition = "إعادة التمركز";
-// Adjustment to fix artefacts
-light.shadow.bias = "الانحياز";
 // Enable or disable shadows for a light
 light.shadow.cast = "ظل";
-// Point light only works with "screenspace" shadow type (not "shadow map")
-light.shadow.pointTip = "يتم دعم ظلال الشاشة فقط من خلال ضوء النقطة.";
-// How blurry the shadow is
-light.shadow.softness = "نعومة";
 // Thickness threshold for screen-space shadows (synonym: threshold, bias)
 light.shadow.tolerance = "التسامح";
 light.shadow.type = "نوع الظل";
+// Shown above the two shadow type entries
+light.shadow.type.help = "تعرض خريطة الظل المشهد من منظور الضوء، لذا تُلقي ظلالًا على الأشكال الهندسية التي لا تراها الكاميرا. أما مساحة الشاشة فتقرأ العمق الظاهر على الشاشة، ما يجعلها أقل تكلفة، لكنها لا تُظلل إلا ما هو مرئي.";
 // Shadows computed with only the information visible on screen
 light.shadow.type.screenspace = "مساحة الشاشة";
 light.shadow.type.screenspace.help = "ميزة تجريبية، قد تتم إزالتها في إصدار مستقبلي.
@@ -1316,26 +1484,22 @@ light.type.hdri = "إتش دي آر أي";
 light.type.point = "نقطة";
 // Spot light emits light in a single direction, restricted by a cone shape.
 light.type.spot = "بقعة";
-light.type.sun = "الشمس";
-// Whether the light is shown
-light.visible = "عرض";
 
 link.address = "هذا الجهاز";
 link.approve = "قبول";
-link.bridges = "برامج الجسر النصية";
+link.bridges = "برامج الجسر النصية (GitHub)";
 link.cameras = "الكاميرات";
 link.copyRepository = "نسخ عنوان URL للمستودع";
 link.deny = "رفض";
 link.forget = "نسيان الأجهزة المقترنة";
 link.get = "جلب";
-link.getFrom = "جلب من $0";
 link.goz.enable = "تمكين GoZ";
 link.goz.noExport = "لا يوجد شيء لاستيراده؛ اضغط GoZ في ZBrush أولًا";
 link.goz.notInstalled = "ثبّت GoZ في ZBrush أولًا (التفضيلات > GoZ)";
 link.goz.received = "تم استلام $0 كائن من ZBrush";
 link.goz.sent = "تم إرسال $0 كائن إلى ZBrush";
 link.goz.waiting = "في انتظار تصدير ZBrush";
-link.help.others = "تتصل التطبيقات الأخرى (ZBrush وغيرها) بمضيف Nomad بالطريقة نفسها.
+link.help.others = "تتصل التطبيقات الأخرى (ZBrush وMarmoset Toolbag وغيرها) بمضيف Nomad بالطريقة نفسها.
 
 الجسر هو برنامج Python نصي يعمل على الكمبيوتر نفسه الذي يعمل عليه ذلك التطبيق.
 تتوفر أمثلة للبرامج النصية والبروتوكول على GitHub؛ استخدمها كنقطة بداية.";
@@ -1356,14 +1520,11 @@ link.mode.help = "يستضيف جهاز واحد الجلسة وتنضم إلي�
 link.mode.nomad = "Nomad ↔ Nomad";
 link.mode.nomad.help = "اختر المضيف على جهاز واحد والانضمام على الأجهزة الأخرى، ثم اضغط اسم المضيف.";
 link.nearby = "الأجهزة القريبة";
-link.network = "الشبكة";
 link.objects = "الكائنات والهندسة";
 link.off = "إيقاف";
 link.peer = "نظير";
 link.peerAddress = "عنوان العميل";
-link.peers = "النظراء";
 link.port = "منفذ الشبكة";
-link.receive = "استلام";
 link.replace = "استبدال";
 // Confirm popup before "Replace": deletes the local scene (undoable), then pulls the peer's scene
 link.replace.confirm = "هل تريد حذف المشهد الحالي ثم جلب مشهد النظير؟";
@@ -1374,7 +1535,6 @@ link.scope.scene = "المشهد";
 link.scope.selection = "اختيار";
 link.searching = "جارٍ البحث عن أجهزة";
 link.send = "إرسال";
-link.sendTo = "إرسال إلى $0";
 link.source = "تعديلات المشهد";
 link.source.from = "من $0";
 link.source.help = "تُبث تعديلات المشهد من جهاز واحد في كل مرة. يعيّن الخيار تلقائي الاتجاه إلى أحدث نشاط.";
@@ -1472,8 +1632,6 @@ material.refraction.interior = "داخلي";
 material.refraction.surface = "سطح";
 // Defines how blurry or sharp the reflection on a material is (opposite of glossiness)
 material.roughness = "خشونة";
-// How much light a surface will reflect
-material.specular = "البريق";
 // Depth means how far the light can travel under the surface
 material.subsurfaceDepth = "العمق";
 // Textures/Image
@@ -1491,6 +1649,8 @@ material.textures = "الخامات";
 // Enable translucency (same as subsurface but only affect lights that enter a solid and escape from the other side)
 material.translucency = "الشفافية الجزئية";
 material.translucency.help = "تحتاج إلى ضوء يلقي بظلاله لرؤية الشفافية الجزئية.";
+// material type
+material.type = "نوع";
 // Transparency mode
 material.type.additive = "الإضافة";
 material.type.additive.help = "اجعل الكائن شبه شفاف عن طريق تعديل قيمة التعتيم.
@@ -1529,8 +1689,6 @@ material.type.shadowCatcher.warning = "لا توجد أضواء بظلال في 
 material.type.subsurface = "تحت السطح";
 material.type.subsurface.help = "للحصول على أفضل نتيجة، يمكنك التبديل إلى وضع التظليل PBR واستخدام ضوء اتجاهي واحد على الأقل، ويفضل في بيئة منخفضة الإضاءة.";
 material.unused = "غير مستخدم";
-// A warning indicating that the mesh has no UVs
-material.warningNoUVs = "لا توجد إحداثيات UV!";
 
 menu.about = "حول";
 menu.alpha = "ألفا";
@@ -1594,6 +1752,15 @@ mesh.snap.pos.help = "ادمج النقاط القريبة حسب المسافة
 // merge radius for 2d uvs
 mesh.snap.uv = "نصف قطر لحام UV";
 mesh.snap.uv.help = "ادمج UV القريبة حسب المسافة أثناء العمليات مثل Boolean أو Join أو Decimate أو Manifold.";
+mesh.splitByGroups = "تقسيم حسب
+المجموعات";
+mesh.splitByGroups.help = "ينشئ جسمًا منفصلًا لكل مجموعة وجوه.";
+mesh.splitByLayers = "تقسيم حسب
+الطبقات";
+mesh.splitByLayers.help = "ينشئ أجسامًا منفصلة للشبكة الأساسية ولكل طبقة.";
+mesh.splitByParts = "تقسيم حسب
+الأجزاء";
+mesh.splitByParts.help = "ينشئ جسمًا منفصلًا لكل جزء غير متصل.";
 // Static object means "static topology"
 mesh.static = "شبكة";
 // Convert an object to a triplanar primitive
@@ -1615,6 +1782,24 @@ nomad.mainFolder.help = "إذا أضفت ملفات إلى المجلد الرئ
 nomad.mainFolder.warning = "تظل الملفات بدون مساس.
 لم يتم نسخها أو حذفها أو نقلها.";
 
+online.busy = "Poly Haven مشغول. حاول لاحقًا.";
+online.confirmDownload = "تأكيد التنزيل؟";
+online.dismiss = "إغلاق";
+online.download = "تنزيل";
+online.downloading = "جارٍ التنزيل";
+online.importing = "جارٍ تجهيز البيئة…";
+online.invalidEnvironment = "تعذّر تحميل هذه البيئة.";
+online.loading = "جارٍ تحميل البيئات…";
+online.queued = "في قائمة الانتظار";
+online.refresh = "تحديث";
+online.retry = "إعادة المحاولة";
+online.unavailable = "تعذّر الاتصال بـ Poly Haven. حاول لاحقًا.";
+
+// Material picker button of the painting menu, its channels are chosen in the material options popup
+paint.dropper = "قطّارة المادة";
+paint.dropper.help = "يلتقط المادة تحت المؤشر.
+
+تُستبدل القنوات المحددة فقط.";
 // Factor/Opacity of paint tool
 paint.intensity = "كثافة الطلاء";
 // Opaque opacity
@@ -1641,21 +1826,32 @@ paint.preset.embed.help = "يمكن العثور على القوام في الم
 
 يمكنك تمكين هذا الخيار لعمل نسخة من القوام داخل إعداد المواد.
 قد يكون ذلك مفيدًا إذا كنت ترغب في مشاركة إعدادات مُزين بالقوام بدون تقديم القوام المرتبط.";
-// use stencil mode
-paint.stencil = "قالب";
 paint.strokePainting.title = "طلاء";
-// Brush-stroke texture
-paint.texture.warningEnable = "يجب تفعيل طلاء الضربة للسماح بإسقاط النسيج (تحديد في الأعلى)!";
-paint.texture.warningIgnored = "الأداة الحالية لا يمكنها استخدام القوام!";
+// Curve editor of a texture slot, a pill in the texture popup footer
+paint.texture.curve = "منحنيات";
+// Before → after previews on top of the curve editor
+paint.texture.curve.compare = "الأصلية → الحالية";
+paint.texture.curve.help = "يعيد تعيين قيم النسيج قبل رسمها.
+
+يبقى ملف الصورة دون تغيير.";
 // Inherit stroke falloff option for the painting
+// Help of the alpha button of the painting menu, not the alpha menu itself
+paint.tool.alpha.help = "عند التعطيل، يتجاهل الطلاء الألفا ويغطي مساحة الفرشاة بالكامل.";
+// Help of the falloff button of the painting menu, not the falloff menu itself
+paint.tool.curve.help = "عند التعطيل، يحافظ الطلاء على الشدة الكاملة حتى حافة الفرشاة.";
 paint.tool.help = "استخدم الألفا، التلاشي والعاكس لتعديل شدة ضربة الرسم. يتم تجاهل هذه الخيارات لخاصية الرسم الكاملة، لكن الألفا تؤخذ بعين الاعتبار للنوع الثلاثي.";
 // Disable this option to have per-tool material settings (instead of shared settings)
 paint.useGlobal = "المادة العامة";
 paint.useGlobal.help = "إذا كان هذا الخيار مفعلاً، سيكون المادة المحددة نفسها كالأدوات الأخرى.
 
 لاحظ أنه يأخذ فقط خشونة، لمعان وإعدادات اللون بعين الاعتبار.";
+// Only the intensity part of the stroke randomizer, applied to the painting
+paint.useJitter = "تغيير الشدة عشوائيًا";
+paint.useJitter.help = "يتحكم في ما إذا كان التغيير العشوائي للشدة يؤثر في الطلاء. يؤدي التغيير العشوائي للموضع والدوران والمقياس دائمًا إلى تحريك الختم بالكامل.";
 // The current tool will paint the object if this option is enabled
 paint.usePainting = "ضربة طلاء";
+// Paint with the color, roughness, metalness and opacity baked inside the VDM stamp
+paint.vdmMaterial = "مادة الختم";
 
 position.bottom = "أسفل";
 position.center = "مركز";
@@ -1697,6 +1893,8 @@ postprocess.bloom.threshold.help = "عتبة الإشراق لتحديد ما إ
 // https://en.wikipedia.org/wiki/Chromatic_aberration
 postprocess.chromatic = "الانحراف اللوني";
 postprocess.chromatic.factor = "القوة";
+// Short label for the section shortcut bar
+postprocess.chromatic.short = "لوني";
 // Accentuate the edges of the model
 postprocess.curvature = "الانحناء";
 // Color/Strength of convex curvature
@@ -1705,6 +1903,8 @@ postprocess.curvature.bump = "الانتفاخ";
 postprocess.curvature.cavity = "التجويف";
 // Main strength of curvature
 postprocess.curvature.factor = "العامل";
+// Short label for the section shortcut bar
+postprocess.curvature.short = "التجويف";
 // Color curves
 postprocess.curve = "تصحيح الألوان";
 postprocess.curve.blue = "أزرق";
@@ -1712,8 +1912,8 @@ postprocess.curve.green = "أخضر";
 // Curve for pixel luminance
 postprocess.curve.luminance = "رئيسي";
 postprocess.curve.red = "أحمر";
-// Reset color grading curves
-postprocess.curve.resetAll = "إعادة تعيين الكل";
+// Short label for the section shortcut bar
+postprocess.curve.short = "منحنيات";
 // Denoise
 postprocess.denoise = "إزالة الضوضاء";
 postprocess.denoise.help = "تطبيق تمرير إزالة الضوضاء بعد تجميع جميع الإطارات.";
@@ -1724,13 +1924,17 @@ postprocess.dithering.help = "تقلّل من عيوب التدرّج (مثل ا
 // Depth of Field (bokeh)
 // https://en.wikipedia.org/wiki/Depth_of_field
 postprocess.dof = "عمق المجال";
+// f-number, a lower value opens the lens and blurs more
+postprocess.dof.aperture = "فتحة العدسة";
 // The blur factor behind the focused point
 postprocess.dof.blurFar = "طمس بعيد";
 // The blur factor in front of the focused point
 postprocess.dof.blurNear = "طمس قريب";
 postprocess.dof.focusTip = "اضغط على كائن لتغيير النقطة المركزة.";
-// Full resolution (1:1 resolution) instead of half resolution
-postprocess.fullResolution = "الدقة الكاملة";
+// Drive the blur with a single camera aperture instead of the two blur factors
+postprocess.dof.physical = "وضع فتحة العدسة";
+// Short label for the section shortcut bar (no need to translate "DoF")
+postprocess.dof.short = "DoF";
 // Filmic Grain
 // https://en.wikipedia.org/wiki/Film_grain
 postprocess.grain = "الحبيبات";
@@ -1742,6 +1946,8 @@ postprocess.maxSamples.help = "تحسّن جودة المعالجة اللاحق
 postprocess.pixelArt = "فن البيكسل";
 // Override frame accumulation feature
 postprocess.pixelArt.allowAccumulate = "السماح بتجميع الإطارات";
+// Short label for the section shortcut bar
+postprocess.pixelArt.short = "بكسلات";
 // Quality vs performance
 postprocess.quality = "جودة";
 postprocess.quality.help = "قم بتفعيل هذه الخيارات لتحسين الجودة على حساب الأداء.";
@@ -1761,6 +1967,8 @@ postprocess.scanline.spacing = "التباعد";
 // https://en.wikipedia.org/wiki/Unsharp_masking
 postprocess.sharpness = "الحدة";
 postprocess.sharpness.factor = "القوة";
+// Short label for the section shortcut bar
+postprocess.sharpness.short = "شحذ";
 // Screen-space ambient occlusion (SSAO)
 // https://en.wikipedia.org/wiki/Ambient_occlusion
 postprocess.ssao = "انسداد بيئي";
@@ -1768,16 +1976,20 @@ postprocess.ssao = "انسداد بيئي";
 postprocess.ssao.factor = "القوة";
 // How far the effect spreads
 postprocess.ssao.radius = "الحجم";
+// Short label for the section shortcut bar (no need to translate "SSAO")
+postprocess.ssao.short = "SSAO";
 // Adjustment for ssao
 postprocess.ssao.thickness = "السُّمْك";
 postprocess.ssao.thickness.help = "مقدار سُمك العمق المفترض للحاجبات، كنسبة مئوية من نصف قطر الإطباق المحيطي.";
 // Screen-Space Global Illumination (no need to translate "SSGI")
 postprocess.ssgi = "إضاءة عالمية (SSGI)";
-// Thickness threshold for ssgi tracing algorithm (synonym: threshold, bias)
-postprocess.ssgi.tolerance = "التسامح";
+// Short label for the section shortcut bar (no need to translate "SSGI")
+postprocess.ssgi.short = "SSGI";
 postprocess.ssgi.warning = "SSGI يتطلب وضع تظليل PBR.";
 // Screen-Space Reflection (no need to translate "SSR")
 postprocess.ssr = "انعكاس (SSR)";
+// Short label for the section shortcut bar (no need to translate "SSR")
+postprocess.ssr.short = "SSR";
 postprocess.ssr.warning = "SSR يتطلب وضع تظليل PBR.";
 // Temporal Anti-Aliasing (no need to translate "TAA")
 postprocess.taa = "تنعيم الحواف (TAA)";
@@ -1792,6 +2004,8 @@ postprocess.tone.mapping.neutral = "حيادي";
 // No tonemapping operator is used
 postprocess.tone.mapping.none = "لا شيء";
 postprocess.tone.saturation = "التشبع";
+// Short label for the section shortcut bar
+postprocess.tone.short = "الدرجة";
 // Darkening at the edges
 postprocess.vignette = "التظليل";
 // How sharp the edge of the effect is
@@ -1825,10 +2039,6 @@ pressure.useGlobal.help = "بشكل افتراضي، تشترك الأدوات �
 
 // Geometry Primitive (box, sphere, cylinder, etc)
 primitive = "شكل أساسي";
-// Angle of torus, etc
-primitive.angleX = "الزاوية X";
-primitive.angleY = "الزاوية Y";
-primitive.angleZ = "الزاوية Z";
 primitive.box = "صندوق";
 // Box
 primitive.boxRegular = "نفس الحجم (مكعب)";
@@ -1858,8 +2068,6 @@ primitive.edit.help = "السماح بالتحرير ثلاثي الأبعاد �
 يمكنك تعطيل هذه الميزة إذا كنت ترغب في التفاعل مع الجيزمو أو أداة التحويل دون تعديل البدائية.";
 // Interface section where we change the geometry (shape of the primitive)
 primitive.geometry = "الهندسة";
-// Make a hole in the primitive to make it hollow
-primitive.hasHole = "يحتوي على ثقب";
 // Hole sub menu (cylinder, tube, etc)
 primitive.hole = "ثقب";
 primitive.icosahedron = "مجسم عشروني الوجوه";
@@ -1870,8 +2078,6 @@ primitive.isolate.bottom = "الأسفل";
 // One side of a cube (the right plane)
 primitive.isolate.right = "اليمين";
 primitive.lathe = "مخرطة";
-// Synonym: Flat subdivision
-primitive.linear = "التقسيم الخطي";
 // Primitive configuration
 primitive.mainConfig = "المعلمة";
 // Maximum number of faces of the primitives
@@ -1889,15 +2095,10 @@ primitive.profile = "المقطع";
 // History entry: a control point of the profile was moved
 primitive.profile.point = "نقطة";
 primitive.profile.viewport = "عرض في نافذة العرض";
-// Make sure the shape is perfectly spherical
-primitive.projectOnSphere = "الإسقاط على الكرة";
-primitive.projectOnSphere.help = "يضبط النقاط على كرة مثالية.";
 // Radius (of a sphere, torus, etc)
 primitive.radius = "نصف القطر";
 primitive.radius.end = "نهاية نصف القطر";
 primitive.radius.start = "بدء نصف القطر";
-// Make sure both endpoints of a primitive (cylinder, tube, etc.) have the same size
-primitive.radius.sync = "نفس نصف القطر";
 // Size (of cube x dimension)
 primitive.size = "الحجم";
 primitive.sizeX = "حجم X";
@@ -1907,6 +2108,27 @@ primitive.sphereCube = "مجسم كروي مربّع";
 primitive.sphereUV = "مجسم كروي UV";
 // "Post" means subdivision that occurs after the primitive is computed
 primitive.subdivision = "تقسيم لاحق";
+primitive.text = "نص";
+primitive.text.align = "محاذاة";
+primitive.text.bend = "انحناء";
+primitive.text.center = "مركز";
+primitive.text.depth = "عمق";
+primitive.text.edit = "تحرير النص";
+primitive.text.font = "خط";
+primitive.text.left = "يسار";
+primitive.text.limit = "بلغت الحد الأقصى للوجوه. زِد الحد لإظهار النص كله.";
+primitive.text.lineSpacing = "التباعد";
+primitive.text.lineSpacing.help = "المسافة بين الأسطر بالنسبة إلى حجم الحروف.";
+primitive.text.maxWidth = "عرض";
+primitive.text.maxWidth.help = "يلف الكلمات عند هذا العرض. تبقى الكلمات الأعرض كاملة.";
+primitive.text.missingFont = "الخط مفقود.";
+primitive.text.mode = "الوضع";
+primitive.text.offset = "إزاحة";
+primitive.text.resolution = "دقة";
+primitive.text.right = "يمين";
+primitive.text.rigid = "صلب";
+primitive.text.spacing = "التباعد";
+primitive.text.wrap = "التفاف";
 // Interface section where we change the topology (number of triangles/polygons)
 primitive.topology = "الطوبولوجيا";
 primitive.torus = "طورس";
@@ -1947,11 +2169,7 @@ quadremesh.curvatureAdaptivness = "الحجم التكيفي";
 quadremesh.curvatureAdaptivness.help = "عند 100%، ستتغير حجم الرباعيات بناءً على انحناء الجسم، مما يسمح برباعيات أصغر على الانحناءات العالية.
 عند 0%، سيكون حجم الرباعيات موحدًا.";
 quadremesh.reprojectVertex = "إعادة إسقاط الرأس";
-quadremesh.reprojectVertex.label = "عند التمكين، سيقوم Nomad بإعادة إسقاط الموقع على الشبكة السابقة.
-
-لاحظ أنه إذا كان هناك طبقات في الشبكة، سيتم استخدام إعادة الإسقاط دائمًا.";
 quadremesh.reprojectVertex.short = "إعادة إسقاط الرأس";
-quadremesh.useVertexColors = "حفظ الرسم";
 
 // Singular of Repeaters (Nodes that make many copies of its children (type of mirror/curve/array/radial))
 repeater = "مكرر";
@@ -1959,6 +2177,49 @@ repeater = "مكرر";
 repeater.array.fitInside = "الملاءمة في الداخل";
 // The object will follow the curve
 repeater.curve.align = "محاذاة";
+// Every other copy is turned around the curve: 90° for chain links, 180° for leaves or zipper teeth
+repeater.curve.alternate = "بالتناوب";
+repeater.curve.alternate.half = "180°";
+repeater.curve.alternate.quarter = "90°";
+// Count slider mode: a fixed spacing between the copies, the count follows the curve length
+repeater.curve.distance = "المسافة";
+// Surface repeater: the copies stand on the surface (normal up), else they keep the orientation of the original
+repeater.surface.align = "محاذاة";
+// Surface repeater mode: one copy per edge of the parent object, turned along the edge
+repeater.surface.edges = "حواف";
+// Surface repeater mode: one copy per face of the parent object
+repeater.surface.faces = "أوجه";
+// Surface repeater: the copies scale with the local size of the surface
+repeater.surface.fitSize = "ملاءمة الحجم";
+repeater.surface.fitSize.help = "يغيّر حجم النسخ وفق الحجم المحلي للسطح مقارنة بالأصل.";
+// Surface repeater: with Fit size, the copies also stretch and skew to the shape of each face
+repeater.surface.fitSkew = "تشويه";
+repeater.surface.fitSkew.help = "يمدد النسخ ويميلها حسب شكل كل وجه، مقارنة بالوجه تحت الأصل.";
+// Surface repeater: what the copies land on (faces, edges or vertices)
+repeater.surface.mode = "الوضع";
+// Surface repeater: the copies land on random faces instead of every Nth
+repeater.surface.random = "عشوائي";
+repeater.surface.random.help = "يختار عشوائيًا وجهًا أو حافة أو رأسًا من كل N بدلًا من اختيار كل عنصر ذي ترتيب N. يبقى الأصل دائمًا.";
+// Surface repeater mode: copies spread evenly over the surface, a minimum distance apart, not tied to the topology
+repeater.surface.scatter = "نثر";
+// Surface repeater: draw another random set
+repeater.surface.shuffle = "إعادة الخلط";
+repeater.surface.shuffle.help = "يختار مجموعة عشوائية أخرى.";
+// Surface repeater: move the original child onto the surface
+repeater.surface.snap = "محاذاة للسطح";
+repeater.surface.snap.help = "يسقط محور دوران الأصل على أقرب نقطة سطح ويحاذي محوره العلوي مع العمودي. تتبعه النسخ.";
+// Surface repeater, Scatter mode: the minimum distance between two copies
+repeater.surface.spacing = "التباعد";
+repeater.surface.spacing.help = "أقل مسافة بين نسختين. تعطي إعادة الخلط ترتيبًا آخر.";
+// Surface repeater: one copy every N faces, edges or vertices
+repeater.surface.stride = "كل";
+repeater.surface.stride.help = "نسخة كل N من الوجوه أو الحواف أو الرؤوس، بدءًا من العنصر تحت الأصل.";
+// Surface repeater, Scatter mode: toggle between a copy count and a spacing (the other value follows)
+repeater.surface.useSpacing = "التباعد";
+repeater.surface.useSpacing.help = "يتحكم في النثر بأقل مسافة بين النسخ بدلًا من عددها.";
+// Surface repeater: each copy bends onto its face or along its edge instead of standing flat
+repeater.surface.warp = "تشويه سطحي";
+repeater.surface.warp.help = "يثني كل نسخة على وجهها أو على طول حافتها لتتوافق النسخ عند الرأس. النسخ التي تملأ وجوهها تلتقي بجيرانها دون فجوات. يفعّل ملاءمة الحجم وتشويه. يظهر على الشاشة ويُثبّت باستخدام اعتماد؛ الانتقاء يستخدم النسخة المسطحة.";
 
 // Import resource (Alpha, Textures, MatCaps, etc)
 resource.import = "استيراد...";
@@ -2028,6 +2289,8 @@ scene.repeaters = "مكررات";
 scene.repeaters.help = "تكراري النودات التي تشكل مثيلات لأي هندسة أدناه في بنية المشهد.";
 // Hidden objects will be subtracted (they carve the other objects)
 scene.subtractionTip = "طرح: الأشياء المخفية";
+// Surface node type: makes copies of its children on the surface of its parent object
+scene.surface = "سطح";
 // Keep the visibility of all selected items synchronized
 scene.syncVisible = "مزامنة الرؤية";
 scene.syncVisible.help = "عند التفعيل، ستؤثر استخدام أيقونة العينية (العين) على جميع العناصر المحددة.";
@@ -2043,7 +2306,6 @@ scene.validateGroup = "اعتماد";
 scene.validateGroup.joinChildren = "انضمام الأطفال";
 // Keep instances in the scene
 scene.validateGroup.keepInstances = "حافظ على المثيلات";
-scene.voxelResolution = "الدقة";
 
 setting.global = "إعداد عام";
 setting.globals = "إعدادات عامة";
@@ -2066,12 +2328,6 @@ settings.cursor.showRope = "إظهار مثبت الحبل";
 settings.cursor.title = "المؤشر";
 // Meshes that are not selected will be darkened
 settings.darkenUnselected = "تغميق الكائنات غير المختارة";
-// Display the material texture
-settings.debugChannel = "عرض النسيج";
-// Display the material texture in the background
-settings.debugChannel.onBackground = "في الخلفية";
-// Display the material texture on the mesh
-settings.debugChannel.onMesh = "على الشبكة";
 // General scene display settings
 settings.display.title = "إعدادات العرض";
 // Grid
@@ -2080,10 +2336,16 @@ settings.grid.snapDivision = "عتبة انقسام الاقتراب";
 settings.grid.snapDivision.help = "تتم مقارنة العتبة بالمسافة إلى الشبكة.";
 // Snap eligible tool points to the grid
 settings.grid.snapGrid = "المحاذاة إلى الشبكة";
+// Same as settings.grid.snapGrid, on a small shortcut button
+settings.grid.snapGrid.short = "محاذاة الشبكة";
 // Snap eligible tool points to nearby existing points when the camera is aligned
 settings.grid.snapPointAlign = "الانطباق على النقاط (عرض محاذٍ)";
+// Same as settings.grid.snapPointAlign, on a small shortcut button
+settings.grid.snapPointAlign.short = "محاذاة النقاط (مُحاذى)";
 // Snap eligible tool points to nearby existing points when the camera is not aligned
 settings.grid.snapPointFree = "المحاذاة إلى النقاط (عرض حر)";
+// Same as settings.grid.snapPointFree, on a small shortcut button
+settings.grid.snapPointFree.short = "محاذاة النقاط (حر)";
 // Handles are controls that you interact with in the viewport in order to edit something
 settings.handle = "مقبض";
 settings.handles = "مقابض";
@@ -2091,12 +2353,6 @@ settings.handles = "مقابض";
 settings.highlight = "إبراز";
 settings.highlight.duration = "المدة";
 settings.highlight.help = "يُبرز الكائنات المحددة حاليًا عند تغيّر التحديد.";
-// Hole filling settings
-settings.hole = "ملء الفجوة";
-// Allow the hole-filling algorithm to handle non-manifold (irregular) topology
-settings.hole.nonManifold = "ملء ثقوب Non-Manifold";
-settings.hole.nonManifold.help = "حاول ملء ثقوب Non-Manifold.
-هذا الخيار غير محفوظ في الإعدادات.";
 // Show icon on the canvas
 settings.icon = "الأيقونة";
 // Show icons on the canvas
@@ -2121,6 +2377,18 @@ settings.outline = "الخط المحيط";
 // Outline (contour highlight around the selected object)
 settings.outline.help = "سيتم تحديد الكائنات المختارة بخط محيط.";
 settings.outline.thickness = "السُّمْك";
+// Object budget shared by every repeater in the scene
+settings.repeater.maxCopies = "نسخ المشهد";
+settings.repeater.maxCopies.help = "ميزانية النسخ للمشهد كله. النسخة قليلة المضلعات تكلف هندسة قليلة لكنها تبقى جسمًا كاملًا، لذا تبلغ النسخ الصغيرة هذا الحد أولًا.";
+// Most copies a single repeater makes
+settings.repeater.maxCount = "أقصى عدد نسخ";
+settings.repeater.maxCount.help = "أكبر عدد نسخ ينشئه مكرر واحد. يواجه Nomad صعوبة مع كثرة الأجسام مهما كان حجمها.";
+// Polygon budget shared by every copy in the scene
+settings.repeater.maxFaces = "عدد الأوجه الأقصى";
+settings.repeater.maxFaces.help = "ميزانية الوجوه لجميع نسخ المشهد. عند تجاوزها، تفقد الأجسام الأثقل نسخها أولًا.";
+// Settings section: limits shared by every repeater (array, radial, curve, surface)
+settings.repeater.title = "مكررات";
+settings.repeater.title.help = "حدود نسخ المكررات (مصفوفة، شعاعي، منحنى، سطح).";
 // Reset preference settings button
 settings.reset = "إعادة تعيين إلى الافتراضي";
 settings.reset.confirm = "إعادة تعيين إعدادات التفضيل؟";
@@ -2140,7 +2408,6 @@ settings.reset.title.help = "سيقوم بإعادة تعيين إعدادات �
 يرجى ملاحظة أن كل شيء مرتبط بالمشروع سيبقى كما هو، مثل الإضاءة ومعالجة ما بعد العملية ووجهات الكاميرا، إلخ";
 // Shape draw thing
 settings.shape = "الشكل";
-settings.shape.color = "لون المضلع";
 // Disable this option to force show the hidden faces
 settings.showDiscard = "استخدام الإخفاء";
 // Show and use the masking on the mesh
@@ -2156,20 +2423,20 @@ settings.snapCube.align = "تقييد المحاذاة";
 settings.snapCube.align.help = "قم بمحاذاة العروض مع المحور العالمي. إذا تم تفعيله، ستكون هناك 6 عروض سحب ممكنة فقط.
 
 في التلقائي، سيتم تفعيل التقييد فقط إذا كانت الكاميرا في وضع المدار.";
-// Move the navigation cube to the bottom of the screen
-settings.snapCube.bottom = "الأسفل";
 // Extra snapping views on the edges and corners of the navigation cube
-settings.snapCube.edgeCorner = "";
-settings.snapCube.edgeCorner.help = "";
+settings.snapCube.edgeCorner = "الحواف والزوايا";
+settings.snapCube.edgeCorner.help = "إضافة طرق عرض للالتقاط على حواف المكعب وزواياه (المناطق الكهرمانية).";
 // Flip the camera (rotate 180° to see the other side)
 settings.snapCube.flip = "قلب 180°";
 settings.snapCube.flip.help = "اقلب العرض إذا تم تثبيت العرض بالفعل.";
-// Move the navigation cube on the left side of the screen
-settings.snapCube.left = "إلى اليسار";
+// Dragging the navigation cube rotates like the Turntable mode, even if the camera is in Trackball
+settings.snapCube.turntable = "سحب بنمط المنصة الدوارة";
+settings.snapCube.turntable.help = "يؤدي سحب المكعب إلى تدوير الكاميرا من دون إمالتها، مع التوقف عند كل عرض محاذاة.
+
+عطّل هذا الخيار لسحب المكعب بدوران كرة التتبع بدلًا من ذلك. يبقى السحب أفقيًا أو عموديًا في كلتا الحالتين.";
 // Stats (information logs about the scene displayed on screen)
 settings.stats = "إحصائيات";
 settings.stats.all = "عرض المشهد الكامل";
-settings.stats.right = "اليمين";
 // If the object is opened (a simple plane for example), two sided means we'll be able to see if from the two sides of the planes
 settings.twoSided = "ثنائي الجانب";
 settings.twoSided.help = "الأسطح ستكون مرئية من كل الجانبين.";
@@ -2187,7 +2454,6 @@ shading.environment.attachedToCamera.help = "اربط البيئة بالكام�
 سيؤدي ذلك إلى إضاءة متناسقة، مما يمكن أن يكون مفيدًا لأغراض النمذجة.";
 shading.environment.backgroundBlur = "تمويه (الخلفية)";
 shading.environment.exposure = "التعرض";
-shading.environment.import = "استيراد HDR";
 shading.environment.rotation = "الدوران";
 shading.environment.rotation.help = "يمكنك تدوير البيئة عن طريق السحب بثلاثة أصابع أفقيًا على نافذة العرض.";
 // Randomize colors
@@ -2198,7 +2464,6 @@ shading.instance.help = "نفس معرّف الكائن، لكن المثيلا�
 // Lights
 shading.lights = "الأضواء";
 shading.lights.addLight = "إضافة ضوء";
-shading.lights.warning = "تتطلب الأضواء وضع التظليل PBR.";
 // Fast rendering mode for sculpting purpose
 shading.matcap = "مات كاب";
 shading.matcap.global = "استخدام MatCap عالمي";
@@ -2247,11 +2512,6 @@ shortcut.voxel = "فوكسل";
 shortcut.wireframe = "الهيكل السلكي";
 shortcut.xray = "الأشعة السينية";
 
-sonar.connect = "اتصال SonarPen";
-sonar.connect.confirm = "اتصال SonarPen؟";
-sonar.connect.confirm.warning = "سيستخدم SonarPen الميكروفون (الاسترجاع الصوتي) لاكتشاف ضغط القلم.";
-sonar.disconnect = "قطع اتصال SonarPen";
-
 // space
 space.local = "محلي";
 space.screen = "الشاشة";
@@ -2274,9 +2534,7 @@ stat.ramHistory = "السجل";
 stat.ramOther = "آخر";
 // Memory taken by the scene
 stat.ramScene = "المشهد";
-stat.scene.face = "أوجه المشهد";
 stat.scene.vertex = "رؤوس المشهد";
-stat.triangles = "مثلثات";
 stat.used = "مستخدم: $0";
 // Memory used by the app (RAM, not storage!)
 stat.usedMemory = "الذاكرة المستخدمة";
@@ -2291,6 +2549,7 @@ stat.vramTextures = "VRAM للخامات";
 
 status.exit = "تغييرات غير محفوظة! هل تريد الحفظ قبل الإغلاق؟";
 status.exit.no = "عدم الحفظ";
+status.exit.title = "إغلاق Nomad";
 status.exit.yes = "حفظ";
 
 store.description.baking = "• الخبز
@@ -2368,10 +2627,25 @@ stroke.alpha.fit.help = "هذا الخيار يكون وثيق الصلة فقط
 
 عند التمكين، ستتكرر كل صورة بشكل مستقل بدون تباعد.
 يمكنك تعطيل هذا الخيار إذا كنت ترغب في الحفاظ على تزامن الألفا والصور الأخرى، في حالة عدم تطابق نسبة العرض إلى الارتفاع بينها.";
+// Title of the popup that corrects the alpha image itself
+stroke.alpha.fix = "تصحيح ألفا";
+// Follows a number: "30% negative pixels clamped to zero"
+stroke.alpha.fix.clamped = "% البكسلات السالبة المقيدة بالصفر";
+// Under the two previews of the popup: the current image on the left, the corrected one on the right
+stroke.alpha.fix.compare = "الحالية → المصحّحة";
+// Mirror the image left/right
+stroke.alpha.fix.flipX = "قلب أفقي";
+// Mirror the image top/bottom
+stroke.alpha.fix.flipY = "قلب عمودي";
+// Turn the image by a quarter
+stroke.alpha.fix.rotate = "تدوير 90°";
+// The border pixels do not all share the same value, so no single mid value fits them
+stroke.alpha.fix.spread = "الحافة غير موحّدة.";
 // Invert the pixel (black, white)
 stroke.alpha.invert = "عكس البكسلات";
 // Middle-point value at which no deformation occurs
 stroke.alpha.midValue = "القيمة المتوسطة";
+stroke.alpha.midValue.detect.help = "يقرأ القيمة المتوسطة من حافة الصورة.";
 stroke.alpha.midValue.help = "قيمة النقطة الوسطى حيث لا يحدث أي تشوه.
 
 (القيمة الوسطى = 0)
@@ -2385,6 +2659,7 @@ stroke.alpha.midValue.help = "قيمة النقطة الوسطى حيث لا ي�
 (القيمة الوسطى = 1)
 • أسود: إزاحة سلبية
 • أبيض: لا يوجد إزاحة";
+stroke.alpha.midValue.pick.help = "يلتقط القيمة المتوسطة من ألفا نفسها.";
 // Alpha rotation
 stroke.alpha.rotation = "الدوران";
 stroke.alpha.rotation.lock.help = "قفل اتجاه الألفا. 
@@ -2455,11 +2730,10 @@ stroke.falloffProject.help = "• كرة (3D)
 stroke.falloffProject.sphere = "كرة";
 // Synonymous: Scatter/Jitter/Randomize
 stroke.jitter = "التخطيط العشوائي";
-stroke.jitter.period = "الفترة";
+stroke.jitter.period = "دورة (أبطأ)";
 stroke.jitter.period.help = "طول دورة التذبذب.
 زِد القيمة للحصول على تغيّرات بطيئة ومتدحرجة.
 خفّضها للحصول على ضجيج سريع.";
-stroke.jitter.period.hint = "أبطأ";
 // Make the brush stroke lag behind the pointer
 stroke.lazyRadius = "مثبت الحبل الكسول";
 stroke.lazyRadius.help = "سوف تتأخر الضربات خلف مؤشر المؤشر وفقًا لمسافة معينة.
@@ -2470,10 +2744,6 @@ stroke.lazySmooth = "تنعيم الضربة";
 stroke.lazySmooth.help = "متوسط موقع المؤشر المتعدد للحصول على ضربة أملس.
 
 مع القيم العالية، سوف تتأخر الضربة خلف المؤشر ولكنها في النهاية سوف تتلاحق.";
-stroke.minSpacing.help = "المسافة بين كل ضربة، بالنسبة الى نصف قطر الأداة.
-
-قيمة أقل ستسمح بضربة أملس لكن الأداء سيتدهور.";
-stroke.minSpacingAdjustIntensity.help = "تعديل كثافة الفرشاة لضمان تشوه ثابت وفقًا للفراغ بين الضربات.";
 // determine normal direction
 stroke.normal.direction = "اتجاه";
 stroke.normal.direction.auto = "تلقائي";
@@ -2496,8 +2766,6 @@ stroke.normalFalloff = "مرشح تدرّج العموديات";
 stroke.normalFalloff.help = "استبعاد النقاط التي تنحرف عمودياتها كثيرًا عن العمودية على السطح.
 
 مفيد لرسم التجاعيد أو النتوءات.";
-// small tip/warning
-stroke.onlyLasso = "الإعدادات تنشط فقط لأداة اللاسو.";
 // sculpt on hide or mask
 stroke.protect = "حماية المنطقة";
 stroke.protect.hide.help = "عند التعيين على الوضع التلقائي، سيتم تعديل الأوجه المخفية إذا كان السلك المرئي على الأوجه المخفية ظاهرًا (راجع قائمة السلك المرئي).";
@@ -2557,8 +2825,15 @@ stroke.type.roll = "اللف";
 stroke.type.tile = "بلاطة";
 // Sculpt and paint with alpha projected on 3 axis
 stroke.type.triplanar = "ثلاثي المستويات";
+// Drag on the surface to grab a shape from it and turn it into a VDM stamp
+stroke.type.vdmPick = "التقاط VDM";
 // The tool can use DynTopo
 stroke.useDynamic = "السماح بالطوبولوجيا الديناميكية";
+stroke.vdmPick.name = "اسم / مجلد";
+stroke.vdmPick.name.help = "يسمي الالتقاط في مكتبة VDM. استخدم مجلد/اسم لاختيار مجلد أو إنشائه. تُرقّم الأسماء الموجودة تلقائيًا.";
+stroke.vdmPick.name.short = "اسم";
+stroke.vdmPick.tolerance = "التسامح";
+stroke.vdmPick.tolerance.help = "يسطّح حدود الالتقاط بسلاسة. تؤثر القيم الأعلى في مساحة أوسع وقد تخفف التفاصيل قرب الحافة.";
 
 // Symmetry
 symmetry = "التماثل";
@@ -2574,7 +2849,6 @@ symmetry.edit = "تعديل الجيزمو";
 symmetry.edit.help = "يمكنك تعيين مستوى التماثل بحرية.
 
 هذه الميزة تجريبية قليلاً ويجب ألا تستخدمها غالبًا.";
-symmetry.edit.warning = "تحرير التماثل تجريبي.";
 symmetry.enable = "ممكّن";
 // Move the object to the other side of the symmetry (mirror it as well)
 symmetry.flip = "عكس الكائن";
@@ -2583,11 +2857,7 @@ symmetry.fromPivot = "من المحور";
 symmetry.limited = "عدد التكرارات محدودة بـ $0!";
 // method
 symmetry.method = "الطريقة:";
-// Local means: in the coordinate of the object (synonym: relative)
-symmetry.method.local = "محلي";
 symmetry.method.local.help = "سوف يتحرك مستوى التماثل مع الشبكة عند استخدام أحد أدوات التحويل (جِزمو أو تحويل).";
-// Local means: in the coordinate of the scene (synonym: absolute)
-symmetry.method.world = "العالم";
 symmetry.method.world.help = "يكون مستوى التماثل ثابت ولن يتحرك.";
 // Reapply the mesh mirror, does not impact the topology
 symmetry.mirror = "انعكاس";
@@ -2601,17 +2871,10 @@ symmetry.mirror.keepTopology = "حافظ على البنية";
 symmetry.mirrorFail = "فشل في الكشف عن التماثل.
 
 هل تريد فرض التماثل عن طريق عكس الشبكة؟";
-symmetry.mirrorUseMasking = "حماية المنطقة المقنعة";
-symmetry.mirrorUseMasking.help = "حافظ على المنطقة المقنعة سليمة.
-
-سيتم تجاهل هذا الخيار إذا كانت البنية غير متماثلة (أو سطح مفصول، مثل زوج من العيون).";
-// Synonym: Offset
-symmetry.offset.title = "الإزاحة";
 symmetry.offsetX = "إزاحة X";
 symmetry.offsetY = "إزاحة Y";
 symmetry.offsetZ = "إزاحة Z";
 symmetry.plane.title = "المستويات";
-symmetry.primitiveWarning = "التماثل للفرشاة متاح فقط للأشكال الأولية التي تم التحقق منها، باستثناء التماثل ثلاثي المستويات.";
 // Instead of planar symmetry, use a radial symmetry
 symmetry.radial.title = "شعاعي";
 symmetry.radialX = "شعاعي X";
@@ -2631,11 +2894,18 @@ symmetry.showLine = "عرض الخط";
 symmetry.showPlane = "عرض المستوى";
 // after mirroring, separate into multiple output (synonym: split, separate)
 symmetry.split = "قسم";
+// Half of a two line toggle: edit how many repeats span the object
+symmetry.tile.count = "العدد";
+// Half of a two line toggle: edit the distance between two repeats
+symmetry.tile.distance = "المسافة";
+// The distance between two repeats of the sculpt, so it tiles seamlessly (synonym: wrap, repeat)
+symmetry.tile.title = "بلاطة";
 symmetry.toolIgnore = "الأداة الحالية تتجاهل التماثل.";
 
 // Three-state toggle button (auto, no, yes)
 toggle.auto = "تلقائي";
 toggle.no = "لا";
+toggle.off = "إيقاف";
 toggle.yes = "نعم";
 
 // If an option is shared among the tools
@@ -2664,6 +2934,16 @@ tool.elastic = "مرن";
 tool.faceGroup = "مجموعة الوجوه";
 tool.faceGroup.autoPick = "تحديد تلقائي";
 tool.faceGroup.flush = "إزالة غير المستخدم";
+tool.faceGroup.fromMask = "من القناع";
+tool.faceGroup.fromMask.help = "ينشئ مجموعة وجوه من المنطقة المقنّعة.";
+tool.faceGroup.fromNormals = "من العموديات";
+tool.faceGroup.fromNormals.help = "ينشئ مجموعات وجوه بحسب الزاوية بين الوجوه.";
+tool.faceGroup.fromParts = "من الأجزاء";
+tool.faceGroup.fromParts.help = "ينشئ مجموعة وجوه لكل جزء غير متصل.";
+tool.faceGroup.fromUVs = "من UV";
+tool.faceGroup.fromUVs.help = "ينشئ مجموعة وجوه لكل جزيرة UV.";
+// Face group tap action: the tapped group and what lies beyond it get unmasked, the gizmo lands on the joint
+tool.faceGroup.pose = "وضعية";
 tool.faceGroup.skip = "تفويت المجموعات الصغيرة بناءً على:";
 tool.faceGroup.skipArea = "مساحة السطح";
 tool.faceGroup.skipArea.help = "لا تنشئ مجموعة جديدة إذا كانت مساحة سطح المجموعة الجديدة أقل من هذا العتبة.
@@ -2677,6 +2957,8 @@ tool.flatten = "سطح مستوى";
 tool.flatten.fill = "املأ";
 tool.flatten.planeLockNormal = "اتجاه القفل";
 tool.flatten.planeLockOrigin = "قفل نقطة الأصل";
+// Give the viewport back to the tool: its options come back and it can draw again
+tool.focus = "العودة إلى الأداة";
 // Ideally short strings (Rotate, Translate and Scale the object)
 tool.gizmo = "أداة";
 // Ideally short strings (Align/Snap the gizmo to world axis)
@@ -2688,15 +2970,12 @@ tool.gizmo.allowInput.help = "السماح بإدخال رقمي عند النق
 tool.gizmo.autoHide = "إخفاء عند التفاعل";
 // If true, there is less spacing between gizmo handlers (rotate, scale, etc)
 tool.gizmo.compact = "مضغوط";
-tool.gizmo.depth = "العمق";
 tool.gizmo.distribute = "توزيع";
 // Ideally short strings
 tool.gizmo.editPivot = "محور دوران";
 // Angle threshold
 tool.gizmo.linearRollThreshold = "حد زاوية دوران المماس";
 tool.gizmo.linearRollThreshold.help = "حد زاوية للاختيار بين الطريقة الخطية أو الدائرية للدوران. القيمة أعلى من هذا الحد ستستخدم الدوران الدائري. إذا كنت تفضل الدوران الخطي (اتجاه المماس)، فعليك تعيين هذه القيمة عند 90°.";
-// Ideally short strings (Local/Relative space)
-tool.gizmo.local = "محلي";
 // Ideally short strings (Snap translation)
 tool.gizmo.moveSnap = "محاذاة";
 tool.gizmo.order = "الترتيب";
@@ -2705,6 +2984,26 @@ tool.gizmo.order.line = "خط";
 tool.gizmo.order.sphere = "كرة";
 // Ideally short strings (Pin the gizmo, so that it stays in place when switching between objects)
 tool.gizmo.pin = "تثبيت";
+// Title of the pivot reset options (where to put the pivot back)
+tool.gizmo.reset = "إعادة تعيين";
+// Pivot orientation snapped to the world axes
+tool.gizmo.reset.align = "محاذاة";
+tool.gizmo.reset.align.help = "يحاذي نقطة الارتكاز مع محاور العالم مع إبقاء موضعها.";
+tool.gizmo.reset.auto = "تلقائي";
+tool.gizmo.reset.auto.help = "مركز الجسم، بمحاذاة تحويله.";
+tool.gizmo.reset.bottom = "أسفل";
+tool.gizmo.reset.bottom.help = "مركز أسفل الجسم، بمحاذاة تحويله.
+انقر مجددًا لاستخدام الصندوق المحيط في إحداثيات العالم بدلًا منه.";
+tool.gizmo.reset.center = "مركز";
+tool.gizmo.reset.center.help = "مركز الجسم مع إبقاء الاتجاه.";
+tool.gizmo.reset.help = "يعيد نقطة الارتكاز إلى موضع معروف. يتحكم موضعها واتجاهها في أداة التحويل.";
+// Pivot on the center of the unmasked area
+tool.gizmo.reset.mask = "قناع";
+tool.gizmo.reset.mask.help = "مركز المنطقة غير المقنّعة مع إبقاء الاتجاه.
+انقر مجددًا للتبديل إلى المنطقة المقنّعة.";
+// Pivot on the object origin
+tool.gizmo.reset.object = "جسم";
+tool.gizmo.reset.object.help = "نقطة أصل الجسم، بمحاذاة تحويله.";
 // Puts the gizmo back on its automatic placement (position and orientation)
 tool.gizmo.resetPivot = "إعادة ضبط المحور";
 // Ideally short strings (Snap angle)
@@ -2725,9 +3024,6 @@ tool.gizmo.tap.normal.help = "حرك الجيزمو عند أول تقاطع و�
 tool.hide = "إخفاء";
 // Fill the object's hole
 tool.hole = "ملء الثقب";
-tool.hole.bridges = "Boolean في مساحة الشاشة";
-tool.hole.bridges.help = "إذا تم تمكين هذا الخيار، يمكنك إحداث ثقوب في الحجم. سيتبع ميل القطع أيضًا الشكل المقطوع بدقة أكبر.";
-tool.hole.fillHoles = "املأ الثقوب";
 tool.hole.method.boolean = "منطقي";
 // synonym: Alternative method
 tool.hole.method.fill = "املىء";
@@ -2787,15 +3083,27 @@ tool.layer.removeInfluence.help = "يتوفر هذا الخيار فقط عند 
 tool.mask = "قناع";
 // Blur the painted mask
 tool.mask.blur = "طمس";
+// Strengthen the mask intensity without changing its shape (opposite of Dilute)
+tool.mask.boost = "تعزيز";
+// Mask the open boundary of the mesh (the edge of a plane, the rim of a hole)
+tool.mask.border = "الحدود";
+// Negative side of the Cavity slider: only the raised areas stay paintable
+tool.mask.bumps = "نتوءات";
+// Rebuild the mask from the surface curvature: only the recessed areas stay paintable
+tool.mask.cavity = "التجويف";
 // Clear the painted mask
 tool.mask.clear = "مسح";
 tool.mask.clearAll = "مسح الكل";
-// Mask or Unmask a region (leave other region that unconnected intact)
-tool.mask.flipConnected = "عكس القناع (المتصل)";
+// Weaken the mask intensity without changing its shape (opposite of Boost)
+tool.mask.dilute = "تخفيف";
+// Enlarge the masked area, one ring of vertices at a time
+tool.mask.grow = "توسيع";
 // Invert the painted mask
 tool.mask.invert = "عكس";
 // Sharpen the edge of the painted mask area
 tool.mask.sharpen = "شحذ";
+// Reduce the masked area, one ring of vertices at a time (opposite of Grow)
+tool.mask.shrink = "تقليص";
 // Ideally short strings
 tool.mask.unmask = "إزالة القناع";
 // Ideally short strings (Selector Mask, use lasso/ellipse,etc shape to mask the mesh)
@@ -2810,6 +3118,9 @@ tool.matrix.action.origin = "نقل الأصل";
 tool.matrix.action.origin.help = "انقل الشبكة إلى أصل العالم.";
 tool.matrix.action.reset = "إعادة ضبط";
 tool.matrix.action.reset.help = "أعد تعيين تحويل الشبكة إلى الهوية.";
+// Move the pivot alone, the objects stand still
+tool.matrix.editPivot = "تحرير";
+tool.matrix.editPivot.help = "حرّك نقطة الارتكاز وحدها؛ وتظل الكائنات ثابتة.";
 tool.matrix.rotation = "دوران";
 tool.matrix.scale = "مقياس";
 // Synonym: shear, https://en.wikipedia.org/wiki/Shear_matrix or https://en.wikipedia.org/wiki/Shear_mapping
@@ -2824,10 +3135,18 @@ tool.matrix.target.auto.help = "افتراضيًا، سيعمل هذا بشكل 
 tool.matrix.target.group = "مجموعة";
 tool.matrix.target.group.help = "حرك العقدة، متجاهلاً التماثل والتغطية.
 سيتم تحويل باقي التسلسل الهرمي أيضًا.";
+// Transform the object and its children, and every other instance of it
+tool.matrix.target.groupInstance = "مثيل";
+tool.matrix.target.groupInstance.help = "مثل مجموعة، لكن جميع مثيلات العقدة تتحرك معها.
+يُتجاهل التناظر والقناع، ويُحوَّل باقي التسلسل الهرمي أيضًا.";
 // Transform the object alone (the children stands still)
 tool.matrix.target.object = "جسم";
 tool.matrix.target.object.help = "حرك الكائن فقط، متجاهلاً التماثل والتغطية.
 سيتم نقل العقدة المحررة فقط، وسيظل الأبناء ثابتين.";
+// Transform the object alone, and every other instance of it
+tool.matrix.target.objectInstance = "مثيل";
+tool.matrix.target.objectInstance.help = "مثل جسم، لكن جميع مثيلات الجسم تتحرك معه.
+يُتجاهل التناظر والقناع، وتبقى العناصر التابعة ثابتة.";
 // Auto apply the transform on the vertices
 tool.matrix.target.vertex = "قمة";
 tool.matrix.target.vertex.help = "حاول تطبيق التحويل على الرؤوس؛ لن يعمل على الأشكال الأساسية غير المعتمدة.
@@ -2836,8 +3155,6 @@ tool.matrix.translation = "إزاحة";
 tool.matrix.uniformScale = "مقياس موحد";
 // Ideally short strings (Measure distance between 2 points)
 tool.measure = "قياس";
-// dimension box
-tool.measure.box = "الأبعاد";
 // Perimeter of a plane cross section
 tool.measure.crossSection = "مقطع";
 // Geodesic distance
@@ -2878,8 +3195,6 @@ tool.polish = "تلميع";
 tool.project = "إسقاط";
 // Radius of the tool (size)
 tool.radius = "نصف قطر";
-// Ideally short strings (Quad Remesher)
-tool.remesh = "Quad Remesher";
 tool.remesh.density = "كثافة";
 tool.remesh.guides = "إرشادات";
 tool.remesh.half = "نصف";
@@ -2892,12 +3207,17 @@ tool.settings = "إعدادات";
 tool.settings.none = "لا يحتوي هذا الأداة على أي إعدادات خاصة.";
 // Shape for the tools: Trim / Split / Project / SelMask
 tool.shape = "الشكل";
-// Auto-validate the drawn shape
-tool.shape.autoValidate = "التحقق تلقائياً";
 // Ideally short strings (Whether a shape is closed or not, a tube is open, a torus is closed)
 tool.shape.closed = "مغلق";
 // Ideally short strings (Curve selection, same as Lasso and it's an open shape)
 tool.shape.curve = "منحنى";
+tool.shape.edit = "تحرير";
+tool.shape.edit.help = "إيقاف: تطبيق عند الإفلات.
+تشغيل: تحرير عند الإفلات.
+ضغط مطوّل: تطبيق عند الإفلات، أو استمر بالضغط للتحرير.";
+tool.shape.edit.longPress = "تحرير: ضغط مطوّل";
+tool.shape.edit.off = "تحرير: إيقاف";
+tool.shape.edit.on = "تحرير: تشغيل";
 // Ideally short strings (Ellipse selection)
 tool.shape.ellipse = "بيضاوي";
 // The selection ellipse will be centered around the cursor
@@ -2910,8 +3230,6 @@ tool.shape.flip = "عاكس";
 tool.shape.lasso = "لاسو";
 // Ideally short strings (Line selection, split the screen in half)
 tool.shape.line = "خط";
-// Rotate by step (angle value)
-tool.shape.lineRotateStep = "خطوة الدوران";
 // Ideally short strings (Path selection, same as Lasso but with more precision and it's an open shape)
 tool.shape.path = "مسار";
 // Ideally short strings (Polygon selection, same as Lasso but with more precision)
@@ -2976,6 +3294,46 @@ tool.trim.detail.protect.help = "لا تقم بتنعيم وتبسيط حد ال
 يحافظ على طوبولوجيا الشبكة الأصلية بالقرب من الأوجه المُقنَّعة والمخفية.";
 // Ideally short strings (Revolving surface along a curve)
 tool.tube = "أنبوب";
+// Ideally short strings (Vector displacement stamp)
+tool.vdm = "VDM";
+// Button that adds a plane ready to be sculpted into a VDM
+tool.vdm.addPlane = "إضافة سطح مستوٍ";
+tool.vdm.fix = "تصحيح VDM";
+tool.vdm.fix.detect = "اكتشاف الحدود";
+tool.vdm.fix.detect.help = "يقدّر انحياز الإزاحة من حدود الختم.";
+tool.vdm.fix.help = "يصحّح دوران الختم وانعكاساته واتجاه العمق وانحياز الإزاحة.
+
+استبدال يعيد كتابة الصورة. استنساخ يحتفظ بالأصل.";
+tool.vdm.fix.invert = "عكس العمق";
+tool.vdm.fix.invert.help = "يعكس العمق دون تغيير الإزاحة الجانبية.";
+tool.vdm.fix.offset = "إزاحة";
+tool.vdm.fix.offset.help = "يطرح إزاحة ثابتة من X وY وZ قبل الدوران أو الانعكاس.";
+// Scales only the height of the vdm stamp, lateral displacement is unchanged
+tool.vdm.height = "ارتفاع";
+// Button that opens the popup that adds a plane to sculpt a VDM on, "..." is appended in the app
+tool.vdm.new = "VDM جديد";
+// Title of the popup that adds a plane to sculpt a VDM on
+tool.vdm.plane = "نحت VDM جديد";
+// The border is the outer edge of the plane
+tool.vdm.plane.border = "قناع الحدود";
+tool.vdm.plane.border.help = "يضع قناعًا على الحلقة الخارجية للسطح المستوي لإبقاء الحدود مسطحة.
+
+يؤدي النحت حتى الحدود إلى إنشاء حافة حادة في الختم.";
+tool.vdm.plane.help = "يضيف سطحًا مستويًا مهيأً لنحت VDM، مع إحداثيات UV والدقة المحددة واتجاه يواجه الكاميرا.
+
+ينشئ هذا السطح المستوي فقط. لإنشاء الختم:
+• انحت شكلك على السطح المستوي
+• افتح `طوبولوجيا -> خبز`
+• اختر `VDM`، ثم اضغط `خبز`
+
+يضيف Nomad الختم الجديد إلى مكتبة VDM ويحدده.
+
+تجنب DynTopo لأنها تتلف إحداثيات UV للسطح المستوي وتشوه الختم.";
+// (see Glossary for Layer)
+tool.vdm.plane.layer = "النحت على طبقة";
+tool.vdm.plane.layer.help = "ينشئ طبقة نحت فوق السطح المستوي، ويستخدمها الخبز كمرجع.
+
+يتطلب الطلاء طبقة أيضًا. من دونها، تغطي الخامة المربع بأكمله عند الختم، وليس المنطقة المطلية فقط.";
 // Ideally short strings (View tool, do nothing in particular)
 tool.view = "عرض";
 // Always display the camera shortcut buttons on the viewport
@@ -2983,8 +3341,6 @@ tool.view.stickyCamera = "اختصار الكاميرا (دائمًا)";
 
 // Topology
 topology = "طوبولوجيا";
-// Name of the quad remeshing engine, should probably stay untranslated
-topology.autoremesher = "AutoRemesher";
 topology.autoremesher.adaptivity = "قابلية التكيف";
 topology.autoremesher.adaptivity.help = "تكييف كثافة الرباعيات مع الانحناء.
 
@@ -3002,13 +3358,17 @@ topology.autoremesher.smoothAngle.help = "يحافظ 0 على السطح متع�
 
 تعمل القيم الأعلى على تنعيم السطح مع أخذ الاتجاهات العمودية للرؤوس في الاعتبار.";
 topology.bake.backup = "النسخ الاحتياطي";
+// Multires here means the subdivision levels of the object itself
+topology.bake.multires = "استخدام متعدد الدقة";
+topology.bake.multires.help = "يقرأ الدقة العالية عبر مستويات التقسيم بدلًا من إطلاق الأشعة.
+
+أسرع ومن دون أخطاء إسقاط.
+
+عطّله للخبز باستخدام إعدادات القفص أدناه.";
 // Cage is a specific term; synonym: "Bake offset"
 topology.bake.offset = "إزاحة الشعاع";
-// Bake opacity (from mask data)
-topology.bake.opacityFromMask = "القناع -> التعتيم";
 // Bake here means "create texture (from another mesh data)"
 topology.bake.other = "من عالي الدقة";
-topology.bake.radius = "نصف قطر القفص";
 topology.bake.resolution = "الدقة";
 topology.bake.searchDistance = "مسافة البحث";
 topology.bake.searchDistance.help = "أقصى مسافة تستخدم للعثور على سطح المصدر.";
@@ -3034,6 +3394,29 @@ topology.bake.title.help = "سيتم إنشاء الخامات عن طريق ع�
 - سيتم استخدام جميع الكائنات المختارة والكائن الرئيسي المختار للتفريغ (أبرز تمييز في قائمة المشهد)
 - إذا كان هناك كائن واحد مختار فقط، سيعتبر نوماد جميع الكائنات المرئية بدلاً من ذلك
 - خلاف ذلك، إذا كانت جميع الكائنات مخفية (على سبيل المثال باستخدام سولو)، سيتم أخذ المشهد بالكامل في الحسبان";
+// Warning shown after a VDM bake, the border of the plane is its outer edge
+topology.bake.vdm.border = "يصل النحت إلى حافة السطح المستوي، وسيُظهر VDM حافة حادة عند استخدامه كختم.";
+// Error shown when a VDM bake fails
+topology.bake.vdm.failed = "فشل إنشاء VDM.";
+// Bake here means "create a VDM (from a sculpted plane)"
+topology.bake.vdm.help = "ينشئ VDM من الكائن المحدد ويضيفه إلى مكتبة VDM.
+
+إليك سير العمل المعتاد:
+• أضف سطحًا مستويًا، أو اختر `VDM جديد` في منتقي VDM لإضافة سطح مهيأ مسبقًا
+• انحت شكلك عليه مع إبقاء الحافة مسطحة
+• اخبزه!
+
+تحدد UV للسطح المستوي المربع الذي يُخبز، لذا يحتاج الكائن إلى UV.
+
+تجنب الطوبولوجيا الديناميكية، فهي تُفسد UV السطح المستوي ويخرج VDM مشوهًا.
+
+يمنح النحت في طبقة أدق نتيجة، لأن السطح المستوي المسطح يظل موجودًا تحته.
+
+يحتاج التلوين أيضًا إلى طبقة، وإلا فسيُختم الخامة على المربع بأكمله بدلًا من الأماكن التي لونتها فقط.";
+// Warning shown when the picked region cannot be flattened; a disc is a simple patch with a single outer edge
+topology.bake.vdm.notDisk = "المنطقة المختارة ليست قرصًا بسيطًا. اختر منطقة أصغر أو خالية من الثقوب.";
+// Warning shown when the picked region holds too many polygons to be flattened
+topology.bake.vdm.tooBig = "تحتوي المنطقة المختارة على مضلعات كثيرة جدًا. اختر منطقة أصغر.";
 // Synonym: Simplify (Decimate reduce the number of triangles/quads while retaining details as much as possible)
 topology.decimate = "تقليل";
 topology.decimate.boundary = "حفظ الحدود";
@@ -3084,8 +3467,6 @@ topology.dynamic.useFalloff = "استخدام تخفيف السكتة";
 // Whether the pencil pressure can impact the level of detail
 topology.dynamic.usePressure = "استخدام الضغط على نصف القطر";
 topology.dynamic.usePressure.help = "استخدم هذا الخيار إذا كنت تريد أن يؤثر ضغط القلم على نصف قطر الأداة في تحديد مستوى التفاصيل.";
-// Instant quad remesher
-topology.instant = "Instant Mesh";
 topology.instant.angle = "زاوية الطية";
 topology.instant.hole = "الحد الأقصى لملء الثقب";
 topology.instant.hole.help = "يمكن أن تُنتج الخوارزمية أحيانًا ثقوبًا غير مرغوب فيها.
@@ -3117,7 +3498,6 @@ topology.multires.linear.help = "بسّط شبكة بدون تطبيق أي تن
 topology.multires.lock = "قفل (LV0)";
 // Only show the lowest resolution wireframe
 topology.multires.minWireframe = "المستوى 0 فقط";
-topology.multires.previewHighest = "معاينة أعلى دقة";
 // Synonym: Unsubdivide, Un-subdivide
 topology.multires.reverse = "عكس";
 topology.multires.reverse.confirm = "لم يتمكن من إنشاء تقسيم فرعي أساسي.
@@ -3130,10 +3510,6 @@ topology.multires.subdivide.limit = "تم تجاوز الحد الأقصى لل�
 // Navigate toward multiple resolutions (go to higher level)
 topology.multires.up = "مستوى الدقة المتعددة →";
 topology.nonManifold = "Non-Manifold";
-// Quad remesher
-topology.quadRemesh = "شبكة رباعية";
-// Name of the quad remeshing engine, should probably stay untranslated
-topology.quadriflow = "QuadriFlow";
 topology.quadriflow.adaptiveScale = "مقياس متكيف";
 topology.quadriflow.adaptiveScale.help = "تكييف حجم الرباعيات مع انحناء السطح.";
 topology.quadriflow.keepSharp = "الاحتفاظ بالحواف الحادة";
@@ -3147,7 +3523,6 @@ topology.remesh = "إعادة تشكيل الشبكة";
 // Number of iterations the algorithm will perform
 topology.reproject.iterations = "التكرارات";
 topology.reproject.layers.help = "نقل الطبقات الأخرى إلى الشبكة المحددة.";
-topology.reproject.normalOffset = "الإزاحة العادية";
 topology.reproject.projection.blend = "مزيج التكيف";
 topology.reproject.projection.blend.help = "امزج الشعاع العمودي وأقرب سطح وفقًا للمسافة وتفضيل الشعاع. إذا أخطأ أحدهما، استخدم الآخر.";
 topology.reproject.projection.fallback = "الشعاع + الأقرب";
@@ -3156,19 +3531,10 @@ topology.reproject.projection.nearest = "الأقرب";
 topology.reproject.projection.nearest.help = "أسقط على أقرب نقطة على سطح المصدر.";
 topology.reproject.projection.ray = "الشعاع";
 topology.reproject.projection.ray.help = "أسقط على طول العمودي على السطح.";
-// tweaking value
-topology.reproject.rayBias = "تحيز الشعاع";
-topology.reproject.rayBias.help = "يستخدم طريقتان لإعادة الإسقاط:
-• الأقرب: النقطة الأقرب على السطح
-• الأشعة: نقطة التقاطع خلال الاتجاه العمودي
-
-القيم المتحيزة الأعلى ستفضل تقاطع الأشعة بدلاً من أقرب سطح.";
 topology.reproject.rayPreference = "تفضيل الشعاع";
 topology.reproject.rayPreference.help = "وازن المزيج التكيفي باتجاه نتيجة الشعاع العمودي.";
 topology.reproject.relax = "استرخاء";
 topology.reproject.relax.help = "يجب تفضيل الاسترخاء عندما تكون الشبكة ذات مضلع منخفض.";
-topology.reproject.shpereCast = "ارتداد إسقاط الكرة";
-topology.reproject.shpereCast.help = "إذا فشل إعادة إسقاط الأشعة العمودية، فإن نوماد سيعود إلى تقاطع السطح الأقرب.";
 // project a high resolution mesh details onto another
 topology.reproject.title = "إعادة الإسقاط";
 topology.reproject.title.help = "إسقاط التفاصيل المنحوتة، الطلاء والطبقات من أقرب الأجسام المرئية.
@@ -3196,8 +3562,6 @@ topology.surface.method.uniformisation = "توحيد";
 topology.surface.remesh = "إعادة تشكيل الشبكة";
 topology.surface.useMasking = "حماية المنطقة المغطاة";
 topology.surface.useMasking.help = "ستحمي المناطق المغطاة الطوبولوجيا من التغيير.";
-topology.target.faces = "الأوجه المستهدفة";
-topology.target.points = "نقاط الهدف";
 topology.target.quads = "رباعيات مستهدفة";
 // Target a certain number of triangles, faces and vertices
 topology.target.triangles = "مثلثات الهدف";
@@ -3228,6 +3592,8 @@ topology.uv.title = "فك UV";
 topology.uv.unwrap = "فك";
 // Create a new object by recomputing a new topology, by using voxels (see Glossary)
 topology.voxel = "إعادة تشكيل فوكسل";
+// The voxel detail expressed as a world size, the same value gives the same detail on any object
+topology.voxel.edgeLength = "طول الحافة";
 topology.voxel.help = "إعادة تشكيل باستخدام أخذ عينات من الشبكة على شبكة.
 
 إذا كان الكائن غير مغلق (مغلق تمامًا)، سيتم تطبيق خوارزمية لملء الثقوب أولاً.
@@ -3292,7 +3658,6 @@ version.restore = "استعادة الشراء";
 version.trialLayer = "نسخة تجريبية: طبقة واحدة لكل كائن";
 version.trialNoExport = "نسخة تجريبية: لا يوجد تصدير";
 version.trialNoLink = "الإصدار التجريبي: لا يوجد ربط";
-version.update = "تحديث متاح!";
 version.webUnlock = "إصدار الويب غير مدعوم رسميًا مثل التطبيقات الأصلية.
 
 افتح الإصدار الكامل بإدخال مفتاح ترخيص Polar.sh الخاص بك";
