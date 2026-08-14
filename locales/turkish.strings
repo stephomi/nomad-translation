@@ -111,16 +111,22 @@ alert.extract.none = "Çıkarılacak bir şey yok!";
 alert.extract.split.none = "Ayrılacak bir şey yok!";
 // Painting on the object was hidden but the user did paint the object
 alert.forcePainting.fill = "Boyamayı gösterme etkin, [Tümünü boya] kullanıldı.";
-// Painting on the object was hidden but the user started to paint on the object
-alert.forcePainting.tool = "Boyamayı gösterme etkin, nesne boyandı.";
 // The pivot is the Gizmo's 3D position
 alert.gizmo.editObject = "Nesne modunu düzenle.";
 // In this mode, the user moves the Gizmo's pivot instead of the object
 alert.gizmo.editPivot = "Eksen modunu düzenle.";
+// Button that turns the heightmap render off
+alert.heightmap.hide = "Yükseklik haritasını gizle";
+// The viewport renders the depth of the scene instead of the shaded objects
+alert.heightmapOn = "Yükseklik haritası açık!";
 // The user decided to display hidden faces
 alert.hideIgnored = "Gizleme yok sayıldı!";
 // Error when an algorithm needs the object to have a hole (usually to fill it)
 alert.hole.nothing = "Nesnenin hiç deliği yok!";
+// Button that turns the inspector off
+alert.inspect.hide = "Denetleyiciyi gizle";
+// The viewport renders a material channel instead of the shaded objects
+alert.inspectOn = "Denetleyici açık!";
 // The lattice deformation was applied with a different mask or visibility state
 // (the gui appends the icon of the changed states)
 alert.lattice.desync = "Kafes senkronize değil!";
@@ -129,8 +135,6 @@ alert.lattice.sync = "Kafesi güncelle";
 // No operation occurred because the mesh is already manifold
 alert.manifold.already = "Mesh zaten manifold!";
 alert.mask.full = "Maskele = 100%!";
-// Hide the painted mask on the mesh
-alert.mask.hide = "Maskeyi gizle";
 // Show the painted mask on the mesh
 alert.mask.show = "Maskeyi göster";
 // The user decided to hide the masking on the objects
@@ -139,6 +143,7 @@ alert.maskingHidden = "Maske gizlendi!";
 alert.matrix.clone = "Nesne çoğaltılacak";
 // Helper popup telling the user that the object will be instanced
 alert.matrix.instance = "Nesnenin örneği oluşturulacak";
+alert.mesh.empty = "";
 // Empty mesh
 alert.mirror.empty = "Çıktı boş!";
 // Mesh already mirrored
@@ -159,8 +164,6 @@ alert.selection.isolate = "Seçimi soyutla";
 alert.selection.showAll = "Tümünü göster";
 // The object needs to have two parts disconnected
 alert.separate.fail = "Ayrılamadı: nesnenin sadece bir parçası var!";
-// Visibility of the object is off (but should be on)
-alert.shape.notVisible = "Geçerli nesne görülemez!";
 // The user has selected a tool that is more intuitive to use when the camera is in orthographic mode
 alert.shapeOrthographic = "Ekran projektörü kullanırken perspektif bozulmalarından kaçınmak isterseniz, ortografik kamera kullanımını değerlendirin.";
 // The trial version has a limited number of undo operations
@@ -169,10 +172,10 @@ alert.state.trial = "Deneme sürümü: geri al iptal edildi";
 alert.trim.full = "Kırpma bırakıldı: nesne tamamen kırpıldı.";
 // The user tried to trim an object but the selected region didn't touch the object
 alert.trim.nothing = "Kırpılacak bir şey yok.";
+// The remesher rebuilds the mesh without a UV layout, the painting is kept as vertex colors
+alert.uvLost = "UV’ler kaybolacak!";
 // List of disabled features when View Mode is selected
 alert.view.disabled = "Görünüm Modunda devre dışı kalan özellikler:";
-// Primitive widgets are small viewport controls used to modify a primitive
-alert.view.disabled.widgetPrimitive = "Primitif araçlar";
 alert.voxel.empty = "Yeniden ağ örgülendirme durduruldu: sonuç ağ örgüsünde hiç yüz yok.";
 // Should not happen or very rarely, input here is an object
 alert.voxel.invalidInput = "Geçersiz girdi!";
@@ -210,6 +213,9 @@ background.imageAlpha = "Opaklık";
 background.imageEnable = "Referans görüntüsü";
 // The image will be displayed in overlay (used as a reference by the artist)
 background.imageOverlay = "Kaplama";
+// Apply the post process effects on the reference image
+background.imagePostProcess = "Süreç sonrası işlemler";
+background.imagePostProcess.help = "Referans görüntüsüne süreç sonrası efektleri uygular. Orijinal renkleri korumak için devre dışı bırakın.";
 background.imageReset = "Ayarları sıfırla";
 // Rotation of the reference image
 background.imageRotate = "Döndürme";
@@ -288,6 +294,8 @@ binding.rotateLighting = "Işıklandırmayı döndür";
 // Select all the objects in the scene
 binding.selectAll = "Tümünü Seç";
 binding.snap.toggle = "Eğri düzenlemeyi aç/kapat";
+// Same as binding.snap.toggle, on a small shortcut button
+binding.snap.toggle.short = "Eğri düzenleme";
 // Snap the view (while rotating)
 binding.snapViewOnRotate = "Görünümü yasla (döndürürken)";
 binding.spacemouse = "SpaceMouse";
@@ -370,9 +378,10 @@ camera.doubleTapBackgroundFocus.scene = "Sahne";
 camera.doubleTapBackgroundFocus.selection = "Seçim";
 // When we double tap on the background with the finger/stylus
 camera.doubleTapBackgroundFocus.toggle = "Değiştir";
-camera.doubleTapFocus.help = "Nesneye çift dokunulduğunda kamera yatay kayarak seçilen noktaya odaklanır.";
 // When we double tap on the object with the finger/stylus
 camera.doubleTapMesh = "Nesneye çift dokun";
+// Same as camera.doubleTapMesh, on a small shortcut button
+camera.doubleTapMesh.short = "Odak";
 // When double tapping with the finger/stylus, the camera pivot will be updated
 camera.doubleTapPivot = "Çift dokunmayla güncelle";
 camera.doubleTapPivot.help = "Nesne yüzeyine çift dokunulduğunda dönme eksenini günceller.";
@@ -382,11 +391,8 @@ camera.firstPerson = "Birinci Kişi";
 camera.focal = "odaksal $0mm (35mm sensör)";
 // Focus on the camera
 camera.focus = "Odak";
-// Focus on a saved camera
-camera.focusOn = "Odak: $0";
 // camera Vertical Field of View
 camera.fov = "Dikey Görünüm Alanı";
-camera.panZoomOut.help = "Bu seçenek devre dışı bırakıldığında, bu eksen konumu korunacaktır.";
 // The Camera pivot is the point around which the camera rotates
 camera.pivot = "Eksen";
 // Camera projection, Orthographic or Perspective
@@ -429,12 +435,7 @@ clipboard.copy = "Kopyala";
 clipboard.paste = "Yapıştır";
 
 color = "Renk";
-color.alpha = "Alfa";
-color.blue = "Mavi";
-color.brightness = "Parlaklık";
-color.green = "Yeşil";
 color.hue = "Renk Tonu";
-color.red = "Kırmızı";
 color.saturation = "Doygunluk";
 color.value = "Değer";
 
@@ -444,8 +445,6 @@ confirm = "Onayla?";
 confirm.cancel = "Vazgeç";
 // Asking to cancel (should be short)
 confirm.cancel.ask = "İptal edilsin mi?";
-// Answer to a question (Are you sure you want to do that? [yes, no, cancel])
-confirm.no = "Hayır";
 // The generic ok in a confirm box (The next operation is dangerous. [ok, cancel])
 confirm.ok = "Tamam";
 // Restart nomad
@@ -455,8 +454,6 @@ confirm.yes = "Evet";
 
 // Toolbox context (when expanded), multiple objects are selected
 context.multiselection = "Çoklu seçim";
-// There is 0 nodes/items selected
-context.noSelection = "Seçim yok";
 
 cube.back = "Arka";
 cube.bottom = "Alt";
@@ -467,8 +464,17 @@ cube.right = "Sağ";
 cube.top = "Üst";
 
 curve.bspline = "B-spline";
-// Curve type, https://en.wikipedia.org/wiki/Centripetal_Catmull%E2%80%93Rom_spline
-curve.catmull = "Catmull-Rom";
+curve.editor = "";
+curve.ik = "";
+curve.ik.help = "";
+curve.ik.lock_root = "";
+curve.ik.lock_root.help = "";
+curve.ik.stretch = "";
+curve.ik.stretch.help = "";
+curve.influence.falloff = "";
+curve.influence.falloff.help = "";
+curve.influence.range = "";
+curve.influence.range.help = "";
 // Merge or collapse one point into another
 curve.merge = "Birleştir";
 curve.pivot = "Eksen";
@@ -486,21 +492,20 @@ curve.sharpness = "Keskinlik";
 curve.shift = "Kaydırma";
 // snap
 curve.snap = "Yasla";
-// whether the tube body stays on the surface between its control points, and along which direction
+// whether the curve body (tube or repeated objects) stays on the surface between its control points, and along which direction
 curve.snap.follow = "Takip";
-curve.snap.follow.help = "Tüpün kontrol noktaları arasındaki davranışı.";
+curve.snap.follow.help = "Eğrinin kontrol noktaları arasındaki davranışı.";
 curve.snap.follow.normal = "Normal boyunca";
-curve.snap.follow.normal.help = "Tüp yüzeyde kalır ve yüzey normali boyunca yüzeye doğru itilir.
+curve.snap.follow.normal.help = "Eğri, yüzey normali boyunca yüzeye yansıtılarak yüzey üzerinde kalır.
 
-Yüzeye giden en kısa yolu izler; bu da yandan baktığınız şekillerde iyi sonuç verir.";
-// only the control points snap, the body of the tube is left alone
+Yüzeye en kısa yolu izler; bu, yandan baktığınız şekillerde de işe yarar.";
+// only the control points snap, the body of the curve is left alone
 curve.snap.follow.points = "Noktalar";
-curve.snap.follow.points.help = "Yalnızca kontrol noktaları yüzeye tutturulur.
+curve.snap.follow.points.help = "Yalnızca kontrol noktaları yüzeye yapışır.
 
-Aralarında tüp çizdiğiniz şekli korur; böylece yüzeyi kesebilir veya üzerinde havada kalabilir.";
+Aralarında eğri, çizdiğiniz şekli korur; bu yüzden yüzeyin içinden geçebilir veya üzerinde havada kalabilir.";
 curve.snap.follow.view = "Görüntüle";
-curve.snap.follow.view.help = "Tüp yüzeyde kalır ve çizerken baktığınız yönde yüzeye doğru itilir.";
-curve.snap.grid = "Izgara (yaslandığında)";
+curve.snap.follow.view.help = "Eğri, onu çizerken baktığınız yön boyunca yüzeye yansıtılarak yüzey üzerinde kalır.";
 curve.snap.normal = "Normali Hizala";
 curve.snap.normal.help = "Yalnızca eğrinin ilk ve son kontrol noktalarını etkiler.
 
@@ -508,40 +513,85 @@ Komşu noktaları hareket ettirerek, tüp uçlarının yüzey normaliyle hizalan
 
 Komşu noktaya olan mesafe korunur.";
 curve.snap.offset = "Kaydırma";
-curve.snap.offset.help = "100% değeri tüpün yarıçapına eşittir.";
+curve.snap.offset.help = "100% değeri, tüpün yarıçapına veya tekrarlanan nesnelerin yüzeye doğru boyutunun yarısına eşittir.";
 curve.snap.surface = "Yüzey";
 curve.snap.vertex = "Verteks";
 curve.spiral = "Sarmal";
 curve.spiral.angle = "Açı kaydırma";
+curve.spiral.braid = "Örgü";
+curve.spiral.core = "Çekirdek";
+curve.spiral.depth = "Derinlik";
+curve.spiral.groups = "Tel başına yüz grubu";
+curve.spiral.hardness = "Sertlik";
 curve.spiral.offset = "Kaydırma";
+curve.spiral.pack = "Sıkıştır";
+curve.spiral.ribbon = "Şerit";
+curve.spiral.rope = "Halat";
 curve.spiral.scale = "Ölçek";
+curve.spiral.sleeve = "Kılıf";
+curve.spiral.sleeve.help = "Örgülü kılıf";
+curve.spiral.strands = "Teller";
 curve.spiral.twist = "Büküm açısı";
-// Spline curve, https://en.wikipedia.org/wiki/Spline_(mathematics)
-curve.spline = "Spline";
 // Display the falloff curve in a symmetric way
 curve.symmetric.help = "Azalmayı simetrik bir şekilde gösterin.
 
 Bu seçenek sadece görsel bir ipucu, azalmanın kendisini etkilemez";
 curve.twist = "Kıvır";
-// Regular spaced sampling
-curve.uniform = "Düzenli";
-curve.uniform.help = "Eğri düzenli aralıklarla örneklenir, böylece uniform yoğunluk sağlanır.
+curve.warp = "";
+curve.warp.help = "";
 
-Bu seçeneği devre dışı bırakarak eğri üzerine yeni kontrol noktaları ekleyerek kenar döngülerini biraz kontrol edebilirsiniz.";
-
-// Debug graphics options
-debug.graphics = "Grafik";
+debug.androidInputs = "";
+debug.angleNormal = "";
+debug.compressMultires = "";
+debug.compressMultires.help = "";
+// Debug section to import/export the icons of the interface
+debug.customIcons = "Özel simgeler";
+debug.customIcons.export = "";
+debug.customIcons.export.done = "";
+debug.customIcons.export.help = "";
+debug.customIcons.import = "";
+debug.customIcons.import.help = "";
+debug.customIcons.reload = "";
+// Short label for the section shortcut bar
+debug.customIcons.short = "Simgeler";
+// Debug option: draw all the copies of a repeater in a single draw call
+debug.drawInstance = "";
+// Debug section for optional features
+debug.feature = "Özellik";
+debug.flipQuad = "";
+debug.forceTrial = "";
+debug.fps = "";
 // Debug option, overrides the rendering to display the depth buffer
 debug.heightmap = "Yükseklik haritası";
+debug.icons = "";
 // Debug option: display a window with debugging logs
 debug.logs = "Kayıtları";
+// Logs window option: break long lines to fit the panel width
+debug.logs.wrap = "Sözcük kaydırma";
+debug.parallel = "";
+debug.parallelSculpt = "";
+debug.pathTrace = "";
+// Debug section for multithreading and speed options
+debug.performance = "Performans";
+debug.picking = "";
+debug.postprocess.format = "";
+debug.postprocess.format.16bit = "";
+debug.postprocess.format.8bit = "";
+debug.postprocess.reuse = "";
+debug.refractionBackWriteDepth = "";
+debug.review = "";
 // Model shortcut window
 debug.shortcut = "Kısayol penceresi";
 // Set the desired FPS (frame per second, refresh rate)
 debug.targetFps = "Hedef FPS";
 debug.targetFps.help = "Devre dışı bırakıldığında, varsayılan değer ekranın yenileme hızıyla senkronize olacak demektir.";
+debug.targetFps.unit = "";
 // Debug options, generate screenshots with size compatible with the iOS store
 debug.thumbnails = "Mağaza küçük resimleri";
+// Same as debug.thumbnails, on a small shortcut button
+debug.thumbnails.short = "Küçük resimler";
+debug.toolboxShowAll = "";
+debug.uv = "";
 // Debug option, Normalize means transforming the data so that it fits in [0-1] the range
 debug.uvNormalize = "UV'leri normalleştir";
 debug.uvNormalize.help = "Nomad [0-1] deseninin içindeki UV'leri normalleştirecektir.";
@@ -578,24 +628,46 @@ extract.action.layer = "Katman";
 extract.action.none = "Yok";
 // Close the mesh by adding a thickness on the surface
 extract.action.shell = "Kabuk";
+extract.bevel = "";
+extract.bevel.help = "";
+extract.bevel.profile = "";
+extract.bevel.segments = "";
+extract.bevel.segments.help = "";
+extract.borders = "";
 // Carve the mask into the surface
 extract.carve = "Oyma";
 // topology of extracted mesh
 extract.edgeLoop = "Kenar döngüsü (yan)";
 extract.edgeLoop.auto = "Otomatik kenar döngüsü";
 extract.edgeLoop.division = "Bölüm";
+extract.faceGroup.active = "";
+extract.faceGroup.polish = "";
+extract.faceGroup.polish.help = "";
+extract.gap = "";
+extract.gap.help = "";
+extract.group.target = "";
+extract.inset = "";
+extract.inset.help = "";
 // Smoothing strategy
 extract.polish.all = "Tümü";
 extract.polish.border = "Yalnızca kenarlar";
 extract.polish.sharp = "Keskin kenar";
-// Smooth the border in a way that it matches completely with its dual
-extract.polish.syncBorder = "Kenarları senkronize et";
 // Preview extract
 extract.preview = "Önizleme";
+extract.profile = "";
+extract.profile.width = "";
+extract.side.bevel = "";
+extract.side.bevel.help = "";
+extract.side.divisions = "";
+extract.side.profile = "";
+extract.side.straight = "";
+extract.sides = "";
 // Extract two new meshes from the painted mask and the unmasked area
 extract.split = "Ayır";
 // The thickness of the extracted mesh (from the painted mask)
 extract.thickness = "Kalınlık";
+extract.units.height = "";
+extract.units.height.help = "";
 
 // Auto save section
 file.autoSave = "Otomatik Kaydet";
@@ -617,9 +689,6 @@ file.colorSpace = "Renk Alanı";
 file.colorSpace.help = "Renkler doğru görünmüyorsa bu seçeneği değiştirmeyi deneyin.";
 file.colorSpace.linear = "Doğrusal";
 file.colorSpace.srgb = "sRGB";
-// Tries to generate quad (rectangle polygon) from triangles
-file.convertToQuad = "Dörtgen oluştur";
-file.convertToQuad.help = "Üçgenleri eşleştirerek (dosyalarda yan yana iseler), üçgenlerden dörtgenler oluşturur.";
 // Open file explorer
 file.explore = "Keşfet";
 // Export scene file
@@ -638,8 +707,10 @@ file.export.gltf.layer.help = "Katmanları biçimler olarak dışa aktarır. glT
 // Whether we include painting of layers in the exported file (see glossary for layer)
 file.export.gltf.layerPaint = "Katman boyamasını";
 file.export.gltf.layerPaint.help = "Katman boyamayı dışa aktarır. Diğer yazılımlar tarafından genellikle göz ardı edilir.";
-file.export.nomad.assets = "";
-file.export.nomad.assets.help = "";
+file.export.nomad.assets = "Varlıkları göm";
+file.export.nomad.assets.help = "Özel matcap, ortam ve yazı tiplerini dosyaya ekle.
+
+Yerleşik varlıklar dosyaya gömülmez.";
 file.export.nomad.help = "Nomad Sculpt dahili dosya formatı.
 
 Bu format başka yazılımlarda yüklenmez, bu çoğunlukla yeniden içe aktarma amaçları içindir.";
@@ -695,15 +766,13 @@ file.export.usd.skew.help = "Matris dönüşümlerinde kaymayı izin ver.
 Devre dışı bırakıldığında, Nomad kayma matrislerini iki ayrı ölçekleme ve döndürme dönüşümüne böler.";
 // Type format
 file.format = "Format";
-// The user imports a scene file that will be added/appended the current scene
-file.import.add = "Sahneye ekle";
-file.import.add.confirm = "Yeni dosya içeri aktarılsın mı?";
 file.import.applyAll = "Tümüne uygula";
 // Load interface preference settings when opening a scene file
 file.import.guiSettings = "Arayüz ayarlarını yükle";
 file.import.guiSettings.help = "Bir proje dosyasını açarken veya içeri aktarırken, projede gömülü olan grafik kullanıcı arayüzüne ilişkin tüm ayarlar yüklenir.";
 file.import.help = "Desteklenen formatlar:";
-file.import.ignore = "Yoksay";
+file.import.keepFolders = "";
+file.import.keepFolders.help = "";
 // Do not fiddle with the object topology when loading the file
 file.import.keepTopology = "Topolojiyi koru";
 file.import.keepTopology.help = "Nomad'ın içeri aktarılan ağ örgüsünün topolojisinde değişiklik yapmasını istemiyorsanız, bu seçeneği kullanın.
@@ -776,11 +845,8 @@ file.project.unsaved = "Kaydedilmemiş değişiklikler!";
 file.render = "İşle";
 // height of exported screenshot
 file.render.height = "Yükseklik";
-// Resolution ratio of the exported screenshot
-file.render.renderRatio = "İşleme oranı";
-file.render.renderRatio.help = "1.0 değeri, Nomad işlemesinin aşağıda istenilen görüntü boyutuyla aynı çözünürlükte olacağı anlamına gelir.
-
-Belirli bir çözünürlükte işleyemiyorsanız (bellek yetersizliğinden çöküyorsa) bu seçeneği kullanın.";
+// Warning shown when the requested export resolution is too large for the memory left on the device
+file.render.lowMemory = "Bu boyut, bu cihazda kalan belleğe sığmayabilir.";
 // Screen resolution parameters for the export screenshot features
 file.render.screenResolution = "Ekran";
 // If we include the App Interface in the exported screenshot
@@ -790,7 +856,7 @@ file.render.size = "Son boyut";
 // Desired size of the exported screenshot (custom vs predefined size)
 file.render.size.custom = "Özel";
 // Save the heightmap render as a new brush alpha instead of exporting it as a file
-file.render.toAlpha = "";
+file.render.toAlpha = "Alfa olarak kaydet";
 // If true, then the exported screenshot will have transparency data in the image
 file.render.transparent = "Şeffaf arkaplan";
 file.render.transparent.help = "Bu seçenek ağ örgüsünü bir 2D yaratım yazılımına eklemek istediğinizde faydalıdır.
@@ -816,6 +882,43 @@ file.select.include = "Dâhil et";
 file.select.selected = "Seçilen";
 file.select.unselected = "Seçilmemiş";
 file.select.visible = "Görülebilir";
+
+fog = "Sis";
+fog.ambient = "Ortam";
+fog.ambient.help = "Ortamın sisi ne kadar aydınlattığını kontrol eder.";
+fog.anisotropy = "Saçılma Yönü";
+fog.anisotropy.help = "Sisin ışığı saçtığı yönü kontrol eder; buna anizotropi de denir.
+
+• Pozitif değerler, bir ışık kaynağına doğru baktığınızda sisi aydınlatır.
+• Negatif değerler, ışık kaynağından uzağa baktığınızda sisi aydınlatır.
+• Sıfır, ışığı her yöne eşit olarak saçar.";
+fog.color = "Renk";
+fog.color.help = "Sisin ve saçtığı ışığın rengini ayarlar.";
+fog.density = "Yoğunluk";
+fog.density.help = "Sisin mesafeyle ne kadar hızlı yoğunlaştığını kontrol eder.";
+fog.detail = "Gürültü";
+fog.detail.help = "Sisi parçalara ayırmak için içine gürültü karıştırır. Genel yoğunluğu değiştirmez.";
+fog.detail.scale = "Boyut";
+fog.detail.scale.help = "Gürültü deseninin boyutunu ayarlar.";
+fog.help = "Atmosferik derinlik ekler ve ışık huzmelerini görünür kılar.
+
+Daha belirgin ışık huzmeleri:
+• Ortam değerini azaltın ve güçlü bir spot veya nokta ışığı kullanın.
+• Sis belirgin şekilde görünene kadar Yoğunluk değerini artırın.
+• Daha ince siste huzmeleri görmek için Saçılma Yönü değerini yüksek bir pozitif değere ayarlayın ve kamerayı ışığa doğru yöneltin.";
+fog.opacity = "Maksimum Opaklık";
+fog.opacity.help = "Yüksek yoğunlukta bile sisin sahneyi ne kadar kaplayabileceğini sınırlar.";
+fog.shape = "Şekil";
+fog.shape.help = "Sisin sahnenin hangi bölümünü dolduracağını kontrol eder.";
+fog.shape.uniform = "Homojen";
+fog.shape.uniform.help = "Tüm sahneyi sisle doldurur.";
+fog.shape.vertical = "Dikey";
+fog.shape.vertical.bottom = "Alt";
+fog.shape.vertical.bottom.help = "Sis bandının alt kenarının yüksekliğini ayarlar.";
+fog.shape.vertical.help = "Sisi, üst ve alt kenarları yumuşak olan dikey bir bant içinde tutar.";
+fog.shape.vertical.preview.help = "Kenarlarını ayarlarken sis bandını görünüm alanında gösterir.";
+fog.shape.vertical.top = "Üst";
+fog.shape.vertical.top.help = "Sis bandının üst kenarının yüksekliğini ayarlar.";
 
 format.ascii = "ASCII";
 format.binary = "İkili";
@@ -882,8 +985,6 @@ gesture.pencilAction.android = "Kalem düğme";
 // Action when using the Pencil double tap
 gesture.pencilAction.ios = "Kalem çift dokunma";
 gesture.pencilAction.ios.help = "Sadece Apple Pencil 2. nesil için etkindir.";
-// Pencil button (or iOS Pencil double tap) action: nothing
-gesture.pencilAction.none = "Yok";
 // list of inputs allowing sculpting interaction
 gesture.sculpt = "Şekillendir";
 // Select object
@@ -893,6 +994,8 @@ gesture.shortcut = "Kısayol";
 gesture.smooth.holdSelect.help = "Uzun basılı tut, vuruş seçim süresi boyunca seçim aracına geçecektir.";
 // Hold the pointer at the end of a stroke to snap it into a line or a curve
 gesture.strokeSnap = "Kontur yakalama";
+gesture.strokeSnap.delay = "";
+gesture.strokeSnap.delay.help = "";
 gesture.strokeSnap.help = "Bir konturun sonunda işaretçiyi tutarak onu düz bir çizgiye veya yumuşak bir eğriye yakalayın.
 
 Yakalanan konturu başlangıç noktası etrafında döndürmek ve ölçeklemek için sürüklemeye devam edin.";
@@ -924,15 +1027,14 @@ gesture.trackpad.two.orbit.help = "İki parmak görünümü yörüngede döndür
 // Two fingers pan (translate) the view
 gesture.trackpad.two.pan = "Kaydır";
 gesture.trackpad.two.pan.help = "İki parmak görünümü kaydırır; parmaklardan birini kaldırmak görünümü yörüngede döndürür. Tablet ile aynıdır.";
-// If enabled, the pressure will be taken into account even if it's not coming from a recognized stylus
-gesture.unknownPressure = "Tanınmayan basınca izin ver";
-gesture.unknownPressure.help = "Basınç kaleminizle çalışmıyorsa ya da parmakla basınç gerekiyorsa bu seçeneği işaretleyin.";
 gesture.wheel = "Fare tekerleği";
 gesture.wheel.speed2d = "Hız (2d arayüz)";
 gesture.wheel.speed3d = "Hız (3d yakınlaştırma)";
 
 // History, list of undo/redo
 history = "Geçmiş";
+// Button deleting every operation of the history, freeing the memory and the disk space they use
+history.clear = "Geçmişi temizle";
 // Long press on a state of the history list: deletes it and every older one, $0 is a number of operations
 history.delete.confirm = "Geçmişten $0 işlem silinsin mi?";
 history.delete.help = "Bir geçmiş kaydını ve ondan daha eski tüm geçmişi kalıcı olarak silmek için kayda uzun basın.";
@@ -952,17 +1054,26 @@ history.include.postProcess.help = "PostProcess düzenlemelerini geri al/yinele 
 // include shading parameters (MatCap & HDRIs) editing in the undo/redo
 history.include.shading = "Gölgelendirme";
 history.include.shading.help = "PBR, MatCap ve Unlit modlarını, MatCap'leri ve HDRI'ları dahil eder.";
+// How much disk space the history is allowed to use, past it the oldest operations are deleted
+history.limitDisk = "Depolama sınırı";
+history.limitDisk.help = "Bu projenin Geri Al/Yinele geçmişinin kullanabileceği azami depolama alanı.
+
+Sınıra ulaşıldığında en eski işlemler kalıcı olarak silinir.
+
+Yeni sınır, bir sonraki işlem kaydedildikten sonra uygulanır.";
 // How much memory the history is allowed to use before the older states are moved to the disk
-history.limitMemory = "Bellek sınırı";
-history.limitMemory.help = "Geçmişin bellekte tutulan miktarı.
+history.limitMemory = "RAM sınırı";
+history.limitMemory.help = "RAM'de tutulan Geri Al/Yinele geçmişinin azami miktarı.
 
-Eski durumlar diske taşınır ve geri aldığınızda yeniden yüklenir; silinmezler.
+Eski durumlar depolama alanına taşınır ve gerektiğinde yeniden yüklenir; silinmezler.
 
-Geçmiş, bir sonraki kaydedilen işlemde güncellenir.";
+Yeni sınır bir sonraki düzenleme, geri alma veya yineleme işleminden sonra uygulanır.";
 // Where the undo history is kept when the project is saved (it survives reopening the project)
 history.persist = "Geçmişi kaydet";
 history.persist.embedded = "Göm";
-history.persist.embedded.help = "Geçmiş proje dosyasının içinde saklanır. Dosya büyür ancak geçmiş de dosyayla birlikte taşınır.";
+history.persist.embedded.help = "Geçmiş proje dosyasının içinde saklanır: dosya daha büyük olur, kaydetme ve yükleme yavaşlar.
+
+Geçmişin dosyayla birlikte taşınması gerekmiyorsa Kapalı veya Ayrı seçeneğini tercih edin.";
 history.persist.help = "Proje kaydedildiğinde geri alma geçmişini korur, böylece proje yeniden açıldığında geçmiş kullanılabilir.";
 history.persist.off = "Kapalı";
 history.persist.off.help = "Proje geçmişi olmadan kaydedilir.";
@@ -970,6 +1081,18 @@ history.persist.separate = "Ayrı";
 history.persist.separate.help = "Geçmiş bu cihazdaki proje verilerinde saklanır. Proje dosyası küçük kalır.";
 // Redo
 history.redo = "Yinele";
+// Slider + play button: rewinds to the root and redoes the operations one by one, the value is a number of operations per second
+history.replay = "Yeniden oynat";
+// Option of the replay popup: the camera follows the replayed operations even when the history "Restore camera" setting is off
+history.replay.camera = "Kamerayı eski durumuna getir";
+history.replay.camera.help = "Geçmişteki Kamerayı eski durumuna getir seçeneği kapalı olsa bile kamera yeniden oynatılan işlemleri takip eder.";
+// Popup opened by the play button, above its two options
+history.replay.confirm = "Geçmiş yeniden oynatılsın mı?";
+history.replay.help = "Başa döner, ardından işlemleri bu hızda (saniye başına işlem) teker teker yeniden yapar.
+Durdurmak için düğmeye tekrar dokunun. Geri alma, yineleme veya bir kayda dokunma da oynatmayı durdurur.";
+// Option of the replay popup: runs backwards, undoing from the current state to the root
+history.replay.reverse = "Tersine çevir";
+history.replay.reverse.help = "Baştan yeniden oynatmak yerine mevcut durumdan başa kadar işlemleri geri alır.";
 // When enabled, undoing an operation also restores the camera position
 history.restoreCamera = "Kamerayı eski durumuna getir";
 history.restoreCamera.help = "Bir eylemi geri aldığınızda/yinelediğinizde kaydedilmiş kamera bakış açısını eski durumuna getirmek için bu seçeneği etkinleştirin.";
@@ -1015,25 +1138,43 @@ inspect.short = "Denetle";
 
 // Interface customization
 interface = "Arayüz";
+interface.accent.solid = "";
+interface.accent.thin = "";
+interface.accentStrength = "";
+interface.accentStrength.help = "";
+interface.appearance = "";
 // Interface option (panel blurriness, if the menus are transparent)
 interface.blurFactor = "Bulanıklık seviyesi";
+interface.buttonFill = "";
+interface.buttonFill.help = "";
+interface.buttonSupportContrast = "";
+interface.buttonSupportContrast.help = "";
 // Interface option (main base color)
-interface.colorBase = "Renk tabanı";
+interface.colorBase = "";
 // Interface option (color of panels, if the menus are transparent)
-interface.colorBaseTransparent = "Renk paneli";
+interface.colorBaseTransparent = "";
 // Interface option (accent widget color)
-interface.colorSelect = "Renk aracı";
-// UI customization: each item row fits on a single line (synonym: inlined)
-interface.compact = "UI: Sıkıştırılmış";
+interface.colorSelect = "";
+interface.colors = "";
+interface.colors.action = "";
+interface.colors.disabled = "";
+interface.colors.filled = "";
+interface.colors.idle = "";
+interface.colors.infinite = "";
+interface.colors.options = "";
+interface.colors.preview = "";
+interface.colors.reset = "";
+interface.colors.stepped = "";
 // Spacing between widgets
 interface.cursorStep = "Dikey boşluk";
+interface.customColorFill = "";
+interface.customColorFill.help = "";
 // Do not use windows native dialog
 interface.customDialog = "Nomad İletişim Kutusunu Kullan";
 interface.customDialog.help = "Nomad'ın kendi metin iletişim kutusunu Yerel olan yerine göster.";
-// UI customization: each row of the list will be bigger
-interface.expandList = "UI: Listeyi genişlet";
-// UI customization: each row of the list will be bigger
-interface.expandList.help = "Sadece liste yönetimini kolaylaştıracak bir kullanıcı arayüzü seçeneği.";
+// Interface customization: soft shadow cast by the panels on the scene
+interface.dropShadow = "";
+interface.dropShadow.help = "";
 // Interface customization
 interface.flipBottom = "Alt çubuğu aynala";
 // Interface customization
@@ -1042,53 +1183,66 @@ interface.flipMiddle = "Yan çubukları aynala";
 interface.flipTop = "Üst çubuğu aynala";
 // Size of fonts
 interface.fontScale = "Yazı tipi boyutu";
+interface.glass = "";
+interface.glass.help = "";
 // Dot menu hovering
 interface.hoverDot = "Kalem noktası";
 interface.hoverDot.help = "Kayan kalem algılandığında arayüzde küçük bir nokta göster.";
 // Help popup when hovering
 interface.hoverHelp = "Üzerine gelince yardım";
-// Interface option (main base color)
-interface.iconSupport = "Yüksek Kontrastlı Düğme";
-interface.iconSupport.help = "Düğmelerin etkin olduklarında daha görünür olmalarını sağlayan alternatif bir stil.
-
-Otomatik olarak ayarlandığında, Nomad düşük kontrastlı UI renklerinde etkin/devre dışı arasındaki kontrast düşük olduğunda bu modu kullanacaktır.";
 // Inset
 interface.inset.title = "Kenardan kaydırmalar";
 interface.inset.title.help = "Bu değerleri, sadece ekran kenarlarındaki düğmeleri kullanırken sorun yaşıyorsanız değiştirebilirsiniz.
 
 Kaydırıcı devre dışıysa, Nomad cihazın kendisinden gelen güvenli bölge değerlerini kullanır.";
+interface.layout = "";
 // Move a floating panel by dragging inside it, instead of using its bar
-interface.panelDrag = "";
-interface.panelDrag.help = "";
+interface.panelDrag = "Panel gövdesini sürükle";
+interface.panelDrag.help = "Yüzen bir panel her zaman çubuğu sürüklenerek taşınır. Bu seçenek panel gövdesini de sürüklemenizi sağlar.
+
+Otomatik ayarında parmak veya kalem, yalnızca sürükleme dikeyden daha yatay olduğunda paneli taşır; böylece dikey sürükleme içeriği kaydırmaya devam eder. Fareyle herhangi bir yönde sürüklemek için Evet olarak ayarlayın.";
 // Interface option (if the menus are transparent or opaque)
 interface.panelTransparent = "Şeffaf panel";
 // Width of the interface panels
 interface.panelWidth = "Panel genişliği";
 // Interface color style
 interface.preset.title = "Önayarlar";
+// Interface option, outline drawn around a row of options and between its slots
+interface.radioBorder = "";
 // Reset interface settings
 interface.resetAll = "Stili sıfırla";
 interface.resetAll.confirm = "Arayüz ayarları sıfırlansın mı?";
+interface.resetAppearance = "";
+interface.resetLayout = "";
 // Resize window (should be short)
 interface.resize = "Yeniden Boyutlandır";
 // Scale the interface
 interface.scale = "Genel ölçek";
+// Interface option, strength of the outline drawn around a selected button or a slider bar
+interface.selectBorder = "";
+// Interface option, strength of the accent tint behind a selected button or inside a slider bar
+interface.selectFill = "";
 // Show the drag bar of a floating shortcut window
 interface.shortcut.bar = "Çubuk";
 // The shortcut bar at the bottom of the screen (section title and row name)
 interface.shortcut.bottom = "Kısayollar ekle (alta)...";
 // Floating shortcut windows (section title)
 interface.shortcut.float = "Kısayollar ekle (pencere)...";
+// Interface option, the slider track is an outline instead of a filled plate
+interface.sliderBorder = "";
+interface.sliderFill = "";
+interface.sliderFill.help = "";
+interface.supportContrast = "";
+interface.supportContrast.help = "";
 // list of tools
 interface.toolbox = "Araç kutusu";
 // Colored text and icon
 interface.toolbox.color = "Renkli";
-// Interface customization (the toolbox is a grid, we can adjust the column count)
-interface.toolbox.columns = "Sütunlar";
 // hide toolbox by default
 interface.toolbox.hide = "Gizle";
 // Reset the tool's order in the toolbox
 interface.toolbox.resetOrder = "Sıralamasını sıfırla";
+interface.toolboxColors = "";
 // Interface customization (the toolbox is a grid, we can adjust the column count)
 interface.top.alt = "Farklı Sıralama";
 interface.top.alt.help = "Üst menü için alternatif sıralama simgesi.
@@ -1115,12 +1269,22 @@ item.delete.confirm = "Silinsin mi?";
 item.delete.confirm.yes = "Evet, sil";
 // When we delete the item but the image is used somewhere
 item.delete.used = "Kullanılan resim";
-// Draggable, movable
-item.draggable = "Hareketli";
+// Short button label, turns a stamp (alpha or VDM) back into a plane that can be sculpted again
+item.edit = "Düzenle";
+item.edit.help = "Bu damgayla şekillendirilmiş, bir heykel katmanı ve piksel başına bir dörtgen içeren bir düzlem ekler.
+
+Şekillendirin, ardından `Topoloji -> Pişir -> VDM` ile tekrar pişirin.";
+// Short button label, opens a popup to correct the pixels of an imported image
+item.fix = "Düzelt";
+item.fix.help = "Görüntünün kendisini düzeltir: orta değer, ters çevirme, döndürme.
+
+Dosya yeniden yazılır; böylece diğer uygulamalar da düzeltilmiş görüntüyü okur.";
 // Show the folders of a list as a column on its side, instead of a drop down menu
-item.folderColumn = "";
+item.folderColumn = "Klasör sütunu";
+// Show the folders of a drop down menu as small chips filling the width, instead of one per line
+item.folderCompact = "Kompakt klasörler";
 // Show a list of items as one group of items per folder, instead of a single list
-item.folderGroup = "";
+item.folderGroup = "Klasöre göre grupla";
 // Hide an item (object, layer, etc)
 item.hide = "Gizle";
 // Make an item instance, similar to clone but keeps the underlying geometry (Synonym: link? soft clone?)
@@ -1129,6 +1293,7 @@ item.instance = "Örnek";
 item.lastSave = "Son kaydetme";
 // Reload last save of an item (object, tool, etc)
 item.lastSave.confirm = "Son kayıt yüklensin mi?";
+item.load = "";
 // The item is locked (either it cannot be selected, edited, or we preserve its details)
 item.lock = "Kilitle";
 // Merge an item with another one below (layer)
@@ -1143,6 +1308,8 @@ item.next = "Sonraki";
 item.none = "Yok";
 // The order of an item in a list
 item.order = "Sıra";
+// Size of the preview images of a list of items, in pixels
+item.previewSize = "Önizleme boyutu";
 // Focus on previous item
 item.previous = "Önceki";
 // Rename an item (object, tool, etc)
@@ -1155,19 +1322,19 @@ item.reset.confirm = "Sıfırlansın mı?";
 // Save an item (object, tool, etc)
 item.save = "Kaydet";
 item.save.confirm = "Kaydedilsin mi?";
-item.saveLibrary = "";
+item.saveLibrary = "Kitaplığa kaydet";
 // Select an item (object, layer, etc)
 item.select = "Seç";
 // Show an item (object, layer, etc)
 item.show = "Göster";
 // Show the name of every item under its preview image
-item.showName = "";
+item.showName = "Adları göster";
+// The show button of the curve/primitive handlers only toggles them all, instead of picking one kind
+item.showOnOff = "Yalnızca aç/kapat";
 // Order a list of items alphabetically
-item.sortName = "";
+item.sortName = "Ada göre";
 // Order a list of items with the most recently modified first
-item.sortRecent = "";
-// Convert the item type (mesh, light) to a simple Node type
-item.toNode = "Düğüme";
+item.sortRecent = "En son";
 // Uninstance the object, make the object real
 item.uninstance = "Örneklemeyi kaldır";
 // Unselect an item (object, layer, etc)
@@ -1240,14 +1407,11 @@ license.grace = "Çevrimdışı - Kalan ek süre:";
 license.grace.days = "günler";
 license.grace.hours = "saatler";
 license.key = "Lisans anahtarı";
-license.newest = "Yeni versiyon mevcut!";
 license.portal.label = "Lisans portalı";
 license.portal.label.warning = "Bu portal, sadece Windows/Mac sürümünü satın alan kullanıcılar içindir.
 
 iOS/Android uygulama mağazalarından yapılan satın alımlar çapraz platform olarak çalışmaz.";
 license.portal.title = "Mevcut kullanıcılar";
-license.retry = "Tekrar dene";
-license.title = "Lisans";
 license.validate = "Doğrula";
 license.validate.error404 = "Lisans anahtarı bulunamadı.";
 license.validate.error422 = "İşlenemez Varlık.";
@@ -1259,13 +1423,10 @@ light.angle = "Açı";
 light.attachment = "İliştirme";
 // The light will move along the camera
 light.attachment.camera = "Kamera";
+light.attachment.camera.help = "Işığın yönlendirilmesi kamera görünümüne göre olur.";
 // The light will stay still even if the user moves the camera
 light.attachment.fixed = "Sabit";
-light.attachment.help = "• Sabit
-Işığın yönlendirilmesi değişmez.
-
-• Kamera
-Işığın yönlendirilmesi kamera görünümüne göre olur.";
+light.attachment.fixed.help = "Işığın yönlendirilmesi değişmez.";
 // Color of light
 light.color = "Renk";
 // Contact shadows are more precise shadows on small distance (synonym: cavity shadows?)
@@ -1279,17 +1440,13 @@ light.kelvin = "Kelvin";
 light.position = "Konum";
 // Move the light in front of the camera (but keeps its inner orientation)
 light.resetPosition = "Yeniden ortala";
-// Adjustment to fix artefacts
-light.shadow.bias = "Sapma";
 // Enable or disable shadows for a light
 light.shadow.cast = "Gölge";
-// Point light only works with "screenspace" shadow type (not "shadow map")
-light.shadow.pointTip = "Nokta ışık sadece ekran uzayındaki gölgeleri destekler.";
-// How blurry the shadow is
-light.shadow.softness = "Yumuşaklık";
 // Thickness threshold for screen-space shadows (synonym: threshold, bias)
 light.shadow.tolerance = "Tolerans";
 light.shadow.type = "Gölge türü";
+// Shown above the two shadow type entries
+light.shadow.type.help = "Gölge haritası sahneyi ışığın bakış açısından işler, böylece kameranın göremediği geometriye de gölge düşürür. Ekran uzayı ise ekranda zaten bulunan derinliği okur. Daha az maliyetlidir ancak yalnızca görünen öğeleri gölgelendirir.";
 // Shadows computed with only the information visible on screen
 light.shadow.type.screenspace = "Ekran uzayı";
 light.shadow.type.screenspace.help = "Deneysel bir özellik, gelecekteki sürümlerde çıkarılabilir.
@@ -1316,26 +1473,22 @@ light.type.hdri = "HDRI";
 light.type.point = "Nokta";
 // Spot light emits light in a single direction, restricted by a cone shape.
 light.type.spot = "Spot";
-light.type.sun = "Güneş";
-// Whether the light is shown
-light.visible = "Göster";
 
 link.address = "Bu aygıt";
 link.approve = "Kabul et";
-link.bridges = "Köprü betikleri";
+link.bridges = "Köprü betikleri (GitHub)";
 link.cameras = "Kameralar";
 link.copyRepository = "Depo URL'sini kopyala";
 link.deny = "Reddet";
 link.forget = "Eşleştirilmiş cihazları unut";
 link.get = "Al";
-link.getFrom = "$0 kaynağından al";
 link.goz.enable = "GoZ’yi etkinleştir";
 link.goz.noExport = "İçe aktarılacak bir şey yok; önce ZBrush’ta GoZ’ye basın";
 link.goz.notInstalled = "Önce ZBrush’ta GoZ’yi yükleyin (Tercihler > GoZ)";
 link.goz.received = "ZBrush’tan $0 nesne alındı";
 link.goz.sent = "ZBrush’a $0 nesne gönderildi";
 link.goz.waiting = "ZBrush dışa aktarımı bekleniyor";
-link.help.others = "Diğer uygulamalar (ZBrush vb.) bir Nomad ana makinesine aynı şekilde bağlanır.
+link.help.others = "Diğer uygulamalar (ZBrush, Marmoset Toolbag vb.) bir Nomad ana makinesine aynı şekilde bağlanır.
 
 Köprü, söz konusu uygulamayla aynı bilgisayarda çalışan bir Python betiğidir.
 Örnek betikler ve protokol GitHub üzerindedir; bunları başlangıç noktası olarak kullanın.";
@@ -1356,14 +1509,11 @@ link.mode.help = "Bir cihaz oturuma ana makine olur, diğerleri katılır.";
 link.mode.nomad = "Nomad ↔ Nomad";
 link.mode.nomad.help = "Bir cihazda Ana makine, diğerlerinde Katıl seçeneğini belirleyin ve ardından ana makinenin adına dokunun.";
 link.nearby = "Yakındaki cihazlar";
-link.network = "Ağ";
 link.objects = "Nesneler ve geometri";
 link.off = "Kapalı";
 link.peer = "Eş";
 link.peerAddress = "İstemci adresi";
-link.peers = "Eşler";
 link.port = "Ağ bağlantı noktası";
-link.receive = "Al";
 link.replace = "Değiştir";
 // Confirm popup before "Replace": deletes the local scene (undoable), then pulls the peer's scene
 link.replace.confirm = "Geçerli sahne silinip eşin sahnesi alınsın mı?";
@@ -1374,7 +1524,6 @@ link.scope.scene = "Sahne";
 link.scope.selection = "Seçim";
 link.searching = "Cihazlar aranıyor";
 link.send = "Gönder";
-link.sendTo = "$0 hedefine gönder";
 link.source = "Sahne düzenlemeleri";
 link.source.from = "$0 kaynağından";
 link.source.help = "Sahne düzenlemeleri aynı anda tek bir cihazdan aktarılır. Otomatik, yönü en son etkinliğe atar.";
@@ -1474,8 +1623,6 @@ material.refraction.interior = "İç alan";
 material.refraction.surface = "Yüzey";
 // Defines how blurry or sharp the reflection on a material is (opposite of glossiness)
 material.roughness = "Pürüzlük";
-// How much light a surface will reflect
-material.specular = "Yansıtıcı";
 // Depth means how far the light can travel under the surface
 material.subsurfaceDepth = "Derinlik";
 // Textures/Image
@@ -1531,8 +1678,6 @@ Aksi taktirde, gölge yakalayıcı tamamen metalikse ve SSR (Yansıma) Post İş
 material.type.subsurface = "Yüzey altı";
 material.type.subsurface.help = "En iyi sonucu elde edebilmek için PBR gölgeleme moduna geçebilir ve ideal olarak loş bir ortamda en az bir yönlendirilmiş ışık kullanabilirsiniz.";
 material.unused = "Kullanılmayan";
-// A warning indicating that the mesh has no UVs
-material.warningNoUVs = "UV yok!";
 
 menu.about = "Hakkında";
 menu.alpha = "Alfa";
@@ -1617,6 +1762,11 @@ Alt klasörlerdeki yanlış türdeki dosyalar, silinebilir_klasöre taşınabili
 nomad.mainFolder.warning = "Dosyalar dokunulmadan kalır.
 Kopyalanmaz, silinmez veya taşınmaz.";
 
+// Material picker button of the painting menu, its channels are chosen in the material options popup
+paint.dropper = "Malzeme damlalığı";
+paint.dropper.help = "İmlecin altındaki malzemeyi seçer.
+
+Yalnızca işaretli kanallar değiştirilir.";
 // Factor/Opacity of paint tool
 paint.intensity = "Boyama yoğunluğu";
 // Opaque opacity
@@ -1643,13 +1793,19 @@ Bu seçenek kapalıyken malzeme önayarı yalnızca textures/ klasöründeki dok
 
 Dokuların bir kopyasını malzeme önayarına eklemek için bu seçeneği açın.
 İlişkili doku dosyalarını ayrıca vermeden dokulu bir önayarı paylaşmak için kullanışlıdır.";
-// use stencil mode
-paint.stencil = "Şablon";
 paint.strokePainting.title = "Boyama";
-// Brush-stroke texture
-paint.texture.warningEnable = "Doku projeksiyonuna izin vermek için darbe boyamanın etkinleştirilmesi gerekir (onay kutusu yukarıda)!";
-paint.texture.warningIgnored = "Geçerli araç dokuları kullanamaz!";
+// Curve editor of a texture slot, a pill in the texture popup footer
+paint.texture.curve = "Eğriler";
+// Before → after previews on top of the curve editor
+paint.texture.curve.compare = "Orijinal → mevcut";
+paint.texture.curve.help = "Doku değerlerini boyanmadan önce yeniden eşler.
+
+Görüntü dosyası değişmeden kalır.";
 // Inherit stroke falloff option for the painting
+// Help of the alpha button of the painting menu, not the alpha menu itself
+paint.tool.alpha.help = "Devre dışı bırakıldığında boyama alfayı yok sayar ve fırça alanının tamamını kaplar.";
+// Help of the falloff button of the painting menu, not the falloff menu itself
+paint.tool.curve.help = "Devre dışı bırakıldığında boyama fırçanın kenarına kadar tam yoğunluğu korur.";
 paint.tool.help = "Boyama darbelerinin yoğunluğunu modüle etmek için araç alfa, düşüş ve rastgeleleştirici kullanın.
 
 Bu seçenekler tüm boyama özelliği için göz ardı edilir, ancak üç düzlemli varyant için alfa dikkate alınır.";
@@ -1658,8 +1814,13 @@ paint.useGlobal = "Global malzeme";
 paint.useGlobal.help = "Bu seçenek etkinse, seçilen malzeme diğer araçlardakiyle aynı olur.
 
 Sadece pürüzlülük, metaliklik seviyesi ve renk ayarlarının dikkate alındığı unutulmamalıdır.";
+// Only the intensity part of the stroke randomizer, applied to the painting
+paint.useJitter = "Yoğunluğu rastgeleleştir";
+paint.useJitter.help = "Yoğunluk rastgeleleştirmesinin boyamayı etkileyip etkilemeyeceğini belirler. Konum, döndürme ve ölçek rastgeleleştirmesi her zaman damganın tamamını hareket ettirir.";
 // The current tool will paint the object if this option is enabled
 paint.usePainting = "Darbe boyama";
+// Paint with the color, roughness, metalness and opacity baked inside the VDM stamp
+paint.vdmMaterial = "Damga malzemesi";
 
 position.bottom = "Alt";
 position.center = "Ortalanmış";
@@ -1701,6 +1862,8 @@ Değer 0 ise, her şey parlama yapar.";
 // https://en.wikipedia.org/wiki/Chromatic_aberration
 postprocess.chromatic = "Kromatik aberasyon";
 postprocess.chromatic.factor = "Şiddet";
+// Short label for the section shortcut bar
+postprocess.chromatic.short = "Kroma";
 // Accentuate the edges of the model
 postprocess.curvature = "Eğrilik";
 // Color/Strength of convex curvature
@@ -1709,6 +1872,8 @@ postprocess.curvature.bump = "Yumru";
 postprocess.curvature.cavity = "Boşluk";
 // Main strength of curvature
 postprocess.curvature.factor = "Faktör";
+// Short label for the section shortcut bar
+postprocess.curvature.short = "Boşluk";
 // Color curves
 postprocess.curve = "Renk Düzenleme";
 postprocess.curve.blue = "Mavi";
@@ -1716,8 +1881,8 @@ postprocess.curve.green = "Yeşil";
 // Curve for pixel luminance
 postprocess.curve.luminance = "Ana";
 postprocess.curve.red = "Kırmızı";
-// Reset color grading curves
-postprocess.curve.resetAll = "Tümünü Sıfırla";
+// Short label for the section shortcut bar
+postprocess.curve.short = "Eğriler";
 // Denoise
 postprocess.denoise = "Gürültü Giderici";
 postprocess.denoise.help = "Tüm kareler birleştikten sonra bir gürültü giderme geçişi uygula.";
@@ -1728,13 +1893,17 @@ postprocess.dithering.help = "Bantlaşma (örneğin geçiş, vinyet) artefaktlar
 // Depth of Field (bokeh)
 // https://en.wikipedia.org/wiki/Depth_of_field
 postprocess.dof = "Alan Derinliği";
+// f-number, a lower value opens the lens and blurs more
+postprocess.dof.aperture = "Diyafram";
 // The blur factor behind the focused point
 postprocess.dof.blurFar = "Uzaklık bulanıklığı";
 // The blur factor in front of the focused point
 postprocess.dof.blurNear = "Yakınlık bulanıklığı";
 postprocess.dof.focusTip = "Odak noktasını değiştirmek için bir nesneye dokunun.";
-// Full resolution (1:1 resolution) instead of half resolution
-postprocess.fullResolution = "Tam Çözünürlük";
+// Drive the blur with a single camera aperture instead of the two blur factors
+postprocess.dof.physical = "Diyafram modu";
+// Short label for the section shortcut bar (no need to translate "DoF")
+postprocess.dof.short = "DoF";
 // Filmic Grain
 // https://en.wikipedia.org/wiki/Film_grain
 postprocess.grain = "Tanecik";
@@ -1746,6 +1915,8 @@ postprocess.maxSamples.help = "Performans pahasına post-prodüksiyon kalitesini
 postprocess.pixelArt = "Pixel Art";
 // Override frame accumulation feature
 postprocess.pixelArt.allowAccumulate = "Kare örneklemeye izin ver";
+// Short label for the section shortcut bar
+postprocess.pixelArt.short = "Pikseller";
 // Quality vs performance
 postprocess.quality = "Kalite";
 postprocess.quality.help = "Performansı düşürmeyi göze alarak kaliteyi artırmak için bu seçenekleri etkinleştirin.";
@@ -1765,6 +1936,8 @@ postprocess.scanline.spacing = "Aralık";
 // https://en.wikipedia.org/wiki/Unsharp_masking
 postprocess.sharpness = "Keskinlik";
 postprocess.sharpness.factor = "Şiddet";
+// Short label for the section shortcut bar
+postprocess.sharpness.short = "Keskinleştir";
 // Screen-space ambient occlusion (SSAO)
 // https://en.wikipedia.org/wiki/Ambient_occlusion
 postprocess.ssao = "Ortam Oklüzyonu";
@@ -1772,16 +1945,20 @@ postprocess.ssao = "Ortam Oklüzyonu";
 postprocess.ssao.factor = "Şiddet";
 // How far the effect spreads
 postprocess.ssao.radius = "Büyüklük";
+// Short label for the section shortcut bar (no need to translate "SSAO")
+postprocess.ssao.short = "SSAO";
 // Adjustment for ssao
 postprocess.ssao.thickness = "Kalınlık";
 postprocess.ssao.thickness.help = "AO yarıçapının yüzdesi olarak, engelleyiciler için ne kadar derinlik kalınlığı varsayılacağı.";
 // Screen-Space Global Illumination (no need to translate "SSGI")
 postprocess.ssgi = "Küresel Aydınlanma (SSGI)";
-// Thickness threshold for ssgi tracing algorithm (synonym: threshold, bias)
-postprocess.ssgi.tolerance = "Tolerans";
+// Short label for the section shortcut bar (no need to translate "SSGI")
+postprocess.ssgi.short = "SSGI";
 postprocess.ssgi.warning = "SSGI için PBR gölgeleme modu gereklidir.";
 // Screen-Space Reflection (no need to translate "SSR")
 postprocess.ssr = "Yansıma (SSR)";
+// Short label for the section shortcut bar (no need to translate "SSR")
+postprocess.ssr.short = "SSR";
 postprocess.ssr.warning = "SSR için PBR gölgeleme modu gereklidir.";
 // Temporal Anti-Aliasing (no need to translate "TAA")
 postprocess.taa = "Anti-aliasing (TAA)";
@@ -1796,6 +1973,8 @@ postprocess.tone.mapping.neutral = "Nötr";
 // No tonemapping operator is used
 postprocess.tone.mapping.none = "Yok";
 postprocess.tone.saturation = "Doygunluk";
+// Short label for the section shortcut bar
+postprocess.tone.short = "Ton";
 // Darkening at the edges
 postprocess.vignette = "Vinyet";
 // How sharp the edge of the effect is
@@ -1829,10 +2008,6 @@ Bu araç için belirli bir basınç ayarı kullanmak istiyorsanız, bu seçenekt
 
 // Geometry Primitive (box, sphere, cylinder, etc)
 primitive = "Primitif";
-// Angle of torus, etc
-primitive.angleX = "Açı X";
-primitive.angleY = "Açı Y";
-primitive.angleZ = "Açı Z";
 primitive.box = "Küp";
 // Box
 primitive.boxRegular = "Aynı büyüklük (küp)";
@@ -1863,8 +2038,6 @@ primitive.edit.help = "Görünüm penceresinde 3D düzenlemeye izin verir.
 Primitifi değiştirmeden, Gizmo veya Dönüştürme aracıyla etkileşime geçmek istiyorsanız, bu özelliği devre dışı bırakabilirsiniz.";
 // Interface section where we change the geometry (shape of the primitive)
 primitive.geometry = "Geometri";
-// Make a hole in the primitive to make it hollow
-primitive.hasHole = "Deliği var";
 // Hole sub menu (cylinder, tube, etc)
 primitive.hole = "Delik";
 primitive.icosahedron = "İkosahedron";
@@ -1875,8 +2048,6 @@ primitive.isolate.bottom = "Alt";
 // One side of a cube (the right plane)
 primitive.isolate.right = "Sağ";
 primitive.lathe = "Torna";
-// Synonym: Flat subdivision
-primitive.linear = "Lineer altbölümleme";
 // Primitive configuration
 primitive.mainConfig = "Parametre";
 // Maximum number of faces of the primitives
@@ -1895,15 +2066,10 @@ primitive.profile = "Profil";
 // History entry: a control point of the profile was moved
 primitive.profile.point = "Nokta";
 primitive.profile.viewport = "Görünümde göster";
-// Make sure the shape is perfectly spherical
-primitive.projectOnSphere = "Küreye yansıt";
-primitive.projectOnSphere.help = "Mükemmel bir kürede noktaları yaslar.";
 // Radius (of a sphere, torus, etc)
 primitive.radius = "Yarıçap";
 primitive.radius.end = "Yarıçap sonu";
 primitive.radius.start = "Yarıçap başlangıcı";
-// Make sure both endpoints of a primitive (cylinder, tube, etc.) have the same size
-primitive.radius.sync = "Aynı yarıçap";
 // Size (of cube x dimension)
 primitive.size = "Büyüklük";
 primitive.sizeX = "X Büyüklüğü";
@@ -1913,6 +2079,27 @@ primitive.sphereCube = "Dörtgen Küre";
 primitive.sphereUV = "UV Küre";
 // "Post" means subdivision that occurs after the primitive is computed
 primitive.subdivision = "İşlem sonrası altbölümleme";
+primitive.text = "";
+primitive.text.align = "";
+primitive.text.bend = "";
+primitive.text.center = "";
+primitive.text.depth = "";
+primitive.text.edit = "";
+primitive.text.font = "";
+primitive.text.left = "";
+primitive.text.limit = "";
+primitive.text.lineSpacing = "";
+primitive.text.lineSpacing.help = "";
+primitive.text.maxWidth = "";
+primitive.text.maxWidth.help = "";
+primitive.text.missingFont = "";
+primitive.text.mode = "";
+primitive.text.offset = "";
+primitive.text.resolution = "";
+primitive.text.right = "";
+primitive.text.rigid = "";
+primitive.text.spacing = "";
+primitive.text.wrap = "";
 // Interface section where we change the topology (number of triangles/polygons)
 primitive.topology = "Topoloji";
 primitive.torus = "Torus";
@@ -1953,11 +2140,7 @@ quadremesh.curvatureAdaptivness = "Adaptif Boyut";
 quadremesh.curvatureAdaptivness.help = "%100'de, karelerin boyutu nesnenin eğriliğine bağlı olarak değişecek ve yüksek eğrilikte daha küçük kareler sağlayacaktır.
 %0'da, karelerin boyutu düzgün olacaktır.";
 quadremesh.reprojectVertex = "Verteksi yeniden yansıt";
-quadremesh.reprojectVertex.label = "Etkinleştirildiğinde, Nomad önceki ağda konumu yeniden projeksiyon yapacaktır.
-
-Not: Eğer ağ katmanlara sahipse, her zaman yeniden projeksiyon yapılacaktır.";
 quadremesh.reprojectVertex.short = "Verteksi yeniden yansıt";
-quadremesh.useVertexColors = "Boyamayı koru";
 
 // Singular of Repeaters (Nodes that make many copies of its children (type of mirror/curve/array/radial))
 repeater = "Tekrarlayıcı";
@@ -1965,6 +2148,49 @@ repeater = "Tekrarlayıcı";
 repeater.array.fitInside = "İçine sığdır";
 // The object will follow the curve
 repeater.curve.align = "Hizala";
+// Every other copy is turned around the curve: 90° for chain links, 180° for leaves or zipper teeth
+repeater.curve.alternate = "Dönüşümlü";
+repeater.curve.alternate.half = "180°";
+repeater.curve.alternate.quarter = "90°";
+// Count slider mode: a fixed spacing between the copies, the count follows the curve length
+repeater.curve.distance = "Mesafe";
+// Surface repeater: the copies stand on the surface (normal up), else they keep the orientation of the original
+repeater.surface.align = "";
+// Surface repeater mode: one copy per edge of the parent object, turned along the edge
+repeater.surface.edges = "";
+// Surface repeater mode: one copy per face of the parent object
+repeater.surface.faces = "";
+// Surface repeater: the copies scale with the local size of the surface
+repeater.surface.fitSize = "";
+repeater.surface.fitSize.help = "";
+// Surface repeater: with Fit size, the copies also stretch and skew to the shape of each face
+repeater.surface.fitSkew = "";
+repeater.surface.fitSkew.help = "";
+// Surface repeater: what the copies land on (faces, edges or vertices)
+repeater.surface.mode = "";
+// Surface repeater: the copies land on random faces instead of every Nth
+repeater.surface.random = "";
+repeater.surface.random.help = "";
+// Surface repeater mode: copies spread evenly over the surface, a minimum distance apart, not tied to the topology
+repeater.surface.scatter = "";
+// Surface repeater: draw another random set
+repeater.surface.shuffle = "";
+repeater.surface.shuffle.help = "";
+// Surface repeater: move the original child onto the surface
+repeater.surface.snap = "";
+repeater.surface.snap.help = "";
+// Surface repeater, Scatter mode: the minimum distance between two copies
+repeater.surface.spacing = "";
+repeater.surface.spacing.help = "";
+// Surface repeater: one copy every N faces, edges or vertices
+repeater.surface.stride = "";
+repeater.surface.stride.help = "";
+// Surface repeater, Scatter mode: toggle between a copy count and a spacing (the other value follows)
+repeater.surface.useSpacing = "";
+repeater.surface.useSpacing.help = "";
+// Surface repeater: each copy bends onto its face or along its edge instead of standing flat
+repeater.surface.warp = "";
+repeater.surface.warp.help = "";
 
 // Import resource (Alpha, Textures, MatCaps, etc)
 resource.import = "İçe aktar...";
@@ -2034,6 +2260,8 @@ scene.repeaters = "Tekrarlayıcılar";
 scene.repeaters.help = "Sahne hiyerarşisinde altında bulunan herhangi bir geometri örneğini yapan tekrarlayıcı düğümler.";
 // Hidden objects will be subtracted (they carve the other objects)
 scene.subtractionTip = "Çıkarma: Gizli nesneler";
+// Surface node type: makes copies of its children on the surface of its parent object
+scene.surface = "";
 // Keep the visibility of all selected items synchronized
 scene.syncVisible = "Görünürlüğü Senkronize Et";
 scene.syncVisible.help = "Etkinleştirildiğinde, görünür (göz) simgesini kullanmak tüm seçili öğeleri etkileyecektir.";
@@ -2049,7 +2277,6 @@ scene.validateGroup = "Tamamla";
 scene.validateGroup.joinChildren = "Alt öğeleri birleştir";
 // Keep instances in the scene
 scene.validateGroup.keepInstances = "Örnekleri Koru";
-scene.voxelResolution = "Çözünürlük";
 
 setting.global = "Genel ayar";
 setting.globals = "Genel ayarlar";
@@ -2072,12 +2299,6 @@ settings.cursor.showRope = "Dengeleyici ipi göster";
 settings.cursor.title = "İmleç";
 // Meshes that are not selected will be darkened
 settings.darkenUnselected = "Seçilmemiş nesneleri karart";
-// Display the material texture
-settings.debugChannel = "Doku Göster";
-// Display the material texture in the background
-settings.debugChannel.onBackground = "Arkaplanda";
-// Display the material texture on the mesh
-settings.debugChannel.onMesh = "Örgü Üzerinde";
 // General scene display settings
 settings.display.title = "Ekran ayarları";
 // Grid
@@ -2086,10 +2307,16 @@ settings.grid.snapDivision = "Bölümün eşiğini yakala";
 settings.grid.snapDivision.help = "Eşik, ızgaraya olan mesafeye karşı karşılaştırılır.";
 // Snap eligible tool points to the grid
 settings.grid.snapGrid = "Izgaraya tuttur";
+// Same as settings.grid.snapGrid, on a small shortcut button
+settings.grid.snapGrid.short = "Izgaraya tuttur";
 // Snap eligible tool points to nearby existing points when the camera is aligned
 settings.grid.snapPointAlign = "Noktalara tuttur (hizalanmış görünüm)";
+// Same as settings.grid.snapPointAlign, on a small shortcut button
+settings.grid.snapPointAlign.short = "Noktalara tuttur (hizalı)";
 // Snap eligible tool points to nearby existing points when the camera is not aligned
 settings.grid.snapPointFree = "Noktalara tuttur (serbest görünüm)";
+// Same as settings.grid.snapPointFree, on a small shortcut button
+settings.grid.snapPointFree.short = "Noktalara tuttur (serbest)";
 // Handles are controls that you interact with in the viewport in order to edit something
 settings.handle = "Tutamak";
 settings.handles = "Tutamaklar";
@@ -2097,12 +2324,6 @@ settings.handles = "Tutamaklar";
 settings.highlight = "Vurgula";
 settings.highlight.duration = "Süre";
 settings.highlight.help = "Seçim değiştiğinde, şu anda seçili olan nesneleri vurgular.";
-// Hole filling settings
-settings.hole = "Delik doldurma";
-// Allow the hole-filling algorithm to handle non-manifold (irregular) topology
-settings.hole.nonManifold = "Manifold olmayanları doldur";
-settings.hole.nonManifold.help = "Manifold olmayan delikleri doldurmaya çalışır.
-Bu seçenek ayarlarda kayıtlı değildir.";
 // Show icon on the canvas
 settings.icon = "Simge";
 // Show icons on the canvas
@@ -2127,6 +2348,18 @@ settings.outline = "Dış Hatlar";
 // Outline (contour highlight around the selected object)
 settings.outline.help = "Seçilen nesneler anahatla vurgulanır.";
 settings.outline.thickness = "Kalınlık";
+// Object budget shared by every repeater in the scene
+settings.repeater.maxCopies = "";
+settings.repeater.maxCopies.help = "";
+// Most copies a single repeater makes
+settings.repeater.maxCount = "";
+settings.repeater.maxCount.help = "";
+// Polygon budget shared by every copy in the scene
+settings.repeater.maxFaces = "";
+settings.repeater.maxFaces.help = "";
+// Settings section: limits shared by every repeater (array, radial, curve, surface)
+settings.repeater.title = "";
+settings.repeater.title.help = "";
 // Reset preference settings button
 settings.reset = "Varsayılan ayara sıfırla";
 settings.reset.confirm = "Tercihler sıfırlansın mı?";
@@ -2145,7 +2378,6 @@ Bazı kaynaklar ayrı olarak kaydedilir ve SIFIRLANMAZ, bunlardan bazıları:
 Işıklandırma, süreç sonrası işlemler, kamera görünümleri, vb. gibi projeye bağlı olan hiçbir şeye dokunulmayacağı unutulmamalıdır";
 // Shape draw thing
 settings.shape = "Biçim";
-settings.shape.color = "Poligon rengi";
 // Disable this option to force show the hidden faces
 settings.showDiscard = "Gizlemeyi Kullan";
 // Show and use the masking on the mesh
@@ -2161,20 +2393,20 @@ settings.snapCube.align = "Hizalamayı Sınırla";
 settings.snapCube.align.help = "Görünümleri dünya ekseni ile hizalayın. Etkinleştirildiğinde, sadece 6 sabit görünüm mümkündür.
 
 Otomatikte, kısıtlama sadece kamera Yörünge modundayken gerçekleşir.";
-// Move the navigation cube to the bottom of the screen
-settings.snapCube.bottom = "Alt";
 // Extra snapping views on the edges and corners of the navigation cube
-settings.snapCube.edgeCorner = "";
-settings.snapCube.edgeCorner.help = "";
+settings.snapCube.edgeCorner = "Kenarlar ve köşeler";
+settings.snapCube.edgeCorner.help = "Küpün kenarlarına ve köşelerine tutturma görünümleri ekler (kehribar bölgeler).";
 // Flip the camera (rotate 180° to see the other side)
 settings.snapCube.flip = "180° Çevir";
 settings.snapCube.flip.help = "Görünüm zaten sabitlendiğinde görünümü çevir.";
-// Move the navigation cube on the left side of the screen
-settings.snapCube.left = "Sol";
+// Dragging the navigation cube rotates like the Turntable mode, even if the camera is in Trackball
+settings.snapCube.turntable = "Döner platform sürüklemesi";
+settings.snapCube.turntable.help = "Küpü sürüklemek kamerayı yatış yapmadan döndürür ve her yaslama görünümünde durur.
+
+Küpü bunun yerine İztopu dönüşüyle sürüklemek için bu seçeneği devre dışı bırakın. Her iki durumda da sürükleme yatay veya dikey kalır.";
 // Stats (information logs about the scene displayed on screen)
 settings.stats = "İstatistik";
 settings.stats.all = "Tüm sahneyi göster";
-settings.stats.right = "Sağ";
 // If the object is opened (a simple plane for example), two sided means we'll be able to see if from the two sides of the planes
 settings.twoSided = "İki taraflı";
 settings.twoSided.help = "Yüzler her iki taraftan da görülebilir.";
@@ -2192,7 +2424,6 @@ shading.environment.attachedToCamera.help = "Ortamı kameraya bağlar.
 Işıklandırmanın sabit olmasını zorlar ve bu da şekillendirme yaparken faydalı olur.";
 shading.environment.backgroundBlur = "Bulanıklaştır (arka plan)";
 shading.environment.exposure = "Pozlandırma";
-shading.environment.import = "HDR içe aktar";
 shading.environment.rotation = "Döndürme";
 shading.environment.rotation.help = "Görünüm penceresinde 3 parmağınızı yatay olarak kaydırarak, ortamı döndürebilirsiniz.";
 // Randomize colors
@@ -2203,7 +2434,6 @@ shading.instance.help = "Nesne ID ile aynı, ancak örnekler aynı renge sahip o
 // Lights
 shading.lights = "Işıklar";
 shading.lights.addLight = "Işık ekle";
-shading.lights.warning = "Işıklar için PBR gölgeleme modu gereklidir.";
 // Fast rendering mode for sculpting purpose
 shading.matcap = "MatCap";
 shading.matcap.global = "Global MatCap kullan";
@@ -2252,11 +2482,6 @@ shortcut.voxel = "Voksel";
 shortcut.wireframe = "Taslak";
 shortcut.xray = "X-Ray";
 
-sonar.connect = "SonarPen'i Bağla";
-sonar.connect.confirm = "SonarPen'i Bağlayın mı?";
-sonar.connect.confirm.warning = "Sonar Pen, kalemin basıncını algılamak için mikrofonu (ses döngüsü) kullanacaktır.";
-sonar.disconnect = "SonarPen'i Bağlantısını Kes";
-
 // space
 space.local = "Yerel";
 space.screen = "Ekran";
@@ -2279,9 +2504,7 @@ stat.ramHistory = "Geçmiş";
 stat.ramOther = "Diğer";
 // Memory taken by the scene
 stat.ramScene = "Sahne";
-stat.scene.face = "Sahne yüzleri";
 stat.scene.vertex = "Sahne verteksleri";
-stat.triangles = "Üçgenler";
 stat.used = "Kullanılan: $0";
 // Memory used by the app (RAM, not storage!)
 stat.usedMemory = "Kullanılan bellek";
@@ -2296,6 +2519,7 @@ stat.vramTextures = "Vram dokuları";
 
 status.exit = "Kaydedilmemiş değişiklikler! Kapatmadan önce kaydetmek ister misiniz?";
 status.exit.no = "Kaydetme";
+status.exit.title = "";
 status.exit.yes = "Kaydet";
 
 store.description.baking = "• Pişirme
@@ -2373,10 +2597,25 @@ stroke.alpha.fit.help = "Bu seçenek yalnızca alfa ve fırça dokuları kare de
 
 Etkinleştirildiğinde her görüntü boşluk olmadan bağımsız döşenir.
 Oranları farklı olduğunda alfa ve diğer görüntüleri eşzamanlı tutmak için bu seçeneği kapatın.";
+// Title of the popup that corrects the alpha image itself
+stroke.alpha.fix = "Alfayı düzelt";
+// Follows a number: "30% negative pixels clamped to zero"
+stroke.alpha.fix.clamped = "Sıfıra sınırlandırılan negatif piksellerin % oranı";
+// Under the two previews of the popup: the current image on the left, the corrected one on the right
+stroke.alpha.fix.compare = "Mevcut → düzeltilmiş";
+// Mirror the image left/right
+stroke.alpha.fix.flipX = "Yatay çevir";
+// Mirror the image top/bottom
+stroke.alpha.fix.flipY = "Dikey çevir";
+// Turn the image by a quarter
+stroke.alpha.fix.rotate = "90° döndür";
+// The border pixels do not all share the same value, so no single mid value fits them
+stroke.alpha.fix.spread = "Kenar tekdüze değil.";
 // Invert the pixel (black, white)
 stroke.alpha.invert = "Pikselleri tersine çevir";
 // Middle-point value at which no deformation occurs
 stroke.alpha.midValue = "Orta değer";
+stroke.alpha.midValue.detect.help = "Orta değeri görüntünün kenarından okur.";
 stroke.alpha.midValue.help = "Deformasyon oluşmayan orta nokta değeri.
 
 (Orta değer = 0)
@@ -2390,6 +2629,7 @@ stroke.alpha.midValue.help = "Deformasyon oluşmayan orta nokta değeri.
 (Orta değer = 1)
 -Siyah: negatif yer değiştirme 
 -Beyaz: yer değiştirme yok";
+stroke.alpha.midValue.pick.help = "Orta değeri alfanın üzerinden seçer.";
 // Alpha rotation
 stroke.alpha.rotation = "Döndürme";
 stroke.alpha.rotation.lock.help = "Alfa yönlendirmesini kilitle.
@@ -2460,11 +2700,10 @@ Bu, alfaların örneklenme şekline benzerdir.";
 stroke.falloffProject.sphere = "Küre";
 // Synonymous: Scatter/Jitter/Randomize
 stroke.jitter = "Rastgeleleştir";
-stroke.jitter.period = "Periyot";
+stroke.jitter.period = "";
 stroke.jitter.period.help = "Titreşim döngüsünün uzunluğu.
 Yavaş, dalgalı değişimler için artırın.
 Hızlı parazit için azaltın.";
-stroke.jitter.period.hint = "Daha yavaş";
 // Make the brush stroke lag behind the pointer
 stroke.lazyRadius = "Yavaş dengeleyici ip";
 stroke.lazyRadius.help = "Darbeler, belirli bir mesafede işaretçi konumunun arkasında kalır.
@@ -2475,10 +2714,6 @@ stroke.lazySmooth = "Darbe düzleştirme";
 stroke.lazySmooth.help = "Daha düz bir darbe elde edebilmek için çoklu işaretçinin ortalama konumu.
 
 Değerler yüksek olduğunda, darbe işaretçinin arkasında kalır, ama daha sonra yakalar.";
-stroke.minSpacing.help = "Araç yarıçapına göre her darbe arasındaki boşluk.
-
-Daha düşük değerlerde darbeler daha düzgün olur, ama performans düşer.";
-stroke.minSpacingAdjustIntensity.help = "Darbe aralığına bağlı olarak, tutarlı bir deformasyon sağlayabilmek için fırça yoğunluğunu ayarlar.";
 // determine normal direction
 stroke.normal.direction = "Yön";
 stroke.normal.direction.auto = "Otomatik";
@@ -2501,8 +2736,6 @@ stroke.normalFalloff = "Düşüş Normal Filtresi";
 stroke.normalFalloff.help = "Normalleri yüzey normalinden çok fazla sapan noktaları hariç tut.
 
 Kırışıklar veya çıkıntılar boyamak için kullanışlıdır.";
-// small tip/warning
-stroke.onlyLasso = "Sadece lasso aracı için etkin olan ayarlar.";
 // sculpt on hide or mask
 stroke.protect = "Alanı koru";
 stroke.protect.hide.help = "Otomatiğe ayarlandığında, tel kafes menüsüne bakın (gizli yüzlerde tel kafes görünüyorsa gizli yüzler düzenlenecektir).";
@@ -2562,8 +2795,13 @@ stroke.type.roll = "Yuvarla";
 stroke.type.tile = "Döşeme";
 // Sculpt and paint with alpha projected on 3 axis
 stroke.type.triplanar = "Üç düzlemli";
+// Drag on the surface to grab a shape from it and turn it into a VDM stamp
+stroke.type.vdmPick = "VDM yakala";
 // The tool can use DynTopo
 stroke.useDynamic = "Dinamik topolojiye izin ver";
+
+stroke.vdmPick.tolerance = "";
+stroke.vdmPick.tolerance.help = "";
 
 // Symmetry
 symmetry = "Simetri";
@@ -2579,7 +2817,6 @@ symmetry.edit = "Gizmo düzenleme";
 symmetry.edit.help = "Simetri düzlemini serbestçe belirleyebilirsiniz.
 
 Bu özellik biraz deneyseldir ve herhalde hiçbir zaman kullanmamanız gerekir.";
-symmetry.edit.warning = "Simetri düzenleme deneyseldir.";
 symmetry.enable = "Etkin";
 // Move the object to the other side of the symmetry (mirror it as well)
 symmetry.flip = "Nesneyi ters çevir";
@@ -2588,11 +2825,7 @@ symmetry.fromPivot = "Pivottan";
 symmetry.limited = "Tekrar sayısı $0 ile sınırlı!";
 // method
 symmetry.method = "Yöntem:";
-// Local means: in the coordinate of the object (synonym: relative)
-symmetry.method.local = "Yerel";
 symmetry.method.local.help = "Dönüştürme araçlarından birini (Gizmo veya Dönüştürme) kullandığınızda simetri düzlemi ağ örgüsü boyunca hareket eder.";
-// Local means: in the coordinate of the scene (synonym: absolute)
-symmetry.method.world = "Dünya";
 symmetry.method.world.help = "Simetri düzlemi sabitlenir ve hareket etmez.";
 // Reapply the mesh mirror, does not impact the topology
 symmetry.mirror = "Ayna";
@@ -2606,17 +2839,10 @@ symmetry.mirror.keepTopology = "topolojiyi koru";
 symmetry.mirrorFail = "Simetri uygulanamadı.
 
 Ağ örgüsünü aynalayarak simetriyi zorlamak istiyor musunuz?";
-symmetry.mirrorUseMasking = "Maskelenmiş alanı koru";
-symmetry.mirrorUseMasking.help = "Maskelenmiş alana dokunulmaz.
-
-Bu seçenek simetrik olmayan topolojilerde (ya da bir çift göz gibi bağlı olmayan bir yüzeylerde) göz ardı edilir.";
-// Synonym: Offset
-symmetry.offset.title = "Kaydırma";
 symmetry.offsetX = "Kaydırma X";
 symmetry.offsetY = "Kaydırma Y";
 symmetry.offsetZ = "Kaydırma Z";
 symmetry.plane.title = "Düzlemler";
-symmetry.primitiveWarning = "Fırça simetrisi, üç düzlemli haricinde, sadece doğrulanan primitifler için kullanılabilir.";
 // Instead of planar symmetry, use a radial symmetry
 symmetry.radial.title = "Radyal";
 symmetry.radialX = "Radyal X";
@@ -2636,11 +2862,18 @@ symmetry.showLine = "Çizgiyi göster";
 symmetry.showPlane = "Düzlemi göster";
 // after mirroring, separate into multiple output (synonym: split, separate)
 symmetry.split = "Ayır";
+// Half of a two line toggle: edit how many repeats span the object
+symmetry.tile.count = "Sayı";
+// Half of a two line toggle: edit the distance between two repeats
+symmetry.tile.distance = "Mesafe";
+// The distance between two repeats of the sculpt, so it tiles seamlessly (synonym: wrap, repeat)
+symmetry.tile.title = "Döşeme";
 symmetry.toolIgnore = "Geçerli araç simetriyi göz ardı ediyor.";
 
 // Three-state toggle button (auto, no, yes)
 toggle.auto = "Otomatik";
 toggle.no = "Hayır";
+toggle.off = "Kapalı";
 toggle.yes = "Evet";
 
 // If an option is shared among the tools
@@ -2669,6 +2902,8 @@ tool.elastic = "Elastik";
 tool.faceGroup = "Yüz Grubu";
 tool.faceGroup.autoPick = "Otomatik seç";
 tool.faceGroup.flush = "Kullanılmayanları kaldır";
+// Face group tap action: the tapped group and what lies beyond it get unmasked, the gizmo lands on the joint
+tool.faceGroup.pose = "Poz";
 tool.faceGroup.skip = "Küçük grupları şuna göre atla:";
 tool.faceGroup.skipArea = "Yüzey alanı";
 tool.faceGroup.skipArea.help = "Yeni grubun yüzey alanı bu eşik değerinden düşükse yeni bir grup oluşturmayın.
@@ -2682,6 +2917,8 @@ tool.flatten = "Düzleştir";
 tool.flatten.fill = "Doldur";
 tool.flatten.planeLockNormal = "Düzlem yönünü kilitle";
 tool.flatten.planeLockOrigin = "Düzlem kökenini kilitle";
+// Give the viewport back to the tool: its options come back and it can draw again
+tool.focus = "Araca dön";
 // Ideally short strings (Rotate, Translate and Scale the object)
 tool.gizmo = "Gizmo";
 // Ideally short strings (Align/Snap the gizmo to world axis)
@@ -2693,7 +2930,6 @@ tool.gizmo.allowInput.help = "Gizmo araçlarından birine dokunduğunuzda sayıs
 tool.gizmo.autoHide = "Etkileşimde gizle";
 // If true, there is less spacing between gizmo handlers (rotate, scale, etc)
 tool.gizmo.compact = "Kompakt";
-tool.gizmo.depth = "Derinlik";
 tool.gizmo.distribute = "Dağıt";
 // Ideally short strings
 tool.gizmo.editPivot = "Eksen";
@@ -2704,8 +2940,6 @@ tool.gizmo.linearRollThreshold.help = "Lineer veya dairesel ilerleme yöntemleri
 Bu eşiğin üzerindeki değerler dairesel ilerlemeyi kullanır.
 
 Lineer ilerlemeyi (tanjantın yönü) tercih ederseniz, bu değeri 90° olarak belirlemeniz yeterlidir.";
-// Ideally short strings (Local/Relative space)
-tool.gizmo.local = "Yerel";
 // Ideally short strings (Snap translation)
 tool.gizmo.moveSnap = "Yasla";
 tool.gizmo.order = "Sıra";
@@ -2714,6 +2948,26 @@ tool.gizmo.order.line = "Çizgi";
 tool.gizmo.order.sphere = "Küre";
 // Ideally short strings (Pin the gizmo, so that it stays in place when switching between objects)
 tool.gizmo.pin = "Tuttur";
+// Title of the pivot reset options (where to put the pivot back)
+tool.gizmo.reset = "Sıfırla";
+// Pivot orientation snapped to the world axes
+tool.gizmo.reset.align = "Hizala";
+tool.gizmo.reset.align.help = "Pivotu dünya eksenlerine hizalar, konumunu korur.";
+tool.gizmo.reset.auto = "Otomatik";
+tool.gizmo.reset.auto.help = "Nesnenin merkezi, kendi dönüşümüne hizalanır.";
+tool.gizmo.reset.bottom = "Alt";
+tool.gizmo.reset.bottom.help = "Nesnenin alt merkezi, kendi dönüşümüne hizalanır.
+Bunun yerine dünya sınırlayıcı kutusunu kullanmak için tekrar dokunun.";
+tool.gizmo.reset.center = "Ortalanmış";
+tool.gizmo.reset.center.help = "Nesnenin merkezi, yönelim korunur.";
+tool.gizmo.reset.help = "Pivotu bilinen bir noktaya geri taşır. Konumu ve yönelimi gizmoyu belirler.";
+// Pivot on the center of the unmasked area
+tool.gizmo.reset.mask = "Maske";
+tool.gizmo.reset.mask.help = "Maskesiz alanın merkezi, yönelim korunur.
+Maskeli alana geçmek için tekrar dokunun.";
+// Pivot on the object origin
+tool.gizmo.reset.object = "Nesne";
+tool.gizmo.reset.object.help = "Nesnenin başlangıç noktası, kendi dönüşümüne hizalanır.";
 // Puts the gizmo back on its automatic placement (position and orientation)
 tool.gizmo.resetPivot = "Pivotu sıfırla";
 // Ideally short strings (Snap angle)
@@ -2734,10 +2988,6 @@ tool.gizmo.tap.normal.help = "Gizmo'yu ilk kesişime taşıyıp yüzey normaline
 tool.hide = "Gizle";
 // Fill the object's hole
 tool.hole = "Delik doldurma";
-tool.hole.bridges = "Ekran uzayı boolean";
-tool.hole.bridges.help = "Bu seçenek etkinse, hacimde delikler açabilirsiniz.
-Kesim eğimi de kesim şekline daha yakın olur.";
-tool.hole.fillHoles = "Delikleri doldur";
 tool.hole.method.boolean = "Boolean";
 // synonym: Alternative method
 tool.hole.method.fill = "Doldur";
@@ -2797,15 +3047,27 @@ Darbeler üzerinde yer değiştirmeyi kısıtlamak için katman verilerini kulla
 tool.mask = "Maske";
 // Blur the painted mask
 tool.mask.blur = "Bulanıklık";
+// Strengthen the mask intensity without changing its shape (opposite of Dilute)
+tool.mask.boost = "Güçlendir";
+// Mask the open boundary of the mesh (the edge of a plane, the rim of a hole)
+tool.mask.border = "Kenar";
+// Negative side of the Cavity slider: only the raised areas stay paintable
+tool.mask.bumps = "Kabartılar";
+// Rebuild the mask from the surface curvature: only the recessed areas stay paintable
+tool.mask.cavity = "Boşluk";
 // Clear the painted mask
 tool.mask.clear = "Kaldır";
 tool.mask.clearAll = "Tümünü temizle";
-// Mask or Unmask a region (leave other region that unconnected intact)
-tool.mask.flipConnected = "Bağlı olanı ters çevir";
+// Weaken the mask intensity without changing its shape (opposite of Boost)
+tool.mask.dilute = "Seyrelt";
+// Enlarge the masked area, one ring of vertices at a time
+tool.mask.grow = "Büyüt";
 // Invert the painted mask
 tool.mask.invert = "Ters Çevir";
 // Sharpen the edge of the painted mask area
 tool.mask.sharpen = "Keskinleştir";
+// Reduce the masked area, one ring of vertices at a time (opposite of Grow)
+tool.mask.shrink = "Küçült";
 // Ideally short strings
 tool.mask.unmask = "Maske Yok";
 // Ideally short strings (Selector Mask, use lasso/ellipse,etc shape to mask the mesh)
@@ -2820,6 +3082,9 @@ tool.matrix.action.origin = "Kökeni hareket ettir";
 tool.matrix.action.origin.help = "Ağ örgüsünü dünya kökenine getir.";
 tool.matrix.action.reset = "Sıfırla";
 tool.matrix.action.reset.help = "Ağ örgüsü dönüştürmeyi ilk başa sıfırla.";
+// Move the pivot alone, the objects stand still
+tool.matrix.editPivot = "Düzenle";
+tool.matrix.editPivot.help = "Yalnızca pivotu taşıyın; nesneler sabit kalır.";
 tool.matrix.rotation = "Döndürme";
 tool.matrix.scale = "Ölçek";
 // Synonym: shear, https://en.wikipedia.org/wiki/Shear_matrix or https://en.wikipedia.org/wiki/Shear_mapping
@@ -2834,10 +3099,18 @@ Ağ örgüsünde maskeleme varsa, ya da simetrisi etkinse, verteksle aynı şeki
 tool.matrix.target.group = "Grup";
 tool.matrix.target.group.help = "Simetri ve maskelemeyi göz ardı ederek düğümü hareket ettirir.
 Hiyerarşinin geri kalanı da dönüşüme uğrar.";
+// Transform the object and its children, and every other instance of it
+tool.matrix.target.groupInstance = "Örnek";
+tool.matrix.target.groupInstance.help = "Grup ile aynıdır, ancak düğümün tüm örnekleri birlikte hareket eder.
+Simetri ve maskeleme yok sayılır. Hiyerarşinin geri kalanı da dönüştürülür.";
 // Transform the object alone (the children stands still)
 tool.matrix.target.object = "Nesne";
 tool.matrix.target.object.help = "Simetri ve maskelemeyi göz ardı ederek sadece nesneyi hareket ettirir.
 Sadece düzenlenen düğüm hareket eder, alt öğeler hareket etmez.";
+// Transform the object alone, and every other instance of it
+tool.matrix.target.objectInstance = "Örnek";
+tool.matrix.target.objectInstance.help = "Nesne ile aynıdır, ancak nesnenin tüm örnekleri birlikte hareket eder.
+Simetri ve maskeleme yok sayılır. Alt nesneler sabit kalır.";
 // Auto apply the transform on the vertices
 tool.matrix.target.vertex = "Verteks";
 tool.matrix.target.vertex.help = "Dönüştürmeyi vertekslere uygulamaya çalışır, doğrulanmamış primitiflerle çalışmaz.
@@ -2846,8 +3119,6 @@ tool.matrix.translation = "Öteleme";
 tool.matrix.uniformScale = "Tek tip ölçeklendirme";
 // Ideally short strings (Measure distance between 2 points)
 tool.measure = "Ölç";
-// dimension box
-tool.measure.box = "Boyut";
 // Perimeter of a plane cross section
 tool.measure.crossSection = "Kesit";
 // Geodesic distance
@@ -2888,8 +3159,6 @@ tool.polish = "Parlat";
 tool.project = "Yansıt";
 // Radius of the tool (size)
 tool.radius = "Yarıçap";
-// Ideally short strings (Quad Remesher)
-tool.remesh = "Quad Remesher";
 tool.remesh.density = "Yoğunluk";
 tool.remesh.guides = "Rehberler";
 tool.remesh.half = "Yarı";
@@ -2902,12 +3171,15 @@ tool.settings = "Ayarlar";
 tool.settings.none = "Bu aracın hiçbir belirli ayarı yok.";
 // Shape for the tools: Trim / Split / Project / SelMask
 tool.shape = "Biçim";
-// Auto-validate the drawn shape
-tool.shape.autoValidate = "Otomatik tamamla";
 // Ideally short strings (Whether a shape is closed or not, a tube is open, a torus is closed)
 tool.shape.closed = "Kapalı";
 // Ideally short strings (Curve selection, same as Lasso and it's an open shape)
 tool.shape.curve = "Eğri";
+tool.shape.edit = "";
+tool.shape.edit.help = "";
+tool.shape.edit.longPress = "";
+tool.shape.edit.off = "";
+tool.shape.edit.on = "";
 // Ideally short strings (Ellipse selection)
 tool.shape.ellipse = "Elips";
 // The selection ellipse will be centered around the cursor
@@ -2920,8 +3192,6 @@ tool.shape.flip = "Ters Çevir";
 tool.shape.lasso = "Lasso";
 // Ideally short strings (Line selection, split the screen in half)
 tool.shape.line = "Çizgi";
-// Rotate by step (angle value)
-tool.shape.lineRotateStep = "Adımı döndür";
 // Ideally short strings (Path selection, same as Lasso but with more precision and it's an open shape)
 tool.shape.path = "Yol";
 // Ideally short strings (Polygon selection, same as Lasso but with more precision)
@@ -2986,6 +3256,44 @@ tool.trim.detail.protect.help = "Kesim sınırını yumuşatma ve basitleştirme
 Maskelenmiş ve gizli yüzlerin yakınında orijinal mesh topolojisini korur.";
 // Ideally short strings (Revolving surface along a curve)
 tool.tube = "Tüp";
+// Ideally short strings (Vector displacement stamp)
+tool.vdm = "VDM";
+// Button that adds a plane ready to be sculpted into a VDM
+tool.vdm.addPlane = "Düzlem ekle";
+tool.vdm.fix = "";
+tool.vdm.fix.detect = "";
+tool.vdm.fix.detect.help = "";
+tool.vdm.fix.help = "";
+tool.vdm.fix.invert = "";
+tool.vdm.fix.invert.help = "";
+tool.vdm.fix.offset = "";
+tool.vdm.fix.offset.help = "";
+// Scales only the height of the vdm stamp, lateral displacement is unchanged
+tool.vdm.height = "Yükseklik";
+// Button that opens the popup that adds a plane to sculpt a VDM on, "..." is appended in the app
+tool.vdm.new = "Yeni VDM";
+// Title of the popup that adds a plane to sculpt a VDM on
+tool.vdm.plane = "Yeni bir VDM yont";
+// The border is the outer edge of the plane
+tool.vdm.plane.border = "Kenarı maskele";
+tool.vdm.plane.border.help = "Kenarı düz tutmak için düzlemin dış halkasını maskeler.
+
+Kenara kadar yontmak damgada sert bir kenar oluşturur.";
+tool.vdm.plane.help = "UV'leri, seçilen çözünürlüğü ve kameraya bakan yönüyle VDM yontmak üzere yapılandırılmış bir düzlem ekler.
+
+Bu işlem yalnızca düzlemi oluşturur. Damgayı oluşturmak için:
+• Şeklinizi düzlemde yontun
+• `Topoloji -> Pişir` bölümünü açın
+• `VDM` seçeneğini belirleyin, ardından `Pişir` düğmesine basın
+
+Nomad yeni damgayı VDM kitaplığına ekler ve seçer.
+
+DynTopo kullanmaktan kaçının; düzlemin UV'lerine zarar verir ve damgayı çarpıtır.";
+// (see Glossary for Layer)
+tool.vdm.plane.layer = "Bir katmanda yont";
+tool.vdm.plane.layer.help = "Düz yüzeyin üzerinde, pişirme sırasında referans olarak kullanılan bir yontma katmanı oluşturur.
+
+Boyama için de bir katman gerekir. Katman olmadan malzeme, damgalama sırasında yalnızca boyanan alanı değil karenin tamamını kaplar.";
 // Ideally short strings (View tool, do nothing in particular)
 tool.view = "Görüntüle";
 // Always display the camera shortcut buttons on the viewport
@@ -2993,8 +3301,6 @@ tool.view.stickyCamera = "Kamera kısayolu (her zaman)";
 
 // Topology
 topology = "Topoloji";
-// Name of the quad remeshing engine, should probably stay untranslated
-topology.autoremesher = "AutoRemesher";
 topology.autoremesher.adaptivity = "Uyarlanabilirlik";
 topology.autoremesher.adaptivity.help = "Dörtgen yoğunluğunu eğriliğe uyarlar.
 
@@ -3012,13 +3318,17 @@ topology.autoremesher.smoothAngle.help = "0, yeniden ağ oluşturma sırasında 
 
 Yüksek değerler tepe normallerini hesaba katarak yüzeyi yumuşatır.";
 topology.bake.backup = "Yedekle";
+// Multires here means the subdivision levels of the object itself
+topology.bake.multires = "Çoklu çözünürlük kullan";
+topology.bake.multires.help = "Işın göndermek yerine yüksek çözünürlüğü alt bölme seviyelerinden okur.
+
+Daha hızlıdır ve projeksiyon hatası oluşturmaz.
+
+Aşağıdaki kafes ayarlarıyla pişirmek için kapatın.";
 // Cage is a specific term; synonym: "Bake offset"
 topology.bake.offset = "Işın ofseti";
-// Bake opacity (from mask data)
-topology.bake.opacityFromMask = "Maske -> Opaklık";
 // Bake here means "create texture (from another mesh data)"
 topology.bake.other = "Yüksek çözünürlüklüden";
-topology.bake.radius = "Kafes yarıçapı";
 topology.bake.resolution = "Çözünürlük";
 topology.bake.searchDistance = "Arama mesafesi";
 topology.bake.searchDistance.help = "Kaynak yüzeyini bulmak için kullanılan maksimum mesafe.";
@@ -3044,6 +3354,29 @@ Seçilen nesnelerin hangi nesnelerinin 'baking' için kullanılacağı belirlene
 - tüm seçili nesneler ve ana seçili nesne 'baked' olacak (sahne menüsünde güçlü vurgulama)
 - eğer sadece bir seçili nesne varsa, görünür tüm nesneler göz önünde bulundurulacaktır
 - aksi takdirde, eğer tüm nesneler gizlenmişse (örneğin Solo kullanılarak), tüm sahne dikkate alınacaktır";
+// Warning shown after a VDM bake, the border of the plane is its outer edge
+topology.bake.vdm.border = "Heykel düzlemin kenarına ulaşıyor; damgalandığında VDM sert bir kenar gösterecek.";
+// Error shown when a VDM bake fails
+topology.bake.vdm.failed = "VDM oluşturulamadı.";
+// Bake here means "create a VDM (from a sculpted plane)"
+topology.bake.vdm.help = "Seçili nesneden bir VDM oluşturur ve VDM kitaplığına ekler.
+
+Tipik iş akışı:
+• Bir düzlem ekleyin veya önceden yapılandırılmış bir düzlem eklemek için VDM seçicide `Yeni VDM` seçeneğini belirleyin
+• Kenarı düz tutarak şeklinizi üzerinde yontun
+• Pişirin!
+
+Düzlemin UV’si pişirilecek kareyi tanımlar, bu nedenle nesnenin UV’si olmalıdır.
+
+DinTopo kullanmaktan kaçının; düzlemin UV’sini bozar ve VDM çarpık çıkar.
+
+Bir katmanda yontmak en doğru sonucu verir, çünkü düz düzlem altta kalmaya devam eder.
+
+Boyama da bir katman gerektirir; aksi hâlde malzeme yalnızca boyadığınız yere değil, karenin tamamına damgalanır.";
+// Warning shown when the picked region cannot be flattened; a disc is a simple patch with a single outer edge
+topology.bake.vdm.notDisk = "Seçilen alan basit bir disk değil. Daha küçük veya deliksiz bir alan seçin.";
+// Warning shown when the picked region holds too many polygons to be flattened
+topology.bake.vdm.tooBig = "Seçilen alanda çok fazla poligon var. Daha küçük bir alan seçin.";
 // Synonym: Simplify (Decimate reduce the number of triangles/quads while retaining details as much as possible)
 topology.decimate = "Azalt";
 topology.decimate.boundary = "Sınırı koru";
@@ -3095,8 +3428,6 @@ topology.dynamic.useFalloff = "Darbe düşüşünü kullan";
 // Whether the pencil pressure can impact the level of detail
 topology.dynamic.usePressure = "Yarıçapta basınç kullan";
 topology.dynamic.usePressure.help = "Kalem basıncının alet yarıçapını etkileyerek, ayrıntı düzeyini etkilemesini istiyorsanız bu seçeneği kullanın.";
-// Instant quad remesher
-topology.instant = "Instant Mesh";
 topology.instant.angle = "Kırışık açısı";
 topology.instant.hole = "Maksimum delik doldurma";
 topology.instant.hole.help = "Algoritma bazen istenmeyen delikler üretebilir.
@@ -3128,7 +3459,6 @@ topology.multires.linear.help = "Hiçbir düzleştirme uygulamadan sadece ağ ö
 topology.multires.lock = "Kilitle (LV0)";
 // Only show the lowest resolution wireframe
 topology.multires.minWireframe = "Yalnızca seviye 0";
-topology.multires.previewHighest = "En yüksek çözünürlüğü önizle";
 // Synonym: Unsubdivide, Un-subdivide
 topology.multires.reverse = "Tersine çevir";
 topology.multires.reverse.confirm = "Taban alt bölümlemesi oluşturulamadı.
@@ -3141,10 +3471,6 @@ topology.multires.subdivide.limit = "Alt bölümlere ayırma limiti aşıldı, b
 // Navigate toward multiple resolutions (go to higher level)
 topology.multires.up = "Multires düzeyi →";
 topology.nonManifold = "Manifold olmayan";
-// Quad remesher
-topology.quadRemesh = "Dörtgen Yeniden Örgüleme";
-// Name of the quad remeshing engine, should probably stay untranslated
-topology.quadriflow = "QuadriFlow";
 topology.quadriflow.adaptiveScale = "Uyarlanabilir ölçek";
 topology.quadriflow.adaptiveScale.help = "Dörtgen boyutunu yüzeyin eğriliğine uyarlar.";
 topology.quadriflow.keepSharp = "Keskinliği koru";
@@ -3158,7 +3484,6 @@ topology.remesh = "Yeniden ağ örgülendirme";
 // Number of iterations the algorithm will perform
 topology.reproject.iterations = "İterasyonlar";
 topology.reproject.layers.help = "Diğer katmanları seçili örgü üzerine aktarın.";
-topology.reproject.normalOffset = "Normal ofseti";
 topology.reproject.projection.blend = "Uyarlanabilir karışım";
 topology.reproject.projection.blend.help = "Mesafe ve ışın tercihine göre normal ışın ile en yakın yüzeyi karıştırın. Biri eksikse diğerini kullanın.";
 topology.reproject.projection.fallback = "Işın + en yakın";
@@ -3167,19 +3492,10 @@ topology.reproject.projection.nearest = "En Yakın";
 topology.reproject.projection.nearest.help = "Kaynak yüzeyindeki en yakın noktaya yansıtın.";
 topology.reproject.projection.ray = "Işın";
 topology.reproject.projection.ray.help = "Yüzey normali boyunca yansıtın.";
-// tweaking value
-topology.reproject.rayBias = "Işın yanlılığı";
-topology.reproject.rayBias.help = "Tekrar projelendirme için iki yöntem kullanılır:
-• en yakın: yüzeydeki en yakın nokta
-• ışın: normal yönünden geçiş noktası
-
-Daha yüksek yanlılık değerleri, en yakın yüzeye göre ışın kesişimini tercih edecektir.";
 topology.reproject.rayPreference = "Işın tercihi";
 topology.reproject.rayPreference.help = "Uyarlanabilir karışımı normal ışın sonucuna göre dengeleyin.";
 topology.reproject.relax = "Rahatlat";
 topology.reproject.relax.help = "Örgü düşük poligonlu olduğunda gevşetme tercih edilmelidir.";
-topology.reproject.shpereCast = "Küre döküm yedeklemesi";
-topology.reproject.shpereCast.help = "Normal ışın yeniden izdüşümü başarısız olursa, Nomad en yakın yüzey kesişimine geçiş yapacaktır.";
 // project a high resolution mesh details onto another
 topology.reproject.title = "Tekrar Projelendir";
 topology.reproject.title.help = "En yakın görünür nesnelerden heykel ayrıntılarını, boyamayı ve katmanları projelendirin.
@@ -3207,8 +3523,6 @@ topology.surface.method.uniformisation = "Tek tipleştirme";
 topology.surface.remesh = "Yeniden ağ örgülendirme";
 topology.surface.useMasking = "Maskelenmiş alanı koru";
 topology.surface.useMasking.help = "Maskelenmiş alanlar topolojiyi değişmeye karşı korur.";
-topology.target.faces = "Hedef yüzler";
-topology.target.points = "Hedef noktalar";
 topology.target.quads = "Hedef dörtgenler";
 // Target a certain number of triangles, faces and vertices
 topology.target.triangles = "Hedef üçgenler";
@@ -3239,6 +3553,8 @@ topology.uv.title = "UV Açma";
 topology.uv.unwrap = "Aç";
 // Create a new object by recomputing a new topology, by using voxels (see Glossary)
 topology.voxel = "Voksel yeniden ağ örgülendirme";
+// The voxel detail expressed as a world size, the same value gives the same detail on any object
+topology.voxel.edgeLength = "Kenar uzunluğu";
 topology.voxel.help = "Ağ örgüsünü bir ızgaraya örnekleyerek yeniden ağ örgülendirme.
 
 Nesne kapalı (su geçirmez) değilse, önce bir delik doldurma algoritması uygulanır.
@@ -3302,7 +3618,6 @@ version.restore = "Satın almayı geri yükle";
 version.trialLayer = "Deneme sürümü: Nesne başına 1 katman";
 version.trialNoExport = "Deneme sürümü: dışa aktarma yok";
 version.trialNoLink = "Deneme sürümü: bağlantı yok";
-version.update = "Güncelleme mevcut!";
 version.webUnlock = "Web sürümü, yerel uygulamalar gibi resmi olarak desteklenmemektedir.
 
 Polar.sh lisans anahtarınızı girerek tam sürümün kilidini açın";

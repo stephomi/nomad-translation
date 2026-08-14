@@ -109,16 +109,22 @@ alert.extract.none = "Niets te extraheren!";
 alert.extract.split.none = "Niets te splitsen!";
 // Painting on the object was hidden but the user did paint the object
 alert.forcePainting.fill = "‘Schilderen tonen’ geactiveerd; [Alles schilderen] is gebruikt.";
-// Painting on the object was hidden but the user started to paint on the object
-alert.forcePainting.tool = "‘Schilderen tonen’ geactiveerd; het object is geschilderd.";
 // The pivot is the Gizmo's 3D position
 alert.gizmo.editObject = "Objectbewerkingsmodus.";
 // In this mode, the user moves the Gizmo's pivot instead of the object
 alert.gizmo.editPivot = "Draaipuntbewerkingsmodus.";
+// Button that turns the heightmap render off
+alert.heightmap.hide = "Hoogtekaart verbergen";
+// The viewport renders the depth of the scene instead of the shaded objects
+alert.heightmapOn = "Hoogtekaart is ingeschakeld!";
 // The user decided to display hidden faces
 alert.hideIgnored = "Verbergen wordt genegeerd!";
 // Error when an algorithm needs the object to have a hole (usually to fill it)
 alert.hole.nothing = "Het object heeft geen gaten!";
+// Button that turns the inspector off
+alert.inspect.hide = "Inspecteur verbergen";
+// The viewport renders a material channel instead of the shaded objects
+alert.inspectOn = "Inspecteur is ingeschakeld!";
 // The lattice deformation was applied with a different mask or visibility state
 // (the gui appends the icon of the changed states)
 alert.lattice.desync = "Rooster is niet gesynchroniseerd!";
@@ -127,8 +133,6 @@ alert.lattice.sync = "Rooster bijwerken";
 // No operation occurred because the mesh is already manifold
 alert.manifold.already = "De mesh is al manifold!";
 alert.mask.full = "Masker = 100%!";
-// Hide the painted mask on the mesh
-alert.mask.hide = "Masker verbergen";
 // Show the painted mask on the mesh
 alert.mask.show = "Masker tonen";
 // The user decided to hide the masking on the objects
@@ -137,6 +141,7 @@ alert.maskingHidden = "Masker is verborgen!";
 alert.matrix.clone = "Het object wordt gedupliceerd";
 // Helper popup telling the user that the object will be instanced
 alert.matrix.instance = "Van het object wordt een instantie gemaakt";
+alert.mesh.empty = "";
 // Empty mesh
 alert.mirror.empty = "Lege uitvoer!";
 // Mesh already mirrored
@@ -157,8 +162,6 @@ alert.selection.isolate = "Selectie isoleren";
 alert.selection.showAll = "Alles tonen";
 // The object needs to have two parts disconnected
 alert.separate.fail = "Kon niet scheiden: het object heeft slechts één deel!";
-// Visibility of the object is off (but should be on)
-alert.shape.notVisible = "Het huidige object is onzichtbaar!";
 // The user has selected a tool that is more intuitive to use when the camera is in orthographic mode
 alert.shapeOrthographic = "Overweeg een orthografische camera te gebruiken als u perspectiefvervorming wilt vermijden bij gebruik van de schermprojector.";
 // The trial version has a limited number of undo operations
@@ -167,10 +170,10 @@ alert.state.trial = "Proefversie: ongedaan maken geannuleerd";
 alert.trim.full = "Trim afbreken: het object is volledig getrimd.";
 // The user tried to trim an object but the selected region didn't touch the object
 alert.trim.nothing = "Niets om te trimmen.";
+// The remesher rebuilds the mesh without a UV layout, the painting is kept as vertex colors
+alert.uvLost = "De UV’s gaan verloren!";
 // List of disabled features when View Mode is selected
 alert.view.disabled = "Functies uitgeschakeld in weergavemodus:";
-// Primitive widgets are small viewport controls used to modify a primitive
-alert.view.disabled.widgetPrimitive = "Primitieve widgets";
 alert.voxel.empty = "Remesh afgebroken: resultaatmesh heeft geen vlakken.";
 // Should not happen or very rarely, input here is an object
 alert.voxel.invalidInput = "Ongeldige invoer!";
@@ -208,6 +211,9 @@ background.imageAlpha = "Dekking";
 background.imageEnable = "Referentiebeeld";
 // The image will be displayed in overlay (used as a reference by the artist)
 background.imageOverlay = "Overlay";
+// Apply the post process effects on the reference image
+background.imagePostProcess = "Nabewerking";
+background.imagePostProcess.help = "Past de nabewerkingseffecten toe op het referentiebeeld. Schakel dit uit om de oorspronkelijke kleuren te behouden.";
 background.imageReset = "Instellingen herstellen";
 // Rotation of the reference image
 background.imageRotate = "Rotatie";
@@ -286,6 +292,8 @@ binding.rotateLighting = "Verlichting roteren";
 // Select all the objects in the scene
 binding.selectAll = "Alles selecteren";
 binding.snap.toggle = "Schakel curvebewerking in of uit";
+// Same as binding.snap.toggle, on a small shortcut button
+binding.snap.toggle.short = "Curve bewerken";
 // Snap the view (while rotating)
 binding.snapViewOnRotate = "Snapweergave (tijdens draaien)";
 binding.spacemouse = "SpaceMouse";
@@ -368,9 +376,10 @@ camera.doubleTapBackgroundFocus.scene = "Scène";
 camera.doubleTapBackgroundFocus.selection = "Selectie";
 // When we double tap on the background with the finger/stylus
 camera.doubleTapBackgroundFocus.toggle = "Wisselen";
-camera.doubleTapFocus.help = "Wanneer je dubbel tikt op het object, zal de Camera zich verplaatsen en focussen op het gekozen punt.";
 // When we double tap on the object with the finger/stylus
 camera.doubleTapMesh = "Dubbel tikken op object";
+// Same as camera.doubleTapMesh, on a small shortcut button
+camera.doubleTapMesh.short = "Focus";
 // When double tapping with the finger/stylus, the camera pivot will be updated
 camera.doubleTapPivot = "Bij dubbel tikken";
 camera.doubleTapPivot.help = "Werk het draaipunt bij wanneer dubbel wordt getikt op het objectoppervlak.";
@@ -380,11 +389,8 @@ camera.firstPerson = "Eerste Persoon";
 camera.focal = "brandpuntsafstand $0mm (35mm-sensor)";
 // Focus on the camera
 camera.focus = "Focus";
-// Focus on a saved camera
-camera.focusOn = "Focus op $0";
 // camera Vertical Field of View
 camera.fov = "Verticaal gezichtsveld";
-camera.panZoomOut.help = "Wanneer deze optie is uitgeschakeld, blijft deze draaipuntpositie intact.";
 // The Camera pivot is the point around which the camera rotates
 camera.pivot = "Draaipunt bijwerken…";
 // Camera projection, Orthographic or Perspective
@@ -427,12 +433,7 @@ clipboard.copy = "Kopiëren";
 clipboard.paste = "Plakken";
 
 color = "Kleur";
-color.alpha = "Alfa";
-color.blue = "Blauw";
-color.brightness = "Helderheid";
-color.green = "Groen";
 color.hue = "Kleurtoon";
-color.red = "Rood";
 color.saturation = "Verzadiging";
 color.value = "Waarde";
 
@@ -442,8 +443,6 @@ confirm = "Bevestigen?";
 confirm.cancel = "Annuleer";
 // Asking to cancel (should be short)
 confirm.cancel.ask = "Annuleer?";
-// Answer to a question (Are you sure you want to do that? [yes, no, cancel])
-confirm.no = "Nee";
 // The generic ok in a confirm box (The next operation is dangerous. [ok, cancel])
 confirm.ok = "Ok";
 // Restart nomad
@@ -453,8 +452,6 @@ confirm.yes = "Ja";
 
 // Toolbox context (when expanded), multiple objects are selected
 context.multiselection = "Multiselectie";
-// There is 0 nodes/items selected
-context.noSelection = "Geen selectie";
 
 cube.back = "Achterkant";
 cube.bottom = "Onderkant";
@@ -465,8 +462,17 @@ cube.right = "Rechts";
 cube.top = "Bovenkant";
 
 curve.bspline = "B-spline";
-// Curve type, https://en.wikipedia.org/wiki/Centripetal_Catmull%E2%80%93Rom_spline
-curve.catmull = "Catmull-Rom";
+curve.editor = "";
+curve.ik = "";
+curve.ik.help = "";
+curve.ik.lock_root = "";
+curve.ik.lock_root.help = "";
+curve.ik.stretch = "";
+curve.ik.stretch.help = "";
+curve.influence.falloff = "";
+curve.influence.falloff.help = "";
+curve.influence.range = "";
+curve.influence.range.help = "";
 // Merge or collapse one point into another
 curve.merge = "Samenvoegen";
 curve.pivot = "Draaipunt";
@@ -484,21 +490,20 @@ curve.sharpness = "Scherpte";
 curve.shift = "Verschuiving";
 // snap
 curve.snap = "Snap";
-// whether the tube body stays on the surface between its control points, and along which direction
+// whether the curve body (tube or repeated objects) stays on the surface between its control points, and along which direction
 curve.snap.follow = "Volgen";
-curve.snap.follow.help = "Wat de buis tussen de besturingspunten doet.";
+curve.snap.follow.help = "Hoe de curve zich tussen de controlepunten gedraagt.";
 curve.snap.follow.normal = "Normaal";
-curve.snap.follow.normal.help = "De buis blijft op het oppervlak en wordt er langs de oppervlaktenormaal tegenaan gedrukt.
+curve.snap.follow.normal.help = "De curve blijft op het oppervlak en wordt er langs de oppervlaktenormaal op geprojecteerd.
 
-Dit neemt de kortste weg naar het oppervlak, wat goed werkt bij vormen die u van de zijkant bekijkt.";
-// only the control points snap, the body of the tube is left alone
+Ze volgt de kortste weg naar het oppervlak. Dit werkt ook bij vormen die je van opzij bekijkt.";
+// only the control points snap, the body of the curve is left alone
 curve.snap.follow.points = "Punten";
-curve.snap.follow.points.help = "Alleen de besturingspunten klikken op het oppervlak vast.
+curve.snap.follow.points.help = "Alleen de controlepunten klikken vast aan het oppervlak.
 
-Daartussen behoudt de buis de getekende vorm, zodat deze door het oppervlak kan snijden of erboven kan zweven.";
+Daartussen behoudt de curve de getekende vorm en kan ze dus door het oppervlak gaan of erboven zweven.";
 curve.snap.follow.view = "Weergave";
-curve.snap.follow.view.help = "De buis blijft op het oppervlak en wordt ertegenaan gedrukt in de richting waaruit u keek toen u hem tekende.";
-curve.snap.grid = "Grid (indien vastgeklikt)";
+curve.snap.follow.view.help = "De curve blijft op het oppervlak en wordt erop geprojecteerd in de richting waarin je keek toen je haar tekende.";
 curve.snap.normal = "Normaal uitlijnen";
 curve.snap.normal.help = "Heeft alleen invloed op de eerste en laatste controlepunten van de curve.
 
@@ -506,40 +511,85 @@ Verplaatst aangrenzende punten zodat de uiteinden van de buis uitlijnen met de o
 
 De afstand tot het aangrenzende punt blijft behouden.";
 curve.snap.offset = "Offset";
-curve.snap.offset.help = "Een waarde van 100% is gelijk aan de straal van de buis.";
+curve.snap.offset.help = "Een waarde van 100% is gelijk aan de straal van de buis of de helft van de grootte van de herhaalde objecten in de richting van het oppervlak.";
 curve.snap.surface = "Oppervlak";
 curve.snap.vertex = "Vertex";
 curve.spiral = "Spiraal";
 curve.spiral.angle = "Hoekverschuiving";
+curve.spiral.braid = "Vlecht";
+curve.spiral.core = "Kern";
+curve.spiral.depth = "Diepte";
+curve.spiral.groups = "Vlakkengroep per streng";
+curve.spiral.hardness = "Hardheid";
 curve.spiral.offset = "Offset";
+curve.spiral.pack = "Aansluiten";
+curve.spiral.ribbon = "Lint";
+curve.spiral.rope = "Touw";
 curve.spiral.scale = "Schaal";
+curve.spiral.sleeve = "Mantel";
+curve.spiral.sleeve.help = "Gevlochten mantel";
+curve.spiral.strands = "Strengen";
 curve.spiral.twist = "Draaihoek";
-// Spline curve, https://en.wikipedia.org/wiki/Spline_(mathematics)
-curve.spline = "Spline";
 // Display the falloff curve in a symmetric way
 curve.symmetric.help = "Geef de falloff symmetrisch weer.
 
 Deze optie is alleen een visueel hulpmiddel en heeft geen invloed op de falloff zelf.";
 curve.twist = "Draai";
-// Regular spaced sampling
-curve.uniform = "Uniform";
-curve.uniform.help = "De kromme wordt regelmatig bemonsterd om een uniforme dichtheid te garanderen.
+curve.warp = "";
+curve.warp.help = "";
 
-U kunt deze optie uitschakelen om de randlussen een beetje te beheersen door nieuwe controlepunten aan de kromme toe te voegen.";
-
-// Debug graphics options
-debug.graphics = "Grafische elementen";
+debug.androidInputs = "";
+debug.angleNormal = "";
+debug.compressMultires = "";
+debug.compressMultires.help = "";
+// Debug section to import/export the icons of the interface
+debug.customIcons = "Aangepaste iconen";
+debug.customIcons.export = "";
+debug.customIcons.export.done = "";
+debug.customIcons.export.help = "";
+debug.customIcons.import = "";
+debug.customIcons.import.help = "";
+debug.customIcons.reload = "";
+// Short label for the section shortcut bar
+debug.customIcons.short = "Iconen";
+// Debug option: draw all the copies of a repeater in a single draw call
+debug.drawInstance = "";
+// Debug section for optional features
+debug.feature = "Functie";
+debug.flipQuad = "";
+debug.forceTrial = "";
+debug.fps = "";
 // Debug option, overrides the rendering to display the depth buffer
 debug.heightmap = "Hoogtekaart";
+debug.icons = "";
 // Debug option: display a window with debugging logs
 debug.logs = "Logboeken";
+// Logs window option: break long lines to fit the panel width
+debug.logs.wrap = "Regelterugloop";
+debug.parallel = "";
+debug.parallelSculpt = "";
+debug.pathTrace = "";
+// Debug section for multithreading and speed options
+debug.performance = "Prestaties";
+debug.picking = "";
+debug.postprocess.format = "";
+debug.postprocess.format.16bit = "";
+debug.postprocess.format.8bit = "";
+debug.postprocess.reuse = "";
+debug.refractionBackWriteDepth = "";
+debug.review = "";
 // Model shortcut window
 debug.shortcut = "Sneltoetsvenster";
 // Set the desired FPS (frame per second, refresh rate)
 debug.targetFps = "Doel FPS";
 debug.targetFps.help = "Wanneer uitgeschakeld, betekent de standaardwaarde dat deze synchroniseert met de verversingssnelheid van het scherm.";
+debug.targetFps.unit = "";
 // Debug options, generate screenshots with size compatible with the iOS store
 debug.thumbnails = "Maak winkelminiaturen";
+// Same as debug.thumbnails, on a small shortcut button
+debug.thumbnails.short = "Miniaturen";
+debug.toolboxShowAll = "";
+debug.uv = "";
 // Debug option, Normalize means transforming the data so that it fits in [0-1] the range
 debug.uvNormalize = "Normaliseer UV's";
 debug.uvNormalize.help = "Nomad zal de UV's binnen de [0-1] tegel normaliseren.";
@@ -578,24 +628,46 @@ extract.action.layer = "Laag";
 extract.action.none = "Geen";
 // Close the mesh by adding a thickness on the surface
 extract.action.shell = "Schil";
+extract.bevel = "";
+extract.bevel.help = "";
+extract.bevel.profile = "";
+extract.bevel.segments = "";
+extract.bevel.segments.help = "";
+extract.borders = "";
 // Carve the mask into the surface
 extract.carve = "Graveren";
 // topology of extracted mesh
 extract.edgeLoop = "Randlus (zijde)";
 extract.edgeLoop.auto = "Automatische randlus";
 extract.edgeLoop.division = "Verdeling";
+extract.faceGroup.active = "";
+extract.faceGroup.polish = "";
+extract.faceGroup.polish.help = "";
+extract.gap = "";
+extract.gap.help = "";
+extract.group.target = "";
+extract.inset = "";
+extract.inset.help = "";
 // Smoothing strategy
 extract.polish.all = "Alle";
 extract.polish.border = "Alleen grenzen";
 extract.polish.sharp = "Scherpe rand";
-// Smooth the border in a way that it matches completely with its dual
-extract.polish.syncBorder = "Synchroniseer rand";
 // Preview extract
 extract.preview = "Voorbeeld";
+extract.profile = "";
+extract.profile.width = "";
+extract.side.bevel = "";
+extract.side.bevel.help = "";
+extract.side.divisions = "";
+extract.side.profile = "";
+extract.side.straight = "";
+extract.sides = "";
 // Extract two new meshes from the painted mask and the unmasked area
 extract.split = "Splitsen";
 // The thickness of the extracted mesh (from the painted mask)
 extract.thickness = "Dikte";
+extract.units.height = "";
+extract.units.height.help = "";
 
 // Auto save section
 file.autoSave = "Automatisch opslaan";
@@ -617,9 +689,6 @@ file.colorSpace = "Kleurruimte";
 file.colorSpace.help = "Probeer deze optie om te schakelen als de kleuren onjuist lijken.";
 file.colorSpace.linear = "Lineair";
 file.colorSpace.srgb = "sRGB";
-// Tries to generate quad (rectangle polygon) from triangles
-file.convertToQuad = "Quads reconstrueren";
-file.convertToQuad.help = "Herbouw quads van driehoeken door driehoeken te koppelen (als ze aangrenzend in de bestanden zijn).";
 // Open file explorer
 file.explore = "Verken";
 // Export scene file
@@ -638,8 +707,10 @@ file.export.gltf.layer.help = "Exporteer lagen als morfen. Officieel ondersteund
 // Whether we include painting of layers in the exported file (see glossary for layer)
 file.export.gltf.layerPaint = "Laag schilderen";
 file.export.gltf.layerPaint.help = "Exporteer laagschilderen. Het wordt meestal genegeerd door andere software.";
-file.export.nomad.assets = "";
-file.export.nomad.assets.help = "";
+file.export.nomad.assets = "Bronnen insluiten";
+file.export.nomad.assets.help = "Neem aangepaste matcaps, omgevingen en lettertypen op in het bestand.
+
+Meegeleverde bronnen worden niet ingesloten.";
 file.export.nomad.help = "Nomad Sculpt intern bestandsformaat.
 
 Dit formaat wordt niet geladen op andere software, dit is voornamelijk voor herimportdoeleinden.";
@@ -695,15 +766,13 @@ file.export.usd.skew.help = "Sta scheeftrekken toe in matrixtransformaties.
 Wanneer uitgeschakeld, zal Nomad de scheve matrices opsplitsen in twee afzonderlijke schalen en roteertransformaties.";
 // Type format
 file.format = "Formaat";
-// The user imports a scene file that will be added/appended the current scene
-file.import.add = "Toevoegen aan scène";
-file.import.add.confirm = "Nieuw bestand importeren?";
 file.import.applyAll = "Op alles toepassen";
 // Load interface preference settings when opening a scene file
 file.import.guiSettings = "UI-instellingen laden";
 file.import.guiSettings.help = "Bij openen of importeren van een projectbestand worden alle interface-voorkeuren geladen die in het project zijn ingebed.";
 file.import.help = "Ondersteund formaat:";
-file.import.ignore = "Negeer";
+file.import.keepFolders = "";
+file.import.keepFolders.help = "";
 // Do not fiddle with the object topology when loading the file
 file.import.keepTopology = "Behoud topologie";
 file.import.keepTopology.help = "Gebruik deze optie als je niet wilt dat Nomad de topologie van de geïmporteerde mesh aanpast.
@@ -776,11 +845,8 @@ file.project.unsaved = "Niet-opgeslagen wijzigingen!";
 file.render = "Render";
 // height of exported screenshot
 file.render.height = "Hoogte";
-// Resolution ratio of the exported screenshot
-file.render.renderRatio = "Renderverhouding";
-file.render.renderRatio.help = "Een waarde van 1,0 betekent dat Nomad rendert met dezelfde resolutie als de hieronder gevraagde afbeeldingsgrootte.
-
-Gebruik deze optie als je niet op een bepaalde resolutie kunt renderen (crasht wegens gebrek aan geheugen).";
+// Warning shown when the requested export resolution is too large for the memory left on the device
+file.render.lowMemory = "Dit formaat past mogelijk niet in het resterende geheugen van dit apparaat.";
 // Screen resolution parameters for the export screenshot features
 file.render.screenResolution = "Scherm";
 // If we include the App Interface in the exported screenshot
@@ -790,7 +856,7 @@ file.render.size = "Definitieve grootte";
 // Desired size of the exported screenshot (custom vs predefined size)
 file.render.size.custom = "Aangepast";
 // Save the heightmap render as a new brush alpha instead of exporting it as a file
-file.render.toAlpha = "";
+file.render.toAlpha = "Opslaan als alfa";
 // If true, then the exported screenshot will have transparency data in the image
 file.render.transparent = "Transparante achtergrond";
 file.render.transparent.help = "Deze optie kan nuttig zijn als je het mesh wilt invoegen in een 2D-creatiesoftware.
@@ -816,6 +882,43 @@ file.select.include = "Inclusief";
 file.select.selected = "Geselecteerd";
 file.select.unselected = "Ongekozen";
 file.select.visible = "Zichtbaar";
+
+fog = "Mist";
+fog.ambient = "Omgeving";
+fog.ambient.help = "Bepaalt hoeveel de omgeving de mist verlicht.";
+fog.anisotropy = "Verstrooiingsrichting";
+fog.anisotropy.help = "Bepaalt de richting waarin de mist licht verstrooit, ook wel anisotropie genoemd.
+
+• Positieve waarden maken de mist helderder wanneer je naar een lichtbron kijkt.
+• Negatieve waarden maken hem helderder wanneer je van de lichtbron wegkijkt.
+• Bij nul wordt het licht gelijkmatig in alle richtingen verstrooid.";
+fog.color = "Kleur";
+fog.color.help = "Bepaalt de kleur van de mist en het licht dat hij verstrooit.";
+fog.density = "Dichtheid";
+fog.density.help = "Bepaalt hoe snel de mist dikker wordt met de afstand.";
+fog.detail = "Ruis";
+fog.detail.help = "Mengt ruis door de mist om die in vlekken te verdelen. De totale dichtheid verandert niet.";
+fog.detail.scale = "Grootte";
+fog.detail.scale.help = "Stelt de grootte van het ruispatroon in.";
+fog.help = "Voegt atmosferische diepte toe en maakt lichtbundels zichtbaar.
+
+Duidelijkere lichtbundels:
+• Verlaag Omgeving en gebruik een felle spot- of puntlamp.
+• Verhoog Dichtheid totdat de mist duidelijk zichtbaar is.
+• Om bundels in dunnere mist te zien, stel je Verstrooiingsrichting in op een hoge positieve waarde en richt je de camera naar het licht.";
+fog.opacity = "Maximale dekking";
+fog.opacity.help = "Beperkt hoeveel de mist van de scène kan bedekken, zelfs bij een hoge dichtheid.";
+fog.shape = "Vorm";
+fog.shape.help = "Bepaalt waar de mist de scène vult.";
+fog.shape.uniform = "Gelijkmatig";
+fog.shape.uniform.help = "Vult de hele scène met mist.";
+fog.shape.vertical = "Verticaal";
+fog.shape.vertical.bottom = "Onder";
+fog.shape.vertical.bottom.help = "Bepaalt de hoogte van de onderrand van de mistband.";
+fog.shape.vertical.help = "Houdt de mist binnen een verticale band met zachte boven- en onderranden.";
+fog.shape.vertical.preview.help = "Toont de mistband in de viewport terwijl je de randen aanpast.";
+fog.shape.vertical.top = "Boven";
+fog.shape.vertical.top.help = "Bepaalt de hoogte van de bovenrand van de mistband.";
 
 format.ascii = "ASCII";
 format.binary = "Binair";
@@ -882,8 +985,6 @@ gesture.pencilAction.android = "Potloodknop";
 // Action when using the Pencil double tap
 gesture.pencilAction.ios = "Potlood dubbele tik";
 gesture.pencilAction.ios.help = "Alleen actief voor Apple Pencil 2e generatie.";
-// Pencil button (or iOS Pencil double tap) action: nothing
-gesture.pencilAction.none = "Geen";
 // list of inputs allowing sculpting interaction
 gesture.sculpt = "Beeldhouwen";
 // Select object
@@ -893,6 +994,8 @@ gesture.shortcut = "Snelkoppeling";
 gesture.smooth.holdSelect.help = "Lang indrukken zal schakelen naar het selecteer gereedschap voor de duur van het selectieproces.";
 // Hold the pointer at the end of a stroke to snap it into a line or a curve
 gesture.strokeSnap = "Lijn-uitlijning";
+gesture.strokeSnap.delay = "";
+gesture.strokeSnap.delay.help = "";
 gesture.strokeSnap.help = "Houd de aanwijzer aan het einde van een penseelstreek vast om deze in een rechte lijn of een vloeiende curve te laten klikken.
 
 Blijf slepen om de uitgelijnde penseelstreek rond het beginpunt te roteren en te schalen.";
@@ -924,15 +1027,14 @@ gesture.trackpad.two.orbit.help = "Met twee vingers draait u rond de weergave; d
 // Two fingers pan (translate) the view
 gesture.trackpad.two.pan = "Verschuiven";
 gesture.trackpad.two.pan.help = "Met twee vingers verschuift u de weergave; door één vinger op te tillen draait u eromheen. Hetzelfde als op de tablet.";
-// If enabled, the pressure will be taken into account even if it's not coming from a recognized stylus
-gesture.unknownPressure = "Sta niet-herkende druk toe";
-gesture.unknownPressure.help = "Schakel dit in als de druk van uw pen niet werkt of als u druk met een vinger wilt gebruiken.";
 gesture.wheel = "Muiswiel";
 gesture.wheel.speed2d = "Snelheid (2d interface)";
 gesture.wheel.speed3d = "Snelheid (3d zoomen)";
 
 // History, list of undo/redo
 history = "Geschiedenis";
+// Button deleting every operation of the history, freeing the memory and the disk space they use
+history.clear = "Geschiedenis wissen";
 // Long press on a state of the history list: deletes it and every older one, $0 is a number of operations
 history.delete.confirm = "$0 bewerking(en) uit de geschiedenis verwijderen?";
 history.delete.help = "Houd een geschiedenisitem lang ingedrukt om het en alle oudere geschiedenis permanent te verwijderen.";
@@ -952,17 +1054,26 @@ history.include.postProcess.help = "Neemt PostProcess-bewerkingen op in de gesch
 // include shading parameters (MatCap & HDRIs) editing in the undo/redo
 history.include.shading = "Shading";
 history.include.shading.help = "Neemt de modi PBR, MatCap en Unlit, MatCaps en HDRI's op.";
+// How much disk space the history is allowed to use, past it the oldest operations are deleted
+history.limitDisk = "Opslaglimiet";
+history.limitDisk.help = "De maximale hoeveelheid opslag die de geschiedenis voor ongedaan maken en opnieuw uitvoeren van dit project gebruikt.
+
+Wanneer de limiet wordt bereikt, worden de oudste bewerkingen permanent verwijderd.
+
+De nieuwe limiet wordt toegepast nadat de volgende bewerking is vastgelegd.";
 // How much memory the history is allowed to use before the older states are moved to the disk
-history.limitMemory = "Geheugenlimiet";
-history.limitMemory.help = "Hoeveel van de geschiedenis in het geheugen wordt bewaard.
+history.limitMemory = "RAM-limiet";
+history.limitMemory.help = "De maximale hoeveelheid geschiedenis voor ongedaan maken en opnieuw uitvoeren die in het RAM wordt bewaard.
 
-Oudere statussen worden naar de schijf verplaatst en opnieuw geladen wanneer u ongedaan maakt; ze worden niet verwijderd.
+Oudere statussen worden naar de opslag verplaatst en indien nodig opnieuw geladen; ze worden niet verwijderd.
 
-De geschiedenis wordt bijgewerkt bij de volgende opgenomen bewerking.";
+De nieuwe limiet wordt toegepast nadat u de volgende keer iets bewerkt, ongedaan maakt of opnieuw uitvoert.";
 // Where the undo history is kept when the project is saved (it survives reopening the project)
 history.persist = "Geschiedenis opslaan";
 history.persist.embedded = "Insluiten";
-history.persist.embedded.help = "De geschiedenis wordt in het projectbestand opgeslagen. Het bestand is groter, maar de geschiedenis blijft eraan gekoppeld.";
+history.persist.embedded.help = "De geschiedenis wordt in het projectbestand opgeslagen: een groter bestand en langzamer opslaan en laden.
+
+Kies bij voorkeur Uit of Afzonderlijk, tenzij de geschiedenis met het bestand moet meegaan.";
 history.persist.help = "Bewaar de geschiedenis voor ongedaan maken wanneer het project wordt opgeslagen, zodat deze na het opnieuw openen beschikbaar blijft.";
 history.persist.off = "Uit";
 history.persist.off.help = "Het project wordt zonder geschiedenis opgeslagen.";
@@ -970,6 +1081,18 @@ history.persist.separate = "Afzonderlijk";
 history.persist.separate.help = "De geschiedenis wordt opgeslagen in de projectgegevens op dit apparaat. Het projectbestand blijft klein.";
 // Redo
 history.redo = "Opnieuw doen";
+// Slider + play button: rewinds to the root and redoes the operations one by one, the value is a number of operations per second
+history.replay = "Afspelen";
+// Option of the replay popup: the camera follows the replayed operations even when the history "Restore camera" setting is off
+history.replay.camera = "Camera herstellen";
+history.replay.camera.help = "De camera volgt de afgespeelde bewerkingen, ook als de optie Camera herstellen in de geschiedenis uitstaat.";
+// Popup opened by the play button, above its two options
+history.replay.confirm = "Geschiedenis afspelen?";
+history.replay.help = "Gaat terug naar het begin en voert de bewerkingen een voor een opnieuw uit op deze snelheid (bewerkingen per seconde).
+Tik nogmaals op de knop om te stoppen. Ongedaan maken, opnieuw uitvoeren of op een vermelding tikken stopt het afspelen ook.";
+// Option of the replay popup: runs backwards, undoing from the current state to the root
+history.replay.reverse = "Omgekeerd";
+history.replay.reverse.help = "Maakt bewerkingen vanaf de huidige toestand tot het begin ongedaan, in plaats van ze vanaf het begin af te spelen.";
 // When enabled, undoing an operation also restores the camera position
 history.restoreCamera = "Camera herstellen";
 history.restoreCamera.help = "Schakel deze optie in om het opgeslagen camerastandpunt te herstellen wanneer u een actie ongedaan maakt/herhaalt.";
@@ -1015,25 +1138,43 @@ inspect.short = "Inspecteren";
 
 // Interface customization
 interface = "Interface";
+interface.accent.solid = "";
+interface.accent.thin = "";
+interface.accentStrength = "";
+interface.accentStrength.help = "";
+interface.appearance = "";
 // Interface option (panel blurriness, if the menus are transparent)
 interface.blurFactor = "Vervagingssterkte";
+interface.buttonFill = "";
+interface.buttonFill.help = "";
+interface.buttonSupportContrast = "";
+interface.buttonSupportContrast.help = "";
 // Interface option (main base color)
-interface.colorBase = "Kleurbasis";
+interface.colorBase = "";
 // Interface option (color of panels, if the menus are transparent)
-interface.colorBaseTransparent = "Kleurenpaneel";
+interface.colorBaseTransparent = "";
 // Interface option (accent widget color)
-interface.colorSelect = "Kleurwidget";
-// UI customization: each item row fits on a single line (synonym: inlined)
-interface.compact = "UI: Compact";
+interface.colorSelect = "";
+interface.colors = "";
+interface.colors.action = "";
+interface.colors.disabled = "";
+interface.colors.filled = "";
+interface.colors.idle = "";
+interface.colors.infinite = "";
+interface.colors.options = "";
+interface.colors.preview = "";
+interface.colors.reset = "";
+interface.colors.stepped = "";
 // Spacing between widgets
 interface.cursorStep = "Verticale afstand";
+interface.customColorFill = "";
+interface.customColorFill.help = "";
 // Do not use windows native dialog
 interface.customDialog = "Nomad-dialoog gebruiken";
 interface.customDialog.help = "Toon Nomad's eigen tekstdialoog in plaats van de Native.";
-// UI customization: each row of the list will be bigger
-interface.expandList = "UI: Lijst uitbreiden";
-// UI customization: each row of the list will be bigger
-interface.expandList.help = "Gewoon een UI-optie voor eenvoudigere lijstbeheer.";
+// Interface customization: soft shadow cast by the panels on the scene
+interface.dropShadow = "";
+interface.dropShadow.help = "";
 // Interface customization
 interface.flipBottom = "Spiegel onderste balk";
 // Interface customization
@@ -1042,53 +1183,66 @@ interface.flipMiddle = "Spiegel zijbalken";
 interface.flipTop = "Spiegel bovenste balk";
 // Size of fonts
 interface.fontScale = "Lettertypeschaal";
+interface.glass = "";
+interface.glass.help = "";
 // Dot menu hovering
 interface.hoverDot = "Zwevende punt";
 interface.hoverDot.help = "Een klein punt in de interface tonen wanneer een zwevende stylus wordt gedetecteerd.";
 // Help popup when hovering
 interface.hoverHelp = "Hulp pop-up bij zweven";
-// Interface option (main base color)
-interface.iconSupport = "Knop met hoog contrast";
-interface.iconSupport.help = "Een alternatieve stijl voor knoppen die ze beter zichtbaar maakt wanneer ze zijn ingeschakeld.
-
-Als deze op Auto is ingesteld, zal Nomad deze modus gebruiken wanneer het UI-kleurcontrast tussen ingeschakeld/uitgeschakeld laag is.";
 // Inset
 interface.inset.title = "Randafstanden";
 interface.inset.title.help = "Je kunt deze waarden alleen wijzigen als je problemen hebt met het bedienen van de knoppen aan de schermranden.
 
 Als de schuifregelaar is uitgeschakeld, zal Nomad de veilige gebiedswaarden gebruiken die het apparaat zelf retourneert.";
+interface.layout = "";
 // Move a floating panel by dragging inside it, instead of using its bar
-interface.panelDrag = "";
-interface.panelDrag.help = "";
+interface.panelDrag = "Paneel zelf slepen";
+interface.panelDrag.help = "Een zwevend paneel wordt altijd verplaatst door de balk te slepen. Met deze optie kun je ook het paneel zelf slepen.
+
+Bij Auto verplaatst een vinger of stylus het paneel alleen wanneer de sleepbeweging meer horizontaal dan verticaal is, zodat verticaal slepen nog steeds door de inhoud scrolt. Stel dit in op Ja om ook met de muis in elke richting te slepen.";
 // Interface option (if the menus are transparent or opaque)
 interface.panelTransparent = "Transparant paneel";
 // Width of the interface panels
 interface.panelWidth = "Paneelbreedte";
 // Interface color style
 interface.preset.title = "Voorinstellingen";
+// Interface option, outline drawn around a row of options and between its slots
+interface.radioBorder = "";
 // Reset interface settings
 interface.resetAll = "Stijl opnieuw instellen";
 interface.resetAll.confirm = "Interface-instellingen opnieuw instellen?";
+interface.resetAppearance = "";
+interface.resetLayout = "";
 // Resize window (should be short)
 interface.resize = "Formaat aanpassen";
 // Scale the interface
 interface.scale = "Algemene schaal";
+// Interface option, strength of the outline drawn around a selected button or a slider bar
+interface.selectBorder = "";
+// Interface option, strength of the accent tint behind a selected button or inside a slider bar
+interface.selectFill = "";
 // Show the drag bar of a floating shortcut window
 interface.shortcut.bar = "Balk";
 // The shortcut bar at the bottom of the screen (section title and row name)
 interface.shortcut.bottom = "Sneltoetsen toevoegen (onderkant)...";
 // Floating shortcut windows (section title)
 interface.shortcut.float = "Sneltoetsen toevoegen (venster)...";
+// Interface option, the slider track is an outline instead of a filled plate
+interface.sliderBorder = "";
+interface.sliderFill = "";
+interface.sliderFill.help = "";
+interface.supportContrast = "";
+interface.supportContrast.help = "";
 // list of tools
 interface.toolbox = "Gereedschapskist";
 // Colored text and icon
 interface.toolbox.color = "Gekleurd";
-// Interface customization (the toolbox is a grid, we can adjust the column count)
-interface.toolbox.columns = "Kolommen";
 // hide toolbox by default
 interface.toolbox.hide = "Verborgen";
 // Reset the tool's order in the toolbox
 interface.toolbox.resetOrder = "Volgorde herstellen";
+interface.toolboxColors = "";
 // Interface customization (the toolbox is a grid, we can adjust the column count)
 interface.top.alt = "Alternatieve volgorde";
 interface.top.alt.help = "Alternatief pictogram voor de volgorde van het topmenu.
@@ -1115,12 +1269,22 @@ item.delete.confirm = "Verwijderen bevestigen?";
 item.delete.confirm.yes = "Ja, verwijderen";
 // When we delete the item but the image is used somewhere
 item.delete.used = "Afbeelding gebruikt";
-// Draggable, movable
-item.draggable = "Verplaatsbaar";
+// Short button label, turns a stamp (alpha or VDM) back into a plane that can be sculpted again
+item.edit = "Bewerk";
+item.edit.help = "Voegt een vlak toe dat al door deze stempel is gevormd, met een beeldhouwlaag en één vierhoek per pixel.
+
+Bewerk het en bak het terug met `Topologie -> Bakken -> VDM`.";
+// Short button label, opens a popup to correct the pixels of an imported image
+item.fix = "Corrigeren";
+item.fix.help = "Corrigeert de afbeelding zelf: middenwaarde, omkeren en rotatie.
+
+Het bestand wordt herschreven, zodat andere apps ook de gecorrigeerde afbeelding lezen.";
 // Show the folders of a list as a column on its side, instead of a drop down menu
-item.folderColumn = "";
+item.folderColumn = "Mappenkolom";
+// Show the folders of a drop down menu as small chips filling the width, instead of one per line
+item.folderCompact = "Compacte mappen";
 // Show a list of items as one group of items per folder, instead of a single list
-item.folderGroup = "";
+item.folderGroup = "Groeperen op map";
 // Hide an item (object, layer, etc)
 item.hide = "Verbergen";
 // Make an item instance, similar to clone but keeps the underlying geometry (Synonym: link? soft clone?)
@@ -1129,6 +1293,7 @@ item.instance = "Instantie";
 item.lastSave = "Laatste opslag";
 // Reload last save of an item (object, tool, etc)
 item.lastSave.confirm = "Laatste opslag laden?";
+item.load = "";
 // The item is locked (either it cannot be selected, edited, or we preserve its details)
 item.lock = "Vergrendelen";
 // Merge an item with another one below (layer)
@@ -1143,6 +1308,8 @@ item.next = "Volgende";
 item.none = "Geen";
 // The order of an item in a list
 item.order = "Volgorde";
+// Size of the preview images of a list of items, in pixels
+item.previewSize = "Voorbeeldgrootte";
 // Focus on previous item
 item.previous = "Vorige";
 // Rename an item (object, tool, etc)
@@ -1155,19 +1322,19 @@ item.reset.confirm = "Reset bevestigen?";
 // Save an item (object, tool, etc)
 item.save = "Opslaan";
 item.save.confirm = "Opslag bevestigen?";
-item.saveLibrary = "";
+item.saveLibrary = "Opslaan in bibliotheek";
 // Select an item (object, layer, etc)
 item.select = "Selecteren";
 // Show an item (object, layer, etc)
 item.show = "Tonen";
 // Show the name of every item under its preview image
-item.showName = "";
+item.showName = "Namen tonen";
+// The show button of the curve/primitive handlers only toggles them all, instead of picking one kind
+item.showOnOff = "Alleen aan/uit";
 // Order a list of items alphabetically
-item.sortName = "";
+item.sortName = "Op naam";
 // Order a list of items with the most recently modified first
-item.sortRecent = "";
-// Convert the item type (mesh, light) to a simple Node type
-item.toNode = "Naar Node";
+item.sortRecent = "Meest recent";
 // Uninstance the object, make the object real
 item.uninstance = "Instantie opheffen";
 // Unselect an item (object, layer, etc)
@@ -1240,14 +1407,11 @@ license.grace = "Offline - Resterende respijtperiode:";
 license.grace.days = "dagen";
 license.grace.hours = "uren";
 license.key = "Licentiesleutel";
-license.newest = "Nieuwe versie beschikbaar!";
 license.portal.label = "Licentieportaal";
 license.portal.label.warning = "Dit portaal is alleen voor gebruikers die de Windows/Mac versie hebben gekocht.
 
 Aankopen uit de iOS/Android app stores zijn niet platformonafhankelijk.";
 license.portal.title = "Bestaande gebruikers";
-license.retry = "Opnieuw proberen";
-license.title = "Licentie";
 license.validate = "Valideren";
 license.validate.error404 = "De licentiesleutel is niet gevonden.";
 license.validate.error422 = "Onverwerkbare entiteit.";
@@ -1259,13 +1423,10 @@ light.angle = "Hoek";
 light.attachment = "Koppeling";
 // The light will move along the camera
 light.attachment.camera = "Camera";
+light.attachment.camera.help = "Lichtrichting is afhankelijk van het camerazicht.";
 // The light will stay still even if the user moves the camera
 light.attachment.fixed = "Vast";
-light.attachment.help = "• Vast
-Lichtrichting zal niet veranderen.
-
-• Camera
-Lichtrichting is afhankelijk van het camerazicht.";
+light.attachment.fixed.help = "Lichtrichting zal niet veranderen.";
 // Color of light
 light.color = "Kleur";
 // Contact shadows are more precise shadows on small distance (synonym: cavity shadows?)
@@ -1279,17 +1440,13 @@ light.kelvin = "Kelvin";
 light.position = "Positie";
 // Move the light in front of the camera (but keeps its inner orientation)
 light.resetPosition = "Centreren";
-// Adjustment to fix artefacts
-light.shadow.bias = "Bias";
 // Enable or disable shadows for a light
 light.shadow.cast = "Schaduw";
-// Point light only works with "screenspace" shadow type (not "shadow map")
-light.shadow.pointTip = "Puntlicht ondersteunt alleen schermruimte schaduwen.";
-// How blurry the shadow is
-light.shadow.softness = "Zachtheid";
 // Thickness threshold for screen-space shadows (synonym: threshold, bias)
 light.shadow.tolerance = "Tolerantie";
 light.shadow.type = "Schaduwtype";
+// Shown above the two shadow type entries
+light.shadow.type.help = "Een schaduwmap rendert de scène vanuit het licht en werpt daardoor schaduwen op geometrie die de camera niet kan zien. Schermruimte leest in plaats daarvan de diepte die al op het scherm staat. Dat is minder belastend, maar werpt alleen schaduwen op zichtbare geometrie.";
 // Shadows computed with only the information visible on screen
 light.shadow.type.screenspace = "Schermruimte";
 light.shadow.type.screenspace.help = "Experimentele functie, kan in een toekomstige versie worden verwijderd.
@@ -1316,26 +1473,22 @@ light.type.hdri = "HDRI";
 light.type.point = "Punt";
 // Spot light emits light in a single direction, restricted by a cone shape.
 light.type.spot = "Spot";
-light.type.sun = "Zon";
-// Whether the light is shown
-light.visible = "Toon";
 
 link.address = "Dit apparaat";
 link.approve = "Accepteren";
-link.bridges = "Bridge-scripts";
+link.bridges = "Bridge-scripts (GitHub)";
 link.cameras = "Camera’s";
 link.copyRepository = "Repository-URL kopiëren";
 link.deny = "Weigeren";
 link.forget = "Gekoppelde apparaten vergeten";
 link.get = "Ophalen";
-link.getFrom = "Ophalen van $0";
 link.goz.enable = "GoZ inschakelen";
 link.goz.noExport = "Niets om te importeren; druk eerst op GoZ in ZBrush";
 link.goz.notInstalled = "Installeer eerst GoZ in ZBrush (Voorkeuren > GoZ)";
 link.goz.received = "$0 object(en) ontvangen van ZBrush";
 link.goz.sent = "$0 object(en) verzonden naar ZBrush";
 link.goz.waiting = "Wachten op de export van ZBrush";
-link.help.others = "Andere apps (ZBrush enz.) maken op dezelfde manier verbinding met een Nomad-host.
+link.help.others = "Andere apps (ZBrush, Marmoset Toolbag enz.) maken op dezelfde manier verbinding met een Nomad-host.
 
 Een bridge is een Python-script dat op dezelfde computer als die app wordt uitgevoerd.
 Voorbeeldscripts en het protocol staan op GitHub; gebruik ze als uitgangspunt.";
@@ -1356,14 +1509,11 @@ link.mode.help = "Eén apparaat host de sessie; de andere nemen eraan deel.";
 link.mode.nomad = "Nomad ↔ Nomad";
 link.mode.nomad.help = "Kies Host op één apparaat en Deelnemen op de andere; tik daarna op de naam van de host.";
 link.nearby = "Apparaten in de buurt";
-link.network = "Netwerk";
 link.objects = "Objecten en geometrie";
 link.off = "Uit";
 link.peer = "Peer";
 link.peerAddress = "Clientadres";
-link.peers = "Peers";
 link.port = "Netwerkpoort";
-link.receive = "Ontvangen";
 link.replace = "Vervangen";
 // Confirm popup before "Replace": deletes the local scene (undoable), then pulls the peer's scene
 link.replace.confirm = "De huidige scène verwijderen en daarna de scène van de peer ophalen?";
@@ -1374,7 +1524,6 @@ link.scope.scene = "Scène";
 link.scope.selection = "Selectie";
 link.searching = "Zoeken naar apparaten";
 link.send = "Verzenden";
-link.sendTo = "Verzenden naar $0";
 link.source = "Scènebewerkingen";
 link.source.from = "Van $0";
 link.source.help = "Scènebewerkingen worden vanaf één apparaat tegelijk gestreamd. Auto kent de richting toe aan de meest recente activiteit.";
@@ -1474,8 +1623,6 @@ material.refraction.interior = "Interieur";
 material.refraction.surface = "Oppervlak";
 // Defines how blurry or sharp the reflection on a material is (opposite of glossiness)
 material.roughness = "Ruwheid";
-// How much light a surface will reflect
-material.specular = "Speculair";
 // Depth means how far the light can travel under the surface
 material.subsurfaceDepth = "Diepte";
 // Textures/Image
@@ -1531,8 +1678,6 @@ Anders, als de schaduw vanger volledig metallic is, kan de Schaduw Vanger de sc�
 material.type.subsurface = "Suboppervlak";
 material.type.subsurface.help = "Om het beste resultaat te krijgen, kunt u overschakelen naar de PBR-schaduwmodus en ten minste één gericht licht gebruiken, idealiter in een gedimde omgeving.";
 material.unused = "Ongebruikt";
-// A warning indicating that the mesh has no UVs
-material.warningNoUVs = "Geen UVs!";
 
 menu.about = "Over";
 menu.alpha = "Alpha";
@@ -1617,6 +1762,11 @@ Bijvoorbeeld: de projectenmappen accepteren alleen 3D-bestanden, terwijl alphas 
 nomad.mainFolder.warning = "Bestanden blijven onaangeroerd.
 Ze worden niet gekopieerd, verwijderd of verplaatst.";
 
+// Material picker button of the painting menu, its channels are chosen in the material options popup
+paint.dropper = "Materiaalpipet";
+paint.dropper.help = "Neemt het materiaal onder de cursor over.
+
+Alleen de aangevinkte kanalen worden vervangen.";
 // Factor/Opacity of paint tool
 paint.intensity = "Schilderintensiteit";
 // Opaque opacity
@@ -1642,13 +1792,19 @@ De materiaalvoorinstellingen zijn te vinden in de map Nomad materials/.
 Wanneer deze optie is uitgeschakeld, verwijst de materiaalvoorinstelling alleen naar de textuur in de textures/ map.
 
 U kunt deze optie inschakelen om een kopie van de texturen binnen de materiaalvoorinstelling te maken. Dit kan handig zijn als u een getextureerde voorinstelling wilt delen zonder de bijbehorende texturen te verstrekken.";
-// use stencil mode
-paint.stencil = "Sjabloon";
 paint.strokePainting.title = "Schilderen";
-// Brush-stroke texture
-paint.texture.warningEnable = "Streepschilderen moet geactiveerd zijn om textuurprojectie toe te staan (selectievakje bovenaan)!";
-paint.texture.warningIgnored = "Huidig gereedschap kan geen texturen gebruiken!";
+// Curve editor of a texture slot, a pill in the texture popup footer
+paint.texture.curve = "Curven";
+// Before → after previews on top of the curve editor
+paint.texture.curve.compare = "Origineel → huidig";
+paint.texture.curve.help = "Zet de textuurwaarden om voordat ze worden geschilderd.
+
+Het afbeeldingsbestand blijft ongewijzigd.";
 // Inherit stroke falloff option for the painting
+// Help of the alpha button of the painting menu, not the alpha menu itself
+paint.tool.alpha.help = "Wanneer uitgeschakeld, negeert het schilderen de alfa en bedekt het volledige penseelgebied.";
+// Help of the falloff button of the painting menu, not the falloff menu itself
+paint.tool.curve.help = "Wanneer uitgeschakeld, behoudt het schilderen de volle intensiteit tot aan de penseelrand.";
 paint.tool.help = "Gebruik gereedschapsalfa, falloff en randomisatie om de intensiteit van de schilderstreek te variëren.
 
 Deze opties worden genegeerd voor de 'alles schilderen' functie, maar de alpha wordt meegenomen voor de triplanar variant.";
@@ -1657,8 +1813,13 @@ paint.useGlobal = "Globaal materiaal";
 paint.useGlobal.help = "Als deze optie is ingeschakeld, zal het geselecteerde materiaal hetzelfde zijn als de andere gereedschappen.
 
 Let op dat het alleen de ruwheid, metalness en kleurinstellingen in aanmerking neemt.";
+// Only the intensity part of the stroke randomizer, applied to the painting
+paint.useJitter = "Intensiteit variëren";
+paint.useJitter.help = "Bepaalt of willekeurige intensiteit het schilderen beïnvloedt. Willekeurige positie, rotatie en schaal verplaatsen altijd de volledige stempel.";
 // The current tool will paint the object if this option is enabled
 paint.usePainting = "Penseelschilderen";
+// Paint with the color, roughness, metalness and opacity baked inside the VDM stamp
+paint.vdmMaterial = "Stempelmateriaal";
 
 position.bottom = "Onder";
 position.center = "Midden";
@@ -1700,6 +1861,8 @@ Als de waarde 0 is, krijgt alles bloei.";
 // https://en.wikipedia.org/wiki/Chromatic_aberration
 postprocess.chromatic = "Chromatische Aberratie";
 postprocess.chromatic.factor = "Sterkte";
+// Short label for the section shortcut bar
+postprocess.chromatic.short = "Chroma";
 // Accentuate the edges of the model
 postprocess.curvature = "Kromming";
 // Color/Strength of convex curvature
@@ -1708,6 +1871,8 @@ postprocess.curvature.bump = "Uitstulping";
 postprocess.curvature.cavity = "Holte";
 // Main strength of curvature
 postprocess.curvature.factor = "Factor";
+// Short label for the section shortcut bar
+postprocess.curvature.short = "Holte";
 // Color curves
 postprocess.curve = "Kleurbewerking";
 postprocess.curve.blue = "Blauw";
@@ -1715,8 +1880,8 @@ postprocess.curve.green = "Groen";
 // Curve for pixel luminance
 postprocess.curve.luminance = "Hoofd";
 postprocess.curve.red = "Rood";
-// Reset color grading curves
-postprocess.curve.resetAll = "Alles herstellen";
+// Short label for the section shortcut bar
+postprocess.curve.short = "Curven";
 // Denoise
 postprocess.denoise = "Ruisonderdrukking";
 postprocess.denoise.help = "Pas een ruisonderdrukking toe nadat alle frames zijn opgestapeld.";
@@ -1727,13 +1892,17 @@ postprocess.dithering.help = "Vermindert banding-artefacten (bijvoorbeeld in ver
 // Depth of Field (bokeh)
 // https://en.wikipedia.org/wiki/Depth_of_field
 postprocess.dof = "Scherptediepte";
+// f-number, a lower value opens the lens and blurs more
+postprocess.dof.aperture = "Diafragma";
 // The blur factor behind the focused point
 postprocess.dof.blurFar = "Verre vervaging";
 // The blur factor in front of the focused point
 postprocess.dof.blurNear = "Nabije vervaging";
 postprocess.dof.focusTip = "Tik op een object om het focuspunt te wijzigen.";
-// Full resolution (1:1 resolution) instead of half resolution
-postprocess.fullResolution = "Volledige resolutie";
+// Drive the blur with a single camera aperture instead of the two blur factors
+postprocess.dof.physical = "Diafragmamodus";
+// Short label for the section shortcut bar (no need to translate "DoF")
+postprocess.dof.short = "DoF";
 // Filmic Grain
 // https://en.wikipedia.org/wiki/Film_grain
 postprocess.grain = "Korrel";
@@ -1745,6 +1914,8 @@ postprocess.maxSamples.help = "Verbetert de kwaliteit van nabewerking ten koste 
 postprocess.pixelArt = "Pixelart";
 // Override frame accumulation feature
 postprocess.pixelArt.allowAccumulate = "Frame-sampling toestaan";
+// Short label for the section shortcut bar
+postprocess.pixelArt.short = "Pixels";
 // Quality vs performance
 postprocess.quality = "Kwaliteit";
 postprocess.quality.help = "Activeer deze opties om de kwaliteit ten koste van de prestaties te verbeteren.";
@@ -1764,6 +1935,8 @@ postprocess.scanline.spacing = "Tussenruimte";
 // https://en.wikipedia.org/wiki/Unsharp_masking
 postprocess.sharpness = "Scherpte";
 postprocess.sharpness.factor = "Sterkte";
+// Short label for the section shortcut bar
+postprocess.sharpness.short = "Verscherpen";
 // Screen-space ambient occlusion (SSAO)
 // https://en.wikipedia.org/wiki/Ambient_occlusion
 postprocess.ssao = "Omgevingsocclusie";
@@ -1771,16 +1944,20 @@ postprocess.ssao = "Omgevingsocclusie";
 postprocess.ssao.factor = "Sterkte";
 // How far the effect spreads
 postprocess.ssao.radius = "Grootte";
+// Short label for the section shortcut bar (no need to translate "SSAO")
+postprocess.ssao.short = "SSAO";
 // Adjustment for ssao
 postprocess.ssao.thickness = "Dikte";
 postprocess.ssao.thickness.help = "Hoeveel dieptedikte wordt aangenomen voor occluders, als percentage van de AO-straal.";
 // Screen-Space Global Illumination (no need to translate "SSGI")
 postprocess.ssgi = "Globale verlichting (SSGI)";
-// Thickness threshold for ssgi tracing algorithm (synonym: threshold, bias)
-postprocess.ssgi.tolerance = "Tolerantie";
+// Short label for the section shortcut bar (no need to translate "SSGI")
+postprocess.ssgi.short = "SSGI";
 postprocess.ssgi.warning = "SSGI vereist PBR-schaduwmodus.";
 // Screen-Space Reflection (no need to translate "SSR")
 postprocess.ssr = "Reflectie (SSR)";
+// Short label for the section shortcut bar (no need to translate "SSR")
+postprocess.ssr.short = "SSR";
 postprocess.ssr.warning = "SSR vereist PBR shading modus.";
 // Temporal Anti-Aliasing (no need to translate "TAA")
 postprocess.taa = "Anti-aliasing (TAA)";
@@ -1795,6 +1972,8 @@ postprocess.tone.mapping.neutral = "Neutraal";
 // No tonemapping operator is used
 postprocess.tone.mapping.none = "Geen";
 postprocess.tone.saturation = "Verzadiging";
+// Short label for the section shortcut bar
+postprocess.tone.short = "Toon";
 // Darkening at the edges
 postprocess.vignette = "Vignet";
 // How sharp the edge of the effect is
@@ -1828,10 +2007,6 @@ Vink deze optie uit als u specifieke drukinstellingen voor dit gereedschap wilt.
 
 // Geometry Primitive (box, sphere, cylinder, etc)
 primitive = "Primitief";
-// Angle of torus, etc
-primitive.angleX = "Hoek X";
-primitive.angleY = "Hoek Y";
-primitive.angleZ = "Hoek Z";
 primitive.box = "Doos";
 // Box
 primitive.boxRegular = "Zelfde grootte (kubus)";
@@ -1862,8 +2037,6 @@ primitive.edit.help = "Sta 3D bewerking toe in de viewport.
 Je kunt deze functie uitschakelen als je met de Gizmo of de Transformatietool wilt werken zonder het primitief aan te passen.";
 // Interface section where we change the geometry (shape of the primitive)
 primitive.geometry = "Geometrie";
-// Make a hole in the primitive to make it hollow
-primitive.hasHole = "Heeft een gat";
 // Hole sub menu (cylinder, tube, etc)
 primitive.hole = "Gat";
 primitive.icosahedron = "Icosaëder";
@@ -1874,8 +2047,6 @@ primitive.isolate.bottom = "Onderkant";
 // One side of a cube (the right plane)
 primitive.isolate.right = "Rechts";
 primitive.lathe = "Draaibank";
-// Synonym: Flat subdivision
-primitive.linear = "Lineaire onderverdeling";
 // Primitive configuration
 primitive.mainConfig = "Parameter";
 // Maximum number of faces of the primitives
@@ -1894,15 +2065,10 @@ primitive.profile = "Profiel";
 // History entry: a control point of the profile was moved
 primitive.profile.point = "Punt";
 primitive.profile.viewport = "In viewport tonen";
-// Make sure the shape is perfectly spherical
-primitive.projectOnSphere = "Op bol projecteren";
-primitive.projectOnSphere.help = "Snapt de punten op een perfecte bol.";
 // Radius (of a sphere, torus, etc)
 primitive.radius = "Straal";
 primitive.radius.end = "Eindstraal";
 primitive.radius.start = "Beginstraal";
-// Make sure both endpoints of a primitive (cylinder, tube, etc.) have the same size
-primitive.radius.sync = "Dezelfde straal";
 // Size (of cube x dimension)
 primitive.size = "Grootte";
 primitive.sizeX = "Grootte X";
@@ -1912,6 +2078,27 @@ primitive.sphereCube = "Quadbol";
 primitive.sphereUV = "UV-bol";
 // "Post" means subdivision that occurs after the primitive is computed
 primitive.subdivision = "Naderhand onderverdelen";
+primitive.text = "";
+primitive.text.align = "";
+primitive.text.bend = "";
+primitive.text.center = "";
+primitive.text.depth = "";
+primitive.text.edit = "";
+primitive.text.font = "";
+primitive.text.left = "";
+primitive.text.limit = "";
+primitive.text.lineSpacing = "";
+primitive.text.lineSpacing.help = "";
+primitive.text.maxWidth = "";
+primitive.text.maxWidth.help = "";
+primitive.text.missingFont = "";
+primitive.text.mode = "";
+primitive.text.offset = "";
+primitive.text.resolution = "";
+primitive.text.right = "";
+primitive.text.rigid = "";
+primitive.text.spacing = "";
+primitive.text.wrap = "";
 // Interface section where we change the topology (number of triangles/polygons)
 primitive.topology = "Topologie";
 primitive.torus = "Torus";
@@ -1952,11 +2139,7 @@ quadremesh.curvatureAdaptivness = "Adaptieve grootte";
 quadremesh.curvatureAdaptivness.help = "Bij 100% varieert de grootte van kwadraten afhankelijk van de objectkromming, zodat kleinere kwadraten kunnen worden toegepast bij hoge kromming.
 Bij 0% is de grootte van de kwadraten uniform.";
 quadremesh.reprojectVertex = "Vertex herprojecteren";
-quadremesh.reprojectVertex.label = "Wanneer ingeschakeld, zal Nomad de positie op het vorige mesh herprojecteren.
-
-Houd er rekening mee dat als het mesh lagen heeft, herprojectie altijd wordt gebruikt.";
 quadremesh.reprojectVertex.short = "Vertex herprojecteren";
-quadremesh.useVertexColors = "Schilderen behouden";
 
 // Singular of Repeaters (Nodes that make many copies of its children (type of mirror/curve/array/radial))
 repeater = "Repeater";
@@ -1964,6 +2147,49 @@ repeater = "Repeater";
 repeater.array.fitInside = "Binnen inpassen";
 // The object will follow the curve
 repeater.curve.align = "Uitlijnen";
+// Every other copy is turned around the curve: 90° for chain links, 180° for leaves or zipper teeth
+repeater.curve.alternate = "Afwisselen";
+repeater.curve.alternate.half = "180°";
+repeater.curve.alternate.quarter = "90°";
+// Count slider mode: a fixed spacing between the copies, the count follows the curve length
+repeater.curve.distance = "Afstand";
+// Surface repeater: the copies stand on the surface (normal up), else they keep the orientation of the original
+repeater.surface.align = "";
+// Surface repeater mode: one copy per edge of the parent object, turned along the edge
+repeater.surface.edges = "";
+// Surface repeater mode: one copy per face of the parent object
+repeater.surface.faces = "";
+// Surface repeater: the copies scale with the local size of the surface
+repeater.surface.fitSize = "";
+repeater.surface.fitSize.help = "";
+// Surface repeater: with Fit size, the copies also stretch and skew to the shape of each face
+repeater.surface.fitSkew = "";
+repeater.surface.fitSkew.help = "";
+// Surface repeater: what the copies land on (faces, edges or vertices)
+repeater.surface.mode = "";
+// Surface repeater: the copies land on random faces instead of every Nth
+repeater.surface.random = "";
+repeater.surface.random.help = "";
+// Surface repeater mode: copies spread evenly over the surface, a minimum distance apart, not tied to the topology
+repeater.surface.scatter = "";
+// Surface repeater: draw another random set
+repeater.surface.shuffle = "";
+repeater.surface.shuffle.help = "";
+// Surface repeater: move the original child onto the surface
+repeater.surface.snap = "";
+repeater.surface.snap.help = "";
+// Surface repeater, Scatter mode: the minimum distance between two copies
+repeater.surface.spacing = "";
+repeater.surface.spacing.help = "";
+// Surface repeater: one copy every N faces, edges or vertices
+repeater.surface.stride = "";
+repeater.surface.stride.help = "";
+// Surface repeater, Scatter mode: toggle between a copy count and a spacing (the other value follows)
+repeater.surface.useSpacing = "";
+repeater.surface.useSpacing.help = "";
+// Surface repeater: each copy bends onto its face or along its edge instead of standing flat
+repeater.surface.warp = "";
+repeater.surface.warp.help = "";
 
 // Import resource (Alpha, Textures, MatCaps, etc)
 resource.import = "Importeer...";
@@ -2033,6 +2259,8 @@ scene.repeaters = "Repeaters";
 scene.repeaters.help = "Repeater nodes maken instanties van alle geometrieën die eronder zijn in de scènehierarchie.";
 // Hidden objects will be subtracted (they carve the other objects)
 scene.subtractionTip = "Aftrekken: Verborgen objecten";
+// Surface node type: makes copies of its children on the surface of its parent object
+scene.surface = "";
 // Keep the visibility of all selected items synchronized
 scene.syncVisible = "Synchroniseer zichtbaarheid";
 scene.syncVisible.help = "Wanneer ingeschakeld, zal het gebruik van het zichtbare (oog) pictogram effect hebben op alle geselecteerde items.";
@@ -2048,7 +2276,6 @@ scene.validateGroup = "Voltooien";
 scene.validateGroup.joinChildren = "Kinderen samenvoegen";
 // Keep instances in the scene
 scene.validateGroup.keepInstances = "Instanties behouden";
-scene.voxelResolution = "Resolutie";
 
 setting.global = "Globale instelling";
 setting.globals = "Globale instellingen";
@@ -2071,12 +2298,6 @@ settings.cursor.showRope = "Toon touwstabilisator";
 settings.cursor.title = "Cursor";
 // Meshes that are not selected will be darkened
 settings.darkenUnselected = "Verduister niet-geselecteerde objecten";
-// Display the material texture
-settings.debugChannel = "Toon textuur";
-// Display the material texture in the background
-settings.debugChannel.onBackground = "Op de achtergrond";
-// Display the material texture on the mesh
-settings.debugChannel.onMesh = "Op de mesh";
 // General scene display settings
 settings.display.title = "Weergave-instellingen";
 // Grid
@@ -2085,10 +2306,16 @@ settings.grid.snapDivision = "Snapdrempel voor verdelingen";
 settings.grid.snapDivision.help = "De drempel wordt vergeleken met de afstand tot het raster.";
 // Snap eligible tool points to the grid
 settings.grid.snapGrid = "Naar raster snappen";
+// Same as settings.grid.snapGrid, on a small shortcut button
+settings.grid.snapGrid.short = "Raster snappen";
 // Snap eligible tool points to nearby existing points when the camera is aligned
 settings.grid.snapPointAlign = "Uitlijnen op punten (uitgelijnde weergave)";
+// Same as settings.grid.snapPointAlign, on a small shortcut button
+settings.grid.snapPointAlign.short = "Punten snappen (uitgelijnd)";
 // Snap eligible tool points to nearby existing points when the camera is not aligned
 settings.grid.snapPointFree = "Uitlijnen op punten (vrije weergave)";
+// Same as settings.grid.snapPointFree, on a small shortcut button
+settings.grid.snapPointFree.short = "Punten snappen (vrij)";
 // Handles are controls that you interact with in the viewport in order to edit something
 settings.handle = "Handvat";
 settings.handles = "Handvatten";
@@ -2096,12 +2323,6 @@ settings.handles = "Handvatten";
 settings.highlight = "Markering";
 settings.highlight.duration = "Duur";
 settings.highlight.help = "Accentueert de momenteel geselecteerde objecten wanneer de selectie verandert.";
-// Hole filling settings
-settings.hole = "Gatvulling";
-// Allow the hole-filling algorithm to handle non-manifold (irregular) topology
-settings.hole.nonManifold = "Niet-manifolde vullen";
-settings.hole.nonManifold.help = "Probeer niet-manifolde gaten te vullen.
-Deze optie wordt niet opgeslagen in de instellingen.";
 // Show icon on the canvas
 settings.icon = "Icoon";
 // Show icons on the canvas
@@ -2126,6 +2347,18 @@ settings.outline = "Omlijning";
 // Outline (contour highlight around the selected object)
 settings.outline.help = "Geselecteerde objecten worden omlijnd.";
 settings.outline.thickness = "Dikte";
+// Object budget shared by every repeater in the scene
+settings.repeater.maxCopies = "";
+settings.repeater.maxCopies.help = "";
+// Most copies a single repeater makes
+settings.repeater.maxCount = "";
+settings.repeater.maxCount.help = "";
+// Polygon budget shared by every copy in the scene
+settings.repeater.maxFaces = "";
+settings.repeater.maxFaces.help = "";
+// Settings section: limits shared by every repeater (array, radial, curve, surface)
+settings.repeater.title = "";
+settings.repeater.title.help = "";
 // Reset preference settings button
 settings.reset = "Herstel naar standaard";
 settings.reset.confirm = "Voorkeursinstellingen herstellen?";
@@ -2145,7 +2378,6 @@ Sommige bronnen worden apart opgeslagen en worden NIET gereset, zoals:
 Merk op dat alles wat verbonden is aan het project intact blijft, zoals verlichting, Post Process, camerastandpunten, enz.";
 // Shape draw thing
 settings.shape = "Vorm";
-settings.shape.color = "Polygoonkleur";
 // Disable this option to force show the hidden faces
 settings.showDiscard = "Gebruik Verberg";
 // Show and use the masking on the mesh
@@ -2161,20 +2393,20 @@ settings.snapCube.align = "Uitlijning beperken";
 settings.snapCube.align.help = "Lijn de weergave uit met de wereldas. Indien ingeschakeld, zijn slechts 6 snapposities mogelijk.
 
 In Automatisch zal de beperking alleen plaatsvinden als de camera in Orbit-modus is.";
-// Move the navigation cube to the bottom of the screen
-settings.snapCube.bottom = "Onder";
 // Extra snapping views on the edges and corners of the navigation cube
-settings.snapCube.edgeCorner = "";
-settings.snapCube.edgeCorner.help = "";
+settings.snapCube.edgeCorner = "Randen en hoeken";
+settings.snapCube.edgeCorner.help = "Voeg snapweergaven toe aan de randen en hoeken van de kubus (amberkleurige zones).";
 // Flip the camera (rotate 180° to see the other side)
 settings.snapCube.flip = "Draai 180°";
 settings.snapCube.flip.help = "Draai het beeld om als het al vaststaat.";
-// Move the navigation cube on the left side of the screen
-settings.snapCube.left = "Links";
+// Dragging the navigation cube rotates like the Turntable mode, even if the camera is in Trackball
+settings.snapCube.turntable = "Slepen als draaischijf";
+settings.snapCube.turntable.help = "Door de kubus te verslepen draait de camera zonder te kantelen en stopt hij bij elke uitlijnweergave.
+
+Schakel dit uit om de kubus in plaats daarvan met Trackball-rotatie te verslepen. In beide gevallen blijft de sleepbeweging horizontaal of verticaal.";
 // Stats (information logs about the scene displayed on screen)
 settings.stats = "Statistieken";
 settings.stats.all = "Toon volledige scène";
-settings.stats.right = "Rechts";
 // If the object is opened (a simple plane for example), two sided means we'll be able to see if from the two sides of the planes
 settings.twoSided = "Twee zijden";
 settings.twoSided.help = "Vlakken zijn zichtbaar aan beide zijden.";
@@ -2192,7 +2424,6 @@ shading.environment.attachedToCamera.help = "Bevestig de omgeving aan de camera.
 Dit zorgt ervoor dat de verlichting consistent blijft, wat nuttig kan zijn voor sculptuurdoeleinden.";
 shading.environment.backgroundBlur = "Vervaging (achtergrond)";
 shading.environment.exposure = "Belichting";
-shading.environment.import = "Importeer HDR";
 shading.environment.rotation = "Rotatie";
 shading.environment.rotation.help = "Je kunt de omgeving roteren door 3 vingers horizontaal in het viewport te slepen.";
 // Randomize colors
@@ -2203,7 +2434,6 @@ shading.instance.help = "Zelfde als Object ID, maar instanties hebben dezelfde k
 // Lights
 shading.lights = "Lichten";
 shading.lights.addLight = "Licht toevoegen";
-shading.lights.warning = "Verlichting vereist PBR shading modus.";
 // Fast rendering mode for sculpting purpose
 shading.matcap = "MatCap";
 shading.matcap.global = "Gebruik globale MatCap";
@@ -2252,11 +2482,6 @@ shortcut.voxel = "Voxel";
 shortcut.wireframe = "Draad";
 shortcut.xray = "X-Ray";
 
-sonar.connect = "SonarPen verbinden";
-sonar.connect.confirm = "SonarPen verbinden?";
-sonar.connect.confirm.warning = "Sonar Pen zal de microfoon (audio-loopback) gebruiken om de druk van de pen te detecteren.";
-sonar.disconnect = "SonarPen loskoppelen";
-
 // space
 space.local = "Lokaal";
 space.screen = "Scherm";
@@ -2279,9 +2504,7 @@ stat.ramHistory = "Geschiedenis";
 stat.ramOther = "Andere";
 // Memory taken by the scene
 stat.ramScene = "Scène";
-stat.scene.face = "Vlakken in scène";
 stat.scene.vertex = "Vertices in scène";
-stat.triangles = "Driehoeken";
 stat.used = "Gebruikt: $0";
 // Memory used by the app (RAM, not storage!)
 stat.usedMemory = "Gebruikt geheugen";
@@ -2296,6 +2519,7 @@ stat.vramTextures = "Vram Texturen";
 
 status.exit = "Niet-opgeslagen wijzigingen! Opslaan voor sluiten?";
 status.exit.no = "Niet opslaan";
+status.exit.title = "";
 status.exit.yes = "Opslaan";
 
 store.description.baking = "• Baking
@@ -2372,10 +2596,25 @@ stroke.alpha.fit = "Strakke pasvorm (niet-vierkante afbeeldingen)";
 stroke.alpha.fit.help = "Deze optie is alleen van belang als de alpha- en penselentexturen niet vierkant zijn.
 
 Wanneer ingeschakeld, wordt elke afbeelding onafhankelijk betegeld zonder tussenruimte. U kunt deze optie uitschakelen als u de alpha en andere afbeeldingen gesynchroniseerd wilt houden, in geval hun verhouding niet hetzelfde is.";
+// Title of the popup that corrects the alpha image itself
+stroke.alpha.fix = "Alpha corrigeren";
+// Follows a number: "30% negative pixels clamped to zero"
+stroke.alpha.fix.clamped = "% negatieve pixels begrensd op nul";
+// Under the two previews of the popup: the current image on the left, the corrected one on the right
+stroke.alpha.fix.compare = "Huidig → gecorrigeerd";
+// Mirror the image left/right
+stroke.alpha.fix.flipX = "Horizontaal spiegelen";
+// Mirror the image top/bottom
+stroke.alpha.fix.flipY = "Verticaal spiegelen";
+// Turn the image by a quarter
+stroke.alpha.fix.rotate = "90° draaien";
+// The border pixels do not all share the same value, so no single mid value fits them
+stroke.alpha.fix.spread = "De rand is niet uniform.";
 // Invert the pixel (black, white)
 stroke.alpha.invert = "Inverteer pixels";
 // Middle-point value at which no deformation occurs
 stroke.alpha.midValue = "Middenwaarde";
+stroke.alpha.midValue.detect.help = "Leest de middenwaarde van de rand van de afbeelding.";
 stroke.alpha.midValue.help = "Middenpuntwaarde waarbij geen vervorming optreedt.
 
 (Middelwaarde = 0)
@@ -2389,6 +2628,7 @@ stroke.alpha.midValue.help = "Middenpuntwaarde waarbij geen vervorming optreedt.
 (Middelwaarde = 1)
 • Zwart: negatieve verplaatsing
 • Wit: geen verplaatsing";
+stroke.alpha.midValue.pick.help = "Kiest de middenwaarde op de alpha zelf.";
 // Alpha rotation
 stroke.alpha.rotation = "Rotatie";
 stroke.alpha.rotation.lock.help = "Vergrendel de alpha oriëntatie.
@@ -2459,11 +2699,10 @@ Dit is vergelijkbaar met hoe alfa's worden bemonsterd.";
 stroke.falloffProject.sphere = "Bol";
 // Synonymous: Scatter/Jitter/Randomize
 stroke.jitter = "Willekeurig";
-stroke.jitter.period = "Periode";
+stroke.jitter.period = "";
 stroke.jitter.period.help = "De lengte van de jittercyclus.
 Verhoog voor langzame, rollende variaties.
 Verlaag voor snelle ruis.";
-stroke.jitter.period.hint = "Langzamer";
 // Make the brush stroke lag behind the pointer
 stroke.lazyRadius = "Trage touwstabilisator";
 stroke.lazyRadius.help = "Streken lopen op een ingestelde afstand achter op de aanwijzer.
@@ -2474,10 +2713,6 @@ stroke.lazySmooth = "Streekvervloeiing";
 stroke.lazySmooth.help = "Middelt meerdere aanwijzerposities voor een vloeiendere streek.
 
 Bij hoge waarden loopt de streek achter op de aanwijzer, maar haalt deze uiteindelijk weer in.";
-stroke.minSpacing.help = "Afstand tussen elke veeg, gerelateerd aan de gereedschapstraal.
-
-Lagere waarde zorgt voor een soepeler veeg, maar prestaties verslechteren.";
-stroke.minSpacingAdjustIntensity.help = "Pas de penseelintensiteit aan om consistente vervorming te garanderen, afhankelijk van de veegafstand.";
 // determine normal direction
 stroke.normal.direction = "Richting";
 stroke.normal.direction.auto = "Automatisch";
@@ -2500,8 +2735,6 @@ stroke.normalFalloff = "Verval-normaalfilter";
 stroke.normalFalloff.help = "Sluit punten uit waarvan de normalen te veel afwijken van de oppervlaknormaal.
 
 Handig voor het schilderen van plooien of bulten.";
-// small tip/warning
-stroke.onlyLasso = "Instellingen alleen actief voor het lasso gereedschap.";
 // sculpt on hide or mask
 stroke.protect = "Bescherm gebied";
 stroke.protect.hide.help = "Wanneer ingesteld op automatisch, worden verborgen oppervlakken bewerkt als het draadmodel op de verborgen oppervlakken zichtbaar is (zie draadmodelmenu).";
@@ -2561,8 +2794,13 @@ stroke.type.roll = "Rollen";
 stroke.type.tile = "Tegel";
 // Sculpt and paint with alpha projected on 3 axis
 stroke.type.triplanar = "Triplanar";
+// Drag on the surface to grab a shape from it and turn it into a VDM stamp
+stroke.type.vdmPick = "VDM vastleggen";
 // The tool can use DynTopo
 stroke.useDynamic = "Dynamische topologie toestaan";
+
+stroke.vdmPick.tolerance = "";
+stroke.vdmPick.tolerance.help = "";
 
 // Symmetry
 symmetry = "Symmetrie";
@@ -2578,7 +2816,6 @@ symmetry.edit = "Gizmo bewerken";
 symmetry.edit.help = "U kunt vrij de symmetrievlakte instellen.
 
 Deze functie is enigszins experimenteel en het wordt waarschijnlijk afgeraden deze te gebruiken.";
-symmetry.edit.warning = "Symmetrie bewerken is experimenteel.";
 symmetry.enable = "Ingeschakeld";
 // Move the object to the other side of the symmetry (mirror it as well)
 symmetry.flip = "Object omkeren";
@@ -2587,11 +2824,7 @@ symmetry.fromPivot = "Van draaipunt";
 symmetry.limited = "Aantal herhalingen beperkt tot $0!";
 // method
 symmetry.method = "Methode:";
-// Local means: in the coordinate of the object (synonym: relative)
-symmetry.method.local = "Lokaal";
 symmetry.method.local.help = "Het symmetrievlak beweegt mee met het mesh wanneer je een van de transformatiegereedschappen (Gizmo of Transformeren) gebruikt.";
-// Local means: in the coordinate of the scene (synonym: absolute)
-symmetry.method.world = "Wereld";
 symmetry.method.world.help = "Het symmetrievlak is vast en zal niet bewegen.";
 // Reapply the mesh mirror, does not impact the topology
 symmetry.mirror = "Spiegel";
@@ -2605,17 +2838,10 @@ symmetry.mirror.keepTopology = "behoud topologie";
 symmetry.mirrorFail = "Symmetrie niet gedetecteerd.
 
 Wilt u symmetrie afdwingen door de mesh te spiegelen?";
-symmetry.mirrorUseMasking = "Bescherm gemaskeerd gebied";
-symmetry.mirrorUseMasking.help = "Houd het gemaskeerde gebied intact.
-
-Deze optie wordt genegeerd bij niet-symmetrische topologie (of losgekoppeld oppervlak, zoals een paar ogen).";
-// Synonym: Offset
-symmetry.offset.title = "Verplaatsing";
 symmetry.offsetX = "Verplaatsing X";
 symmetry.offsetY = "Verplaatsing Y";
 symmetry.offsetZ = "Verplaatsing Z";
 symmetry.plane.title = "Vlakken";
-symmetry.primitiveWarning = "Symmetrie van de borstel is alleen beschikbaar voor primitieve vormen die zijn gevalideerd, met uitzondering van de Triplanar.";
 // Instead of planar symmetry, use a radial symmetry
 symmetry.radial.title = "Radiaal";
 symmetry.radialX = "Radiaal X";
@@ -2635,11 +2861,18 @@ symmetry.showLine = "Lijn tonen";
 symmetry.showPlane = "Vlak tonen";
 // after mirroring, separate into multiple output (synonym: split, separate)
 symmetry.split = "Splitsen";
+// Half of a two line toggle: edit how many repeats span the object
+symmetry.tile.count = "Aantal";
+// Half of a two line toggle: edit the distance between two repeats
+symmetry.tile.distance = "Afstand";
+// The distance between two repeats of the sculpt, so it tiles seamlessly (synonym: wrap, repeat)
+symmetry.tile.title = "Tegel";
 symmetry.toolIgnore = "De huidige tool negeert symmetrie.";
 
 // Three-state toggle button (auto, no, yes)
 toggle.auto = "Auto";
 toggle.no = "Nee";
+toggle.off = "Uit";
 toggle.yes = "Ja";
 
 // If an option is shared among the tools
@@ -2668,6 +2901,8 @@ tool.elastic = "Elastisch";
 tool.faceGroup = "Vlakkengroep";
 tool.faceGroup.autoPick = "Auto-selectie";
 tool.faceGroup.flush = "Verwijder ongebruikte";
+// Face group tap action: the tapped group and what lies beyond it get unmasked, the gizmo lands on the joint
+tool.faceGroup.pose = "Pose";
 tool.faceGroup.skip = "Sla kleine groepen over op basis van:";
 tool.faceGroup.skipArea = "Oppervlakte";
 tool.faceGroup.skipArea.help = "Maak geen nieuwe groep aan als de oppervlakte van de nieuwe groep lager is dan deze drempelwaarde.
@@ -2681,6 +2916,8 @@ tool.flatten = "Plat maken";
 tool.flatten.fill = "Vullen";
 tool.flatten.planeLockNormal = "Vastzetting richting vlak";
 tool.flatten.planeLockOrigin = "Vastzetting oorsprong vlak";
+// Give the viewport back to the tool: its options come back and it can draw again
+tool.focus = "Terug naar gereedschap";
 // Ideally short strings (Rotate, Translate and Scale the object)
 tool.gizmo = "Gizmo";
 // Ideally short strings (Align/Snap the gizmo to world axis)
@@ -2692,7 +2929,6 @@ tool.gizmo.allowInput.help = "Sta numerieke invoer toe wanneer je op een van de 
 tool.gizmo.autoHide = "Verberg bij interactie";
 // If true, there is less spacing between gizmo handlers (rotate, scale, etc)
 tool.gizmo.compact = "Compact";
-tool.gizmo.depth = "Diepte";
 tool.gizmo.distribute = "Verdelen";
 // Ideally short strings
 tool.gizmo.editPivot = "Draaipunt";
@@ -2703,8 +2939,6 @@ tool.gizmo.linearRollThreshold.help = "Hoekdrempel om te kiezen tussen lineaire 
 Waarden boven deze drempel zullen de circulaire rol gebruiken.
 
 Als je de lineaire rol (richting van de tangens) verkiest, stel deze waarde dan in op 90°.";
-// Ideally short strings (Local/Relative space)
-tool.gizmo.local = "Lokaal";
 // Ideally short strings (Snap translation)
 tool.gizmo.moveSnap = "Kleven";
 tool.gizmo.order = "Volgorde";
@@ -2713,6 +2947,26 @@ tool.gizmo.order.line = "Lijn";
 tool.gizmo.order.sphere = "Bol";
 // Ideally short strings (Pin the gizmo, so that it stays in place when switching between objects)
 tool.gizmo.pin = "Vastzetten";
+// Title of the pivot reset options (where to put the pivot back)
+tool.gizmo.reset = "Herstellen";
+// Pivot orientation snapped to the world axes
+tool.gizmo.reset.align = "Uitlijnen";
+tool.gizmo.reset.align.help = "Lijnt het draaipunt uit op de wereldassen en behoudt de positie.";
+tool.gizmo.reset.auto = "Auto";
+tool.gizmo.reset.auto.help = "Midden van het object, uitgelijnd op de transformatie ervan.";
+tool.gizmo.reset.bottom = "Onderkant";
+tool.gizmo.reset.bottom.help = "Midden onderaan het object, uitgelijnd op de transformatie ervan.
+Tik nogmaals om het begrenzingskader in wereldcoördinaten te gebruiken.";
+tool.gizmo.reset.center = "Midden";
+tool.gizmo.reset.center.help = "Midden van het object, met behoud van de oriëntatie.";
+tool.gizmo.reset.help = "Zet het draaipunt terug op een bekende plek. De positie en oriëntatie ervan bepalen het gizmo.";
+// Pivot on the center of the unmasked area
+tool.gizmo.reset.mask = "Masker";
+tool.gizmo.reset.mask.help = "Midden van het ongemaskeerde gebied, met behoud van de oriëntatie.
+Tik nogmaals om naar het gemaskeerde gebied te schakelen.";
+// Pivot on the object origin
+tool.gizmo.reset.object = "Object";
+tool.gizmo.reset.object.help = "Oorsprong van het object, uitgelijnd op de transformatie ervan.";
 // Puts the gizmo back on its automatic placement (position and orientation)
 tool.gizmo.resetPivot = "Draaipunt opnieuw instellen";
 // Ideally short strings (Snap angle)
@@ -2733,10 +2987,6 @@ tool.gizmo.tap.normal.help = "Verplaats de gizmo naar het eerste snijpunt en lij
 tool.hide = "Verbergen";
 // Fill the object's hole
 tool.hole = "Gat vullen";
-tool.hole.bridges = "Screen-space boolean";
-tool.hole.bridges.help = "Als deze optie is ingeschakeld, kun je gaten in het volume maken.
-De snijhoek volgt ook nauwer de snijvorm.";
-tool.hole.fillHoles = "Vul gaten";
 tool.hole.method.boolean = "Boolean";
 // synonym: Alternative method
 tool.hole.method.fill = "Vul";
@@ -2796,15 +3046,27 @@ Het zal de gegevens van de laag gebruiken om de verplaatsing over streken te bep
 tool.mask = "Masker";
 // Blur the painted mask
 tool.mask.blur = "Vervagen";
+// Strengthen the mask intensity without changing its shape (opposite of Dilute)
+tool.mask.boost = "Versterken";
+// Mask the open boundary of the mesh (the edge of a plane, the rim of a hole)
+tool.mask.border = "Rand";
+// Negative side of the Cavity slider: only the raised areas stay paintable
+tool.mask.bumps = "Bobbels";
+// Rebuild the mask from the surface curvature: only the recessed areas stay paintable
+tool.mask.cavity = "Holte";
 // Clear the painted mask
 tool.mask.clear = "Wissen";
 tool.mask.clearAll = "Alles wissen";
-// Mask or Unmask a region (leave other region that unconnected intact)
-tool.mask.flipConnected = "Masker omkeren (verbonden)";
+// Weaken the mask intensity without changing its shape (opposite of Boost)
+tool.mask.dilute = "Verdunnen";
+// Enlarge the masked area, one ring of vertices at a time
+tool.mask.grow = "Uitbreiden";
 // Invert the painted mask
 tool.mask.invert = "Inverteren";
 // Sharpen the edge of the painted mask area
 tool.mask.sharpen = "Verscherpen";
+// Reduce the masked area, one ring of vertices at a time (opposite of Grow)
+tool.mask.shrink = "Krimpen";
 // Ideally short strings
 tool.mask.unmask = "Ontmaskeren";
 // Ideally short strings (Selector Mask, use lasso/ellipse,etc shape to mask the mesh)
@@ -2819,6 +3081,9 @@ tool.matrix.action.origin = "Verplaats oorsprong";
 tool.matrix.action.origin.help = "Verplaats het mesh naar de wereldoorsprong.";
 tool.matrix.action.reset = "Reset";
 tool.matrix.action.reset.help = "Reset de mesh-transformatie naar identiteit.";
+// Move the pivot alone, the objects stand still
+tool.matrix.editPivot = "Bewerk";
+tool.matrix.editPivot.help = "Verplaats alleen het draaipunt; de objecten blijven stilstaan.";
 tool.matrix.rotation = "Rotatie";
 tool.matrix.scale = "Schaal";
 // Synonym: shear, https://en.wikipedia.org/wiki/Shear_matrix or https://en.wikipedia.org/wiki/Shear_mapping
@@ -2831,9 +3096,17 @@ tool.matrix.target.auto.help = "Standaard werkt dit op dezelfde manier als de op
 // Transform the object and its children
 tool.matrix.target.group = "Groep";
 tool.matrix.target.group.help = "Verplaats het knooppunt, waarbij symmetrie en maskering worden genegeerd. De rest van de hiërarchie wordt ook getransformeerd.";
+// Transform the object and its children, and every other instance of it
+tool.matrix.target.groupInstance = "Instantie";
+tool.matrix.target.groupInstance.help = "Zoals Groep, maar alle instanties van de knoop bewegen mee.
+Symmetrie en maskering worden genegeerd. De rest van de hiërarchie wordt ook getransformeerd.";
 // Transform the object alone (the children stands still)
 tool.matrix.target.object = "Object";
 tool.matrix.target.object.help = "Verplaats alleen het object, waarbij symmetrie en maskering worden genegeerd. Alleen het bewerkte knooppunt beweegt, de kinderen blijven stilstaan.";
+// Transform the object alone, and every other instance of it
+tool.matrix.target.objectInstance = "Instantie";
+tool.matrix.target.objectInstance.help = "Zoals Object, maar alle instanties van het object bewegen mee.
+Symmetrie en maskering worden genegeerd. De onderliggende objecten blijven staan.";
 // Auto apply the transform on the vertices
 tool.matrix.target.vertex = "Vertex";
 tool.matrix.target.vertex.help = "Probeer de transformatie toe te passen op de vertices, het zal niet werken op niet-gevalideerde primitieve vormen. Exemplaren worden ook beïnvloed.";
@@ -2841,8 +3114,6 @@ tool.matrix.translation = "Verschuiving";
 tool.matrix.uniformScale = "Uniforme schaal";
 // Ideally short strings (Measure distance between 2 points)
 tool.measure = "Meten";
-// dimension box
-tool.measure.box = "Afmeting";
 // Perimeter of a plane cross section
 tool.measure.crossSection = "Doorsnede";
 // Geodesic distance
@@ -2883,8 +3154,6 @@ tool.polish = "Polijsten";
 tool.project = "Projecteren";
 // Radius of the tool (size)
 tool.radius = "Straal";
-// Ideally short strings (Quad Remesher)
-tool.remesh = "Quad Remesher";
 tool.remesh.density = "Dichtheid";
 tool.remesh.guides = "Richtlijnen";
 tool.remesh.half = "Half";
@@ -2897,12 +3166,15 @@ tool.settings = "Instellingen";
 tool.settings.none = "Dit gereedschap heeft geen specifieke instellingen.";
 // Shape for the tools: Trim / Split / Project / SelMask
 tool.shape = "Vorm";
-// Auto-validate the drawn shape
-tool.shape.autoValidate = "Automatisch valideren";
 // Ideally short strings (Whether a shape is closed or not, a tube is open, a torus is closed)
 tool.shape.closed = "Gesloten";
 // Ideally short strings (Curve selection, same as Lasso and it's an open shape)
 tool.shape.curve = "Kromme";
+tool.shape.edit = "";
+tool.shape.edit.help = "";
+tool.shape.edit.longPress = "";
+tool.shape.edit.off = "";
+tool.shape.edit.on = "";
 // Ideally short strings (Ellipse selection)
 tool.shape.ellipse = "Ellips";
 // The selection ellipse will be centered around the cursor
@@ -2915,8 +3187,6 @@ tool.shape.flip = "Draaien";
 tool.shape.lasso = "Lasso";
 // Ideally short strings (Line selection, split the screen in half)
 tool.shape.line = "Lijn";
-// Rotate by step (angle value)
-tool.shape.lineRotateStep = "Rotatiestap";
 // Ideally short strings (Path selection, same as Lasso but with more precision and it's an open shape)
 tool.shape.path = "Pad";
 // Ideally short strings (Polygon selection, same as Lasso but with more precision)
@@ -2981,6 +3251,44 @@ tool.trim.detail.protect.help = "Maak de snijrand niet glad en vereenvoudig deze
 Behoudt de oorspronkelijke mesh-topologie nabij gemaskeerde en verborgen vlakken.";
 // Ideally short strings (Revolving surface along a curve)
 tool.tube = "Buis";
+// Ideally short strings (Vector displacement stamp)
+tool.vdm = "VDM";
+// Button that adds a plane ready to be sculpted into a VDM
+tool.vdm.addPlane = "Vlak toevoegen";
+tool.vdm.fix = "";
+tool.vdm.fix.detect = "";
+tool.vdm.fix.detect.help = "";
+tool.vdm.fix.help = "";
+tool.vdm.fix.invert = "";
+tool.vdm.fix.invert.help = "";
+tool.vdm.fix.offset = "";
+tool.vdm.fix.offset.help = "";
+// Scales only the height of the vdm stamp, lateral displacement is unchanged
+tool.vdm.height = "Hoogte";
+// Button that opens the popup that adds a plane to sculpt a VDM on, "..." is appended in the app
+tool.vdm.new = "Nieuwe VDM";
+// Title of the popup that adds a plane to sculpt a VDM on
+tool.vdm.plane = "Nieuwe VDM boetseren";
+// The border is the outer edge of the plane
+tool.vdm.plane.border = "Rand maskeren";
+tool.vdm.plane.border.help = "Maskeert de buitenste ring van het vlak om de rand vlak te houden.
+
+Boetseren tot aan de rand maakt een scherpe rand in de stempel.";
+tool.vdm.plane.help = "Voegt een vlak toe dat is ingesteld voor het boetseren van een VDM, met UV's, de geselecteerde resolutie en een oriëntatie naar de camera.
+
+Hiermee wordt alleen het vlak gemaakt. De stempel maken:
+• Boetseer je vorm op het vlak
+• Open `Topologie -> Bakken`
+• Selecteer `VDM` en druk op `Bakken`
+
+Nomad voegt de nieuwe stempel toe aan de VDM-bibliotheek en selecteert deze.
+
+Vermijd DynTopo, want dit beschadigt de UV's van het vlak en vervormt de stempel.";
+// (see Glossary for Layer)
+tool.vdm.plane.layer = "Boetseren op een laag";
+tool.vdm.plane.layer.help = "Maakt een boetseerlaag boven het vlakke vlak, die bij het bakken als referentie wordt gebruikt.
+
+Schilderen heeft ook een laag nodig. Zonder laag bedekt het materiaal bij het stempelen het hele vierkant, niet alleen het geschilderde gebied.";
 // Ideally short strings (View tool, do nothing in particular)
 tool.view = "Bekijken";
 // Always display the camera shortcut buttons on the viewport
@@ -2988,8 +3296,6 @@ tool.view.stickyCamera = "Camerasneltoets (altijd)";
 
 // Topology
 topology = "Topologie";
-// Name of the quad remeshing engine, should probably stay untranslated
-topology.autoremesher = "AutoRemesher";
 topology.autoremesher.adaptivity = "Aanpassingsvermogen";
 topology.autoremesher.adaptivity.help = "Pas de dichtheid van quads aan de kromming aan.
 
@@ -3007,13 +3313,17 @@ topology.autoremesher.smoothAngle.help = "0 houdt het oppervlak gefacetteerd tij
 
 Hogere waarden maken het oppervlak vloeiender door rekening te houden met de vertexnormalen.";
 topology.bake.backup = "Back-up";
+// Multires here means the subdivision levels of the object itself
+topology.bake.multires = "Multires gebruiken";
+topology.bake.multires.help = "Leest de hoge resolutie via de onderverdelingsniveaus in plaats van stralen uit te sturen.
+
+Sneller en zonder projectiefouten.
+
+Schakel dit uit om te bakken met de onderstaande kooi-instellingen.";
 // Cage is a specific term; synonym: "Bake offset"
 topology.bake.offset = "Straal offset";
-// Bake opacity (from mask data)
-topology.bake.opacityFromMask = "Masker -> Dekking";
 // Bake here means "create texture (from another mesh data)"
 topology.bake.other = "Van hoge-resolutie";
-topology.bake.radius = "Kooistraal";
 topology.bake.resolution = "Resolutie";
 topology.bake.searchDistance = "Zoek afstand";
 topology.bake.searchDistance.help = "Maximale afstand die wordt gebruikt om het bronoppervlak te vinden.";
@@ -3039,6 +3349,29 @@ Om te kiezen welke objecten worden gebruikt voor bakken, geldt de volgende logic
 - alle geselecteerde objecten en het hoofdzakelijk geselecteerde object zullen worden gebakken (de sterkste highlight in het scenemenu)
 - als er maar één object is geselecteerd, dan overweegt Nomad in plaats daarvan alle zichtbare objecten
 - als anders alle objecten verborgen zijn (bijvoorbeeld door gebruik van Solo), dan wordt de hele scène overwogen.";
+// Warning shown after a VDM bake, the border of the plane is its outer edge
+topology.bake.vdm.border = "De sculptuur raakt de rand van het vlak. De VDM toont daardoor een harde rand wanneer deze wordt gestempeld.";
+// Error shown when a VDM bake fails
+topology.bake.vdm.failed = "Kan de VDM niet maken.";
+// Bake here means "create a VDM (from a sculpted plane)"
+topology.bake.vdm.help = "Maakt een VDM van het geselecteerde object en voegt deze toe aan de VDM-bibliotheek.
+
+Gebruikelijke werkwijze:
+• Voeg een vlak toe, of selecteer `Nieuwe VDM` in de VDM-kiezer om een vooraf ingesteld vlak toe te voegen
+• Modelleer de vorm erop en houd de rand vlak
+• Bak de VDM!
+
+De UV van het vlak bepaalt het vierkant dat wordt gebakken, dus het object heeft UV nodig.
+
+Vermijd DynTopo, het verslechtert de UV van het vlak en de VDM wordt vervormd.
+
+Modelleren in een laag geeft het nauwkeurigste resultaat, omdat het vlakke vlak eronder behouden blijft.
+
+Ook schilderen vraagt om een laag, anders wordt het materiaal over het hele vierkant gestempeld in plaats van alleen waar je hebt geschilderd.";
+// Warning shown when the picked region cannot be flattened; a disc is a simple patch with a single outer edge
+topology.bake.vdm.notDisk = "Het gekozen gebied is geen eenvoudige schijf. Kies een kleiner gebied of een gebied zonder gaten.";
+// Warning shown when the picked region holds too many polygons to be flattened
+topology.bake.vdm.tooBig = "Het gekozen gebied heeft te veel polygonen. Kies een kleiner gebied.";
 // Synonym: Simplify (Decimate reduce the number of triangles/quads while retaining details as much as possible)
 topology.decimate = "Decimeren";
 topology.decimate.boundary = "Randen behouden";
@@ -3091,8 +3424,6 @@ topology.dynamic.useFalloff = "Streekfalloff gebruiken";
 // Whether the pencil pressure can impact the level of detail
 topology.dynamic.usePressure = "Druk op straal gebruiken";
 topology.dynamic.usePressure.help = "Gebruik deze optie als je wilt dat de pen druk op de toolradius het detailniveau beïnvloedt.";
-// Instant quad remesher
-topology.instant = "Instant Mesh";
 topology.instant.angle = "Vouwhoek";
 topology.instant.hole = "Maximale vulling van gaten";
 topology.instant.hole.help = "Het algoritme kan soms ongewenste gaten produceren.
@@ -3124,7 +3455,6 @@ topology.multires.linear.help = "Subdivideer het mesh eenvoudig zonder enige ver
 topology.multires.lock = "Vergrendel (LV0)";
 // Only show the lowest resolution wireframe
 topology.multires.minWireframe = "Alleen niveau 0";
-topology.multires.previewHighest = "Voorvertoning op hoogste resolutie";
 // Synonym: Unsubdivide, Un-subdivide
 topology.multires.reverse = "Omgekeerd";
 topology.multires.reverse.confirm = "Kon basis subdivisie niet maken.
@@ -3137,10 +3467,6 @@ topology.multires.subdivide.limit = "Subdivisiegrens overschreden, zie $0";
 // Navigate toward multiple resolutions (go to higher level)
 topology.multires.up = "Multiresolutieniveau →";
 topology.nonManifold = "Non-manifold";
-// Quad remesher
-topology.quadRemesh = "Quad-remesh";
-// Name of the quad remeshing engine, should probably stay untranslated
-topology.quadriflow = "QuadriFlow";
 topology.quadriflow.adaptiveScale = "Adaptieve schaal";
 topology.quadriflow.adaptiveScale.help = "Pas de grootte van de quads aan de kromming van het oppervlak aan.";
 topology.quadriflow.keepSharp = "Scherpe randen behouden";
@@ -3154,7 +3480,6 @@ topology.remesh = "Remesh";
 // Number of iterations the algorithm will perform
 topology.reproject.iterations = "Iteraties";
 topology.reproject.layers.help = "Breng andere lagen over naar het geselecteerde mesh.";
-topology.reproject.normalOffset = "Normale verschuiving";
 topology.reproject.projection.blend = "Adaptieve mix";
 topology.reproject.projection.blend.help = "Meng de normaalstraal en het dichtstbijzijnde oppervlak op basis van afstand en straalvoorkeur. Als de een mist, gebruik dan de ander.";
 topology.reproject.projection.fallback = "Straal + dichtstbijzijnd";
@@ -3163,19 +3488,10 @@ topology.reproject.projection.nearest = "Dichtstbijzijnd";
 topology.reproject.projection.nearest.help = "Projecteer naar het dichtstbijzijnde punt op het bronoppervlak.";
 topology.reproject.projection.ray = "Straal";
 topology.reproject.projection.ray.help = "Projecteer langs de oppervlaktenormaal.";
-// tweaking value
-topology.reproject.rayBias = "Straalvoorkeur";
-topology.reproject.rayBias.help = "Er worden twee methoden gebruikt voor reprojection:
-• dichtbij: het dichtstbijzijnde punt op het oppervlak
-• straal: snijpunt door de normale richting
-
-Hogere biaswaarden geven de voorkeur aan straalintersectie in plaats van het dichtstbijzijnde oppervlak.";
 topology.reproject.rayPreference = "Straalvoorkeur";
 topology.reproject.rayPreference.help = "Stuur de adaptieve mix naar het resultaat van de normaalstraal.";
 topology.reproject.relax = "Ontspan";
 topology.reproject.relax.help = "Ontspannen heeft de voorkeur bij een low-poly mesh.";
-topology.reproject.shpereCast = "Bolprojectie als reserve";
-topology.reproject.shpereCast.help = "Als normale straalreprojectie faalt, zal Nomad terugvallen op de dichtstbijzijnde oppervlakte-intersectie.";
 // project a high resolution mesh details onto another
 topology.reproject.title = "Herprojecteer";
 topology.reproject.title.help = "Projecteer gebeeldhouwde details, schilderen en lagen vanaf de dichtstbijzijnde zichtbare objecten.
@@ -3203,8 +3519,6 @@ topology.surface.method.uniformisation = "Uniformisatie";
 topology.surface.remesh = "Remesh";
 topology.surface.useMasking = "Gemaskeerd gebied beschermen";
 topology.surface.useMasking.help = "De gemaskerde gebieden zullen de topologie beschermen tegen veranderingen.";
-topology.target.faces = "Doelvlakken";
-topology.target.points = "Doelpunten";
 topology.target.quads = "Doelquads";
 // Target a certain number of triangles, faces and vertices
 topology.target.triangles = "Doeldriehoeken";
@@ -3235,6 +3549,8 @@ topology.uv.title = "UV-ontvouwen";
 topology.uv.unwrap = "Ontvouwen";
 // Create a new object by recomputing a new topology, by using voxels (see Glossary)
 topology.voxel = "Voxel-remesh";
+// The voxel detail expressed as a world size, the same value gives the same detail on any object
+topology.voxel.edgeLength = "Randlengte";
 topology.voxel.help = "Remeshen door de mesh op een raster te bemonsteren.
 
 Als het object niet gesloten is (waterdicht), dan zal er eerst een gatvulalgoritme worden toegepast.
@@ -3298,7 +3614,6 @@ version.restore = "Herstel aankoop";
 version.trialLayer = "Proefversie: 1 laag per object";
 version.trialNoExport = "Proefversie: Geen export";
 version.trialNoLink = "Proefversie: geen koppeling";
-version.update = "Update beschikbaar!";
 version.webUnlock = "De webversie wordt niet officieel ondersteund zoals de native apps.
 
 Ontgrendel de volledige versie door je Polar.sh-licentiesleutel in te voeren";

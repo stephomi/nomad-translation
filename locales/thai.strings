@@ -109,16 +109,22 @@ alert.extract.none = "ไม่มีสิ่งที่ให้สกัด!
 alert.extract.split.none = "ไม่มีสิ่งที่ให้แยก!";
 // Painting on the object was hidden but the user did paint the object
 alert.forcePainting.fill = "แสดงการวาดลงสีที่เปิดใช้งาน [ระบายสีทั้งหมด] ถูกใช้แล้ว";
-// Painting on the object was hidden but the user started to paint on the object
-alert.forcePainting.tool = "แสดงการวาดลงสีที่เปิดใช้งาน ออบเจ็กต์ถูกทาสีแล้ว";
 // The pivot is the Gizmo's 3D position
 alert.gizmo.editObject = "แก้ไขโหมดของออบเจ็กต์";
 // In this mode, the user moves the Gizmo's pivot instead of the object
 alert.gizmo.editPivot = "แก้ไขโหมดจุดหมุน";
+// Button that turns the heightmap render off
+alert.heightmap.hide = "ซ่อนแผนที่ความสูง";
+// The viewport renders the depth of the scene instead of the shaded objects
+alert.heightmapOn = "เปิดแผนที่ความสูงอยู่!";
 // The user decided to display hidden faces
 alert.hideIgnored = "ซ่อนถูกละเว้น!";
 // Error when an algorithm needs the object to have a hole (usually to fill it)
 alert.hole.nothing = "ออบเจ็กต์ไม่มีรู!";
+// Button that turns the inspector off
+alert.inspect.hide = "ซ่อนตัวตรวจสอบ";
+// The viewport renders a material channel instead of the shaded objects
+alert.inspectOn = "เปิดตัวตรวจสอบอยู่!";
 // The lattice deformation was applied with a different mask or visibility state
 // (the gui appends the icon of the changed states)
 alert.lattice.desync = "แลตทิซไม่ซิงค์!";
@@ -127,8 +133,6 @@ alert.lattice.sync = "อัปเดตแลตทิซ";
 // No operation occurred because the mesh is already manifold
 alert.manifold.already = "เมชเป็นแมนิโฟลด์อยู่แล้ว!";
 alert.mask.full = "มาส์ก = 100%!";
-// Hide the painted mask on the mesh
-alert.mask.hide = "ซ่อนมาส์ก";
 // Show the painted mask on the mesh
 alert.mask.show = "แสดงมาส์ก";
 // The user decided to hide the masking on the objects
@@ -137,6 +141,7 @@ alert.maskingHidden = "มาสก์ถูกซ่อน!";
 alert.matrix.clone = "จะทำสำเนาออบเจ็กต์";
 // Helper popup telling the user that the object will be instanced
 alert.matrix.instance = "จะทำอินสแตนซ์ออบเจ็กต์";
+alert.mesh.empty = "";
 // Empty mesh
 alert.mirror.empty = "ผลลัพธ์ว่างเปล่า!";
 // Mesh already mirrored
@@ -157,8 +162,6 @@ alert.selection.isolate = "แยกการเลือก";
 alert.selection.showAll = "แสดงทั้งหมด";
 // The object needs to have two parts disconnected
 alert.separate.fail = "ไม่สามารถแยกออก ออบเจ็กต์มีเพียงส่วนเดียว!";
-// Visibility of the object is off (but should be on)
-alert.shape.notVisible = "มองไม่เห็นออบเจ็กต์นี้!";
 // The user has selected a tool that is more intuitive to use when the camera is in orthographic mode
 alert.shapeOrthographic = "พิจารณาใช้กล้องออร์โธกราฟิกหากคุณต้องการหลีกเลี่ยงความผิดเพี้ยนของฟรัสตัม เปอร์สเป็คทีฟ เมื่อใช้โปรเจ็กเตอร์หน้าจอ";
 // The trial version has a limited number of undo operations
@@ -167,10 +170,10 @@ alert.state.trial = "เวอร์ชันทดลอง: ยกเลิก
 alert.trim.full = "ยกเลิกการตัดแต่ง ออบเจ็กต์ถูกตัดแต่งสมบูรณ์แล้ว";
 // The user tried to trim an object but the selected region didn't touch the object
 alert.trim.nothing = "ไม่มีสิ่งที่ให้ตัดแต่ง";
+// The remesher rebuilds the mesh without a UV layout, the painting is kept as vertex colors
+alert.uvLost = "UV จะหายไป!";
 // List of disabled features when View Mode is selected
 alert.view.disabled = "คุณสมบัติที่ปิดใช้งานในโหมดดู";
-// Primitive widgets are small viewport controls used to modify a primitive
-alert.view.disabled.widgetPrimitive = "วิดเจ็ตของรูปทรงพื้นฐาน";
 alert.voxel.empty = "ยกเลิกรีเมช ผลคือทำให้เมชไม่มีเฟส";
 // Should not happen or very rarely, input here is an object
 alert.voxel.invalidInput = "อินพุตไม่ถูกต้อง!";
@@ -208,6 +211,9 @@ background.imageAlpha = "ความทึบ";
 background.imageEnable = "ภาพอ้างอิง";
 // The image will be displayed in overlay (used as a reference by the artist)
 background.imageOverlay = "โอเวอร์เลย์";
+// Apply the post process effects on the reference image
+background.imagePostProcess = "โพสต์โปรเซส";
+background.imagePostProcess.help = "ใช้เอฟเฟ็กต์โพสต์โปรเซสกับภาพอ้างอิง ปิดใช้งานเพื่อคงสีเดิมไว้";
 background.imageReset = "รีเซ็ตการตั้งค่า";
 // Rotation of the reference image
 background.imageRotate = "การหมุน";
@@ -286,6 +292,8 @@ binding.rotateLighting = "หมุนแสง";
 // Select all the objects in the scene
 binding.selectAll = "เลือกทั้งหมด";
 binding.snap.toggle = "สลับการแก้ไขเส้นโค้ง";
+// Same as binding.snap.toggle, on a small shortcut button
+binding.snap.toggle.short = "แก้ไขเส้นโค้ง";
 // Snap the view (while rotating)
 binding.snapViewOnRotate = "มุมมองแบบสแนป (ขณะหมุน)";
 binding.spacemouse = "SpaceMouse";
@@ -368,9 +376,10 @@ camera.doubleTapBackgroundFocus.scene = "ซีน";
 camera.doubleTapBackgroundFocus.selection = "การเลือก";
 // When we double tap on the background with the finger/stylus
 camera.doubleTapBackgroundFocus.toggle = "สลับ";
-camera.doubleTapFocus.help = "เมื่อแตะสองครั้งที่ออบเจ็กต์ กล้องจะเลื่อนและโฟกัสที่จุดที่เลือก";
 // When we double tap on the object with the finger/stylus
 camera.doubleTapMesh = "แตะสองครั้งที่ออบเจ็กต์";
+// Same as camera.doubleTapMesh, on a small shortcut button
+camera.doubleTapMesh.short = "โฟกัส";
 // When double tapping with the finger/stylus, the camera pivot will be updated
 camera.doubleTapPivot = "อัพเดทเมื่อแตะสองครั้ง";
 camera.doubleTapPivot.help = "จะอัพเดทจุดหมุนเมื่อแตะสองครั้งบนพื้นผิวของออบเจ็กต์";
@@ -380,11 +389,8 @@ camera.firstPerson = "บุคคลแรก";
 camera.focal = "โฟกัส $0มม. (เซนเซอร์ 35 มม.)";
 // Focus on the camera
 camera.focus = "โฟกัส";
-// Focus on a saved camera
-camera.focusOn = "โฟกัสที่ $0";
 // camera Vertical Field of View
 camera.fov = "FoV แนวตั้ง";
-camera.panZoomOut.help = "เมื่อปิดตัวเลือกนี้ ตำแหน่งหมุนนี้จะยังคงอยู่เหมือนเดิม";
 // The Camera pivot is the point around which the camera rotates
 camera.pivot = "อัปเดตจุดหมุน...";
 // Camera projection, Orthographic or Perspective
@@ -427,12 +433,7 @@ clipboard.copy = "คัดลอก";
 clipboard.paste = "วาง";
 
 color = "สี";
-color.alpha = "อัลฟ่า";
-color.blue = "น้ำเงิน";
-color.brightness = "ความสว่าง";
-color.green = "เขียว";
 color.hue = "ฮิว";
-color.red = "แดง";
 color.saturation = "ความอิ่มตัวของสี";
 color.value = "ค่า";
 
@@ -442,8 +443,6 @@ confirm = "ยืนยัน?";
 confirm.cancel = "ยกเลิก";
 // Asking to cancel (should be short)
 confirm.cancel.ask = "ยกเลิก?";
-// Answer to a question (Are you sure you want to do that? [yes, no, cancel])
-confirm.no = "ไม่";
 // The generic ok in a confirm box (The next operation is dangerous. [ok, cancel])
 confirm.ok = "ตกลง";
 // Restart nomad
@@ -453,8 +452,6 @@ confirm.yes = "ใช่";
 
 // Toolbox context (when expanded), multiple objects are selected
 context.multiselection = "การเลือกหลายรายการ";
-// There is 0 nodes/items selected
-context.noSelection = "ไม่มีการเลือก";
 
 cube.back = "หลัง";
 cube.bottom = "ล่าง";
@@ -465,8 +462,17 @@ cube.right = "ขวา";
 cube.top = "บน";
 
 curve.bspline = "B-spline";
-// Curve type, https://en.wikipedia.org/wiki/Centripetal_Catmull%E2%80%93Rom_spline
-curve.catmull = "แคทมูลรอม";
+curve.editor = "";
+curve.ik = "";
+curve.ik.help = "";
+curve.ik.lock_root = "";
+curve.ik.lock_root.help = "";
+curve.ik.stretch = "";
+curve.ik.stretch.help = "";
+curve.influence.falloff = "";
+curve.influence.falloff.help = "";
+curve.influence.range = "";
+curve.influence.range.help = "";
 // Merge or collapse one point into another
 curve.merge = "รวม";
 curve.pivot = "จุดหมุน";
@@ -484,21 +490,20 @@ curve.sharpness = "ความคมชัด";
 curve.shift = "เลื่อนแนวนอน";
 // snap
 curve.snap = "สแนป";
-// whether the tube body stays on the surface between its control points, and along which direction
+// whether the curve body (tube or repeated objects) stays on the surface between its control points, and along which direction
 curve.snap.follow = "ติดตาม";
-curve.snap.follow.help = "ลักษณะการทำงานของท่อระหว่างจุดควบคุม";
+curve.snap.follow.help = "พฤติกรรมของเส้นโค้งระหว่างจุดควบคุม";
 curve.snap.follow.normal = "นอร์มอล";
-curve.snap.follow.normal.help = "ท่อจะคงอยู่บนพื้นผิวและถูกดันเข้าหาพื้นผิวตามแนวนอร์มอลของพื้นผิว
+curve.snap.follow.normal.help = "เส้นโค้งคงอยู่บนพื้นผิว โดยฉายลงบนพื้นผิวตามแนวนอร์มอลของพื้นผิว
 
-ท่อจะใช้เส้นทางที่สั้นที่สุดไปยังพื้นผิว ซึ่งเหมาะกับรูปทรงที่มองจากด้านข้าง";
-// only the control points snap, the body of the tube is left alone
+ใช้เส้นทางที่สั้นที่สุดไปยังพื้นผิว จึงใช้ได้กับรูปทรงที่คุณมองจากด้านข้างด้วย";
+// only the control points snap, the body of the curve is left alone
 curve.snap.follow.points = "จุด";
-curve.snap.follow.points.help = "เฉพาะจุดควบคุมเท่านั้นที่จะสแนปกับพื้นผิว
+curve.snap.follow.points.help = "มีเพียงจุดควบคุมที่สแนปติดกับพื้นผิว
 
-ระหว่างจุดเหล่านั้น ท่อจะคงรูปทรงที่คุณวาดไว้ จึงสามารถตัดผ่านพื้นผิวหรือลอยอยู่เหนือพื้นผิวได้";
+ระหว่างจุดเหล่านั้น เส้นโค้งยังคงรูปทรงที่คุณวาด จึงอาจทะลุพื้นผิวหรือลอยอยู่เหนือพื้นผิวได้";
 curve.snap.follow.view = "มุมมอง";
-curve.snap.follow.view.help = "ท่อจะคงอยู่บนพื้นผิวและถูกดันเข้าหาพื้นผิวตามทิศทางที่คุณมองขณะวาด";
-curve.snap.grid = "ตาราง (ถ้าสแนป)";
+curve.snap.follow.view.help = "เส้นโค้งคงอยู่บนพื้นผิว โดยฉายลงบนพื้นผิวตามทิศทางที่คุณมองขณะวาด";
 curve.snap.normal = "จัดแนวกับนอร์มอล";
 curve.snap.normal.help = "มีผลเฉพาะจุดควบคุมจุดแรกและจุดสุดท้ายของเส้นโค้งเท่านั้น
 
@@ -506,40 +511,85 @@ curve.snap.normal.help = "มีผลเฉพาะจุดควบคุม
 
 ระยะห่างถึงจุดที่อยู่ติดกันจะยังคงเดิม";
 curve.snap.offset = "ออฟเซ็ต";
-curve.snap.offset.help = "ค่า 100% เท่ากับรัศมีของท่อ";
+curve.snap.offset.help = "ค่า 100% เท่ากับรัศมีของท่อ หรือครึ่งหนึ่งของขนาดออบเจ็กต์ที่ทำซ้ำในทิศทางเข้าหาพื้นผิว";
 curve.snap.surface = "พื้นผิว";
 curve.snap.vertex = "จุดยอด";
 curve.spiral = "เกลียว";
 curve.spiral.angle = "ออฟเซ็ตของมุม";
+curve.spiral.braid = "เปีย";
+curve.spiral.core = "แกน";
+curve.spiral.depth = "ความลึก";
+curve.spiral.groups = "กลุ่มเฟสต่อเส้น";
+curve.spiral.hardness = "ความหนัก";
 curve.spiral.offset = "ออฟเซ็ต";
+curve.spiral.pack = "อัดแน่น";
+curve.spiral.ribbon = "ริบบิ้น";
+curve.spiral.rope = "เชือก";
 curve.spiral.scale = "สเกล";
+curve.spiral.sleeve = "ปลอก";
+curve.spiral.sleeve.help = "ปลอกถัก";
+curve.spiral.strands = "เส้น";
 curve.spiral.twist = "มุมบิด";
-// Spline curve, https://en.wikipedia.org/wiki/Spline_(mathematics)
-curve.spline = "สปลายน์";
 // Display the falloff curve in a symmetric way
 curve.symmetric.help = "แสดงการลดลงในลักษณะที่สมมาตร
 
 ตัวเลือกนี้เป็นเพียงสัญญาณทางสายตา, ไม่มีผลต่อการลดลงเอง";
 curve.twist = "บิด";
-// Regular spaced sampling
-curve.uniform = "สม่ำเสมอ";
-curve.uniform.help = "เส้นโค้งจะถูกสุ่มอย่างสม่ำเสมอเพื่อให้มีความหนาแน่นที่เท่ากัน
+curve.warp = "";
+curve.warp.help = "";
 
-คุณสามารถปิดการใช้งานตัวเลือกนี้เพื่อควบคุมขอบวงโดยการเพิ่มจุดควบคุมใหม่บนเส้นโค้ง";
-
-// Debug graphics options
-debug.graphics = "กราฟฟิก";
+debug.androidInputs = "";
+debug.angleNormal = "";
+debug.compressMultires = "";
+debug.compressMultires.help = "";
+// Debug section to import/export the icons of the interface
+debug.customIcons = "ไอคอนกำหนดเอง";
+debug.customIcons.export = "";
+debug.customIcons.export.done = "";
+debug.customIcons.export.help = "";
+debug.customIcons.import = "";
+debug.customIcons.import.help = "";
+debug.customIcons.reload = "";
+// Short label for the section shortcut bar
+debug.customIcons.short = "ไอคอน";
+// Debug option: draw all the copies of a repeater in a single draw call
+debug.drawInstance = "";
+// Debug section for optional features
+debug.feature = "ฟีเจอร์";
+debug.flipQuad = "";
+debug.forceTrial = "";
+debug.fps = "";
 // Debug option, overrides the rendering to display the depth buffer
 debug.heightmap = "แผนที่ความสูง";
+debug.icons = "";
 // Debug option: display a window with debugging logs
 debug.logs = "บันทึก";
+// Logs window option: break long lines to fit the panel width
+debug.logs.wrap = "ตัดคำ";
+debug.parallel = "";
+debug.parallelSculpt = "";
+debug.pathTrace = "";
+// Debug section for multithreading and speed options
+debug.performance = "ประสิทธิภาพ";
+debug.picking = "";
+debug.postprocess.format = "";
+debug.postprocess.format.16bit = "";
+debug.postprocess.format.8bit = "";
+debug.postprocess.reuse = "";
+debug.refractionBackWriteDepth = "";
+debug.review = "";
 // Model shortcut window
 debug.shortcut = "หน้าต่างทางลัด";
 // Set the desired FPS (frame per second, refresh rate)
 debug.targetFps = "เป้าหมาย FPS";
 debug.targetFps.help = "เมื่อปิดใช้งาน, ค่าเริ่มต้นหมายความว่าจะซิงค์กับอัตราการรีเฟรชของจอแสดงผล";
+debug.targetFps.unit = "";
 // Debug options, generate screenshots with size compatible with the iOS store
 debug.thumbnails = "สร้างภาพขนาดย่อของสโตร์";
+// Same as debug.thumbnails, on a small shortcut button
+debug.thumbnails.short = "ภาพขนาดย่อ";
+debug.toolboxShowAll = "";
+debug.uv = "";
 // Debug option, Normalize means transforming the data so that it fits in [0-1] the range
 debug.uvNormalize = "ปรับ UVs ให้เป็นปกติ";
 debug.uvNormalize.help = "Nomad จะทำให้ UVs ภายในไทล์ [0-1] เป็นปกติ";
@@ -578,24 +628,46 @@ extract.action.layer = "เลเยอร์";
 extract.action.none = "ไม่มี";
 // Close the mesh by adding a thickness on the surface
 extract.action.shell = "เปลือก";
+extract.bevel = "";
+extract.bevel.help = "";
+extract.bevel.profile = "";
+extract.bevel.segments = "";
+extract.bevel.segments.help = "";
+extract.borders = "";
 // Carve the mask into the surface
 extract.carve = "แกะสลัก";
 // topology of extracted mesh
 extract.edgeLoop = "ลูปขอบ (ด้านข้าง)";
 extract.edgeLoop.auto = "ลูปขอบอัตโนมัติ";
 extract.edgeLoop.division = "การแบ่งแยก";
+extract.faceGroup.active = "";
+extract.faceGroup.polish = "";
+extract.faceGroup.polish.help = "";
+extract.gap = "";
+extract.gap.help = "";
+extract.group.target = "";
+extract.inset = "";
+extract.inset.help = "";
 // Smoothing strategy
 extract.polish.all = "ทั้งหมด";
 extract.polish.border = "เฉพาะขอบ";
 extract.polish.sharp = "ขอบคม";
-// Smooth the border in a way that it matches completely with its dual
-extract.polish.syncBorder = "ซิงค์ขอบ";
 // Preview extract
 extract.preview = "พรีวิว";
+extract.profile = "";
+extract.profile.width = "";
+extract.side.bevel = "";
+extract.side.bevel.help = "";
+extract.side.divisions = "";
+extract.side.profile = "";
+extract.side.straight = "";
+extract.sides = "";
 // Extract two new meshes from the painted mask and the unmasked area
 extract.split = "แยก";
 // The thickness of the extracted mesh (from the painted mask)
 extract.thickness = "ความหนา";
+extract.units.height = "";
+extract.units.height.help = "";
 
 // Auto save section
 file.autoSave = "บันทึกอัตโนมัติ";
@@ -617,9 +689,6 @@ file.colorSpace = "ปริภูมิสี";
 file.colorSpace.help = "ลองเปิดปิดตัวเลือกนี้หากสีดูไม่ถูกต้อง";
 file.colorSpace.linear = "Linear";
 file.colorSpace.srgb = "sRGB";
-// Tries to generate quad (rectangle polygon) from triangles
-file.convertToQuad = "สร้างรูปสี่เหลี่ยมขึ้นใหม่";
-file.convertToQuad.help = "สร้างรูปสี่เหลี่ยมขึ้นใหม่จากสามเหลี่ยมโดยจับคู่สามเหลี่ยม (หากอยู่ติดกันในไฟล์)";
 // Open file explorer
 file.explore = "สำรวจ";
 // Export scene file
@@ -638,8 +707,10 @@ file.export.gltf.layer.help = "นำออกเลเยอร์เป็น�
 // Whether we include painting of layers in the exported file (see glossary for layer)
 file.export.gltf.layerPaint = "การวาดเลเยอร์";
 file.export.gltf.layerPaint.help = "นำออกการวาดลงสีเลเยอร์ มักจะถูกละเว้นโดยซอฟต์แวร์อื่น";
-file.export.nomad.assets = "";
-file.export.nomad.assets.help = "";
+file.export.nomad.assets = "ฝังทรัพยากร";
+file.export.nomad.assets.help = "รวม Matcap สภาพแวดล้อม และแบบอักษรที่กำหนดเองไว้ในไฟล์
+
+ทรัพยากรที่มาพร้อมแอปจะไม่ถูกฝัง";
 file.export.nomad.help = "รูปแบบไฟล์ภายในของ Nomad Sculpt
 
 รูปแบบนี้จะไม่โหลดได้บนซอฟต์แวร์อื่น, ส่วนใหญ่สำหรับวัตถุประสงค์การนำเข้าใหม่";
@@ -695,15 +766,13 @@ file.export.usd.skew.help = "อนุญาตให้บิดเบือน
 เมื่อปิดการใช้งาน Nomad จะแยกเมทริกซ์บิดเบือนออกเป็นการแปลงสเกลและการหมุนแยกกัน";
 // Type format
 file.format = "รูปแบบ";
-// The user imports a scene file that will be added/appended the current scene
-file.import.add = "เพิ่มไปที่ซีน";
-file.import.add.confirm = "นำเข้าไฟล์ใหม่?";
 file.import.applyAll = "ใช้กับทั้งหมด";
 // Load interface preference settings when opening a scene file
 file.import.guiSettings = "โหลดการตั้งค่า UI";
 file.import.guiSettings.help = "เมื่อเปิดหรือนำเข้าไฟล์โปรเจ็กต์ การตั้งค่าที่เกี่ยวข้องกับ gui ทั้งหมดที่ฝังอยู่ในโปรเจ็กต์จะถูกโหลด";
 file.import.help = "ฟอร์แมตที่รองรับ";
-file.import.ignore = "ไม่สนใจ";
+file.import.keepFolders = "";
+file.import.keepFolders.help = "";
 // Do not fiddle with the object topology when loading the file
 file.import.keepTopology = "เก็บโทโพโลยี";
 file.import.keepTopology.help = "ใช้ตัวเลือกนี้หากคุณไม่ต้องการให้ Nomad จัดการกับโทโพโลยีของเมชที่นำเข้า
@@ -776,11 +845,8 @@ file.project.unsaved = "การเปลี่ยนแปลงที่ไ�
 file.render = "เร็นเดอร์";
 // height of exported screenshot
 file.render.height = "ความสูง";
-// Resolution ratio of the exported screenshot
-file.render.renderRatio = "อัตราส่วนของเร็นเดอร์";
-file.render.renderRatio.help = "ค่า 1.0 หมายความว่า Nomad จะสร้างภาพที่ความละเอียดเดียวกันกับขนาดภาพที่ต้องการด้านล่าง
-
-ใช้ตัวเลือกนี้หากคุณไม่สามารถสร้างได้ที่ความละเอียดที่แน่นอนได้ (หยุดทำงานเนื่องจากหน่วยความจำไม่เพียงพอ)";
+// Warning shown when the requested export resolution is too large for the memory left on the device
+file.render.lowMemory = "ขนาดนี้อาจไม่พอดีกับหน่วยความจำที่เหลืออยู่ในอุปกรณ์นี้";
 // Screen resolution parameters for the export screenshot features
 file.render.screenResolution = "สกรีน";
 // If we include the App Interface in the exported screenshot
@@ -790,7 +856,7 @@ file.render.size = "ขนาดสุดท้าย";
 // Desired size of the exported screenshot (custom vs predefined size)
 file.render.size.custom = "กำหนดเอง";
 // Save the heightmap render as a new brush alpha instead of exporting it as a file
-file.render.toAlpha = "";
+file.render.toAlpha = "บันทึกเป็นอัลฟา";
 // If true, then the exported screenshot will have transparency data in the image
 file.render.transparent = "พื้นหลังโปร่งใส";
 file.render.transparent.help = "ตัวเลือกนี้จะมีประโยชน์เมื่อคุณต้องการใส่เมชในซอฟต์แวร์สร้าง 2D
@@ -816,6 +882,43 @@ file.select.include = "ได้แก่";
 file.select.selected = "ที่เลือก";
 file.select.unselected = "ไม่ได้เลือก";
 file.select.visible = "ที่เห็นได้";
+
+fog = "หมอก";
+fog.ambient = "สภาพแวดล้อม";
+fog.ambient.help = "ควบคุมระดับที่แสงแวดล้อมส่องสว่างให้หมอก";
+fog.anisotropy = "ทิศทางการกระเจิง";
+fog.anisotropy.help = "ควบคุมทิศทางที่หมอกกระเจิงแสง หรือเรียกอีกอย่างว่าแอนไอโซโทรปี
+
+• ค่าบวกทำให้หมอกสว่างขึ้นเมื่อมองไปยังแหล่งกำเนิดแสง
+• ค่าลบทำให้หมอกสว่างขึ้นเมื่อมองออกจากแหล่งกำเนิดแสง
+• ค่าศูนย์กระเจิงแสงเท่าๆ กันในทุกทิศทาง";
+fog.color = "คัลเลอร์";
+fog.color.help = "กำหนดสีของหมอกและแสงที่หมอกกระเจิง";
+fog.density = "ความหนาแน่น";
+fog.density.help = "ควบคุมว่าหมอกจะหนาแน่นขึ้นตามระยะทางเร็วเพียงใด";
+fog.detail = "นอยส์";
+fog.detail.help = "ผสมนอยส์ลงในหมอกเพื่อแบ่งเป็นหย่อม ๆ โดยไม่เปลี่ยนความหนาแน่นโดยรวม";
+fog.detail.scale = "ขนาด";
+fog.detail.scale.help = "กำหนดขนาดของลวดลายนอยส์";
+fog.help = "เพิ่มมิติของบรรยากาศและทำให้มองเห็นลำแสง
+
+ทำให้ลำแสงเด่นชัดขึ้น:
+• ลดค่าสภาพแวดล้อมและใช้ไฟสปอตหรือไฟจุดที่สว่าง
+• เพิ่มความหนาแน่นจนมองเห็นหมอกได้ชัดเจน
+• หากต้องการเห็นลำแสงในหมอกที่บางลง ให้ตั้งทิศทางการกระเจิงเป็นค่าบวกสูงและหันกล้องไปทางแหล่งกำเนิดแสง";
+fog.opacity = "ความทึบสูงสุด";
+fog.opacity.help = "จำกัดปริมาณสูงสุดที่หมอกสามารถบดบังฉาก แม้จะมีความหนาแน่นสูง";
+fog.shape = "รูปทรง";
+fog.shape.help = "ควบคุมบริเวณที่หมอกเติมเต็มฉาก";
+fog.shape.uniform = "สม่ำเสมอ";
+fog.shape.uniform.help = "เติมหมอกให้ทั่วทั้งฉาก";
+fog.shape.vertical = "แนวตั้ง";
+fog.shape.vertical.bottom = "ด้านล่าง";
+fog.shape.vertical.bottom.help = "กำหนดความสูงของขอบล่างของแถบหมอก";
+fog.shape.vertical.help = "จำกัดหมอกไว้ในแถบแนวตั้งที่มีขอบบนและล่างนุ่มนวล";
+fog.shape.vertical.preview.help = "แสดงแถบหมอกในวิวพอร์ตขณะที่คุณปรับขอบ";
+fog.shape.vertical.top = "ด้านบน";
+fog.shape.vertical.top.help = "กำหนดความสูงของขอบบนของแถบหมอก";
 
 format.ascii = "Ascii";
 format.binary = "ไบนารี";
@@ -882,8 +985,6 @@ gesture.pencilAction.android = "ปุ่ม Pencil";
 // Action when using the Pencil double tap
 gesture.pencilAction.ios = "แตะสองครั้งที่ Pencil";
 gesture.pencilAction.ios.help = "ใช้งานได้กับ Apple Pencil รุ่นที่ 2 เท่านั้น";
-// Pencil button (or iOS Pencil double tap) action: nothing
-gesture.pencilAction.none = "ไม่มี";
 // list of inputs allowing sculpting interaction
 gesture.sculpt = "แกะสลัก";
 // Select object
@@ -893,6 +994,8 @@ gesture.shortcut = "ทางลัด";
 gesture.smooth.holdSelect.help = "การกดแช่จะเปลี่ยนไปใช้เครื่องมือเลือกตลอดเวลาที่เลือกเส้น";
 // Hold the pointer at the end of a stroke to snap it into a line or a curve
 gesture.strokeSnap = "สแนปลายเส้น";
+gesture.strokeSnap.delay = "";
+gesture.strokeSnap.delay.help = "";
 gesture.strokeSnap.help = "กดตัวชี้ค้างไว้ที่ปลายลายเส้นเพื่อสแนปให้เป็นเส้นตรงหรือเส้นโค้งที่เรียบเนียน
 
 ลากต่อไปเพื่อหมุนและปรับขนาดลายเส้นที่สแนปแล้วรอบจุดเริ่มต้นของลายเส้น";
@@ -924,15 +1027,14 @@ gesture.trackpad.two.orbit.help = "สองนิ้วจะโคจรมุ
 // Two fingers pan (translate) the view
 gesture.trackpad.two.pan = "เลื่อน";
 gesture.trackpad.two.pan.help = "สองนิ้วจะเลื่อนมุมมอง และเมื่อยกนิ้วหนึ่งออกจะเป็นการโคจรมุมมอง เช่นเดียวกับแท็บเล็ต";
-// If enabled, the pressure will be taken into account even if it's not coming from a recognized stylus
-gesture.unknownPressure = "ให้ใช้แรงกดที่ไม่รู้จัก";
-gesture.unknownPressure.help = "เลือกตัวเลือกนี้หากใช้งานแรงกดไม่ได้กับ Pencil ของคุณ หรือหากต้องการใช้นิ้วกด";
 gesture.wheel = "วงล้อเมาส์";
 gesture.wheel.speed2d = "ความเร็ว (อินเทอร์เฟซ 2 มิติ)";
 gesture.wheel.speed3d = "ความเร็ว (ซูม 3 มิติ)";
 
 // History, list of undo/redo
 history = "ประวัติ";
+// Button deleting every operation of the history, freeing the memory and the disk space they use
+history.clear = "ล้างประวัติ";
 // Long press on a state of the history list: deletes it and every older one, $0 is a number of operations
 history.delete.confirm = "ลบการทำงาน $0 รายการออกจากประวัติหรือไม่?";
 history.delete.help = "กดรายการประวัติค้างไว้เพื่อลบรายการนั้นและประวัติทั้งหมดที่เก่ากว่าอย่างถาวร";
@@ -952,17 +1054,26 @@ history.include.postProcess.help = "รวมการแก้ไข PostProces
 // include shading parameters (MatCap & HDRIs) editing in the undo/redo
 history.include.shading = "การแรเงา";
 history.include.shading.help = "รวมโหมด PBR, MatCap และ Unlit รวมถึง MatCap และ HDRI";
+// How much disk space the history is allowed to use, past it the oldest operations are deleted
+history.limitDisk = "ขีดจำกัดพื้นที่จัดเก็บข้อมูล";
+history.limitDisk.help = "ปริมาณพื้นที่จัดเก็บข้อมูลสูงสุดที่ประวัติการเลิกทำ/ทำซ้ำของโปรเจ็กต์นี้สามารถใช้ได้
+
+เมื่อถึงขีดจำกัด ระบบจะลบการทำงานที่เก่าที่สุดอย่างถาวร
+
+ขีดจำกัดใหม่จะมีผลหลังจากบันทึกการทำงานครั้งถัดไป";
 // How much memory the history is allowed to use before the older states are moved to the disk
-history.limitMemory = "ขีดจำกัดหน่วยความจำ";
-history.limitMemory.help = "ปริมาณประวัติที่เก็บไว้ในหน่วยความจำ
+history.limitMemory = "ขีดจำกัด RAM";
+history.limitMemory.help = "ปริมาณสูงสุดของประวัติการเลิกทำ/ทำซ้ำที่เก็บไว้ใน RAM
 
-สถานะที่เก่ากว่าจะถูกย้ายไปยังดิสก์และโหลดกลับเมื่อคุณเลิกทำ โดยจะไม่ถูกลบ
+สถานะที่เก่ากว่าจะถูกย้ายไปยังพื้นที่จัดเก็บข้อมูลและโหลดกลับเมื่อจำเป็น โดยจะไม่ถูกลบ
 
-ประวัติจะอัปเดตในการทำงานที่บันทึกครั้งถัดไป";
+ขีดจำกัดใหม่จะมีผลหลังจากการแก้ไข เลิกทำ หรือทำซ้ำครั้งถัดไป";
 // Where the undo history is kept when the project is saved (it survives reopening the project)
 history.persist = "บันทึกประวัติ";
 history.persist.embedded = "ฝัง";
-history.persist.embedded.help = "ประวัติจะถูกเก็บไว้ภายในไฟล์โปรเจกต์ ไฟล์จะมีขนาดใหญ่ขึ้น แต่ประวัติจะติดไปกับไฟล์ด้วย";
+history.persist.embedded.help = "ประวัติจะถูกจัดเก็บไว้ในไฟล์โปรเจกต์ ทำให้ไฟล์ใหญ่ขึ้นและการบันทึกกับการโหลดช้าลง
+
+แนะนำให้เลือก ปิด หรือ แยกต่างหาก เว้นแต่จำเป็นต้องให้ประวัติติดไปกับไฟล์";
 history.persist.help = "เก็บประวัติการเลิกทำเมื่อบันทึกโปรเจกต์ เพื่อให้ยังคงอยู่หลังจากเปิดโปรเจกต์อีกครั้ง";
 history.persist.off = "ปิด";
 history.persist.off.help = "บันทึกโปรเจกต์โดยไม่มีประวัติ";
@@ -970,6 +1081,18 @@ history.persist.separate = "แยกต่างหาก";
 history.persist.separate.help = "ประวัติจะถูกเก็บไว้ในข้อมูลโปรเจกต์บนอุปกรณ์นี้ ไฟล์โปรเจกต์จะยังมีขนาดเล็ก";
 // Redo
 history.redo = "ทำซ้ำ";
+// Slider + play button: rewinds to the root and redoes the operations one by one, the value is a number of operations per second
+history.replay = "เล่นซ้ำ";
+// Option of the replay popup: the camera follows the replayed operations even when the history "Restore camera" setting is off
+history.replay.camera = "คืนค่ากล้อง";
+history.replay.camera.help = "กล้องจะติดตามการทำงานที่เล่นซ้ำ แม้จะปิดตัวเลือกคืนค่ากล้องในประวัติไว้";
+// Popup opened by the play button, above its two options
+history.replay.confirm = "เล่นประวัติซ้ำหรือไม่?";
+history.replay.help = "กลับไปยังจุดเริ่มต้น แล้วทำซ้ำทีละรายการด้วยความเร็วนี้ (รายการต่อวินาที)
+แตะปุ่มอีกครั้งเพื่อหยุด การเลิกทำ ทำซ้ำ หรือแตะรายการในประวัติก็หยุดการเล่นได้เช่นกัน";
+// Option of the replay popup: runs backwards, undoing from the current state to the root
+history.replay.reverse = "ย้อนกลับ";
+history.replay.reverse.help = "เลิกทำจากสถานะปัจจุบันกลับไปยังจุดเริ่มต้น แทนการเล่นซ้ำจากจุดเริ่มต้น";
 // When enabled, undoing an operation also restores the camera position
 history.restoreCamera = "คืนค่ากล้อง";
 history.restoreCamera.help = "เปิดใช้งานตัวเลือกนี้เพื่อกู้คืนมุมมองกล้องที่บันทึกไว้เมื่อคุณเลิกทำ/ทำซ้ำรายการนี้";
@@ -1015,25 +1138,43 @@ inspect.short = "ตรวจสอบ";
 
 // Interface customization
 interface = "อินเตอร์เฟซ";
+interface.accent.solid = "";
+interface.accent.thin = "";
+interface.accentStrength = "";
+interface.accentStrength.help = "";
+interface.appearance = "";
 // Interface option (panel blurriness, if the menus are transparent)
 interface.blurFactor = "ค่าความเบลอ";
+interface.buttonFill = "";
+interface.buttonFill.help = "";
+interface.buttonSupportContrast = "";
+interface.buttonSupportContrast.help = "";
 // Interface option (main base color)
-interface.colorBase = "ฐานสี";
+interface.colorBase = "";
 // Interface option (color of panels, if the menus are transparent)
-interface.colorBaseTransparent = "พาเนลสี";
+interface.colorBaseTransparent = "";
 // Interface option (accent widget color)
-interface.colorSelect = "วิดเจ็ตสี";
-// UI customization: each item row fits on a single line (synonym: inlined)
-interface.compact = "UI: กระชับ";
+interface.colorSelect = "";
+interface.colors = "";
+interface.colors.action = "";
+interface.colors.disabled = "";
+interface.colors.filled = "";
+interface.colors.idle = "";
+interface.colors.infinite = "";
+interface.colors.options = "";
+interface.colors.preview = "";
+interface.colors.reset = "";
+interface.colors.stepped = "";
 // Spacing between widgets
 interface.cursorStep = "ระยะแนวตั้ง";
+interface.customColorFill = "";
+interface.customColorFill.help = "";
 // Do not use windows native dialog
 interface.customDialog = "ใช้กล่องโต้ตอบของ Nomad";
 interface.customDialog.help = "แสดงกล่องข้อความของ Nomad แทนกล่องโต้ตอบของระบบ";
-// UI customization: each row of the list will be bigger
-interface.expandList = "UI ขยายรายการ";
-// UI customization: each row of the list will be bigger
-interface.expandList.help = "เฉพาะตัวเลือก UI เพื่อการจัดการรายการได้ง่ายขึ้น";
+// Interface customization: soft shadow cast by the panels on the scene
+interface.dropShadow = "";
+interface.dropShadow.help = "";
 // Interface customization
 interface.flipBottom = "มิเรอร์แถบด้านล่าง";
 // Interface customization
@@ -1042,53 +1183,66 @@ interface.flipMiddle = "มิเรอร์แถบด้านข้าง";
 interface.flipTop = "มิเรอร์แถบด้านบน";
 // Size of fonts
 interface.fontScale = "ขนาดของฟอนต์";
+interface.glass = "";
+interface.glass.help = "";
 // Dot menu hovering
 interface.hoverDot = "จุดลอยเหนือปากกา";
 interface.hoverDot.help = "แสดงจุดเล็ก ๆ ใน UI เมื่อมีการตรวจพบปากกาที่ลอยอยู่เหนือหน้าจอ";
 // Help popup when hovering
 interface.hoverHelp = "ช่วยเหลือเมื่อชี้";
-// Interface option (main base color)
-interface.iconSupport = "ปุ่มคอนทราสต์สูง";
-interface.iconSupport.help = "สไตล์ทางเลือกสำหรับปุ่มที่ทำให้พวกมันมองเห็นได้ง่ายขึ้นเมื่อพวกมันถูกเปิดใช้งาน
-
-หากตั้งค่าเป็นอัตโนมัติ, Nomad จะใช้โหมดนี้เมื่อคอนทราสต์สี UI ระหว่างเปิด/ปิดใช้งานต่ำ";
 // Inset
 interface.inset.title = "ออฟเซ็ตของขอบ";
 interface.inset.title.help = "คุณสามารถเปลี่ยนค่าเหล่านี้ได้ก็ต่อเมื่อคุณมีปัญหาในการโต้ตอบกับปุ่มที่ขอบหน้าจอ
 
 หากตัวเลื่อนถูกปิดใช้งาน Nomad จะใช้ค่าพื้นที่ปลอดภัยที่กู้กลับมาด้วยเครื่องอุปกรณ์นี้เอง";
+interface.layout = "";
 // Move a floating panel by dragging inside it, instead of using its bar
-interface.panelDrag = "";
-interface.panelDrag.help = "";
+interface.panelDrag = "ลากตัวแผง";
+interface.panelDrag.help = "แผงลอยจะถูกย้ายโดยลากแถบเสมอ ตัวเลือกนี้ช่วยให้ลากตัวแผงได้เช่นกัน
+
+ในโหมดอัตโนมัติ นิ้วหรือสไตลัสจะย้ายแผงเฉพาะเมื่อการลากเป็นแนวนอนมากกว่าแนวตั้ง ดังนั้นการลากแนวตั้งจะยังคงเลื่อนเนื้อหา ตั้งค่าเป็นใช่เพื่อให้ลากด้วยเมาส์ได้ทุกทิศทาง";
 // Interface option (if the menus are transparent or opaque)
 interface.panelTransparent = "พาเนลโปร่งใส";
 // Width of the interface panels
 interface.panelWidth = "ความกว้างของพาเนล";
 // Interface color style
 interface.preset.title = "พรีเซ็ต";
+// Interface option, outline drawn around a row of options and between its slots
+interface.radioBorder = "";
 // Reset interface settings
 interface.resetAll = "รีเซ็ตสไตล์";
 interface.resetAll.confirm = "รีเซ็ตการตั้งค่าอินเตอร์เฟซ?";
+interface.resetAppearance = "";
+interface.resetLayout = "";
 // Resize window (should be short)
 interface.resize = "ปรับขนาด";
 // Scale the interface
 interface.scale = "ขนาดโดยรวม";
+// Interface option, strength of the outline drawn around a selected button or a slider bar
+interface.selectBorder = "";
+// Interface option, strength of the accent tint behind a selected button or inside a slider bar
+interface.selectFill = "";
 // Show the drag bar of a floating shortcut window
 interface.shortcut.bar = "แถบ";
 // The shortcut bar at the bottom of the screen (section title and row name)
 interface.shortcut.bottom = "เพิ่มทางลัด (ล่าง)...";
 // Floating shortcut windows (section title)
 interface.shortcut.float = "เพิ่มทางลัด (หน้าต่าง)...";
+// Interface option, the slider track is an outline instead of a filled plate
+interface.sliderBorder = "";
+interface.sliderFill = "";
+interface.sliderFill.help = "";
+interface.supportContrast = "";
+interface.supportContrast.help = "";
 // list of tools
 interface.toolbox = "กล่องเครื่องมือ";
 // Colored text and icon
 interface.toolbox.color = "มีสี";
-// Interface customization (the toolbox is a grid, we can adjust the column count)
-interface.toolbox.columns = "คอลัมน์";
 // hide toolbox by default
 interface.toolbox.hide = "ซ่อน";
 // Reset the tool's order in the toolbox
 interface.toolbox.resetOrder = "รีเซ็ตลำดับ";
+interface.toolboxColors = "";
 // Interface customization (the toolbox is a grid, we can adjust the column count)
 interface.top.alt = "ลำดับ Alt";
 interface.top.alt.help = "ไอคอนลำดับทางเลือกสำหรับเมนูด้านบน
@@ -1115,12 +1269,22 @@ item.delete.confirm = "ยืนยันการลบ?";
 item.delete.confirm.yes = "ใช่ ลบทิ้ง";
 // When we delete the item but the image is used somewhere
 item.delete.used = "รูปภาพที่ใช้";
-// Draggable, movable
-item.draggable = "สามารถเคลื่อนย้ายได้";
+// Short button label, turns a stamp (alpha or VDM) back into a plane that can be sculpted again
+item.edit = "แก้ไข";
+item.edit.help = "เพิ่มระนาบที่ขึ้นรูปด้วยสแตมป์นี้แล้ว พร้อมเลเยอร์ปั้นและรูปสี่เหลี่ยมหนึ่งรูปต่อพิกเซล
+
+ปั้นระนาบ แล้วเบคกลับด้วย `โทโพโลยี -> เบค -> VDM`";
+// Short button label, opens a popup to correct the pixels of an imported image
+item.fix = "แก้ไข";
+item.fix.help = "แก้ไขตัวภาพโดยตรง: ค่ากลาง กลับค่า หมุน
+
+ไฟล์จะถูกเขียนใหม่ แอปอื่นจึงอ่านภาพที่แก้ไขแล้วได้ด้วย";
 // Show the folders of a list as a column on its side, instead of a drop down menu
-item.folderColumn = "";
+item.folderColumn = "คอลัมน์โฟลเดอร์";
+// Show the folders of a drop down menu as small chips filling the width, instead of one per line
+item.folderCompact = "โฟลเดอร์แบบกะทัดรัด";
 // Show a list of items as one group of items per folder, instead of a single list
-item.folderGroup = "";
+item.folderGroup = "จัดกลุ่มตามโฟลเดอร์";
 // Hide an item (object, layer, etc)
 item.hide = "ซ่อน";
 // Make an item instance, similar to clone but keeps the underlying geometry (Synonym: link? soft clone?)
@@ -1129,6 +1293,7 @@ item.instance = "อินสแตนซ์";
 item.lastSave = "บันทึกล่าสุด";
 // Reload last save of an item (object, tool, etc)
 item.lastSave.confirm = "โหลดการบันทึกล่าสุด?";
+item.load = "";
 // The item is locked (either it cannot be selected, edited, or we preserve its details)
 item.lock = "ล็อค";
 // Merge an item with another one below (layer)
@@ -1143,6 +1308,8 @@ item.next = "ถัดไป";
 item.none = "ไม่มี";
 // The order of an item in a list
 item.order = "เรียง";
+// Size of the preview images of a list of items, in pixels
+item.previewSize = "ขนาดตัวอย่าง";
 // Focus on previous item
 item.previous = "ก่อนหน้า";
 // Rename an item (object, tool, etc)
@@ -1155,19 +1322,19 @@ item.reset.confirm = "ยืนยันการรีเซ็ต?";
 // Save an item (object, tool, etc)
 item.save = "บันทึก";
 item.save.confirm = "ยืนยันการบันทึก?";
-item.saveLibrary = "";
+item.saveLibrary = "บันทึกลงคลัง";
 // Select an item (object, layer, etc)
 item.select = "เลือก";
 // Show an item (object, layer, etc)
 item.show = "แสดง";
 // Show the name of every item under its preview image
-item.showName = "";
+item.showName = "แสดงชื่อ";
+// The show button of the curve/primitive handlers only toggles them all, instead of picking one kind
+item.showOnOff = "เปิด/ปิดเท่านั้น";
 // Order a list of items alphabetically
-item.sortName = "";
+item.sortName = "ตามชื่อ";
 // Order a list of items with the most recently modified first
-item.sortRecent = "";
-// Convert the item type (mesh, light) to a simple Node type
-item.toNode = "เป็นโหนด";
+item.sortRecent = "ล่าสุด";
 // Uninstance the object, make the object real
 item.uninstance = "ยกเลิกอินสแตนซ์";
 // Unselect an item (object, layer, etc)
@@ -1240,14 +1407,11 @@ license.grace = "ออฟไลน์ - ช่วงเวลาผ่อนผ
 license.grace.days = "วัน";
 license.grace.hours = "ชั่วโมง";
 license.key = "คีย์ใบอนุญาต";
-license.newest = "มีเวอร์ชันใหม่!";
 license.portal.label = "พอร์ทัลใบอนุญาต";
 license.portal.label.warning = "พอร์ทัลนี้ใช้ได้เฉพาะผู้ที่ซื้อเวอร์ชัน Windows/Mac
 
 การซื้อจากร้านแอป iOS/Android ใช้ข้ามแพลตฟอร์มไม่ได้";
 license.portal.title = "ผู้ใช้ที่มีอยู่";
-license.retry = "ลองอีกครั้ง";
-license.title = "ใบอนุญาต";
 license.validate = "ตรวจสอบ";
 license.validate.error404 = "ไม่พบคีย์ใบอนุญาต";
 license.validate.error422 = "หน่วยงานไม่สามารถประมวลผลได้";
@@ -1259,13 +1423,10 @@ light.angle = "มุม";
 light.attachment = "การผนวก";
 // The light will move along the camera
 light.attachment.camera = "กล้อง";
+light.attachment.camera.help = "การวางแนวแสงขึ้นอยู่กับมุมมองของกล้อง";
 // The light will stay still even if the user moves the camera
 light.attachment.fixed = "อยู่กับที่";
-light.attachment.help = "• อยู่กับที่
-การวางแนวแสงจะไม่เปลี่ยนแปลง
-
-• กล้อง
-การวางแนวแสงขึ้นอยู่กับมุมมองของกล้อง";
+light.attachment.fixed.help = "การวางแนวแสงจะไม่เปลี่ยนแปลง";
 // Color of light
 light.color = "คัลเลอร์";
 // Contact shadows are more precise shadows on small distance (synonym: cavity shadows?)
@@ -1279,17 +1440,13 @@ light.kelvin = "เคลวิน";
 light.position = "ตำแหน่ง";
 // Move the light in front of the camera (but keeps its inner orientation)
 light.resetPosition = "รีเซ็นเตอร์";
-// Adjustment to fix artefacts
-light.shadow.bias = "ไบแอส";
 // Enable or disable shadows for a light
 light.shadow.cast = "เงา";
-// Point light only works with "screenspace" shadow type (not "shadow map")
-light.shadow.pointTip = "จุดของแสงรองรับเฉพาะเงาของพื้นที่หน้าจอ";
-// How blurry the shadow is
-light.shadow.softness = "ความนุ่ม";
 // Thickness threshold for screen-space shadows (synonym: threshold, bias)
 light.shadow.tolerance = "เกณฑ์การยอมรับ";
 light.shadow.type = "ชนิดของเงา";
+// Shown above the two shadow type entries
+light.shadow.type.help = "แผนที่เงาเรนเดอร์ฉากจากมุมมองของแสง จึงสร้างเงาบนเรขาคณิตที่กล้องมองไม่เห็น ส่วนพื้นที่หน้าจอจะอ่านค่าความลึกที่มีอยู่บนหน้าจอ จึงใช้ทรัพยากรน้อยกว่าแต่สร้างเงาได้เฉพาะสิ่งที่มองเห็น";
 // Shadows computed with only the information visible on screen
 light.shadow.type.screenspace = "พื้นที่หน้าจอ";
 light.shadow.type.screenspace.help = "คุณลักษณะทดลอง อาจถูกลบออกในรุ่นต่อๆ ไป
@@ -1316,26 +1473,22 @@ light.type.hdri = "HDRI";
 light.type.point = "จุด";
 // Spot light emits light in a single direction, restricted by a cone shape.
 light.type.spot = "สปอต";
-light.type.sun = "ดวงอาทิตย์";
-// Whether the light is shown
-light.visible = "แสดง";
 
 link.address = "อุปกรณ์นี้";
 link.approve = "ยอมรับ";
-link.bridges = "สคริปต์บริดจ์";
+link.bridges = "สคริปต์บริดจ์ (GitHub)";
 link.cameras = "กล้อง";
 link.copyRepository = "คัดลอก URL ของคลัง";
 link.deny = "ปฏิเสธ";
 link.forget = "ลืมอุปกรณ์ที่จับคู่แล้ว";
 link.get = "รับ";
-link.getFrom = "รับจาก $0";
 link.goz.enable = "เปิดใช้ GoZ";
 link.goz.noExport = "ไม่มีสิ่งที่จะนำเข้า โปรดกด GoZ ใน ZBrush ก่อน";
 link.goz.notInstalled = "ติดตั้ง GoZ ใน ZBrush ก่อน (การตั้งค่า > GoZ)";
 link.goz.received = "ได้รับวัตถุ $0 รายการจาก ZBrush";
 link.goz.sent = "ส่งวัตถุ $0 รายการไปยัง ZBrush แล้ว";
 link.goz.waiting = "กำลังรอการส่งออกจาก ZBrush";
-link.help.others = "แอปอื่น (ZBrush เป็นต้น) เชื่อมต่อกับโฮสต์ Nomad ด้วยวิธีเดียวกัน
+link.help.others = "แอปอื่น (ZBrush, Marmoset Toolbag เป็นต้น) เชื่อมต่อกับโฮสต์ Nomad ด้วยวิธีเดียวกัน
 
 บริดจ์คือสคริปต์ Python ที่ทำงานบนคอมพิวเตอร์เครื่องเดียวกับแอปนั้น
 สคริปต์ตัวอย่างและโปรโตคอลอยู่บน GitHub ให้ใช้เป็นจุดเริ่มต้น";
@@ -1356,14 +1509,11 @@ link.mode.help = "อุปกรณ์หนึ่งเป็นโฮสต�
 link.mode.nomad = "Nomad ↔ Nomad";
 link.mode.nomad.help = "เลือก โฮสต์ บนอุปกรณ์หนึ่งและ เข้าร่วม บนอุปกรณ์อื่น จากนั้นแตะชื่อโฮสต์";
 link.nearby = "อุปกรณ์ใกล้เคียง";
-link.network = "เครือข่าย";
 link.objects = "ออบเจ็กต์และเรขาคณิต";
 link.off = "ปิด";
 link.peer = "เพียร์";
 link.peerAddress = "ที่อยู่ไคลเอนต์";
-link.peers = "เพียร์";
 link.port = "พอร์ตเครือข่าย";
-link.receive = "รับ";
 link.replace = "แทนที่";
 // Confirm popup before "Replace": deletes the local scene (undoable), then pulls the peer's scene
 link.replace.confirm = "ลบฉากปัจจุบัน แล้วรับฉากของเพียร์หรือไม่?";
@@ -1374,7 +1524,6 @@ link.scope.scene = "ซีน";
 link.scope.selection = "การเลือก";
 link.searching = "กำลังค้นหาอุปกรณ์";
 link.send = "ส่ง";
-link.sendTo = "ส่งไปยัง $0";
 link.source = "การแก้ไขซีน";
 link.source.from = "จาก $0";
 link.source.help = "การแก้ไขฉากจะสตรีมจากอุปกรณ์ครั้งละหนึ่งเครื่อง อัตโนมัติ จะกำหนดทิศทางให้กับกิจกรรมล่าสุด";
@@ -1474,8 +1623,6 @@ material.refraction.interior = "ภายใน";
 material.refraction.surface = "พื้นผิว";
 // Defines how blurry or sharp the reflection on a material is (opposite of glossiness)
 material.roughness = "ความหยาบ";
-// How much light a surface will reflect
-material.specular = "ความสะท้อนแสง";
 // Depth means how far the light can travel under the surface
 material.subsurfaceDepth = "ความลึก";
 // Textures/Image
@@ -1531,8 +1678,6 @@ material.type.shadowCatcher.warning = "ไม่มีแสงที่สร�
 material.type.subsurface = "ใต้พื้นผิว";
 material.type.subsurface.help = "เพื่อให้ได้ผลลัพธ์ที่ดีที่สุด คุณสามารถเปลี่ยนไปใช้โหมดแรเงา PBR และใช้แสงส่องทิศทางอย่างน้อยหนึ่งดวง ซึ่งเหมาะกับสภาพแวดล้อมที่มืด";
 material.unused = "ไม่ได้ใช้";
-// A warning indicating that the mesh has no UVs
-material.warningNoUVs = "ไม่มี UVs!";
 
 menu.about = "เกี่ยวกับ";
 menu.alpha = "อัลฟ่า";
@@ -1617,6 +1762,11 @@ nomad.mainFolder.help = "หากคุณเพิ่มไฟล์ลงใ�
 nomad.mainFolder.warning = "ไฟล์จะไม่ถูกแตะต้อง
 ไม่ถูกคัดลอก ลบ หรือย้าย";
 
+// Material picker button of the painting menu, its channels are chosen in the material options popup
+paint.dropper = "ตัวดูดวัสดุ";
+paint.dropper.help = "เลือกวัสดุใต้เคอร์เซอร์
+
+แทนที่เฉพาะช่องที่ทำเครื่องหมายไว้";
 // Factor/Opacity of paint tool
 paint.intensity = "ความเข้มของการลงสี";
 // Opaque opacity
@@ -1643,13 +1793,19 @@ paint.preset.embed.help = "เท็กซ์เจอร์อยู่ใน�
 
 เปิดตัวเลือกนี้เพื่อทำสำเนาเท็กซ์เจอร์ไว้ในพรีเซ็ตวัสดุ
 มีประโยชน์เมื่อต้องการแชร์พรีเซ็ตที่มีเท็กซ์เจอร์โดยไม่ต้องส่งเท็กซ์เจอร์แยก";
-// use stencil mode
-paint.stencil = "สเตนซิล";
 paint.strokePainting.title = "ทาสี";
-// Brush-stroke texture
-paint.texture.warningEnable = "ต้องเปิดใช้งานการวาดภาพลายเส้นเพื่อให้สามารถฉายพื้นผิวได้ (ช่องทำเครื่องหมายด้านบน)!";
-paint.texture.warningIgnored = "เครื่องมือปัจจุบันไม่สามารถใช้พื้นผิวได้!";
+// Curve editor of a texture slot, a pill in the texture popup footer
+paint.texture.curve = "เส้นโค้ง";
+// Before → after previews on top of the curve editor
+paint.texture.curve.compare = "ต้นฉบับ → ปัจจุบัน";
+paint.texture.curve.help = "แมปค่าเท็กซ์เจอร์ใหม่ก่อนระบาย
+
+ไฟล์ภาพจะไม่เปลี่ยนแปลง";
 // Inherit stroke falloff option for the painting
+// Help of the alpha button of the painting menu, not the alpha menu itself
+paint.tool.alpha.help = "เมื่อปิดใช้งาน การระบายสีจะไม่ใช้ค่าอัลฟาและครอบคลุมพื้นที่แปรงทั้งหมด";
+// Help of the falloff button of the painting menu, not the falloff menu itself
+paint.tool.curve.help = "เมื่อปิดใช้งาน การระบายสีจะคงความเข้มเต็มที่จนถึงขอบแปรง";
 paint.tool.help = "ใช้เครื่องมืออลฟา, ฟอลออฟ และแรนดอมไมเซอร์ในการปรับความเข้มของการแปรงสี
 
 ตัวเลือกเหล่านี้จะถูกละเว้นสำหรับคุณสมบัติการทาสีทั้งหมด แต่อลฟาจะถูกพิจารณาสำหรับประเภทสามแผนที่";
@@ -1658,8 +1814,13 @@ paint.useGlobal = "วัสดุส่วนกลาง";
 paint.useGlobal.help = "หากเปิดใช้งานตัวเลือกนี้ วัสดุที่เลือกจะเหมือนกับเครื่องมืออื่นๆ
 
 โปรดทราบว่าจะพิจารณาเฉพาะการตั้งค่าความหยาบ ความโลหะ และสีเท่านั้น";
+// Only the intensity part of the stroke randomizer, applied to the painting
+paint.useJitter = "สุ่มความเข้ม";
+paint.useJitter.help = "ควบคุมว่าการสุ่มความเข้มจะมีผลต่อการระบายสีหรือไม่ การสุ่มตำแหน่ง การหมุน และสเกลจะขยับตราประทับทั้งอันเสมอ";
 // The current tool will paint the object if this option is enabled
 paint.usePainting = "ภาพวาดลายเส้น";
+// Paint with the color, roughness, metalness and opacity baked inside the VDM stamp
+paint.vdmMaterial = "วัสดุแสตมป์";
 
 position.bottom = "ล่าง";
 position.center = "อยู่กึ่งกลาง";
@@ -1701,6 +1862,8 @@ postprocess.bloom.threshold.help = "เกณฑ์ความส่องส�
 // https://en.wikipedia.org/wiki/Chromatic_aberration
 postprocess.chromatic = "ความพร่าสี";
 postprocess.chromatic.factor = "ความแข็งแรง";
+// Short label for the section shortcut bar
+postprocess.chromatic.short = "โครมา";
 // Accentuate the edges of the model
 postprocess.curvature = "ความโค้ง";
 // Color/Strength of convex curvature
@@ -1709,6 +1872,8 @@ postprocess.curvature.bump = "บัมพ์";
 postprocess.curvature.cavity = "โพรง";
 // Main strength of curvature
 postprocess.curvature.factor = "แฟกเตอร์";
+// Short label for the section shortcut bar
+postprocess.curvature.short = "โพรง";
 // Color curves
 postprocess.curve = "เกรดสี";
 postprocess.curve.blue = "น้ำเงิน";
@@ -1716,8 +1881,8 @@ postprocess.curve.green = "เขียว";
 // Curve for pixel luminance
 postprocess.curve.luminance = "หลัก";
 postprocess.curve.red = "แดง";
-// Reset color grading curves
-postprocess.curve.resetAll = "รีเซ็ตทั้งหมด";
+// Short label for the section shortcut bar
+postprocess.curve.short = "เส้นโค้ง";
 // Denoise
 postprocess.denoise = "ตัวลดนอยส์";
 postprocess.denoise.help = "ใช้ขั้นตอนลดนอยส์หลังจากสะสมเฟรมครบแล้ว";
@@ -1728,13 +1893,17 @@ postprocess.dithering.help = "ช่วยลดอาร์ติแฟกต�
 // Depth of Field (bokeh)
 // https://en.wikipedia.org/wiki/Depth_of_field
 postprocess.dof = "ความลึกของภาพ";
+// f-number, a lower value opens the lens and blurs more
+postprocess.dof.aperture = "รูรับแสง";
 // The blur factor behind the focused point
 postprocess.dof.blurFar = "เบลอไกล";
 // The blur factor in front of the focused point
 postprocess.dof.blurNear = "เบลอใกล้";
 postprocess.dof.focusTip = "แตะออบเจ็กต์เพื่อเปลี่ยนจุดโฟกัส";
-// Full resolution (1:1 resolution) instead of half resolution
-postprocess.fullResolution = "ความละเอียดเต็ม";
+// Drive the blur with a single camera aperture instead of the two blur factors
+postprocess.dof.physical = "โหมดรูรับแสง";
+// Short label for the section shortcut bar (no need to translate "DoF")
+postprocess.dof.short = "DoF";
 // Filmic Grain
 // https://en.wikipedia.org/wiki/Film_grain
 postprocess.grain = "เกรน";
@@ -1746,6 +1915,8 @@ postprocess.maxSamples.help = "ช่วยปรับปรุงคุณภ�
 postprocess.pixelArt = "พิกเซลอาร์ต";
 // Override frame accumulation feature
 postprocess.pixelArt.allowAccumulate = "อนุญาตให้สุ่มตัวอย่างเฟรม";
+// Short label for the section shortcut bar
+postprocess.pixelArt.short = "พิกเซล";
 // Quality vs performance
 postprocess.quality = "คุณภาพ";
 postprocess.quality.help = "เปิดตัวเลือกเหล่านี้เพื่อเพิ่มคุณภาพโดยแลกกับประสิทธิภาพ";
@@ -1765,6 +1936,8 @@ postprocess.scanline.spacing = "การเว้นระยะห่าง";
 // https://en.wikipedia.org/wiki/Unsharp_masking
 postprocess.sharpness = "ความคมชัด";
 postprocess.sharpness.factor = "ความแข็งแรง";
+// Short label for the section shortcut bar
+postprocess.sharpness.short = "ทำให้คม";
 // Screen-space ambient occlusion (SSAO)
 // https://en.wikipedia.org/wiki/Ambient_occlusion
 postprocess.ssao = "แสงเงาระหว่างวัตถุในฉาก";
@@ -1772,16 +1945,20 @@ postprocess.ssao = "แสงเงาระหว่างวัตถุใน
 postprocess.ssao.factor = "ความแข็งแรง";
 // How far the effect spreads
 postprocess.ssao.radius = "ขนาด";
+// Short label for the section shortcut bar (no need to translate "SSAO")
+postprocess.ssao.short = "SSAO";
 // Adjustment for ssao
 postprocess.ssao.thickness = "ความหนา";
 postprocess.ssao.thickness.help = "กำหนดความหนาของความลึกสำหรับวัตถุที่บังแสงเป็นเปอร์เซ็นต์ของรัศมี AO";
 // Screen-Space Global Illumination (no need to translate "SSGI")
 postprocess.ssgi = "โกลบอลอินลูมิเนชัน (SSGI)";
-// Thickness threshold for ssgi tracing algorithm (synonym: threshold, bias)
-postprocess.ssgi.tolerance = "เกณฑ์การยอมรับ";
+// Short label for the section shortcut bar (no need to translate "SSGI")
+postprocess.ssgi.short = "SSGI";
 postprocess.ssgi.warning = "SSGI ต้องใช้โหมดแรเงา PBR";
 // Screen-Space Reflection (no need to translate "SSR")
 postprocess.ssr = "การสะท้อนแสง (SSR)";
+// Short label for the section shortcut bar (no need to translate "SSR")
+postprocess.ssr.short = "SSR";
 postprocess.ssr.warning = "SSR ต้องใช้โหมดแรเงา PBR";
 // Temporal Anti-Aliasing (no need to translate "TAA")
 postprocess.taa = "เทคโนโลยีลบรอยหยัก (TAA)";
@@ -1796,6 +1973,8 @@ postprocess.tone.mapping.neutral = "เป็นกลาง";
 // No tonemapping operator is used
 postprocess.tone.mapping.none = "ไม่มี";
 postprocess.tone.saturation = "ความอิ่มตัว";
+// Short label for the section shortcut bar
+postprocess.tone.short = "โทน";
 // Darkening at the edges
 postprocess.vignette = "วิกเน็ตต์";
 // How sharp the edge of the effect is
@@ -1829,10 +2008,6 @@ pressure.useGlobal.help = "โดยค่าเริ่มต้น เคร�
 
 // Geometry Primitive (box, sphere, cylinder, etc)
 primitive = "รูปทรงพื้นฐาน";
-// Angle of torus, etc
-primitive.angleX = "มุม X";
-primitive.angleY = "มุม Y";
-primitive.angleZ = "มุม Z";
 primitive.box = "กล่อง";
 // Box
 primitive.boxRegular = "ขนาดเท่ากัน (คิวบ์)";
@@ -1863,8 +2038,6 @@ primitive.edit.help = "อนุญาตให้แก้ไข 3Dในวิ
 คุณสามารถปิดใช้งานคุณลักษณะนี้ได้หากต้องการโต้ตอบกับ Gizmo หรือเครื่องมือปรับแต่ง โดยไม่ต้องแก้ไขของรูปทรงพื้นฐาน";
 // Interface section where we change the geometry (shape of the primitive)
 primitive.geometry = "เรขาคณิต";
-// Make a hole in the primitive to make it hollow
-primitive.hasHole = "มีรู";
 // Hole sub menu (cylinder, tube, etc)
 primitive.hole = "รู";
 primitive.icosahedron = "ไอโคซาเฮดรอน";
@@ -1875,8 +2048,6 @@ primitive.isolate.bottom = "ล่าง";
 // One side of a cube (the right plane)
 primitive.isolate.right = "ขวา";
 primitive.lathe = "กลึง";
-// Synonym: Flat subdivision
-primitive.linear = "ซับดิวิชันเชิงเส้น";
 // Primitive configuration
 primitive.mainConfig = "พารามิเตอร์";
 // Maximum number of faces of the primitives
@@ -1895,15 +2066,10 @@ primitive.profile = "โปรไฟล์";
 // History entry: a control point of the profile was moved
 primitive.profile.point = "จุด";
 primitive.profile.viewport = "แสดงในพื้นที่มองเห็น";
-// Make sure the shape is perfectly spherical
-primitive.projectOnSphere = "ฉายลงบนทรงกลม";
-primitive.projectOnSphere.help = "สแนปจุดบนสเฟียร์ที่สมบูรณ์แบบ";
 // Radius (of a sphere, torus, etc)
 primitive.radius = "รัศมี";
 primitive.radius.end = "รัศมีสิ้นสุด";
 primitive.radius.start = "รัศมีเริ่มต้น";
-// Make sure both endpoints of a primitive (cylinder, tube, etc.) have the same size
-primitive.radius.sync = "รัศมีเดียวกัน";
 // Size (of cube x dimension)
 primitive.size = "ขนาด";
 primitive.sizeX = "ขนาด X";
@@ -1913,6 +2079,27 @@ primitive.sphereCube = "สเฟียร์ควอด";
 primitive.sphereUV = "UV สเฟียร์";
 // "Post" means subdivision that occurs after the primitive is computed
 primitive.subdivision = "โพสต์ซับดิวิชัน";
+primitive.text = "";
+primitive.text.align = "";
+primitive.text.bend = "";
+primitive.text.center = "";
+primitive.text.depth = "";
+primitive.text.edit = "";
+primitive.text.font = "";
+primitive.text.left = "";
+primitive.text.limit = "";
+primitive.text.lineSpacing = "";
+primitive.text.lineSpacing.help = "";
+primitive.text.maxWidth = "";
+primitive.text.maxWidth.help = "";
+primitive.text.missingFont = "";
+primitive.text.mode = "";
+primitive.text.offset = "";
+primitive.text.resolution = "";
+primitive.text.right = "";
+primitive.text.rigid = "";
+primitive.text.spacing = "";
+primitive.text.wrap = "";
 // Interface section where we change the topology (number of triangles/polygons)
 primitive.topology = "โทโพโลยี";
 primitive.torus = "ทอรัส";
@@ -1953,11 +2140,7 @@ quadremesh.curvatureAdaptivness = "ขนาดที่ปรับได้";
 quadremesh.curvatureAdaptivness.help = "ที่ 100%, ขนาดของสี่เหลี่ยมจะแตกต่างกันไปตามความโค้งของวัตถุ, อนุญาตให้มีสี่เหลี่ยมเล็กๆ บนพื้นผิวที่มีความโค้งสูง
 ที่ 0%, ขนาดของสี่เหลี่ยมจะเท่ากันทั่วไป";
 quadremesh.reprojectVertex = "ฉายจุดยอดใหม่";
-quadremesh.reprojectVertex.label = "เมื่อเปิดใช้งาน Nomad จะฉายตำแหน่งกลับไปบนเมชก่อนหน้า
-
-หากเมชมีเลเยอร์ จะใช้การฉายซ้ำเสมอ";
 quadremesh.reprojectVertex.short = "ฉายจุดยอดใหม่";
-quadremesh.useVertexColors = "รักษาภาพวาด";
 
 // Singular of Repeaters (Nodes that make many copies of its children (type of mirror/curve/array/radial))
 repeater = "ทำซ้ำ";
@@ -1965,6 +2148,49 @@ repeater = "ทำซ้ำ";
 repeater.array.fitInside = "พอดีภายใน";
 // The object will follow the curve
 repeater.curve.align = "จัดแนว";
+// Every other copy is turned around the curve: 90° for chain links, 180° for leaves or zipper teeth
+repeater.curve.alternate = "สลับ";
+repeater.curve.alternate.half = "180°";
+repeater.curve.alternate.quarter = "90°";
+// Count slider mode: a fixed spacing between the copies, the count follows the curve length
+repeater.curve.distance = "ระยะห่าง";
+// Surface repeater: the copies stand on the surface (normal up), else they keep the orientation of the original
+repeater.surface.align = "";
+// Surface repeater mode: one copy per edge of the parent object, turned along the edge
+repeater.surface.edges = "";
+// Surface repeater mode: one copy per face of the parent object
+repeater.surface.faces = "";
+// Surface repeater: the copies scale with the local size of the surface
+repeater.surface.fitSize = "";
+repeater.surface.fitSize.help = "";
+// Surface repeater: with Fit size, the copies also stretch and skew to the shape of each face
+repeater.surface.fitSkew = "";
+repeater.surface.fitSkew.help = "";
+// Surface repeater: what the copies land on (faces, edges or vertices)
+repeater.surface.mode = "";
+// Surface repeater: the copies land on random faces instead of every Nth
+repeater.surface.random = "";
+repeater.surface.random.help = "";
+// Surface repeater mode: copies spread evenly over the surface, a minimum distance apart, not tied to the topology
+repeater.surface.scatter = "";
+// Surface repeater: draw another random set
+repeater.surface.shuffle = "";
+repeater.surface.shuffle.help = "";
+// Surface repeater: move the original child onto the surface
+repeater.surface.snap = "";
+repeater.surface.snap.help = "";
+// Surface repeater, Scatter mode: the minimum distance between two copies
+repeater.surface.spacing = "";
+repeater.surface.spacing.help = "";
+// Surface repeater: one copy every N faces, edges or vertices
+repeater.surface.stride = "";
+repeater.surface.stride.help = "";
+// Surface repeater, Scatter mode: toggle between a copy count and a spacing (the other value follows)
+repeater.surface.useSpacing = "";
+repeater.surface.useSpacing.help = "";
+// Surface repeater: each copy bends onto its face or along its edge instead of standing flat
+repeater.surface.warp = "";
+repeater.surface.warp.help = "";
 
 // Import resource (Alpha, Textures, MatCaps, etc)
 resource.import = "นำเข้า...";
@@ -2034,6 +2260,8 @@ scene.repeaters = "ตัวทำซ้ำ";
 scene.repeaters.help = "โหนดตัวทำซ้ำจะสร้างอินสแตนซ์ของออบเจ็กต์ที่อยู่ด้านล่างในลำดับชั้นของซีน";
 // Hidden objects will be subtracted (they carve the other objects)
 scene.subtractionTip = "การลบ ซ่อนวัตถุ";
+// Surface node type: makes copies of its children on the surface of its parent object
+scene.surface = "";
 // Keep the visibility of all selected items synchronized
 scene.syncVisible = "ซิงค์การมองเห็น";
 scene.syncVisible.help = "เมื่อเปิดใช้งาน, การใช้ไอคอนที่มองเห็นได้ (ตา) จะส่งผลต่อรายการที่เลือกทั้งหมด.";
@@ -2049,7 +2277,6 @@ scene.validateGroup = "ยืนยัน";
 scene.validateGroup.joinChildren = "รวมโหนดลูก";
 // Keep instances in the scene
 scene.validateGroup.keepInstances = "เก็บอินสแตนซ์";
-scene.voxelResolution = "ความละเอียด";
 
 setting.global = "การตั้งค่าทั่วไป";
 setting.globals = "การตั้งค่าทั่วไป";
@@ -2072,12 +2299,6 @@ settings.cursor.showRope = "แสดงเชือกกันโคลง";
 settings.cursor.title = "เคอร์เซอร์";
 // Meshes that are not selected will be darkened
 settings.darkenUnselected = "ทำให้ออบเจ็กต์ที่ไม่ได้เลือกมืดลง";
-// Display the material texture
-settings.debugChannel = "แสดงเท็กซ์เจอร์";
-// Display the material texture in the background
-settings.debugChannel.onBackground = "ในพื้นหลัง";
-// Display the material texture on the mesh
-settings.debugChannel.onMesh = "บนเมช";
 // General scene display settings
 settings.display.title = "แสดงการตั้งค่า";
 // Grid
@@ -2086,10 +2307,16 @@ settings.grid.snapDivision = "เกณฑ์การแบ่งสแนป";
 settings.grid.snapDivision.help = "เกณฑ์จะถูกเปรียบเทียบกับระยะทางไปยังตารางกริด.";
 // Snap eligible tool points to the grid
 settings.grid.snapGrid = "สแนปเข้ากริด";
+// Same as settings.grid.snapGrid, on a small shortcut button
+settings.grid.snapGrid.short = "สแนปกริด";
 // Snap eligible tool points to nearby existing points when the camera is aligned
 settings.grid.snapPointAlign = "สแนปเข้าจุด (มุมมองที่จัดแนว)";
+// Same as settings.grid.snapPointAlign, on a small shortcut button
+settings.grid.snapPointAlign.short = "สแนปจุด (จัดแนว)";
 // Snap eligible tool points to nearby existing points when the camera is not aligned
 settings.grid.snapPointFree = "สแนปเข้าจุด (มุมมองอิสระ)";
+// Same as settings.grid.snapPointFree, on a small shortcut button
+settings.grid.snapPointFree.short = "สแนปจุด (อิสระ)";
 // Handles are controls that you interact with in the viewport in order to edit something
 settings.handle = "ที่จับ";
 settings.handles = "ที่จับ";
@@ -2097,12 +2324,6 @@ settings.handles = "ที่จับ";
 settings.highlight = "ไฮไลท์";
 settings.highlight.duration = "ระยะเวลา";
 settings.highlight.help = "ไฮไลต์ออบเจ็กต์ที่เลือกอยู่ในขณะนี้เมื่อมีการเปลี่ยนการเลือก.";
-// Hole filling settings
-settings.hole = "อุดรู";
-// Allow the hole-filling algorithm to handle non-manifold (irregular) topology
-settings.hole.nonManifold = "อุดรูนอนแมนิโฟลด์";
-settings.hole.nonManifold.help = "ลองอุดรูนอนแมนิโฟลด์
-ตัวเลือกนี้จะไม่ถูกบันทึกในการตั้งค่า";
 // Show icon on the canvas
 settings.icon = "ไอคอน";
 // Show icons on the canvas
@@ -2127,6 +2348,18 @@ settings.outline = "เค้าร่าง";
 // Outline (contour highlight around the selected object)
 settings.outline.help = "ออบเจ็กต์ที่เลือกจะถูกร่าง";
 settings.outline.thickness = "ความหนา";
+// Object budget shared by every repeater in the scene
+settings.repeater.maxCopies = "";
+settings.repeater.maxCopies.help = "";
+// Most copies a single repeater makes
+settings.repeater.maxCount = "";
+settings.repeater.maxCount.help = "";
+// Polygon budget shared by every copy in the scene
+settings.repeater.maxFaces = "";
+settings.repeater.maxFaces.help = "";
+// Settings section: limits shared by every repeater (array, radial, curve, surface)
+settings.repeater.title = "";
+settings.repeater.title.help = "";
 // Reset preference settings button
 settings.reset = "รีเซ็ตเป็นค่าเริ่มต้น";
 settings.reset.confirm = "รีเซ็ตการตั้งค่ากำหนด";
@@ -2146,7 +2379,6 @@ settings.reset.title.help = "จะรีเซ็ตการตั้งค่
 โปรดทราบว่าทุกอย่างที่เชื่อมโยงกับโพรเจ็กต์จะยังคงอยู่เหมือนเดิม เช่น การจัดแสง โพสต์โพรเซส มุมมองกล้อง ฯลฯ";
 // Shape draw thing
 settings.shape = "รูปร่าง";
-settings.shape.color = "สีของรูปหลายเหลี่ยม";
 // Disable this option to force show the hidden faces
 settings.showDiscard = "ใช้ซ่อน";
 // Show and use the masking on the mesh
@@ -2162,20 +2394,20 @@ settings.snapCube.align = "จำกัดการจัดแนว";
 settings.snapCube.align.help = "จัดแนวมุมมองไปยังแกนโลก หากเปิดใช้งาน, มีเพียง 6 มุมมองที่สามารถจับได้
 
 ในโหมดอัตโนมัติ, การจำกัดจะเกิดขึ้นเฉพาะเมื่อกล้องอยู่ในโหมดออร์บิต.";
-// Move the navigation cube to the bottom of the screen
-settings.snapCube.bottom = "ด้านล่าง";
 // Extra snapping views on the edges and corners of the navigation cube
-settings.snapCube.edgeCorner = "";
-settings.snapCube.edgeCorner.help = "";
+settings.snapCube.edgeCorner = "ขอบและมุม";
+settings.snapCube.edgeCorner.help = "เพิ่มมุมมองการสแนปที่ขอบและมุมของลูกบาศก์ (โซนสีเหลืองอำพัน)";
 // Flip the camera (rotate 180° to see the other side)
 settings.snapCube.flip = "พลิก 180°";
 settings.snapCube.flip.help = "พลิกมุมมองหากมุมมองนั้นถูกจับแล้ว.";
-// Move the navigation cube on the left side of the screen
-settings.snapCube.left = "ซ้าย";
+// Dragging the navigation cube rotates like the Turntable mode, even if the camera is in Trackball
+settings.snapCube.turntable = "การลากแบบแท่นหมุน";
+settings.snapCube.turntable.help = "การลากลูกบาศก์จะหมุนกล้องโดยไม่เอียงแกน และหยุดที่แต่ละมุมมองสแนป
+
+ปิดใช้งานตัวเลือกนี้เพื่อลากลูกบาศก์ด้วยการหมุนแบบแทร็กบอลแทน การลากจะคงเป็นแนวนอนหรือแนวตั้งในทั้งสองกรณี";
 // Stats (information logs about the scene displayed on screen)
 settings.stats = "สถิติ";
 settings.stats.all = "แสดงทั้งซีน";
-settings.stats.right = "ขวา";
 // If the object is opened (a simple plane for example), two sided means we'll be able to see if from the two sides of the planes
 settings.twoSided = "สองด้าน";
 settings.twoSided.help = "จะเห็นเฟสได้จากทั้งสองด้าน";
@@ -2193,7 +2425,6 @@ shading.environment.attachedToCamera.help = "ผนึกสภาพแวด�
 ทำให้แสงให้สม่ำเสมอ ซึ่งอาจเป็นประโยชน์สำหรับวัตถุประสงค์ในการแกะสลัก";
 shading.environment.backgroundBlur = "เบลอ (พื้นหลัง)";
 shading.environment.exposure = "การเปิดรับแสง";
-shading.environment.import = "นำเข้า HDR";
 shading.environment.rotation = "การหมุน";
 shading.environment.rotation.help = "คุณสามารถหมุนสภาพแวดล้อมได้ด้วยการลาก 3 นิ้วในแนวนอนบนวิวพอร์ต";
 // Randomize colors
@@ -2204,7 +2435,6 @@ shading.instance.help = "เหมือนกับรหัสออบเจ�
 // Lights
 shading.lights = "แสง";
 shading.lights.addLight = "เพิ่มแสง";
-shading.lights.warning = "แสงต้องใช้โหมดแรเงา PBR";
 // Fast rendering mode for sculpting purpose
 shading.matcap = "MatCap";
 shading.matcap.global = "ใช้ MatCap ทั้งหมด";
@@ -2253,11 +2483,6 @@ shortcut.voxel = "ว็อกเซล";
 shortcut.wireframe = "ลวด";
 shortcut.xray = "เอ็กซ์เรย์";
 
-sonar.connect = "เชื่อมต่อ SonarPen";
-sonar.connect.confirm = "เชื่อมต่อ SonarPen?";
-sonar.connect.confirm.warning = "Sonar Pen จะใช้ไมโครโฟน (ลูปแบ็คเสียง) เพื่อตรวจจับแรงกดของปากกา";
-sonar.disconnect = "ยกเลิกการเชื่อมต่อ SonarPen";
-
 // space
 space.local = "โลคอล";
 space.screen = "หน้าจอ";
@@ -2280,9 +2505,7 @@ stat.ramHistory = "ประวัติ";
 stat.ramOther = "อื่นๆ";
 // Memory taken by the scene
 stat.ramScene = "ซีน";
-stat.scene.face = "เฟสของซีน";
 stat.scene.vertex = "จุดยอดของซีน";
-stat.triangles = "สามเหลี่ยม";
 stat.used = "ใช้อยู่ $0";
 // Memory used by the app (RAM, not storage!)
 stat.usedMemory = "หน่วยความจำที่ใช้";
@@ -2297,6 +2520,7 @@ stat.vramTextures = "พื้นผิว Vram";
 
 status.exit = "การเปลี่ยนแปลงที่ไม่ได้บันทึก! บันทึกก่อนปิดหรือไม่?";
 status.exit.no = "ไม่บันทึก";
+status.exit.title = "";
 status.exit.yes = "บันทึก";
 
 store.description.baking = "• Baking
@@ -2374,10 +2598,25 @@ stroke.alpha.fit.help = "ตัวเลือกนี้เกี่ยวข�
 
 เมื่อเปิด แต่ละภาพจะไทล์แยกกันโดยไม่มีช่องว่าง
 ปิดตัวเลือกนี้เพื่อให้อัลฟาและภาพอื่นซิงค์กันเมื่ออัตราส่วนภาพต่างกัน";
+// Title of the popup that corrects the alpha image itself
+stroke.alpha.fix = "แก้ไขอัลฟา";
+// Follows a number: "30% negative pixels clamped to zero"
+stroke.alpha.fix.clamped = "% ของพิกเซลค่าลบที่ถูกจำกัดเป็นศูนย์";
+// Under the two previews of the popup: the current image on the left, the corrected one on the right
+stroke.alpha.fix.compare = "ปัจจุบัน → แก้ไขแล้ว";
+// Mirror the image left/right
+stroke.alpha.fix.flipX = "พลิกแนวนอน";
+// Mirror the image top/bottom
+stroke.alpha.fix.flipY = "พลิกแนวตั้ง";
+// Turn the image by a quarter
+stroke.alpha.fix.rotate = "หมุน 90°";
+// The border pixels do not all share the same value, so no single mid value fits them
+stroke.alpha.fix.spread = "ขอบไม่สม่ำเสมอ";
 // Invert the pixel (black, white)
 stroke.alpha.invert = "สลับพิกเซล";
 // Middle-point value at which no deformation occurs
 stroke.alpha.midValue = "ค่ากลาง";
+stroke.alpha.midValue.detect.help = "อ่านค่ากลางจากขอบของภาพ";
 stroke.alpha.midValue.help = "ค่าจุดกึ่งกลางที่ไม่มีดีฟอร์เมชัน
 
 (ค่ากลาง = 0)
@@ -2391,6 +2630,7 @@ stroke.alpha.midValue.help = "ค่าจุดกึ่งกลางที�
 (ค่ากลาง = 1)
 • สีดำ: การแทนที่เชิงลบ
 • สีขาว: ไม่มีการแทนที่";
+stroke.alpha.midValue.pick.help = "เลือกค่ากลางบนอัลฟาโดยตรง";
 // Alpha rotation
 stroke.alpha.rotation = "การหมุน";
 stroke.alpha.rotation.lock.help = "ล็อกการหมุนค่าอัลฟา
@@ -2461,11 +2701,10 @@ stroke.falloffProject.help = "• ทรงกลม (3 มิติ)
 stroke.falloffProject.sphere = "สเฟียร์";
 // Synonymous: Scatter/Jitter/Randomize
 stroke.jitter = "สุ่ม";
-stroke.jitter.period = "ช่วงเวลา";
+stroke.jitter.period = "";
 stroke.jitter.period.help = "ความยาวของรอบการจิตเตอร์
 เพิ่มค่านี้เพื่อให้เกิดความแปรผันแบบช้า ๆ และต่อเนื่อง
 ลดค่านี้เพื่อให้เกิดนอยส์ที่รวดเร็ว";
-stroke.jitter.period.hint = "ช้าลง";
 // Make the brush stroke lag behind the pointer
 stroke.lazyRadius = "ผ่อนเชือกกันโคลง";
 stroke.lazyRadius.help = "สโตรกจะตามมาทีหลังตำแหน่งตัวชี้ตามระยะทางที่กำหนด
@@ -2476,10 +2715,6 @@ stroke.lazySmooth = "ปรับเส้นวาดให้เรียบ";
 stroke.lazySmooth.help = "ตำแหน่งตัวชี้หลายตัวแบบเฉลี่ยเพื่อให้ได้จังหวะลายเส้นวาดที่นุ่มนวลขึ้น
 
 หากตั้งค่าที่สูง จังหวะวาดเส้นจะช้าตามหลังตัวชี้ แต่จะตามทันในที่สุด";
-stroke.minSpacing.help = "ระยะห่างระหว่างแต่ละสโตรก สัมพันธ์กับรัศมีเครื่องมือ
-
-ค่าที่ต่ำกว่าจะช่วยให้สโตรกที่เรียบขึ้น แต่ประสิทธิภาพจะลดลง";
-stroke.minSpacingAdjustIntensity.help = "ปรับความเข้มของแปรงเพื่อให้แน่ใจว่ามีการแปลงรูปที่สม่ำเสมอโดยขึ้นอยู่กับระยะห่างของลายเส้นวาด";
 // determine normal direction
 stroke.normal.direction = "ทิศทาง";
 stroke.normal.direction.auto = "อัตโนมัติ";
@@ -2502,8 +2737,6 @@ stroke.normalFalloff = "ตัวกรองนอร์มัลสำหร�
 stroke.normalFalloff.help = "ตัดจุดที่มีนอร์มัลเบี่ยงเบนจากนอร์มัลของผิวมากเกินไปออก
 
 มีประโยชน์สำหรับการเพนต์รอยพับหรือปุ่มนูน";
-// small tip/warning
-stroke.onlyLasso = "การตั้งค่านี้จะเปิดใช้งานเฉพาะเครื่องมือลัสโซ";
 // sculpt on hide or mask
 stroke.protect = "ปกป้องพื้นที่";
 stroke.protect.hide.help = "เมื่อถูกตั้งค่าอัตโนมัติ ใบหน้าที่ซ่อนอยู่จะถูกแก้ไขหากลวดลายบนใบหน้าที่ซ่อนอยู่นั้นมองเห็นได้ (ดูที่เมนูลวดลาย)";
@@ -2563,8 +2796,13 @@ stroke.type.roll = "หมุนอัลฟา";
 stroke.type.tile = "แบ่งช่อง";
 // Sculpt and paint with alpha projected on 3 axis
 stroke.type.triplanar = "สามระนาบ";
+// Drag on the surface to grab a shape from it and turn it into a VDM stamp
+stroke.type.vdmPick = "จับ VDM";
 // The tool can use DynTopo
 stroke.useDynamic = "ให้ใช้โทโพโลยีแบบไดนามิก";
+
+stroke.vdmPick.tolerance = "";
+stroke.vdmPick.tolerance.help = "";
 
 // Symmetry
 symmetry = "สมมาตร";
@@ -2580,7 +2818,6 @@ symmetry.edit = "แก้ไขกิซโม่";
 symmetry.edit.help = "คุณสามารถตั้งค่าระนาบสมมาตรได้อย่างอิสระ
 
 คุณลักษณะนี้ยังคงเป็นแบบทดลองอยู่ และคุณอาจจะไม่ควรใช้คุณลักษณะนี้";
-symmetry.edit.warning = "การแก้ไขสมมาตรอยู่ในขั้นทดลอง";
 symmetry.enable = "เปิดใช้งาน";
 // Move the object to the other side of the symmetry (mirror it as well)
 symmetry.flip = "พลิกออบเจ็กต์";
@@ -2589,11 +2826,7 @@ symmetry.fromPivot = "จากเดือย";
 symmetry.limited = "จำนวนการทำซ้ำถูกจำกัดไว้ที่ $0!";
 // method
 symmetry.method = "วิธี";
-// Local means: in the coordinate of the object (synonym: relative)
-symmetry.method.local = "โลคอล";
 symmetry.method.local.help = "ระนาบสมมาตรจะเคลื่อนที่ไปตามเมชเมื่อคุณใช้เครื่องมือปรับแต่ง (กิซโม่ หรือการปรับแต่ง)";
-// Local means: in the coordinate of the scene (synonym: absolute)
-symmetry.method.world = "เวิลด์";
 symmetry.method.world.help = "ระนาบสมมาตรได้รับการแก้ไขและจะไม่เคลื่อนที่";
 // Reapply the mesh mirror, does not impact the topology
 symmetry.mirror = "กระจก";
@@ -2607,17 +2840,10 @@ symmetry.mirror.keepTopology = "รักษาโครงสร้าง";
 symmetry.mirrorFail = "ใช้สมมาตรไม่สำเร็จ
 
 คุณต้องการบังคับใช้สมมาตรโดยมิเรอร์เมชหรือไม่?";
-symmetry.mirrorUseMasking = "ปกป้องพื้นที่ที่มาส์กไว้";
-symmetry.mirrorUseMasking.help = "รักษาพื้นที่ที่มาส์กไว้
-
-ตัวเลือกนี้จะถูกละเว้นด้วยโทโพโลยีที่ไม่สมมาตร (หรือพื้นผิวที่ไม่ได้เชื่อมต่อ เช่น ดวงตาคู่หนึ่ง)";
-// Synonym: Offset
-symmetry.offset.title = "ออฟเซ็ต";
 symmetry.offsetX = "ออฟเซ็ต X";
 symmetry.offsetY = "ออฟเซ็ต Y";
 symmetry.offsetZ = "ออฟเซ็ต Z";
 symmetry.plane.title = "ระนาบ";
-symmetry.primitiveWarning = "ความสมมาตรของแปรงใช้ได้เฉพาะกับรูปทรงพื้นฐานที่ผ่านการตรวจสอบแล้ว ยกเว้นสามระนาบ";
 // Instead of planar symmetry, use a radial symmetry
 symmetry.radial.title = "เรเดียล";
 symmetry.radialX = "เรเดียล X";
@@ -2637,11 +2863,18 @@ symmetry.showLine = "แสดงเส้น";
 symmetry.showPlane = "แสดงระนาบ";
 // after mirroring, separate into multiple output (synonym: split, separate)
 symmetry.split = "แยก";
+// Half of a two line toggle: edit how many repeats span the object
+symmetry.tile.count = "จำนวน";
+// Half of a two line toggle: edit the distance between two repeats
+symmetry.tile.distance = "ระยะห่าง";
+// The distance between two repeats of the sculpt, so it tiles seamlessly (synonym: wrap, repeat)
+symmetry.tile.title = "แบ่งช่อง";
 symmetry.toolIgnore = "เครื่องมือปัจจุบันไม่เกี่ยวกับความสมมาตร";
 
 // Three-state toggle button (auto, no, yes)
 toggle.auto = "อัตโนมัติ";
 toggle.no = "ไม่";
+toggle.off = "ปิด";
 toggle.yes = "ใช่";
 
 // If an option is shared among the tools
@@ -2670,6 +2903,8 @@ tool.elastic = "ยืดหยุ่น";
 tool.faceGroup = "กลุ่มเฟส";
 tool.faceGroup.autoPick = "เลือกอัตโนมัติ";
 tool.faceGroup.flush = "ลบที่ไม่ได้ใช้งาน";
+// Face group tap action: the tapped group and what lies beyond it get unmasked, the gizmo lands on the joint
+tool.faceGroup.pose = "จัดท่า";
 tool.faceGroup.skip = "ข้ามกลุ่มขนาดเล็กตาม:";
 tool.faceGroup.skipArea = "พื้นที่ผิว";
 tool.faceGroup.skipArea.help = "ไม่สร้างกลุ่มใหม่หากพื้นที่ผิวของกลุ่มใหม่น้อยกว่าเกณฑ์นี้
@@ -2683,6 +2918,8 @@ tool.flatten = "ทำให้เรียบ";
 tool.flatten.fill = "เติม";
 tool.flatten.planeLockNormal = "ล็อคทิศทางระนาบ";
 tool.flatten.planeLockOrigin = "ล็อคกำเนิดระนาบ";
+// Give the viewport back to the tool: its options come back and it can draw again
+tool.focus = "กลับไปที่เครื่องมือ";
 // Ideally short strings (Rotate, Translate and Scale the object)
 tool.gizmo = "กิซโม่";
 // Ideally short strings (Align/Snap the gizmo to world axis)
@@ -2694,7 +2931,6 @@ tool.gizmo.allowInput.help = "อนุญาตให้ป้อนตัว�
 tool.gizmo.autoHide = "ซ่อนในการโต้ตอบ";
 // If true, there is less spacing between gizmo handlers (rotate, scale, etc)
 tool.gizmo.compact = "กระชับ";
-tool.gizmo.depth = "ความลึก";
 tool.gizmo.distribute = "กระจาย";
 // Ideally short strings
 tool.gizmo.editPivot = "จุดหมุน";
@@ -2705,8 +2941,6 @@ tool.gizmo.linearRollThreshold.help = "ค่าเกณฑ์ของมุ�
 ค่าที่สูงกว่าเกณฑ์นี้จะใช้การม้วนแบบวงกลม
 
 หากคุณต้องการม้วนเชิงเส้น (ทิศทางของเส้นสัมผัส) ให้ตั้งค่านี้เป็น 90°";
-// Ideally short strings (Local/Relative space)
-tool.gizmo.local = "โลคอล";
 // Ideally short strings (Snap translation)
 tool.gizmo.moveSnap = "สแนป";
 tool.gizmo.order = "เรียง";
@@ -2715,6 +2949,26 @@ tool.gizmo.order.line = "เส้น";
 tool.gizmo.order.sphere = "สเฟียร์";
 // Ideally short strings (Pin the gizmo, so that it stays in place when switching between objects)
 tool.gizmo.pin = "ปักหมุด";
+// Title of the pivot reset options (where to put the pivot back)
+tool.gizmo.reset = "รีเซ็ต";
+// Pivot orientation snapped to the world axes
+tool.gizmo.reset.align = "จัดแนว";
+tool.gizmo.reset.align.help = "จัดแนวจุดหมุนให้ตรงกับแกนโลก โดยคงตำแหน่งเดิม";
+tool.gizmo.reset.auto = "อัตโนมัติ";
+tool.gizmo.reset.auto.help = "กึ่งกลางออบเจ็กต์ จัดแนวตามการแปลงของออบเจ็กต์";
+tool.gizmo.reset.bottom = "ด้านล่าง";
+tool.gizmo.reset.bottom.help = "กึ่งกลางด้านล่างของออบเจ็กต์ จัดแนวตามการแปลงของออบเจ็กต์
+แตะอีกครั้งเพื่อใช้กรอบขอบเขตในพิกัดโลกแทน";
+tool.gizmo.reset.center = "อยู่กึ่งกลาง";
+tool.gizmo.reset.center.help = "กึ่งกลางออบเจ็กต์ โดยคงทิศทางเดิม";
+tool.gizmo.reset.help = "ย้ายจุดหมุนกลับไปยังตำแหน่งที่กำหนด ตำแหน่งและทิศทางของจุดหมุนจะกำหนดกิซโม่";
+// Pivot on the center of the unmasked area
+tool.gizmo.reset.mask = "มาส์ก";
+tool.gizmo.reset.mask.help = "กึ่งกลางพื้นที่ที่ไม่ได้มาส์ก โดยคงทิศทางเดิม
+แตะอีกครั้งเพื่อสลับไปยังพื้นที่ที่มาส์กไว้";
+// Pivot on the object origin
+tool.gizmo.reset.object = "ออบเจ็กต์";
+tool.gizmo.reset.object.help = "จุดกำเนิดของออบเจ็กต์ จัดแนวตามการแปลงของออบเจ็กต์";
 // Puts the gizmo back on its automatic placement (position and orientation)
 tool.gizmo.resetPivot = "รีเซ็ตเดือย";
 // Ideally short strings (Snap angle)
@@ -2735,10 +2989,6 @@ tool.gizmo.tap.normal.help = "ย้ายกิซโม่ไปยังจ�
 tool.hide = "ซ่อน";
 // Fill the object's hole
 tool.hole = "การอุดรู";
-tool.hole.bridges = "บูลีนพื้นที่หน้าจอ";
-tool.hole.bridges.help = "หากเปิดใช้งานตัวเลือกนี้ คุณสามารถเจาะรูในวอลุ่มได้
-ความชันของการตัดจะเป็นไปตามรูปร่างการตัดที่ใกล้ชิดมากขึ้น";
-tool.hole.fillHoles = "อุดรู";
 tool.hole.method.boolean = "บูลีน";
 // synonym: Alternative method
 tool.hole.method.fill = "เติม";
@@ -2798,15 +3048,27 @@ tool.layer.removeInfluence.help = "ตัวเลือกนี้จะใช
 tool.mask = "มาส์ก";
 // Blur the painted mask
 tool.mask.blur = "เบลอ";
+// Strengthen the mask intensity without changing its shape (opposite of Dilute)
+tool.mask.boost = "เพิ่ม";
+// Mask the open boundary of the mesh (the edge of a plane, the rim of a hole)
+tool.mask.border = "ขอบ";
+// Negative side of the Cavity slider: only the raised areas stay paintable
+tool.mask.bumps = "ปุ่มนูน";
+// Rebuild the mask from the surface curvature: only the recessed areas stay paintable
+tool.mask.cavity = "โพรง";
 // Clear the painted mask
 tool.mask.clear = "ล้าง";
 tool.mask.clearAll = "ล้างทั้งหมด";
-// Mask or Unmask a region (leave other region that unconnected intact)
-tool.mask.flipConnected = "กลับด้านมาส์ก (ที่เชื่อมต่อ)";
+// Weaken the mask intensity without changing its shape (opposite of Boost)
+tool.mask.dilute = "ลดความเข้ม";
+// Enlarge the masked area, one ring of vertices at a time
+tool.mask.grow = "ขยาย";
 // Invert the painted mask
 tool.mask.invert = "กลับด้าน";
 // Sharpen the edge of the painted mask area
 tool.mask.sharpen = "ทำให้คม";
+// Reduce the masked area, one ring of vertices at a time (opposite of Grow)
+tool.mask.shrink = "ย่อ";
 // Ideally short strings
 tool.mask.unmask = "ไม่มาส์ก";
 // Ideally short strings (Selector Mask, use lasso/ellipse,etc shape to mask the mesh)
@@ -2821,6 +3083,9 @@ tool.matrix.action.origin = "ย้ายไปจุดกำเนิด";
 tool.matrix.action.origin.help = "ย้ายเมชไปยังต้นกำเนิด";
 tool.matrix.action.reset = "รีเซ็ต";
 tool.matrix.action.reset.help = "รีเซ็ตทรานส์ฟอร์มของเมชเป็นเมทริกซ์เอกลักษณ์";
+// Move the pivot alone, the objects stand still
+tool.matrix.editPivot = "แก้ไข";
+tool.matrix.editPivot.help = "ย้ายเฉพาะจุดหมุน โดยให้ออบเจ็กต์อยู่นิ่ง";
 tool.matrix.rotation = "การหมุน";
 tool.matrix.scale = "สเกล";
 // Synonym: shear, https://en.wikipedia.org/wiki/Shear_matrix or https://en.wikipedia.org/wiki/Shear_mapping
@@ -2835,10 +3100,18 @@ tool.matrix.target.auto.help = "โดยค่าเริ่มต้น ฟ�
 tool.matrix.target.group = "กลุ่ม";
 tool.matrix.target.group.help = "ย้ายโหนดโดยไม่รวมความสมมาตรและมาส์ก
 ลำดับชั้นที่เหลือจะถูกปรับแต่งเช่นกัน";
+// Transform the object and its children, and every other instance of it
+tool.matrix.target.groupInstance = "อินสแตนซ์";
+tool.matrix.target.groupInstance.help = "เหมือนกับกลุ่ม แต่ทุกอินสแตนซ์ของโหนดจะเคลื่อนตามไปด้วย
+ละเว้นสมมาตรและมาส์ก ส่วนที่เหลือของลำดับชั้นจะถูกแปลงด้วย";
 // Transform the object alone (the children stands still)
 tool.matrix.target.object = "ออบเจ็กต์";
 tool.matrix.target.object.help = "ย้ายออบเจ็กต์เท่านั้น โดยไม่รวมความสมมาตรและการมาส์ก
 เฉพาะโหนดที่แก้ไขแล้วเท่านั้นที่จะย้าย โหลดลูกจะคงเดิม";
+// Transform the object alone, and every other instance of it
+tool.matrix.target.objectInstance = "อินสแตนซ์";
+tool.matrix.target.objectInstance.help = "เหมือนกับออบเจ็กต์ แต่ทุกอินสแตนซ์ของออบเจ็กต์จะเคลื่อนตามไปด้วย
+ละเว้นสมมาตรและมาส์ก ออบเจ็กต์ลูกจะอยู่กับที่";
 // Auto apply the transform on the vertices
 tool.matrix.target.vertex = "จุดยอด";
 tool.matrix.target.vertex.help = "จะใช้กับการปรับแต่งบนจุดยอด จะไม่ทำงานบนรูปทรงพื้นฐานที่ไม่ผ่านการตรวจสอบรูปทรงพื้นฐาน
@@ -2847,8 +3120,6 @@ tool.matrix.translation = "การเลื่อนตำแหน่ง";
 tool.matrix.uniformScale = "ทำให้เป็นขนาดเดียวกัน";
 // Ideally short strings (Measure distance between 2 points)
 tool.measure = "วัด";
-// dimension box
-tool.measure.box = "มิติ";
 // Perimeter of a plane cross section
 tool.measure.crossSection = "หน้าตัด";
 // Geodesic distance
@@ -2889,8 +3160,6 @@ tool.polish = "ขัดผิว";
 tool.project = "ฉาย";
 // Radius of the tool (size)
 tool.radius = "รัศมี";
-// Ideally short strings (Quad Remesher)
-tool.remesh = "Quad Remesher";
 tool.remesh.density = "ความหนาแน่น";
 tool.remesh.guides = "คู่มือ";
 tool.remesh.half = "ครึ่ง";
@@ -2903,12 +3172,15 @@ tool.settings = "การตั้งค่า";
 tool.settings.none = "เครื่องมือนี้ไม่มีการตั้งค่าเฉพาะใดๆ";
 // Shape for the tools: Trim / Split / Project / SelMask
 tool.shape = "รูปร่าง";
-// Auto-validate the drawn shape
-tool.shape.autoValidate = "ยืนยันอัตโนมัติ";
 // Ideally short strings (Whether a shape is closed or not, a tube is open, a torus is closed)
 tool.shape.closed = "ปิด";
 // Ideally short strings (Curve selection, same as Lasso and it's an open shape)
 tool.shape.curve = "เคิร์ฟ";
+tool.shape.edit = "";
+tool.shape.edit.help = "";
+tool.shape.edit.longPress = "";
+tool.shape.edit.off = "";
+tool.shape.edit.on = "";
 // Ideally short strings (Ellipse selection)
 tool.shape.ellipse = "วงรี";
 // The selection ellipse will be centered around the cursor
@@ -2921,8 +3193,6 @@ tool.shape.flip = "พลิก";
 tool.shape.lasso = "ลัสโซ";
 // Ideally short strings (Line selection, split the screen in half)
 tool.shape.line = "เส้น";
-// Rotate by step (angle value)
-tool.shape.lineRotateStep = "หมุนสเต็ป";
 // Ideally short strings (Path selection, same as Lasso but with more precision and it's an open shape)
 tool.shape.path = "พาธ";
 // Ideally short strings (Polygon selection, same as Lasso but with more precision)
@@ -2987,6 +3257,44 @@ tool.trim.detail.protect.help = "อย่าเกลี่ยเรียบ�
 คงทอพอโลยีของเมชเดิมไว้ใกล้กับผิวหน้าที่ถูกมาสก์และซ่อนไว้";
 // Ideally short strings (Revolving surface along a curve)
 tool.tube = "ท่อ";
+// Ideally short strings (Vector displacement stamp)
+tool.vdm = "VDM";
+// Button that adds a plane ready to be sculpted into a VDM
+tool.vdm.addPlane = "เพิ่มระนาบ";
+tool.vdm.fix = "";
+tool.vdm.fix.detect = "";
+tool.vdm.fix.detect.help = "";
+tool.vdm.fix.help = "";
+tool.vdm.fix.invert = "";
+tool.vdm.fix.invert.help = "";
+tool.vdm.fix.offset = "";
+tool.vdm.fix.offset.help = "";
+// Scales only the height of the vdm stamp, lateral displacement is unchanged
+tool.vdm.height = "สูง";
+// Button that opens the popup that adds a plane to sculpt a VDM on, "..." is appended in the app
+tool.vdm.new = "VDM ใหม่";
+// Title of the popup that adds a plane to sculpt a VDM on
+tool.vdm.plane = "ปั้น VDM ใหม่";
+// The border is the outer edge of the plane
+tool.vdm.plane.border = "มาสก์ขอบ";
+tool.vdm.plane.border.help = "มาสก์วงแหวนรอบนอกของระนาบเพื่อให้ขอบยังคงแบน
+
+การปั้นไปจนถึงขอบจะสร้างขอบแข็งในตราประทับ";
+tool.vdm.plane.help = "เพิ่มระนาบที่ตั้งค่าสำหรับปั้น VDM พร้อม UV ความละเอียดที่เลือก และการวางแนวที่หันเข้าหากล้อง
+
+การทำงานนี้จะสร้างเฉพาะระนาบ หากต้องการสร้างตราประทับ:
+• ปั้นรูปทรงบนระนาบ
+• เปิด `โทโพโลยี -> เบค`
+• เลือก `VDM` แล้วกด `เบค`
+
+Nomad จะเพิ่มตราประทับใหม่ลงในคลัง VDM และเลือกตราประทับนั้น
+
+หลีกเลี่ยง DynTopo เพราะจะทำให้ UV ของระนาบเสียหายและทำให้ตราประทับบิดเบี้ยว";
+// (see Glossary for Layer)
+tool.vdm.plane.layer = "ปั้นบนเลเยอร์";
+tool.vdm.plane.layer.help = "สร้างเลเยอร์ปั้นเหนือระนาบแบนเพื่อใช้เป็นข้อมูลอ้างอิงในการเบค
+
+การระบายสีก็ต้องใช้เลเยอร์เช่นกัน หากไม่มีเลเยอร์ วัสดุจะครอบคลุมทั้งสี่เหลี่ยมเมื่อประทับ ไม่ใช่เฉพาะพื้นที่ที่ระบายสี";
 // Ideally short strings (View tool, do nothing in particular)
 tool.view = "มุมมอง";
 // Always display the camera shortcut buttons on the viewport
@@ -2994,8 +3302,6 @@ tool.view.stickyCamera = "ทางลัดกล้อง (เสมอ)";
 
 // Topology
 topology = "โทโพโลยี";
-// Name of the quad remeshing engine, should probably stay untranslated
-topology.autoremesher = "AutoRemesher";
 topology.autoremesher.adaptivity = "การปรับตามรูปทรง";
 topology.autoremesher.adaptivity.help = "ปรับความหนาแน่นของควอดตามความโค้ง
 
@@ -3013,13 +3319,17 @@ topology.autoremesher.smoothAngle.help = "0 จะคงพื้นผิวแ
 
 ค่าที่สูงกว่าจะทำให้พื้นผิวเรียบโดยคำนึงถึงนอร์มัลของจุดยอด";
 topology.bake.backup = "สำรองข้อมูล";
+// Multires here means the subdivision levels of the object itself
+topology.bake.multires = "ใช้หลายความละเอียด";
+topology.bake.multires.help = "อ่านข้อมูลความละเอียดสูงผ่านระดับการแบ่งย่อย แทนการยิงรังสี
+
+เร็วกว่าและไม่มีข้อผิดพลาดจากการฉาย
+
+ปิดเพื่อเบคด้วยการตั้งค่ากรงด้านล่าง";
 // Cage is a specific term; synonym: "Bake offset"
 topology.bake.offset = "การเบี่ยงเบนของแสง";
-// Bake opacity (from mask data)
-topology.bake.opacityFromMask = "มาส์ก -> ความทึบ";
 // Bake here means "create texture (from another mesh data)"
 topology.bake.other = "จากความละเอียดสูง";
-topology.bake.radius = "รัศมีของ Cage";
 topology.bake.resolution = "ความละเอียด";
 topology.bake.searchDistance = "ระยะการค้นหา";
 topology.bake.searchDistance.help = "ระยะทางสูงสุดที่ใช้หาพื้นผิวแหล่งกำเนิด";
@@ -3045,6 +3355,29 @@ topology.bake.title.help = "การอบเนื้อหาจะสร้�
 - ของที่ถูกเลือกทั้งหมดและสิ่งของที่ถูกเลือกเป็นหลักจะถูกเบค (ไฮไลท์ที่ชัดเจนที่สุดในเมนูฉาก)
 - หากมีเพียงสิ่งเดียวที่ถูกเลือก, Nomad จะพิจารณาสิ่งของที่มองเห็นได้ทั้งหมดแทน
 - มิฉะนั้น หากทุกอย่างถูกซ่อน (เช่นโดยการใช้ Solo), ฉากทั้งหมดจะถูกนำมาพิจารณา";
+// Warning shown after a VDM bake, the border of the plane is its outer edge
+topology.bake.vdm.border = "งานปั้นล้ำถึงขอบของระนาบ ทำให้ VDM แสดงขอบแข็งเมื่อใช้เป็นแสตมป์";
+// Error shown when a VDM bake fails
+topology.bake.vdm.failed = "สร้าง VDM ไม่สำเร็จ";
+// Bake here means "create a VDM (from a sculpted plane)"
+topology.bake.vdm.help = "สร้าง VDM จากออบเจ็กต์ที่เลือกและเพิ่มลงในคลัง VDM
+
+ขั้นตอนทั่วไป:
+• เพิ่มระนาบ หรือเลือก `VDM ใหม่` ในตัวเลือก VDM เพื่อเพิ่มระนาบที่ตั้งค่าไว้แล้ว
+• ปั้นรูปทรงบนระนาบโดยรักษาขอบให้แบน
+• เบก!
+
+UV ของระนาบจะกำหนดพื้นที่สี่เหลี่ยมที่นำไปเบก ดังนั้นออบเจ็กต์ต้องมี UV
+
+หลีกเลี่ยงการใช้ DynTopo เพราะทำให้ UV ของระนาบเสียคุณภาพ และ VDM จะบิดเบี้ยว
+
+การปั้นในเลเยอร์ให้ผลลัพธ์แม่นยำที่สุด เพราะระนาบแบนยังคงอยู่ด้านล่าง
+
+การระบายสีก็ต้องทำในเลเยอร์เช่นกัน ไม่เช่นนั้นวัสดุจะถูกแสตมป์ทั่วทั้งสี่เหลี่ยม แทนที่จะเฉพาะบริเวณที่คุณระบายสี";
+// Warning shown when the picked region cannot be flattened; a disc is a simple patch with a single outer edge
+topology.bake.vdm.notDisk = "พื้นที่ที่เลือกไม่ใช่แผ่นดิสก์แบบเรียบง่าย เลือกพื้นที่ที่เล็กลงหรือไม่มีรู";
+// Warning shown when the picked region holds too many polygons to be flattened
+topology.bake.vdm.tooBig = "พื้นที่ที่เลือกมีโพลิกอนมากเกินไป เลือกพื้นที่ที่เล็กลง";
 // Synonym: Simplify (Decimate reduce the number of triangles/quads while retaining details as much as possible)
 topology.decimate = "ลดโพลิกอน";
 topology.decimate.boundary = "รักษาขอบเขต";
@@ -3096,8 +3429,6 @@ topology.dynamic.useFalloff = "ใช้ฟอลออฟของเส้น"
 // Whether the pencil pressure can impact the level of detail
 topology.dynamic.usePressure = "ใช้แรงกดบนรัศมี";
 topology.dynamic.usePressure.help = "ใช้ตัวเลือกนี้หากคุณต้องการให้แรงกดของปากกาส่งผลต่อรัศมีของเครื่องมือ เพื่อที่จะส่งผลต่อระดับของรายละเอียด";
-// Instant quad remesher
-topology.instant = "Instant Mesh";
 topology.instant.angle = "มุมร่องคม";
 topology.instant.hole = "เติมรูสูงสุด";
 topology.instant.hole.help = "อัลกอริทึมอาจสร้างรูที่ไม่ต้องการได้ในบางครั้ง
@@ -3129,7 +3460,6 @@ topology.multires.linear.help = "เพียงแบ่งเมชออก�
 topology.multires.lock = "ล็อค (LV0)";
 // Only show the lowest resolution wireframe
 topology.multires.minWireframe = "เฉพาะระดับ 0";
-topology.multires.previewHighest = "แสดงตัวอย่างความละเอียดสูงสุด";
 // Synonym: Unsubdivide, Un-subdivide
 topology.multires.reverse = "ย้อนกลับ";
 topology.multires.reverse.confirm = "ไม่สามารถสร้างซับดิวิชันฐาน
@@ -3142,10 +3472,6 @@ topology.multires.subdivide.limit = "การแบ่งเกินขีด�
 // Navigate toward multiple resolutions (go to higher level)
 topology.multires.up = "ระดับ Multires →";
 topology.nonManifold = "นอนแมนิโฟลด์";
-// Quad remesher
-topology.quadRemesh = "รีเมชแบบควอด";
-// Name of the quad remeshing engine, should probably stay untranslated
-topology.quadriflow = "QuadriFlow";
 topology.quadriflow.adaptiveScale = "ขนาดแบบปรับตามรูปทรง";
 topology.quadriflow.adaptiveScale.help = "ปรับขนาดควอดตามความโค้งของพื้นผิว";
 topology.quadriflow.keepSharp = "คงขอบคม";
@@ -3159,7 +3485,6 @@ topology.remesh = "รีเมช";
 // Number of iterations the algorithm will perform
 topology.reproject.iterations = "รอบการทำซ้ำ";
 topology.reproject.layers.help = "โอนเลเยอร์อื่นๆ ไปยังเมชที่เลือก.";
-topology.reproject.normalOffset = "ออฟเซ็ตนอร์มอล";
 topology.reproject.projection.blend = "การผสมผสานแบบปรับตัว";
 topology.reproject.projection.blend.help = "ผสมรังสีแนวปกติกับพื้นผิวที่ใกล้ที่สุดตามระยะทางและความสำคัญของเรย์ หากวิธีหนึ่งพลาด ให้ใช้อีกวิธี";
 topology.reproject.projection.fallback = "เรย์ + ใกล้ที่สุด";
@@ -3168,19 +3493,10 @@ topology.reproject.projection.nearest = "ใกล้ที่สุด";
 topology.reproject.projection.nearest.help = "ฉายไปยังจุดที่ใกล้ที่สุดบนพื้นผิวแหล่งกำเนิด";
 topology.reproject.projection.ray = "เรย์";
 topology.reproject.projection.ray.help = "ฉายตามแนวเส้นปกติของพื้นผิว";
-// tweaking value
-topology.reproject.rayBias = "ไบแอสเรย์";
-topology.reproject.rayBias.help = "มีวิธีการสองวิธีที่ใช้สำหรับการ reprojection:
-• ใกล้ที่สุด: จุดที่ใกล้ที่สุดบนพื้นผิว
-• ray: จุดตัดผ่านทิศทางของ normal
-
-ค่า bias ที่สูงขึ้นจะเอื้ออำนวยการตัดผ่าน ray มากกว่าการหาพื้นผิวที่ใกล้ที่สุด.";
 topology.reproject.rayPreference = "ความสำคัญของเรย์";
 topology.reproject.rayPreference.help = "ปรับการผสมแบบปรับตัวให้เอนเอียงไปทางผลลัพธ์ของรังสีแนวปกติ";
 topology.reproject.relax = "อ่อนลง";
 topology.reproject.relax.help = "ควรใช้ Relax เมื่อเมชมีความละเอียดต่ำ.";
-topology.reproject.shpereCast = "ฟอลล์แบ็กของสเฟียร์แคสต์";
-topology.reproject.shpereCast.help = "หากการรีโปรเจคชันเรย์ตามปกติล้มเหลว นอมัดจะกลับไปใช้การตัดกับพื้นผิวที่ใกล้ที่สุด";
 // project a high resolution mesh details onto another
 topology.reproject.title = "ฉายซ้ำ";
 topology.reproject.title.help = "ฉายรายละเอียดการปั้น การลงสี และเลเยอร์จากออบเจ็กต์ที่มองเห็นใกล้ที่สุด
@@ -3208,8 +3524,6 @@ topology.surface.method.uniformisation = "รวมให้เป็นแบ�
 topology.surface.remesh = "รีเมช";
 topology.surface.useMasking = "ปกป้องพื้นที่ที่มาส์กไว้";
 topology.surface.useMasking.help = "พื้นที่มาส์กไว้จะป้องกันโทโพโลยีไม่ให้เปลี่ยนแปลง";
-topology.target.faces = "เฟสเป้าหมาย";
-topology.target.points = "เป้าหมายเป็นจุด";
 topology.target.quads = "เป้าหมายเป็นสี่เหลี่ยม";
 // Target a certain number of triangles, faces and vertices
 topology.target.triangles = "สามเหลี่ยมเป้าหมาย";
@@ -3240,6 +3554,8 @@ topology.uv.title = "คลี่ UV";
 topology.uv.unwrap = "คลี่ UV";
 // Create a new object by recomputing a new topology, by using voxels (see Glossary)
 topology.voxel = "การรีเมชว็อกเซล";
+// The voxel detail expressed as a world size, the same value gives the same detail on any object
+topology.voxel.edgeLength = "ความยาวขอบ";
 topology.voxel.help = "การรีเมชโดยการสุ่มตัวอย่างเมชบนกริด
 
 หากออบเจ็กต์ไม่ปิด (กันน้ำ) จะใช้อัลกอริทึมการเติมรูก่อน
@@ -3303,7 +3619,6 @@ version.restore = "คืนค่าการซื้อ";
 version.trialLayer = "เวอร์ชันทดลอง 1 เลเยอร์ต่อเมช";
 version.trialNoExport = "เวอร์ชันทดลอง ไม่นำออก";
 version.trialNoLink = "รุ่นทดลองใช้: ไม่มีลิงก์";
-version.update = "อัปเดตใหม่พร้อมใช้งาน!";
 version.webUnlock = "เวอร์ชันเว็บไม่ได้รับการสนับสนุนอย่างเป็นทางการเหมือนแอปเนทีฟ
 
 ปลดล็อกเวอร์ชันเต็มโดยป้อนคีย์ไลเซนส์ Polar.sh ของคุณ";

@@ -109,16 +109,22 @@ alert.extract.none = "Inget att extrahera!";
 alert.extract.split.none = "Inget att dela!";
 // Painting on the object was hidden but the user did paint the object
 alert.forcePainting.fill = "Målning aktiverad, [Måla allt] användes.";
-// Painting on the object was hidden but the user started to paint on the object
-alert.forcePainting.tool = "Visa målning aktiverad, objektet målades.";
 // The pivot is the Gizmo's 3D position
 alert.gizmo.editObject = "Redigera objektläge.";
 // In this mode, the user moves the Gizmo's pivot instead of the object
 alert.gizmo.editPivot = "Redigera pivotläge.";
+// Button that turns the heightmap render off
+alert.heightmap.hide = "Dölj höjdkarta";
+// The viewport renders the depth of the scene instead of the shaded objects
+alert.heightmapOn = "Höjdkartan är på!";
 // The user decided to display hidden faces
 alert.hideIgnored = "Dölj ignoreras!";
 // Error when an algorithm needs the object to have a hole (usually to fill it)
 alert.hole.nothing = "Objektet har inga hål!";
+// Button that turns the inspector off
+alert.inspect.hide = "Dölj inspektör";
+// The viewport renders a material channel instead of the shaded objects
+alert.inspectOn = "Inspektören är på!";
 // The lattice deformation was applied with a different mask or visibility state
 // (the gui appends the icon of the changed states)
 alert.lattice.desync = "Gallret är inte synkroniserat!";
@@ -127,8 +133,6 @@ alert.lattice.sync = "Uppdatera gallret";
 // No operation occurred because the mesh is already manifold
 alert.manifold.already = "Meshen är redan manifold!";
 alert.mask.full = "Mask = 100%!";
-// Hide the painted mask on the mesh
-alert.mask.hide = "Dölj mask";
 // Show the painted mask on the mesh
 alert.mask.show = "Visa mask";
 // The user decided to hide the masking on the objects
@@ -137,6 +141,7 @@ alert.maskingHidden = "Maskning är gömd!";
 alert.matrix.clone = "Objektet kommer att dupliceras";
 // Helper popup telling the user that the object will be instanced
 alert.matrix.instance = "Objektet kommer att instanseras";
+alert.mesh.empty = "";
 // Empty mesh
 alert.mirror.empty = "Tomt utdata!";
 // Mesh already mirrored
@@ -157,8 +162,6 @@ alert.selection.isolate = "Isolera markering";
 alert.selection.showAll = "Visa alla";
 // The object needs to have two parts disconnected
 alert.separate.fail = "Kunde inte separera: objektet har bara en del!";
-// Visibility of the object is off (but should be on)
-alert.shape.notVisible = "Det nuvarande objektet är osynligt!";
 // The user has selected a tool that is more intuitive to use when the camera is in orthographic mode
 alert.shapeOrthographic = "Överväg att använda en ortografisk kamera om du vill undvika perspektivdistortion när du använder skärmprojektor.";
 // The trial version has a limited number of undo operations
@@ -167,10 +170,10 @@ alert.state.trial = "Provversion: ångra avbröts";
 alert.trim.full = "Avbryt trimning: objektet är helt trimmat.";
 // The user tried to trim an object but the selected region didn't touch the object
 alert.trim.nothing = "Inget att trimma.";
+// The remesher rebuilds the mesh without a UV layout, the painting is kept as vertex colors
+alert.uvLost = "UV-koordinaterna går förlorade!";
 // List of disabled features when View Mode is selected
 alert.view.disabled = "Funktioner inaktiverade i Visningsläge:";
-// Primitive widgets are small viewport controls used to modify a primitive
-alert.view.disabled.widgetPrimitive = "Primitivwidgetar";
 alert.voxel.empty = "Omnätning avbruten: resultatmeshen saknar ytor.";
 // Should not happen or very rarely, input here is an object
 alert.voxel.invalidInput = "Ogiltig inmatning!";
@@ -208,6 +211,9 @@ background.imageAlpha = "Opacitet";
 background.imageEnable = "Referensbild";
 // The image will be displayed in overlay (used as a reference by the artist)
 background.imageOverlay = "Överlagring";
+// Apply the post process effects on the reference image
+background.imagePostProcess = "Efterbehandling";
+background.imagePostProcess.help = "Tillämpar efterbehandlingseffekterna på referensbilden. Inaktivera för att behålla originalfärgerna.";
 background.imageReset = "Återställ inställningar";
 // Rotation of the reference image
 background.imageRotate = "Rotation";
@@ -284,6 +290,8 @@ binding.rotateLighting = "Rotera belysningen";
 // Select all the objects in the scene
 binding.selectAll = "Markera allt";
 binding.snap.toggle = "Växla kurvredigering";
+// Same as binding.snap.toggle, on a small shortcut button
+binding.snap.toggle.short = "Kurvredigering";
 // Snap the view (while rotating)
 binding.snapViewOnRotate = "Snäppa vy (medan du roterar)";
 binding.spacemouse = "SpaceMouse";
@@ -366,9 +374,10 @@ camera.doubleTapBackgroundFocus.scene = "Scen";
 camera.doubleTapBackgroundFocus.selection = "Val";
 // When we double tap on the background with the finger/stylus
 camera.doubleTapBackgroundFocus.toggle = "Växla";
-camera.doubleTapFocus.help = "När du dubbeltrycker på objektet kommer kameran att panorera och fokusera på den valda punkten.";
 // When we double tap on the object with the finger/stylus
 camera.doubleTapMesh = "Dubbeltryck på objektet";
+// Same as camera.doubleTapMesh, on a small shortcut button
+camera.doubleTapMesh.short = "Fokus";
 // When double tapping with the finger/stylus, the camera pivot will be updated
 camera.doubleTapPivot = "När dubbeltryck utförs";
 camera.doubleTapPivot.help = "Uppdatera rotationspivoten när du dubbeltrycker på objektets yta.";
@@ -378,11 +387,8 @@ camera.firstPerson = "Första person";
 camera.focal = "brännvidd $0mm (35mm-sensor)";
 // Focus on the camera
 camera.focus = "Fokus";
-// Focus on a saved camera
-camera.focusOn = "Fokus på $0";
 // camera Vertical Field of View
 camera.fov = "Vertikal Fov";
-camera.panZoomOut.help = "När detta alternativ är avaktiverat kommer denna pivotposition att förbli intakt.";
 // The Camera pivot is the point around which the camera rotates
 camera.pivot = "Uppdatera pivot...";
 // Camera projection, Orthographic or Perspective
@@ -425,12 +431,7 @@ clipboard.copy = "Kopiera";
 clipboard.paste = "Klistra in";
 
 color = "Färg";
-color.alpha = "Alfa";
-color.blue = "Blå";
-color.brightness = "Ljusstyrka";
-color.green = "Grön";
 color.hue = "Färgton";
-color.red = "Röd";
 color.saturation = "Mättnad";
 color.value = "Värde";
 
@@ -440,8 +441,6 @@ confirm = "Bekräfta?";
 confirm.cancel = "Avbryt";
 // Asking to cancel (should be short)
 confirm.cancel.ask = "Avbryt?";
-// Answer to a question (Are you sure you want to do that? [yes, no, cancel])
-confirm.no = "Nej";
 // The generic ok in a confirm box (The next operation is dangerous. [ok, cancel])
 confirm.ok = "Ok";
 // Restart nomad
@@ -451,8 +450,6 @@ confirm.yes = "Ja";
 
 // Toolbox context (when expanded), multiple objects are selected
 context.multiselection = "Flera val";
-// There is 0 nodes/items selected
-context.noSelection = "Inget val";
 
 cube.back = "Bak";
 cube.bottom = "Neder";
@@ -463,8 +460,17 @@ cube.right = "Höger";
 cube.top = "Övre";
 
 curve.bspline = "B-spline";
-// Curve type, https://en.wikipedia.org/wiki/Centripetal_Catmull%E2%80%93Rom_spline
-curve.catmull = "Catmull-Rom";
+curve.editor = "";
+curve.ik = "";
+curve.ik.help = "";
+curve.ik.lock_root = "";
+curve.ik.lock_root.help = "";
+curve.ik.stretch = "";
+curve.ik.stretch.help = "";
+curve.influence.falloff = "";
+curve.influence.falloff.help = "";
+curve.influence.range = "";
+curve.influence.range.help = "";
 // Merge or collapse one point into another
 curve.merge = "Sammanfoga";
 curve.pivot = "Pivot";
@@ -482,21 +488,20 @@ curve.sharpness = "Skarphet";
 curve.shift = "Förskjutning";
 // snap
 curve.snap = "Snap";
-// whether the tube body stays on the surface between its control points, and along which direction
+// whether the curve body (tube or repeated objects) stays on the surface between its control points, and along which direction
 curve.snap.follow = "Följ";
-curve.snap.follow.help = "Vad röret gör mellan sina kontrollpunkter.";
+curve.snap.follow.help = "Hur kurvan beter sig mellan sina kontrollpunkter.";
 curve.snap.follow.normal = "Normal";
-curve.snap.follow.normal.help = "Röret stannar på ytan och trycks mot den längs ytnormalen.
+curve.snap.follow.normal.help = "Kurvan ligger kvar på ytan och projiceras mot den längs ytans normal.
 
-Det tar den kortaste vägen till ytan, vilket fungerar bra för former som du ser från sidan.";
-// only the control points snap, the body of the tube is left alone
+Den tar den kortaste vägen till ytan, vilket även fungerar på former som du ser från sidan.";
+// only the control points snap, the body of the curve is left alone
 curve.snap.follow.points = "Punkter";
-curve.snap.follow.points.help = "Endast kontrollpunkterna fäster mot ytan.
+curve.snap.follow.points.help = "Bara kontrollpunkterna fäster vid ytan.
 
-Mellan dem behåller röret formen du ritade, så att det kan skära genom ytan eller sväva ovanför den.";
+Mellan dem behåller kurvan formen du ritade, så den kan skära genom ytan eller sväva ovanför den.";
 curve.snap.follow.view = "Vy";
-curve.snap.follow.view.help = "Röret stannar på ytan och trycks mot den i den riktning som du tittade från när du ritade det.";
-curve.snap.grid = "Rutnät (om ansluten)";
+curve.snap.follow.view.help = "Kurvan ligger kvar på ytan och projiceras mot den längs den riktning du tittade från när du ritade den.";
 curve.snap.normal = "Justera normal";
 curve.snap.normal.help = "Påverkar bara kurvans första och sista kontrollpunkt.
 
@@ -504,40 +509,85 @@ Flyttar angränsande punkter så att rörändarna linjeras med ytans normal.
 
 Avståndet till den angränsande punkten bevaras.";
 curve.snap.offset = "Förskjutning";
-curve.snap.offset.help = "Ett värde på 100 % är lika med rörets radie.";
+curve.snap.offset.help = "Ett värde på 100% motsvarar rörets radie eller halva storleken på de upprepade objekten i riktning mot ytan.";
 curve.snap.surface = "Yta";
 curve.snap.vertex = "Vertex";
 curve.spiral = "Spiral";
 curve.spiral.angle = "Vinkelförskjutning";
+curve.spiral.braid = "Fläta";
+curve.spiral.core = "Kärna";
+curve.spiral.depth = "Djup";
+curve.spiral.groups = "Ytgrupp per tråd";
+curve.spiral.hardness = "Hårdhet";
 curve.spiral.offset = "Förskjutning";
+curve.spiral.pack = "Packa";
+curve.spiral.ribbon = "Band";
+curve.spiral.rope = "Rep";
 curve.spiral.scale = "Skala";
+curve.spiral.sleeve = "Hölje";
+curve.spiral.sleeve.help = "Flätat hölje";
+curve.spiral.strands = "Trådar";
 curve.spiral.twist = "Vrivinkel";
-// Spline curve, https://en.wikipedia.org/wiki/Spline_(mathematics)
-curve.spline = "Spline";
 // Display the falloff curve in a symmetric way
 curve.symmetric.help = "Visa avtoningen symmetriskt.
 
 Detta alternativ är endast en visuell ledtråd och påverkar inte själva avtoningen.";
 curve.twist = "Twist";
-// Regular spaced sampling
-curve.uniform = "Enhetlig";
-curve.uniform.help = "Kurvan kommer att samplas med regelbundet mellanrum för att säkerställa enhetlig densitet.
+curve.warp = "";
+curve.warp.help = "";
 
-Du kan inaktivera detta alternativ för att kontrollera kantlopparna något genom att lägga till nya kontrollpunkter på kurvan.";
-
-// Debug graphics options
-debug.graphics = "Grafik";
+debug.androidInputs = "";
+debug.angleNormal = "";
+debug.compressMultires = "";
+debug.compressMultires.help = "";
+// Debug section to import/export the icons of the interface
+debug.customIcons = "Anpassade ikoner";
+debug.customIcons.export = "";
+debug.customIcons.export.done = "";
+debug.customIcons.export.help = "";
+debug.customIcons.import = "";
+debug.customIcons.import.help = "";
+debug.customIcons.reload = "";
+// Short label for the section shortcut bar
+debug.customIcons.short = "Ikoner";
+// Debug option: draw all the copies of a repeater in a single draw call
+debug.drawInstance = "";
+// Debug section for optional features
+debug.feature = "Funktion";
+debug.flipQuad = "";
+debug.forceTrial = "";
+debug.fps = "";
 // Debug option, overrides the rendering to display the depth buffer
 debug.heightmap = "Höjdkarta";
+debug.icons = "";
 // Debug option: display a window with debugging logs
 debug.logs = "Loggar";
+// Logs window option: break long lines to fit the panel width
+debug.logs.wrap = "Radbrytning";
+debug.parallel = "";
+debug.parallelSculpt = "";
+debug.pathTrace = "";
+// Debug section for multithreading and speed options
+debug.performance = "Prestanda";
+debug.picking = "";
+debug.postprocess.format = "";
+debug.postprocess.format.16bit = "";
+debug.postprocess.format.8bit = "";
+debug.postprocess.reuse = "";
+debug.refractionBackWriteDepth = "";
+debug.review = "";
 // Model shortcut window
 debug.shortcut = "Genvägsfönster";
 // Set the desired FPS (frame per second, refresh rate)
 debug.targetFps = "Mål FPS";
 debug.targetFps.help = "När den är avstängd betyder standardvärdet att den synkroniseras med skärmens uppdateringshastighet.";
+debug.targetFps.unit = "";
 // Debug options, generate screenshots with size compatible with the iOS store
 debug.thumbnails = "Skapa butikens miniatyrer";
+// Same as debug.thumbnails, on a small shortcut button
+debug.thumbnails.short = "Miniatyrer";
+debug.toolboxShowAll = "";
+debug.uv = "";
 // Debug option, Normalize means transforming the data so that it fits in [0-1] the range
 debug.uvNormalize = "Normalisera UVs";
 debug.uvNormalize.help = "Nomad kommer att normalisera UVs inom [0-1] brickan.";
@@ -576,24 +626,46 @@ extract.action.layer = "Lager";
 extract.action.none = "Ingen";
 // Close the mesh by adding a thickness on the surface
 extract.action.shell = "Skal";
+extract.bevel = "";
+extract.bevel.help = "";
+extract.bevel.profile = "";
+extract.bevel.segments = "";
+extract.bevel.segments.help = "";
+extract.borders = "";
 // Carve the mask into the surface
 extract.carve = "Skulptera";
 // topology of extracted mesh
 extract.edgeLoop = "Kantslinga (sida)";
 extract.edgeLoop.auto = "Automatisk kantslinga";
 extract.edgeLoop.division = "Indelning";
+extract.faceGroup.active = "";
+extract.faceGroup.polish = "";
+extract.faceGroup.polish.help = "";
+extract.gap = "";
+extract.gap.help = "";
+extract.group.target = "";
+extract.inset = "";
+extract.inset.help = "";
 // Smoothing strategy
 extract.polish.all = "Alla";
 extract.polish.border = "Endast kanter";
 extract.polish.sharp = "Skarp kant";
-// Smooth the border in a way that it matches completely with its dual
-extract.polish.syncBorder = "Synkronisera kant";
 // Preview extract
 extract.preview = "Förhandsgranska";
+extract.profile = "";
+extract.profile.width = "";
+extract.side.bevel = "";
+extract.side.bevel.help = "";
+extract.side.divisions = "";
+extract.side.profile = "";
+extract.side.straight = "";
+extract.sides = "";
 // Extract two new meshes from the painted mask and the unmasked area
 extract.split = "Dela";
 // The thickness of the extracted mesh (from the painted mask)
 extract.thickness = "Tjocklek";
+extract.units.height = "";
+extract.units.height.help = "";
 
 // Auto save section
 file.autoSave = "Automatisk spara";
@@ -615,9 +687,6 @@ file.colorSpace = "Färgrymd";
 file.colorSpace.help = "Försök att växla det här alternativet om färgerna verkar fel.";
 file.colorSpace.linear = "Linjär";
 file.colorSpace.srgb = "sRGB";
-// Tries to generate quad (rectangle polygon) from triangles
-file.convertToQuad = "Återkonstruera quad";
-file.convertToQuad.help = "Återkonstruera quads från trianglar genom att para ihop trekant (om de är intill varandra i filerna).";
 // Open file explorer
 file.explore = "Utforska";
 // Export scene file
@@ -636,8 +705,10 @@ file.export.gltf.layer.help = "Exportera skikt som morfs. Officiellt stödd av g
 // Whether we include painting of layers in the exported file (see glossary for layer)
 file.export.gltf.layerPaint = "Skiktmålning";
 file.export.gltf.layerPaint.help = "Exportera skiktmålning. Det ignoreras vanligtvis av andra mjukvaror.";
-file.export.nomad.assets = "";
-file.export.nomad.assets.help = "";
+file.export.nomad.assets = "Bädda in resurser";
+file.export.nomad.assets.help = "Inkludera egna matcaps, miljöer och typsnitt i filen.
+
+Inbyggda resurser bäddas inte in.";
 file.export.nomad.help = "Nomad Sculpt internt filformat.
 
 Det här formatet laddas inte på andra mjukvaror, det är mestadels för återimportsyften.";
@@ -693,15 +764,13 @@ file.export.usd.skew.help = "Tillåt lutning i matristransformationer.
 När inaktiverad kommer Nomad att dela lutningsmatriser i två separata skalning- och rotationstransformationer.";
 // Type format
 file.format = "Format";
-// The user imports a scene file that will be added/appended the current scene
-file.import.add = "Lägg till i scenen";
-file.import.add.confirm = "Importera ny fil?";
 file.import.applyAll = "Tillämpa på alla";
 // Load interface preference settings when opening a scene file
 file.import.guiSettings = "Läs in UI-inställningar";
 file.import.guiSettings.help = "När ett projekt öppnas eller importeras, kommer alla GUI-relaterade inställningar som är inbäddade i projektet att laddas.";
 file.import.help = "Stötta format:";
-file.import.ignore = "Ignorera";
+file.import.keepFolders = "";
+file.import.keepFolders.help = "";
 // Do not fiddle with the object topology when loading the file
 file.import.keepTopology = "Behåll topologi";
 file.import.keepTopology.help = "Använd det här alternativet om du inte vill att Nomad ska röra med toppologin av det importerade nätet.
@@ -774,11 +843,8 @@ file.project.unsaved = "Osparade ändringar!";
 file.render = "Rendera";
 // height of exported screenshot
 file.render.height = "Höjd";
-// Resolution ratio of the exported screenshot
-file.render.renderRatio = "Renderingsförhållande";
-file.render.renderRatio.help = "Ett värde på 1.0 innebär att Nomad kommer att rendera med samma upplösning som den begärda bildstorleken nedan.
-
-Använd detta alternativ om du inte kan rendera i en viss upplösning (kraschar på grund av minnesbrist).";
+// Warning shown when the requested export resolution is too large for the memory left on the device
+file.render.lowMemory = "Den här storleken kanske inte ryms i enhetens återstående minne.";
 // Screen resolution parameters for the export screenshot features
 file.render.screenResolution = "Skärm";
 // If we include the App Interface in the exported screenshot
@@ -788,7 +854,7 @@ file.render.size = "Slutlig storlek";
 // Desired size of the exported screenshot (custom vs predefined size)
 file.render.size.custom = "Anpassad";
 // Save the heightmap render as a new brush alpha instead of exporting it as a file
-file.render.toAlpha = "";
+file.render.toAlpha = "Spara som alfa";
 // If true, then the exported screenshot will have transparency data in the image
 file.render.transparent = "Transparent bakgrund";
 file.render.transparent.help = "Detta alternativ kan vara användbart om du vill infoga nätet i en 2D-skaparesapplikation.
@@ -814,6 +880,43 @@ file.select.include = "Inkludera";
 file.select.selected = "Vald";
 file.select.unselected = "Inte vald";
 file.select.visible = "Synlig";
+
+fog = "Dimma";
+fog.ambient = "Miljö";
+fog.ambient.help = "Styr hur mycket omgivningen lyser upp dimman.";
+fog.anisotropy = "Spridningsriktning";
+fog.anisotropy.help = "Styr riktningen som dimman sprider ljuset i, även kallat anisotropi.
+
+• Positiva värden gör dimman ljusare när du tittar mot en ljuskälla.
+• Negativa värden gör den ljusare när du tittar bort från ljuskällan.
+• Noll sprider ljuset jämnt i alla riktningar.";
+fog.color = "Färg";
+fog.color.help = "Anger färgen på dimman och ljuset som den sprider.";
+fog.density = "Täthet";
+fog.density.help = "Styr hur snabbt dimman tätnar med avståndet.";
+fog.detail = "Brus";
+fog.detail.help = "Blandar in brus i dimman för att dela upp den i fläckar. Den totala tätheten ändras inte.";
+fog.detail.scale = "Storlek";
+fog.detail.scale.help = "Ställer in brusmönstrets storlek.";
+fog.help = "Ger atmosfäriskt djup och gör ljusstrålar synliga.
+
+Tydligare ljusstrålar:
+• Sänk Miljö och använd ett starkt spot- eller punktljus.
+• Öka Täthet tills dimman syns tydligt.
+• För att se strålar i tunnare dimma, ställ in Spridningsriktning på ett högt positivt värde och rikta kameran mot ljuset.";
+fog.opacity = "Maximal opacitet";
+fog.opacity.help = "Begränsar hur mycket dimman kan täcka scenen, även vid hög densitet.";
+fog.shape = "Form";
+fog.shape.help = "Styr var dimman fyller scenen.";
+fog.shape.uniform = "Jämn";
+fog.shape.uniform.help = "Fyller hela scenen med dimma.";
+fog.shape.vertical = "Vertikal";
+fog.shape.vertical.bottom = "Nederkant";
+fog.shape.vertical.bottom.help = "Anger höjden för dimbandets nedre kant.";
+fog.shape.vertical.help = "Håller dimman inom ett vertikalt band med mjuka övre och nedre kanter.";
+fog.shape.vertical.preview.help = "Visar dimbandet i vyn medan du justerar dess kanter.";
+fog.shape.vertical.top = "Överkant";
+fog.shape.vertical.top.help = "Anger höjden för dimbandets övre kant.";
 
 format.ascii = "Ascii";
 format.binary = "Binär";
@@ -880,8 +983,6 @@ gesture.pencilAction.android = "Pennknapp";
 // Action when using the Pencil double tap
 gesture.pencilAction.ios = "Pennans dubbeltryck";
 gesture.pencilAction.ios.help = "Endast aktiv för Apple Pencil 2:a generationen.";
-// Pencil button (or iOS Pencil double tap) action: nothing
-gesture.pencilAction.none = "Ingen";
 // list of inputs allowing sculpting interaction
 gesture.sculpt = "Skulptera";
 // Select object
@@ -891,6 +992,8 @@ gesture.shortcut = "Kortkommando";
 gesture.smooth.holdSelect.help = "Håll intryckt för att växla till väljverktyg under strokevalet.";
 // Hold the pointer at the end of a stroke to snap it into a line or a curve
 gesture.strokeSnap = "Fäst penseldrag";
+gesture.strokeSnap.delay = "";
+gesture.strokeSnap.delay.help = "";
 gesture.strokeSnap.help = "Håll pekaren vid slutet av ett penseldrag för att fästa det till en rak linje eller en mjuk kurva.
 
 Fortsätt dra för att rotera och skala det fästa penseldraget runt dess startpunkt.";
@@ -922,15 +1025,14 @@ gesture.trackpad.two.orbit.help = "Två fingrar roterar vyn och om du lyfter ett
 // Two fingers pan (translate) the view
 gesture.trackpad.two.pan = "Panorera";
 gesture.trackpad.two.pan.help = "Två fingrar panorerar vyn och om du lyfter ett av dem roteras vyn. Samma som på surfplattan.";
-// If enabled, the pressure will be taken into account even if it's not coming from a recognized stylus
-gesture.unknownPressure = "Tillåt okänt tryck";
-gesture.unknownPressure.help = "Markera detta alternativ om trycket inte fungerar med din penna eller om du behöver fingertryck.";
 gesture.wheel = "Mus hjul";
 gesture.wheel.speed2d = "Hastighet (2d gränssnitt)";
 gesture.wheel.speed3d = "Hastighet (3d zoom)";
 
 // History, list of undo/redo
 history = "Historik";
+// Button deleting every operation of the history, freeing the memory and the disk space they use
+history.clear = "Rensa historik";
 // Long press on a state of the history list: deletes it and every older one, $0 is a number of operations
 history.delete.confirm = "Ta bort $0 åtgärd(er) från historiken?";
 history.delete.help = "Tryck länge på en historikpost för att ta bort den och all äldre historik permanent.";
@@ -950,17 +1052,26 @@ history.include.postProcess.help = "Inkluderar efterbehandlingsändringar i hist
 // include shading parameters (MatCap & HDRIs) editing in the undo/redo
 history.include.shading = "Skuggning";
 history.include.shading.help = "Inkluderar lägena PBR, MatCap och Unlit samt MatCaps och HDRI:er.";
+// How much disk space the history is allowed to use, past it the oldest operations are deleted
+history.limitDisk = "Lagringsgräns";
+history.limitDisk.help = "Den maximala mängd lagringsutrymme som projektets historik för Ångra/Gör om får använda.
+
+När gränsen nås tas de äldsta åtgärderna bort permanent.
+
+Den nya gränsen tillämpas när nästa åtgärd har registrerats.";
 // How much memory the history is allowed to use before the older states are moved to the disk
-history.limitMemory = "Minnesgräns";
-history.limitMemory.help = "Hur mycket av historiken som sparas i minnet.
+history.limitMemory = "RAM-gräns";
+history.limitMemory.help = "Den maximala mängden historik för Ångra/Gör om som sparas i RAM.
 
-Äldre tillstånd flyttas till disken och läses in igen när du ångrar; de tas inte bort.
+Äldre tillstånd flyttas till lagringen och läses in igen vid behov; de tas inte bort.
 
-Historiken uppdateras vid nästa registrerade åtgärd.";
+Den nya gränsen tillämpas när du nästa gång redigerar, ångrar eller gör om.";
 // Where the undo history is kept when the project is saved (it survives reopening the project)
 history.persist = "Spara historik";
 history.persist.embedded = "Bädda in";
-history.persist.embedded.help = "Historiken lagras i projektfilen. Filen blir större, men historiken följer med den.";
+history.persist.embedded.help = "Historiken lagras i projektfilen: filen blir större och det går långsammare att spara och läsa in.
+
+Välj helst Av eller Separat om historiken inte måste följa med filen.";
 history.persist.help = "Behåll ångra-historiken när projektet sparas så att den finns kvar när projektet öppnas igen.";
 history.persist.off = "Av";
 history.persist.off.help = "Projektet sparas utan historik.";
@@ -968,6 +1079,18 @@ history.persist.separate = "Separat";
 history.persist.separate.help = "Historiken lagras i projektdata på den här enheten. Projektfilen förblir liten.";
 // Redo
 history.redo = "Gör om";
+// Slider + play button: rewinds to the root and redoes the operations one by one, the value is a number of operations per second
+history.replay = "Spela upp";
+// Option of the replay popup: the camera follows the replayed operations even when the history "Restore camera" setting is off
+history.replay.camera = "Återställ kamera";
+history.replay.camera.help = "Kameran följer de uppspelade åtgärderna även när historikens alternativ Återställ kamera är avstängt.";
+// Popup opened by the play button, above its two options
+history.replay.confirm = "Spela upp historiken?";
+history.replay.help = "Går tillbaka till början och gör sedan om åtgärderna en i taget med denna hastighet (åtgärder per sekund).
+Tryck på knappen igen för att stoppa. Ångra, gör om eller ett tryck på en post stoppar också uppspelningen.";
+// Option of the replay popup: runs backwards, undoing from the current state to the root
+history.replay.reverse = "Omvänd";
+history.replay.reverse.help = "Ångrar från det aktuella läget tillbaka till början i stället för att spela upp från början.";
 // When enabled, undoing an operation also restores the camera position
 history.restoreCamera = "Återställ kamera";
 history.restoreCamera.help = "Aktivera det här alternativet för att återställa sparad kameraposition när du ångrar/gör om en åtgärd.";
@@ -1013,25 +1136,43 @@ inspect.short = "Inspektera";
 
 // Interface customization
 interface = "Gränssnitt";
+interface.accent.solid = "";
+interface.accent.thin = "";
+interface.accentStrength = "";
+interface.accentStrength.help = "";
+interface.appearance = "";
 // Interface option (panel blurriness, if the menus are transparent)
 interface.blurFactor = "Suddstyrka";
+interface.buttonFill = "";
+interface.buttonFill.help = "";
+interface.buttonSupportContrast = "";
+interface.buttonSupportContrast.help = "";
 // Interface option (main base color)
-interface.colorBase = "Färgbas";
+interface.colorBase = "";
 // Interface option (color of panels, if the menus are transparent)
-interface.colorBaseTransparent = "Färgpanel";
+interface.colorBaseTransparent = "";
 // Interface option (accent widget color)
-interface.colorSelect = "Färgwidget";
-// UI customization: each item row fits on a single line (synonym: inlined)
-interface.compact = "UI: Kompakt";
+interface.colorSelect = "";
+interface.colors = "";
+interface.colors.action = "";
+interface.colors.disabled = "";
+interface.colors.filled = "";
+interface.colors.idle = "";
+interface.colors.infinite = "";
+interface.colors.options = "";
+interface.colors.preview = "";
+interface.colors.reset = "";
+interface.colors.stepped = "";
 // Spacing between widgets
 interface.cursorStep = "Vertikalt mellanrum";
+interface.customColorFill = "";
+interface.customColorFill.help = "";
 // Do not use windows native dialog
 interface.customDialog = "Använd Nomad-dialog";
 interface.customDialog.help = "Visa Nomads egna textdialog istället för den inbyggda.";
-// UI customization: each row of the list will be bigger
-interface.expandList = "UI: Expandera lista";
-// UI customization: each row of the list will be bigger
-interface.expandList.help = "Bara ett UI-alternativ för enklare listadministration.";
+// Interface customization: soft shadow cast by the panels on the scene
+interface.dropShadow = "";
+interface.dropShadow.help = "";
 // Interface customization
 interface.flipBottom = "Spegelvänd bottenfält";
 // Interface customization
@@ -1040,53 +1181,66 @@ interface.flipMiddle = "Spegelvänd sidofält";
 interface.flipTop = "Spegelvänd toppfält";
 // Size of fonts
 interface.fontScale = "Teckensnittsskala";
+interface.glass = "";
+interface.glass.help = "";
 // Dot menu hovering
 interface.hoverDot = "Hover-punkt";
 interface.hoverDot.help = "Visa en liten punkt i gränssnittet när en svävande stylus upptäcks.";
 // Help popup when hovering
 interface.hoverHelp = "Hjälp-popup vid hovrande";
-// Interface option (main base color)
-interface.iconSupport = "Högkontrast-knapp";
-interface.iconSupport.help = "En alternativ stil för knappar som gör dem mer synliga när de är aktiverade.
-
-Om inställd på Auto, kommer Nomad att använda det här läget när UI-kontrasten mellan aktiverad/avaktiverad är låg.";
 // Inset
 interface.inset.title = "Kantförskjutningar";
 interface.inset.title.help = "Du kan ändra dessa värden endast om du har problem med att interagera med knapparna på skärmkanterna.
 
 Om skjutreglaget är inaktiverat kommer Nomad att använda de säkra områdesvärden som enheten själv returnerat.";
+interface.layout = "";
 // Move a floating panel by dragging inside it, instead of using its bar
-interface.panelDrag = "";
-interface.panelDrag.help = "";
+interface.panelDrag = "Dra panelytan";
+interface.panelDrag.help = "En flytande panel flyttas alltid genom att dra i dess list. Med det här alternativet kan du även dra i panelytan.
+
+Med Auto flyttar ett finger eller en penna panelen endast när dragningen är mer vågrät än lodrät, så en lodrät dragning fortsätter att rulla innehållet. Ställ in Ja för att även dra med musen i valfri riktning.";
 // Interface option (if the menus are transparent or opaque)
 interface.panelTransparent = "Genomskinlig panel";
 // Width of the interface panels
 interface.panelWidth = "Panelbredd";
 // Interface color style
 interface.preset.title = "Förinställningar";
+// Interface option, outline drawn around a row of options and between its slots
+interface.radioBorder = "";
 // Reset interface settings
 interface.resetAll = "Återställ stil";
 interface.resetAll.confirm = "Återställa gränssnittsinställningar?";
+interface.resetAppearance = "";
+interface.resetLayout = "";
 // Resize window (should be short)
 interface.resize = "Ändra storlek";
 // Scale the interface
 interface.scale = "Övergripande skala";
+// Interface option, strength of the outline drawn around a selected button or a slider bar
+interface.selectBorder = "";
+// Interface option, strength of the accent tint behind a selected button or inside a slider bar
+interface.selectFill = "";
 // Show the drag bar of a floating shortcut window
 interface.shortcut.bar = "List";
 // The shortcut bar at the bottom of the screen (section title and row name)
 interface.shortcut.bottom = "Lägg till genvägar (botten)...";
 // Floating shortcut windows (section title)
 interface.shortcut.float = "Lägg till genvägar (fönster)...";
+// Interface option, the slider track is an outline instead of a filled plate
+interface.sliderBorder = "";
+interface.sliderFill = "";
+interface.sliderFill.help = "";
+interface.supportContrast = "";
+interface.supportContrast.help = "";
 // list of tools
 interface.toolbox = "Verktygslåda";
 // Colored text and icon
 interface.toolbox.color = "Färgad";
-// Interface customization (the toolbox is a grid, we can adjust the column count)
-interface.toolbox.columns = "Kolumner";
 // hide toolbox by default
 interface.toolbox.hide = "Dold";
 // Reset the tool's order in the toolbox
 interface.toolbox.resetOrder = "Återställ ordning";
+interface.toolboxColors = "";
 // Interface customization (the toolbox is a grid, we can adjust the column count)
 interface.top.alt = "Alternativ ordning";
 interface.top.alt.help = "Alternativ ordningsikon för toppmenyn.
@@ -1113,12 +1267,22 @@ item.delete.confirm = "Bekräfta radering?";
 item.delete.confirm.yes = "Ja, radera";
 // When we delete the item but the image is used somewhere
 item.delete.used = "Bild används";
-// Draggable, movable
-item.draggable = "Flyttbar";
+// Short button label, turns a stamp (alpha or VDM) back into a plane that can be sculpted again
+item.edit = "Redigera";
+item.edit.help = "Lägger till ett plan som redan formats av denna stämpel, med ett skulpturlager och en fyrhörning per pixel.
+
+Skulptera det och baka sedan tillbaka det med `Topologi -> Baka -> VDM`.";
+// Short button label, opens a popup to correct the pixels of an imported image
+item.fix = "Korrigera";
+item.fix.help = "Korrigerar själva bilden: mellanvärde, invertering, rotation.
+
+Filen skrivs om, så även andra appar läser den korrigerade bilden.";
 // Show the folders of a list as a column on its side, instead of a drop down menu
-item.folderColumn = "";
+item.folderColumn = "Mappkolumn";
+// Show the folders of a drop down menu as small chips filling the width, instead of one per line
+item.folderCompact = "Kompakta mappar";
 // Show a list of items as one group of items per folder, instead of a single list
-item.folderGroup = "";
+item.folderGroup = "Gruppera efter mapp";
 // Hide an item (object, layer, etc)
 item.hide = "Dölj";
 // Make an item instance, similar to clone but keeps the underlying geometry (Synonym: link? soft clone?)
@@ -1127,6 +1291,7 @@ item.instance = "Instans";
 item.lastSave = "Senaste sparning";
 // Reload last save of an item (object, tool, etc)
 item.lastSave.confirm = "Ladda senaste sparning?";
+item.load = "";
 // The item is locked (either it cannot be selected, edited, or we preserve its details)
 item.lock = "Lås";
 // Merge an item with another one below (layer)
@@ -1141,6 +1306,8 @@ item.next = "Nästa";
 item.none = "Ingen";
 // The order of an item in a list
 item.order = "Ordning";
+// Size of the preview images of a list of items, in pixels
+item.previewSize = "Förhandsvisningsstorlek";
 // Focus on previous item
 item.previous = "Föregående";
 // Rename an item (object, tool, etc)
@@ -1153,19 +1320,19 @@ item.reset.confirm = "Bekräfta återställning?";
 // Save an item (object, tool, etc)
 item.save = "Spara";
 item.save.confirm = "Bekräfta sparning?";
-item.saveLibrary = "";
+item.saveLibrary = "Spara i bibliotek";
 // Select an item (object, layer, etc)
 item.select = "Välj";
 // Show an item (object, layer, etc)
 item.show = "Visa";
 // Show the name of every item under its preview image
-item.showName = "";
+item.showName = "Visa namn";
+// The show button of the curve/primitive handlers only toggles them all, instead of picking one kind
+item.showOnOff = "Bara på/av";
 // Order a list of items alphabetically
-item.sortName = "";
+item.sortName = "Efter namn";
 // Order a list of items with the most recently modified first
-item.sortRecent = "";
-// Convert the item type (mesh, light) to a simple Node type
-item.toNode = "Till nod";
+item.sortRecent = "Senast ändrade";
 // Uninstance the object, make the object real
 item.uninstance = "Av-instans";
 // Unselect an item (object, layer, etc)
@@ -1237,12 +1404,9 @@ license.grace = "Offline - Återstående respittid:";
 license.grace.days = "dag";
 license.grace.hours = "timmar";
 license.key = "Licensnyckel";
-license.newest = "Ny version tillgänglig!";
 license.portal.label = "Licensportal";
 license.portal.label.warning = "Denna portal är endast för användare som köpt Windows/Mac- versionen. Köpta från iOS/Android appbutiker är inte plattformsoberoende.";
 license.portal.title = "Befintliga användare";
-license.retry = "Försök igen";
-license.title = "Licens";
 license.validate = "Validera";
 license.validate.error404 = "Licensnyckeln hittades inte.";
 license.validate.error422 = "Ohanterbar enhet.";
@@ -1254,13 +1418,10 @@ light.angle = "Vinkel";
 light.attachment = "Fäste";
 // The light will move along the camera
 light.attachment.camera = "Kamera";
+light.attachment.camera.help = "Ljusorienteringen beror på kameravyen.";
 // The light will stay still even if the user moves the camera
 light.attachment.fixed = "Fast";
-light.attachment.help = "• Fixerad
-Ljusorienteringen ändras inte.
-
-• Kamera
-Ljusorienteringen beror på kameravyen.";
+light.attachment.fixed.help = "Ljusorienteringen ändras inte.";
 // Color of light
 light.color = "Färg";
 // Contact shadows are more precise shadows on small distance (synonym: cavity shadows?)
@@ -1274,17 +1435,13 @@ light.kelvin = "Kelvin";
 light.position = "Position";
 // Move the light in front of the camera (but keeps its inner orientation)
 light.resetPosition = "Centrera om";
-// Adjustment to fix artefacts
-light.shadow.bias = "Bias";
 // Enable or disable shadows for a light
 light.shadow.cast = "Skugga";
-// Point light only works with "screenspace" shadow type (not "shadow map")
-light.shadow.pointTip = "Punktljus stöder endast skärmyteskuggor.";
-// How blurry the shadow is
-light.shadow.softness = "Mjukhet";
 // Thickness threshold for screen-space shadows (synonym: threshold, bias)
 light.shadow.tolerance = "Tolerans";
 light.shadow.type = "Skuggtyp";
+// Shown above the two shadow type entries
+light.shadow.type.help = "En skuggkarta renderar scenen från ljuskällans perspektiv och skuggar därför geometri som kameran inte ser. Skärmyta läser i stället djupet som redan visas på skärmen. Det är mindre krävande men skuggar bara det som syns.";
 // Shadows computed with only the information visible on screen
 light.shadow.type.screenspace = "Skärmyta";
 light.shadow.type.screenspace.help = "Experimentell funktion, den kan tas bort i en framtida version.
@@ -1311,26 +1468,22 @@ light.type.hdri = "HDRI";
 light.type.point = "Punkt";
 // Spot light emits light in a single direction, restricted by a cone shape.
 light.type.spot = "Spot";
-light.type.sun = "Sol";
-// Whether the light is shown
-light.visible = "Visa";
 
 link.address = "Den här enheten";
 link.approve = "Godkänn";
-link.bridges = "Bryggskript";
+link.bridges = "Bryggskript (GitHub)";
 link.cameras = "Kameror";
 link.copyRepository = "Kopiera lagringsplatsens URL";
 link.deny = "Avböj";
 link.forget = "Glöm parkopplade enheter";
 link.get = "Hämta";
-link.getFrom = "Hämta från $0";
 link.goz.enable = "Aktivera GoZ";
 link.goz.noExport = "Inget att importera; tryck först på GoZ i ZBrush";
 link.goz.notInstalled = "Installera först GoZ i ZBrush (Inställningar > GoZ)";
 link.goz.received = "$0 objekt mottagna från ZBrush";
 link.goz.sent = "$0 objekt skickade till ZBrush";
 link.goz.waiting = "Väntar på export från ZBrush";
-link.help.others = "Andra appar (ZBrush osv.) ansluter till en Nomad-värd på samma sätt.
+link.help.others = "Andra appar (ZBrush, Marmoset Toolbag osv.) ansluter till en Nomad-värd på samma sätt.
 
 En brygga är ett Python-skript som körs på samma dator som den appen.
 Exempelskript och protokollet finns på GitHub; använd dem som utgångspunkt.";
@@ -1351,14 +1504,11 @@ link.mode.help = "En enhet är värd för sessionen och de andra ansluter till d
 link.mode.nomad = "Nomad ↔ Nomad";
 link.mode.nomad.help = "Välj Värd på en enhet och Anslut på de andra och tryck sedan på värdens namn.";
 link.nearby = "Enheter i närheten";
-link.network = "Nätverk";
 link.objects = "Objekt och geometri";
 link.off = "Av";
 link.peer = "Peer";
 link.peerAddress = "Klientadress";
-link.peers = "Peers";
 link.port = "Nätverksport";
-link.receive = "Ta emot";
 link.replace = "Ersätt";
 // Confirm popup before "Replace": deletes the local scene (undoable), then pulls the peer's scene
 link.replace.confirm = "Ta bort den aktuella scenen och hämta sedan peer-enhetens scen?";
@@ -1369,7 +1519,6 @@ link.scope.scene = "Scen";
 link.scope.selection = "Val";
 link.searching = "Söker efter enheter";
 link.send = "Skicka";
-link.sendTo = "Skicka till $0";
 link.source = "Scenändringar";
 link.source.from = "Från $0";
 link.source.help = "Scenändringar strömmas från en enhet i taget. Auto ger riktningen till den senaste aktiviteten.";
@@ -1469,8 +1618,6 @@ material.refraction.interior = "Inre";
 material.refraction.surface = "Yta";
 // Defines how blurry or sharp the reflection on a material is (opposite of glossiness)
 material.roughness = "Grovhet";
-// How much light a surface will reflect
-material.specular = "Spekular";
 // Depth means how far the light can travel under the surface
 material.subsurfaceDepth = "Djup";
 // Textures/Image
@@ -1526,8 +1673,6 @@ Om skuggfångaren däremot är helt metallisk, kan Skuggfångaren reflektera sce
 material.type.subsurface = "Subyta";
 material.type.subsurface.help = "För bästa resultat kan du växla till PBR-skuggning och använda minst ett riktat ljus, idealiskt i en dim omgivning.";
 material.unused = "Oanvänd";
-// A warning indicating that the mesh has no UVs
-material.warningNoUVs = "Inga UVs!";
 
 menu.about = "Om";
 menu.alpha = "Alpha";
@@ -1612,6 +1757,11 @@ Till exempel: mappen för projekt accepterar endast 3D-filer, medan alphas eller
 nomad.mainFolder.warning = "Filer lämnas orörda.
 De kopieras, tas inte bort eller flyttas.";
 
+// Material picker button of the painting menu, its channels are chosen in the material options popup
+paint.dropper = "Materialpipett";
+paint.dropper.help = "Hämtar materialet under markören.
+
+Bara de markerade kanalerna ersätts.";
 // Factor/Opacity of paint tool
 paint.intensity = "Målningsintensitet";
 // Opaque opacity
@@ -1637,21 +1787,32 @@ När det här alternativet är avstängt refererar materialförinställningen en
 
 Du kan aktivera detta alternativ för att skapa en kopia av texturerna i materialförinställningen.
 Det kan vara användbart om du vill dela en texturerad förinställning utan att tillhandahålla de tillhörande texturerna.";
-// use stencil mode
-paint.stencil = "Schablon";
 paint.strokePainting.title = "Målning";
-// Brush-stroke texture
-paint.texture.warningEnable = "Streckmålning måste aktiveras för att tillåta texturprojektion (kryssruta längst upp)!";
-paint.texture.warningIgnored = "Det aktuella verktyget kan inte använda texturer!";
+// Curve editor of a texture slot, a pill in the texture popup footer
+paint.texture.curve = "Kurvor";
+// Before → after previews on top of the curve editor
+paint.texture.curve.compare = "Original → aktuellt";
+paint.texture.curve.help = "Omvandlar texturvärdena innan de målas.
+
+Bildfilen lämnas oförändrad.";
 // Inherit stroke falloff option for the painting
+// Help of the alpha button of the painting menu, not the alpha menu itself
+paint.tool.alpha.help = "När den är inaktiverad ignorerar målningen alfa och täcker hela penselområdet.";
+// Help of the falloff button of the painting menu, not the falloff menu itself
+paint.tool.curve.help = "När den är inaktiverad behåller målningen full intensitet ända ut till penselkanten.";
 paint.tool.help = "Använd verktygs alfa, falloff och slumpmässig för att modulera intensiteten i dina måleriska penseldrag. Dessa alternativ ignoreras för målningen av alla objekt, men alfan beaktas för den triplanära varianten.";
 // Disable this option to have per-tool material settings (instead of shared settings)
 paint.useGlobal = "Globalt material";
 paint.useGlobal.help = "Om detta alternativ är aktiverat, kommer det valda materialet att vara detsamma som för de andra verktygen.
 
 Observera att det endast tar hänsyn till inställningar för grovhet, metallämne och färg.";
+// Only the intensity part of the stroke randomizer, applied to the painting
+paint.useJitter = "Randomisera intensitet";
+paint.useJitter.help = "Anger om randomiseringen av intensiteten påverkar målningen. Randomisering av position, rotation och skala flyttar alltid hela stämpeln.";
 // The current tool will paint the object if this option is enabled
 paint.usePainting = "Streckmålning";
+// Paint with the color, roughness, metalness and opacity baked inside the VDM stamp
+paint.vdmMaterial = "Stämpelmaterial";
 
 position.bottom = "Botten";
 position.center = "Mitten";
@@ -1693,6 +1854,8 @@ Om värdet är 0 kommer allt att bloma.";
 // https://en.wikipedia.org/wiki/Chromatic_aberration
 postprocess.chromatic = "Kromatisk Aberration";
 postprocess.chromatic.factor = "Styrka";
+// Short label for the section shortcut bar
+postprocess.chromatic.short = "Kroma";
 // Accentuate the edges of the model
 postprocess.curvature = "Krökning";
 // Color/Strength of convex curvature
@@ -1701,6 +1864,8 @@ postprocess.curvature.bump = "Bula";
 postprocess.curvature.cavity = "Hålighet";
 // Main strength of curvature
 postprocess.curvature.factor = "Faktor";
+// Short label for the section shortcut bar
+postprocess.curvature.short = "Hålighet";
 // Color curves
 postprocess.curve = "Färgteckning";
 postprocess.curve.blue = "Blå";
@@ -1708,8 +1873,8 @@ postprocess.curve.green = "Grön";
 // Curve for pixel luminance
 postprocess.curve.luminance = "Huvudsak";
 postprocess.curve.red = "Röd";
-// Reset color grading curves
-postprocess.curve.resetAll = "Återställ Allt";
+// Short label for the section shortcut bar
+postprocess.curve.short = "Kurvor";
 // Denoise
 postprocess.denoise = "Dämpa ljud";
 postprocess.denoise.help = "Tillämpa ett reduceringspass efter att alla ramar har ackumulerats.";
@@ -1720,13 +1885,17 @@ postprocess.dithering.help = "Minskar bandningsartefakter (t.ex. gradient, vinje
 // Depth of Field (bokeh)
 // https://en.wikipedia.org/wiki/Depth_of_field
 postprocess.dof = "Skärpedjup";
+// f-number, a lower value opens the lens and blurs more
+postprocess.dof.aperture = "Bländare";
 // The blur factor behind the focused point
 postprocess.dof.blurFar = "Fjärroskärpa";
 // The blur factor in front of the focused point
 postprocess.dof.blurNear = "Nära oskärpa";
 postprocess.dof.focusTip = "Tryck på ett objekt för att ändra fokuspunkt.";
-// Full resolution (1:1 resolution) instead of half resolution
-postprocess.fullResolution = "Full upplösning";
+// Drive the blur with a single camera aperture instead of the two blur factors
+postprocess.dof.physical = "Bländarläge";
+// Short label for the section shortcut bar (no need to translate "DoF")
+postprocess.dof.short = "DoF";
 // Filmic Grain
 // https://en.wikipedia.org/wiki/Film_grain
 postprocess.grain = "Korn";
@@ -1738,6 +1907,8 @@ postprocess.maxSamples.help = "Förbättrar efterbearbetningskvaliteten på beko
 postprocess.pixelArt = "Pixelkonst";
 // Override frame accumulation feature
 postprocess.pixelArt.allowAccumulate = "Tillåt bildrutesampling";
+// Short label for the section shortcut bar
+postprocess.pixelArt.short = "Pixlar";
 // Quality vs performance
 postprocess.quality = "Kvalitet";
 postprocess.quality.help = "Aktivera dessa alternativ för att förbättra kvaliteten på bekostnad av prestandan.";
@@ -1757,6 +1928,8 @@ postprocess.scanline.spacing = "Mellanrum";
 // https://en.wikipedia.org/wiki/Unsharp_masking
 postprocess.sharpness = "Skarphet";
 postprocess.sharpness.factor = "Styrka";
+// Short label for the section shortcut bar
+postprocess.sharpness.short = "Skärpa";
 // Screen-space ambient occlusion (SSAO)
 // https://en.wikipedia.org/wiki/Ambient_occlusion
 postprocess.ssao = "Omgivande Occlusion";
@@ -1764,16 +1937,20 @@ postprocess.ssao = "Omgivande Occlusion";
 postprocess.ssao.factor = "Styrka";
 // How far the effect spreads
 postprocess.ssao.radius = "Storlek";
+// Short label for the section shortcut bar (no need to translate "SSAO")
+postprocess.ssao.short = "SSAO";
 // Adjustment for ssao
 postprocess.ssao.thickness = "Tjocklek";
 postprocess.ssao.thickness.help = "Hur mycket djupets tjocklek som antas för ockluderare, som en procentandel av AO-radien.";
 // Screen-Space Global Illumination (no need to translate "SSGI")
 postprocess.ssgi = "Global illumination (SSGI)";
-// Thickness threshold for ssgi tracing algorithm (synonym: threshold, bias)
-postprocess.ssgi.tolerance = "Tolerans";
+// Short label for the section shortcut bar (no need to translate "SSGI")
+postprocess.ssgi.short = "SSGI";
 postprocess.ssgi.warning = "SSGI kräver PBR-skuggning.";
 // Screen-Space Reflection (no need to translate "SSR")
 postprocess.ssr = "Reflektion (SSR)";
+// Short label for the section shortcut bar (no need to translate "SSR")
+postprocess.ssr.short = "SSR";
 postprocess.ssr.warning = "SSR kräver PBR-skuggning.";
 // Temporal Anti-Aliasing (no need to translate "TAA")
 postprocess.taa = "Anti-aliasing (TAA)";
@@ -1788,6 +1965,8 @@ postprocess.tone.mapping.neutral = "Neutral";
 // No tonemapping operator is used
 postprocess.tone.mapping.none = "Ingen";
 postprocess.tone.saturation = "Mättnad";
+// Short label for the section shortcut bar
+postprocess.tone.short = "Ton";
 // Darkening at the edges
 postprocess.vignette = "Vinjett";
 // How sharp the edge of the effect is
@@ -1821,10 +2000,6 @@ Avmarkera det här alternativet om du vill ha specifika tryckinställningar för
 
 // Geometry Primitive (box, sphere, cylinder, etc)
 primitive = "Primitiv";
-// Angle of torus, etc
-primitive.angleX = "Vinkel X";
-primitive.angleY = "Vinkel Y";
-primitive.angleZ = "Vinkel Z";
 primitive.box = "Box";
 // Box
 primitive.boxRegular = "Samma storlek (kub)";
@@ -1855,8 +2030,6 @@ primitive.edit.help = "Tillåt 3d-redigering i vyn.
 Du kan inaktivera denna funktion om du vill interagera med Gizmo eller transformera verktyget utan att ändra prim.";
 // Interface section where we change the geometry (shape of the primitive)
 primitive.geometry = "Geometri";
-// Make a hole in the primitive to make it hollow
-primitive.hasHole = "Har hål";
 // Hole sub menu (cylinder, tube, etc)
 primitive.hole = "Hål";
 primitive.icosahedron = "Ikosaeder";
@@ -1867,8 +2040,6 @@ primitive.isolate.bottom = "Botten";
 // One side of a cube (the right plane)
 primitive.isolate.right = "Höger";
 primitive.lathe = "Svarv";
-// Synonym: Flat subdivision
-primitive.linear = "Linjär delning";
 // Primitive configuration
 primitive.mainConfig = "Parameter";
 // Maximum number of faces of the primitives
@@ -1887,15 +2058,10 @@ primitive.profile = "Profil";
 // History entry: a control point of the profile was moved
 primitive.profile.point = "Punkt";
 primitive.profile.viewport = "Visa i viewport";
-// Make sure the shape is perfectly spherical
-primitive.projectOnSphere = "Projektera på sfär";
-primitive.projectOnSphere.help = "Fäster punkterna på en perfekt sfär.";
 // Radius (of a sphere, torus, etc)
 primitive.radius = "Radie";
 primitive.radius.end = "Radie slut";
 primitive.radius.start = "Radie start";
-// Make sure both endpoints of a primitive (cylinder, tube, etc.) have the same size
-primitive.radius.sync = "Samma radie";
 // Size (of cube x dimension)
 primitive.size = "Storlek";
 primitive.sizeX = "Storlek X";
@@ -1905,6 +2071,27 @@ primitive.sphereCube = "Kvadsfär";
 primitive.sphereUV = "UV-sfär";
 // "Post" means subdivision that occurs after the primitive is computed
 primitive.subdivision = "Postdelning";
+primitive.text = "";
+primitive.text.align = "";
+primitive.text.bend = "";
+primitive.text.center = "";
+primitive.text.depth = "";
+primitive.text.edit = "";
+primitive.text.font = "";
+primitive.text.left = "";
+primitive.text.limit = "";
+primitive.text.lineSpacing = "";
+primitive.text.lineSpacing.help = "";
+primitive.text.maxWidth = "";
+primitive.text.maxWidth.help = "";
+primitive.text.missingFont = "";
+primitive.text.mode = "";
+primitive.text.offset = "";
+primitive.text.resolution = "";
+primitive.text.right = "";
+primitive.text.rigid = "";
+primitive.text.spacing = "";
+primitive.text.wrap = "";
 // Interface section where we change the topology (number of triangles/polygons)
 primitive.topology = "Topologi";
 primitive.torus = "Torus";
@@ -1945,11 +2132,7 @@ quadremesh.curvatureAdaptivness = "Adaptiv storlek";
 quadremesh.curvatureAdaptivness.help = "Vid 100% kommer fyrkanternas storlek variera beroende på objektets krökning, vilket möjliggör mindre fyrkanter på hög krökning.
 Vid 0% kommer fyrkanternas storlek vara enhetlig.";
 quadremesh.reprojectVertex = "Reprojektera vertex";
-quadremesh.reprojectVertex.label = "När aktiverad, kommer Nomad att reprojektera positionen på den tidigare meshen.
-
-Observera att om meshen har lager, kommer reprojektion alltid att användas.";
 quadremesh.reprojectVertex.short = "Reprojektera vertex";
-quadremesh.useVertexColors = "Bevara målningen";
 
 // Singular of Repeaters (Nodes that make many copies of its children (type of mirror/curve/array/radial))
 repeater = "Repeater";
@@ -1957,6 +2140,49 @@ repeater = "Repeater";
 repeater.array.fitInside = "Passas inuti";
 // The object will follow the curve
 repeater.curve.align = "Justera";
+// Every other copy is turned around the curve: 90° for chain links, 180° for leaves or zipper teeth
+repeater.curve.alternate = "Växla";
+repeater.curve.alternate.half = "180°";
+repeater.curve.alternate.quarter = "90°";
+// Count slider mode: a fixed spacing between the copies, the count follows the curve length
+repeater.curve.distance = "Avstånd";
+// Surface repeater: the copies stand on the surface (normal up), else they keep the orientation of the original
+repeater.surface.align = "";
+// Surface repeater mode: one copy per edge of the parent object, turned along the edge
+repeater.surface.edges = "";
+// Surface repeater mode: one copy per face of the parent object
+repeater.surface.faces = "";
+// Surface repeater: the copies scale with the local size of the surface
+repeater.surface.fitSize = "";
+repeater.surface.fitSize.help = "";
+// Surface repeater: with Fit size, the copies also stretch and skew to the shape of each face
+repeater.surface.fitSkew = "";
+repeater.surface.fitSkew.help = "";
+// Surface repeater: what the copies land on (faces, edges or vertices)
+repeater.surface.mode = "";
+// Surface repeater: the copies land on random faces instead of every Nth
+repeater.surface.random = "";
+repeater.surface.random.help = "";
+// Surface repeater mode: copies spread evenly over the surface, a minimum distance apart, not tied to the topology
+repeater.surface.scatter = "";
+// Surface repeater: draw another random set
+repeater.surface.shuffle = "";
+repeater.surface.shuffle.help = "";
+// Surface repeater: move the original child onto the surface
+repeater.surface.snap = "";
+repeater.surface.snap.help = "";
+// Surface repeater, Scatter mode: the minimum distance between two copies
+repeater.surface.spacing = "";
+repeater.surface.spacing.help = "";
+// Surface repeater: one copy every N faces, edges or vertices
+repeater.surface.stride = "";
+repeater.surface.stride.help = "";
+// Surface repeater, Scatter mode: toggle between a copy count and a spacing (the other value follows)
+repeater.surface.useSpacing = "";
+repeater.surface.useSpacing.help = "";
+// Surface repeater: each copy bends onto its face or along its edge instead of standing flat
+repeater.surface.warp = "";
+repeater.surface.warp.help = "";
 
 // Import resource (Alpha, Textures, MatCaps, etc)
 resource.import = "Importera...";
@@ -2026,6 +2252,8 @@ scene.repeaters = "Repeterare";
 scene.repeaters.help = "Repeteringsnoder som skapar instanser av alla geometrier under dem i scenhierarkin.";
 // Hidden objects will be subtracted (they carve the other objects)
 scene.subtractionTip = "Subtraktion: Dolda objekt";
+// Surface node type: makes copies of its children on the surface of its parent object
+scene.surface = "";
 // Keep the visibility of all selected items synchronized
 scene.syncVisible = "Synka synlighet";
 scene.syncVisible.help = "När aktiverat kommer användandet av synlig (öga) ikonen att påverka alla valda objekt.";
@@ -2041,7 +2269,6 @@ scene.validateGroup = "Slutför";
 scene.validateGroup.joinChildren = "Foga ihop barn";
 // Keep instances in the scene
 scene.validateGroup.keepInstances = "Behåll instanser";
-scene.voxelResolution = "Upplösning";
 
 setting.global = "Global inställning";
 setting.globals = "Globala inställningar";
@@ -2064,12 +2291,6 @@ settings.cursor.showRope = "Visa repstabilisator";
 settings.cursor.title = "Markör";
 // Meshes that are not selected will be darkened
 settings.darkenUnselected = "Mörka ej valda objekt";
-// Display the material texture
-settings.debugChannel = "Visa Textur";
-// Display the material texture in the background
-settings.debugChannel.onBackground = "I Bakgrunden";
-// Display the material texture on the mesh
-settings.debugChannel.onMesh = "På Mesh";
 // General scene display settings
 settings.display.title = "Visningsinställningar";
 // Grid
@@ -2078,10 +2299,16 @@ settings.grid.snapDivision = "Fästgräns för indelningar";
 settings.grid.snapDivision.help = "Tröskeln jämförs mot avståndet till rutnätet.";
 // Snap eligible tool points to the grid
 settings.grid.snapGrid = "Fäst vid rutnät";
+// Same as settings.grid.snapGrid, on a small shortcut button
+settings.grid.snapGrid.short = "Fäst vid rutnät";
 // Snap eligible tool points to nearby existing points when the camera is aligned
 settings.grid.snapPointAlign = "Fäst vid punkter (justerad vy)";
+// Same as settings.grid.snapPointAlign, on a small shortcut button
+settings.grid.snapPointAlign.short = "Punkter (justerade)";
 // Snap eligible tool points to nearby existing points when the camera is not aligned
 settings.grid.snapPointFree = "Fäst vid punkter (fri vy)";
+// Same as settings.grid.snapPointFree, on a small shortcut button
+settings.grid.snapPointFree.short = "Punkter (fria)";
 // Handles are controls that you interact with in the viewport in order to edit something
 settings.handle = "Handtag";
 settings.handles = "Handtag";
@@ -2089,12 +2316,6 @@ settings.handles = "Handtag";
 settings.highlight = "Markering";
 settings.highlight.duration = "Varaktighet";
 settings.highlight.help = "Markerar de markerade objekten när markeringen ändras.";
-// Hole filling settings
-settings.hole = "Fyllning av hål";
-// Allow the hole-filling algorithm to handle non-manifold (irregular) topology
-settings.hole.nonManifold = "Fyll icke-manifold";
-settings.hole.nonManifold.help = "Försök att fylla icke-manifold hål.
-Detta alternativ sparas inte i inställningarna.";
 // Show icon on the canvas
 settings.icon = "Ikon";
 // Show icons on the canvas
@@ -2119,6 +2340,18 @@ settings.outline = "Kontur";
 // Outline (contour highlight around the selected object)
 settings.outline.help = "De valda objekten kommer att kontureras.";
 settings.outline.thickness = "Tjocklek";
+// Object budget shared by every repeater in the scene
+settings.repeater.maxCopies = "";
+settings.repeater.maxCopies.help = "";
+// Most copies a single repeater makes
+settings.repeater.maxCount = "";
+settings.repeater.maxCount.help = "";
+// Polygon budget shared by every copy in the scene
+settings.repeater.maxFaces = "";
+settings.repeater.maxFaces.help = "";
+// Settings section: limits shared by every repeater (array, radial, curve, surface)
+settings.repeater.title = "";
+settings.repeater.title.help = "";
 // Reset preference settings button
 settings.reset = "Återställ till standard";
 settings.reset.confirm = "Återställa preferensinställningar?";
@@ -2138,7 +2371,6 @@ Vissa resurser sparas separat och kommer INTE att återställas, det inkluderar:
 Observera att allt som är kopplat till projektet kommer att hållas intakt, såsom belysning, Post Process, kamravyer, etc.";
 // Shape draw thing
 settings.shape = "Form";
-settings.shape.color = "Polygonfärg";
 // Disable this option to force show the hidden faces
 settings.showDiscard = "Använd Dölj";
 // Show and use the masking on the mesh
@@ -2154,20 +2386,20 @@ settings.snapCube.align = "Begränsa justering";
 settings.snapCube.align.help = "Justera vyerna till världsaxeln. Om aktiverat, endast 6 snapping-vyer är möjliga.
 
 På Auto kommer begränsningen endast att ske om kameran är i Orbit-läge.";
-// Move the navigation cube to the bottom of the screen
-settings.snapCube.bottom = "Botten";
 // Extra snapping views on the edges and corners of the navigation cube
-settings.snapCube.edgeCorner = "";
-settings.snapCube.edgeCorner.help = "";
+settings.snapCube.edgeCorner = "Kanter och hörn";
+settings.snapCube.edgeCorner.help = "Lägger till fästvyer på kubens kanter och hörn (bärnstensfärgade zoner).";
 // Flip the camera (rotate 180° to see the other side)
 settings.snapCube.flip = "Vänd 180°";
 settings.snapCube.flip.help = "Vänd vy om vyn redan är snappad.";
-// Move the navigation cube on the left side of the screen
-settings.snapCube.left = "Vänster";
+// Dragging the navigation cube rotates like the Turntable mode, even if the camera is in Trackball
+settings.snapCube.turntable = "Dragning med vändskiva";
+settings.snapCube.turntable.help = "När du drar kuben roterar kameran utan att rulla och stannar vid varje fästvy.
+
+Inaktivera detta för att i stället dra kuben med Trackball-rotation. Dragningen förblir horisontell eller vertikal i båda fallen.";
 // Stats (information logs about the scene displayed on screen)
 settings.stats = "Statistik";
 settings.stats.all = "Visa fullständig scen";
-settings.stats.right = "Höger";
 // If the object is opened (a simple plane for example), two sided means we'll be able to see if from the two sides of the planes
 settings.twoSided = "Två sidor";
 settings.twoSided.help = "Ytor kommer att synas från båda sidor.";
@@ -2185,7 +2417,6 @@ shading.environment.attachedToCamera.help = "Fäst miljön vid kameran.
 Detta kommer att säkerställa att ljuset är konsekvent, vilket kan vara användbart för skulpturändamål.";
 shading.environment.backgroundBlur = "Oskärpa (bakgrund)";
 shading.environment.exposure = "Exponering";
-shading.environment.import = "Importera HDR";
 shading.environment.rotation = "Rotation";
 shading.environment.rotation.help = "Du kan rotera miljön genom att dra 3 fingrar horisontellt på vyn.";
 // Randomize colors
@@ -2196,7 +2427,6 @@ shading.instance.help = "Samma som Objekt-ID, men instanserna kommer att ha samm
 // Lights
 shading.lights = "Belysning";
 shading.lights.addLight = "Lägg till ljus";
-shading.lights.warning = "Belysning kräver PBR-skuggningsläge.";
 // Fast rendering mode for sculpting purpose
 shading.matcap = "MatCap";
 shading.matcap.global = "Använd global MatCap";
@@ -2245,11 +2475,6 @@ shortcut.voxel = "Voxel";
 shortcut.wireframe = "Tråd";
 shortcut.xray = "Röntgen";
 
-sonar.connect = "Anslut SonarPen";
-sonar.connect.confirm = "Anslut SonarPen?";
-sonar.connect.confirm.warning = "Sonar Pen kommer att använda mikrofonen (ljudåterkoppling) för att upptäcka pennans tryck.";
-sonar.disconnect = "Koppla från SonarPen";
-
 // space
 space.local = "Lokal";
 space.screen = "Skärm";
@@ -2272,9 +2497,7 @@ stat.ramHistory = "Historik";
 stat.ramOther = "Övrigt";
 // Memory taken by the scene
 stat.ramScene = "Scen";
-stat.scene.face = "Scenytor";
 stat.scene.vertex = "Vertexer i scenen";
-stat.triangles = "Trianglar";
 stat.used = "Använd: $0";
 // Memory used by the app (RAM, not storage!)
 stat.usedMemory = "Använt minne";
@@ -2289,6 +2512,7 @@ stat.vramTextures = "Vram Texturer";
 
 status.exit = "Osparade ändringar! Vill du spara innan du stänger?";
 status.exit.no = "Spara inte";
+status.exit.title = "";
 status.exit.yes = "Spara";
 
 store.description.baking = "• Baking
@@ -2366,10 +2590,25 @@ stroke.alpha.fit.help = "Detta alternativ är endast relevant om alpha- och bors
 
 När det är aktiverat, kommer varje bild att kaklas oberoende utan mellanrum.
 Du kan inaktivera detta alternativ om du vill hålla alpha och andra bilder synkroniserade, ifall deras proportioner inte är desamma.";
+// Title of the popup that corrects the alpha image itself
+stroke.alpha.fix = "Korrigera alfa";
+// Follows a number: "30% negative pixels clamped to zero"
+stroke.alpha.fix.clamped = "% negativa pixlar begränsade till noll";
+// Under the two previews of the popup: the current image on the left, the corrected one on the right
+stroke.alpha.fix.compare = "Aktuellt → korrigerat";
+// Mirror the image left/right
+stroke.alpha.fix.flipX = "Vänd vågrätt";
+// Mirror the image top/bottom
+stroke.alpha.fix.flipY = "Vänd lodrätt";
+// Turn the image by a quarter
+stroke.alpha.fix.rotate = "Rotera 90°";
+// The border pixels do not all share the same value, so no single mid value fits them
+stroke.alpha.fix.spread = "Kanten är inte enhetlig.";
 // Invert the pixel (black, white)
 stroke.alpha.invert = "Invertera pixlar";
 // Middle-point value at which no deformation occurs
 stroke.alpha.midValue = "Mellanvärde";
+stroke.alpha.midValue.detect.help = "Läser mellanvärdet från bildens kant.";
 stroke.alpha.midValue.help = "Mittpunktsvärdet där ingen deformation förekommer.
 
 (Mellanhål värde = 0)
@@ -2383,6 +2622,7 @@ stroke.alpha.midValue.help = "Mittpunktsvärdet där ingen deformation förekomm
 (Mellanhål värde = 1)
 • Svart: negativ förskjutning
 • Vit: ingen förskjutning";
+stroke.alpha.midValue.pick.help = "Väljer mellanvärdet direkt på alfan.";
 // Alpha rotation
 stroke.alpha.rotation = "Rotation";
 stroke.alpha.rotation.lock.help = "Lås alfans orientering.
@@ -2453,11 +2693,10 @@ Detta liknar hur alpha-värden samplas.";
 stroke.falloffProject.sphere = "Sfär";
 // Synonymous: Scatter/Jitter/Randomize
 stroke.jitter = "Randomisera";
-stroke.jitter.period = "Period";
+stroke.jitter.period = "";
 stroke.jitter.period.help = "Längden på jittercykeln.
 Öka för långsamma, rullande variationer.
 Minska för snabbt brus.";
-stroke.jitter.period.hint = "Långsammare";
 // Make the brush stroke lag behind the pointer
 stroke.lazyRadius = "Slö repsstabilisator";
 stroke.lazyRadius.help = "Penseldrag kommer att ligga efter pekarens position enligt ett visst avstånd.
@@ -2468,10 +2707,6 @@ stroke.lazySmooth = "Penselslätning";
 stroke.lazySmooth.help = "Genomsnittlig flera pekarposition för att få ett jämnare penseldrag.
 
 Med höga värden kommer penseldraget att ligga efter pekaren men till slut hinna ikapp.";
-stroke.minSpacing.help = "Avstånden mellan varje penseldrag, relativt till verktygets radie.
-
-Lägre värde ger ett mjukare penseldrag men prestandan försämras.";
-stroke.minSpacingAdjustIntensity.help = "Justera penselns intensitet för att säkerställa konsekvent deformation beroende på penseldragsavståndet.";
 // determine normal direction
 stroke.normal.direction = "Riktning";
 stroke.normal.direction.auto = "Auto";
@@ -2494,8 +2729,6 @@ stroke.normalFalloff = "Avtonings-normalfilter";
 stroke.normalFalloff.help = "Uteslut punkter vars normaler avviker för mycket från ytnormalen.
 
 Användbart för att måla veck eller upphöjningar.";
-// small tip/warning
-stroke.onlyLasso = "Inställningar endast aktiva för lassoverktyget.";
 // sculpt on hide or mask
 stroke.protect = "Skyddsområde";
 stroke.protect.hide.help = "När den är inställd på auto, redigeras dolda ytor om wireframe på de dolda ytorna är synliga (se wireframe-menyn).";
@@ -2555,8 +2788,13 @@ stroke.type.roll = "Rulla";
 stroke.type.tile = "Platta";
 // Sculpt and paint with alpha projected on 3 axis
 stroke.type.triplanar = "Triplanar";
+// Drag on the surface to grab a shape from it and turn it into a VDM stamp
+stroke.type.vdmPick = "Fånga VDM";
 // The tool can use DynTopo
 stroke.useDynamic = "Tillåt dynamisk topologi";
+
+stroke.vdmPick.tolerance = "";
+stroke.vdmPick.tolerance.help = "";
 
 // Symmetry
 symmetry = "Symmetri";
@@ -2572,7 +2810,6 @@ symmetry.edit = "Gizmo redigera";
 symmetry.edit.help = "Du kan fritt ställa in symmetriplanet.
 
 Den här funktionen är lite experimentell och du bör förmodligen aldrig använda den.";
-symmetry.edit.warning = "Symmetrieditering är experimentell.";
 symmetry.enable = "Aktiverad";
 // Move the object to the other side of the symmetry (mirror it as well)
 symmetry.flip = "Vänd objekt";
@@ -2581,11 +2818,7 @@ symmetry.fromPivot = "Från pivot";
 symmetry.limited = "Antalet upprepningar är begränsat till $0!";
 // method
 symmetry.method = "Metod:";
-// Local means: in the coordinate of the object (synonym: relative)
-symmetry.method.local = "Lokal";
 symmetry.method.local.help = "Symmetriplanen kommer att röra sig längs med mesh när du använder ett av omvandlingsverktygen (Gizmo eller Transformera).";
-// Local means: in the coordinate of the scene (synonym: absolute)
-symmetry.method.world = "Värld";
 symmetry.method.world.help = "Symmetriplanen är fast och kommer inte att röra sig.";
 // Reapply the mesh mirror, does not impact the topology
 symmetry.mirror = "Spegla";
@@ -2599,17 +2832,10 @@ symmetry.mirror.keepTopology = "behåll topologi";
 symmetry.mirrorFail = "Ingen symmetri kunde detekteras.
 
 Vill du påtvinga symmetri genom att spegla meshen?";
-symmetry.mirrorUseMasking = "Skydda maskerat område";
-symmetry.mirrorUseMasking.help = "Behåll maskeradt område intakt.
-
-Detta alternativ kommer att ignoreras med icke-symmetrisk topologi (eller frånkopplade ytor, som ett par ögon).";
-// Synonym: Offset
-symmetry.offset.title = "Förskjutning";
 symmetry.offsetX = "Förskjutning X";
 symmetry.offsetY = "Förskjutning Y";
 symmetry.offsetZ = "Förskjutning Z";
 symmetry.plane.title = "Plan";
-symmetry.primitiveWarning = "Penselns symmetri är endast tillgänglig för validerade primitiver, med undantag för Triplanar.";
 // Instead of planar symmetry, use a radial symmetry
 symmetry.radial.title = "Radiell";
 symmetry.radialX = "Radiell X";
@@ -2629,11 +2855,18 @@ symmetry.showLine = "Visa linje";
 symmetry.showPlane = "Visa plan";
 // after mirroring, separate into multiple output (synonym: split, separate)
 symmetry.split = "Dela";
+// Half of a two line toggle: edit how many repeats span the object
+symmetry.tile.count = "Antal";
+// Half of a two line toggle: edit the distance between two repeats
+symmetry.tile.distance = "Avstånd";
+// The distance between two repeats of the sculpt, so it tiles seamlessly (synonym: wrap, repeat)
+symmetry.tile.title = "Platta";
 symmetry.toolIgnore = "Det aktuella verktyget ignorerar symmetri.";
 
 // Three-state toggle button (auto, no, yes)
 toggle.auto = "Auto";
 toggle.no = "Nej";
+toggle.off = "Av";
 toggle.yes = "Ja";
 
 // If an option is shared among the tools
@@ -2662,6 +2895,8 @@ tool.elastic = "Elastisk";
 tool.faceGroup = "Ytgrupp";
 tool.faceGroup.autoPick = "Auto-välj";
 tool.faceGroup.flush = "Ta bort oanvänd";
+// Face group tap action: the tapped group and what lies beyond it get unmasked, the gizmo lands on the joint
+tool.faceGroup.pose = "Pose";
 tool.faceGroup.skip = "Hoppa över små grupper baserat på:";
 tool.faceGroup.skipArea = "Ytområde";
 tool.faceGroup.skipArea.help = "Skapa inte en ny grupp om det nya gruppens ytarea är lägre än denna tröskel.
@@ -2675,6 +2910,8 @@ tool.flatten = "Platta ut";
 tool.flatten.fill = "Fyll";
 tool.flatten.planeLockNormal = "Lås planriktning";
 tool.flatten.planeLockOrigin = "Lås planorsprung";
+// Give the viewport back to the tool: its options come back and it can draw again
+tool.focus = "Tillbaka till verktyget";
 // Ideally short strings (Rotate, Translate and Scale the object)
 tool.gizmo = "Gizmo";
 // Ideally short strings (Align/Snap the gizmo to world axis)
@@ -2686,7 +2923,6 @@ tool.gizmo.allowInput.help = "Tillåt numerisk inmatning när du trycker på en 
 tool.gizmo.autoHide = "Dölj vid interaktion";
 // If true, there is less spacing between gizmo handlers (rotate, scale, etc)
 tool.gizmo.compact = "Kompakt";
-tool.gizmo.depth = "Djup";
 tool.gizmo.distribute = "Fördela";
 // Ideally short strings
 tool.gizmo.editPivot = "Pivot";
@@ -2697,8 +2933,6 @@ tool.gizmo.linearRollThreshold.help = "Vinkeln för att välja mellan linjär el
 Värden över detta tröskel kommer att använda cirkulär rull.
 
 Om du föredrar den linjära rullen (riktningen för tangenten), ställ bara in detta värde till 90°.";
-// Ideally short strings (Local/Relative space)
-tool.gizmo.local = "Lokal";
 // Ideally short strings (Snap translation)
 tool.gizmo.moveSnap = "Snap";
 tool.gizmo.order = "Ordning";
@@ -2707,6 +2941,26 @@ tool.gizmo.order.line = "Linje";
 tool.gizmo.order.sphere = "Sfär";
 // Ideally short strings (Pin the gizmo, so that it stays in place when switching between objects)
 tool.gizmo.pin = "Fäst";
+// Title of the pivot reset options (where to put the pivot back)
+tool.gizmo.reset = "Återställ";
+// Pivot orientation snapped to the world axes
+tool.gizmo.reset.align = "Rikta in";
+tool.gizmo.reset.align.help = "Riktar in pivotpunkten efter världsaxlarna och behåller positionen.";
+tool.gizmo.reset.auto = "Auto";
+tool.gizmo.reset.auto.help = "Objektets mitt, inriktad efter dess transformation.";
+tool.gizmo.reset.bottom = "Botten";
+tool.gizmo.reset.bottom.help = "Objektets nedre mittpunkt, inriktad efter dess transformation.
+Tryck igen för att använda begränsningsboxen i världskoordinater.";
+tool.gizmo.reset.center = "Mitten";
+tool.gizmo.reset.center.help = "Objektets mitt, med bibehållen orientering.";
+tool.gizmo.reset.help = "Flyttar tillbaka pivotpunkten till en känd plats. Dess position och orientering styr gizmot.";
+// Pivot on the center of the unmasked area
+tool.gizmo.reset.mask = "Mask";
+tool.gizmo.reset.mask.help = "Mitten av det omaskerade området, med bibehållen orientering.
+Tryck igen för att växla till det maskerade området.";
+// Pivot on the object origin
+tool.gizmo.reset.object = "Objekt";
+tool.gizmo.reset.object.help = "Objektets origo, inriktat efter dess transformation.";
 // Puts the gizmo back on its automatic placement (position and orientation)
 tool.gizmo.resetPivot = "Återställ pivot";
 // Ideally short strings (Snap angle)
@@ -2727,10 +2981,6 @@ tool.gizmo.tap.normal.help = "Flytta gizmon till den första skärningspunkten o
 tool.hide = "Dölj";
 // Fill the object's hole
 tool.hole = "Hål utfyllnad";
-tool.hole.bridges = "Skärmrymds-boolean";
-tool.hole.bridges.help = "Om detta alternativ är aktiverat kan du slå hål i volymen.
-Snittlutningen kommer också att följa närmare skärformens kontur.";
-tool.hole.fillHoles = "Fyll hål";
 tool.hole.method.boolean = "Boolean";
 // synonym: Alternative method
 tool.hole.method.fill = "Fyll";
@@ -2790,15 +3040,27 @@ Det kommer att använda lagerdata för att begränsa förskjutningen över pense
 tool.mask = "Mask";
 // Blur the painted mask
 tool.mask.blur = "Sudda";
+// Strengthen the mask intensity without changing its shape (opposite of Dilute)
+tool.mask.boost = "Förstärk";
+// Mask the open boundary of the mesh (the edge of a plane, the rim of a hole)
+tool.mask.border = "Kant";
+// Negative side of the Cavity slider: only the raised areas stay paintable
+tool.mask.bumps = "Ojämnheter";
+// Rebuild the mask from the surface curvature: only the recessed areas stay paintable
+tool.mask.cavity = "Hålighet";
 // Clear the painted mask
 tool.mask.clear = "Rensa";
 tool.mask.clearAll = "Rensa allt";
-// Mask or Unmask a region (leave other region that unconnected intact)
-tool.mask.flipConnected = "Invertera mask (ansluten)";
+// Weaken the mask intensity without changing its shape (opposite of Boost)
+tool.mask.dilute = "Försvaga";
+// Enlarge the masked area, one ring of vertices at a time
+tool.mask.grow = "Utöka";
 // Invert the painted mask
 tool.mask.invert = "Invertera";
 // Sharpen the edge of the painted mask area
 tool.mask.sharpen = "Skärpa";
+// Reduce the masked area, one ring of vertices at a time (opposite of Grow)
+tool.mask.shrink = "Krymp";
 // Ideally short strings
 tool.mask.unmask = "Avmaskera";
 // Ideally short strings (Selector Mask, use lasso/ellipse,etc shape to mask the mesh)
@@ -2813,6 +3075,9 @@ tool.matrix.action.origin = "Flytta ursprung";
 tool.matrix.action.origin.help = "Flytta meshen till världsursprunget.";
 tool.matrix.action.reset = "Återställ";
 tool.matrix.action.reset.help = "Återställ meshens transformation till identiteten.";
+// Move the pivot alone, the objects stand still
+tool.matrix.editPivot = "Redigera";
+tool.matrix.editPivot.help = "Flytta endast pivotpunkten; objekten står stilla.";
 tool.matrix.rotation = "Rotation";
 tool.matrix.scale = "Skala";
 // Synonym: shear, https://en.wikipedia.org/wiki/Shear_matrix or https://en.wikipedia.org/wiki/Shear_mapping
@@ -2827,10 +3092,18 @@ Om mesh har masker, eller om symmetri är aktiverat, fungerar det på samma sät
 tool.matrix.target.group = "Grupp";
 tool.matrix.target.group.help = "Flytta noden, ignorera symmetri och maskering.
 Resten av hierarkin kommer också att transformeras.";
+// Transform the object and its children, and every other instance of it
+tool.matrix.target.groupInstance = "Instans";
+tool.matrix.target.groupInstance.help = "Som Grupp, men alla instanser av noden flyttas med.
+Symmetri och maskering ignoreras. Resten av hierarkin transformeras också.";
 // Transform the object alone (the children stands still)
 tool.matrix.target.object = "Objekt";
 tool.matrix.target.object.help = "Flytta bara objektet, ignorera symmetri och maskering.
 Endast den redigerade noden kommer att flyttas, barnen kommer att förbli stilla.";
+// Transform the object alone, and every other instance of it
+tool.matrix.target.objectInstance = "Instans";
+tool.matrix.target.objectInstance.help = "Som Objekt, men alla instanser av objektet flyttas med.
+Symmetri och maskering ignoreras. Underordnade objekt står stilla.";
 // Auto apply the transform on the vertices
 tool.matrix.target.vertex = "Vertice";
 tool.matrix.target.vertex.help = "Försök att applicera transformeringen på vertikalerna, det kommer inte att fungera på icke-validerade primitiver.
@@ -2839,8 +3112,6 @@ tool.matrix.translation = "Förflyttning";
 tool.matrix.uniformScale = "Jamförd skala";
 // Ideally short strings (Measure distance between 2 points)
 tool.measure = "Mät";
-// dimension box
-tool.measure.box = "Mått";
 // Perimeter of a plane cross section
 tool.measure.crossSection = "Tvärsnitt";
 // Geodesic distance
@@ -2881,8 +3152,6 @@ tool.polish = "Polera";
 tool.project = "Projekt";
 // Radius of the tool (size)
 tool.radius = "Radie";
-// Ideally short strings (Quad Remesher)
-tool.remesh = "Quad Remesher";
 tool.remesh.density = "Täthet";
 tool.remesh.guides = "Guider";
 tool.remesh.half = "Halv";
@@ -2895,12 +3164,15 @@ tool.settings = "Inställningar";
 tool.settings.none = "Detta verktyg har inga specifika inställningar.";
 // Shape for the tools: Trim / Split / Project / SelMask
 tool.shape = "Form";
-// Auto-validate the drawn shape
-tool.shape.autoValidate = "Autovalidera";
 // Ideally short strings (Whether a shape is closed or not, a tube is open, a torus is closed)
 tool.shape.closed = "Stängd";
 // Ideally short strings (Curve selection, same as Lasso and it's an open shape)
 tool.shape.curve = "Kurva";
+tool.shape.edit = "";
+tool.shape.edit.help = "";
+tool.shape.edit.longPress = "";
+tool.shape.edit.off = "";
+tool.shape.edit.on = "";
 // Ideally short strings (Ellipse selection)
 tool.shape.ellipse = "Ellips";
 // The selection ellipse will be centered around the cursor
@@ -2913,8 +3185,6 @@ tool.shape.flip = "Vänd";
 tool.shape.lasso = "Lasso";
 // Ideally short strings (Line selection, split the screen in half)
 tool.shape.line = "Linje";
-// Rotate by step (angle value)
-tool.shape.lineRotateStep = "Rotera stegvis";
 // Ideally short strings (Path selection, same as Lasso but with more precision and it's an open shape)
 tool.shape.path = "Bana";
 // Ideally short strings (Polygon selection, same as Lasso but with more precision)
@@ -2979,6 +3249,44 @@ tool.trim.detail.protect.help = "Jämna inte ut och förenkla inte klippgränsen
 Behåller den ursprungliga mesh-topologin nära maskerade och dolda ytor.";
 // Ideally short strings (Revolving surface along a curve)
 tool.tube = "Rör";
+// Ideally short strings (Vector displacement stamp)
+tool.vdm = "VDM";
+// Button that adds a plane ready to be sculpted into a VDM
+tool.vdm.addPlane = "Lägg till plan";
+tool.vdm.fix = "";
+tool.vdm.fix.detect = "";
+tool.vdm.fix.detect.help = "";
+tool.vdm.fix.help = "";
+tool.vdm.fix.invert = "";
+tool.vdm.fix.invert.help = "";
+tool.vdm.fix.offset = "";
+tool.vdm.fix.offset.help = "";
+// Scales only the height of the vdm stamp, lateral displacement is unchanged
+tool.vdm.height = "Höjd";
+// Button that opens the popup that adds a plane to sculpt a VDM on, "..." is appended in the app
+tool.vdm.new = "Ny VDM";
+// Title of the popup that adds a plane to sculpt a VDM on
+tool.vdm.plane = "Skulptera en ny VDM";
+// The border is the outer edge of the plane
+tool.vdm.plane.border = "Maskera kant";
+tool.vdm.plane.border.help = "Maskerar planets yttre ring så att kanten förblir platt.
+
+Skulptering ända ut till kanten skapar en hård kant i stämpeln.";
+tool.vdm.plane.help = "Lägger till ett plan som är konfigurerat för att skulptera en VDM, med UV, vald upplösning och en riktning mot kameran.
+
+Detta skapar bara planet. Så här skapar du stämpeln:
+• Skulptera formen på planet
+• Öppna `Topologi -> Baka`
+• Välj `VDM` och tryck sedan på `Baka`
+
+Nomad lägger till den nya stämpeln i VDM-biblioteket och markerar den.
+
+Undvik DynTopo eftersom det skadar planets UV och förvränger stämpeln.";
+// (see Glossary for Layer)
+tool.vdm.plane.layer = "Skulptera på ett lager";
+tool.vdm.plane.layer.help = "Skapar ett skulpteringslager ovanför det platta planet, som bakningen använder som referens.
+
+Målning behöver också ett lager. Utan ett lager täcker materialet hela kvadraten vid stämpling, inte bara det målade området.";
 // Ideally short strings (View tool, do nothing in particular)
 tool.view = "Vy";
 // Always display the camera shortcut buttons on the viewport
@@ -2986,8 +3294,6 @@ tool.view.stickyCamera = "Kameragenväg (alltid)";
 
 // Topology
 topology = "Topologi";
-// Name of the quad remeshing engine, should probably stay untranslated
-topology.autoremesher = "AutoRemesher";
 topology.autoremesher.adaptivity = "Anpassning";
 topology.autoremesher.adaptivity.help = "Anpassa quad-tätheten efter krökningen.
 
@@ -3005,13 +3311,17 @@ topology.autoremesher.smoothAngle.help = "0 håller ytan fasetterad under ommesh
 
 Högre värden jämnar ut ytan genom att ta hänsyn till vertexnormalerna.";
 topology.bake.backup = "Backup";
+// Multires here means the subdivision levels of the object itself
+topology.bake.multires = "Använd multires";
+topology.bake.multires.help = "Läser den höga upplösningen via indelningsnivåerna i stället för att kasta strålar.
+
+Snabbare och utan projektionsfel.
+
+Stäng av för att baka med burinställningarna nedan.";
 // Cage is a specific term; synonym: "Bake offset"
 topology.bake.offset = "Strål offset";
-// Bake opacity (from mask data)
-topology.bake.opacityFromMask = "Mask -> Opacitet";
 // Bake here means "create texture (from another mesh data)"
 topology.bake.other = "Från högupplöst";
-topology.bake.radius = "Burens radie";
 topology.bake.resolution = "Upplösning";
 topology.bake.searchDistance = "Sökavstånd";
 topology.bake.searchDistance.help = "Maximalt avstånd som används för att hitta källytan.";
@@ -3037,6 +3347,29 @@ Följande logik kommer att gälla för vilka objekt som används för bakning:
 - alla valda objekt och huvudsakliga valda objekt kommer att bakas (det starkaste markerade i scenmenyn)
 - om det bara finns ett valt objekt kommer Nomad istället överväga alla synliga objekt
 - om alla objekt är dolda (till exempel genom att använda Solo), kommer hela scenen att beaktas";
+// Warning shown after a VDM bake, the border of the plane is its outer edge
+topology.bake.vdm.border = "Skulpturen når planets kant, så VDM visar en hård kant när den stämplas.";
+// Error shown when a VDM bake fails
+topology.bake.vdm.failed = "Det gick inte att skapa VDM.";
+// Bake here means "create a VDM (from a sculpted plane)"
+topology.bake.vdm.help = "Skapar en VDM från det markerade objektet och lägger till den i VDM-biblioteket.
+
+Typiskt arbetsflöde:
+• Lägg till ett plan eller välj `Ny VDM` i VDM-väljaren för att lägga till ett redan konfigurerat plan
+• Skulptera formen på det och håll kanten platt
+• Baka den!
+
+Planets UV definierar kvadraten som bakas, så objektet behöver UV.
+
+Undvik DynTopo, det försämrar planets UV och VDM:en blir förvrängd.
+
+Skulptering i ett lager ger det mest exakta resultatet, eftersom det platta planet fortfarande finns kvar under.
+
+Även målningen behöver ett lager, annars stämplas materialet över hela kvadraten i stället för bara där du målat.";
+// Warning shown when the picked region cannot be flattened; a disc is a simple patch with a single outer edge
+topology.bake.vdm.notDisk = "Det valda området är inte en enkel skiva. Välj ett mindre område eller ett utan hål.";
+// Warning shown when the picked region holds too many polygons to be flattened
+topology.bake.vdm.tooBig = "Det valda området har för många polygoner. Välj ett mindre område.";
 // Synonym: Simplify (Decimate reduce the number of triangles/quads while retaining details as much as possible)
 topology.decimate = "Decimera";
 topology.decimate.boundary = "Bevara kanter";
@@ -3088,8 +3421,6 @@ topology.dynamic.useFalloff = "Använd penseldragets avtoning";
 // Whether the pencil pressure can impact the level of detail
 topology.dynamic.usePressure = "Använd tryck på radien";
 topology.dynamic.usePressure.help = "Använd det här alternativet om du vill att verktygets tryck på radien ska påverka detaljnivån.";
-// Instant quad remesher
-topology.instant = "Instant Mesh";
 topology.instant.angle = "Veckvinkel";
 topology.instant.hole = "Max fyllhål";
 topology.instant.hole.help = "Algoritmen kan ibland producera oönskade hål.
@@ -3121,7 +3452,6 @@ topology.multires.linear.help = "Dela enkelt upp meshen utan att applicera någo
 topology.multires.lock = "Lås (LV0)";
 // Only show the lowest resolution wireframe
 topology.multires.minWireframe = "Endast nivå 0";
-topology.multires.previewHighest = "Förhandsvisa högsta upplösning";
 // Synonym: Unsubdivide, Un-subdivide
 topology.multires.reverse = "Omvänd";
 topology.multires.reverse.confirm = "Kunde inte skapa grundläggande indelning.
@@ -3134,10 +3464,6 @@ topology.multires.subdivide.limit = "Indelningsgräns överskriden, se $0";
 // Navigate toward multiple resolutions (go to higher level)
 topology.multires.up = "Multiresolutionsnivå →";
 topology.nonManifold = "Icke-manifold";
-// Quad remesher
-topology.quadRemesh = "Quad-omnätning";
-// Name of the quad remeshing engine, should probably stay untranslated
-topology.quadriflow = "QuadriFlow";
 topology.quadriflow.adaptiveScale = "Adaptiv skala";
 topology.quadriflow.adaptiveScale.help = "Anpassa quad-storleken efter ytans krökning.";
 topology.quadriflow.keepSharp = "Behåll skarpa kanter";
@@ -3151,7 +3477,6 @@ topology.remesh = "Remesha";
 // Number of iterations the algorithm will perform
 topology.reproject.iterations = "Iterationer";
 topology.reproject.layers.help = "Överför andra lager till det valda nätet.";
-topology.reproject.normalOffset = "Normalavvikelse";
 topology.reproject.projection.blend = "Adaptiv blandning";
 topology.reproject.projection.blend.help = "Blanda normalstrålen och närmaste yta enligt avstånd och strålprioritet. Om den ena missar, använd den andra.";
 topology.reproject.projection.fallback = "Stråle + närmaste";
@@ -3160,19 +3485,10 @@ topology.reproject.projection.nearest = "Närmaste";
 topology.reproject.projection.nearest.help = "Projicera till den närmaste punkten på källytan.";
 topology.reproject.projection.ray = "Stråle";
 topology.reproject.projection.ray.help = "Projicera längs ytans normal.";
-// tweaking value
-topology.reproject.rayBias = "Strålprioritet";
-topology.reproject.rayBias.help = "Två metoder används för omprojektion:
-• närmast: den närmaste punkten på ytan
-• stråle: skärningspunkt genom normal riktning
-
-Högre biasvärden kommer att gynna strålgenomgång istället för den närmaste ytan.";
 topology.reproject.rayPreference = "Strålprioritet";
 topology.reproject.rayPreference.help = "Balansera den adaptiva blandningen mot normalstrålens resultat.";
 topology.reproject.relax = "Avslappna";
 topology.reproject.relax.help = "Avslappning bör föredras när mesh är låg poly.";
-topology.reproject.shpereCast = "Sfärprojektion som reserv";
-topology.reproject.shpereCast.help = "Om normalstrålens omprojektion misslyckas kommer Nomad att falla tillbaka till närmaste ytskärning.";
 // project a high resolution mesh details onto another
 topology.reproject.title = "Projektera om";
 topology.reproject.title.help = "Projektera skulpterade detaljer, målningar och lager från de närmaste synliga objekten.
@@ -3200,8 +3516,6 @@ topology.surface.method.uniformisation = "Uniformisering";
 topology.surface.remesh = "Omnäta";
 topology.surface.useMasking = "Skydda maskerat område";
 topology.surface.useMasking.help = "De maskerade områdena kommer att skydda topologin från att ändras.";
-topology.target.faces = "Målytor";
-topology.target.points = "Målpunkter";
 topology.target.quads = "Målquads";
 // Target a certain number of triangles, faces and vertices
 topology.target.triangles = "Måltrianglar";
@@ -3232,6 +3546,8 @@ topology.uv.title = "UV-uppackning";
 topology.uv.unwrap = "Packa upp";
 // Create a new object by recomputing a new topology, by using voxels (see Glossary)
 topology.voxel = "Voxel Remeshing";
+// The voxel detail expressed as a world size, the same value gives the same detail on any object
+topology.voxel.edgeLength = "Kantlängd";
 topology.voxel.help = "Remesh genom att sampla meshen på ett rutnät.
 
 Om objektet inte är stängt (vattentät), kommer en hålfyllningsalgoritm att tillämpas först.
@@ -3295,7 +3611,6 @@ version.restore = "Återställ köp";
 version.trialLayer = "Provversion: 1 lager per objekt";
 version.trialNoExport = "Provversion: Ingen export";
 version.trialNoLink = "Testversion: ingen länk";
-version.update = "Uppdatering tillgänglig!";
 version.webUnlock = "Webbversionen stöds inte officiellt på samma sätt som de inbyggda apparna.
 
 Lås upp den fullständiga versionen genom att ange din Polar.sh-licensnyckel";
