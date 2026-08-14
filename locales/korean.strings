@@ -115,10 +115,18 @@ alert.forcePainting.tool = "페인트 표시가 활성화되었으며, 오브젝
 alert.gizmo.editObject = "오브젝트 편집 모드.";
 // In this mode, the user moves the Gizmo's pivot instead of the object
 alert.gizmo.editPivot = "피벗 편집 모드.";
+// Button that turns the heightmap render off
+alert.heightmap.hide = "하이트맵 숨기기";
+// The viewport renders the depth of the scene instead of the shaded objects
+alert.heightmapOn = "하이트맵이 켜져 있습니다!";
 // The user decided to display hidden faces
 alert.hideIgnored = "숨기기는 무시됩니다!";
 // Error when an algorithm needs the object to have a hole (usually to fill it)
 alert.hole.nothing = "오브젝트에 구멍이 없습니다!";
+// Button that turns the inspector off
+alert.inspect.hide = "인스펙터 숨기기";
+// The viewport renders a material channel instead of the shaded objects
+alert.inspectOn = "인스펙터가 켜져 있습니다!";
 // The lattice deformation was applied with a different mask or visibility state
 // (the gui appends the icon of the changed states)
 alert.lattice.desync = "격자가 동기화되지 않았습니다!";
@@ -167,6 +175,8 @@ alert.state.trial = "평가판: 실행 취소가 제한됨";
 alert.trim.full = "트림 중단: 오브젝트 전체가 잘립니다.";
 // The user tried to trim an object but the selected region didn't touch the object
 alert.trim.nothing = "잘라낼 대상이 없음.";
+// The remesher rebuilds the mesh without a UV layout, the painting is kept as vertex colors
+alert.uvLost = "";
 // List of disabled features when View Mode is selected
 alert.view.disabled = "뷰 모드에서 비활성화된 기능:";
 // Primitive widgets are small viewport controls used to modify a primitive
@@ -208,6 +218,9 @@ background.imageAlpha = "불투명도";
 background.imageEnable = "참조 이미지";
 // The image will be displayed in overlay (used as a reference by the artist)
 background.imageOverlay = "오버레이";
+// Apply the post process effects on the reference image
+background.imagePostProcess = "포스트 프로세싱";
+background.imagePostProcess.help = "참조 이미지에 포스트 프로세싱 효과를 적용합니다. 원래 색상을 유지하려면 비활성화하세요.";
 background.imageReset = "설정 초기화";
 // Rotation of the reference image
 background.imageRotate = "회전";
@@ -286,6 +299,8 @@ binding.rotateLighting = "광원 회전";
 // Select all the objects in the scene
 binding.selectAll = "모두 선택";
 binding.snap.toggle = "곡선 편집 전환";
+// Same as binding.snap.toggle, on a small shortcut button
+binding.snap.toggle.short = "곡선 편집";
 // Snap the view (while rotating)
 binding.snapViewOnRotate = "뷰 스냅 (회전 도중)";
 binding.spacemouse = "SpaceMouse";
@@ -371,6 +386,8 @@ camera.doubleTapBackgroundFocus.toggle = "전환";
 camera.doubleTapFocus.help = "오브젝트를 이중-탭하면 카메라가 이동하여 선택한 지점에 포커스를 맞춥니다.";
 // When we double tap on the object with the finger/stylus
 camera.doubleTapMesh = "오브젝트 두 번 탭";
+// Same as camera.doubleTapMesh, on a small shortcut button
+camera.doubleTapMesh.short = "포커스";
 // When double tapping with the finger/stylus, the camera pivot will be updated
 camera.doubleTapPivot = "이중 탭으로 업데이트";
 camera.doubleTapPivot.help = "오브젝트의 표면을 두 번 탭하면 회전축(피벗)을 업데이트합니다.";
@@ -465,8 +482,6 @@ cube.right = "오른쪽";
 cube.top = "위";
 
 curve.bspline = "B-스플라인 곡선";
-// Curve type, https://en.wikipedia.org/wiki/Centripetal_Catmull%E2%80%93Rom_spline
-curve.catmull = "Catmull-Rom";
 // Merge or collapse one point into another
 curve.merge = "병합";
 curve.pivot = "피벗";
@@ -484,20 +499,16 @@ curve.sharpness = "선명도";
 curve.shift = "가로 이동";
 // snap
 curve.snap = "스냅";
-// whether the tube body stays on the surface between its control points, and along which direction
+// whether the curve body (tube or repeated objects) stays on the surface between its control points, and along which direction
 curve.snap.follow = "따라가기";
-curve.snap.follow.help = "제어점 사이에서 튜브가 작동하는 방식입니다.";
+curve.snap.follow.help = "";
 curve.snap.follow.normal = "노멀";
-curve.snap.follow.normal.help = "튜브는 표면에 유지되며 표면 노멀을 따라 표면 쪽으로 밀립니다.
-
-표면까지 가장 짧은 경로를 사용하므로 옆에서 보는 형태에서도 잘 작동합니다.";
-// only the control points snap, the body of the tube is left alone
+curve.snap.follow.normal.help = "";
+// only the control points snap, the body of the curve is left alone
 curve.snap.follow.points = "포인트";
-curve.snap.follow.points.help = "제어점만 표면에 스냅됩니다.
-
-그 사이에서는 튜브가 그린 형태를 유지하므로 표면을 통과하거나 그 위에 떠 있을 수 있습니다.";
+curve.snap.follow.points.help = "";
 curve.snap.follow.view = "뷰";
-curve.snap.follow.view.help = "튜브는 표면에 유지되며 그릴 때 바라보던 방향을 따라 표면 쪽으로 밀립니다.";
+curve.snap.follow.view.help = "";
 curve.snap.grid = "그리드 (스냅 시)";
 curve.snap.normal = "법선 정렬";
 curve.snap.normal.help = "곡선의 첫 번째와 마지막 제어 포인트에만 영향을 줍니다.
@@ -506,13 +517,19 @@ curve.snap.normal.help = "곡선의 첫 번째와 마지막 제어 포인트에�
 
 인접한 포인트까지의 거리는 유지됩니다.";
 curve.snap.offset = "오프셋";
-curve.snap.offset.help = "값 '100%'은 튜브의 반지름과 같습니다.";
+curve.snap.offset.help = "";
 curve.snap.surface = "표면";
 curve.snap.vertex = "버텍스";
 curve.spiral = "스파이럴";
 curve.spiral.angle = "각도 오프셋";
+curve.spiral.depth = "";
+curve.spiral.flat = "";
+curve.spiral.groups = "";
+curve.spiral.hardness = "";
 curve.spiral.offset = "오프셋";
+curve.spiral.pack = "";
 curve.spiral.scale = "스케일";
+curve.spiral.strands = "";
 curve.spiral.twist = "비틀림 각도";
 // Spline curve, https://en.wikipedia.org/wiki/Spline_(mathematics)
 curve.spline = "스플라인 곡선";
@@ -527,12 +544,22 @@ curve.uniform.help = "곡선은 규칙적인 간격으로 샘플링되어 균일
 
 이 옵션을 비활성화하여 곡선에 새로운 제어점을 추가함으로써 에지 루프를 조금 제어할 수 있습니다.";
 
+// Debug section to import/export the icons of the interface
+debug.customIcons = "사용자 지정 아이콘";
+// Short label for the section shortcut bar
+debug.customIcons.short = "아이콘";
+// Debug section for optional features
+debug.feature = "기능";
 // Debug graphics options
 debug.graphics = "그래픽";
 // Debug option, overrides the rendering to display the depth buffer
 debug.heightmap = "하이트맵";
 // Debug option: display a window with debugging logs
 debug.logs = "로그";
+// Logs window option: break long lines to fit the panel width
+debug.logs.wrap = "자동 줄 바꿈";
+// Debug section for multithreading and speed options
+debug.performance = "성능";
 // Model shortcut window
 debug.shortcut = "단축키 창";
 // Set the desired FPS (frame per second, refresh rate)
@@ -540,6 +567,8 @@ debug.targetFps = "목표 FPS";
 debug.targetFps.help = "비활성화시 기본값은 디스플레이의 리프레시 레이트와 동기화됩니다.";
 // Debug options, generate screenshots with size compatible with the iOS store
 debug.thumbnails = "스토어 썸네일 생성";
+// Same as debug.thumbnails, on a small shortcut button
+debug.thumbnails.short = "썸네일";
 // Debug option, Normalize means transforming the data so that it fits in [0-1] the range
 debug.uvNormalize = "UV 노멀라이즈";
 debug.uvNormalize.help = "Nomad는 [0-1] 타일 안에 있는 UV를 노멀라이즈합니다.";
@@ -638,8 +667,10 @@ file.export.gltf.layer.help = "레이어를 모프(morph)로 내보냅니다. gl
 // Whether we include painting of layers in the exported file (see glossary for layer)
 file.export.gltf.layerPaint = "레이어 페인트";
 file.export.gltf.layerPaint.help = "레이어 페인팅을 내보냅니다. 일반적으로 다른 소프트웨어에서는 무시됩니다.";
-file.export.nomad.assets = "";
-file.export.nomad.assets.help = "";
+file.export.nomad.assets = "MatCap 및 환경 포함";
+file.export.nomad.assets.help = "사용자 지정 MatCap과 환경을 파일에 포함하여 다른 기기에서도 동일하게 보이도록 합니다.
+
+기본 제공 에셋은 Nomad의 일부이므로 포함되지 않습니다.";
 file.export.nomad.help = "노마드 스컬프트 내부 파일 포맷입니다.
 
 이 포맷은 다른 소프트웨어에서는 로드되지 않으며 주로 재가져오기 목적으로 사용됩니다.";
@@ -776,11 +807,8 @@ file.project.unsaved = "변경 내용이 저장되지 않았습니다!";
 file.render = "렌더";
 // height of exported screenshot
 file.render.height = "높이";
-// Resolution ratio of the exported screenshot
-file.render.renderRatio = "렌더 비율";
-file.render.renderRatio.help = "값이 1.0인 경우는 아래 요청된 이미지 크기와 동일한 해상도로 렌더링됨을 의미합니다.
-
-특정 해상도에서 렌더링할 수 없는 경우 (메모리 부족 등의 이유로 충돌) 이 옵션을 사용하십시오.";
+// Warning shown when the requested export resolution is too large for the memory left on the device
+file.render.lowMemory = "이 크기는 이 기기의 남은 메모리에 들어가지 않을 수 있습니다.";
 // Screen resolution parameters for the export screenshot features
 file.render.screenResolution = "스크린";
 // If we include the App Interface in the exported screenshot
@@ -790,7 +818,7 @@ file.render.size = "최종 크기";
 // Desired size of the exported screenshot (custom vs predefined size)
 file.render.size.custom = "커스텀";
 // Save the heightmap render as a new brush alpha instead of exporting it as a file
-file.render.toAlpha = "";
+file.render.toAlpha = "알파로 저장";
 // If true, then the exported screenshot will have transparency data in the image
 file.render.transparent = "투명한 배경";
 file.render.transparent.help = "이 옵션은 2D 제작 소프트웨어에서 메시를 삽입하려는 경우 유용합니다.
@@ -816,6 +844,38 @@ file.select.include = "포함";
 file.select.selected = "선택된";
 file.select.unselected = "미선택";
 file.select.visible = "표시됨";
+
+fog = "안개";
+fog.ambient = "환경";
+fog.ambient.help = "환경광이 포그를 비추는 정도를 조절합니다.";
+fog.anisotropy = "산란 방향";
+fog.anisotropy.help = "포그가 빛을 산란시키는 방향을 조절합니다. 이 특성을 이방성이라고도 합니다.
+
+• 양수 값은 광원을 바라볼 때 포그를 더 밝게 만듭니다.
+• 음수 값은 광원 반대쪽을 바라볼 때 포그를 더 밝게 만듭니다.
+• 0은 빛을 모든 방향으로 균일하게 산란시킵니다.";
+fog.color = "색상";
+fog.color.help = "포그와 포그가 산란시키는 빛의 색상을 설정합니다.";
+fog.density = "밀도";
+fog.density.help = "거리에 따라 포그가 짙어지는 속도를 조절합니다.";
+fog.detail = "";
+fog.detail.help = "";
+fog.detail.scale = "";
+fog.detail.scale.help = "";
+fog.help = "대기 원근감을 더하고 빛줄기를 보이게 합니다.";
+fog.opacity = "최대 불투명도";
+fog.opacity.help = "밀도가 높아도 포그가 장면을 덮을 수 있는 최대량을 제한합니다.";
+fog.shape = "형태";
+fog.shape.help = "장면에서 포그가 채워지는 영역을 조절합니다.";
+fog.shape.uniform = "균일";
+fog.shape.uniform.help = "장면 전체를 포그로 채웁니다.";
+fog.shape.vertical = "수직";
+fog.shape.vertical.bottom = "하단";
+fog.shape.vertical.bottom.help = "포그 띠의 하단 경계 높이를 설정합니다.";
+fog.shape.vertical.help = "포그를 위아래 경계가 부드러운 수직 띠 안에 유지합니다.";
+fog.shape.vertical.preview.help = "가장자리를 조정하는 동안 뷰포트에 안개 띠를 표시합니다.";
+fog.shape.vertical.top = "상단";
+fog.shape.vertical.top.help = "포그 띠의 상단 경계 높이를 설정합니다.";
 
 format.ascii = "아스키";
 format.binary = "바이너리";
@@ -933,6 +993,8 @@ gesture.wheel.speed3d = "속도 (3D 줌)";
 
 // History, list of undo/redo
 history = "작업 내역";
+// Button deleting every operation of the history, freeing the memory and the disk space they use
+history.clear = "기록 지우기";
 // Long press on a state of the history list: deletes it and every older one, $0 is a number of operations
 history.delete.confirm = "기록에서 작업 $0개를 삭제할까요?";
 history.delete.help = "기록 항목을 길게 눌러 해당 항목과 그보다 오래된 모든 기록을 영구적으로 삭제합니다.";
@@ -952,17 +1014,26 @@ history.include.postProcess.help = "포스트 프로세스 편집을 실행 취�
 // include shading parameters (MatCap & HDRIs) editing in the undo/redo
 history.include.shading = "셰이딩";
 history.include.shading.help = "PBR, MatCap, Unlit 모드와 MatCap 및 HDRI를 포함합니다.";
+// How much disk space the history is allowed to use, past it the oldest operations are deleted
+history.limitDisk = "저장 공간 제한";
+history.limitDisk.help = "이 프로젝트의 실행 취소/다시 실행 기록이 사용할 수 있는 최대 저장 공간입니다.
+
+제한에 도달하면 가장 오래된 작업부터 영구적으로 삭제됩니다.
+
+새 제한은 다음 작업이 기록된 후 적용됩니다.";
 // How much memory the history is allowed to use before the older states are moved to the disk
-history.limitMemory = "메모리 제한";
-history.limitMemory.help = "메모리에 보관할 기록의 양입니다.
+history.limitMemory = "RAM 제한";
+history.limitMemory.help = "RAM에 보관되는 실행 취소/다시 실행 기록의 최대 용량입니다.
 
-이전 상태는 디스크로 이동되고 실행 취소 시 다시 불러옵니다. 삭제되지는 않습니다.
+오래된 상태는 저장 공간으로 이동되고 필요할 때 다시 불러옵니다. 삭제되지는 않습니다.
 
-기록은 다음 작업이 기록될 때 업데이트됩니다.";
+새 제한은 다음 편집, 실행 취소 또는 다시 실행 후에 적용됩니다.";
 // Where the undo history is kept when the project is saved (it survives reopening the project)
 history.persist = "기록 저장";
 history.persist.embedded = "포함";
-history.persist.embedded.help = "기록이 프로젝트 파일 안에 저장됩니다. 파일은 커지지만 기록도 함께 이동합니다.";
+history.persist.embedded.help = "기록이 프로젝트 파일 안에 저장됩니다. 파일이 커지고 저장 및 불러오기가 느려집니다.
+
+기록을 파일과 함께 옮겨야 하는 경우가 아니라면 끄기 또는 별도 저장을 권장합니다.";
 history.persist.help = "프로젝트를 저장할 때 실행 취소 기록을 보관하여 프로젝트를 다시 열어도 사용할 수 있게 합니다.";
 history.persist.off = "끄기";
 history.persist.off.help = "기록 없이 프로젝트를 저장합니다.";
@@ -970,6 +1041,17 @@ history.persist.separate = "별도 저장";
 history.persist.separate.help = "기록이 이 기기의 프로젝트 데이터에 저장됩니다. 프로젝트 파일은 작게 유지됩니다.";
 // Redo
 history.redo = "다시 실행";
+// Slider + play button: rewinds to the root and redoes the operations one by one, the value is a number of operations per second
+history.replay = "";
+// Option of the replay popup: the camera follows the replayed operations even when the history "Restore camera" setting is off
+history.replay.camera = "";
+history.replay.camera.help = "";
+// Popup opened by the play button, above its two options
+history.replay.confirm = "";
+history.replay.help = "";
+// Option of the replay popup: runs backwards, undoing from the current state to the root
+history.replay.reverse = "";
+history.replay.reverse.help = "";
 // When enabled, undoing an operation also restores the camera position
 history.restoreCamera = "카메라 복원";
 history.restoreCamera.help = "이 옵션을 활성화하면, 동작을 실행 취소하거나 다시 실행할 때 저장된 카메라의 뷰포인트를 복원합니다.";
@@ -1058,8 +1140,10 @@ interface.inset.title.help = "화면 가장자리에 있는 버튼과 상호 작
 
 슬라이더가 비활성화된 경우, Nomad는 장치 자체에서 반환된 안전 영역 값을 사용합니다.";
 // Move a floating panel by dragging inside it, instead of using its bar
-interface.panelDrag = "";
-interface.panelDrag.help = "";
+interface.panelDrag = "패널 본문 드래그";
+interface.panelDrag.help = "플로팅 패널은 항상 막대를 드래그하여 이동합니다. 이 옵션을 사용하면 패널 본문도 드래그할 수 있습니다.
+
+자동에서는 손가락이나 스타일러스의 드래그가 세로보다 가로 방향일 때만 패널을 이동하므로 세로로 드래그하면 계속 콘텐츠가 스크롤됩니다. 마우스로도 모든 방향으로 드래그하려면 예로 설정하세요.";
 // Interface option (if the menus are transparent or opaque)
 interface.panelTransparent = "패널 투명도";
 // Width of the interface panels
@@ -1117,10 +1201,18 @@ item.delete.confirm.yes = "네, 삭제합니다";
 item.delete.used = "사용된 이미지";
 // Draggable, movable
 item.draggable = "이동 가능";
+// Short button label, turns a stamp (alpha or VDM) back into a plane that can be sculpted again
+item.edit = "";
+item.edit.help = "";
+// Short button label, opens a popup to correct the pixels of an imported image
+item.fix = "";
+item.fix.help = "";
 // Show the folders of a list as a column on its side, instead of a drop down menu
-item.folderColumn = "";
+item.folderColumn = "폴더 열";
+// Show the folders of a drop down menu as small chips filling the width, instead of one per line
+item.folderCompact = "컴팩트 폴더";
 // Show a list of items as one group of items per folder, instead of a single list
-item.folderGroup = "";
+item.folderGroup = "폴더별 그룹화";
 // Hide an item (object, layer, etc)
 item.hide = "가리기";
 // Make an item instance, similar to clone but keeps the underlying geometry (Synonym: link? soft clone?)
@@ -1143,6 +1235,8 @@ item.next = "다음";
 item.none = "없음";
 // The order of an item in a list
 item.order = "순서";
+// Size of the preview images of a list of items, in pixels
+item.previewSize = "";
 // Focus on previous item
 item.previous = "이전";
 // Rename an item (object, tool, etc)
@@ -1155,17 +1249,19 @@ item.reset.confirm = "초기화하시겠습니까?";
 // Save an item (object, tool, etc)
 item.save = "저장";
 item.save.confirm = "저장하시겠습니까?";
-item.saveLibrary = "";
+item.saveLibrary = "라이브러리에 저장";
 // Select an item (object, layer, etc)
 item.select = "선택";
 // Show an item (object, layer, etc)
 item.show = "보기";
 // Show the name of every item under its preview image
-item.showName = "";
+item.showName = "이름 표시";
+// The show button of the curve/primitive handlers only toggles them all, instead of picking one kind
+item.showOnOff = "";
 // Order a list of items alphabetically
-item.sortName = "";
+item.sortName = "이름순";
 // Order a list of items with the most recently modified first
-item.sortRecent = "";
+item.sortRecent = "최근 항목";
 // Convert the item type (mesh, light) to a simple Node type
 item.toNode = "노드로 변환";
 // Uninstance the object, make the object real
@@ -1259,13 +1355,10 @@ light.angle = "각도";
 light.attachment = "연결 기준";
 // The light will move along the camera
 light.attachment.camera = "카메라";
+light.attachment.camera.help = "광원의 방향은 카메라 뷰에 따라 다릅니다.";
 // The light will stay still even if the user moves the camera
 light.attachment.fixed = "고정";
-light.attachment.help = "• 고정
-광원의 방향이 바뀌지 않습니다.
-
-• 카메라
-광원의 방향은 카메라 뷰에 따라 다릅니다.";
+light.attachment.fixed.help = "광원의 방향이 바뀌지 않습니다.";
 // Color of light
 light.color = "색상";
 // Contact shadows are more precise shadows on small distance (synonym: cavity shadows?)
@@ -1290,6 +1383,13 @@ light.shadow.softness = "부드러움";
 // Thickness threshold for screen-space shadows (synonym: threshold, bias)
 light.shadow.tolerance = "허용 오차";
 light.shadow.type = "그림자 유형";
+// Switches technique on its own: screenspace while the view moves, shadow map once it settles
+light.shadow.type.auto = "자동";
+light.shadow.type.auto.help = "뷰를 움직이는 동안 화면공간 그림자를 사용해 부드러움이 즉시 표시됩니다. 뷰가 멈추면 그림자 맵으로 전환됩니다.
+
+차이가 보일 만큼 조명이 부드러운 경우에만 사용됩니다.";
+// Shown above the two shadow type entries
+light.shadow.type.help = "그림자 맵은 조명의 시점에서 장면을 렌더링하므로 카메라에 보이지 않는 지오메트리에도 그림자를 드리웁니다. 화면공간 방식은 화면에 이미 표시된 깊이를 대신 읽으므로 비용이 적지만, 보이는 부분에만 그림자를 드리웁니다.";
 // Shadows computed with only the information visible on screen
 light.shadow.type.screenspace = "화면공간";
 light.shadow.type.screenspace.help = "실험적 기능으로 향후 릴리스에서 제거될 수 있습니다.
@@ -1317,12 +1417,10 @@ light.type.point = "포인트";
 // Spot light emits light in a single direction, restricted by a cone shape.
 light.type.spot = "스폿";
 light.type.sun = "태양";
-// Whether the light is shown
-light.visible = "보기";
 
 link.address = "이 기기";
 link.approve = "수락";
-link.bridges = "브리지 스크립트";
+link.bridges = "브리지 스크립트 (GitHub)";
 link.cameras = "카메라";
 link.copyRepository = "저장소 URL 복사";
 link.deny = "거절";
@@ -1335,7 +1433,7 @@ link.goz.notInstalled = "먼저 ZBrush에 GoZ를 설치하세요(환경 설정 >
 link.goz.received = "ZBrush에서 오브젝트 $0개를 받았습니다";
 link.goz.sent = "ZBrush로 오브젝트 $0개를 보냈습니다";
 link.goz.waiting = "ZBrush 내보내기 대기 중";
-link.help.others = "다른 앱(ZBrush 등)도 같은 방법으로 Nomad 호스트에 연결합니다.
+link.help.others = "다른 앱(ZBrush, Marmoset Toolbag 등)도 같은 방법으로 Nomad 호스트에 연결합니다.
 
 브리지는 해당 앱과 같은 컴퓨터에서 실행되는 Python 스크립트입니다.
 예제 스크립트와 프로토콜은 GitHub에 있으며 시작점으로 사용할 수 있습니다.";
@@ -1650,6 +1748,10 @@ paint.strokePainting.title = "페인팅";
 paint.texture.warningEnable = "텍스처 투영을 허용하려면 스트로크 페인팅을 활성화해야 합니다 (상단의 체크상자)!";
 paint.texture.warningIgnored = "현재 도구는 텍스처를 사용할 수 없습니다!";
 // Inherit stroke falloff option for the painting
+// Help of the alpha button of the painting menu, not the alpha menu itself
+paint.tool.alpha.help = "비활성화하면 페인팅에서 알파를 무시하고 브러시 영역 전체를 덮습니다.";
+// Help of the falloff button of the painting menu, not the falloff menu itself
+paint.tool.curve.help = "비활성화하면 페인팅이 브러시 가장자리까지 최대 강도를 유지합니다.";
 paint.tool.help = "도구 알파, 폴오프 및 랜덤화기를 사용하여 색칠 스트로크 강도를 조절하세요.
 
 이 옵션들은 전체 페인트 기능에서는 무시되지만, 삼평면 변형에서는 알파가 고려됩니다.";
@@ -1658,8 +1760,13 @@ paint.useGlobal = "전역 머티리얼";
 paint.useGlobal.help = "이 옵션이 활성화되면, 선택한 머티리얼이 다른 도구와 동일해집니다.
 
 단, 러프니스와 메탈릭, 색상 설정만 연동된다는 점 유념하시기 바랍니다.";
+// Only the intensity part of the stroke randomizer, applied to the painting
+paint.useJitter = "강도 랜덤화";
+paint.useJitter.help = "강도 랜덤화가 페인팅에 영향을 줄지 제어합니다. 위치, 회전, 스케일 랜덤화는 항상 스탬프 전체를 이동하거나 변형합니다.";
 // The current tool will paint the object if this option is enabled
 paint.usePainting = "스트로크 페인팅";
+// Paint with the color, roughness, metalness and opacity baked inside the VDM stamp
+paint.vdmMaterial = "스탬프 재질";
 
 position.bottom = "아래";
 position.center = "가운데 정렬";
@@ -1701,6 +1808,8 @@ postprocess.bloom.threshold.help = "광도 임계값은 픽셀이 블룸을 방�
 // https://en.wikipedia.org/wiki/Chromatic_aberration
 postprocess.chromatic = "색수차";
 postprocess.chromatic.factor = "강도";
+// Short label for the section shortcut bar
+postprocess.chromatic.short = "크로마";
 // Accentuate the edges of the model
 postprocess.curvature = "곡률";
 // Color/Strength of convex curvature
@@ -1709,6 +1818,8 @@ postprocess.curvature.bump = "범프";
 postprocess.curvature.cavity = "캐비티";
 // Main strength of curvature
 postprocess.curvature.factor = "계수";
+// Short label for the section shortcut bar
+postprocess.curvature.short = "캐비티";
 // Color curves
 postprocess.curve = "컬러 그레이딩";
 postprocess.curve.blue = "파랑";
@@ -1718,6 +1829,8 @@ postprocess.curve.luminance = "메인";
 postprocess.curve.red = "빨강";
 // Reset color grading curves
 postprocess.curve.resetAll = "모두 초기화";
+// Short label for the section shortcut bar
+postprocess.curve.short = "커브";
 // Denoise
 postprocess.denoise = "디노이저";
 postprocess.denoise.help = "모든 프레임이 누적된 후 디노이즈 처리를 적용합니다.";
@@ -1728,11 +1841,17 @@ postprocess.dithering.help = "밴딩 아티팩트(예: 그라디언트, 비네�
 // Depth of Field (bokeh)
 // https://en.wikipedia.org/wiki/Depth_of_field
 postprocess.dof = "피사계 심도";
+// f-number, a lower value opens the lens and blurs more
+postprocess.dof.aperture = "조리개";
 // The blur factor behind the focused point
 postprocess.dof.blurFar = "원거리 블러 효과";
 // The blur factor in front of the focused point
 postprocess.dof.blurNear = "근거리 블러 효과";
 postprocess.dof.focusTip = "오브젝트를 탭하면 초점 포인트를 변경할 수 있습니다.";
+// Drive the blur with a single camera aperture instead of the two blur factors
+postprocess.dof.physical = "조리개 모드";
+// Short label for the section shortcut bar (no need to translate "DoF")
+postprocess.dof.short = "DoF";
 // Full resolution (1:1 resolution) instead of half resolution
 postprocess.fullResolution = "전체 해상도";
 // Filmic Grain
@@ -1746,6 +1865,8 @@ postprocess.maxSamples.help = "성능을 희생하는 대신 후처리 품질을
 postprocess.pixelArt = "픽셀 아트";
 // Override frame accumulation feature
 postprocess.pixelArt.allowAccumulate = "프레임 샘플링 허용";
+// Short label for the section shortcut bar
+postprocess.pixelArt.short = "픽셀";
 // Quality vs performance
 postprocess.quality = "품질";
 postprocess.quality.help = "이 옵션은 렌더링 품질을 향상시키지만, 성능 저하가 발생할 수 있습니다.";
@@ -1765,6 +1886,8 @@ postprocess.scanline.spacing = "간격";
 // https://en.wikipedia.org/wiki/Unsharp_masking
 postprocess.sharpness = "선명도";
 postprocess.sharpness.factor = "강도";
+// Short label for the section shortcut bar
+postprocess.sharpness.short = "선명 효과";
 // Screen-space ambient occlusion (SSAO)
 // https://en.wikipedia.org/wiki/Ambient_occlusion
 postprocess.ssao = "앰비언트 오클루전 (AO)";
@@ -1772,16 +1895,22 @@ postprocess.ssao = "앰비언트 오클루전 (AO)";
 postprocess.ssao.factor = "강도";
 // How far the effect spreads
 postprocess.ssao.radius = "크기";
+// Short label for the section shortcut bar (no need to translate "SSAO")
+postprocess.ssao.short = "SSAO";
 // Adjustment for ssao
 postprocess.ssao.thickness = "두께";
 postprocess.ssao.thickness.help = "오클루더에 대해 가정되는 깊이 두께를 AO 반경의 백분율로 나타낸 값입니다.";
 // Screen-Space Global Illumination (no need to translate "SSGI")
 postprocess.ssgi = "전역 조명 (SSGI)";
+// Short label for the section shortcut bar (no need to translate "SSGI")
+postprocess.ssgi.short = "SSGI";
 // Thickness threshold for ssgi tracing algorithm (synonym: threshold, bias)
 postprocess.ssgi.tolerance = "허용 오차";
 postprocess.ssgi.warning = "SSGI는 PBR 셰이딩 모드를 요구합니다.";
 // Screen-Space Reflection (no need to translate "SSR")
 postprocess.ssr = "반사 (SSR)";
+// Short label for the section shortcut bar (no need to translate "SSR")
+postprocess.ssr.short = "SSR";
 postprocess.ssr.warning = "SSR은 PBR 셰이딩 모드를 요구합니다.";
 // Temporal Anti-Aliasing (no need to translate "TAA")
 postprocess.taa = "안티앨리어싱 (TAA)";
@@ -1796,6 +1925,8 @@ postprocess.tone.mapping.neutral = "중성";
 // No tonemapping operator is used
 postprocess.tone.mapping.none = "없음";
 postprocess.tone.saturation = "채도";
+// Short label for the section shortcut bar
+postprocess.tone.short = "톤";
 // Darkening at the edges
 postprocess.vignette = "비네팅";
 // How sharp the edge of the effect is
@@ -2086,10 +2217,16 @@ settings.grid.snapDivision = "스냅 분할 임계값";
 settings.grid.snapDivision.help = "임계값은 그리드와의 거리와 비교됩니다.";
 // Snap eligible tool points to the grid
 settings.grid.snapGrid = "그리드에 스냅";
+// Same as settings.grid.snapGrid, on a small shortcut button
+settings.grid.snapGrid.short = "그리드 스냅";
 // Snap eligible tool points to nearby existing points when the camera is aligned
 settings.grid.snapPointAlign = "점에 맞추기(정렬된 보기)";
+// Same as settings.grid.snapPointAlign, on a small shortcut button
+settings.grid.snapPointAlign.short = "점 스냅(정렬)";
 // Snap eligible tool points to nearby existing points when the camera is not aligned
 settings.grid.snapPointFree = "점에 맞추기(자유 보기)";
+// Same as settings.grid.snapPointFree, on a small shortcut button
+settings.grid.snapPointFree.short = "점 스냅(자유)";
 // Handles are controls that you interact with in the viewport in order to edit something
 settings.handle = "핸들";
 settings.handles = "핸들";
@@ -2165,13 +2302,18 @@ settings.snapCube.align.help = "세계 축에 뷰를 정렬합니다. 활성화�
 // Move the navigation cube to the bottom of the screen
 settings.snapCube.bottom = "아래";
 // Extra snapping views on the edges and corners of the navigation cube
-settings.snapCube.edgeCorner = "";
-settings.snapCube.edgeCorner.help = "";
+settings.snapCube.edgeCorner = "모서리 및 꼭짓점";
+settings.snapCube.edgeCorner.help = "큐브의 모서리와 꼭짓점에 스냅 뷰를 추가합니다(호박색 영역).";
 // Flip the camera (rotate 180° to see the other side)
 settings.snapCube.flip = "180° 뒤집기";
 settings.snapCube.flip.help = "뷰가 이미 스냅되어 있는 경우 뷰를 뒤집습니다.";
 // Move the navigation cube on the left side of the screen
 settings.snapCube.left = "왼쪽";
+// Dragging the navigation cube rotates like the Turntable mode, even if the camera is in Trackball
+settings.snapCube.turntable = "턴테이블 드래그";
+settings.snapCube.turntable.help = "큐브를 드래그하면 카메라가 롤링 없이 회전하고 각 스냅 뷰에서 멈춥니다.
+
+비활성화하면 대신 트랙볼 회전으로 큐브를 드래그합니다. 두 경우 모두 드래그는 수평 또는 수직으로 유지됩니다.";
 // Stats (information logs about the scene displayed on screen)
 settings.stats = "통계";
 settings.stats.all = "전체 씬 보기";
@@ -2374,10 +2516,25 @@ stroke.alpha.fit.help = "알파와 브러시 텍스처가 정사각형이 아닐
 
 활성화하면 각 이미지가 간격 없이 독립적으로 타일링됩니다.
 종횡비가 다를 때 알파와 다른 이미지를 동기화하려면 비활성화하세요.";
+// Title of the popup that corrects the alpha image itself
+stroke.alpha.fix = "";
+// Follows a number: "30% negative pixels clamped to zero"
+stroke.alpha.fix.clamped = "";
+// Under the two previews of the popup: the current image on the left, the corrected one on the right
+stroke.alpha.fix.compare = "";
+// Mirror the image left/right
+stroke.alpha.fix.flipX = "";
+// Mirror the image top/bottom
+stroke.alpha.fix.flipY = "";
+// Turn the image by a quarter
+stroke.alpha.fix.rotate = "";
+// The border pixels do not all share the same value, so no single mid value fits them
+stroke.alpha.fix.spread = "";
 // Invert the pixel (black, white)
 stroke.alpha.invert = "픽셀 반전";
 // Middle-point value at which no deformation occurs
 stroke.alpha.midValue = "중간값";
+stroke.alpha.midValue.detect.help = "";
 stroke.alpha.midValue.help = "변형을 일으키지 않는 중간값.
 
 (중간값 = 0)
@@ -2391,6 +2548,7 @@ stroke.alpha.midValue.help = "변형을 일으키지 않는 중간값.
 (중간값 = 1)
 • 검은색: 음수의 변위
 • 흰색: 변위 없음";
+stroke.alpha.midValue.pick.help = "";
 // Alpha rotation
 stroke.alpha.rotation = "회전";
 stroke.alpha.rotation.lock.help = "알파 방향을 잠그십시오.
@@ -2563,6 +2721,8 @@ stroke.type.roll = "롤";
 stroke.type.tile = "타일";
 // Sculpt and paint with alpha projected on 3 axis
 stroke.type.triplanar = "트라이플레이너";
+// Drag on the surface to grab a shape from it and turn it into a VDM stamp
+stroke.type.vdmPick = "";
 // The tool can use DynTopo
 stroke.useDynamic = "동적 토폴로지 허용";
 
@@ -2637,6 +2797,12 @@ symmetry.showLine = "선 보기";
 symmetry.showPlane = "평면 보기";
 // after mirroring, separate into multiple output (synonym: split, separate)
 symmetry.split = "분할";
+// Half of a two line toggle: edit how many repeats span the object
+symmetry.tile.count = "";
+// Half of a two line toggle: edit the distance between two repeats
+symmetry.tile.distance = "";
+// The distance between two repeats of the sculpt, so it tiles seamlessly (synonym: wrap, repeat)
+symmetry.tile.title = "타일";
 symmetry.toolIgnore = "현재 도구는 대칭을 무시합니다.";
 
 // Three-state toggle button (auto, no, yes)
@@ -2670,6 +2836,8 @@ tool.elastic = "탄력";
 tool.faceGroup = "페이스 그룹";
 tool.faceGroup.autoPick = "자동 선택";
 tool.faceGroup.flush = "미사용 제거";
+// Face group tap action: the tapped group and what lies beyond it get unmasked, the gizmo lands on the joint
+tool.faceGroup.pose = "";
 tool.faceGroup.skip = "기준에 따라 작은 그룹 건너뛰기:";
 tool.faceGroup.skipArea = "표면적";
 tool.faceGroup.skipArea.help = "새 그룹의 표면적이 이 임계값 이하인 경우 새 그룹을 생성하지 않습니다.
@@ -2683,6 +2851,8 @@ tool.flatten = "평탄화";
 tool.flatten.fill = "채우기";
 tool.flatten.planeLockNormal = "평면 방향 잠금";
 tool.flatten.planeLockOrigin = "평면 원점 잠금";
+// Give the viewport back to the tool: its options come back and it can draw again
+tool.focus = "";
 // Ideally short strings (Rotate, Translate and Scale the object)
 tool.gizmo = "기즈모";
 // Ideally short strings (Align/Snap the gizmo to world axis)
@@ -2715,6 +2885,24 @@ tool.gizmo.order.line = "선";
 tool.gizmo.order.sphere = "구체";
 // Ideally short strings (Pin the gizmo, so that it stays in place when switching between objects)
 tool.gizmo.pin = "고정";
+// Title of the pivot reset options (where to put the pivot back)
+tool.gizmo.reset = "";
+// Pivot orientation snapped to the world axes
+tool.gizmo.reset.align = "";
+tool.gizmo.reset.align.help = "";
+tool.gizmo.reset.auto = "";
+tool.gizmo.reset.auto.help = "";
+tool.gizmo.reset.bottom = "";
+tool.gizmo.reset.bottom.help = "";
+tool.gizmo.reset.center = "";
+tool.gizmo.reset.center.help = "";
+tool.gizmo.reset.help = "";
+// Pivot on the center of the unmasked area
+tool.gizmo.reset.mask = "";
+tool.gizmo.reset.mask.help = "";
+// Pivot on the object origin
+tool.gizmo.reset.object = "";
+tool.gizmo.reset.object.help = "";
 // Puts the gizmo back on its automatic placement (position and orientation)
 tool.gizmo.resetPivot = "피벗 재설정";
 // Ideally short strings (Snap angle)
@@ -2798,15 +2986,29 @@ tool.layer.removeInfluence.help = "이 옵션은 선택한 레이어가 있는 �
 tool.mask = "마스크";
 // Blur the painted mask
 tool.mask.blur = "흐림 효과";
+// Strengthen the mask intensity without changing its shape (opposite of Dilute)
+tool.mask.boost = "강화";
+// Mask the open boundary of the mesh (the edge of a plane, the rim of a hole)
+tool.mask.border = "경계";
+// Negative side of the Cavity slider: only the raised areas stay paintable
+tool.mask.bumps = "돌기";
+// Rebuild the mask from the surface curvature: only the recessed areas stay paintable
+tool.mask.cavity = "캐비티";
 // Clear the painted mask
 tool.mask.clear = "지우기";
 tool.mask.clearAll = "모두 지우기";
+// Weaken the mask intensity without changing its shape (opposite of Boost)
+tool.mask.dilute = "약화";
 // Mask or Unmask a region (leave other region that unconnected intact)
 tool.mask.flipConnected = "연결 뒤집기";
+// Enlarge the masked area, one ring of vertices at a time
+tool.mask.grow = "확장";
 // Invert the painted mask
 tool.mask.invert = "반전";
 // Sharpen the edge of the painted mask area
 tool.mask.sharpen = "선명 효과";
+// Reduce the masked area, one ring of vertices at a time (opposite of Grow)
+tool.mask.shrink = "수축";
 // Ideally short strings
 tool.mask.unmask = "마스크해제";
 // Ideally short strings (Selector Mask, use lasso/ellipse,etc shape to mask the mesh)
@@ -2821,6 +3023,9 @@ tool.matrix.action.origin = "원점 이동";
 tool.matrix.action.origin.help = "메시를 세계 원점으로 이동합니다.";
 tool.matrix.action.reset = "초기화";
 tool.matrix.action.reset.help = "메시 변환을 초기 상태로 재설정합니다.";
+// Move the pivot alone, the objects stand still
+tool.matrix.editPivot = "편집";
+tool.matrix.editPivot.help = "피벗만 이동하며 오브젝트는 움직이지 않습니다.";
 tool.matrix.rotation = "회전";
 tool.matrix.scale = "스케일";
 // Synonym: shear, https://en.wikipedia.org/wiki/Shear_matrix or https://en.wikipedia.org/wiki/Shear_mapping
@@ -2835,10 +3040,16 @@ tool.matrix.target.auto.help = "기본적으로 그룹 옵션과 비슷하게 �
 tool.matrix.target.group = "그룹";
 tool.matrix.target.group.help = "노드를 움직이며, 대칭과 마스크는 무시됩니다.
 계층의 나머지 부분도 동일하게 변형됩니다.";
+// Transform the object and its children, and every other instance of it
+tool.matrix.target.groupInstance = "";
+tool.matrix.target.groupInstance.help = "";
 // Transform the object alone (the children stands still)
 tool.matrix.target.object = "오브젝트";
 tool.matrix.target.object.help = "오브젝트만 이동하며, 대칭과 마스크는 무시됩니다.
 편집된 노드만 이동하고 자식은 그대로 유지됩니다.";
+// Transform the object alone, and every other instance of it
+tool.matrix.target.objectInstance = "";
+tool.matrix.target.objectInstance.help = "";
 // Auto apply the transform on the vertices
 tool.matrix.target.vertex = "버텍스";
 tool.matrix.target.vertex.help = "버텍스에 트랜스폼을 적용하며, 확정되지 않은 프리미티브에서는 작동하지 않습니다.
@@ -2889,8 +3100,6 @@ tool.polish = "폴리시";
 tool.project = "프로젝트";
 // Radius of the tool (size)
 tool.radius = "반지름";
-// Ideally short strings (Quad Remesher)
-tool.remesh = "쿼드 리메셔";
 tool.remesh.density = "밀도";
 tool.remesh.guides = "가이드";
 tool.remesh.half = "절반";
@@ -2987,6 +3196,36 @@ tool.trim.detail.protect.help = "절단 경계를 매끄럽게 하거나 단순�
 마스크 처리되거나 숨겨진 면 근처에서 원본 메쉬 토폴로지를 유지합니다.";
 // Ideally short strings (Revolving surface along a curve)
 tool.tube = "튜브";
+// Ideally short strings (Vector displacement stamp)
+tool.vdm = "VDM";
+// Button that adds a plane ready to be sculpted into a VDM
+tool.vdm.addPlane = "평면 추가";
+// Scales only the height of the vdm stamp, lateral displacement is unchanged
+tool.vdm.height = "높이";
+// Button that opens the popup that adds a plane to sculpt a VDM on, "..." is appended in the app
+tool.vdm.new = "새 VDM";
+// Title of the popup that adds a plane to sculpt a VDM on
+tool.vdm.plane = "새 VDM 스컬프";
+// The border is the outer edge of the plane
+tool.vdm.plane.border = "경계 마스크";
+tool.vdm.plane.border.help = "경계를 평평하게 유지하도록 평면의 바깥쪽 링을 마스크합니다.
+
+경계까지 스컬프하면 스탬프에 날카로운 가장자리가 생깁니다.";
+tool.vdm.plane.help = "UV, 선택한 해상도, 카메라를 향하는 방향이 설정된 VDM 스컬프용 평면을 추가합니다.
+
+이 작업은 평면만 만듭니다. 스탬프를 만들려면:
+• 평면에 형태 스컬프
+• `토폴로지 -> 베이크` 열기
+• `VDM`을 선택한 다음 `베이크` 누르기
+
+Nomad가 새 스탬프를 VDM 라이브러리에 추가하고 선택합니다.
+
+DynTopo는 사용하지 마세요. 평면의 UV가 손상되어 스탬프가 왜곡됩니다.";
+// (see Glossary for Layer)
+tool.vdm.plane.layer = "레이어에서 스컬프";
+tool.vdm.plane.layer.help = "평평한 평면 위에 스컬프 레이어를 만들며, 베이크에서 이를 기준으로 사용합니다.
+
+페인팅에도 레이어가 필요합니다. 레이어가 없으면 스탬프할 때 재질이 페인팅한 영역뿐 아니라 정사각형 전체를 덮습니다.";
 // Ideally short strings (View tool, do nothing in particular)
 tool.view = "보기";
 // Always display the camera shortcut buttons on the viewport
@@ -2994,8 +3233,6 @@ tool.view.stickyCamera = "카메라 단축키 (항상)";
 
 // Topology
 topology = "토폴로지";
-// Name of the quad remeshing engine, should probably stay untranslated
-topology.autoremesher = "AutoRemesher";
 topology.autoremesher.adaptivity = "적응성";
 topology.autoremesher.adaptivity.help = "쿼드 밀도를 곡률에 맞춥니다.
 
@@ -3013,6 +3250,9 @@ topology.autoremesher.smoothAngle.help = "0은 리메시 중에 표면의 각진
 
 값이 높을수록 버텍스 노멀을 고려하여 표면을 부드럽게 합니다.";
 topology.bake.backup = "백업";
+// Multires here means the subdivision levels of the object itself
+topology.bake.multires = "";
+topology.bake.multires.help = "";
 // Cage is a specific term; synonym: "Bake offset"
 topology.bake.offset = "레이 오프셋";
 // Bake opacity (from mask data)
@@ -3045,6 +3285,29 @@ topology.bake.title.help = "텍스처 베이킹은 씬의 다른 보이는 오�
 - 선택한 모든 오브젝트를 사용하며, 주 선택 오브젝트가 베이크 대상입니다(씬 메뉴에서 가장 강한 하이라이트)
 - 하나만 선택한 경우 Nomad는 대신 보이는 모든 오브젝트를 사용합니다
 - 그 외에 모든 오브젝트가 숨겨진 경우(예: Solo 사용), 전체 씬을 사용합니다";
+// Warning shown after a VDM bake, the border of the plane is its outer edge
+topology.bake.vdm.border = "스컬프가 평면의 경계까지 닿아 있어 스탬프할 때 VDM에 단단한 가장자리가 표시됩니다.";
+// Error shown when a VDM bake fails
+topology.bake.vdm.failed = "VDM을 만들지 못했습니다.";
+// Bake here means "create a VDM (from a sculpted plane)"
+topology.bake.vdm.help = "선택한 오브젝트에서 VDM을 만들어 VDM 라이브러리에 추가합니다.
+
+일반적인 작업 순서:
+• 평면을 추가하거나 VDM 선택기에서 `새 VDM`을 선택하여 설정된 평면 추가
+• 경계를 평평하게 유지하면서 그 위에 형태 스컬프
+• 베이크!
+
+평면의 UV가 베이크할 정사각형을 정의하므로 오브젝트에 UV가 필요합니다.
+
+동적 토폴로지는 사용하지 마세요. 평면의 UV가 나빠져 VDM이 왜곡됩니다.
+
+레이어에서 스컬프하면 평평한 평면이 아래에 그대로 남아 있어 가장 정확한 결과를 얻을 수 있습니다.
+
+페인트도 레이어에서 해야 합니다. 그렇지 않으면 칠한 부분만이 아니라 정사각형 전체에 머티리얼이 스탬프됩니다.";
+// Warning shown when the picked region cannot be flattened; a disc is a simple patch with a single outer edge
+topology.bake.vdm.notDisk = "";
+// Warning shown when the picked region holds too many polygons to be flattened
+topology.bake.vdm.tooBig = "";
 // Synonym: Simplify (Decimate reduce the number of triangles/quads while retaining details as much as possible)
 topology.decimate = "데시메이트";
 topology.decimate.boundary = "경계 보존";
@@ -3096,8 +3359,6 @@ topology.dynamic.useFalloff = "스트로크 폴오프 사용";
 // Whether the pencil pressure can impact the level of detail
 topology.dynamic.usePressure = "반지름에 압력 사용";
 topology.dynamic.usePressure.help = "도구 반지름에 적용되는 필압이 디테일 수준에도 영향을 주게 하려면 사용하세요.";
-// Instant quad remesher
-topology.instant = "Instant Mesh";
 topology.instant.angle = "크리즈 각도";
 topology.instant.hole = "최대 홀 채우기";
 topology.instant.hole.help = "알고리즘은 때때로 원치 않는 홀을 만들 수 있습니다.
@@ -3144,8 +3405,6 @@ topology.multires.up = "멀티레스 레벨 →";
 topology.nonManifold = "비-다양체";
 // Quad remesher
 topology.quadRemesh = "쿼드 리메시";
-// Name of the quad remeshing engine, should probably stay untranslated
-topology.quadriflow = "QuadriFlow";
 topology.quadriflow.adaptiveScale = "적응형 배율";
 topology.quadriflow.adaptiveScale.help = "쿼드 크기를 표면 곡률에 맞춥니다.";
 topology.quadriflow.keepSharp = "날카로운 에지 유지";
@@ -3240,6 +3499,8 @@ topology.uv.title = "UV 언랩";
 topology.uv.unwrap = "언랩";
 // Create a new object by recomputing a new topology, by using voxels (see Glossary)
 topology.voxel = "복셀 리메싱";
+// The voxel detail expressed as a world size, the same value gives the same detail on any object
+topology.voxel.edgeLength = "변 길이";
 topology.voxel.help = "그리드 위에 메시를 샘플링하여 리메싱합니다.
 
 오브젝트를 (빈틈없이) 닫지 않은 경우, 구멍 채우기 알고리즘이 먼저 적용됩니다.

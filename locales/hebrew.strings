@@ -115,10 +115,18 @@ alert.forcePainting.tool = "הצגת הציור הופעלה, האובייקט �
 alert.gizmo.editObject = "מצב עריכת אובייקט.";
 // In this mode, the user moves the Gizmo's pivot instead of the object
 alert.gizmo.editPivot = "מצב עריכת ציר.";
+// Button that turns the heightmap render off
+alert.heightmap.hide = "הסתר מפת גובה";
+// The viewport renders the depth of the scene instead of the shaded objects
+alert.heightmapOn = "מפת הגובה מופעלת!";
 // The user decided to display hidden faces
 alert.hideIgnored = "ההסתרה אינה פעילה!";
 // Error when an algorithm needs the object to have a hole (usually to fill it)
 alert.hole.nothing = "ללא חורים!";
+// Button that turns the inspector off
+alert.inspect.hide = "הסתר מפקח";
+// The viewport renders a material channel instead of the shaded objects
+alert.inspectOn = "המפקח מופעל!";
 // The lattice deformation was applied with a different mask or visibility state
 // (the gui appends the icon of the changed states)
 alert.lattice.desync = "הסריג אינו מסונכרן!";
@@ -167,6 +175,8 @@ alert.state.trial = "גרסת ניסיון: ביטול פעולה מבוטל";
 alert.trim.full = "הפסקת גזם: האובייקט גזום במלואו.";
 // The user tried to trim an object but the selected region didn't touch the object
 alert.trim.nothing = "אין מה לגזום.";
+// The remesher rebuilds the mesh without a UV layout, the painting is kept as vertex colors
+alert.uvLost = "";
 // List of disabled features when View Mode is selected
 alert.view.disabled = "תכונות מושבתות במצב תצוגה:";
 // Primitive widgets are small viewport controls used to modify a primitive
@@ -208,6 +218,9 @@ background.imageAlpha = "אטימות";
 background.imageEnable = "תמונת התייחסות";
 // The image will be displayed in overlay (used as a reference by the artist)
 background.imageOverlay = "שכבת־על";
+// Apply the post process effects on the reference image
+background.imagePostProcess = "תהליך פוסט";
+background.imagePostProcess.help = "מחיל את אפקטי עיבוד הפוסט על תמונת ההתייחסות. יש להשבית כדי לשמור על הצבעים המקוריים.";
 background.imageReset = "אפס הגדרות";
 // Rotation of the reference image
 background.imageRotate = "סיבוב";
@@ -286,6 +299,8 @@ binding.rotateLighting = "סובב תאורה";
 // Select all the objects in the scene
 binding.selectAll = "בחר הכל";
 binding.snap.toggle = "החלף את עריכת העקומה";
+// Same as binding.snap.toggle, on a small shortcut button
+binding.snap.toggle.short = "עריכת עקומה";
 // Snap the view (while rotating)
 binding.snapViewOnRotate = "הצמדת תצוגה (בעת סיבוב)";
 binding.spacemouse = "SpaceMouse";
@@ -371,6 +386,8 @@ camera.doubleTapBackgroundFocus.toggle = "מתג";
 camera.doubleTapFocus.help = "כאשר מקישים פעמיים על האובייקט, המצלמה תנוע ותתמקד בנקודה הנבחרת.";
 // When we double tap on the object with the finger/stylus
 camera.doubleTapMesh = "הקשה כפולה על האובייקט";
+// Same as camera.doubleTapMesh, on a small shortcut button
+camera.doubleTapMesh.short = "מיקוד";
 // When double tapping with the finger/stylus, the camera pivot will be updated
 camera.doubleTapPivot = "כאשר מקישים כפול";
 camera.doubleTapPivot.help = "עדכן את ציר הסיבוב כאשר לוחצים פעמיים על פני השטח של האובייקט.";
@@ -465,8 +482,6 @@ cube.right = "ימין";
 cube.top = "למעלה";
 
 curve.bspline = "B-spline";
-// Curve type, https://en.wikipedia.org/wiki/Centripetal_Catmull%E2%80%93Rom_spline
-curve.catmull = "Catmull-Rom";
 // Merge or collapse one point into another
 curve.merge = "מיזוג";
 curve.pivot = "ציר";
@@ -484,20 +499,16 @@ curve.sharpness = "חדות";
 curve.shift = "הזזה אופקית";
 // snap
 curve.snap = "הצמדה";
-// whether the tube body stays on the surface between its control points, and along which direction
+// whether the curve body (tube or repeated objects) stays on the surface between its control points, and along which direction
 curve.snap.follow = "מעקב";
-curve.snap.follow.help = "מה שהצינור עושה בין נקודות הבקרה שלו.";
+curve.snap.follow.help = "";
 curve.snap.follow.normal = "רגיל";
-curve.snap.follow.normal.help = "הצינור נשאר על פני השטח ונדחף אליהם לאורך הנורמל של פני השטח.
-
-הוא בוחר בדרך הקצרה ביותר אל פני השטח, ומתאים לצורות שנצפות מהצד.";
-// only the control points snap, the body of the tube is left alone
+curve.snap.follow.normal.help = "";
+// only the control points snap, the body of the curve is left alone
 curve.snap.follow.points = "נקודות";
-curve.snap.follow.points.help = "רק נקודות הבקרה נצמדות לפני השטח.
-
-ביניהן הצינור שומר על הצורה שציירתם, כך שהוא יכול לחתוך דרך פני השטח או לרחף מעליהם.";
+curve.snap.follow.points.help = "";
 curve.snap.follow.view = "צפייה";
-curve.snap.follow.view.help = "הצינור נשאר על פני השטח ונדחף אליהם בכיוון שממנו הסתכלתם כשציירתם אותו.";
+curve.snap.follow.view.help = "";
 curve.snap.grid = "רשת (אם מוצמדת)";
 curve.snap.normal = "יישור נורמל";
 curve.snap.normal.help = "משפיע רק על נקודות הבקרה הראשונה והאחרונה של העקום.
@@ -506,13 +517,19 @@ curve.snap.normal.help = "משפיע רק על נקודות הבקרה הראש�
 
 המרחק לנקודה השכנה נשמר.";
 curve.snap.offset = "שינוי מיקום";
-curve.snap.offset.help = "ערך של 100% שווה לרדיוס הצינור.";
+curve.snap.offset.help = "";
 curve.snap.surface = "משטח";
 curve.snap.vertex = "קודקוד";
 curve.spiral = "ספירלה";
 curve.spiral.angle = "היסט זווית";
+curve.spiral.depth = "";
+curve.spiral.flat = "";
+curve.spiral.groups = "";
+curve.spiral.hardness = "";
 curve.spiral.offset = "הטיה";
+curve.spiral.pack = "";
 curve.spiral.scale = "קנה מידה";
+curve.spiral.strands = "";
 curve.spiral.twist = "זווית פיתול";
 // Spline curve, https://en.wikipedia.org/wiki/Spline_(mathematics)
 curve.spline = "ספלאין";
@@ -527,12 +544,22 @@ curve.uniform.help = "העקומה תדגום במרווחים קבועים, כ�
 
 ניתן לבטל אפשרות זו כדי לשלוט מעט בלולאות הקצה על ידי הוספת נקודות שליטה חדשות על העקומה.";
 
+// Debug section to import/export the icons of the interface
+debug.customIcons = "אייקונים מותאמים אישית";
+// Short label for the section shortcut bar
+debug.customIcons.short = "אייקונים";
+// Debug section for optional features
+debug.feature = "תכונה";
 // Debug graphics options
 debug.graphics = "גרפיקה";
 // Debug option, overrides the rendering to display the depth buffer
 debug.heightmap = "מפת גובה";
 // Debug option: display a window with debugging logs
 debug.logs = "לוגים";
+// Logs window option: break long lines to fit the panel width
+debug.logs.wrap = "גלישת מילים";
+// Debug section for multithreading and speed options
+debug.performance = "ביצועים";
 // Model shortcut window
 debug.shortcut = "חלון קיצור דרך";
 // Set the desired FPS (frame per second, refresh rate)
@@ -540,6 +567,8 @@ debug.targetFps = "יעד FPS";
 debug.targetFps.help = "כאשר מבוטל, הערך הדיפולטי אומר שהוא יסונכרן עם קצב הרענון של התצוגה.";
 // Debug options, generate screenshots with size compatible with the iOS store
 debug.thumbnails = "צור תמונות ממוזערות לחנות";
+// Same as debug.thumbnails, on a small shortcut button
+debug.thumbnails.short = "תמונות ממוזערות";
 // Debug option, Normalize means transforming the data so that it fits in [0-1] the range
 debug.uvNormalize = "נרמל UVs";
 debug.uvNormalize.help = "נומד ינרמל את ה-UVs בת הב מקובץ [0-1].";
@@ -638,8 +667,10 @@ file.export.gltf.layer.help = "ייצא שכבות כמורפים. נתמך בא
 // Whether we include painting of layers in the exported file (see glossary for layer)
 file.export.gltf.layerPaint = "ציור שכבה";
 file.export.gltf.layerPaint.help = "ייצוא ציור שכבות. בדרך כלל מתעלמים ממנו על ידי תוכנות אחרות.";
-file.export.nomad.assets = "";
-file.export.nomad.assets.help = "";
+file.export.nomad.assets = "הטמעת MatCap וסביבה";
+file.export.nomad.assets.help = "כולל את ה-MatCap והסביבה המותאמים אישית בתוך הקובץ, כדי שייראה זהה במכשיר אחר.
+
+נכסים מובנים לעולם אינם מוטמעים; הם חלק מ-Nomad.";
 file.export.nomad.help = "פורמט הקובץ הפנימי של נומד סקולפט.
 
 פורמט זה לא ייטען בתוכנות אחרות, זה בעיקר למטרות יבוא חוזר.";
@@ -776,11 +807,8 @@ file.project.unsaved = "שינויים לא שמורים!";
 file.render = "עיבוד";
 // height of exported screenshot
 file.render.height = "גובה";
-// Resolution ratio of the exported screenshot
-file.render.renderRatio = "יחס עיבוד";
-file.render.renderRatio.help = "ערך של 1.0 אומר שנומאד יעבד ברזולוציה זהה לגודל התמונה המבוקשת למטה.
-
-השתמש באפשרות זו אם אינך יכול לעבד ברזולוציה מסוימת (קריסה עקב חוסר זיכרון).";
+// Warning shown when the requested export resolution is too large for the memory left on the device
+file.render.lowMemory = "ייתכן שגודל זה לא יתאים לזיכרון הפנוי שנותר במכשיר.";
 // Screen resolution parameters for the export screenshot features
 file.render.screenResolution = "מסך";
 // If we include the App Interface in the exported screenshot
@@ -790,7 +818,7 @@ file.render.size = "גודל סופי";
 // Desired size of the exported screenshot (custom vs predefined size)
 file.render.size.custom = "מותאם אישית";
 // Save the heightmap render as a new brush alpha instead of exporting it as a file
-file.render.toAlpha = "";
+file.render.toAlpha = "שמירה כאלפא";
 // If true, then the exported screenshot will have transparency data in the image
 file.render.transparent = "רקע שקוף";
 file.render.transparent.help = "אפשרות זו יכולה להיות מועילה אם ברצונך להכניס את המש ל תוכנה ליצירת 2D.
@@ -814,6 +842,38 @@ file.select.include = "כלול";
 file.select.selected = "נבחר";
 file.select.unselected = "לא נבחרו";
 file.select.visible = "נראה";
+
+fog = "ערפל";
+fog.ambient = "סביבה";
+fog.ambient.help = "קובע באיזו עוצמה הסביבה מאירה את הערפל.";
+fog.anisotropy = "כיוון הפיזור";
+fog.anisotropy.help = "קובע את הכיוון שבו הערפל מפזר אור, המכונה גם אנאיזוטרופיה.
+
+• ערכים חיוביים מבהירים את הערפל כאשר מביטים לעבר מקור אור.
+• ערכים שליליים מבהירים אותו כאשר מביטים הרחק ממקור האור.
+• אפס מפזר את האור באופן שווה לכל הכיוונים.";
+fog.color = "צבע";
+fog.color.help = "קובע את צבע הערפל ואת צבע האור שהוא מפזר.";
+fog.density = "צפיפות";
+fog.density.help = "קובע באיזו מהירות הערפל מתעבה עם המרחק.";
+fog.detail = "";
+fog.detail.help = "";
+fog.detail.scale = "";
+fog.detail.scale.help = "";
+fog.help = "מוסיף עומק אטמוספרי והופך אלומות אור לנראות.";
+fog.opacity = "אטימות מרבית";
+fog.opacity.help = "מגביל את מידת הכיסוי של הסצנה בערפל, גם בצפיפות גבוהה.";
+fog.shape = "צורה";
+fog.shape.help = "קובע היכן הערפל ממלא את הסצנה.";
+fog.shape.uniform = "אחיד";
+fog.shape.uniform.help = "ממלא את כל הסצנה בערפל.";
+fog.shape.vertical = "אנכי";
+fog.shape.vertical.bottom = "תחתית";
+fog.shape.vertical.bottom.help = "קובע את גובה הקצה התחתון של רצועת הערפל.";
+fog.shape.vertical.help = "משאיר את הערפל בתוך רצועה אנכית בעלת קצוות עליון ותחתון רכים.";
+fog.shape.vertical.preview.help = "מציג את רצועת הערפל בחלון התצוגה בזמן התאמת הקצוות שלה.";
+fog.shape.vertical.top = "חלק עליון";
+fog.shape.vertical.top.help = "קובע את גובה הקצה העליון של רצועת הערפל.";
 
 format.ascii = "אסכי";
 format.binary = "בינארי";
@@ -931,6 +991,8 @@ gesture.wheel.speed3d = "מהירות (תקריב 3D)";
 
 // History, list of undo/redo
 history = "היסטוריה";
+// Button deleting every operation of the history, freeing the memory and the disk space they use
+history.clear = "ניקוי היסטוריה";
 // Long press on a state of the history list: deletes it and every older one, $0 is a number of operations
 history.delete.confirm = "למחוק $0 פעולות מההיסטוריה?";
 history.delete.help = "לחיצה ממושכת על רשומה בהיסטוריה תמחק אותה לצמיתות יחד עם כל ההיסטוריה הישנה יותר.";
@@ -950,17 +1012,26 @@ history.include.postProcess.help = "כולל עריכות עיבוד שלאחר 
 // include shading parameters (MatCap & HDRIs) editing in the undo/redo
 history.include.shading = "הצללה";
 history.include.shading.help = "כולל מצבי PBR, MatCap ו-Unlit, וכן MatCaps ו-HDRIs.";
+// How much disk space the history is allowed to use, past it the oldest operations are deleted
+history.limitDisk = "מגבלת אחסון";
+history.limitDisk.help = "הכמות המרבית של שטח אחסון שבה יכולה להשתמש היסטוריית הביטול/שחזור של פרויקט זה.
+
+כאשר מגיעים למגבלה, הפעולות הישנות ביותר נמחקות לצמיתות.
+
+המגבלה החדשה תחול לאחר תיעוד הפעולה הבאה.";
 // How much memory the history is allowed to use before the older states are moved to the disk
-history.limitMemory = "מגבלת זיכרון";
-history.limitMemory.help = "כמות ההיסטוריה שנשמרת בזיכרון.
+history.limitMemory = "מגבלת RAM";
+history.limitMemory.help = "הכמות המרבית של היסטוריית הביטול/שחזור שנשמרת ב-RAM.
 
-מצבים ישנים יותר מועברים לדיסק ונטענים מחדש בעת ביטול; הם אינם נמחקים.
+מצבים ישנים יותר מועברים לאחסון ונטענים מחדש בעת הצורך; הם אינם נמחקים.
 
-ההיסטוריה תתעדכן בפעולה המתועדת הבאה.";
+המגבלה החדשה תחול לאחר פעולת העריכה, הביטול או השחזור הבאה.";
 // Where the undo history is kept when the project is saved (it survives reopening the project)
 history.persist = "שמירת היסטוריה";
 history.persist.embedded = "הטמעה";
-history.persist.embedded.help = "ההיסטוריה נשמרת בתוך קובץ הפרויקט. הקובץ גדול יותר, אך ההיסטוריה עוברת יחד איתו.";
+history.persist.embedded.help = "ההיסטוריה נשמרת בתוך קובץ הפרויקט: קובץ גדול יותר ושמירה וטעינה איטיות יותר.
+
+עדיף לבחור כבוי או בנפרד, אלא אם ההיסטוריה חייבת לעבור יחד עם הקובץ.";
 history.persist.help = "שמירת היסטוריית הביטול בעת שמירת הפרויקט, כדי שתישאר זמינה לאחר פתיחתו מחדש.";
 history.persist.off = "כבוי";
 history.persist.off.help = "הפרויקט נשמר ללא ההיסטוריה שלו.";
@@ -968,6 +1039,17 @@ history.persist.separate = "בנפרד";
 history.persist.separate.help = "ההיסטוריה נשמרת בנתוני הפרויקט במכשיר זה. קובץ הפרויקט נשאר קטן.";
 // Redo
 history.redo = "שחזור";
+// Slider + play button: rewinds to the root and redoes the operations one by one, the value is a number of operations per second
+history.replay = "";
+// Option of the replay popup: the camera follows the replayed operations even when the history "Restore camera" setting is off
+history.replay.camera = "";
+history.replay.camera.help = "";
+// Popup opened by the play button, above its two options
+history.replay.confirm = "";
+history.replay.help = "";
+// Option of the replay popup: runs backwards, undoing from the current state to the root
+history.replay.reverse = "";
+history.replay.reverse.help = "";
 // When enabled, undoing an operation also restores the camera position
 history.restoreCamera = "שחזר מצלמה";
 history.restoreCamera.help = "הפעל אפשרות זו כדי לשחזר את זווית הראייה של המצלמה כשאתה מבטל/משחזר פעולה.";
@@ -1056,8 +1138,10 @@ interface.inset.title.help = "ניתן לשנות את הערכים האלה ר�
 
 אם המחוון מושבת, Nomad ישתמש בערכי האזור הבטוח שהוחזרו על ידי המכשיר עצמו.";
 // Move a floating panel by dragging inside it, instead of using its bar
-interface.panelDrag = "";
-interface.panelDrag.help = "";
+interface.panelDrag = "גרירת גוף הלוח";
+interface.panelDrag.help = "לוח צף תמיד מוזז על ידי גרירת הסרגל שלו. אפשרות זו מאפשרת לגרור גם את גוף הלוח.
+
+במצב אוטומטי, אצבע או עט מזיזים את הלוח רק כשהגרירה אופקית יותר מאנכית, כך שגרירה אנכית עדיין גוללת את התוכן. הגדירו כן כדי לגרור גם באמצעות העכבר, בכל כיוון.";
 // Interface option (if the menus are transparent or opaque)
 interface.panelTransparent = "פנל שקוף";
 // Width of the interface panels
@@ -1115,10 +1199,18 @@ item.delete.confirm.yes = "כן, מחק";
 item.delete.used = "תמונה בשימוש";
 // Draggable, movable
 item.draggable = "ניתן להזזה";
+// Short button label, turns a stamp (alpha or VDM) back into a plane that can be sculpted again
+item.edit = "";
+item.edit.help = "";
+// Short button label, opens a popup to correct the pixels of an imported image
+item.fix = "";
+item.fix.help = "";
 // Show the folders of a list as a column on its side, instead of a drop down menu
-item.folderColumn = "";
+item.folderColumn = "עמודת תיקיות";
+// Show the folders of a drop down menu as small chips filling the width, instead of one per line
+item.folderCompact = "תיקיות קומפקטיות";
 // Show a list of items as one group of items per folder, instead of a single list
-item.folderGroup = "";
+item.folderGroup = "קיבוץ לפי תיקייה";
 // Hide an item (object, layer, etc)
 item.hide = "הסתר";
 // Make an item instance, similar to clone but keeps the underlying geometry (Synonym: link? soft clone?)
@@ -1141,6 +1233,8 @@ item.next = "הבא";
 item.none = "אין";
 // The order of an item in a list
 item.order = "סדר";
+// Size of the preview images of a list of items, in pixels
+item.previewSize = "";
 // Focus on previous item
 item.previous = "קודם";
 // Rename an item (object, tool, etc)
@@ -1153,17 +1247,19 @@ item.reset.confirm = "לאשר איפוס?";
 // Save an item (object, tool, etc)
 item.save = "שמור";
 item.save.confirm = "לאשר שמירה?";
-item.saveLibrary = "";
+item.saveLibrary = "שמירה בספרייה";
 // Select an item (object, layer, etc)
 item.select = "בחר";
 // Show an item (object, layer, etc)
 item.show = "הראה";
 // Show the name of every item under its preview image
-item.showName = "";
+item.showName = "הצגת שמות";
+// The show button of the curve/primitive handlers only toggles them all, instead of picking one kind
+item.showOnOff = "";
 // Order a list of items alphabetically
-item.sortName = "";
+item.sortName = "לפי שם";
 // Order a list of items with the most recently modified first
-item.sortRecent = "";
+item.sortRecent = "האחרונים ביותר";
 // Convert the item type (mesh, light) to a simple Node type
 item.toNode = "לצומת";
 // Uninstance the object, make the object real
@@ -1250,13 +1346,10 @@ light.angle = "זווית";
 light.attachment = "חיבור";
 // The light will move along the camera
 light.attachment.camera = "מצלמה";
+light.attachment.camera.help = "כיוון האור תלוי בתצוגת המצלמה.";
 // The light will stay still even if the user moves the camera
 light.attachment.fixed = "קבוע";
-light.attachment.help = "• קבוע
-כיוון האור לא ישתנה.
-
-• מצלמה
-כיוון האור תלוי בתצוגת המצלמה.";
+light.attachment.fixed.help = "כיוון האור לא ישתנה.";
 // Color of light
 light.color = "צבע";
 // Contact shadows are more precise shadows on small distance (synonym: cavity shadows?)
@@ -1281,6 +1374,13 @@ light.shadow.softness = "רכות";
 // Thickness threshold for screen-space shadows (synonym: threshold, bias)
 light.shadow.tolerance = "סובלנות";
 light.shadow.type = "סוג צל";
+// Switches technique on its own: screenspace while the view moves, shadow map once it settles
+light.shadow.type.auto = "אוטו";
+light.shadow.type.auto.help = "בעת הזזת התצוגה נעשה שימוש בצללים במרחב מסך, כך שהרכות מופיעה מיד. לאחר שהתצוגה מתייצבת, מפת הצל נכנסת לפעולה.
+
+אפשרות זו משמשת רק כשהאור רך מספיק כדי שההבדל יהיה נראה.";
+// Shown above the two shadow type entries
+light.shadow.type.help = "מפת צל מרנדרת את הסצנה מנקודת המבט של האור, ולכן היא מטילה צל על גאומטריה שהמצלמה אינה רואה. מרחב מסך קורא במקום זאת את העומק שכבר מופיע על המסך; שיטה זו זולה יותר, אך מטילה צל רק על מה שנראה.";
 // Shadows computed with only the information visible on screen
 light.shadow.type.screenspace = "מרחב מסך";
 light.shadow.type.screenspace.help = "מאפיין ניסיוני, ייתכן שיוסר בגרסה עתידית.
@@ -1308,12 +1408,10 @@ light.type.point = "נקודה";
 // Spot light emits light in a single direction, restricted by a cone shape.
 light.type.spot = "מוקד";
 light.type.sun = "שמש";
-// Whether the light is shown
-light.visible = "הצג";
 
 link.address = "המכשיר הזה";
 link.approve = "אישור";
-link.bridges = "סקריפטים לגישור";
+link.bridges = "סקריפטים לגישור (GitHub)";
 link.cameras = "מצלמות";
 link.copyRepository = "העתקת כתובת המאגר";
 link.deny = "דחייה";
@@ -1326,7 +1424,7 @@ link.goz.notInstalled = "יש להתקין תחילה את GoZ ב-ZBrush (העד
 link.goz.received = "התקבלו $0 אובייקטים מ-ZBrush";
 link.goz.sent = "נשלחו $0 אובייקטים ל-ZBrush";
 link.goz.waiting = "המתנה לייצוא מ-ZBrush";
-link.help.others = "יישומים אחרים (ZBrush וכדומה) מתחברים למארח Nomad באותו אופן.
+link.help.others = "יישומים אחרים (ZBrush, Marmoset Toolbag וכדומה) מתחברים למארח Nomad באותו אופן.
 
 גשר הוא סקריפט Python שפועל באותו מחשב שבו פועל היישום.
 סקריפטים לדוגמה והפרוטוקול נמצאים ב-GitHub; השתמשו בהם כנקודת התחלה.";
@@ -1639,6 +1737,10 @@ paint.strokePainting.title = "צביעה";
 paint.texture.warningEnable = "יש להפעיל ציור מברשת כדי לאפשר הקרנת טקסטורה (תיבת סימון למעלה)!";
 paint.texture.warningIgnored = "הכלי הנוכחי אינו יכול להשתמש בטקסטורות!";
 // Inherit stroke falloff option for the painting
+// Help of the alpha button of the painting menu, not the alpha menu itself
+paint.tool.alpha.help = "כאשר האפשרות כבויה, הצביעה מתעלמת מהאלפא ומכסה את כל שטח המברשת.";
+// Help of the falloff button of the painting menu, not the falloff menu itself
+paint.tool.curve.help = "כאשר האפשרות כבויה, הצביעה שומרת על עוצמה מלאה עד לקצה המברשת.";
 paint.tool.help = "השתמש בכלי אלפא, נזק ונפילה ע'מ להתאים את עוצמת פעולת הצביעה.
 
 אפשרויות אלו אינן משולבות בפונקציית הציירת הכללית, אך אלפא נלקחת בחשבון עבור גרסת הטריפלנר.";
@@ -1647,8 +1749,13 @@ paint.useGlobal = "חומר גלובלי";
 paint.useGlobal.help = "אם אפשרות זו מופעלת, החומר שנבחר יהיה זהה לכלים האחרים.
 
 שימו לב כי הוא מתחשב רק בהגדרות חוספנות, מתכתיות וצבע.";
+// Only the intensity part of the stroke randomizer, applied to the painting
+paint.useJitter = "שינוי עוצמה אקראי";
+paint.useJitter.help = "קובע אם שינוי אקראי של העוצמה משפיע על הצביעה. שינויים אקראיים במיקום, בסיבוב ובקנה המידה תמיד מזיזים את החותמת כולה.";
 // The current tool will paint the object if this option is enabled
 paint.usePainting = "ציור מברשת";
+// Paint with the color, roughness, metalness and opacity baked inside the VDM stamp
+paint.vdmMaterial = "חומר החותמת";
 
 position.bottom = "תחתון";
 position.center = "מרכז";
@@ -1690,6 +1797,8 @@ postprocess.bloom.threshold.help = "סף הבהירות הקובע אם פיקס
 // https://en.wikipedia.org/wiki/Chromatic_aberration
 postprocess.chromatic = "סטייה כרומטית";
 postprocess.chromatic.factor = "עוצמה";
+// Short label for the section shortcut bar
+postprocess.chromatic.short = "כרומה";
 // Accentuate the edges of the model
 postprocess.curvature = "עקמומיות";
 // Color/Strength of convex curvature
@@ -1698,6 +1807,8 @@ postprocess.curvature.bump = "בליטה";
 postprocess.curvature.cavity = "שקע";
 // Main strength of curvature
 postprocess.curvature.factor = "גורם";
+// Short label for the section shortcut bar
+postprocess.curvature.short = "שקע";
 // Color curves
 postprocess.curve = "כיוונון צבע";
 postprocess.curve.blue = "כחול";
@@ -1707,6 +1818,8 @@ postprocess.curve.luminance = "עיקרי";
 postprocess.curve.red = "אדום";
 // Reset color grading curves
 postprocess.curve.resetAll = "אפס הכל";
+// Short label for the section shortcut bar
+postprocess.curve.short = "עקומות";
 // Denoise
 postprocess.denoise = "מסנן רעשים";
 postprocess.denoise.help = "בצע מעבר להסרת רעשים לאחר שצבירת כל הפריימים הסתיימה.";
@@ -1717,11 +1830,17 @@ postprocess.dithering.help = "מפחית ארטיפקטים של 'פסים' (ל�
 // Depth of Field (bokeh)
 // https://en.wikipedia.org/wiki/Depth_of_field
 postprocess.dof = "עומק שדה";
+// f-number, a lower value opens the lens and blurs more
+postprocess.dof.aperture = "מפתח צמצם";
 // The blur factor behind the focused point
 postprocess.dof.blurFar = "טשטוש מרוחק";
 // The blur factor in front of the focused point
 postprocess.dof.blurNear = "טשטוש קרוב";
 postprocess.dof.focusTip = "לחץ על אובייקט לשינוי נקודת המוקד.";
+// Drive the blur with a single camera aperture instead of the two blur factors
+postprocess.dof.physical = "מצב צמצם";
+// Short label for the section shortcut bar (no need to translate "DoF")
+postprocess.dof.short = "DoF";
 // Full resolution (1:1 resolution) instead of half resolution
 postprocess.fullResolution = "רזולוציית מסך מלאה";
 // Filmic Grain
@@ -1735,6 +1854,8 @@ postprocess.maxSamples.help = "משפר את איכות הפוסט־פרוססי
 postprocess.pixelArt = "אמנות פיקסלים";
 // Override frame accumulation feature
 postprocess.pixelArt.allowAccumulate = "אפשר דגימת מסגרת";
+// Short label for the section shortcut bar
+postprocess.pixelArt.short = "פיקסלים";
 // Quality vs performance
 postprocess.quality = "איכות";
 postprocess.quality.help = "הפעל את האפשרויות הללו כדי לשפר את האיכות על חשבון ביצועים.";
@@ -1754,6 +1875,8 @@ postprocess.scanline.spacing = "מרווח";
 // https://en.wikipedia.org/wiki/Unsharp_masking
 postprocess.sharpness = "חדות";
 postprocess.sharpness.factor = "עוצמה";
+// Short label for the section shortcut bar
+postprocess.sharpness.short = "חידוד";
 // Screen-space ambient occlusion (SSAO)
 // https://en.wikipedia.org/wiki/Ambient_occlusion
 postprocess.ssao = "חסימת קרן אור";
@@ -1761,16 +1884,22 @@ postprocess.ssao = "חסימת קרן אור";
 postprocess.ssao.factor = "עוצמה";
 // How far the effect spreads
 postprocess.ssao.radius = "גודל";
+// Short label for the section shortcut bar (no need to translate "SSAO")
+postprocess.ssao.short = "SSAO";
 // Adjustment for ssao
 postprocess.ssao.thickness = "עובי";
 postprocess.ssao.thickness.help = "כמות עובי העומק שמונחת עבור מסתירים, כאחוז מרדיוס ה-AO.";
 // Screen-Space Global Illumination (no need to translate "SSGI")
 postprocess.ssgi = "הארה גלובלית (SSGI)";
+// Short label for the section shortcut bar (no need to translate "SSGI")
+postprocess.ssgi.short = "SSGI";
 // Thickness threshold for ssgi tracing algorithm (synonym: threshold, bias)
 postprocess.ssgi.tolerance = "סיבולת";
 postprocess.ssgi.warning = "SSGI דורש מצב הצללה PBR.";
 // Screen-Space Reflection (no need to translate "SSR")
 postprocess.ssr = "השתקפות (SSR)";
+// Short label for the section shortcut bar (no need to translate "SSR")
+postprocess.ssr.short = "SSR";
 postprocess.ssr.warning = "SSR דורש מצב צללים PBR.";
 // Temporal Anti-Aliasing (no need to translate "TAA")
 postprocess.taa = "החלקת קצוות (TAA)";
@@ -1785,6 +1914,8 @@ postprocess.tone.mapping.neutral = "ניטראלי";
 // No tonemapping operator is used
 postprocess.tone.mapping.none = "ללא";
 postprocess.tone.saturation = "רוויה";
+// Short label for the section shortcut bar
+postprocess.tone.short = "גוון";
 // Darkening at the edges
 postprocess.vignette = "וינייט";
 // How sharp the edge of the effect is
@@ -2074,10 +2205,16 @@ settings.grid.snapDivision = "סף חלוקת חיבור";
 settings.grid.snapDivision.help = "הסף מושווה למרחק עד לרשת.";
 // Snap eligible tool points to the grid
 settings.grid.snapGrid = "הצמד לרשת";
+// Same as settings.grid.snapGrid, on a small shortcut button
+settings.grid.snapGrid.short = "הצמדה לרשת";
 // Snap eligible tool points to nearby existing points when the camera is aligned
 settings.grid.snapPointAlign = "הצמד לנקודות (תצוגה מיושרת)";
+// Same as settings.grid.snapPointAlign, on a small shortcut button
+settings.grid.snapPointAlign.short = "הצמדה לנקודות (מיושר)";
 // Snap eligible tool points to nearby existing points when the camera is not aligned
 settings.grid.snapPointFree = "הצמד לנקודות (תצוגה חופשית)";
+// Same as settings.grid.snapPointFree, on a small shortcut button
+settings.grid.snapPointFree.short = "הצמדה לנקודות (חופשי)";
 // Handles are controls that you interact with in the viewport in order to edit something
 settings.handle = "ידית";
 settings.handles = "ידיות";
@@ -2153,13 +2290,18 @@ settings.snapCube.align.help = "יש ליישר את הנופים לציר הע�
 // Move the navigation cube to the bottom of the screen
 settings.snapCube.bottom = "למטה";
 // Extra snapping views on the edges and corners of the navigation cube
-settings.snapCube.edgeCorner = "";
-settings.snapCube.edgeCorner.help = "";
+settings.snapCube.edgeCorner = "קצוות ופינות";
+settings.snapCube.edgeCorner.help = "הוספת תצוגות הצמדה בקצוות ובפינות של הקובייה (אזורים בצבע ענבר).";
 // Flip the camera (rotate 180° to see the other side)
 settings.snapCube.flip = "היפוך 180°";
 settings.snapCube.flip.help = "הפוך את הנוף אם הנוף כבר מוצמד.";
 // Move the navigation cube on the left side of the screen
 settings.snapCube.left = "שמאל";
+// Dragging the navigation cube rotates like the Turntable mode, even if the camera is in Trackball
+settings.snapCube.turntable = "גרירה במצב פלטה מסתובבת";
+settings.snapCube.turntable.help = "גרירת הקובייה מסובבת את המצלמה ללא גלגול, ועוצרת בכל תצוגת הצמדה.
+
+השבת אפשרות זו כדי לגרור את הקובייה באמצעות סיבוב כדור תנועה במקום זאת. הגרירה נשארת אופקית או אנכית בשני המקרים.";
 // Stats (information logs about the scene displayed on screen)
 settings.stats = "סטטיסטיקות";
 settings.stats.all = "הצג את כל הסצנה";
@@ -2361,10 +2503,25 @@ stroke.alpha.fit.help = "אפשרות זו רלוונטית רק אם טקסטו
 
 כאשר האפשרות מופעלת, כל תמונה תתרצף בנפרד ללא רווחים.
 ניתן להשבית אפשרות זו אם רוצים לשמור על סינכרוניזציה של ה-alpha והתמונות האחרות במקרה שהיחס אינו זהה.";
+// Title of the popup that corrects the alpha image itself
+stroke.alpha.fix = "";
+// Follows a number: "30% negative pixels clamped to zero"
+stroke.alpha.fix.clamped = "";
+// Under the two previews of the popup: the current image on the left, the corrected one on the right
+stroke.alpha.fix.compare = "";
+// Mirror the image left/right
+stroke.alpha.fix.flipX = "";
+// Mirror the image top/bottom
+stroke.alpha.fix.flipY = "";
+// Turn the image by a quarter
+stroke.alpha.fix.rotate = "";
+// The border pixels do not all share the same value, so no single mid value fits them
+stroke.alpha.fix.spread = "";
 // Invert the pixel (black, white)
 stroke.alpha.invert = "היפוך פיקסלים";
 // Middle-point value at which no deformation occurs
 stroke.alpha.midValue = "ערך אמצעי";
+stroke.alpha.midValue.detect.help = "";
 stroke.alpha.midValue.help = "ערך אמצע שבו לא מתרחשת התעוותות.
 
 (ערך אמצע = 0)
@@ -2378,6 +2535,7 @@ stroke.alpha.midValue.help = "ערך אמצע שבו לא מתרחשת התעו�
 (ערך אמצע = 1)
 • שחור: התקה שלילית
 • לבן: אין התקה";
+stroke.alpha.midValue.pick.help = "";
 // Alpha rotation
 stroke.alpha.rotation = "סיבוב";
 stroke.alpha.rotation.lock.help = "נעילת כיוון האלפא.
@@ -2548,6 +2706,8 @@ stroke.type.roll = "גלגול";
 stroke.type.tile = "אריח";
 // Sculpt and paint with alpha projected on 3 axis
 stroke.type.triplanar = "טריפלאנר";
+// Drag on the surface to grab a shape from it and turn it into a VDM stamp
+stroke.type.vdmPick = "";
 // The tool can use DynTopo
 stroke.useDynamic = "לאפשר טופולוגיה דינאמית";
 
@@ -2622,6 +2782,12 @@ symmetry.showLine = "הצג קו";
 symmetry.showPlane = "הצג מישור";
 // after mirroring, separate into multiple output (synonym: split, separate)
 symmetry.split = "פָּצַל";
+// Half of a two line toggle: edit how many repeats span the object
+symmetry.tile.count = "";
+// Half of a two line toggle: edit the distance between two repeats
+symmetry.tile.distance = "";
+// The distance between two repeats of the sculpt, so it tiles seamlessly (synonym: wrap, repeat)
+symmetry.tile.title = "אריח";
 symmetry.toolIgnore = "הכלי הנוכחי מתעלם מסימטריה.";
 
 // Three-state toggle button (auto, no, yes)
@@ -2655,6 +2821,8 @@ tool.elastic = "אלסטי";
 tool.faceGroup = "קבוצת פאות";
 tool.faceGroup.autoPick = "אוטו-בחירה";
 tool.faceGroup.flush = "הוצא לא בשימוש";
+// Face group tap action: the tapped group and what lies beyond it get unmasked, the gizmo lands on the joint
+tool.faceGroup.pose = "";
 tool.faceGroup.skip = "דלג על קבוצות קטנות בהתבסס על:";
 tool.faceGroup.skipArea = "שטח פנים";
 tool.faceGroup.skipArea.help = "אל תיצור קבוצה חדשה אם שטח הפנים של הקבוצה החדשה קטן מסף זה.
@@ -2668,6 +2836,8 @@ tool.flatten = "החלק";
 tool.flatten.fill = "מִלֵא";
 tool.flatten.planeLockNormal = "נעל את כיוון המישור";
 tool.flatten.planeLockOrigin = "נעל את מוצא המישור";
+// Give the viewport back to the tool: its options come back and it can draw again
+tool.focus = "";
 // Ideally short strings (Rotate, Translate and Scale the object)
 tool.gizmo = "גיזמו";
 // Ideally short strings (Align/Snap the gizmo to world axis)
@@ -2700,6 +2870,24 @@ tool.gizmo.order.line = "קו";
 tool.gizmo.order.sphere = "כדור";
 // Ideally short strings (Pin the gizmo, so that it stays in place when switching between objects)
 tool.gizmo.pin = "יַתֵד";
+// Title of the pivot reset options (where to put the pivot back)
+tool.gizmo.reset = "";
+// Pivot orientation snapped to the world axes
+tool.gizmo.reset.align = "";
+tool.gizmo.reset.align.help = "";
+tool.gizmo.reset.auto = "";
+tool.gizmo.reset.auto.help = "";
+tool.gizmo.reset.bottom = "";
+tool.gizmo.reset.bottom.help = "";
+tool.gizmo.reset.center = "";
+tool.gizmo.reset.center.help = "";
+tool.gizmo.reset.help = "";
+// Pivot on the center of the unmasked area
+tool.gizmo.reset.mask = "";
+tool.gizmo.reset.mask.help = "";
+// Pivot on the object origin
+tool.gizmo.reset.object = "";
+tool.gizmo.reset.object.help = "";
 // Puts the gizmo back on its automatic placement (position and orientation)
 tool.gizmo.resetPivot = "אפס את הציר";
 // Ideally short strings (Snap angle)
@@ -2783,15 +2971,29 @@ tool.layer.removeInfluence.help = "אפשרות זו פעילה רק כאשר ש
 tool.mask = "מסכה";
 // Blur the painted mask
 tool.mask.blur = "טשטוש";
+// Strengthen the mask intensity without changing its shape (opposite of Dilute)
+tool.mask.boost = "חיזוק";
+// Mask the open boundary of the mesh (the edge of a plane, the rim of a hole)
+tool.mask.border = "גבול";
+// Negative side of the Cavity slider: only the raised areas stay paintable
+tool.mask.bumps = "בליטות";
+// Rebuild the mask from the surface curvature: only the recessed areas stay paintable
+tool.mask.cavity = "שקע";
 // Clear the painted mask
 tool.mask.clear = "נקה";
 tool.mask.clearAll = "נקה הכל";
+// Weaken the mask intensity without changing its shape (opposite of Boost)
+tool.mask.dilute = "דילול";
 // Mask or Unmask a region (leave other region that unconnected intact)
 tool.mask.flipConnected = "הפוך מסכה (מחובר)";
+// Enlarge the masked area, one ring of vertices at a time
+tool.mask.grow = "הרחבה";
 // Invert the painted mask
 tool.mask.invert = "הפוך";
 // Sharpen the edge of the painted mask area
 tool.mask.sharpen = "חידוד";
+// Reduce the masked area, one ring of vertices at a time (opposite of Grow)
+tool.mask.shrink = "כווץ";
 // Ideally short strings
 tool.mask.unmask = "הסר מסכה";
 // Ideally short strings (Selector Mask, use lasso/ellipse,etc shape to mask the mesh)
@@ -2806,6 +3008,9 @@ tool.matrix.action.origin = "הזז מקור";
 tool.matrix.action.origin.help = "הזז את המערכת למקור העולם.";
 tool.matrix.action.reset = "אתחל";
 tool.matrix.action.reset.help = "אתחל את המטריצה במערכת זהות.";
+// Move the pivot alone, the objects stand still
+tool.matrix.editPivot = "עריכה";
+tool.matrix.editPivot.help = "הזז את הציר בלבד; האובייקטים נשארים במקומם.";
 tool.matrix.rotation = "סיבוב";
 tool.matrix.scale = "קנה מידה";
 // Synonym: shear, https://en.wikipedia.org/wiki/Shear_matrix or https://en.wikipedia.org/wiki/Shear_mapping
@@ -2820,10 +3025,16 @@ tool.matrix.target.auto.help = "ברירת המחדל תעבוד בדומה לא
 tool.matrix.target.group = "קבוצה";
 tool.matrix.target.group.help = "הזז את הצומת, תוך התעלמות מסימטריה ומסיכה.
 גם שאר ההיררכיה תשתנה.";
+// Transform the object and its children, and every other instance of it
+tool.matrix.target.groupInstance = "";
+tool.matrix.target.groupInstance.help = "";
 // Transform the object alone (the children stands still)
 tool.matrix.target.object = "אובייקט";
 tool.matrix.target.object.help = "הזז רק את האובייקט, תוך התעלמות מסימטריה ומסיכה.
 רק הצומת הערוך יזוז, הילדים ייוותרו במקומם.";
+// Transform the object alone, and every other instance of it
+tool.matrix.target.objectInstance = "";
+tool.matrix.target.objectInstance.help = "";
 // Auto apply the transform on the vertices
 tool.matrix.target.vertex = "קודקוד";
 tool.matrix.target.vertex.help = "נסה ליישם את השינוי על הקודקודים, הוא לא יעבוד על פרימיטיבים שלא אומתו.
@@ -2874,8 +3085,6 @@ tool.polish = "ליטוש";
 tool.project = "השלכה";
 // Radius of the tool (size)
 tool.radius = "רדיוס";
-// Ideally short strings (Quad Remesher)
-tool.remesh = "Quad Remesher";
 tool.remesh.density = "צפיפות";
 tool.remesh.guides = "מדריכים";
 tool.remesh.half = "חצי";
@@ -2972,6 +3181,36 @@ tool.trim.detail.protect.help = "אל תחלק ולא תפשט את גבול ה�
 שומר על טופולוגיית הרשת המקורית ליד פאות ממוסכות ומוסתרות.";
 // Ideally short strings (Revolving surface along a curve)
 tool.tube = "צִנוֹר";
+// Ideally short strings (Vector displacement stamp)
+tool.vdm = "VDM";
+// Button that adds a plane ready to be sculpted into a VDM
+tool.vdm.addPlane = "הוסף מישור";
+// Scales only the height of the vdm stamp, lateral displacement is unchanged
+tool.vdm.height = "גובה";
+// Button that opens the popup that adds a plane to sculpt a VDM on, "..." is appended in the app
+tool.vdm.new = "VDM חדש";
+// Title of the popup that adds a plane to sculpt a VDM on
+tool.vdm.plane = "פסל VDM חדש";
+// The border is the outer edge of the plane
+tool.vdm.plane.border = "מסך את הגבול";
+tool.vdm.plane.border.help = "ממסך את הטבעת החיצונית של המישור כדי לשמור על גבול שטוח.
+
+פיסול עד הגבול יוצר קצה חד בחותמת.";
+tool.vdm.plane.help = "מוסיף מישור המוגדר לפיסול VDM, עם UV, הרזולוציה שנבחרה וכיוון שפונה למצלמה.
+
+פעולה זו יוצרת רק את המישור. כדי ליצור את החותמת:
+• פסל את הצורה על המישור
+• פתח את `טופולוגיה -> אפייה`
+• בחר `VDM` ואז לחץ על `אפייה`
+
+Nomad מוסיף את החותמת החדשה לספריית VDM ובוחר אותה.
+
+הימנע מ-DynTopo, משום שהיא פוגעת ב-UV של המישור ומעוותת את החותמת.";
+// (see Glossary for Layer)
+tool.vdm.plane.layer = "פסל בשכבה";
+tool.vdm.plane.layer.help = "יוצר שכבת פיסול מעל המישור השטוח, שהאפייה משתמשת בה כנקודת ייחוס.
+
+גם צביעה דורשת שכבה. בלעדיה, החומר מכסה את הריבוע כולו בעת ההחתמה, ולא רק את האזור הצבוע.";
 // Ideally short strings (View tool, do nothing in particular)
 tool.view = "תצוגה";
 // Always display the camera shortcut buttons on the viewport
@@ -2979,8 +3218,6 @@ tool.view.stickyCamera = "קיצור למצלמה (תמיד)";
 
 // Topology
 topology = "טופולוגיה";
-// Name of the quad remeshing engine, should probably stay untranslated
-topology.autoremesher = "AutoRemesher";
 topology.autoremesher.adaptivity = "אדפטיביות";
 topology.autoremesher.adaptivity.help = "התאמת צפיפות המרובעים לעקמומיות.
 
@@ -2998,6 +3235,9 @@ topology.autoremesher.smoothAngle.help = "0 משאיר את המשטח בעל פ
 
 ערכים גבוהים יותר מחליקים את המשטח תוך התחשבות בנורמלים של הקודקודים.";
 topology.bake.backup = "גיבוי";
+// Multires here means the subdivision levels of the object itself
+topology.bake.multires = "";
+topology.bake.multires.help = "";
 // Cage is a specific term; synonym: "Bake offset"
 topology.bake.offset = "היסט קרן";
 // Bake opacity (from mask data)
@@ -3030,6 +3270,29 @@ topology.bake.title.help = "אפיית טקסטורות תיצור טקסטור�
 - כל האובייקטים שנבחרו והאובייקט הנבחר הראשי יאפו (הדגשה חזקה ביותר בתפריט הסצנה)
 - אם יש אובייקט אחד בלבד שנבחר, Nomad יחשב את כל האובייקטים הגלויים
 - אם כל האובייקטים מוסתרים (למשל על ידי שימוש ב-Solo), הסצנה כולה תילקח בחשבון";
+// Warning shown after a VDM bake, the border of the plane is its outer edge
+topology.bake.vdm.border = "הפיסול מגיע לגבול המישור, ולכן ה-VDM יציג קצה חד בעת החתמה.";
+// Error shown when a VDM bake fails
+topology.bake.vdm.failed = "יצירת ה-VDM נכשלה.";
+// Bake here means "create a VDM (from a sculpted plane)"
+topology.bake.vdm.help = "יוצר VDM מהאובייקט שנבחר ומוסיף אותו לספריית VDM.
+
+זהו תהליך העבודה הרגיל:
+• הוסף מישור, או בחר `VDM חדש` בבורר ה-VDM כדי להוסיף מישור שכבר הוגדר
+• פסל עליו את הצורה תוך שמירה על גבול שטוח
+• בצע אפייה!
+
+מיפוי ה-UV של המישור מגדיר את הריבוע שנאפה, ולכן לאובייקט דרוש UV.
+
+הימנע מטופולוגיה דינמית, היא פוגמת ב-UV של המישור וה-VDM ייצא מעוות.
+
+פיסול בשכבה נותן את התוצאה המדויקת ביותר, מכיוון שהמישור השטוח עדיין נמצא מתחתיה.
+
+גם צביעה מחייבת שכבה, אחרת החומר יוחתם על כל הריבוע במקום רק במקומות שצבעת.";
+// Warning shown when the picked region cannot be flattened; a disc is a simple patch with a single outer edge
+topology.bake.vdm.notDisk = "";
+// Warning shown when the picked region holds too many polygons to be flattened
+topology.bake.vdm.tooBig = "";
 // Synonym: Simplify (Decimate reduce the number of triangles/quads while retaining details as much as possible)
 topology.decimate = "צמצם";
 topology.decimate.boundary = "שמור על הקצוות";
@@ -3081,8 +3344,6 @@ topology.dynamic.useFalloff = "השתמש בדעיכת המשיכה";
 // Whether the pencil pressure can impact the level of detail
 topology.dynamic.usePressure = "השימוש בלחץ על הרדיוס";
 topology.dynamic.usePressure.help = "השתמש באפשרות זו אם ברצונך שהשפעת לחץ העט על רעיוס הכלי תושפע לרמה של פרטים.";
-// Instant quad remesher
-topology.instant = "Instant Mesh";
 topology.instant.angle = "זווית חריץ";
 topology.instant.hole = "מילוי חור מרבי";
 topology.instant.hole.help = "האלגוריתם עלול ליצור חורים לא רצויים לפעמים.
@@ -3129,8 +3390,6 @@ topology.multires.up = "רמת Multiresolution →";
 topology.nonManifold = "לא־מניפולד";
 // Quad remesher
 topology.quadRemesh = "רימש קוואדים";
-// Name of the quad remeshing engine, should probably stay untranslated
-topology.quadriflow = "QuadriFlow";
 topology.quadriflow.adaptiveScale = "קנה מידה אדפטיבי";
 topology.quadriflow.adaptiveScale.help = "התאמת גודל המרובעים לעקמומיות המשטח.";
 topology.quadriflow.keepSharp = "שמירת קצוות חדים";
@@ -3225,6 +3484,8 @@ topology.uv.title = "פירוק UV";
 topology.uv.unwrap = "פרוס";
 // Create a new object by recomputing a new topology, by using voxels (see Glossary)
 topology.voxel = "רימש ווקסל";
+// The voxel detail expressed as a world size, the same value gives the same detail on any object
+topology.voxel.edgeLength = "אורך הקצה";
 topology.voxel.help = "חידוש רשת על ידי דגימה שלה על מסגרת.
 
 אם האובייקט אינו סגור (אטום למים), תתבצע קודם אלגוריתם למילוי חורים.

@@ -115,10 +115,18 @@ alert.forcePainting.tool = "रंग दिखाएं सक्रिय क�
 alert.gizmo.editObject = "वस्तु मोड संपादित करें.";
 // In this mode, the user moves the Gizmo's pivot instead of the object
 alert.gizmo.editPivot = "धुरी मोड संपादित करें.";
+// Button that turns the heightmap render off
+alert.heightmap.hide = "हाइटमैप छिपाएँ";
+// The viewport renders the depth of the scene instead of the shaded objects
+alert.heightmapOn = "हाइटमैप चालू है!";
 // The user decided to display hidden faces
 alert.hideIgnored = "छुपाना नजरअंदाज किया गया है!";
 // Error when an algorithm needs the object to have a hole (usually to fill it)
 alert.hole.nothing = "वस्तु में कोई छेद नहीं है!";
+// Button that turns the inspector off
+alert.inspect.hide = "इंस्पेक्टर छिपाएँ";
+// The viewport renders a material channel instead of the shaded objects
+alert.inspectOn = "इंस्पेक्टर चालू है!";
 // The lattice deformation was applied with a different mask or visibility state
 // (the gui appends the icon of the changed states)
 alert.lattice.desync = "जाली सिंक नहीं है!";
@@ -167,6 +175,8 @@ alert.state.trial = "परीक्षण संस्करण: अनडू �
 alert.trim.full = "ट्रिम रद्द करें: वस्तु पूरी तरह से ट्रिम हो गई है.";
 // The user tried to trim an object but the selected region didn't touch the object
 alert.trim.nothing = "ट्रिम करने के लिए कुछ नहीं है.";
+// The remesher rebuilds the mesh without a UV layout, the painting is kept as vertex colors
+alert.uvLost = "";
 // List of disabled features when View Mode is selected
 alert.view.disabled = "दृश्य मोड़ में फ़ीचर अक्षम हैं.";
 // Primitive widgets are small viewport controls used to modify a primitive
@@ -208,6 +218,9 @@ background.imageAlpha = "अपारदर्शिता";
 background.imageEnable = "संदर्भ इमेज";
 // The image will be displayed in overlay (used as a reference by the artist)
 background.imageOverlay = "ओवरले";
+// Apply the post process effects on the reference image
+background.imagePostProcess = "पोस्ट प्रॉसेस";
+background.imagePostProcess.help = "संदर्भ इमेज पर पोस्ट प्रॉसेस प्रभाव लागू करता है। मूल रंग बनाए रखने के लिए इसे बंद करें।";
 background.imageReset = "सेटिंग्स रीसेट करें";
 // Rotation of the reference image
 background.imageRotate = "घुमाव";
@@ -286,6 +299,8 @@ binding.rotateLighting = "प्रकाश घुमाएँ";
 // Select all the objects in the scene
 binding.selectAll = "सभी चुनें";
 binding.snap.toggle = "वक्र संपादन टॉगल करें";
+// Same as binding.snap.toggle, on a small shortcut button
+binding.snap.toggle.short = "वक्र संपादन";
 // Snap the view (while rotating)
 binding.snapViewOnRotate = "दृश्य स्नैप करें (घुमाते समय)";
 binding.spacemouse = "स्पेसमाउस";
@@ -371,6 +386,8 @@ camera.doubleTapBackgroundFocus.toggle = "टॉगल करें";
 camera.doubleTapFocus.help = "वस्तु पर डबल टैप करने पर, कैमरा पैन करेगा और चुने गए बिंदु पर फ़ोकस करेगा.";
 // When we double tap on the object with the finger/stylus
 camera.doubleTapMesh = "वस्तु पर डबल टैप करें";
+// Same as camera.doubleTapMesh, on a small shortcut button
+camera.doubleTapMesh.short = "फ़ोकस";
 // When double tapping with the finger/stylus, the camera pivot will be updated
 camera.doubleTapPivot = "डबल टैपिंग करते समय";
 camera.doubleTapPivot.help = "वस्तु की सतह पर डबल टैप करके रोटेशन धुरी को अपडेट करें.";
@@ -465,8 +482,6 @@ cube.right = "दायाँ";
 cube.top = "ऊपर";
 
 curve.bspline = "बी-स्पलाइन";
-// Curve type, https://en.wikipedia.org/wiki/Centripetal_Catmull%E2%80%93Rom_spline
-curve.catmull = "कैटमुल-रोम";
 // Merge or collapse one point into another
 curve.merge = "विलय करें";
 curve.pivot = "धुरी";
@@ -484,20 +499,16 @@ curve.sharpness = "पैनापन";
 curve.shift = "क्षैतिज खिसकाव";
 // snap
 curve.snap = "स्नैप";
-// whether the tube body stays on the surface between its control points, and along which direction
+// whether the curve body (tube or repeated objects) stays on the surface between its control points, and along which direction
 curve.snap.follow = "अनुसरण";
-curve.snap.follow.help = "ट्यूब अपने नियंत्रण बिंदुओं के बीच क्या करती है।";
+curve.snap.follow.help = "";
 curve.snap.follow.normal = "नॉर्मल";
-curve.snap.follow.normal.help = "ट्यूब सतह पर बनी रहती है और सतह के नॉर्मल की दिशा में उस पर दबाई जाती है।
-
-यह सतह तक सबसे छोटा रास्ता लेती है, जो किनारे से दिखने वाली आकृतियों पर अच्छी तरह काम करता है।";
-// only the control points snap, the body of the tube is left alone
+curve.snap.follow.normal.help = "";
+// only the control points snap, the body of the curve is left alone
 curve.snap.follow.points = "बिंदु";
-curve.snap.follow.points.help = "केवल नियंत्रण बिंदु सतह पर स्नैप होते हैं।
-
-उनके बीच ट्यूब आपके बनाए आकार को बनाए रखती है, इसलिए यह सतह को काट सकती है या उसके ऊपर तैर सकती है।";
+curve.snap.follow.points.help = "";
 curve.snap.follow.view = "दृश्य";
-curve.snap.follow.view.help = "ट्यूब सतह पर बनी रहती है और उस दिशा में उस पर दबाई जाती है, जिधर से आप उसे बनाते समय देख रहे थे।";
+curve.snap.follow.view.help = "";
 curve.snap.grid = "ग्रिड (यदि स्नैप्ड)";
 curve.snap.normal = "नॉर्मल संरेखित करें";
 curve.snap.normal.help = "केवल कर्व के पहले और आखिरी कंट्रोल पॉइंट को प्रभावित करता है।
@@ -506,13 +517,19 @@ curve.snap.normal.help = "केवल कर्व के पहले और �
 
 पड़ोसी पॉइंट तक की दूरी समान (संरक्षित) रहती है।";
 curve.snap.offset = "आफसेट";
-curve.snap.offset.help = "100% का मान नली की त्रिज्या के बराबर है.";
+curve.snap.offset.help = "";
 curve.snap.surface = "सतह";
 curve.snap.vertex = "वर्टेक्स";
 curve.spiral = "सर्पिल";
 curve.spiral.angle = "कोण आफसेट";
+curve.spiral.depth = "";
+curve.spiral.flat = "";
+curve.spiral.groups = "";
+curve.spiral.hardness = "";
 curve.spiral.offset = "आफसेट";
+curve.spiral.pack = "";
 curve.spiral.scale = "स्केल";
+curve.spiral.strands = "";
 curve.spiral.twist = "ट्विस्ट कोण";
 // Spline curve, https://en.wikipedia.org/wiki/Spline_(mathematics)
 curve.spline = "स्पलाइन";
@@ -527,12 +544,22 @@ curve.uniform.help = "कर्व को नियमित अंतराल 
 
 आप इस विकल्प को निष्क्रिय करके कर्व पर नए नियंत्रण बिंदु जोड़कर थोड़ा एज लूप्स को नियंत्रित कर सकते हैं।";
 
+// Debug section to import/export the icons of the interface
+debug.customIcons = "कस्टम आइकॉन";
+// Short label for the section shortcut bar
+debug.customIcons.short = "आइकॉन";
+// Debug section for optional features
+debug.feature = "फ़ीचर";
 // Debug graphics options
 debug.graphics = "ग्राफिक्स";
 // Debug option, overrides the rendering to display the depth buffer
 debug.heightmap = "हाइटमैप";
 // Debug option: display a window with debugging logs
 debug.logs = "लॉग्स";
+// Logs window option: break long lines to fit the panel width
+debug.logs.wrap = "वर्ड रैप";
+// Debug section for multithreading and speed options
+debug.performance = "प्रदर्शन";
 // Model shortcut window
 debug.shortcut = "शॉर्टकट विंडो";
 // Set the desired FPS (frame per second, refresh rate)
@@ -540,6 +567,8 @@ debug.targetFps = "एफपीएस टारगेट करें";
 debug.targetFps.help = "अक्षम होने पर, डिफ़ॉल्ट मान का अर्थ है कि यह डिस्प्ले की रीफ़्रेश दर के साथ समन्वयित होगा।";
 // Debug options, generate screenshots with size compatible with the iOS store
 debug.thumbnails = "स्टोर थंबनेल बनाएँ";
+// Same as debug.thumbnails, on a small shortcut button
+debug.thumbnails.short = "थंबनेल";
 // Debug option, Normalize means transforming the data so that it fits in [0-1] the range
 debug.uvNormalize = "UVs को सामन्य करें";
 debug.uvNormalize.help = "Nomad [0-1] टाइल के अंदर UVs को सामान्य करेगा.";
@@ -636,8 +665,10 @@ file.export.gltf.layer.help = "परतों को मोर्फ़ के 
 // Whether we include painting of layers in the exported file (see glossary for layer)
 file.export.gltf.layerPaint = "परत पैंट";
 file.export.gltf.layerPaint.help = "परत पेंटिंग निर्यात करें. इसे आमतौर पर अन्य सॉफ्टवेयर द्वारा नजरअंदाज कर दिया जाता है.";
-file.export.nomad.assets = "";
-file.export.nomad.assets.help = "";
+file.export.nomad.assets = "MatCap और परिवेश एम्बेड करें";
+file.export.nomad.assets.help = "कस्टम MatCap और परिवेश को फ़ाइल में शामिल करें, ताकि वह किसी अन्य डिवाइस पर भी वैसी ही दिखे।
+
+बिल्ट-इन एसेट कभी एम्बेड नहीं किए जाते; वे Nomad का हिस्सा हैं।";
 file.export.nomad.help = "नोमैड स्कल्प्ट का आंतरिक फ़ाइल प्रारूप।
 
 यह प्रारूप अन्य सॉफ्टवेयर पर लोड नहीं होगा, यह मुख्य रूप से पुनः-आयात प्रयोजनों के लिए है।";
@@ -772,11 +803,8 @@ file.project.unsaved = "सहेजे नहीं गए परिवर्�
 file.render = "रेंडर";
 // height of exported screenshot
 file.render.height = "ऊँचाई";
-// Resolution ratio of the exported screenshot
-file.render.renderRatio = "रेंडर अनुपात";
-file.render.renderRatio.help = "1.0 के मान का अर्थ है कि Nomad नीचे दिए गए अनुरोधित इमेज आकार के समान रिज़ॉल्यूशन पर रेंडर करेगा.
-
-यदि आप एक निश्चित रिज़ॉल्यूशन पर रेंडर नहीं कर सकते हैं तो इस विकल्प का उपयोग करें (मेमोरी की कमी के कारण क्रैश होता है).";
+// Warning shown when the requested export resolution is too large for the memory left on the device
+file.render.lowMemory = "यह आकार इस डिवाइस की बची हुई मेमोरी में फ़िट नहीं हो सकता।";
 // Screen resolution parameters for the export screenshot features
 file.render.screenResolution = "स्क्रीन";
 // If we include the App Interface in the exported screenshot
@@ -786,7 +814,7 @@ file.render.size = "अंतिम आकार";
 // Desired size of the exported screenshot (custom vs predefined size)
 file.render.size.custom = "कस्टम";
 // Save the heightmap render as a new brush alpha instead of exporting it as a file
-file.render.toAlpha = "";
+file.render.toAlpha = "अल्फ़ा के रूप में सहेजें";
 // If true, then the exported screenshot will have transparency data in the image
 file.render.transparent = "पारदर्शी पृष्ठभूमि";
 file.render.transparent.help = "यदि आप 2डी क्रिएशन सॉफ़्टवेयर में मेश डालना चाहते हैं तो यह विकल्प उपयोगी हो सकता है.
@@ -812,6 +840,38 @@ file.select.include = "शामिल करें";
 file.select.selected = "चयनित";
 file.select.unselected = "चयन रद्द करें";
 file.select.visible = "दृश्यमान";
+
+fog = "कोहरा";
+fog.ambient = "पर्यावरण";
+fog.ambient.help = "यह नियंत्रित करता है कि परिवेश कोहरे को कितना प्रकाशित करता है।";
+fog.anisotropy = "प्रकीर्णन दिशा";
+fog.anisotropy.help = "कोहरा जिस दिशा में प्रकाश को प्रकीर्णित करता है उसे नियंत्रित करता है, इसे ऐनिसोट्रॉपी भी कहा जाता है।
+
+• धनात्मक मान प्रकाश स्रोत की ओर देखने पर कोहरे को अधिक चमकीला बनाते हैं।
+• ऋणात्मक मान उससे दूर देखने पर इसे अधिक चमकीला बनाते हैं।
+• शून्य प्रकाश को सभी दिशाओं में समान रूप से प्रकीर्णित करता है।";
+fog.color = "रंग";
+fog.color.help = "कोहरे और उसके द्वारा प्रकीर्णित प्रकाश का रंग सेट करता है।";
+fog.density = "घनत्व";
+fog.density.help = "यह नियंत्रित करता है कि दूरी के साथ कोहरा कितनी जल्दी घना होता है।";
+fog.detail = "";
+fog.detail.help = "";
+fog.detail.scale = "";
+fog.detail.scale.help = "";
+fog.help = "वायुमंडलीय गहराई जोड़ता है और प्रकाश किरणों को दृश्यमान बनाता है।";
+fog.opacity = "अधिकतम अपारदर्शिता";
+fog.opacity.help = "उच्च घनत्व पर भी, कोहरा दृश्य को कितना ढक सकता है इसे सीमित करता है।";
+fog.shape = "आकार";
+fog.shape.help = "यह नियंत्रित करता है कि कोहरा दृश्य में कहाँ भरेगा।";
+fog.shape.uniform = "एकसमान";
+fog.shape.uniform.help = "पूरे दृश्य को कोहरे से भरता है।";
+fog.shape.vertical = "ऊर्ध्वाधर";
+fog.shape.vertical.bottom = "नीचे";
+fog.shape.vertical.bottom.help = "कोहरे की पट्टी के निचले किनारे की ऊँचाई सेट करता है।";
+fog.shape.vertical.help = "कोहरे को नरम ऊपरी और निचले किनारों वाली ऊर्ध्वाधर पट्टी के अंदर रखता है।";
+fog.shape.vertical.preview.help = "किनारों को समायोजित करते समय व्यूपोर्ट में फ़ॉग बैंड दिखाता है।";
+fog.shape.vertical.top = "ऊपर";
+fog.shape.vertical.top.help = "कोहरे की पट्टी के ऊपरी किनारे की ऊँचाई सेट करता है।";
 
 format.ascii = "ऑस्कीई";
 format.binary = "बाइनरी";
@@ -929,6 +989,8 @@ gesture.wheel.speed3d = "गति (3डी ज़ूम)";
 
 // History, list of undo/redo
 history = "इतिहास";
+// Button deleting every operation of the history, freeing the memory and the disk space they use
+history.clear = "इतिहास साफ़ करें";
 // Long press on a state of the history list: deletes it and every older one, $0 is a number of operations
 history.delete.confirm = "इतिहास से $0 ऑपरेशन हटाएँ?";
 history.delete.help = "किसी इतिहास प्रविष्टि को स्थायी रूप से और उससे पुराना पूरा इतिहास हटाने के लिए उसे देर तक दबाएँ।";
@@ -948,17 +1010,26 @@ history.include.postProcess.help = "पूर्ववत/फिर से क�
 // include shading parameters (MatCap & HDRIs) editing in the undo/redo
 history.include.shading = "छायांकन";
 history.include.shading.help = "PBR, MatCap और Unlit मोड, MatCaps और HDRIs शामिल करता है।";
+// How much disk space the history is allowed to use, past it the oldest operations are deleted
+history.limitDisk = "स्टोरेज सीमा";
+history.limitDisk.help = "इस प्रोजेक्ट के पहले जैसा करें/फिर करें इतिहास द्वारा उपयोग किए जाने वाले स्टोरेज की अधिकतम मात्रा।
+
+सीमा पूरी होने पर सबसे पुराने ऑपरेशन हमेशा के लिए हटा दिए जाते हैं।
+
+नई सीमा अगला ऑपरेशन रिकॉर्ड होने के बाद लागू होती है।";
 // How much memory the history is allowed to use before the older states are moved to the disk
-history.limitMemory = "मेमोरी सीमा";
-history.limitMemory.help = "इतिहास की वह मात्रा जो मेमोरी में रखी जाती है।
+history.limitMemory = "RAM सीमा";
+history.limitMemory.help = "RAM में रखे जाने वाले पहले जैसा करें/फिर करें इतिहास की अधिकतम मात्रा।
 
-पुरानी अवस्थाएँ डिस्क पर भेजी जाती हैं और पूर्ववत करने पर वापस लोड होती हैं; उन्हें हटाया नहीं जाता।
+पुरानी अवस्थाएँ स्टोरेज में भेज दी जाती हैं और जरूरत पड़ने पर फिर लोड होती हैं; उन्हें हटाया नहीं जाता।
 
-अगला ऑपरेशन रिकॉर्ड होने पर इतिहास अपडेट होगा।";
+नई सीमा अगले संपादन, पहले जैसा करें या फिर करें के बाद लागू होती है।";
 // Where the undo history is kept when the project is saved (it survives reopening the project)
 history.persist = "इतिहास सहेजें";
 history.persist.embedded = "एम्बेड करें";
-history.persist.embedded.help = "इतिहास प्रोजेक्ट फ़ाइल के अंदर संग्रहित होता है। फ़ाइल बड़ी होगी, लेकिन इतिहास उसके साथ रहेगा।";
+history.persist.embedded.help = "इतिहास प्रोजेक्ट फ़ाइल में सेव होता है: फ़ाइल बड़ी होती है और सेव व लोड धीमे होते हैं।
+
+जब तक इतिहास को फ़ाइल के साथ ले जाना ज़रूरी न हो, बंद या अलग चुनें।";
 history.persist.help = "प्रोजेक्ट सहेजते समय पूर्ववत इतिहास बनाए रखें, ताकि प्रोजेक्ट फिर से खोलने पर भी वह उपलब्ध रहे।";
 history.persist.off = "बंद";
 history.persist.off.help = "प्रोजेक्ट को उसके इतिहास के बिना सहेजा जाता है।";
@@ -966,6 +1037,17 @@ history.persist.separate = "अलग";
 history.persist.separate.help = "इतिहास इस डिवाइस के प्रोजेक्ट डेटा में संग्रहित होता है। प्रोजेक्ट फ़ाइल छोटी रहती है।";
 // Redo
 history.redo = "फिर करें";
+// Slider + play button: rewinds to the root and redoes the operations one by one, the value is a number of operations per second
+history.replay = "";
+// Option of the replay popup: the camera follows the replayed operations even when the history "Restore camera" setting is off
+history.replay.camera = "";
+history.replay.camera.help = "";
+// Popup opened by the play button, above its two options
+history.replay.confirm = "";
+history.replay.help = "";
+// Option of the replay popup: runs backwards, undoing from the current state to the root
+history.replay.reverse = "";
+history.replay.reverse.help = "";
 // When enabled, undoing an operation also restores the camera position
 history.restoreCamera = "कैमरा रीस्टोर करें";
 history.restoreCamera.help = "जब आप किसी क्रिया को अनडू/रीडू करते हैं तो सहेजे गए कैमरे के दृश्य बिंदु को पुनर्स्थापित करने के लिए इस विकल्प को सक्षम करें.";
@@ -1054,8 +1136,10 @@ interface.inset.title.help = "आप इन मानों को तभी ब
 
 यदि स्लाइडर अक्षम है, तो नोमड डिवाइस द्वारा लौटाए गए सुरक्षित क्षेत्र मानों का उपयोग करेगा।";
 // Move a floating panel by dragging inside it, instead of using its bar
-interface.panelDrag = "";
-interface.panelDrag.help = "";
+interface.panelDrag = "पैनल का मुख्य भाग खींचें";
+interface.panelDrag.help = "फ़्लोटिंग पैनल को हमेशा उसकी बार खींचकर ले जाया जाता है। यह विकल्प उसके मुख्य भाग को भी खींचने देता है।
+
+ऑटो में, उंगली या स्टाइलस पैनल को तभी ले जाता है जब खींचना लंबवत से अधिक क्षैतिज हो, इसलिए लंबवत खींचने पर सामग्री स्क्रॉल होती रहती है। माउस से किसी भी दिशा में खींचने के लिए इसे हाँ पर सेट करें।";
 // Interface option (if the menus are transparent or opaque)
 interface.panelTransparent = "पारदर्शी पैनल";
 // Width of the interface panels
@@ -1113,10 +1197,18 @@ item.delete.confirm.yes = "हाँ, डिलीट करें";
 item.delete.used = "प्रयुक्त छवि";
 // Draggable, movable
 item.draggable = "हिलाने योग्य";
+// Short button label, turns a stamp (alpha or VDM) back into a plane that can be sculpted again
+item.edit = "";
+item.edit.help = "";
+// Short button label, opens a popup to correct the pixels of an imported image
+item.fix = "";
+item.fix.help = "";
 // Show the folders of a list as a column on its side, instead of a drop down menu
-item.folderColumn = "";
+item.folderColumn = "फ़ोल्डर कॉलम";
+// Show the folders of a drop down menu as small chips filling the width, instead of one per line
+item.folderCompact = "कॉम्पैक्ट फ़ोल्डर";
 // Show a list of items as one group of items per folder, instead of a single list
-item.folderGroup = "";
+item.folderGroup = "फ़ोल्डर के अनुसार समूहित करें";
 // Hide an item (object, layer, etc)
 item.hide = "छिपाएँ";
 // Make an item instance, similar to clone but keeps the underlying geometry (Synonym: link? soft clone?)
@@ -1139,6 +1231,8 @@ item.next = "अगला";
 item.none = "नहीं";
 // The order of an item in a list
 item.order = "क्रम";
+// Size of the preview images of a list of items, in pixels
+item.previewSize = "";
 // Focus on previous item
 item.previous = "पिछला";
 // Rename an item (object, tool, etc)
@@ -1151,17 +1245,19 @@ item.reset.confirm = "रीसेट करें?";
 // Save an item (object, tool, etc)
 item.save = "सहेजें";
 item.save.confirm = "सहेजें?";
-item.saveLibrary = "";
+item.saveLibrary = "लाइब्रेरी में सहेजें";
 // Select an item (object, layer, etc)
 item.select = "चुनें";
 // Show an item (object, layer, etc)
 item.show = "दिखाएँ";
 // Show the name of every item under its preview image
-item.showName = "";
+item.showName = "नाम दिखाएँ";
+// The show button of the curve/primitive handlers only toggles them all, instead of picking one kind
+item.showOnOff = "";
 // Order a list of items alphabetically
-item.sortName = "";
+item.sortName = "नाम के अनुसार";
 // Order a list of items with the most recently modified first
-item.sortRecent = "";
+item.sortRecent = "सबसे हाल का";
 // Convert the item type (mesh, light) to a simple Node type
 item.toNode = "नोड में बदलें";
 // Uninstance the object, make the object real
@@ -1254,13 +1350,10 @@ light.angle = "कोण";
 light.attachment = "अटैचमेंट";
 // The light will move along the camera
 light.attachment.camera = "कैमरा";
+light.attachment.camera.help = "प्रकाश अभिविन्यास कैमरा व्यू पर निर्भर करता है.";
 // The light will stay still even if the user moves the camera
 light.attachment.fixed = "निर्धारित";
-light.attachment.help = "• निर्धारित
-प्रकाश अभिविन्यास नहीं बदलेगा.
-
-• कैमरा
-प्रकाश अभिविन्यास कैमरा व्यू पर निर्भर करता है.";
+light.attachment.fixed.help = "प्रकाश अभिविन्यास नहीं बदलेगा.";
 // Color of light
 light.color = "रंग";
 // Contact shadows are more precise shadows on small distance (synonym: cavity shadows?)
@@ -1285,6 +1378,13 @@ light.shadow.softness = "मृदुता";
 // Thickness threshold for screen-space shadows (synonym: threshold, bias)
 light.shadow.tolerance = "सहनशीलता";
 light.shadow.type = "छाया प्रकार";
+// Switches technique on its own: screenspace while the view moves, shadow map once it settles
+light.shadow.type.auto = "स्वचालित";
+light.shadow.type.auto.help = "दृश्य को घुमाते समय स्क्रीनस्पेस छायाएँ उपयोग होती हैं, इसलिए कोमलता तुरंत दिखाई देती है। दृश्य स्थिर होने पर छाया मैप काम संभाल लेता है।
+
+इसका उपयोग केवल तब होता है जब प्रकाश इतना कोमल हो कि अंतर दिखाई दे।";
+// Shown above the two shadow type entries
+light.shadow.type.help = "छाया मैप प्रकाश की ओर से दृश्य को रेंडर करता है, इसलिए यह उस ज्यामिति पर भी छाया डालता है जिसे कैमरा नहीं देख सकता। स्क्रीनस्पेस इसके बजाय स्क्रीन पर पहले से मौजूद गहराई को पढ़ता है; यह कम खर्चीला है, लेकिन केवल दिखाई देने वाली चीज़ों पर छाया डालता है।";
 // Shadows computed with only the information visible on screen
 light.shadow.type.screenspace = "स्क्रीनस्पेस";
 light.shadow.type.screenspace.help = "प्रायोगिक फ़ीचर, इसे भविष्य के रिलीज़ में हटाया जा सकता है.
@@ -1312,12 +1412,10 @@ light.type.point = "बिंदु";
 // Spot light emits light in a single direction, restricted by a cone shape.
 light.type.spot = "स्पॉट";
 light.type.sun = "सूर्य";
-// Whether the light is shown
-light.visible = "दिखाएँ";
 
 link.address = "यह डिवाइस";
 link.approve = "स्वीकार करें";
-link.bridges = "ब्रिज स्क्रिप्ट";
+link.bridges = "ब्रिज स्क्रिप्ट (GitHub)";
 link.cameras = "कैमरे";
 link.copyRepository = "रिपॉज़िटरी URL कॉपी करें";
 link.deny = "अस्वीकार करें";
@@ -1330,7 +1428,7 @@ link.goz.notInstalled = "पहले ZBrush में GoZ इंस्टॉल
 link.goz.received = "ZBrush से $0 ऑब्जेक्ट प्राप्त हुए";
 link.goz.sent = "ZBrush को $0 ऑब्जेक्ट भेजे गए";
 link.goz.waiting = "ZBrush के निर्यात की प्रतीक्षा है";
-link.help.others = "अन्य ऐप (ZBrush आदि) भी इसी तरह Nomad होस्ट से कनेक्ट होते हैं।
+link.help.others = "अन्य ऐप (ZBrush, Marmoset Toolbag आदि) भी इसी तरह Nomad होस्ट से कनेक्ट होते हैं।
 
 ब्रिज एक Python स्क्रिप्ट है जो उस ऐप वाले कंप्यूटर पर चलती है।
 उदाहरण स्क्रिप्ट और प्रोटोकॉल GitHub पर उपलब्ध हैं; उन्हें शुरुआती बिंदु के रूप में उपयोग करें।";
@@ -1645,6 +1743,10 @@ paint.strokePainting.title = "पेंटिंग";
 paint.texture.warningEnable = "टेक्स्चर प्रक्षेपण की अनुमति देने के लिए स्ट्रोक पेंटिंग को सक्षम करने की आवश्यकता है (शीर्ष पर चेकबॉक्स)!";
 paint.texture.warningIgnored = "वर्तमान टूल टेक्स्चर का उपयोग नहीं कर सकता!";
 // Inherit stroke falloff option for the painting
+// Help of the alpha button of the painting menu, not the alpha menu itself
+paint.tool.alpha.help = "बंद होने पर, पेंटिंग अल्फ़ा को अनदेखा करती है और पूरे ब्रश क्षेत्र को कवर करती है।";
+// Help of the falloff button of the painting menu, not the falloff menu itself
+paint.tool.curve.help = "बंद होने पर, पेंटिंग ब्रश के किनारे तक पूरी तीव्रता बनाए रखती है।";
 paint.tool.help = "टूल अल्फा, फॉलऑफ, और रैन्डमाइज़र का उपयोग करके पेंटिंग स्ट्रोक की तीव्रता को मॉडुलेट करें।
 
 पेंट ऑल फीचर के लिए ये विकल्प अनदेखा किए जाते हैं, परन्तु ट्रिप्लॉनर संस्करण के लिए अल्फा को सम्मिलित किया जाता है।";
@@ -1653,8 +1755,13 @@ paint.useGlobal = "वैश्विक मटीरीयल";
 paint.useGlobal.help = "यदि यह विकल्प सक्षम है, तो चयनित मटीरीयल अन्य टूल्स के समान ही होगा.
 
 ध्यान दें कि यह केवल खुरदरापन, धातुपन और रंग सेटिंग्स को ध्यान में रखता है.";
+// Only the intensity part of the stroke randomizer, applied to the painting
+paint.useJitter = "तीव्रता यादृच्छिक करें";
+paint.useJitter.help = "यह तय करता है कि तीव्रता का यादृच्छिकीकरण पेंटिंग पर असर डाले या नहीं। स्थिति, घुमाव और स्केल का यादृच्छिकीकरण हमेशा पूरे स्टैम्प को हिलाता है।";
 // The current tool will paint the object if this option is enabled
 paint.usePainting = "स्ट्रोक पेंटिंग";
+// Paint with the color, roughness, metalness and opacity baked inside the VDM stamp
+paint.vdmMaterial = "स्टैम्प मटेरियल";
 
 position.bottom = "नीचे";
 position.center = "केंद्रित";
@@ -1696,6 +1803,8 @@ postprocess.bloom.threshold.help = "यह तय करने के लिए 
 // https://en.wikipedia.org/wiki/Chromatic_aberration
 postprocess.chromatic = "वर्ण विपथन";
 postprocess.chromatic.factor = "स्ट्रेंथ";
+// Short label for the section shortcut bar
+postprocess.chromatic.short = "क्रोमा";
 // Accentuate the edges of the model
 postprocess.curvature = "वक्रता";
 // Color/Strength of convex curvature
@@ -1704,6 +1813,8 @@ postprocess.curvature.bump = "सूजन";
 postprocess.curvature.cavity = "गुहिका";
 // Main strength of curvature
 postprocess.curvature.factor = "कारक";
+// Short label for the section shortcut bar
+postprocess.curvature.short = "गुहिका";
 // Color curves
 postprocess.curve = "रंग श्रेणीकरण";
 postprocess.curve.blue = "नीला";
@@ -1713,6 +1824,8 @@ postprocess.curve.luminance = "मुख्य";
 postprocess.curve.red = "लाल";
 // Reset color grading curves
 postprocess.curve.resetAll = "सभी रीसेट करें";
+// Short label for the section shortcut bar
+postprocess.curve.short = "वक्र";
 // Denoise
 postprocess.denoise = "डिनोइज़र";
 postprocess.denoise.help = "सभी फ्रेम एकत्र होने के बाद एक डिनोइज़िंग पास लागू करें।";
@@ -1723,11 +1836,17 @@ postprocess.dithering.help = "बैंडिंग आर्टिफ़ैक�
 // Depth of Field (bokeh)
 // https://en.wikipedia.org/wiki/Depth_of_field
 postprocess.dof = "फ़ील्ड की गहराई";
+// f-number, a lower value opens the lens and blurs more
+postprocess.dof.aperture = "अपर्चर";
 // The blur factor behind the focused point
 postprocess.dof.blurFar = "दूर धुंधलापन";
 // The blur factor in front of the focused point
 postprocess.dof.blurNear = "पास धुंधलापन";
 postprocess.dof.focusTip = "फ़ोकस बिंदु बदलने के लिए किसी वस्तु पर टैप करें.";
+// Drive the blur with a single camera aperture instead of the two blur factors
+postprocess.dof.physical = "अपर्चर मोड";
+// Short label for the section shortcut bar (no need to translate "DoF")
+postprocess.dof.short = "DoF";
 // Full resolution (1:1 resolution) instead of half resolution
 postprocess.fullResolution = "पूर्ण रिज़ॉल्यूशन";
 // Filmic Grain
@@ -1741,6 +1860,8 @@ postprocess.maxSamples.help = "प्रदर्शन की क़ीमत �
 postprocess.pixelArt = "पिक्सेल कला";
 // Override frame accumulation feature
 postprocess.pixelArt.allowAccumulate = "फ्रेम नमूनाकरण की अनुमति दें";
+// Short label for the section shortcut bar
+postprocess.pixelArt.short = "पिक्सेल";
 // Quality vs performance
 postprocess.quality = "गुणवत्ता";
 postprocess.quality.help = "प्रदर्शन की हानि के साथ गुणवत्ता में सुधार के लिए इन विकल्पों को सक्रिय करें.";
@@ -1760,6 +1881,8 @@ postprocess.scanline.spacing = "स्पेसिंग";
 // https://en.wikipedia.org/wiki/Unsharp_masking
 postprocess.sharpness = "पैनापन";
 postprocess.sharpness.factor = "स्ट्रेंथ";
+// Short label for the section shortcut bar
+postprocess.sharpness.short = "पैना करें";
 // Screen-space ambient occlusion (SSAO)
 // https://en.wikipedia.org/wiki/Ambient_occlusion
 postprocess.ssao = "पर्यावरणी बाधा";
@@ -1767,16 +1890,22 @@ postprocess.ssao = "पर्यावरणी बाधा";
 postprocess.ssao.factor = "स्ट्रेंथ";
 // How far the effect spreads
 postprocess.ssao.radius = "आकार";
+// Short label for the section shortcut bar (no need to translate "SSAO")
+postprocess.ssao.short = "SSAO";
 // Adjustment for ssao
 postprocess.ssao.thickness = "मोटाई";
 postprocess.ssao.thickness.help = "AO त्रिज्या के प्रतिशत के रूप में, अवरोधकों के लिए कितनी गहराई की मोटाई मानी जाती है।";
 // Screen-Space Global Illumination (no need to translate "SSGI")
 postprocess.ssgi = "वैश्विक प्रदीपन (SSGI)";
+// Short label for the section shortcut bar (no need to translate "SSGI")
+postprocess.ssgi.short = "SSGI";
 // Thickness threshold for ssgi tracing algorithm (synonym: threshold, bias)
 postprocess.ssgi.tolerance = "सहनशीलता";
 postprocess.ssgi.warning = "SSGI को PBR छायांकन मोड की आवश्यकता होती है.";
 // Screen-Space Reflection (no need to translate "SSR")
 postprocess.ssr = "परावर्तन (SSR)";
+// Short label for the section shortcut bar (no need to translate "SSR")
+postprocess.ssr.short = "SSR";
 postprocess.ssr.warning = "SSR को PBR छायांकन मोड की आवश्यकता होती है.";
 // Temporal Anti-Aliasing (no need to translate "TAA")
 postprocess.taa = "एंटी-अलियासिंग (TAA)";
@@ -1791,6 +1920,8 @@ postprocess.tone.mapping.neutral = "उदासीन";
 // No tonemapping operator is used
 postprocess.tone.mapping.none = "नहीं";
 postprocess.tone.saturation = "सैचुरेशन";
+// Short label for the section shortcut bar
+postprocess.tone.short = "टोन";
 // Darkening at the edges
 postprocess.vignette = "बेलबूटे";
 // How sharp the edge of the effect is
@@ -2081,10 +2212,16 @@ settings.grid.snapDivision = "स्नैप विभाजन सीमा";
 settings.grid.snapDivision.help = "सीमा की तुलना ग्रिड तक की दूरी से की जाती है।";
 // Snap eligible tool points to the grid
 settings.grid.snapGrid = "ग्रिड पर स्नैप";
+// Same as settings.grid.snapGrid, on a small shortcut button
+settings.grid.snapGrid.short = "ग्रिड पर स्नैप";
 // Snap eligible tool points to nearby existing points when the camera is aligned
 settings.grid.snapPointAlign = "बिंदुओं पर स्नैप करें (संरेखित दृश्य)";
+// Same as settings.grid.snapPointAlign, on a small shortcut button
+settings.grid.snapPointAlign.short = "बिंदु स्नैप (संरेखित)";
 // Snap eligible tool points to nearby existing points when the camera is not aligned
 settings.grid.snapPointFree = "बिंदुओं पर स्नैप करें (मुक्त दृश्य)";
+// Same as settings.grid.snapPointFree, on a small shortcut button
+settings.grid.snapPointFree.short = "बिंदु स्नैप (मुक्त)";
 // Handles are controls that you interact with in the viewport in order to edit something
 settings.handle = "हैंडल";
 settings.handles = "हैंडल्स";
@@ -2160,13 +2297,18 @@ settings.snapCube.align.help = "विश्व अक्ष के लिए �
 // Move the navigation cube to the bottom of the screen
 settings.snapCube.bottom = "निचला";
 // Extra snapping views on the edges and corners of the navigation cube
-settings.snapCube.edgeCorner = "";
-settings.snapCube.edgeCorner.help = "";
+settings.snapCube.edgeCorner = "किनारे और कोने";
+settings.snapCube.edgeCorner.help = "क्यूब के किनारों और कोनों पर स्नैपिंग दृश्य जोड़ें (एम्बर क्षेत्र)।";
 // Flip the camera (rotate 180° to see the other side)
 settings.snapCube.flip = "180° पलटें";
 settings.snapCube.flip.help = "दृश्य पलटें यदि दृश्य पहले से ही स्नैप्ड है।";
 // Move the navigation cube on the left side of the screen
 settings.snapCube.left = "बायाँ";
+// Dragging the navigation cube rotates like the Turntable mode, even if the camera is in Trackball
+settings.snapCube.turntable = "टर्नटेबल ड्रैग";
+settings.snapCube.turntable.help = "क्यूब को खींचने पर कैमरा बिना रोल किए घूमता है और हर स्नैप व्यू पर रुकता है।
+
+इसके बजाय क्यूब को ट्रैकबॉल रोटेशन से खींचने के लिए इसे अक्षम करें। दोनों स्थितियों में ड्रैग क्षैतिज या लंबवत रहता है।";
 // Stats (information logs about the scene displayed on screen)
 settings.stats = "आँकड़े";
 settings.stats.all = "पूरा दृश्य दिखाएँ";
@@ -2369,10 +2511,25 @@ stroke.alpha.fit.help = "यह विकल्प केवल तब लाग
 
 सक्षम होने पर प्रत्येक छवि बिना अंतराल के स्वतंत्र रूप से टाइल होगी।
 अल्फ़ा और अन्य छवियों के आस्पेक्ट रेशियो अलग होने पर उन्हें सिंक रखने के लिए यह विकल्प अक्षम करें।";
+// Title of the popup that corrects the alpha image itself
+stroke.alpha.fix = "";
+// Follows a number: "30% negative pixels clamped to zero"
+stroke.alpha.fix.clamped = "";
+// Under the two previews of the popup: the current image on the left, the corrected one on the right
+stroke.alpha.fix.compare = "";
+// Mirror the image left/right
+stroke.alpha.fix.flipX = "";
+// Mirror the image top/bottom
+stroke.alpha.fix.flipY = "";
+// Turn the image by a quarter
+stroke.alpha.fix.rotate = "";
+// The border pixels do not all share the same value, so no single mid value fits them
+stroke.alpha.fix.spread = "";
 // Invert the pixel (black, white)
 stroke.alpha.invert = "इन्वर्ट पिक्सेल";
 // Middle-point value at which no deformation occurs
 stroke.alpha.midValue = "मध्य मान";
+stroke.alpha.midValue.detect.help = "";
 stroke.alpha.midValue.help = "मध्य-बिंदु मान जिस पर कोई विकृति नहीं होती है.
 
 (मध्य मान = 0)
@@ -2386,6 +2543,7 @@ stroke.alpha.midValue.help = "मध्य-बिंदु मान जिस �
 (मध्य मान = 1)
 • काला: नकारात्मक विस्थापन
 • सफेद: कोई विस्थापन नहीं";
+stroke.alpha.midValue.pick.help = "";
 // Alpha rotation
 stroke.alpha.rotation = "घुमाव";
 stroke.alpha.rotation.lock.help = "अल्फा ओरिएंटेशन लॉक करें।
@@ -2558,6 +2716,8 @@ stroke.type.roll = "रोल";
 stroke.type.tile = "टाइल";
 // Sculpt and paint with alpha projected on 3 axis
 stroke.type.triplanar = "त्रिफ़लक";
+// Drag on the surface to grab a shape from it and turn it into a VDM stamp
+stroke.type.vdmPick = "";
 // The tool can use DynTopo
 stroke.useDynamic = "डायनामिक टोपोलॉजी की अनुमति दें";
 
@@ -2632,6 +2792,12 @@ symmetry.showLine = "रेखा दिखाएँ";
 symmetry.showPlane = "समतल दिखाएँ";
 // after mirroring, separate into multiple output (synonym: split, separate)
 symmetry.split = "विभाजन";
+// Half of a two line toggle: edit how many repeats span the object
+symmetry.tile.count = "";
+// Half of a two line toggle: edit the distance between two repeats
+symmetry.tile.distance = "";
+// The distance between two repeats of the sculpt, so it tiles seamlessly (synonym: wrap, repeat)
+symmetry.tile.title = "टाइल";
 symmetry.toolIgnore = "वर्तमान टूल सममिति की अनदेखी करता है.";
 
 // Three-state toggle button (auto, no, yes)
@@ -2665,6 +2831,8 @@ tool.elastic = "इलास्टिक";
 tool.faceGroup = "फेस समूह";
 tool.faceGroup.autoPick = "स्वत: चयन";
 tool.faceGroup.flush = "अप्रयुक्त हटाएँ";
+// Face group tap action: the tapped group and what lies beyond it get unmasked, the gizmo lands on the joint
+tool.faceGroup.pose = "";
 tool.faceGroup.skip = "छोटे समूहों को नजरअंदाज करें:";
 tool.faceGroup.skipArea = "सतह क्षेत्र";
 tool.faceGroup.skipArea.help = "यदि नए समूह का सतह क्षेत्रफल इस दहलीज से कम है तो नया समूह न बनाएं।
@@ -2678,6 +2846,8 @@ tool.flatten = "चपटा";
 tool.flatten.fill = "भरें";
 tool.flatten.planeLockNormal = "समतल की दिशा लॉक करें";
 tool.flatten.planeLockOrigin = "समतल का मूल लॉक करें";
+// Give the viewport back to the tool: its options come back and it can draw again
+tool.focus = "";
 // Ideally short strings (Rotate, Translate and Scale the object)
 tool.gizmo = "गिज़्मो";
 // Ideally short strings (Align/Snap the gizmo to world axis)
@@ -2710,6 +2880,24 @@ tool.gizmo.order.line = "रेखा";
 tool.gizmo.order.sphere = "गोला";
 // Ideally short strings (Pin the gizmo, so that it stays in place when switching between objects)
 tool.gizmo.pin = "पिन";
+// Title of the pivot reset options (where to put the pivot back)
+tool.gizmo.reset = "";
+// Pivot orientation snapped to the world axes
+tool.gizmo.reset.align = "";
+tool.gizmo.reset.align.help = "";
+tool.gizmo.reset.auto = "";
+tool.gizmo.reset.auto.help = "";
+tool.gizmo.reset.bottom = "";
+tool.gizmo.reset.bottom.help = "";
+tool.gizmo.reset.center = "";
+tool.gizmo.reset.center.help = "";
+tool.gizmo.reset.help = "";
+// Pivot on the center of the unmasked area
+tool.gizmo.reset.mask = "";
+tool.gizmo.reset.mask.help = "";
+// Pivot on the object origin
+tool.gizmo.reset.object = "";
+tool.gizmo.reset.object.help = "";
 // Puts the gizmo back on its automatic placement (position and orientation)
 tool.gizmo.resetPivot = "धुरी रीसेट करें";
 // Ideally short strings (Snap angle)
@@ -2793,15 +2981,29 @@ tool.layer.removeInfluence.help = "यह विकल्प केवल तभ
 tool.mask = "मास्क";
 // Blur the painted mask
 tool.mask.blur = "धुंधलापन";
+// Strengthen the mask intensity without changing its shape (opposite of Dilute)
+tool.mask.boost = "बढ़ाएँ";
+// Mask the open boundary of the mesh (the edge of a plane, the rim of a hole)
+tool.mask.border = "बॉर्डर";
+// Negative side of the Cavity slider: only the raised areas stay paintable
+tool.mask.bumps = "उभार";
+// Rebuild the mask from the surface curvature: only the recessed areas stay paintable
+tool.mask.cavity = "गुहिका";
 // Clear the painted mask
 tool.mask.clear = "साफ़ करें";
 tool.mask.clearAll = "सभी साफ़ करें";
+// Weaken the mask intensity without changing its shape (opposite of Boost)
+tool.mask.dilute = "हल्का करें";
 // Mask or Unmask a region (leave other region that unconnected intact)
 tool.mask.flipConnected = "मुखौटा उलटें (जुड़ा हुआ)";
+// Enlarge the masked area, one ring of vertices at a time
+tool.mask.grow = "फैलाएँ";
 // Invert the painted mask
 tool.mask.invert = "उलटें";
 // Sharpen the edge of the painted mask area
 tool.mask.sharpen = "पैना करें";
+// Reduce the masked area, one ring of vertices at a time (opposite of Grow)
+tool.mask.shrink = "सिकुड़ें";
 // Ideally short strings
 tool.mask.unmask = "मुखौटा हटाएँ";
 // Ideally short strings (Selector Mask, use lasso/ellipse,etc shape to mask the mesh)
@@ -2816,6 +3018,9 @@ tool.matrix.action.origin = "मूल दूसरी जगह ले जा�
 tool.matrix.action.origin.help = "मेश को विश्व मूल पर ले जाएं.";
 tool.matrix.action.reset = "रीसेट करें";
 tool.matrix.action.reset.help = "मेश रूपांतरण को पहचान में रीसेट करें.";
+// Move the pivot alone, the objects stand still
+tool.matrix.editPivot = "संपादित करें";
+tool.matrix.editPivot.help = "केवल पिवट को खिसकाएँ; ऑब्जेक्ट स्थिर रहते हैं।";
 tool.matrix.rotation = "घुमाव";
 tool.matrix.scale = "स्केल";
 // Synonym: shear, https://en.wikipedia.org/wiki/Shear_matrix or https://en.wikipedia.org/wiki/Shear_mapping
@@ -2830,10 +3035,16 @@ tool.matrix.target.auto.help = "डिफ़ॉल्ट रूप से, य�
 tool.matrix.target.group = "समूह";
 tool.matrix.target.group.help = "सममिति और मास्क को अनदेखा करते हुए नोड को चलाएँ.
 बाकी पदानुक्रम भी रूपांतरित हो जायेंगे.";
+// Transform the object and its children, and every other instance of it
+tool.matrix.target.groupInstance = "";
+tool.matrix.target.groupInstance.help = "";
 // Transform the object alone (the children stands still)
 tool.matrix.target.object = "वस्तु";
 tool.matrix.target.object.help = "सममिति और मास्क को अनदेखा करते हुए केवल वस्तु को हिलाएँ.
 केवल संपादित नोड ही चलेगा, बच्चे स्थिर रहेंगे.";
+// Transform the object alone, and every other instance of it
+tool.matrix.target.objectInstance = "";
+tool.matrix.target.objectInstance.help = "";
 // Auto apply the transform on the vertices
 tool.matrix.target.vertex = "शीर्ष";
 tool.matrix.target.vertex.help = "रूपांतरण को शीर्ष बिंदुओं पर लागू करने का प्रयास करें; यह अधूरे प्रिमिटिव पर काम नहीं करेगा.
@@ -2884,8 +3095,6 @@ tool.polish = "पॉलिश";
 tool.project = "प्रक्षेपण";
 // Radius of the tool (size)
 tool.radius = "त्रिज्या";
-// Ideally short strings (Quad Remesher)
-tool.remesh = "क्वाड रीमेशर";
 tool.remesh.density = "घनत्व";
 tool.remesh.guides = "मार्गदर्शक";
 tool.remesh.half = "आधा";
@@ -2982,6 +3191,36 @@ tool.trim.detail.protect.help = "कट बॉउंड्री को स्�
 मास्क की गई और छिपी हुई सतहों के पास मूल मेश टोपोलॉजी बनाए रखता है।";
 // Ideally short strings (Revolving surface along a curve)
 tool.tube = "नली";
+// Ideally short strings (Vector displacement stamp)
+tool.vdm = "VDM";
+// Button that adds a plane ready to be sculpted into a VDM
+tool.vdm.addPlane = "समतल जोड़ें";
+// Scales only the height of the vdm stamp, lateral displacement is unchanged
+tool.vdm.height = "ऊँचाई";
+// Button that opens the popup that adds a plane to sculpt a VDM on, "..." is appended in the app
+tool.vdm.new = "नया VDM";
+// Title of the popup that adds a plane to sculpt a VDM on
+tool.vdm.plane = "नया VDM स्कल्प्ट करें";
+// The border is the outer edge of the plane
+tool.vdm.plane.border = "बॉर्डर मास्क करें";
+tool.vdm.plane.border.help = "बॉर्डर को सपाट रखने के लिए समतल की बाहरी रिंग को मास्क करता है।
+
+बॉर्डर तक स्कल्प्ट करने से स्टैम्प में एक कठोर किनारा बनता है।";
+tool.vdm.plane.help = "UV, चुने हुए रिज़ॉल्यूशन और कैमरे की ओर वाले ओरिएंटेशन के साथ VDM स्कल्प्टिंग के लिए कॉन्फ़िगर किया गया समतल जोड़ता है।
+
+इससे केवल समतल बनता है। स्टैम्प बनाने के लिए:
+• समतल पर अपना आकार स्कल्प्ट करें
+• `टोपोलॉजी -> बेक` खोलें
+• `VDM` चुनें, फिर `बेक` दबाएँ
+
+Nomad नए स्टैम्प को VDM लाइब्रेरी में जोड़कर उसे चुनता है।
+
+DynTopo से बचें, क्योंकि यह समतल के UV को नुकसान पहुँचाता है और स्टैम्प को विकृत करता है।";
+// (see Glossary for Layer)
+tool.vdm.plane.layer = "परत पर स्कल्प्ट करें";
+tool.vdm.plane.layer.help = "सपाट समतल के ऊपर एक स्कल्प्ट परत बनाता है, जिसे बेक संदर्भ के रूप में उपयोग करता है।
+
+पेंटिंग के लिए भी परत चाहिए। इसके बिना, स्टैम्प करने पर मटेरियल केवल पेंट किए गए क्षेत्र के बजाय पूरे वर्ग को ढकता है।";
 // Ideally short strings (View tool, do nothing in particular)
 tool.view = "दृश्य";
 // Always display the camera shortcut buttons on the viewport
@@ -2989,8 +3228,6 @@ tool.view.stickyCamera = "कैमरा शॉर्टकट (हमेशा
 
 // Topology
 topology = "टोपोलॉजी";
-// Name of the quad remeshing engine, should probably stay untranslated
-topology.autoremesher = "AutoRemesher";
 topology.autoremesher.adaptivity = "अनुकूलनशीलता";
 topology.autoremesher.adaptivity.help = "क्वाड घनत्व को वक्रता के अनुसार ढालें।
 
@@ -3008,6 +3245,9 @@ topology.autoremesher.smoothAngle.help = "0 रीमेशिंग के द�
 
 बड़े मान वर्टेक्स नॉर्मल को ध्यान में रखकर सतह को चिकना करते हैं।";
 topology.bake.backup = "बैकअप";
+// Multires here means the subdivision levels of the object itself
+topology.bake.multires = "";
+topology.bake.multires.help = "";
 // Cage is a specific term; synonym: "Bake offset"
 topology.bake.offset = "रे ऑफसेट";
 // Bake opacity (from mask data)
@@ -3040,6 +3280,29 @@ topology.bake.title.help = "टेक्सचर बेकिंग दृश�
 - सभी चयनित ऑब्जेक्ट्स का उपयोग किया जाएगा और सबसे प्रमुख रूप से चयनित ऑब्जेक्ट को बेक किया जाएगा (दृश्य मेनू में सबसे शक्तिशाली हाइलाइट)
 - यदि केवल एक ऑब्जेक्ट चयनित है, तो नोमाड सभी दृश्यमान ऑब्जेक्ट्स को ध्यान में रखेगा
 - अन्यथा यदि सभी ऑब्जेक्ट्स छिपे हैं (उदाहरण के लिए सोलो का उपयोग करके), तो पूरे दृश्य को ध्यान में रखा जाएगा";
+// Warning shown after a VDM bake, the border of the plane is its outer edge
+topology.bake.vdm.border = "स्कल्प्ट समतल के बॉर्डर तक पहुँचता है, इसलिए स्टैम्प करने पर VDM में एक कठोर किनारा दिखाई देगा।";
+// Error shown when a VDM bake fails
+topology.bake.vdm.failed = "VDM नहीं बनाया जा सका।";
+// Bake here means "create a VDM (from a sculpted plane)"
+topology.bake.vdm.help = "चुने हुए ऑब्जेक्ट से VDM बनाता है और उसे VDM लाइब्रेरी में जोड़ता है।
+
+सामान्य कार्यप्रवाह:
+• एक समतल जोड़ें, या पहले से कॉन्फ़िगर किया गया समतल जोड़ने के लिए VDM पिकर में `नया VDM` चुनें
+• बॉर्डर को सपाट रखते हुए उस पर अपना आकार स्कल्प्ट करें
+• इसे बेक करें!
+
+समतल का UV बेक होने वाला वर्ग तय करता है, इसलिए ऑब्जेक्ट में UV होना चाहिए।
+
+डायनामिक टोपोलॉजी से बचें, यह समतल के UV को बिगाड़ देती है और VDM विकृत हो जाता है।
+
+परत में स्कल्प्ट करने से सबसे सटीक परिणाम मिलता है, क्योंकि नीचे सपाट समतल मौजूद रहता है।
+
+पेंटिंग के लिए भी परत ज़रूरी है, वरना मटीरियल सिर्फ़ पेंट किए हुए हिस्से पर नहीं, पूरे वर्ग पर स्टैम्प हो जाता है।";
+// Warning shown when the picked region cannot be flattened; a disc is a simple patch with a single outer edge
+topology.bake.vdm.notDisk = "";
+// Warning shown when the picked region holds too many polygons to be flattened
+topology.bake.vdm.tooBig = "";
 // Synonym: Simplify (Decimate reduce the number of triangles/quads while retaining details as much as possible)
 topology.decimate = "डेशीमेट";
 topology.decimate.boundary = "सीमाओं को सुरक्षित रखें";
@@ -3091,8 +3354,6 @@ topology.dynamic.useFalloff = "स्ट्रोक फ़ॉलऑफ़ क�
 // Whether the pencil pressure can impact the level of detail
 topology.dynamic.usePressure = "त्रिज्या पर दबाव का उपयोग करें";
 topology.dynamic.usePressure.help = "इस विकल्प का उपयोग करें यदि आप चाहते हैं कि टूल त्रिज्या पर पेन के दबाव का प्रभाव विवरण के स्तर को प्रभावित करे.";
-// Instant quad remesher
-topology.instant = "Instant Mesh";
 topology.instant.angle = "क्रीज़ कोण";
 topology.instant.hole = "अधिकतम छेद भरें";
 topology.instant.hole.help = "एल्गोरिदम कभी-कभी अवांछित छेद बना सकता है।
@@ -3139,8 +3400,6 @@ topology.multires.up = "बहुस्तरीय स्तर →";
 topology.nonManifold = "नॉन-मैनिफोल्ड";
 // Quad remesher
 topology.quadRemesh = "क्वाड रीमेश";
-// Name of the quad remeshing engine, should probably stay untranslated
-topology.quadriflow = "QuadriFlow";
 topology.quadriflow.adaptiveScale = "अनुकूली स्केल";
 topology.quadriflow.adaptiveScale.help = "क्वाड का आकार सतह की वक्रता के अनुसार ढालें।";
 topology.quadriflow.keepSharp = "तीखापन बनाए रखें";
@@ -3235,6 +3494,8 @@ topology.uv.title = "UV अनरैप";
 topology.uv.unwrap = "अनरैप";
 // Create a new object by recomputing a new topology, by using voxels (see Glossary)
 topology.voxel = "वॉक्सेल रीमेशिंग";
+// The voxel detail expressed as a world size, the same value gives the same detail on any object
+topology.voxel.edgeLength = "किनारे की लंबाई";
 topology.voxel.help = "ग्रिड पर मेश का नमूना लेकर रीमेशिंग करना.
 
 यदि ऑब्जेक्ट बंद नहीं है (जलरोधी), तो पहले एक छेद-भरने वाला एल्गोरिदम लागू किया जाएगा.

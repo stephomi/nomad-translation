@@ -118,10 +118,18 @@ alert.forcePainting.tool = "已顯示繪畫，並在物件上進行了繪製。"
 alert.gizmo.editObject = "物件編輯模式。";
 // In this mode, the user moves the Gizmo's pivot instead of the object
 alert.gizmo.editPivot = "軸心編輯模式。";
+// Button that turns the heightmap render off
+alert.heightmap.hide = "隱藏高度圖";
+// The viewport renders the depth of the scene instead of the shaded objects
+alert.heightmapOn = "高度圖已開啟！";
 // The user decided to display hidden faces
 alert.hideIgnored = "隱藏被忽略了！";
 // Error when an algorithm needs the object to have a hole (usually to fill it)
 alert.hole.nothing = "該物件沒有孔洞！";
+// Button that turns the inspector off
+alert.inspect.hide = "隱藏檢查器";
+// The viewport renders a material channel instead of the shaded objects
+alert.inspectOn = "檢查器已開啟！";
 // The lattice deformation was applied with a different mask or visibility state
 // (the gui appends the icon of the changed states)
 alert.lattice.desync = "晶格未同步！";
@@ -170,6 +178,8 @@ alert.state.trial = "試用版本的復原次數已用完。";
 alert.trim.full = "中止裁切：物件已被完整裁切。";
 // The user tried to trim an object but the selected region didn't touch the object
 alert.trim.nothing = "沒有可裁切的物件。";
+// The remesher rebuilds the mesh without a UV layout, the painting is kept as vertex colors
+alert.uvLost = "";
 // List of disabled features when View Mode is selected
 alert.view.disabled = "在瀏覽模式下停用的功能：";
 // Primitive widgets are small viewport controls used to modify a primitive
@@ -211,6 +221,9 @@ background.imageAlpha = "不透明度";
 background.imageEnable = "參考影像";
 // The image will be displayed in overlay (used as a reference by the artist)
 background.imageOverlay = "疊加";
+// Apply the post process effects on the reference image
+background.imagePostProcess = "後製";
+background.imagePostProcess.help = "將後製效果套用至參考影像。將其關閉可保留原始色彩。";
 background.imageReset = "重設參數";
 // Rotation of the reference image
 background.imageRotate = "旋轉";
@@ -289,6 +302,8 @@ binding.rotateLighting = "旋轉照明";
 // Select all the objects in the scene
 binding.selectAll = "全選";
 binding.snap.toggle = "切換曲線編輯";
+// Same as binding.snap.toggle, on a small shortcut button
+binding.snap.toggle.short = "曲線編輯";
 // Snap the view (while rotating)
 binding.snapViewOnRotate = "檢視吸附（旋轉時）";
 binding.spacemouse = "SpaceMouse";
@@ -374,6 +389,8 @@ camera.doubleTapBackgroundFocus.toggle = "切換";
 camera.doubleTapFocus.help = "雙擊物件表面後檢視中心將移動至該點。";
 // When we double tap on the object with the finger/stylus
 camera.doubleTapMesh = "雙擊物件";
+// Same as camera.doubleTapMesh, on a small shortcut button
+camera.doubleTapMesh.short = "聚焦";
 // When double tapping with the finger/stylus, the camera pivot will be updated
 camera.doubleTapPivot = "雙擊後更改";
 camera.doubleTapPivot.help = "雙擊物件表面以更改旋轉軸心。";
@@ -468,8 +485,6 @@ cube.right = "右";
 cube.top = "頂";
 
 curve.bspline = "B樣條";
-// Curve type, https://en.wikipedia.org/wiki/Centripetal_Catmull%E2%80%93Rom_spline
-curve.catmull = "Catmull-Rom";
 // Merge or collapse one point into another
 curve.merge = "合併";
 curve.pivot = "軸心";
@@ -487,20 +502,16 @@ curve.sharpness = "銳化";
 curve.shift = "橫移";
 // snap
 curve.snap = "吸附";
-// whether the tube body stays on the surface between its control points, and along which direction
+// whether the curve body (tube or repeated objects) stays on the surface between its control points, and along which direction
 curve.snap.follow = "跟隨";
-curve.snap.follow.help = "圓管在控制點之間的行為。";
+curve.snap.follow.help = "";
 curve.snap.follow.normal = "法線方向";
-curve.snap.follow.normal.help = "圓管會貼合在表面上，並沿表面法線方向推向表面。
-
-它採用抵達表面的最短路徑，適合從側面觀看的形狀。";
-// only the control points snap, the body of the tube is left alone
+curve.snap.follow.normal.help = "";
+// only the control points snap, the body of the curve is left alone
 curve.snap.follow.points = "點";
-curve.snap.follow.points.help = "只有控制點會貼齊表面。
-
-在控制點之間，圓管會保留繪製的形狀，因此可穿過表面或浮在表面上方。";
+curve.snap.follow.points.help = "";
 curve.snap.follow.view = "檢視";
-curve.snap.follow.view.help = "圓管會貼合在表面上，並沿繪製時的觀看方向推向表面。";
+curve.snap.follow.view.help = "";
 curve.snap.grid = "格線（吸附時）";
 curve.snap.normal = "對齊法線";
 curve.snap.normal.help = "僅影響曲線的第一個和最後一個控制點。
@@ -509,13 +520,19 @@ curve.snap.normal.help = "僅影響曲線的第一個和最後一個控制點。
 
 到相鄰點的距離將被保留。";
 curve.snap.offset = "偏移";
-curve.snap.offset.help = "當偏移值為100%時，偏移後的距離即為圓管半徑。";
+curve.snap.offset.help = "";
 curve.snap.surface = "表面";
 curve.snap.vertex = "頂點";
 curve.spiral = "螺旋";
 curve.spiral.angle = "角度偏移";
+curve.spiral.depth = "";
+curve.spiral.flat = "";
+curve.spiral.groups = "";
+curve.spiral.hardness = "";
 curve.spiral.offset = "偏移";
+curve.spiral.pack = "";
 curve.spiral.scale = "縮放";
+curve.spiral.strands = "";
 curve.spiral.twist = "扭轉角度";
 // Spline curve, https://en.wikipedia.org/wiki/Spline_(mathematics)
 curve.spline = "樣條";
@@ -530,12 +547,22 @@ curve.uniform.help = "曲線將以規律間隔進行取樣，以確保均勻密�
 
 您可以停用此選項，透過在曲線上新增控制點來稍微控制邊緣環。";
 
+// Debug section to import/export the icons of the interface
+debug.customIcons = "自訂圖示";
+// Short label for the section shortcut bar
+debug.customIcons.short = "圖示";
+// Debug section for optional features
+debug.feature = "功能";
 // Debug graphics options
 debug.graphics = "圖形";
 // Debug option, overrides the rendering to display the depth buffer
 debug.heightmap = "高度圖";
 // Debug option: display a window with debugging logs
 debug.logs = "除錯日誌";
+// Logs window option: break long lines to fit the panel width
+debug.logs.wrap = "自動換行";
+// Debug section for multithreading and speed options
+debug.performance = "效能";
 // Model shortcut window
 debug.shortcut = "快速操作視窗";
 // Set the desired FPS (frame per second, refresh rate)
@@ -543,6 +570,8 @@ debug.targetFps = "目標 FPS";
 debug.targetFps.help = "停用時，預設值意味著它將與顯示器的更新率同步。";
 // Debug options, generate screenshots with size compatible with the iOS store
 debug.thumbnails = "製作商店縮圖";
+// Same as debug.thumbnails, on a small shortcut button
+debug.thumbnails.short = "縮圖";
 // Debug option, Normalize means transforming the data so that it fits in [0-1] the range
 debug.uvNormalize = "正規化 UV";
 debug.uvNormalize.help = "Nomad 會將所有選取面的 UV 正規化至 [0-1] 貼圖空間。";
@@ -641,8 +670,10 @@ file.export.gltf.layer.help = "將圖層作為變形體匯出。官方支援glTF
 // Whether we include painting of layers in the exported file (see glossary for layer)
 file.export.gltf.layerPaint = "圖層繪畫";
 file.export.gltf.layerPaint.help = "將匯出圖層繪畫。其他軟體不會讀取該屬性。";
-file.export.nomad.assets = "";
-file.export.nomad.assets.help = "";
+file.export.nomad.assets = "嵌入 MatCap 和環境";
+file.export.nomad.assets.help = "在檔案中包含自訂 MatCap 和環境，使其在其他裝置上保持相同外觀。
+
+內建資源不會被嵌入，因為它們是 Nomad 的一部分。";
 file.export.nomad.help = "Nomad Sculpt 內部檔案格式。
 
 此格式不會在其他軟體上載入，主要用於重新匯入。";
@@ -779,11 +810,8 @@ file.project.unsaved = "更改未儲存！";
 file.render = "算繪";
 // height of exported screenshot
 file.render.height = "高度";
-// Resolution ratio of the exported screenshot
-file.render.renderRatio = "算繪比例";
-file.render.renderRatio.help = "值為 1.0 時，Nomad 會以以下要求的影像尺寸進行算繪。
-
-若記憶體不足，無法以特定解析度算繪，可調整此選項。";
+// Warning shown when the requested export resolution is too large for the memory left on the device
+file.render.lowMemory = "此尺寸可能超出此裝置的剩餘記憶體。";
 // Screen resolution parameters for the export screenshot features
 file.render.screenResolution = "螢幕解析度";
 // If we include the App Interface in the exported screenshot
@@ -793,7 +821,7 @@ file.render.size = "算繪尺寸";
 // Desired size of the exported screenshot (custom vs predefined size)
 file.render.size.custom = "自訂";
 // Save the heightmap render as a new brush alpha instead of exporting it as a file
-file.render.toAlpha = "";
+file.render.toAlpha = "另存為 Alpha";
 // If true, then the exported screenshot will have transparency data in the image
 file.render.transparent = "透明背景";
 file.render.transparent.help = "開啟此選項可以讓您更方便地把算繪圖匯入到平面設計軟體。
@@ -819,6 +847,38 @@ file.select.include = "包含";
 file.select.selected = "已選取";
 file.select.unselected = "未選取";
 file.select.visible = "可見";
+
+fog = "霧";
+fog.ambient = "環境";
+fog.ambient.help = "控制環境光照亮霧的程度。";
+fog.anisotropy = "散射方向";
+fog.anisotropy.help = "控制霧散射光線的方向，也稱為各向異性。
+
+• 正值會使面向光源觀察時的霧更亮。
+• 負值會使背向光源觀察時的霧更亮。
+• 零值會使光線均勻地向各個方向散射。";
+fog.color = "顏色";
+fog.color.help = "設定霧以及霧所散射光線的顏色。";
+fog.density = "密度";
+fog.density.help = "控制霧隨距離增加而變濃的速度。";
+fog.detail = "";
+fog.detail.help = "";
+fog.detail.scale = "";
+fog.detail.scale.help = "";
+fog.help = "增加大氣縱深感，並讓光束清晰可見。";
+fog.opacity = "最大不透明度";
+fog.opacity.help = "限制霧對場景的最大遮蓋程度，即使密度很高也不會超過此值。";
+fog.shape = "形狀";
+fog.shape.help = "控制霧在場景中的填充區域。";
+fog.shape.uniform = "均勻";
+fog.shape.uniform.help = "用霧填充整個場景。";
+fog.shape.vertical = "垂直";
+fog.shape.vertical.bottom = "底部";
+fog.shape.vertical.bottom.help = "設定霧帶下邊緣的高度。";
+fog.shape.vertical.help = "將霧限制在上下邊緣柔和的垂直帶內。";
+fog.shape.vertical.preview.help = "調整霧帶邊界時，在視埠中顯示霧帶。";
+fog.shape.vertical.top = "頂部";
+fog.shape.vertical.top.help = "設定霧帶上邊緣的高度。";
 
 format.ascii = "ASCII";
 format.binary = "二進位";
@@ -936,6 +996,8 @@ gesture.wheel.speed3d = "速度（3D 縮放）";
 
 // History, list of undo/redo
 history = "歷史記錄";
+// Button deleting every operation of the history, freeing the memory and the disk space they use
+history.clear = "清除歷史記錄";
 // Long press on a state of the history list: deletes it and every older one, $0 is a number of operations
 history.delete.confirm = "從歷史記錄中刪除 $0 個操作？";
 history.delete.help = "長按歷史記錄項目，即可將其及所有更早的歷史記錄永久刪除。";
@@ -955,17 +1017,26 @@ history.include.postProcess.help = "將後處理編輯納入復原/重做記錄�
 // include shading parameters (MatCap & HDRIs) editing in the undo/redo
 history.include.shading = "算繪模式";
 history.include.shading.help = "包含 PBR、MatCap 和 Unlit 模式，以及 MatCap 和 HDRI。";
+// How much disk space the history is allowed to use, past it the oldest operations are deleted
+history.limitDisk = "儲存空間限制";
+history.limitDisk.help = "此專案的復原/重做歷史記錄可使用的最大儲存空間。
+
+達到限制時，最早的操作將被永久刪除。
+
+新限制會在記錄下一個操作後生效。";
 // How much memory the history is allowed to use before the older states are moved to the disk
 history.limitMemory = "記憶體限制";
-history.limitMemory.help = "歷史記錄在記憶體中保留的量。
+history.limitMemory.help = "記憶體中保留的復原/重做歷史記錄最大容量。
 
-較舊的狀態會移到磁碟，並在復原時重新載入；它們不會被刪除。
+較舊的狀態會移至儲存空間，並在需要時重新載入；它們不會被刪除。
 
-歷史記錄將在下一個被記錄的操作中更新。";
+新限制會在下一次編輯、復原或重做後生效。";
 // Where the undo history is kept when the project is saved (it survives reopening the project)
 history.persist = "儲存歷史記錄";
 history.persist.embedded = "嵌入";
-history.persist.embedded.help = "歷史記錄儲存在專案檔案中。檔案會變大，但歷史記錄會隨檔案一起傳輸。";
+history.persist.embedded.help = "歷史記錄儲存在專案檔案中：檔案更大，儲存與載入速度更慢。
+
+除非歷史記錄必須隨檔案一起傳輸，否則建議選擇關閉或單獨儲存。";
 history.persist.help = "儲存專案時保留復原歷史記錄，以便重新開啟專案後仍可使用。";
 history.persist.off = "關閉";
 history.persist.off.help = "儲存專案時不包含歷史記錄。";
@@ -973,6 +1044,17 @@ history.persist.separate = "單獨儲存";
 history.persist.separate.help = "歷史記錄儲存在此裝置的專案資料中。專案檔案會保持較小。";
 // Redo
 history.redo = "重做";
+// Slider + play button: rewinds to the root and redoes the operations one by one, the value is a number of operations per second
+history.replay = "";
+// Option of the replay popup: the camera follows the replayed operations even when the history "Restore camera" setting is off
+history.replay.camera = "";
+history.replay.camera.help = "";
+// Popup opened by the play button, above its two options
+history.replay.confirm = "";
+history.replay.help = "";
+// Option of the replay popup: runs backwards, undoing from the current state to the root
+history.replay.reverse = "";
+history.replay.reverse.help = "";
 // When enabled, undoing an operation also restores the camera position
 history.restoreCamera = "還原相機視角";
 history.restoreCamera.help = "啟用後，復原或重做操作時會一併還原已儲存的相機視角。";
@@ -1061,8 +1143,10 @@ interface.inset.title.help = "只有在操作螢幕邊緣的按鈕時遇到問�
 
 若滑桿已停用，Nomad 會使用裝置提供的安全區域值。";
 // Move a floating panel by dragging inside it, instead of using its bar
-interface.panelDrag = "";
-interface.panelDrag.help = "";
+interface.panelDrag = "拖曳面板主體";
+interface.panelDrag.help = "浮動面板一律透過拖曳其列來移動。此選項也允許拖曳面板主體。
+
+在「自動」模式下，僅當拖曳方向更偏水平而非垂直時，手指或觸控筆才會移動面板，因此垂直拖曳仍可捲動內容。設為「是」還可使用滑鼠向任意方向拖曳。";
 // Interface option (if the menus are transparent or opaque)
 interface.panelTransparent = "面板透明度";
 // Width of the interface panels
@@ -1120,10 +1204,18 @@ item.delete.confirm.yes = "確認刪除";
 item.delete.used = "影像正在使用";
 // Draggable, movable
 item.draggable = "可移動";
+// Short button label, turns a stamp (alpha or VDM) back into a plane that can be sculpted again
+item.edit = "";
+item.edit.help = "";
+// Short button label, opens a popup to correct the pixels of an imported image
+item.fix = "";
+item.fix.help = "";
 // Show the folders of a list as a column on its side, instead of a drop down menu
-item.folderColumn = "";
+item.folderColumn = "資料夾欄";
+// Show the folders of a drop down menu as small chips filling the width, instead of one per line
+item.folderCompact = "緊湊顯示資料夾";
 // Show a list of items as one group of items per folder, instead of a single list
-item.folderGroup = "";
+item.folderGroup = "依資料夾分組";
 // Hide an item (object, layer, etc)
 item.hide = "隱藏";
 // Make an item instance, similar to clone but keeps the underlying geometry (Synonym: link? soft clone?)
@@ -1146,6 +1238,8 @@ item.next = "下一項";
 item.none = "無";
 // The order of an item in a list
 item.order = "順序";
+// Size of the preview images of a list of items, in pixels
+item.previewSize = "";
 // Focus on previous item
 item.previous = "上一項";
 // Rename an item (object, tool, etc)
@@ -1158,17 +1252,19 @@ item.reset.confirm = "確認要重設嗎？";
 // Save an item (object, tool, etc)
 item.save = "儲存";
 item.save.confirm = "確認儲存？";
-item.saveLibrary = "";
+item.saveLibrary = "儲存至資源庫";
 // Select an item (object, layer, etc)
 item.select = "選擇";
 // Show an item (object, layer, etc)
 item.show = "顯示";
 // Show the name of every item under its preview image
-item.showName = "";
+item.showName = "顯示名稱";
+// The show button of the curve/primitive handlers only toggles them all, instead of picking one kind
+item.showOnOff = "";
 // Order a list of items alphabetically
-item.sortName = "";
+item.sortName = "依名稱";
 // Order a list of items with the most recently modified first
-item.sortRecent = "";
+item.sortRecent = "最近修改";
 // Convert the item type (mesh, light) to a simple Node type
 item.toNode = "轉為節點";
 // Uninstance the object, make the object real
@@ -1262,13 +1358,10 @@ light.angle = "角度";
 light.attachment = "跟隨方式";
 // The light will move along the camera
 light.attachment.camera = "隨相機移動";
+light.attachment.camera.help = "燈光方向隨著相機視角而改變。";
 // The light will stay still even if the user moves the camera
 light.attachment.fixed = "固定";
-light.attachment.help = "• 固定
-燈光方向不會改變。
-
-• 隨相機移動
-燈光方向隨著相機視角而改變。";
+light.attachment.fixed.help = "燈光方向不會改變。";
 // Color of light
 light.color = "顏色";
 // Contact shadows are more precise shadows on small distance (synonym: cavity shadows?)
@@ -1293,6 +1386,13 @@ light.shadow.softness = "邊緣柔和度";
 // Thickness threshold for screen-space shadows (synonym: threshold, bias)
 light.shadow.tolerance = "容許值";
 light.shadow.type = "陰影型別";
+// Switches technique on its own: screenspace while the view moves, shadow map once it settles
+light.shadow.type.auto = "自動";
+light.shadow.type.auto.help = "移動視圖時使用螢幕空間陰影，因此可以立即看到柔和度；視圖靜止後改用陰影貼圖。
+
+僅在光線足夠柔和、差異可見時使用。";
+// Shown above the two shadow type entries
+light.shadow.type.help = "陰影貼圖從光源視角算繪場景，因此能為相機不可見的幾何體投射陰影。螢幕空間則讀取螢幕上已有的深度，負擔較低，但只能為可見內容投射陰影。";
 // Shadows computed with only the information visible on screen
 light.shadow.type.screenspace = "螢幕空間";
 light.shadow.type.screenspace.help = "此為實驗性功能，可能會在未來發布版本中移除此功能。
@@ -1320,12 +1420,10 @@ light.type.point = "點光源";
 // Spot light emits light in a single direction, restricted by a cone shape.
 light.type.spot = "聚光燈";
 light.type.sun = "太陽光";
-// Whether the light is shown
-light.visible = "顯示";
 
 link.address = "此裝置";
 link.approve = "接受";
-link.bridges = "橋接指令碼";
+link.bridges = "橋接指令碼（GitHub）";
 link.cameras = "相機";
 link.copyRepository = "複製儲存庫 URL";
 link.deny = "拒絕";
@@ -1338,7 +1436,7 @@ link.goz.notInstalled = "請先在 ZBrush 中安裝 GoZ（偏好設定 > GoZ）"
 link.goz.received = "已從 ZBrush 接收 $0 個物件";
 link.goz.sent = "已向 ZBrush 傳送 $0 個物件";
 link.goz.waiting = "正在等待 ZBrush 匯出";
-link.help.others = "其他應用程式（ZBrush 等）會以相同方式連接至 Nomad 主機。
+link.help.others = "其他應用程式（ZBrush、Marmoset Toolbag 等）會以相同方式連接至 Nomad 主機。
 
 橋接是一個 Python 指令碼，它會與該應用程式在同一台電腦上執行。
 範例指令碼和通訊協定位於 GitHub 上，可將它們用作起點。";
@@ -1653,6 +1751,10 @@ paint.strokePainting.title = "繪畫";
 paint.texture.warningEnable = "需要啟用筆觸繪畫（頂部核取方塊），才能投影貼圖！";
 paint.texture.warningIgnored = "目前工具無法使用貼圖！";
 // Inherit stroke falloff option for the painting
+// Help of the alpha button of the painting menu, not the alpha menu itself
+paint.tool.alpha.help = "停用時，繪製會忽略 Alpha 並覆蓋整個筆刷區域。";
+// Help of the falloff button of the painting menu, not the falloff menu itself
+paint.tool.curve.help = "停用時，繪製會保持最大強度直到筆刷邊緣。";
 paint.tool.help = "使用工具 Alpha、衰減和隨機化器來調整繪畫筆觸的強度。
 
 這些選項對於全面繪畫功能被忽略，但在三平面變種中會考慮 Alpha。";
@@ -1661,8 +1763,13 @@ paint.useGlobal = "全域材質";
 paint.useGlobal.help = "如勾選此選項，其他工具的材質也將會與所選材質相同。
 
 注意，它只考慮到粗糙度、金屬度和顏色的設定。";
+// Only the intensity part of the stroke randomizer, applied to the painting
+paint.useJitter = "隨機化強度";
+paint.useJitter.help = "控制強度隨機化是否影響繪製。位置、旋轉和縮放隨機化一律會移動或變換整個圖章。";
 // The current tool will paint the object if this option is enabled
 paint.usePainting = "筆觸繪畫";
+// Paint with the color, roughness, metalness and opacity baked inside the VDM stamp
+paint.vdmMaterial = "印章材質";
 
 position.bottom = "底部";
 position.center = "中心";
@@ -1704,6 +1811,8 @@ postprocess.bloom.threshold.help = "亮度高於此臨界值的畫素才會產�
 // https://en.wikipedia.org/wiki/Chromatic_aberration
 postprocess.chromatic = "色差";
 postprocess.chromatic.factor = "強度";
+// Short label for the section shortcut bar
+postprocess.chromatic.short = "色彩";
 // Accentuate the edges of the model
 postprocess.curvature = "曲率描邊";
 // Color/Strength of convex curvature
@@ -1712,6 +1821,8 @@ postprocess.curvature.bump = "凸起";
 postprocess.curvature.cavity = "凹陷";
 // Main strength of curvature
 postprocess.curvature.factor = "係數";
+// Short label for the section shortcut bar
+postprocess.curvature.short = "凹陷";
 // Color curves
 postprocess.curve = "調色";
 postprocess.curve.blue = "藍";
@@ -1721,6 +1832,8 @@ postprocess.curve.luminance = "主要";
 postprocess.curve.red = "紅";
 // Reset color grading curves
 postprocess.curve.resetAll = "全部重設";
+// Short label for the section shortcut bar
+postprocess.curve.short = "曲線";
 // Denoise
 postprocess.denoise = "雜訊消除";
 postprocess.denoise.help = "累積所有影格後套用雜訊消除。";
@@ -1731,11 +1844,17 @@ postprocess.dithering.help = "減少條紋偽影（例如漸層、暈影）。�
 // Depth of Field (bokeh)
 // https://en.wikipedia.org/wiki/Depth_of_field
 postprocess.dof = "景深";
+// f-number, a lower value opens the lens and blurs more
+postprocess.dof.aperture = "光圈";
 // The blur factor behind the focused point
 postprocess.dof.blurFar = "遠景模糊";
 // The blur factor in front of the focused point
 postprocess.dof.blurNear = "近景模糊";
 postprocess.dof.focusTip = "點選物件表面可以改變焦點。";
+// Drive the blur with a single camera aperture instead of the two blur factors
+postprocess.dof.physical = "光圈模式";
+// Short label for the section shortcut bar (no need to translate "DoF")
+postprocess.dof.short = "DoF";
 // Full resolution (1:1 resolution) instead of half resolution
 postprocess.fullResolution = "完整解析度";
 // Filmic Grain
@@ -1749,6 +1868,8 @@ postprocess.maxSamples.help = "以效能為代價提升後製品質。";
 postprocess.pixelArt = "畫素藝術";
 // Override frame accumulation feature
 postprocess.pixelArt.allowAccumulate = "允許影格取樣";
+// Short label for the section shortcut bar
+postprocess.pixelArt.short = "像素";
 // Quality vs performance
 postprocess.quality = "品質";
 postprocess.quality.help = "啟用這些選項可以提升品質，但會影響效能。";
@@ -1768,6 +1889,8 @@ postprocess.scanline.spacing = "間距";
 // https://en.wikipedia.org/wiki/Unsharp_masking
 postprocess.sharpness = "銳化";
 postprocess.sharpness.factor = "強度";
+// Short label for the section shortcut bar
+postprocess.sharpness.short = "銳化";
 // Screen-space ambient occlusion (SSAO)
 // https://en.wikipedia.org/wiki/Ambient_occlusion
 postprocess.ssao = "環境光遮蔽（AO）";
@@ -1775,16 +1898,22 @@ postprocess.ssao = "環境光遮蔽（AO）";
 postprocess.ssao.factor = "強度";
 // How far the effect spreads
 postprocess.ssao.radius = "範圍";
+// Short label for the section shortcut bar (no need to translate "SSAO")
+postprocess.ssao.short = "SSAO";
 // Adjustment for ssao
 postprocess.ssao.thickness = "厚度";
 postprocess.ssao.thickness.help = "遮擋物所假定的深度厚度，以 AO 半徑的百分比表示。";
 // Screen-Space Global Illumination (no need to translate "SSGI")
 postprocess.ssgi = "全域光照(SSGI)";
+// Short label for the section shortcut bar (no need to translate "SSGI")
+postprocess.ssgi.short = "SSGI";
 // Thickness threshold for ssgi tracing algorithm (synonym: threshold, bias)
 postprocess.ssgi.tolerance = "容許值";
 postprocess.ssgi.warning = "SSGI僅在PBR著色模式下可用。";
 // Screen-Space Reflection (no need to translate "SSR")
 postprocess.ssr = "螢幕空間反射（SSR）";
+// Short label for the section shortcut bar (no need to translate "SSR")
+postprocess.ssr.short = "SSR";
 postprocess.ssr.warning = "SSR僅在PBR算繪模式下有效。";
 // Temporal Anti-Aliasing (no need to translate "TAA")
 postprocess.taa = "時序抗鋸齒（TAA）";
@@ -1799,6 +1928,8 @@ postprocess.tone.mapping.neutral = "中性";
 // No tonemapping operator is used
 postprocess.tone.mapping.none = "無";
 postprocess.tone.saturation = "飽和度";
+// Short label for the section shortcut bar
+postprocess.tone.short = "色調";
 // Darkening at the edges
 postprocess.vignette = "暈影";
 // How sharp the edge of the effect is
@@ -2089,10 +2220,16 @@ settings.grid.snapDivision = "吸附分割臨界值";
 settings.grid.snapDivision.help = "臨界值會與到格線的距離比較。";
 // Snap eligible tool points to the grid
 settings.grid.snapGrid = "吸附到格線";
+// Same as settings.grid.snapGrid, on a small shortcut button
+settings.grid.snapGrid.short = "吸附格線";
 // Snap eligible tool points to nearby existing points when the camera is aligned
 settings.grid.snapPointAlign = "吸附到點（對齊視圖）";
+// Same as settings.grid.snapPointAlign, on a small shortcut button
+settings.grid.snapPointAlign.short = "吸附點（對齊）";
 // Snap eligible tool points to nearby existing points when the camera is not aligned
 settings.grid.snapPointFree = "吸附到點（自由視圖）";
+// Same as settings.grid.snapPointFree, on a small shortcut button
+settings.grid.snapPointFree.short = "吸附點（自由）";
 // Handles are controls that you interact with in the viewport in order to edit something
 settings.handle = "控制柄";
 settings.handles = "控制柄";
@@ -2168,13 +2305,18 @@ settings.snapCube.align.help = "將檢視對齊到世界軸。如果啟用，只
 // Move the navigation cube to the bottom of the screen
 settings.snapCube.bottom = "置於底部";
 // Extra snapping views on the edges and corners of the navigation cube
-settings.snapCube.edgeCorner = "";
-settings.snapCube.edgeCorner.help = "";
+settings.snapCube.edgeCorner = "邊和角";
+settings.snapCube.edgeCorner.help = "在立方體的邊和角上新增吸附視圖（琥珀色區域）。";
 // Flip the camera (rotate 180° to see the other side)
 settings.snapCube.flip = "翻轉180°";
 settings.snapCube.flip.help = "如果檢視已經對準，則翻轉檢視。";
 // Move the navigation cube on the left side of the screen
 settings.snapCube.left = "置於左側";
+// Dragging the navigation cube rotates like the Turntable mode, even if the camera is in Trackball
+settings.snapCube.turntable = "轉盤式拖曳";
+settings.snapCube.turntable.help = "拖曳方位檢視時，相機會旋轉但不會側傾，並停留在每個吸附檢視位置。
+
+停用此選項即可改用軌跡球旋轉方式拖曳方位檢視。兩種情況下，拖曳都會保持水平或垂直。";
 // Stats (information logs about the scene displayed on screen)
 settings.stats = "顯示場景狀態";
 settings.stats.all = "顯示全部";
@@ -2377,10 +2519,25 @@ stroke.alpha.fit.help = "此選項僅與Alpha和筆刷貼圖非方形相關。
 
 啟用後，每張影像都會各自拼貼，不留間隔。
 如果您想保持Alpha和其他影像同步，以防它們的比例不同，您可以停用此選項。";
+// Title of the popup that corrects the alpha image itself
+stroke.alpha.fix = "";
+// Follows a number: "30% negative pixels clamped to zero"
+stroke.alpha.fix.clamped = "";
+// Under the two previews of the popup: the current image on the left, the corrected one on the right
+stroke.alpha.fix.compare = "";
+// Mirror the image left/right
+stroke.alpha.fix.flipX = "";
+// Mirror the image top/bottom
+stroke.alpha.fix.flipY = "";
+// Turn the image by a quarter
+stroke.alpha.fix.rotate = "";
+// The border pixels do not all share the same value, so no single mid value fits them
+stroke.alpha.fix.spread = "";
 // Invert the pixel (black, white)
 stroke.alpha.invert = "反轉畫素";
 // Middle-point value at which no deformation occurs
 stroke.alpha.midValue = "中間值";
+stroke.alpha.midValue.detect.help = "";
 stroke.alpha.midValue.help = "不發生變形的中間值。
 
 當中間值為0時：
@@ -2394,6 +2551,7 @@ stroke.alpha.midValue.help = "不發生變形的中間值。
 當中間值為1時：
 • 黑色：下凹
 • 白色：無變化";
+stroke.alpha.midValue.pick.help = "";
 // Alpha rotation
 stroke.alpha.rotation = "旋轉";
 stroke.alpha.rotation.lock.help = "鎖定阿爾法方向。
@@ -2566,6 +2724,8 @@ stroke.type.roll = "滾動";
 stroke.type.tile = "瓦片";
 // Sculpt and paint with alpha projected on 3 axis
 stroke.type.triplanar = "三平面";
+// Drag on the surface to grab a shape from it and turn it into a VDM stamp
+stroke.type.vdmPick = "";
 // The tool can use DynTopo
 stroke.useDynamic = "允許動態拓樸";
 
@@ -2640,6 +2800,12 @@ symmetry.showLine = "顯示線條";
 symmetry.showPlane = "顯示平面";
 // after mirroring, separate into multiple output (synonym: split, separate)
 symmetry.split = "分割";
+// Half of a two line toggle: edit how many repeats span the object
+symmetry.tile.count = "";
+// Half of a two line toggle: edit the distance between two repeats
+symmetry.tile.distance = "";
+// The distance between two repeats of the sculpt, so it tiles seamlessly (synonym: wrap, repeat)
+symmetry.tile.title = "瓦片";
 symmetry.toolIgnore = "目前工具不適用對稱。";
 
 // Three-state toggle button (auto, no, yes)
@@ -2673,6 +2839,8 @@ tool.elastic = "彈性";
 tool.faceGroup = "面群組";
 tool.faceGroup.autoPick = "自動選擇";
 tool.faceGroup.flush = "移除未使用";
+// Face group tap action: the tapped group and what lies beyond it get unmasked, the gizmo lands on the joint
+tool.faceGroup.pose = "";
 tool.faceGroup.skip = "依以下條件略過小型面群組：";
 tool.faceGroup.skipArea = "表面積";
 tool.faceGroup.skipArea.help = "若新面群組的表面積小於此臨界值，則不建立該群組。
@@ -2686,6 +2854,8 @@ tool.flatten = "剷平";
 tool.flatten.fill = "填充";
 tool.flatten.planeLockNormal = "鎖定平面方向";
 tool.flatten.planeLockOrigin = "鎖定平面原點";
+// Give the viewport back to the tool: its options come back and it can draw again
+tool.focus = "";
 // Ideally short strings (Rotate, Translate and Scale the object)
 tool.gizmo = "軸向變換";
 // Ideally short strings (Align/Snap the gizmo to world axis)
@@ -2718,6 +2888,24 @@ tool.gizmo.order.line = "直線";
 tool.gizmo.order.sphere = "球體";
 // Ideally short strings (Pin the gizmo, so that it stays in place when switching between objects)
 tool.gizmo.pin = "釘住";
+// Title of the pivot reset options (where to put the pivot back)
+tool.gizmo.reset = "";
+// Pivot orientation snapped to the world axes
+tool.gizmo.reset.align = "";
+tool.gizmo.reset.align.help = "";
+tool.gizmo.reset.auto = "";
+tool.gizmo.reset.auto.help = "";
+tool.gizmo.reset.bottom = "";
+tool.gizmo.reset.bottom.help = "";
+tool.gizmo.reset.center = "";
+tool.gizmo.reset.center.help = "";
+tool.gizmo.reset.help = "";
+// Pivot on the center of the unmasked area
+tool.gizmo.reset.mask = "";
+tool.gizmo.reset.mask.help = "";
+// Pivot on the object origin
+tool.gizmo.reset.object = "";
+tool.gizmo.reset.object.help = "";
 // Puts the gizmo back on its automatic placement (position and orientation)
 tool.gizmo.resetPivot = "重置樞軸";
 // Ideally short strings (Snap angle)
@@ -2801,15 +2989,29 @@ tool.layer.removeInfluence.help = "僅當選取圖層時此功能才能啟用。
 tool.mask = "遮罩";
 // Blur the painted mask
 tool.mask.blur = "模糊";
+// Strengthen the mask intensity without changing its shape (opposite of Dilute)
+tool.mask.boost = "增強";
+// Mask the open boundary of the mesh (the edge of a plane, the rim of a hole)
+tool.mask.border = "邊界";
+// Negative side of the Cavity slider: only the raised areas stay paintable
+tool.mask.bumps = "凸起";
+// Rebuild the mask from the surface curvature: only the recessed areas stay paintable
+tool.mask.cavity = "凹陷";
 // Clear the painted mask
 tool.mask.clear = "清除";
 tool.mask.clearAll = "清除全部";
+// Weaken the mask intensity without changing its shape (opposite of Boost)
+tool.mask.dilute = "減弱";
 // Mask or Unmask a region (leave other region that unconnected intact)
 tool.mask.flipConnected = "反轉已連線區域";
+// Enlarge the masked area, one ring of vertices at a time
+tool.mask.grow = "擴展";
 // Invert the painted mask
 tool.mask.invert = "反轉";
 // Sharpen the edge of the painted mask area
 tool.mask.sharpen = "銳化";
+// Reduce the masked area, one ring of vertices at a time (opposite of Grow)
+tool.mask.shrink = "收縮";
 // Ideally short strings
 tool.mask.unmask = "取消遮罩";
 // Ideally short strings (Selector Mask, use lasso/ellipse,etc shape to mask the mesh)
@@ -2824,6 +3026,9 @@ tool.matrix.action.origin = "移至原點";
 tool.matrix.action.origin.help = "將網格移到世界原點。";
 tool.matrix.action.reset = "重設";
 tool.matrix.action.reset.help = "重設物件的所有變換。";
+// Move the pivot alone, the objects stand still
+tool.matrix.editPivot = "編輯";
+tool.matrix.editPivot.help = "僅移動軸心，物件保持不動。";
 tool.matrix.rotation = "旋轉";
 tool.matrix.scale = "縮放";
 // Synonym: shear, https://en.wikipedia.org/wiki/Shear_matrix or https://en.wikipedia.org/wiki/Shear_mapping
@@ -2838,10 +3043,16 @@ tool.matrix.target.auto.help = "預設情況下，其作用類似「群組」選
 tool.matrix.target.group = "群組";
 tool.matrix.target.group.help = "移動節點，忽略對稱和遮罩。
 層級中的其他節點也會一併變換。";
+// Transform the object and its children, and every other instance of it
+tool.matrix.target.groupInstance = "";
+tool.matrix.target.groupInstance.help = "";
 // Transform the object alone (the children stands still)
 tool.matrix.target.object = "物件";
 tool.matrix.target.object.help = "僅移動物件而忽略對稱性和遮罩。
 僅移動已編輯節點，不移動子項。";
+// Transform the object alone, and every other instance of it
+tool.matrix.target.objectInstance = "";
+tool.matrix.target.objectInstance.help = "";
 // Auto apply the transform on the vertices
 tool.matrix.target.vertex = "頂點";
 tool.matrix.target.vertex.help = "您可以嘗試轉換頂點，但這對於未轉換為可編輯狀態的基本體不起作用。
@@ -2892,8 +3103,6 @@ tool.polish = "拋光";
 tool.project = "投影";
 // Radius of the tool (size)
 tool.radius = "半徑";
-// Ideally short strings (Quad Remesher)
-tool.remesh = "四邊形重構";
 tool.remesh.density = "密度";
 tool.remesh.guides = "引導線";
 tool.remesh.half = "一半";
@@ -2990,6 +3199,36 @@ tool.trim.detail.protect.help = "不要平滑和簡化切割邊界。
 在遮罩和隱藏面附近保留原始網格拓樸。";
 // Ideally short strings (Revolving surface along a curve)
 tool.tube = "圓管";
+// Ideally short strings (Vector displacement stamp)
+tool.vdm = "VDM";
+// Button that adds a plane ready to be sculpted into a VDM
+tool.vdm.addPlane = "加入平面";
+// Scales only the height of the vdm stamp, lateral displacement is unchanged
+tool.vdm.height = "高度";
+// Button that opens the popup that adds a plane to sculpt a VDM on, "..." is appended in the app
+tool.vdm.new = "新增 VDM";
+// Title of the popup that adds a plane to sculpt a VDM on
+tool.vdm.plane = "雕刻新的 VDM";
+// The border is the outer edge of the plane
+tool.vdm.plane.border = "遮罩邊界";
+tool.vdm.plane.border.help = "遮罩平面的外圈，以保持邊界平坦。
+
+雕刻到邊界會在圖章中形成硬邊。";
+tool.vdm.plane.help = "加入一個設定好用於雕刻 VDM 的平面，包含 UV、所選解析度和朝向相機的方向。
+
+此操作只建立平面。若要建立圖章：
+• 在平面上雕刻形狀
+• 開啟 `拓樸 -> 烘焙`
+• 選擇 `VDM`，然後按 `烘焙`
+
+Nomad 會將新圖章加入 VDM 資料庫並將其選取。
+
+請避免使用 DynTopo，因為它會損壞平面的 UV 並使圖章變形。";
+// (see Glossary for Layer)
+tool.vdm.plane.layer = "在圖層上雕刻";
+tool.vdm.plane.layer.help = "在平坦的平面上方建立一個雕刻圖層，烘焙時會將其用作參照。
+
+繪製也需要圖層。沒有圖層時，蓋印時材質會覆蓋整個正方形，而不只是繪製的區域。";
 // Ideally short strings (View tool, do nothing in particular)
 tool.view = "瀏覽模式";
 // Always display the camera shortcut buttons on the viewport
@@ -2997,8 +3236,6 @@ tool.view.stickyCamera = "相機快速操作（一律）";
 
 // Topology
 topology = "拓樸";
-// Name of the quad remeshing engine, should probably stay untranslated
-topology.autoremesher = "AutoRemesher";
 topology.autoremesher.adaptivity = "自適應性";
 topology.autoremesher.adaptivity.help = "使四邊形密度適應曲率。
 
@@ -3016,6 +3253,9 @@ topology.autoremesher.smoothAngle.help = "0 會在重建網格期間保持表面
 
 值越高，越會透過考慮頂點法線來平滑表面。";
 topology.bake.backup = "備份";
+// Multires here means the subdivision levels of the object itself
+topology.bake.multires = "";
+topology.bake.multires.help = "";
 // Cage is a specific term; synonym: "Bake offset"
 topology.bake.offset = "射線偏移";
 // Bake opacity (from mask data)
@@ -3048,6 +3288,29 @@ topology.bake.title.help = "貼圖烘焙會投影場景中的其他可見物件�
 - 使用所有選取物件，主要選取物件為烘焙目標（場景選單中反白最明顯的物件）
 - 如果只選取一個物件，Nomad 會改用所有可見物件
 - 否則，如果所有物件均被隱藏（例如使用獨顯），則使用整個場景";
+// Warning shown after a VDM bake, the border of the plane is its outer edge
+topology.bake.vdm.border = "雕刻延伸到了平面邊界，VDM 用作印章時會出現硬邊。";
+// Error shown when a VDM bake fails
+topology.bake.vdm.failed = "無法建立 VDM。";
+// Bake here means "create a VDM (from a sculpted plane)"
+topology.bake.vdm.help = "從所選物件建立 VDM，並將其加入 VDM 資料庫。
+
+典型工作流程：
+• 加入一個平面，或在 VDM 選擇器中選擇 `新增 VDM`，以加入已設定的平面
+• 在平面上雕刻形狀，並保持邊界平坦
+• 烘焙！
+
+平面的 UV 定義了要烘焙的正方形，因此物件需要 UV。
+
+請避免使用動態拓樸，它會破壞平面的 UV，蓋印出來的 VDM 會變形。
+
+在圖層中雕刻可獲得最精確的結果，因為下方仍保留著平坦的平面。
+
+繪製同樣需要在圖層中進行，否則材質會蓋印到整個正方形，而不只是你繪製的區域。";
+// Warning shown when the picked region cannot be flattened; a disc is a simple patch with a single outer edge
+topology.bake.vdm.notDisk = "";
+// Warning shown when the picked region holds too many polygons to be flattened
+topology.bake.vdm.tooBig = "";
 // Synonym: Simplify (Decimate reduce the number of triangles/quads while retaining details as much as possible)
 topology.decimate = "網格簡化";
 topology.decimate.boundary = "保留邊界";
@@ -3099,8 +3362,6 @@ topology.dynamic.useFalloff = "使用筆觸衰減";
 // Whether the pencil pressure can impact the level of detail
 topology.dynamic.usePressure = "在半徑上使用壓感";
 topology.dynamic.usePressure.help = "若希望筆壓對工具半徑的影響也改變細節層級，請啟用此選項。";
-// Instant quad remesher
-topology.instant = "Instant Mesh";
 topology.instant.angle = "摺痕角度";
 topology.instant.hole = "最大填洞";
 topology.instant.hole.help = "該演算法有時會產生不需要的孔洞。
@@ -3147,8 +3408,6 @@ topology.multires.up = "多解析度層級 →";
 topology.nonManifold = "非流形";
 // Quad remesher
 topology.quadRemesh = "四邊形重構";
-// Name of the quad remeshing engine, should probably stay untranslated
-topology.quadriflow = "QuadriFlow";
 topology.quadriflow.adaptiveScale = "自適應縮放";
 topology.quadriflow.adaptiveScale.help = "使四邊形大小適應表面曲率。";
 topology.quadriflow.keepSharp = "保留銳邊";
@@ -3243,6 +3502,8 @@ topology.uv.title = "UV 展開";
 topology.uv.unwrap = "展開";
 // Create a new object by recomputing a new topology, by using voxels (see Glossary)
 topology.voxel = "體素重新網格化";
+// The voxel detail expressed as a world size, the same value gives the same detail on any object
+topology.voxel.edgeLength = "邊長";
 topology.voxel.help = "在格線上取樣網格，以建立均勻的新網格。
 
 如物件未封閉，則會先填充孔洞。
