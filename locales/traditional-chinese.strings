@@ -97,6 +97,8 @@ access.window = "輔助視窗";
 alert.aborted = "操作已中止！";
 // Autosave popup
 alert.autoSave.auto = "將在$0秒後自動儲存";
+// Autosave popup shown while the app is idle: the countdown starts when the user touches the screen again
+alert.autoSave.wait = "";
 // Transform mode lets the user move the reference image with two fingers
 alert.backgroundTransform = "輕點即可退出變換模式。";
 alert.colorPicker = "在物件上拖曳以取色。";
@@ -118,23 +120,21 @@ alert.gizmo.editObject = "物件編輯模式。";
 alert.gizmo.editPivot = "軸心編輯模式。";
 // Surface repeater: the face group popup is open, tapping the object switches a group on or off
 alert.groupPicker = "在物件上輕點或拖曳以切換面群組。";
-// Button that turns the heightmap render off
-alert.heightmap.hide = "隱藏高度圖";
 // The viewport renders the depth of the scene instead of the shaded objects
 alert.heightmapOn = "高度圖已開啟！";
 // The user decided to display hidden faces
 alert.hideIgnored = "隱藏被忽略了！";
+// A project opens with fewer undo steps than it was saved with: some history data is missing, damaged or from another version
+alert.history.lost = "部分歷史記錄無法載入。";
+// Undo, redo or replay stopped: the data of this operation is missing or damaged on the disk
+alert.history.unreadable = "部分歷史記錄資料遺失或損壞，無法復原或重做此操作。";
 // Error when an algorithm needs the object to have a hole (usually to fill it)
 alert.hole.nothing = "該物件沒有孔洞！";
-// Button that turns the inspector off
-alert.inspect.hide = "隱藏檢查器";
 // The viewport renders a material channel instead of the shaded objects
 alert.inspectOn = "檢查器已開啟！";
 // The lattice deformation was applied with a different mask or visibility state
 // (the gui appends the icon of the changed states)
 alert.lattice.desync = "晶格未同步！";
-// Button that re-applies the lattice deformation with the current mask/visibility
-alert.lattice.sync = "更新晶格";
 // A project was saved without the geometry of some objects: they open as empty groups ($0 = object names)
 alert.load.damaged = "以下物件已損壞，已載入為空群組：$0";
 // No operation occurred because the mesh is already manifold
@@ -165,6 +165,8 @@ alert.paintingHidden = "繪畫已被隱藏！";
 alert.quickSave = "正在儲存...";
 // The user is starting an operation that can lead to a crash
 alert.range.warning = "過高的解析度將會佔用大量記憶體！";
+// The limits removed some copies of the repeaters (a button next to it opens the settings that increase the limits)
+alert.repeater.limit = "";
 // Hide the objects that are not selected
 alert.selection.isolate = "隔離所選項";
 // Show the objects that are hidden
@@ -249,6 +251,8 @@ background.reference = "參考影像";
 binding.addSync = "同步";
 binding.addSync.help = "預設情況下，將使用場景選單中設定的同步值。";
 binding.button = "按鈕";
+binding.onBackground = "";
+binding.onBackground.help = "";
 // Binding option
 binding.context.toggle = "切換情境";
 // Dead zones
@@ -479,10 +483,17 @@ cube.right = "右";
 cube.top = "頂";
 
 curve.bevel = "倒角";
+// Curve type: Bézier points with two handles
+curve.bezier = "";
 curve.bspline = "B樣條";
+// Small toggle next to the Shift slider: the brush falloff gets a round tip, like a dome, instead of a pointed one
+curve.dome = "";
 curve.editor = "曲線編輯器";
+// Button of the shape and profile editors: show the editor full screen
+curve.editor.maximize = "";
 // Time to hold a curve point or handle still before the long press edit starts
 curve.holdDelay = "長按時間";
+curve.holdDelay.help = "";
 curve.ik = "IK";
 curve.ik.help = "反向運動學（IK）：拖動一個點來調整曲線姿態，相連的點會跟隨。輕點一個點可鎖定或解鎖該點。長按一個點可鎖定或解鎖所有點。鎖定的點保持不動；拖動鎖圖示可移動整條曲線。";
 curve.ik.stretch = "拉伸";
@@ -689,7 +700,6 @@ extract.wall = "側壁";
 
 // Auto save section
 file.autoSave = "自動儲存";
-file.autoSave.confirm = "確定要停用自動儲存嗎？";
 // Delete the current autoSave data
 file.autoSave.delete = "刪除自動儲存的資料";
 file.autoSave.help = "每隔一段時間將您的專案另存到一個單獨的檔案。
@@ -819,6 +829,8 @@ file.import.skipTextures = "忽略貼圖";
 file.import.skipTextures.help = "不要從檔案中載入嵌入的貼圖。";
 // Import file section
 file.import.title = "匯入";
+file.import.zbrush.dynamicSubdivision = "";
+file.import.zbrush.dynamicSubdivision.help = "";
 // Configure import options
 file.importSettings = "匯入選項";
 // Export the current selected objects instead of the entire scene
@@ -872,6 +884,8 @@ file.quarantine.deleteAll = "全部刪除";
 file.quarantine.failedImport = "匯入失敗";
 // $0 = number of days
 file.quarantine.help = "已移出專案資料夾的專案資料，以及被匯入取代的檔案，會在此保留 $0 天。匯入失敗的檔案會一直保留，直到您將其刪除。";
+// Checkbox in the delete confirmation of a recently deleted entry: the next entries are deleted without asking until Nomad closes
+file.quarantine.silent = "";
 // Render a screenshot of the scene
 file.render = "算繪";
 // height of exported screenshot
@@ -984,24 +998,20 @@ gesture.history.hold = "長按";
 gesture.history.hold.help = "按住 2 或 3 根手指。";
 // Idle long press with pencil, mouse, finger, etc
 gesture.longPress = "長按";
-gesture.mask.holdIdle = "工具";
-gesture.mask.holdIdle.help = "長按後原地放開，可在「遮罩」與「選取遮罩」之間切換。";
-// Hold the finger on screen to toggle between two tools: Mask and SelMask
-gesture.mask.holdStroke = "筆觸";
-gesture.mask.holdStroke.help = "長按會在「遮罩」與「選取遮罩」之間切換，並開始新的筆觸。
-
-筆觸結束後會切回先前的工具。";
+gesture.longPress.drag = "";
+gesture.longPress.drag.help = "";
+gesture.longPress.release = "";
+gesture.longPress.release.help = "";
 // Enable Mask gesture by tapping once on the screen
 gesture.mask.oneTap = "單點快速操作";
-gesture.mask.oneTap.help = "輕點螢幕一下就能啟用遮罩快速操作，無需長按遮罩快速操作按鈕。
-
-這將啟用以下手勢：
-• 點選背景以反轉此遮罩
-• 點選遮罩區域以模糊此遮罩
-• 點選非遮罩區域以銳化此遮罩";
+gesture.oneTap.help = "";
+gesture.oneTap.hide.help = "";
+gesture.oneTap.mask.help = "";
 // Mouse/Trackpad
 gesture.mouse = "滑鼠";
 gesture.node = "節點編輯";
+gesture.onBackground = "";
+gesture.onBackground.help = "";
 // Size rejection is when we try to ignore the palm of the hand when we interact with a tablet
 gesture.palmRejection = "防誤觸";
 gesture.palmRejection.confirm = "如果您在雕刻時遇到問題，請務必關閉此選項！";
@@ -1023,7 +1033,6 @@ gesture.sculpt = "雕刻";
 gesture.select = "選擇物件";
 // Shortcut customization: choose the action performed by the shortcut (select tool, etc.)
 gesture.shortcut = "快速操作";
-gesture.smooth.holdSelect.help = "長按將切換到選擇工具用於選擇筆畫期間。";
 // Hold the pointer at the end of a stroke to snap it into a line or a curve
 gesture.strokeSnap = "筆觸吸附";
 gesture.strokeSnap.delay = "按住延遲";
@@ -1048,6 +1057,13 @@ gesture.tool.select = "選擇";
 gesture.tool.transform = "變換";
 // Multi touch navigation with the macbook trackpad or the Magic Trackpad
 gesture.trackpad = "觸控板";
+// What two fingers on the trackpad do in the curve and shape editors
+gesture.trackpad.curve = "";
+gesture.trackpad.curve.help = "";
+gesture.trackpad.curve.pan = "";
+gesture.trackpad.curve.pan.help = "";
+gesture.trackpad.curve.zoom = "";
+gesture.trackpad.curve.zoom.help = "";
 // What two fingers on the trackpad do
 gesture.trackpad.two = "雙指";
 gesture.trackpad.two.help = "使用觸控板導覽視圖。雙指一律透過捏合進行縮放、透過扭轉控制滾轉；抬起其中一根手指會切換到另一個操作。";
@@ -1110,8 +1126,22 @@ history.replay.camera = "還原相機視角";
 history.replay.camera.help = "相機跟隨重播的操作，即使歷史記錄中的「還原相機視角」選項已關閉。";
 // Popup opened by the play button, above its two options
 history.replay.confirm = "重播歷史記錄？";
+// Option of the replay popup: shows the gizmo, the object handles and the tool overlays in the viewport during the replay
+history.replay.handles = "";
+history.replay.handles.help = "";
 history.replay.help = "回到起點，然後以此速度逐一重做操作（每秒操作數）。
 再次點選按鈕可停止。復原、重做或點選一筆記錄也會停止重播。";
+// Option of the replay popup: the replay runs with no interface at all, not even the small replay controls
+history.replay.minify = "精簡介面";
+history.replay.minify.help = "同時隱藏重播控制項。點按螢幕可暫停重播。";
+// Popup shown when the user touches the canvas or uses a shortcut while the history replay runs: the replay waits for a choice
+history.replay.pause = "重播已暫停";
+// Button of the replay paused popup: ends the replay and jumps to the most recent operation
+history.replay.pause.end = "跳到最後";
+// Button of the replay paused popup: the replay continues
+history.replay.pause.resume = "繼續";
+// Button of the replay paused popup: ends the replay and stays on the current operation
+history.replay.pause.stop = "停在此處";
 // Option of the replay popup: runs backwards, undoing from the current state to the root
 history.replay.reverse = "反細分";
 history.replay.reverse.help = "從目前狀態逐步復原到起點，而非從起點開始重播。";
@@ -1320,6 +1350,8 @@ item.edit = "編輯";
 item.edit.help = "新增一個已由此圖章塑形的平面，包含一個雕刻圖層，每個像素對應一個四邊形。
 
 雕刻後，透過 `拓樸 -> 烘焙 -> VDM` 重新烘焙。";
+// Short button label, turns on the option named by the message next to it
+item.enable = "";
 // Short button label, opens a popup to correct the pixels of an imported image
 item.fix = "修正";
 item.fix.help = "直接修正影像：中間值、反轉、旋轉。
@@ -1525,7 +1557,7 @@ light.type.point = "點光源";
 light.type.spot = "聚光燈";
 
 link.address = "此裝置";
-link.ai.request = "";
+link.ai.request = "$0 想要控制 Nomad";
 link.approve = "接受";
 link.bridges = "橋接指令碼（GitHub）";
 link.cameras = "相機";
@@ -1568,7 +1600,7 @@ link.mode.nomad.help = "在一台裝置上選擇「主機」，在其他裝置�
 link.nearby = "附近的裝置";
 link.objects = "物件與幾何";
 link.off = "關閉";
-link.pairings = "";
+link.pairings = "已配對的裝置";
 link.peer = "對等裝置";
 link.peerAddress = "用戶端位址";
 link.port = "網路連接埠";
@@ -1662,6 +1694,8 @@ material.pbrRefraction.warning = "折射效果僅在PBR算繪模式下可用。"
 // See glossary
 material.pbrRoughnessMetalness.warning = "粗糙度與金屬度僅在 PBR 著色模式下可用。";
 // See glossary
+material.pbrShadowCatcher.warning = "";
+// See glossary
 material.pbrSubsurface.warning = "次表面僅在PBR模式下可用。";
 // material (additive and blending) will write into depth
 material.preRefract = "預折射通道";
@@ -1705,7 +1739,7 @@ material.texture.mipmap = "Mipmap";
 // Nearest Filtering (closest sample)
 material.texture.nearest = "最鄰近";
 // Help on the link buttons of the texture settings: a linked section is shared by every linked texture channel
-material.texture.sync = "";
+material.texture.sync = "由所有已連結的貼圖共用";
 // Textures, basically images wrapped on models (synonym: Maps, Texture maps)
 material.textures = "貼圖";
 material.textures.help = "切回 Nomad 時，匯入的圖片會與原始檔案同步。";
@@ -1883,6 +1917,8 @@ paint.gradient = "漸層";
 paint.gradient.mirror.help = "以線段中點為軸鏡像曲線：編輯其中一半，另一半會跟著變化。";
 // Second material of the gradient, painted where the curve is low; when disabled the paint fades into the surface
 paint.gradientEnd = "結束材質";
+// Help of the Extend button, closed shapes (lasso, ellipse...): the end material also covers everything around the shape
+paint.gradientEnd.extend.help = "";
 // Help of the sync button next to the end material title
 paint.gradientEnd.sync = "將繪製材質複製到結束材質。";
 // Factor/Opacity of paint tool
@@ -2197,6 +2233,17 @@ primitive.projectSphere = "球體";
 primitive.radius = "半徑";
 primitive.radius.end = "結束半徑";
 primitive.radius.start = "起始半徑";
+// Primitive extruded from an imported vector drawing (SVG)
+primitive.shape = "形狀";
+primitive.shape.edit = "";
+primitive.shape.empty = "此檔案中找不到填滿的形狀。";
+primitive.shape.limit = "已達到最大面數。提高上限可顯示整個形狀。";
+// Opens the list of the curves of a 2D shape, from front to back, to reorder them
+primitive.shape.order = "";
+primitive.shape.order.help = "";
+// Toggle on a group of curves in a 2D shape: whether its overlapping curves cut each other or fill
+primitive.shape.overlaps = "";
+primitive.shape.overlaps.help = "";
 // Size (of cube x dimension)
 primitive.size = "尺寸";
 primitive.sizeX = "尺寸 X";
@@ -2214,6 +2261,7 @@ primitive.text.boldItalic = "粗斜體";
 primitive.text.center = "中心";
 primitive.text.depth = "深度";
 primitive.text.edit = "編輯文字";
+primitive.text.fan = "扇形";
 primitive.text.font = "字型";
 primitive.text.italic = "斜體";
 primitive.text.left = "左";
@@ -2260,6 +2308,8 @@ primitive.triplanar.title.help = "三平面使用三個平面的遮罩資訊填�
 
 可在遮罩面板啟用“拓樸連線”，繪製一個平面時同時影響其他平面。";
 primitive.tube = "圓管";
+primitive.tube.unfold = "";
+primitive.tube.unfold.help = "";
 // Finalize the primitive as a sculptable mesh; this does not mean checking data validity
 primitive.validate = "轉換";
 
@@ -2494,6 +2544,24 @@ settings.multires.lowResVertices.help = "在您移動相機時，模型物件可
 // Maximum number of vertices (points)
 settings.multires.maxVertices = "最大頂點數量";
 settings.multires.maxVertices.help = "Nomad 不會在細分前檢查記憶體；多邊形數量過高很容易造成當機。";
+// Navigation widget in the viewport corner, shaped as a cube, a sphere or axes (easy to snap/align the view)
+settings.navigator = "導航器";
+// Alignment (can be auto/on/off)
+settings.navigator.align = "限制對齊";
+settings.navigator.align.help = "將檢視對齊到世界軸。如果啟用，只有6個對齊檢視是可能的。
+
+在自動模式下，只有當相機處於軌道模式時才會進行限制。";
+// Extra snapping views on the edges and corners of the navigator
+settings.navigator.edgeCorner = "邊和角";
+settings.navigator.edgeCorner.help = "在邊和角上新增吸附視圖（琥珀色區域）。";
+// Flip the camera (rotate 180° to see the other side)
+settings.navigator.flip = "翻轉180°";
+settings.navigator.flip.help = "如果檢視已經對準，則翻轉檢視。";
+// Dragging the navigator rotates like the Turntable mode, even if the camera is in Trackball
+settings.navigator.turntable = "轉盤式拖曳";
+settings.navigator.turntable.help = "拖曳導航器時，相機會旋轉但不會側傾，並停留在每個吸附檢視位置。
+
+停用此選項即可改用軌跡球旋轉方式拖曳導航器。兩種情況下，拖曳都會保持水平或垂直。";
 // These options will be reset when the app restarts
 settings.notSaved = "這些選項不會在設定中儲存。";
 // Outline (contour highlight around the selected object)
@@ -2544,24 +2612,6 @@ settings.showMasking = "顯示遮罩";
 settings.showPainting = "顯示繪畫";
 // https://en.wikipedia.org/wiki/Shading
 settings.smoothShading = "平滑著色";
-// Navigation widget in the viewport corner, shaped as a cube, a sphere or axes (easy to snap/align the view)
-settings.navigator = "導航器";
-// Alignment (can be auto/on/off)
-settings.navigator.align = "限制對齊";
-settings.navigator.align.help = "將檢視對齊到世界軸。如果啟用，只有6個對齊檢視是可能的。
-
-在自動模式下，只有當相機處於軌道模式時才會進行限制。";
-// Extra snapping views on the edges and corners of the navigator
-settings.navigator.edgeCorner = "邊和角";
-settings.navigator.edgeCorner.help = "在邊和角上新增吸附視圖（琥珀色區域）。";
-// Flip the camera (rotate 180° to see the other side)
-settings.navigator.flip = "翻轉180°";
-settings.navigator.flip.help = "如果檢視已經對準，則翻轉檢視。";
-// Dragging the navigator rotates like the Turntable mode, even if the camera is in Trackball
-settings.navigator.turntable = "轉盤式拖曳";
-settings.navigator.turntable.help = "拖曳導航器時，相機會旋轉但不會側傾，並停留在每個吸附檢視位置。
-
-停用此選項即可改用軌跡球旋轉方式拖曳導航器。兩種情況下，拖曳都會保持水平或垂直。";
 // Stats (information logs about the scene displayed on screen)
 settings.stats = "顯示場景狀態";
 settings.stats.all = "顯示全部";
@@ -3046,8 +3096,12 @@ toggle.yes = "是";
 tool.all = "全部";
 // Ideally short strings (Arrange selected objects)
 tool.arrange = "排列";
+// Ideally short strings (Bend a sculpted object along a curve)
+tool.bend = "";
 // Ideally short strings
 tool.brush = "筆刷";
+tool.brush.clampRadius = "";
+tool.brush.clampRadius.help = "";
 // Ideally short strings
 tool.clay = "黏土";
 // Ideally short strings (Subtract)
@@ -3363,7 +3417,14 @@ tool.shape = "形狀";
 tool.shape.band = "帶狀";
 // Ideally short strings (Band selection: past the far guide, everything keeps the full value, like a soft half-space)
 tool.shape.bandExtend = "延伸";
+// Ideally short strings (Band selection: past both guides, the near side keeps the start value and the far side the full value)
+tool.shape.bandExtend.both = "";
+tool.shape.bandExtend.both.help = "";
+// Ideally short strings (Band selection: only past the far guide)
+tool.shape.bandExtend.end = "";
 tool.shape.bandExtend.help = "延續到參考線之外：遠側取得完整數值，而不是止於帶狀區域。";
+// Ideally short strings (Band selection: stops at both guides)
+tool.shape.bandExtend.off = "";
 // Ideally short strings (Band selection: swap which guide the gradient starts from)
 tool.shape.bandFlip = "翻轉";
 // Ideally short strings (Whether a shape is closed or not, a tube is open, a torus is closed)

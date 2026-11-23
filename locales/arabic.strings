@@ -94,6 +94,8 @@ access.window = "نافذة مساعدة";
 alert.aborted = "تم إلغاء العملية!";
 // Autosave popup
 alert.autoSave.auto = "الحفظ التلقائي في... $0s";
+// Autosave popup shown while the app is idle: the countdown starts when the user touches the screen again
+alert.autoSave.wait = "";
 // Transform mode lets the user move the reference image with two fingers
 alert.backgroundTransform = "انقر مرة للخروج من وضع التحويل.";
 alert.colorPicker = "اسحب على الكائن لاختيار لون.";
@@ -115,23 +117,21 @@ alert.gizmo.editObject = "وضع تحرير الجسم.";
 alert.gizmo.editPivot = "وضع تحرير المحور.";
 // Surface repeater: the face group popup is open, tapping the object switches a group on or off
 alert.groupPicker = "انقر على الكائن أو اسحب عليه لتبديل مجموعات الوجوه.";
-// Button that turns the heightmap render off
-alert.heightmap.hide = "إخفاء خريطة الارتفاع";
 // The viewport renders the depth of the scene instead of the shaded objects
 alert.heightmapOn = "خريطة الارتفاع مفعّلة!";
 // The user decided to display hidden faces
 alert.hideIgnored = "تم تجاهل الإخفاء!";
+// A project opens with fewer undo steps than it was saved with: some history data is missing, damaged or from another version
+alert.history.lost = "تعذّر تحميل جزء من السجل.";
+// Undo, redo or replay stopped: the data of this operation is missing or damaged on the disk
+alert.history.unreadable = "بعض بيانات السجل مفقودة أو تالفة، لا يمكن التراجع عن هذه العملية أو إعادتها.";
 // Error when an algorithm needs the object to have a hole (usually to fill it)
 alert.hole.nothing = "الكائن ليس لديه فتحات!";
-// Button that turns the inspector off
-alert.inspect.hide = "إخفاء الفاحص";
 // The viewport renders a material channel instead of the shaded objects
 alert.inspectOn = "الفاحص مفعّل!";
 // The lattice deformation was applied with a different mask or visibility state
 // (the gui appends the icon of the changed states)
 alert.lattice.desync = "الشبكة غير متزامنة!";
-// Button that re-applies the lattice deformation with the current mask/visibility
-alert.lattice.sync = "تحديث الشبكة";
 // A project was saved without the geometry of some objects: they open as empty groups ($0 = object names)
 alert.load.damaged = "كائنات تالفة، حُمّلت كمجموعات فارغة: $0";
 // No operation occurred because the mesh is already manifold
@@ -162,6 +162,8 @@ alert.paintingHidden = "الرسم مخفي!";
 alert.quickSave = "جارٍ الحفظ...";
 // The user is starting an operation that can lead to a crash
 alert.range.warning = "قيمة التفصيل عالية وقد تتطلب ذاكرة كبيرة!";
+// The limits removed some copies of the repeaters (a button next to it opens the settings that increase the limits)
+alert.repeater.limit = "";
 // Hide the objects that are not selected
 alert.selection.isolate = "عزل التحديد";
 // Show the objects that are hidden
@@ -246,6 +248,8 @@ background.reference = "مرجع";
 binding.addSync = "مزامنة";
 binding.addSync.help = "بشكل افتراضي، سيستخدم قيمة التزامن المحددة في قائمة المشهد.";
 binding.button = "زر";
+binding.onBackground = "";
+binding.onBackground.help = "";
 // Binding option
 binding.context.toggle = "تبديل السياق";
 // Dead zones
@@ -476,10 +480,17 @@ cube.right = "يمين";
 cube.top = "أعلى";
 
 curve.bevel = "شطف";
+// Curve type: Bézier points with two handles
+curve.bezier = "";
 curve.bspline = "B-السبلين";
+// Small toggle next to the Shift slider: the brush falloff gets a round tip, like a dome, instead of a pointed one
+curve.dome = "";
 curve.editor = "محرر المنحنى";
+// Button of the shape and profile editors: show the editor full screen
+curve.editor.maximize = "";
 // Time to hold a curve point or handle still before the long press edit starts
 curve.holdDelay = "مهلة الضغط المطوّل";
+curve.holdDelay.help = "";
 curve.ik = "IK";
 curve.ik.help = "الحركيات العكسية (IK): اسحب نقطة لتغيير وضعية المنحنى، فتتبعها النقاط المتصلة. انقر على نقطة لقفلها أو فتحها. اضغط مطولًا على نقطة لقفل كل النقاط أو فتحها. تبقى النقاط المقفلة في مكانها؛ اسحب قفلًا لتحريك المنحنى كله.";
 curve.ik.stretch = "تمدد";
@@ -686,7 +697,6 @@ extract.wall = "الجدار";
 
 // Auto save section
 file.autoSave = "حفظ تلقائي";
-file.autoSave.confirm = "تعطيل الحفظ التلقائي؟";
 // Delete the current autoSave data
 file.autoSave.delete = "التخلص من الحفظ التلقائي";
 file.autoSave.help = "احفظ المشروع الخاص بك في ملف منفصل على فترات منتظمة.
@@ -816,6 +826,8 @@ file.import.skipTextures = "تخطى القوام";
 file.import.skipTextures.help = "لا تقم بتحميل الخامات المضمنة من الملف.";
 // Import file section
 file.import.title = "استيراد";
+file.import.zbrush.dynamicSubdivision = "";
+file.import.zbrush.dynamicSubdivision.help = "";
 // Configure import options
 file.importSettings = "خيارات الاستيراد";
 // Export the current selected objects instead of the entire scene
@@ -869,6 +881,8 @@ file.quarantine.deleteAll = "حذف الكل";
 file.quarantine.failedImport = "فشل الاستيراد";
 // $0 = number of days
 file.quarantine.help = "تُحفظ هنا لمدة $0 يومًا بيانات المشاريع التي خرجت من مجلد المشاريع والملفات التي استُبدلت باستيراد. تبقى عمليات الاستيراد الفاشلة حتى تحذفها.";
+// Checkbox in the delete confirmation of a recently deleted entry: the next entries are deleted without asking until Nomad closes
+file.quarantine.silent = "";
 // Render a screenshot of the scene
 file.render = "التصيير";
 // height of exported screenshot
@@ -981,24 +995,20 @@ gesture.history.hold = "ضغط طويل";
 gesture.history.hold.help = "استمر في الضغط بإصبعين أو ثلاثة.";
 // Idle long press with pencil, mouse, finger, etc
 gesture.longPress = "ضغط طويل";
-gesture.mask.holdIdle = "أداة";
-gesture.mask.holdIdle.help = "الضغط المطول والإفراج دون تحريك للتبديل بين قناع و SelMask.";
-// Hold the finger on screen to toggle between two tools: Mask and SelMask
-gesture.mask.holdStroke = "ضربة";
-gesture.mask.holdStroke.help = "سيتم التبديل بالضغط المطول بين قناع و SelMask وبدء ضربة جديدة.
-
-عند انتهاء الضربة، يتم اختيار الأداة السابقة مرة أخرى.";
+gesture.longPress.drag = "";
+gesture.longPress.drag.help = "";
+gesture.longPress.release = "";
+gesture.longPress.release.help = "";
 // Enable Mask gesture by tapping once on the screen
 gesture.mask.oneTap = "اختصارات النقر الواحد";
-gesture.mask.oneTap.help = "السماح بتنشيط اختصار القناع بلمسة واحدة للشاشة، دون الحاجة لضغط زر اختصار القناع واستمراره.
-
-سيسمح بالإيماءات التالية:
-• اضغط على الخلفية لعكس القناع
-• اضغط على منطقة مقنعة لتغبيش القناع
-• اضغط على منطقة غير مقنعة لشحذ القناع";
+gesture.oneTap.help = "";
+gesture.oneTap.hide.help = "";
+gesture.oneTap.mask.help = "";
 // Mouse/Trackpad
 gesture.mouse = "الماوس";
 gesture.node = "تحرير العقدة";
+gesture.onBackground = "";
+gesture.onBackground.help = "";
 // Size rejection is when we try to ignore the palm of the hand when we interact with a tablet
 gesture.palmRejection = "رفض الكف";
 gesture.palmRejection.confirm = "تأكد من تعطيل هذا الخيار إذا واجهت مشكلة في التفاعل مع لوحة الرسم!";
@@ -1020,7 +1030,6 @@ gesture.sculpt = "نحت";
 gesture.select = "حدد الكائن";
 // Shortcut customization: choose the action performed by the shortcut (select tool, etc.)
 gesture.shortcut = "اختصار";
-gesture.smooth.holdSelect.help = "الضغط الطويل سيبدل إلى أداة التحديد أثناء فترة تحديد الضربة.";
 // Hold the pointer at the end of a stroke to snap it into a line or a curve
 gesture.strokeSnap = "التقاط الضربة";
 gesture.strokeSnap.delay = "مهلة الضغط المطوّل";
@@ -1045,6 +1054,13 @@ gesture.tool.select = "اختيار";
 gesture.tool.transform = "تحويل";
 // Multi touch navigation with the macbook trackpad or the Magic Trackpad
 gesture.trackpad = "لوحة التعقب";
+// What two fingers on the trackpad do in the curve and shape editors
+gesture.trackpad.curve = "";
+gesture.trackpad.curve.help = "";
+gesture.trackpad.curve.pan = "";
+gesture.trackpad.curve.pan.help = "";
+gesture.trackpad.curve.zoom = "";
+gesture.trackpad.curve.zoom.help = "";
 // What two fingers on the trackpad do
 gesture.trackpad.two = "إصبعان";
 gesture.trackpad.two.help = "تنقّل في العرض باستخدام لوحة التعقب. يؤدي ضم إصبعين دائمًا إلى التكبير أو التصغير، ويؤدي لفهما إلى التحكم في الدوران؛ ويؤدي رفع أحدهما إلى التبديل إلى الإجراء الآخر.";
@@ -1107,8 +1123,22 @@ history.replay.camera = "استعادة الكاميرا";
 history.replay.camera.help = "تتبع الكاميرا العمليات المعاد تشغيلها حتى عندما يكون خيار استعادة الكاميرا في السجل معطّلًا.";
 // Popup opened by the play button, above its two options
 history.replay.confirm = "إعادة تشغيل السجل؟";
+// Option of the replay popup: shows the gizmo, the object handles and the tool overlays in the viewport during the replay
+history.replay.handles = "";
+history.replay.handles.help = "";
 history.replay.help = "يرجع إلى البداية، ثم يعيد العمليات واحدة تلو الأخرى بهذه السرعة (عمليات في الثانية).
 انقر على الزر مرة أخرى للإيقاف. التراجع أو الإعادة أو النقر على إدخال يوقف التشغيل أيضًا.";
+// Option of the replay popup: the replay runs with no interface at all, not even the small replay controls
+history.replay.minify = "تصغير واجهة المستخدم";
+history.replay.minify.help = "يخفي أيضًا عناصر التحكم في إعادة التشغيل. المس الشاشة لإيقاف إعادة التشغيل مؤقتًا.";
+// Popup shown when the user touches the canvas or uses a shortcut while the history replay runs: the replay waits for a choice
+history.replay.pause = "إعادة التشغيل متوقفة مؤقتًا";
+// Button of the replay paused popup: ends the replay and jumps to the most recent operation
+history.replay.pause.end = "الانتقال إلى النهاية";
+// Button of the replay paused popup: the replay continues
+history.replay.pause.resume = "متابعة";
+// Button of the replay paused popup: ends the replay and stays on the current operation
+history.replay.pause.stop = "التوقف هنا";
 // Option of the replay popup: runs backwards, undoing from the current state to the root
 history.replay.reverse = "عكس";
 history.replay.reverse.help = "يتراجع عن العمليات من الحالة الحالية إلى البداية بدلًا من إعادة تشغيلها من البداية.";
@@ -1317,6 +1347,8 @@ item.edit = "تحرير";
 item.edit.help = "يضيف سطحًا مستويًا مشكّلًا بهذا الختم، مع طبقة نحت ورباعي أضلاع لكل بكسل.
 
 انحته، ثم اخبزه مجددًا عبر `طوبولوجيا -> خبز -> VDM`.";
+// Short button label, turns on the option named by the message next to it
+item.enable = "";
 // Short button label, opens a popup to correct the pixels of an imported image
 item.fix = "تصحيح";
 item.fix.help = "يصحّح الصورة نفسها: القيمة المتوسطة، والعكس، والتدوير.
@@ -1522,7 +1554,7 @@ light.type.point = "نقطة";
 light.type.spot = "بقعة";
 
 link.address = "هذا الجهاز";
-link.ai.request = "";
+link.ai.request = "يريد $0 التحكم في Nomad";
 link.approve = "قبول";
 link.bridges = "برامج الجسر النصية (GitHub)";
 link.cameras = "الكاميرات";
@@ -1565,7 +1597,7 @@ link.mode.nomad.help = "اختر المضيف على جهاز واحد والا�
 link.nearby = "الأجهزة القريبة";
 link.objects = "الكائنات والهندسة";
 link.off = "إيقاف";
-link.pairings = "";
+link.pairings = "الأجهزة المقترنة";
 link.peer = "نظير";
 link.peerAddress = "عنوان العميل";
 link.port = "منفذ الشبكة";
@@ -1659,6 +1691,8 @@ material.pbrRefraction.warning = "الانكسار يتطلب وضع التظل�
 // See glossary
 material.pbrRoughnessMetalness.warning = "الخشونة ودرجة المعدن تتطلب وضع التظليل PBR.";
 // See glossary
+material.pbrShadowCatcher.warning = "";
+// See glossary
 material.pbrSubsurface.warning = "تحت السطح يتطلب وضع التظليل PBR.";
 // material (additive and blending) will write into depth
 material.preRefract = "تمرير ما قبل الانكسار";
@@ -1700,7 +1734,7 @@ material.texture.mipmap = "Mipmap";
 // Nearest Filtering (closest sample)
 material.texture.nearest = "الأقرب";
 // Help on the link buttons of the texture settings: a linked section is shared by every linked texture channel
-material.texture.sync = "";
+material.texture.sync = "مشترك بين كل الخامات المرتبطة";
 // Textures, basically images wrapped on models (synonym: Maps, Texture maps)
 material.textures = "الخامات";
 material.textures.help = "تتم مزامنة الصور المستوردة مع ملفها الأصلي عند العودة إلى Nomad.";
@@ -1878,6 +1912,8 @@ paint.gradient = "تدرج";
 paint.gradient.mirror.help = "اعكس المنحنى حول منتصف الخط: عدّل نصفًا واحدًا ويتبعه النصف الآخر.";
 // Second material of the gradient, painted where the curve is low; when disabled the paint fades into the surface
 paint.gradientEnd = "المادة النهائية";
+// Help of the Extend button, closed shapes (lasso, ellipse...): the end material also covers everything around the shape
+paint.gradientEnd.extend.help = "";
 // Help of the sync button next to the end material title
 paint.gradientEnd.sync = "انسخ مادة الطلاء إلى المادة النهائية.";
 // Factor/Opacity of paint tool
@@ -2188,6 +2224,17 @@ primitive.projectSphere = "كرة";
 primitive.radius = "نصف القطر";
 primitive.radius.end = "نهاية نصف القطر";
 primitive.radius.start = "بدء نصف القطر";
+// Primitive extruded from an imported vector drawing (SVG)
+primitive.shape = "شكل";
+primitive.shape.edit = "";
+primitive.shape.empty = "لم يُعثر على شكل ممتلئ في هذا الملف.";
+primitive.shape.limit = "بلغت الحد الأقصى للوجوه. زِد الحد لإظهار الشكل كله.";
+// Opens the list of the curves of a 2D shape, from front to back, to reorder them
+primitive.shape.order = "";
+primitive.shape.order.help = "";
+// Toggle on a group of curves in a 2D shape: whether its overlapping curves cut each other or fill
+primitive.shape.overlaps = "";
+primitive.shape.overlaps.help = "";
 // Size (of cube x dimension)
 primitive.size = "الحجم";
 primitive.sizeX = "حجم X";
@@ -2205,6 +2252,7 @@ primitive.text.boldItalic = "غامق مائل";
 primitive.text.center = "مركز";
 primitive.text.depth = "عمق";
 primitive.text.edit = "تحرير النص";
+primitive.text.fan = "مروحة";
 primitive.text.font = "خط";
 primitive.text.italic = "مائل";
 primitive.text.left = "يسار";
@@ -2251,6 +2299,8 @@ primitive.triplanar.title.help = "ثلاثي الطائرات يستخدم مع�
 
 يمكنك استخدام خيار `متصل طبوغرافيًا` في لوحة القناع لرسم طائرة تؤثر على الطائرات الأخرى.";
 primitive.tube = "أنبوب";
+primitive.tube.unfold = "";
+primitive.tube.unfold.help = "";
 // Finalize the primitive as a sculptable mesh; this does not mean checking data validity
 primitive.validate = "اعتماد";
 
@@ -2485,6 +2535,24 @@ settings.multires.lowResVertices.help = "يمكن عرض دقة أقل للشب�
 // Maximum number of vertices (points)
 settings.multires.maxVertices = "عدد الرؤوس الأقصى";
 settings.multires.maxVertices.help = "لا يقوم Nomad بفحص الذاكرة قبل التقسيم، يمكن أن يؤدي العدد الكبير من المضلع إلى الأعطال بسهولة.";
+// Navigation widget in the viewport corner, shaped as a cube, a sphere or axes (easy to snap/align the view)
+settings.navigator = "أداة التنقل";
+// Alignment (can be auto/on/off)
+settings.navigator.align = "تقييد المحاذاة";
+settings.navigator.align.help = "قم بمحاذاة العروض مع المحور العالمي. إذا تم تفعيله، ستكون هناك 6 عروض سحب ممكنة فقط.
+
+في التلقائي، سيتم تفعيل التقييد فقط إذا كانت الكاميرا في وضع المدار.";
+// Extra snapping views on the edges and corners of the navigator
+settings.navigator.edgeCorner = "الحواف والزوايا";
+settings.navigator.edgeCorner.help = "إضافة طرق عرض للالتقاط على الحواف والزوايا (المناطق الكهرمانية).";
+// Flip the camera (rotate 180° to see the other side)
+settings.navigator.flip = "قلب 180°";
+settings.navigator.flip.help = "اقلب العرض إذا تم تثبيت العرض بالفعل.";
+// Dragging the navigator rotates like the Turntable mode, even if the camera is in Trackball
+settings.navigator.turntable = "سحب بنمط المنصة الدوارة";
+settings.navigator.turntable.help = "يؤدي سحب أداة التنقل إلى تدوير الكاميرا من دون إمالتها، مع التوقف عند كل عرض محاذاة.
+
+عطّل هذا الخيار لسحب أداة التنقل بدوران كرة التتبع بدلًا من ذلك. يبقى السحب أفقيًا أو عموديًا في كلتا الحالتين.";
 // These options will be reset when the app restarts
 settings.notSaved = "لم يتم حفظ هذه الخيارات في الإعدادات.";
 // Outline (contour highlight around the selected object)
@@ -2535,24 +2603,6 @@ settings.showMasking = "عرض القناع";
 settings.showPainting = "عرض الطلاء";
 // https://en.wikipedia.org/wiki/Shading
 settings.smoothShading = "تظليل سلس";
-// Navigation widget in the viewport corner, shaped as a cube, a sphere or axes (easy to snap/align the view)
-settings.navigator = "أداة التنقل";
-// Alignment (can be auto/on/off)
-settings.navigator.align = "تقييد المحاذاة";
-settings.navigator.align.help = "قم بمحاذاة العروض مع المحور العالمي. إذا تم تفعيله، ستكون هناك 6 عروض سحب ممكنة فقط.
-
-في التلقائي، سيتم تفعيل التقييد فقط إذا كانت الكاميرا في وضع المدار.";
-// Extra snapping views on the edges and corners of the navigator
-settings.navigator.edgeCorner = "الحواف والزوايا";
-settings.navigator.edgeCorner.help = "إضافة طرق عرض للالتقاط على الحواف والزوايا (المناطق الكهرمانية).";
-// Flip the camera (rotate 180° to see the other side)
-settings.navigator.flip = "قلب 180°";
-settings.navigator.flip.help = "اقلب العرض إذا تم تثبيت العرض بالفعل.";
-// Dragging the navigator rotates like the Turntable mode, even if the camera is in Trackball
-settings.navigator.turntable = "سحب بنمط المنصة الدوارة";
-settings.navigator.turntable.help = "يؤدي سحب أداة التنقل إلى تدوير الكاميرا من دون إمالتها، مع التوقف عند كل عرض محاذاة.
-
-عطّل هذا الخيار لسحب أداة التنقل بدوران كرة التتبع بدلًا من ذلك. يبقى السحب أفقيًا أو عموديًا في كلتا الحالتين.";
 // Stats (information logs about the scene displayed on screen)
 settings.stats = "إحصائيات";
 settings.stats.all = "عرض المشهد الكامل";
@@ -3037,8 +3087,12 @@ toggle.yes = "نعم";
 tool.all = "الكل";
 // Ideally short strings (Arrange selected objects)
 tool.arrange = "رتّب";
+// Ideally short strings (Bend a sculpted object along a curve)
+tool.bend = "";
 // Ideally short strings
 tool.brush = "فرشاة";
+tool.brush.clampRadius = "";
+tool.brush.clampRadius.help = "";
 // Ideally short strings
 tool.clay = "صلصال";
 // Ideally short strings (Subtract)
@@ -3350,7 +3404,14 @@ tool.shape = "الشكل";
 tool.shape.band = "شريط";
 // Ideally short strings (Band selection: past the far guide, everything keeps the full value, like a soft half-space)
 tool.shape.bandExtend = "تمديد";
+// Ideally short strings (Band selection: past both guides, the near side keeps the start value and the far side the full value)
+tool.shape.bandExtend.both = "";
+tool.shape.bandExtend.both.help = "";
+// Ideally short strings (Band selection: only past the far guide)
+tool.shape.bandExtend.end = "";
 tool.shape.bandExtend.help = "يستمر بعد الأدلة: يحصل الجانب البعيد على القيمة الكاملة بدل التوقف عند الشريط.";
+// Ideally short strings (Band selection: stops at both guides)
+tool.shape.bandExtend.off = "";
 // Ideally short strings (Band selection: swap which guide the gradient starts from)
 tool.shape.bandFlip = "عكس";
 // Ideally short strings (Whether a shape is closed or not, a tube is open, a torus is closed)

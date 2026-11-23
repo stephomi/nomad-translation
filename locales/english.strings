@@ -94,6 +94,8 @@ access.window = "Assistive window";
 alert.aborted = "Operation aborted!";
 // Autosave popup
 alert.autoSave.auto = "Auto Save in... $0s";
+// Autosave popup shown while the app is idle: the countdown starts when the user touches the screen again
+alert.autoSave.wait = "Auto Save, waiting for input...";
 // Transform mode lets the user move the reference image with two fingers
 alert.backgroundTransform = "Simple tap to exit transform mode.";
 alert.colorPicker = "Drag on the object to pick a color.";
@@ -115,23 +117,21 @@ alert.gizmo.editObject = "Edit object mode.";
 alert.gizmo.editPivot = "Edit pivot mode.";
 // Surface repeater: the face group popup is open, tapping the object switches a group on or off
 alert.groupPicker = "Tap or drag on the object to toggle face groups.";
-// Button that turns the heightmap render off
-alert.heightmap.hide = "Hide heightmap";
 // The viewport renders the depth of the scene instead of the shaded objects
 alert.heightmapOn = "Heightmap is on!";
 // The user decided to display hidden faces
 alert.hideIgnored = "Hide is ignored!";
+// A project opens with fewer undo steps than it was saved with: some history data is missing, damaged or from another version
+alert.history.lost = "Part of the history could not be loaded.";
+// Undo, redo or replay stopped: the data of this operation is missing or damaged on the disk
+alert.history.unreadable = "Some history data is missing or damaged, this operation can't be undone or redone.";
 // Error when an algorithm needs the object to have a hole (usually to fill it)
 alert.hole.nothing = "The object has no holes!";
-// Button that turns the inspector off
-alert.inspect.hide = "Hide inspector";
 // The viewport renders a material channel instead of the shaded objects
 alert.inspectOn = "Inspector is on!";
 // The lattice deformation was applied with a different mask or visibility state
 // (the gui appends the icon of the changed states)
 alert.lattice.desync = "Lattice is out of sync!";
-// Button that re-applies the lattice deformation with the current mask/visibility
-alert.lattice.sync = "Update lattice";
 // A project was saved without the geometry of some objects: they open as empty groups ($0 = object names)
 alert.load.damaged = "Damaged objects, loaded as empty groups: $0";
 // No operation occurred because the mesh is already manifold
@@ -162,6 +162,8 @@ alert.paintingHidden = "Painting is hidden!";
 alert.quickSave = "Saving...";
 // The user is starting an operation that can lead to a crash
 alert.range.warning = "The detail value is high and might require a lot of memory!";
+// The limits removed some copies of the repeaters (a button next to it opens the settings that increase the limits)
+alert.repeater.limit = "Some repeater copies are missing!";
 // Hide the objects that are not selected
 alert.selection.isolate = "Isolate selection";
 // Show the objects that are hidden
@@ -268,6 +270,10 @@ binding.gamepad = "Gamepad";
 // Inverse direction zooming
 binding.invertZoomY = "Flip zoom Y";
 binding.joystick = "Joystick";
+binding.onBackground = "On Background";
+binding.onBackground.help = "Hold the key and drag from the background to draw a lasso.
+
+By default, it follows the tool setting in the Gesture menu.";
 binding.pan.backward = "Pan Backward";
 binding.pan.down = "Pan Downward";
 binding.pan.forward = "Pan Forward";
@@ -476,10 +482,21 @@ cube.right = "Right";
 cube.top = "Top";
 
 curve.bevel = "Bevel";
+// Curve type: Bézier points with two handles
+curve.bezier = "Bézier";
 curve.bspline = "B-spline";
+// Small toggle next to the Shift slider: the brush falloff gets a round tip, like a dome, instead of a pointed one
+curve.dome = "Dome";
 curve.editor = "Curve editor";
+// Button of the shape and profile editors: show the editor full screen
+curve.editor.maximize = "Expand";
 // Time to hold a curve point or handle still before the long press edit starts
 curve.holdDelay = "Hold delay";
+curve.holdDelay.help = "When this button is on, long press a curve point or handle, then drag:
+• Point: change its sharpness. Keep holding before you drag to change all points.
+• Radius, rotate, intensity, hole, etc: change all values together (2 and N modes).
+
+With IK, long press a point to lock or unlock all points.";
 curve.ik = "IK";
 curve.ik.help = "Inverse kinematics (IK): drag a point to pose the curve, and connected points follow. Tap a point to lock or unlock it. Long press a point to lock or unlock all points. Locked points stay in place; drag a lock to move the whole curve.";
 curve.ik.stretch = "Stretch";
@@ -686,7 +703,6 @@ extract.wall = "Wall";
 
 // Auto save section
 file.autoSave = "Auto Save";
-file.autoSave.confirm = "Disable Auto Save?";
 // Delete the current autoSave data
 file.autoSave.delete = "Discard Auto Save";
 file.autoSave.help = "Save your project in a separate file at regular intervals.
@@ -816,6 +832,8 @@ file.import.skipTextures = "Skip textures";
 file.import.skipTextures.help = "Do not load embedded textures from the file.";
 // Import file section
 file.import.title = "Import";
+file.import.zbrush.dynamicSubdivision = "Dynamic subdivision";
+file.import.zbrush.dynamicSubdivision.help = "Turn ZBrush's Dynamic Subdivision into multires levels. Disable to only import the low-poly meshes and save memory.";
 // Configure import options
 file.importSettings = "Import options";
 // Export the current selected objects instead of the entire scene
@@ -869,6 +887,8 @@ file.quarantine.deleteAll = "Delete all";
 file.quarantine.failedImport = "Failed import";
 // $0 = number of days
 file.quarantine.help = "Data of projects that left the projects folder and files replaced by an import are kept here for $0 days. Failed imports stay until you delete them.";
+// Checkbox in the delete confirmation of a recently deleted entry: the next entries are deleted without asking until Nomad closes
+file.quarantine.silent = "Do not ask again";
 // Render a screenshot of the scene
 file.render = "Render";
 // height of exported screenshot
@@ -982,24 +1002,29 @@ gesture.history.hold = "Long press";
 gesture.history.hold.help = "Hold 2/3 fingers down.";
 // Idle long press with pencil, mouse, finger, etc
 gesture.longPress = "Long press";
-gesture.mask.holdIdle = "Tool";
-gesture.mask.holdIdle.help = "Long press and release without moving to switch between Mask and SelMask.";
-// Hold the finger on screen to toggle between two tools: Mask and SelMask
-gesture.mask.holdStroke = "Stroke";
-gesture.mask.holdStroke.help = "Long press toggles between Mask and SelMask and starts a new stroke.
+gesture.longPress.drag = "Long press + drag";
+gesture.longPress.drag.help = "Long press, then drag: the tool switches between brush and lasso for one stroke. Smooth switches to the Select tool.
 
-At the end of the stroke, the previous tool is selected back.";
+At the end of the stroke, the previous one is selected back.";
+gesture.longPress.release = "Long press + release";
+gesture.longPress.release.help = "Long press and release without moving: the tool switches between brush and lasso, and stays there.";
 // Enable Mask gesture by tapping once on the screen
 gesture.mask.oneTap = "One tap shortcuts";
-gesture.mask.oneTap.help = "Allow the Mask shortcut by tapping the screen once, without having to hold the mask button shortcut.
-
-It will allow the following gesture:
-• tap on the background to invert the mask
-• tap on a masked area to blur the mask
-• tap on an unmasked area to sharpen the mask";
 // Mouse/Trackpad
 gesture.mouse = "Mouse";
 gesture.node = "Node editing";
+gesture.onBackground = "On Background";
+gesture.onBackground.help = "Hold the tool shortcut or button and drag from the background to draw a lasso. Smooth draws it with the Select tool.
+
+When off, the drag starts an air stroke if allowed, otherwise it moves the camera.
+
+Each key binding can override this setting.";
+gesture.oneTap.help = "Allow the tool shortcut by tapping the screen once, without having to hold the button shortcut.";
+gesture.oneTap.hide.help = "• Background: invert the hidden faces
+• Mesh: hide the tapped part";
+gesture.oneTap.mask.help = "• Background: invert the mask
+• Masked area: blur the mask
+• Unmasked area: sharpen the mask";
 // Size rejection is when we try to ignore the palm of the hand when we interact with a tablet
 gesture.palmRejection = "Palm rejection";
 gesture.palmRejection.confirm = "Make sure to disable this option if you have trouble interacting with the canvas!";
@@ -1021,7 +1046,6 @@ gesture.sculpt = "Sculpt";
 gesture.select = "Select object";
 // Shortcut customization: choose the action performed by the shortcut (select tool, etc.)
 gesture.shortcut = "Shortcut";
-gesture.smooth.holdSelect.help = "Long press switches to the Select tool for the duration of the selection stroke.";
 // Hold the pointer at the end of a stroke to snap it into a line or a curve
 gesture.strokeSnap = "Stroke snap";
 gesture.strokeSnap.delay = "Hold delay";
@@ -1046,6 +1070,13 @@ gesture.tool.select = "Select";
 gesture.tool.transform = "Transform";
 // Multi touch navigation with the macbook trackpad or the Magic Trackpad
 gesture.trackpad = "Trackpad";
+// What two fingers on the trackpad do in the curve and shape editors
+gesture.trackpad.curve = "Curve editor";
+gesture.trackpad.curve.help = "Navigate the curve and shape editors with the trackpad. Two fingers always pinch to zoom.";
+gesture.trackpad.curve.pan = "Pan";
+gesture.trackpad.curve.pan.help = "Two fingers pan the editor. The mouse wheel still zooms.";
+gesture.trackpad.curve.zoom = "Zoom";
+gesture.trackpad.curve.zoom.help = "Two finger scrolling zooms, like the mouse wheel.";
 // What two fingers on the trackpad do
 gesture.trackpad.two = "Two fingers";
 gesture.trackpad.two.help = "Navigate the view with the trackpad. Two fingers always pinch to zoom and twist to roll, and lifting one of them switches to the other action.";
@@ -1108,8 +1139,22 @@ history.replay.camera = "Restore camera";
 history.replay.camera.help = "The camera follows the replayed operations, even when the Restore camera option of the history is off.";
 // Popup opened by the play button, above its two options
 history.replay.confirm = "Replay the history?";
+// Option of the replay popup: shows the gizmo, the object handles and the tool overlays in the viewport during the replay
+history.replay.handles = "Handles";
+history.replay.handles.help = "Shows the gizmo, the handles and the tool overlays in the viewport.";
 history.replay.help = "Rewinds to the root, then redoes the operations one by one at this speed (operations per second).
 Tap the button again to stop, undo/redo or tapping an entry also stops it.";
+// Option of the replay popup: the replay runs with no interface at all, not even the small replay controls
+history.replay.minify = "Minify UI";
+history.replay.minify.help = "Hides the replay controls too. Tap the screen to pause the replay.";
+// Popup shown when the user touches the canvas or uses a shortcut while the history replay runs: the replay waits for a choice
+history.replay.pause = "Replay paused";
+// Button of the replay paused popup: ends the replay and jumps to the most recent operation
+history.replay.pause.end = "Go to end";
+// Button of the replay paused popup: the replay continues
+history.replay.pause.resume = "Resume";
+// Button of the replay paused popup: ends the replay and stays on the current operation
+history.replay.pause.stop = "Stop here";
 // Option of the replay popup: runs backwards, undoing from the current state to the root
 history.replay.reverse = "Reverse";
 history.replay.reverse.help = "Undoes from the current state back to the root, instead of replaying from the root.";
@@ -1318,6 +1363,8 @@ item.edit = "Edit";
 item.edit.help = "Adds a plane already shaped by this stamp, with a sculpt layer and one quad per pixel.
 
 Sculpt it, then bake it back with `Topology -> Bake -> VDM`.";
+// Short button label, turns on the option named by the message next to it
+item.enable = "Enable";
 // Short button label, opens a popup to correct the pixels of an imported image
 item.fix = "Fix";
 item.fix.help = "Corrects the image itself: mid value, invert, rotation.
@@ -1660,6 +1707,8 @@ material.pbrRefraction.warning = "Refraction requires PBR shading mode.";
 // See glossary
 material.pbrRoughnessMetalness.warning = "Roughness and Metalness require PBR shading mode.";
 // See glossary
+material.pbrShadowCatcher.warning = "Shadow Catcher requires PBR shading mode.";
+// See glossary
 material.pbrSubsurface.warning = "Subsurface requires PBR shading mode.";
 // material (additive and blending) will write into depth
 material.preRefract = "Pre-refract pass";
@@ -1881,6 +1930,8 @@ paint.gradient = "Gradient";
 paint.gradient.mirror.help = "Mirror the curve around the middle of the line: edit one half, the other half follows.";
 // Second material of the gradient, painted where the curve is low; when disabled the paint fades into the surface
 paint.gradientEnd = "End material";
+// Help of the Extend button, closed shapes (lasso, ellipse...): the end material also covers everything around the shape
+paint.gradientEnd.extend.help = "Keep going past the outline: the surface around the shape gets the end material.";
 // Help of the sync button next to the end material title
 paint.gradientEnd.sync = "Copy the paint material into the end material.";
 // Factor/Opacity of paint tool
@@ -2195,6 +2246,17 @@ primitive.projectSphere = "Sphere";
 primitive.radius = "Radius";
 primitive.radius.end = "Radius end";
 primitive.radius.start = "Radius start";
+// Primitive extruded from an imported vector drawing (SVG)
+primitive.shape = "Shape";
+primitive.shape.edit = "Edit";
+primitive.shape.empty = "No filled shape found in this file.";
+primitive.shape.limit = "Max faces reached. Increase the limit to show the whole shape.";
+// Opens the list of the curves of a 2D shape, from front to back, to reorder them
+primitive.shape.order = "Order";
+primitive.shape.order.help = "Shapes from front to back. Hold a row, then drag it to reorder. Drop a curve on the upper half of a row to group it with that row. Tap a group to move, rotate or scale it as a whole. A hole cuts every shape below it, a solid shape fills the holes below it.";
+// Toggle on a group of curves in a 2D shape: whether its overlapping curves cut each other or fill
+primitive.shape.overlaps = "Overlaps";
+primitive.shape.overlaps.help = "How the curves of a group fill where they overlap. Cut: a curve inside another always cuts it. Fill: overlapping curves add up, unless one is drawn in the opposite direction.";
 // Size (of cube x dimension)
 primitive.size = "Size";
 primitive.sizeX = "Size X";
@@ -2212,6 +2274,7 @@ primitive.text.boldItalic = "Bold Italic";
 primitive.text.center = "Center";
 primitive.text.depth = "Depth";
 primitive.text.edit = "Edit text";
+primitive.text.fan = "Fan";
 primitive.text.font = "Font";
 primitive.text.italic = "Italic";
 primitive.text.left = "Left";
@@ -2258,6 +2321,8 @@ You should probably disable symmetry as it might not function as you would expec
 
 You can use the `Topologically connected` option in the Mask panel to paint one plane while affecting the other planes.";
 primitive.tube = "Tube";
+primitive.tube.unfold = "Avoid folds";
+primitive.tube.unfold.help = "Squash the inner side of tight bends so the tube does not fold over itself.";
 // Finalize the primitive as a sculptable mesh; this does not mean checking data validity
 primitive.validate = "Validate";
 
@@ -3044,8 +3109,12 @@ toggle.yes = "Yes";
 tool.all = "All";
 // Ideally short strings (Arrange selected objects)
 tool.arrange = "Arrange";
+// Ideally short strings (Bend a sculpted object along a curve)
+tool.bend = "Bend";
 // Ideally short strings
 tool.brush = "Brush";
+tool.brush.clampRadius = "Stay inside radius";
+tool.brush.clampRadius.help = "Vertices never move past the brush radius, so a high intensity cannot leave spikes behind. Turn it off for a stronger effect.";
 // Ideally short strings
 tool.clay = "Clay";
 // Ideally short strings (Subtract)
@@ -3361,7 +3430,14 @@ tool.shape = "Shape";
 tool.shape.band = "Band";
 // Ideally short strings (Band selection: past the far guide, everything keeps the full value, like a soft half-space)
 tool.shape.bandExtend = "Extend";
+// Ideally short strings (Band selection: past both guides, the near side keeps the start value and the far side the full value)
+tool.shape.bandExtend.both = "Extend: Both";
+tool.shape.bandExtend.both.help = "The near side also continues, with the value at the start of the curve.";
+// Ideally short strings (Band selection: only past the far guide)
+tool.shape.bandExtend.end = "Extend: One side";
 tool.shape.bandExtend.help = "Keep going past the guides: the far side gets the full value instead of stopping at the band.";
+// Ideally short strings (Band selection: stops at both guides)
+tool.shape.bandExtend.off = "Extend: Off";
 // Ideally short strings (Band selection: swap which guide the gradient starts from)
 tool.shape.bandFlip = "Flip";
 // Ideally short strings (Whether a shape is closed or not, a tube is open, a torus is closed)

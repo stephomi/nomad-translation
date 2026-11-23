@@ -94,6 +94,8 @@ access.window = "Jendela Asistif";
 alert.aborted = "Operasi dibatalkan!";
 // Autosave popup
 alert.autoSave.auto = "Simpan otomatis dalam... $0d";
+// Autosave popup shown while the app is idle: the countdown starts when the user touches the screen again
+alert.autoSave.wait = "";
 // Transform mode lets the user move the reference image with two fingers
 alert.backgroundTransform = "Tekan sekali untuk keluar dari mode transformasi.";
 alert.colorPicker = "Seret pada objek untuk memilih warna.";
@@ -115,23 +117,21 @@ alert.gizmo.editObject = "Edit mode objek.";
 alert.gizmo.editPivot = "Edit mode pivot.";
 // Surface repeater: the face group popup is open, tapping the object switches a group on or off
 alert.groupPicker = "Ketuk atau seret pada objek untuk mengaktifkan atau menonaktifkan grup Face.";
-// Button that turns the heightmap render off
-alert.heightmap.hide = "Sembunyikan peta tinggi";
 // The viewport renders the depth of the scene instead of the shaded objects
 alert.heightmapOn = "Peta tinggi aktif!";
 // The user decided to display hidden faces
 alert.hideIgnored = "Sembunyikan diabaikan!";
+// A project opens with fewer undo steps than it was saved with: some history data is missing, damaged or from another version
+alert.history.lost = "Sebagian riwayat tidak dapat dimuat.";
+// Undo, redo or replay stopped: the data of this operation is missing or damaged on the disk
+alert.history.unreadable = "Sebagian data riwayat hilang atau rusak, operasi ini tidak dapat diurungkan atau diulangi.";
 // Error when an algorithm needs the object to have a hole (usually to fill it)
 alert.hole.nothing = "Objek tidak memiliki lubang!";
-// Button that turns the inspector off
-alert.inspect.hide = "Sembunyikan inspektur";
 // The viewport renders a material channel instead of the shaded objects
 alert.inspectOn = "Inspektur aktif!";
 // The lattice deformation was applied with a different mask or visibility state
 // (the gui appends the icon of the changed states)
 alert.lattice.desync = "Lattice tidak sinkron!";
-// Button that re-applies the lattice deformation with the current mask/visibility
-alert.lattice.sync = "Perbarui lattice";
 // A project was saved without the geometry of some objects: they open as empty groups ($0 = object names)
 alert.load.damaged = "Objek rusak, dimuat sebagai grup kosong: $0";
 // No operation occurred because the mesh is already manifold
@@ -162,6 +162,8 @@ alert.paintingHidden = "Pengecatan tersembunyi!";
 alert.quickSave = "Menyimpan...";
 // The user is starting an operation that can lead to a crash
 alert.range.warning = "Nilai detail tinggi dan mungkin memerlukan banyak memori!";
+// The limits removed some copies of the repeaters (a button next to it opens the settings that increase the limits)
+alert.repeater.limit = "";
 // Hide the objects that are not selected
 alert.selection.isolate = "Isolasi pilihan";
 // Show the objects that are hidden
@@ -246,6 +248,8 @@ background.reference = "Referensi";
 binding.addSync = "Sinkron";
 binding.addSync.help = "Secara default, akan menggunakan nilai sinkron yang ditetapkan di menu scene.";
 binding.button = "Tombol";
+binding.onBackground = "";
+binding.onBackground.help = "";
 // Binding option
 binding.context.toggle = "Alihkan konteks";
 // Dead zones
@@ -476,10 +480,17 @@ cube.right = "Kanan";
 cube.top = "Atas";
 
 curve.bevel = "Bevel";
+// Curve type: Bézier points with two handles
+curve.bezier = "";
 curve.bspline = "B-spline";
+// Small toggle next to the Shift slider: the brush falloff gets a round tip, like a dome, instead of a pointed one
+curve.dome = "";
 curve.editor = "Editor kurva";
+// Button of the shape and profile editors: show the editor full screen
+curve.editor.maximize = "";
 // Time to hold a curve point or handle still before the long press edit starts
 curve.holdDelay = "Jeda tahan";
+curve.holdDelay.help = "";
 curve.ik = "IK";
 curve.ik.help = "Kinematika invers (IK): seret titik untuk mengatur pose kurva; titik yang terhubung akan mengikuti. Ketuk titik untuk mengunci atau membuka kuncinya. Tekan lama sebuah titik untuk mengunci atau membuka kunci semua titik. Titik yang terkunci tetap di tempatnya; seret kunci untuk memindahkan seluruh kurva.";
 curve.ik.stretch = "Peregangan";
@@ -686,7 +697,6 @@ extract.wall = "Dinding";
 
 // Auto save section
 file.autoSave = "Simpan Otomatis";
-file.autoSave.confirm = "Nonaktifkan Simpan Otomatis?";
 // Delete the current autoSave data
 file.autoSave.delete = "Buang Simpan Otomatis";
 file.autoSave.help = "Simpan proyek Anda dalam berkas terpisah secara teratur.
@@ -816,6 +826,8 @@ file.import.skipTextures = "Lewati tekstur";
 file.import.skipTextures.help = "Jangan muat tekstur tertanam dari file.";
 // Import file section
 file.import.title = "Impor";
+file.import.zbrush.dynamicSubdivision = "";
+file.import.zbrush.dynamicSubdivision.help = "";
 // Configure import options
 file.importSettings = "Opsi impor";
 // Export the current selected objects instead of the entire scene
@@ -869,6 +881,8 @@ file.quarantine.deleteAll = "Hapus semua";
 file.quarantine.failedImport = "Impor gagal";
 // $0 = number of days
 file.quarantine.help = "Data proyek yang keluar dari folder proyek dan file yang diganti oleh impor disimpan di sini selama $0 hari. Impor yang gagal tetap ada sampai Anda menghapusnya.";
+// Checkbox in the delete confirmation of a recently deleted entry: the next entries are deleted without asking until Nomad closes
+file.quarantine.silent = "";
 // Render a screenshot of the scene
 file.render = "Render";
 // height of exported screenshot
@@ -981,24 +995,20 @@ gesture.history.hold = "Tekan lama";
 gesture.history.hold.help = "Tahan 2/3 jari di layar.";
 // Idle long press with pencil, mouse, finger, etc
 gesture.longPress = "Tekan lama";
-gesture.mask.holdIdle = "Alat";
-gesture.mask.holdIdle.help = "Tekan panjang dan lepaskan tanpa bergerak untuk beralih antara Mask dan SelMask.";
-// Hold the finger on screen to toggle between two tools: Mask and SelMask
-gesture.mask.holdStroke = "Garis";
-gesture.mask.holdStroke.help = "Tekan panjang akan beralih antara Mask dan SelMask dan memulai garis baru.
-
-Di akhir garis, alat sebelumnya dipilih kembali.";
+gesture.longPress.drag = "";
+gesture.longPress.drag.help = "";
+gesture.longPress.release = "";
+gesture.longPress.release.help = "";
 // Enable Mask gesture by tapping once on the screen
 gesture.mask.oneTap = "Jalan pintas satu ketuk";
-gesture.mask.oneTap.help = "Izinkan pintasan Mask dengan mengetuk layar sekali, tanpa harus menahan pintasan tombol mask.
-
-Ini akan memungkinkan gerakan berikut:
-• ketuk latar belakang untuk membalikkan mask
-• ketuk area bertopeng untuk mengaburkan mask
-• ketuk area tanpa mask untuk mempertajam mask";
+gesture.oneTap.help = "";
+gesture.oneTap.hide.help = "";
+gesture.oneTap.mask.help = "";
 // Mouse/Trackpad
 gesture.mouse = "Mouse";
 gesture.node = "Pengeditan simpul";
+gesture.onBackground = "";
+gesture.onBackground.help = "";
 // Size rejection is when we try to ignore the palm of the hand when we interact with a tablet
 gesture.palmRejection = "Penolakan telapak";
 gesture.palmRejection.confirm = "Pastikan untuk menonaktifkan opsi ini jika Anda mengalami kesulitan berinteraksi dengan kanvas!";
@@ -1020,7 +1030,6 @@ gesture.sculpt = "Memahat";
 gesture.select = "Pilih objek";
 // Shortcut customization: choose the action performed by the shortcut (select tool, etc.)
 gesture.shortcut = "Jalan pintas";
-gesture.smooth.holdSelect.help = "Tekan lama akan beralih ke alat pilih selama durasi pemilihan sapuan.";
 // Hold the pointer at the end of a stroke to snap it into a line or a curve
 gesture.strokeSnap = "Snap stroke";
 gesture.strokeSnap.delay = "Jeda tahan";
@@ -1045,6 +1054,13 @@ gesture.tool.select = "Pilih";
 gesture.tool.transform = "Transformasi";
 // Multi touch navigation with the macbook trackpad or the Magic Trackpad
 gesture.trackpad = "Trackpad";
+// What two fingers on the trackpad do in the curve and shape editors
+gesture.trackpad.curve = "";
+gesture.trackpad.curve.help = "";
+gesture.trackpad.curve.pan = "";
+gesture.trackpad.curve.pan.help = "";
+gesture.trackpad.curve.zoom = "";
+gesture.trackpad.curve.zoom.help = "";
 // What two fingers on the trackpad do
 gesture.trackpad.two = "Dua jari";
 gesture.trackpad.two.help = "Navigasikan tampilan dengan trackpad. Gerakan mencubit dua jari selalu memperbesar atau memperkecil dan gerakan memutar mengontrol kemiringan; mengangkat salah satu jari akan beralih ke tindakan lainnya.";
@@ -1107,8 +1123,22 @@ history.replay.camera = "Kembalikan kamera";
 history.replay.camera.help = "Kamera mengikuti operasi yang diputar ulang, bahkan saat opsi Kembalikan kamera pada riwayat dinonaktifkan.";
 // Popup opened by the play button, above its two options
 history.replay.confirm = "Putar ulang riwayat?";
+// Option of the replay popup: shows the gizmo, the object handles and the tool overlays in the viewport during the replay
+history.replay.handles = "";
+history.replay.handles.help = "";
 history.replay.help = "Kembali ke awal, lalu mengulangi operasi satu per satu pada kecepatan ini (operasi per detik).
 Ketuk tombol lagi untuk berhenti. Membatalkan, mengulangi, atau mengetuk entri juga menghentikan pemutaran.";
+// Option of the replay popup: the replay runs with no interface at all, not even the small replay controls
+history.replay.minify = "Minimize UI";
+history.replay.minify.help = "Kontrol putar ulang juga disembunyikan. Ketuk layar untuk menjeda putar ulang.";
+// Popup shown when the user touches the canvas or uses a shortcut while the history replay runs: the replay waits for a choice
+history.replay.pause = "Putar ulang dijeda";
+// Button of the replay paused popup: ends the replay and jumps to the most recent operation
+history.replay.pause.end = "Ke akhir";
+// Button of the replay paused popup: the replay continues
+history.replay.pause.resume = "Lanjutkan";
+// Button of the replay paused popup: ends the replay and stays on the current operation
+history.replay.pause.stop = "Berhenti di sini";
 // Option of the replay popup: runs backwards, undoing from the current state to the root
 history.replay.reverse = "Balikkan";
 history.replay.reverse.help = "Membatalkan operasi dari keadaan saat ini hingga ke awal, alih-alih memutarnya ulang dari awal.";
@@ -1317,6 +1347,8 @@ item.edit = "Sunting";
 item.edit.help = "Menambahkan bidang yang sudah dibentuk oleh cap ini, dengan lapisan pahat dan satu segi empat per piksel.
 
 Pahat bidangnya, lalu bake kembali dengan `Topologi -> Bake -> VDM`.";
+// Short button label, turns on the option named by the message next to it
+item.enable = "";
 // Short button label, opens a popup to correct the pixels of an imported image
 item.fix = "Perbaiki";
 item.fix.help = "Memperbaiki gambar itu sendiri: nilai tengah, inversi, rotasi.
@@ -1522,7 +1554,7 @@ light.type.point = "Titik";
 light.type.spot = "Titik";
 
 link.address = "Perangkat ini";
-link.ai.request = "";
+link.ai.request = "$0 ingin mengontrol Nomad";
 link.approve = "Terima";
 link.bridges = "Skrip bridge (GitHub)";
 link.cameras = "Kamera";
@@ -1565,7 +1597,7 @@ link.mode.nomad.help = "Pilih Host di satu perangkat dan Gabung di perangkat lai
 link.nearby = "Perangkat sekitar";
 link.objects = "Objek & geometri";
 link.off = "Nonaktif";
-link.pairings = "";
+link.pairings = "Perangkat terpasang";
 link.peer = "Peer";
 link.peerAddress = "Alamat klien";
 link.port = "Port jaringan";
@@ -1659,6 +1691,8 @@ material.pbrRefraction.warning = "Pembiasan memerlukan mode bayangan PBR.";
 // See glossary
 material.pbrRoughnessMetalness.warning = "Kekasaran dan Metalness memerlukan mode bayangan PBR.";
 // See glossary
+material.pbrShadowCatcher.warning = "";
+// See glossary
 material.pbrSubsurface.warning = "Subpermukaan memerlukan mode bayangan PBR.";
 // material (additive and blending) will write into depth
 material.preRefract = "Pass pra-refraksi";
@@ -1702,7 +1736,7 @@ material.texture.mipmap = "Mipmap";
 // Nearest Filtering (closest sample)
 material.texture.nearest = "Terdekat";
 // Help on the link buttons of the texture settings: a linked section is shared by every linked texture channel
-material.texture.sync = "";
+material.texture.sync = "Digunakan bersama oleh semua tekstur yang ditautkan";
 // Textures, basically images wrapped on models (synonym: Maps, Texture maps)
 material.textures = "Tekstur";
 material.textures.help = "Gambar yang diimpor disinkronkan dengan file aslinya saat Anda kembali ke Nomad.";
@@ -1880,6 +1914,8 @@ paint.gradient = "Gradien";
 paint.gradient.mirror.help = "Mencerminkan kurva di sekitar tengah garis: edit satu sisi, sisi lainnya mengikuti.";
 // Second material of the gradient, painted where the curve is low; when disabled the paint fades into the surface
 paint.gradientEnd = "Bahan akhir";
+// Help of the Extend button, closed shapes (lasso, ellipse...): the end material also covers everything around the shape
+paint.gradientEnd.extend.help = "";
 // Help of the sync button next to the end material title
 paint.gradientEnd.sync = "Menyalin bahan cat ke bahan akhir.";
 // Factor/Opacity of paint tool
@@ -2194,6 +2230,17 @@ primitive.projectSphere = "Bola";
 primitive.radius = "Radius";
 primitive.radius.end = "Akhir radius";
 primitive.radius.start = "Awal radius";
+// Primitive extruded from an imported vector drawing (SVG)
+primitive.shape = "Bentuk";
+primitive.shape.edit = "";
+primitive.shape.empty = "Tidak ada bentuk terisi dalam file ini.";
+primitive.shape.limit = "Batas face tercapai. Naikkan batas untuk menampilkan seluruh bentuk.";
+// Opens the list of the curves of a 2D shape, from front to back, to reorder them
+primitive.shape.order = "";
+primitive.shape.order.help = "";
+// Toggle on a group of curves in a 2D shape: whether its overlapping curves cut each other or fill
+primitive.shape.overlaps = "";
+primitive.shape.overlaps.help = "";
 // Size (of cube x dimension)
 primitive.size = "Ukuran";
 primitive.sizeX = "Ukuran X";
@@ -2211,6 +2258,7 @@ primitive.text.boldItalic = "Tebal Miring";
 primitive.text.center = "Tengah";
 primitive.text.depth = "Kedalaman";
 primitive.text.edit = "Edit teks";
+primitive.text.fan = "Kipas";
 primitive.text.font = "Font";
 primitive.text.italic = "Miring";
 primitive.text.left = "Kiri";
@@ -2257,6 +2305,8 @@ Anda mungkin sebaiknya menonaktifkan simetri karena mungkin tidak berfungsi sepe
 
 Anda dapat menggunakan opsi `Topologically connected` di panel mask untuk melukis bidang yang mempengaruhi bidang lainnya.";
 primitive.tube = "Tabung";
+primitive.tube.unfold = "";
+primitive.tube.unfold.help = "";
 // Finalize the primitive as a sculptable mesh; this does not mean checking data validity
 primitive.validate = "Finalisasi";
 
@@ -2491,6 +2541,24 @@ Anda dapat meningkatkan nilai ini jika ingin menampilkan resolusi mesh yang lebi
 // Maximum number of vertices (points)
 settings.multires.maxVertices = "Jumlah verteks maksimum";
 settings.multires.maxVertices.help = "Nomad tidak melakukan pemeriksaan memori sebelum subdivisi, jumlah poligon yang tinggi dapat dengan mudah menyebabkan gangguan.";
+// Navigation widget in the viewport corner, shaped as a cube, a sphere or axes (easy to snap/align the view)
+settings.navigator = "Navigator";
+// Alignment (can be auto/on/off)
+settings.navigator.align = "Batasi penyelarasan";
+settings.navigator.align.help = "Sejajarkan tampilan dengan sumbu dunia. Jika diaktifkan, hanya 6 tampilan penyelarasan yang mungkin.
+
+Di Auto, pembatasan akan terjadi jika kamera dalam mode Orbit.";
+// Extra snapping views on the edges and corners of the navigator
+settings.navigator.edgeCorner = "Tepi & sudut";
+settings.navigator.edgeCorner.help = "Tambahkan tampilan snap pada tepi dan sudut (zona ambar).";
+// Flip the camera (rotate 180° to see the other side)
+settings.navigator.flip = "Balik 180°";
+settings.navigator.flip.help = "Balikkan tampilan jika tampilan sudah diselaraskan.";
+// Dragging the navigator rotates like the Turntable mode, even if the camera is in Trackball
+settings.navigator.turntable = "Seret meja putar";
+settings.navigator.turntable.help = "Menyeret Navigator akan memutar kamera tanpa memiringkannya dan berhenti pada setiap tampilan snap.
+
+Nonaktifkan opsi ini untuk menyeret Navigator dengan rotasi Bola jejak. Dalam kedua kasus, seretan tetap horizontal atau vertikal.";
 // These options will be reset when the app restarts
 settings.notSaved = "Opsi ini tidak disimpan dalam pengaturan.";
 // Outline (contour highlight around the selected object)
@@ -2541,24 +2609,6 @@ settings.showMasking = "Tampilkan topeng";
 settings.showPainting = "Tampilkan lukisan";
 // https://en.wikipedia.org/wiki/Shading
 settings.smoothShading = "Shading halus";
-// Navigation widget in the viewport corner, shaped as a cube, a sphere or axes (easy to snap/align the view)
-settings.navigator = "Navigator";
-// Alignment (can be auto/on/off)
-settings.navigator.align = "Batasi penyelarasan";
-settings.navigator.align.help = "Sejajarkan tampilan dengan sumbu dunia. Jika diaktifkan, hanya 6 tampilan penyelarasan yang mungkin.
-
-Di Auto, pembatasan akan terjadi jika kamera dalam mode Orbit.";
-// Extra snapping views on the edges and corners of the navigator
-settings.navigator.edgeCorner = "Tepi & sudut";
-settings.navigator.edgeCorner.help = "Tambahkan tampilan snap pada tepi dan sudut (zona ambar).";
-// Flip the camera (rotate 180° to see the other side)
-settings.navigator.flip = "Balik 180°";
-settings.navigator.flip.help = "Balikkan tampilan jika tampilan sudah diselaraskan.";
-// Dragging the navigator rotates like the Turntable mode, even if the camera is in Trackball
-settings.navigator.turntable = "Seret meja putar";
-settings.navigator.turntable.help = "Menyeret Navigator akan memutar kamera tanpa memiringkannya dan berhenti pada setiap tampilan snap.
-
-Nonaktifkan opsi ini untuk menyeret Navigator dengan rotasi Bola jejak. Dalam kedua kasus, seretan tetap horizontal atau vertikal.";
 // Stats (information logs about the scene displayed on screen)
 settings.stats = "Statistik";
 settings.stats.all = "Tampilkan seluruh adegan";
@@ -3043,8 +3093,12 @@ toggle.yes = "Ya";
 tool.all = "Semua";
 // Ideally short strings (Arrange selected objects)
 tool.arrange = "Atur";
+// Ideally short strings (Bend a sculpted object along a curve)
+tool.bend = "";
 // Ideally short strings
 tool.brush = "Kuas";
+tool.brush.clampRadius = "";
+tool.brush.clampRadius.help = "";
 // Ideally short strings
 tool.clay = "Tanah Liat";
 // Ideally short strings (Subtract)
@@ -3360,7 +3414,14 @@ tool.shape = "Bentuk";
 tool.shape.band = "Pita";
 // Ideally short strings (Band selection: past the far guide, everything keeps the full value, like a soft half-space)
 tool.shape.bandExtend = "Perpanjang";
+// Ideally short strings (Band selection: past both guides, the near side keeps the start value and the far side the full value)
+tool.shape.bandExtend.both = "";
+tool.shape.bandExtend.both.help = "";
+// Ideally short strings (Band selection: only past the far guide)
+tool.shape.bandExtend.end = "";
 tool.shape.bandExtend.help = "Terus melewati panduan: sisi jauh mendapat nilai penuh alih-alih berhenti di pita.";
+// Ideally short strings (Band selection: stops at both guides)
+tool.shape.bandExtend.off = "";
 // Ideally short strings (Band selection: swap which guide the gradient starts from)
 tool.shape.bandFlip = "Balik";
 // Ideally short strings (Whether a shape is closed or not, a tube is open, a torus is closed)

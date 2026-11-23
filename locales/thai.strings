@@ -94,6 +94,8 @@ access.window = "หน้าต่างช่วยเหลือ";
 alert.aborted = "การดำเนินการถูกยกเลิก!";
 // Autosave popup
 alert.autoSave.auto = "บันทึกอัตโนมัติใน... $0วิ.";
+// Autosave popup shown while the app is idle: the countdown starts when the user touches the screen again
+alert.autoSave.wait = "";
 // Transform mode lets the user move the reference image with two fingers
 alert.backgroundTransform = "แค่แตะเพื่อออกจากโหมดการแปลง";
 alert.colorPicker = "ลากนิ้วของคุณบนออบเจ็กต์เพื่อเลือกสี";
@@ -115,23 +117,21 @@ alert.gizmo.editObject = "แก้ไขโหมดของออบเจ็
 alert.gizmo.editPivot = "แก้ไขโหมดจุดหมุน";
 // Surface repeater: the face group popup is open, tapping the object switches a group on or off
 alert.groupPicker = "แตะหรือลากบนออบเจ็กต์เพื่อเปิดหรือปิดกลุ่มเฟส";
-// Button that turns the heightmap render off
-alert.heightmap.hide = "ซ่อนแผนที่ความสูง";
 // The viewport renders the depth of the scene instead of the shaded objects
 alert.heightmapOn = "เปิดแผนที่ความสูงอยู่!";
 // The user decided to display hidden faces
 alert.hideIgnored = "ซ่อนถูกละเว้น!";
+// A project opens with fewer undo steps than it was saved with: some history data is missing, damaged or from another version
+alert.history.lost = "ไม่สามารถโหลดประวัติบางส่วนได้";
+// Undo, redo or replay stopped: the data of this operation is missing or damaged on the disk
+alert.history.unreadable = "ข้อมูลประวัติบางส่วนหายไปหรือเสียหาย ไม่สามารถเลิกทำหรือทำซ้ำการดำเนินการนี้ได้";
 // Error when an algorithm needs the object to have a hole (usually to fill it)
 alert.hole.nothing = "ออบเจ็กต์ไม่มีรู!";
-// Button that turns the inspector off
-alert.inspect.hide = "ซ่อนตัวตรวจสอบ";
 // The viewport renders a material channel instead of the shaded objects
 alert.inspectOn = "เปิดตัวตรวจสอบอยู่!";
 // The lattice deformation was applied with a different mask or visibility state
 // (the gui appends the icon of the changed states)
 alert.lattice.desync = "แลตทิซไม่ซิงค์!";
-// Button that re-applies the lattice deformation with the current mask/visibility
-alert.lattice.sync = "อัปเดตแลตทิซ";
 // A project was saved without the geometry of some objects: they open as empty groups ($0 = object names)
 alert.load.damaged = "วัตถุเสียหาย โหลดเป็นกลุ่มว่าง: $0";
 // No operation occurred because the mesh is already manifold
@@ -162,6 +162,8 @@ alert.paintingHidden = "การวาดลงสีที่ซ่อนอ�
 alert.quickSave = "กำลังบันทึก...";
 // The user is starting an operation that can lead to a crash
 alert.range.warning = "ค่ารายละเอียดสูงและอาจต้องใช้หน่วยความจำมาก!";
+// The limits removed some copies of the repeaters (a button next to it opens the settings that increase the limits)
+alert.repeater.limit = "";
 // Hide the objects that are not selected
 alert.selection.isolate = "แยกการเลือก";
 // Show the objects that are hidden
@@ -246,6 +248,8 @@ background.reference = "ภาพอ้างอิง";
 binding.addSync = "ซิงค์";
 binding.addSync.help = "ตามค่าเริ่มต้น จะใช้ค่าซิงค์ที่ตั้งไว้ในเมนูฉาก";
 binding.button = "ปุ่ม";
+binding.onBackground = "";
+binding.onBackground.help = "";
 // Binding option
 binding.context.toggle = "สลับบริบท";
 // Dead zones
@@ -476,10 +480,17 @@ cube.right = "ขวา";
 cube.top = "บน";
 
 curve.bevel = "ลบมุม";
+// Curve type: Bézier points with two handles
+curve.bezier = "";
 curve.bspline = "B-spline";
+// Small toggle next to the Shift slider: the brush falloff gets a round tip, like a dome, instead of a pointed one
+curve.dome = "";
 curve.editor = "ตัวแก้ไขเส้นโค้ง";
+// Button of the shape and profile editors: show the editor full screen
+curve.editor.maximize = "";
 // Time to hold a curve point or handle still before the long press edit starts
 curve.holdDelay = "เวลากดค้าง";
+curve.holdDelay.help = "";
 curve.ik = "IK";
 curve.ik.help = "จลนศาสตร์ผกผัน (IK): ลากจุดเพื่อจัดท่าเคิร์ฟ แล้วจุดที่เชื่อมต่อจะตามไปด้วย แตะจุดเพื่อล็อกหรือปลดล็อก กดแช่ที่จุดเพื่อล็อกหรือปลดล็อกทุกจุด จุดที่ล็อกจะอยู่กับที่ ลากแม่กุญแจเพื่อย้ายทั้งเคิร์ฟ";
 curve.ik.stretch = "ยืด";
@@ -686,7 +697,6 @@ extract.wall = "ผนัง";
 
 // Auto save section
 file.autoSave = "บันทึกอัตโนมัติ";
-file.autoSave.confirm = "ปิดการบันทึกอัตโนมัติ?";
 // Delete the current autoSave data
 file.autoSave.delete = "ทิ้งบันทึกอัตโนมัติ";
 file.autoSave.help = "บันทึกโปรเจกต์ของคุณเป็นไฟล์แยกในช่วงเวลาปกติ
@@ -816,6 +826,8 @@ file.import.skipTextures = "ข้ามพื้นผิว";
 file.import.skipTextures.help = "อย่าโหลดเท็กซ์เจอร์ที่ฝังไว้จากไฟล์";
 // Import file section
 file.import.title = "นำเข้า";
+file.import.zbrush.dynamicSubdivision = "";
+file.import.zbrush.dynamicSubdivision.help = "";
 // Configure import options
 file.importSettings = "ตัวเลือกการนำเข้า";
 // Export the current selected objects instead of the entire scene
@@ -869,6 +881,8 @@ file.quarantine.deleteAll = "ลบทั้งหมด";
 file.quarantine.failedImport = "นำเข้าไม่สำเร็จ";
 // $0 = number of days
 file.quarantine.help = "ข้อมูลของโครงการที่ออกจากโฟลเดอร์โครงการ และไฟล์ที่ถูกแทนที่จากการนำเข้า จะถูกเก็บไว้ที่นี่ $0 วัน ส่วนไฟล์ที่นำเข้าไม่สำเร็จจะอยู่จนกว่าคุณจะลบ";
+// Checkbox in the delete confirmation of a recently deleted entry: the next entries are deleted without asking until Nomad closes
+file.quarantine.silent = "";
 // Render a screenshot of the scene
 file.render = "เร็นเดอร์";
 // height of exported screenshot
@@ -981,24 +995,20 @@ gesture.history.hold = "กดแช่";
 gesture.history.hold.help = "แตะค้าง 2/3 นิ้ว (ต่อเนื่อง)";
 // Idle long press with pencil, mouse, finger, etc
 gesture.longPress = "กดแช่";
-gesture.mask.holdIdle = "เครื่องมือ";
-gesture.mask.holdIdle.help = "กดค้างและปล่อยโดยไม่เคลื่อนไหวเพื่อสลับระหว่าง Mask และ SelMask";
-// Hold the finger on screen to toggle between two tools: Mask and SelMask
-gesture.mask.holdStroke = "วาดเส้น";
-gesture.mask.holdStroke.help = "การกดค้างนานจะสลับระหว่าง Mask และ SelMask และเริ่มการเขียนใหม่
-
-ที่สิ้นสุดการเขียน, เครื่องมือก่อนหน้าจะถูกเลือกกลับ";
+gesture.longPress.drag = "";
+gesture.longPress.drag.help = "";
+gesture.longPress.release = "";
+gesture.longPress.release.help = "";
 // Enable Mask gesture by tapping once on the screen
 gesture.mask.oneTap = "ทางลัดหนึ่งแตะ";
-gesture.mask.oneTap.help = "เปิดใช้ทางลัดมาส์ก โดยแตะที่หน้าจอหนึ่งครั้ง โดยไม่ต้องกดทางลัดมาส์กค้างไว้
-
-ด้วยท่าทางต่อไปนี้:
-• แตะที่พื้นหลังเพื่อพลิกส่วนที่มาส์ก
-• แตะที่พื้นที่มาส์กเพื่อเบลอการมาส์ก
-• แตะที่พื่นที่ไม่ได้มาส์กเพื่อทำให้ส่วนที่มาส์กชัดเจนขึ้น";
+gesture.oneTap.help = "";
+gesture.oneTap.hide.help = "";
+gesture.oneTap.mask.help = "";
 // Mouse/Trackpad
 gesture.mouse = "เมาส์";
 gesture.node = "การแก้ไขโหนด";
+gesture.onBackground = "";
+gesture.onBackground.help = "";
 // Size rejection is when we try to ignore the palm of the hand when we interact with a tablet
 gesture.palmRejection = "วางฝ่ามือได้";
 gesture.palmRejection.confirm = "อย่าลืมปิดการใช้งานตัวเลือกนี้หากคุณมีปัญหาในการใช้งานแคนวาส!";
@@ -1020,7 +1030,6 @@ gesture.sculpt = "แกะสลัก";
 gesture.select = "เลือกวัตถุ";
 // Shortcut customization: choose the action performed by the shortcut (select tool, etc.)
 gesture.shortcut = "ทางลัด";
-gesture.smooth.holdSelect.help = "การกดแช่จะเปลี่ยนไปใช้เครื่องมือเลือกตลอดเวลาที่เลือกเส้น";
 // Hold the pointer at the end of a stroke to snap it into a line or a curve
 gesture.strokeSnap = "สแนปลายเส้น";
 gesture.strokeSnap.delay = "เวลาหน่วงกดค้าง";
@@ -1045,6 +1054,13 @@ gesture.tool.select = "เลือก";
 gesture.tool.transform = "ทรานส์ฟอร์ม";
 // Multi touch navigation with the macbook trackpad or the Magic Trackpad
 gesture.trackpad = "แทร็คแพด";
+// What two fingers on the trackpad do in the curve and shape editors
+gesture.trackpad.curve = "";
+gesture.trackpad.curve.help = "";
+gesture.trackpad.curve.pan = "";
+gesture.trackpad.curve.pan.help = "";
+gesture.trackpad.curve.zoom = "";
+gesture.trackpad.curve.zoom.help = "";
 // What two fingers on the trackpad do
 gesture.trackpad.two = "สองนิ้ว";
 gesture.trackpad.two.help = "นำทางมุมมองด้วยแทร็คแพด การบีบด้วยสองนิ้วจะซูมเสมอและการบิดจะควบคุมการหมุนเอียง ส่วนการยกนิ้วหนึ่งออกจะสลับไปยังการทำงานอีกอย่าง";
@@ -1107,8 +1123,22 @@ history.replay.camera = "คืนค่ากล้อง";
 history.replay.camera.help = "กล้องจะติดตามการทำงานที่เล่นซ้ำ แม้จะปิดตัวเลือกคืนค่ากล้องในประวัติไว้";
 // Popup opened by the play button, above its two options
 history.replay.confirm = "เล่นประวัติซ้ำหรือไม่?";
+// Option of the replay popup: shows the gizmo, the object handles and the tool overlays in the viewport during the replay
+history.replay.handles = "";
+history.replay.handles.help = "";
 history.replay.help = "กลับไปยังจุดเริ่มต้น แล้วทำซ้ำทีละรายการด้วยความเร็วนี้ (รายการต่อวินาที)
 แตะปุ่มอีกครั้งเพื่อหยุด การเลิกทำ ทำซ้ำ หรือแตะรายการในประวัติก็หยุดการเล่นได้เช่นกัน";
+// Option of the replay popup: the replay runs with no interface at all, not even the small replay controls
+history.replay.minify = "ลดขนาด UI";
+history.replay.minify.help = "ซ่อนตัวควบคุมการเล่นซ้ำด้วย แตะหน้าจอเพื่อหยุดการเล่นซ้ำชั่วคราว";
+// Popup shown when the user touches the canvas or uses a shortcut while the history replay runs: the replay waits for a choice
+history.replay.pause = "หยุดเล่นซ้ำชั่วคราว";
+// Button of the replay paused popup: ends the replay and jumps to the most recent operation
+history.replay.pause.end = "ไปที่จุดสิ้นสุด";
+// Button of the replay paused popup: the replay continues
+history.replay.pause.resume = "เล่นต่อ";
+// Button of the replay paused popup: ends the replay and stays on the current operation
+history.replay.pause.stop = "หยุดที่นี่";
 // Option of the replay popup: runs backwards, undoing from the current state to the root
 history.replay.reverse = "ย้อนกลับ";
 history.replay.reverse.help = "เลิกทำจากสถานะปัจจุบันกลับไปยังจุดเริ่มต้น แทนการเล่นซ้ำจากจุดเริ่มต้น";
@@ -1317,6 +1347,8 @@ item.edit = "แก้ไข";
 item.edit.help = "เพิ่มระนาบที่ขึ้นรูปด้วยสแตมป์นี้แล้ว พร้อมเลเยอร์ปั้นและรูปสี่เหลี่ยมหนึ่งรูปต่อพิกเซล
 
 ปั้นระนาบ แล้วเบคกลับด้วย `โทโพโลยี -> เบค -> VDM`";
+// Short button label, turns on the option named by the message next to it
+item.enable = "";
 // Short button label, opens a popup to correct the pixels of an imported image
 item.fix = "แก้ไข";
 item.fix.help = "แก้ไขตัวภาพโดยตรง: ค่ากลาง กลับค่า หมุน
@@ -1522,7 +1554,7 @@ light.type.point = "จุด";
 light.type.spot = "สปอต";
 
 link.address = "อุปกรณ์นี้";
-link.ai.request = "";
+link.ai.request = "$0 ต้องการควบคุม Nomad";
 link.approve = "ยอมรับ";
 link.bridges = "สคริปต์บริดจ์ (GitHub)";
 link.cameras = "กล้อง";
@@ -1565,7 +1597,7 @@ link.mode.nomad.help = "เลือก โฮสต์ บนอุปกรณ
 link.nearby = "อุปกรณ์ใกล้เคียง";
 link.objects = "ออบเจ็กต์และเรขาคณิต";
 link.off = "ปิด";
-link.pairings = "";
+link.pairings = "อุปกรณ์ที่จับคู่";
 link.peer = "เพียร์";
 link.peerAddress = "ที่อยู่ไคลเอนต์";
 link.port = "พอร์ตเครือข่าย";
@@ -1659,6 +1691,8 @@ material.pbrRefraction.warning = "การหักเหของแสงต�
 // See glossary
 material.pbrRoughnessMetalness.warning = "ความหยาบและความเป็นโลหะต้องใช้โหมดแรเงา PBR";
 // See glossary
+material.pbrShadowCatcher.warning = "";
+// See glossary
 material.pbrSubsurface.warning = "Subsurface ต้องใช้โหมดแรเงา PBR";
 // material (additive and blending) will write into depth
 material.preRefract = "พรีรีแฟรกต์พาส";
@@ -1702,7 +1736,7 @@ material.texture.mipmap = "มิปแมป";
 // Nearest Filtering (closest sample)
 material.texture.nearest = "ใกล้ที่สุด";
 // Help on the link buttons of the texture settings: a linked section is shared by every linked texture channel
-material.texture.sync = "";
+material.texture.sync = "ใช้ร่วมกันในพื้นผิวที่ลิงก์ทั้งหมด";
 // Textures, basically images wrapped on models (synonym: Maps, Texture maps)
 material.textures = "พื้นผิว";
 material.textures.help = "ภาพที่นำเข้าจะซิงค์กับไฟล์ต้นฉบับเมื่อคุณกลับมาที่ Nomad";
@@ -1880,6 +1914,8 @@ paint.gradient = "การไล่ระดับ";
 paint.gradient.mirror.help = "สะท้อนเส้นโค้งรอบจุดกึ่งกลางของเส้น: แก้ไขครึ่งหนึ่ง อีกครึ่งจะตามไปด้วย";
 // Second material of the gradient, painted where the curve is low; when disabled the paint fades into the surface
 paint.gradientEnd = "วัสดุปลายทาง";
+// Help of the Extend button, closed shapes (lasso, ellipse...): the end material also covers everything around the shape
+paint.gradientEnd.extend.help = "";
 // Help of the sync button next to the end material title
 paint.gradientEnd.sync = "คัดลอกวัสดุสีไปยังวัสดุปลายทาง";
 // Factor/Opacity of paint tool
@@ -2194,6 +2230,17 @@ primitive.projectSphere = "สเฟียร์";
 primitive.radius = "รัศมี";
 primitive.radius.end = "รัศมีสิ้นสุด";
 primitive.radius.start = "รัศมีเริ่มต้น";
+// Primitive extruded from an imported vector drawing (SVG)
+primitive.shape = "รูปทรง";
+primitive.shape.edit = "";
+primitive.shape.empty = "ไม่พบรูปทรงทึบในไฟล์นี้";
+primitive.shape.limit = "ถึงจำนวนเฟสสูงสุดแล้ว เพิ่มขีดจำกัดเพื่อแสดงรูปทรงทั้งหมด";
+// Opens the list of the curves of a 2D shape, from front to back, to reorder them
+primitive.shape.order = "";
+primitive.shape.order.help = "";
+// Toggle on a group of curves in a 2D shape: whether its overlapping curves cut each other or fill
+primitive.shape.overlaps = "";
+primitive.shape.overlaps.help = "";
 // Size (of cube x dimension)
 primitive.size = "ขนาด";
 primitive.sizeX = "ขนาด X";
@@ -2211,6 +2258,7 @@ primitive.text.boldItalic = "ตัวหนาเอียง";
 primitive.text.center = "อยู่กึ่งกลาง";
 primitive.text.depth = "ความลึก";
 primitive.text.edit = "แก้ไขข้อความ";
+primitive.text.fan = "พัด";
 primitive.text.font = "แบบอักษร";
 primitive.text.italic = "ตัวเอียง";
 primitive.text.left = "ซ้าย";
@@ -2257,6 +2305,8 @@ primitive.triplanar.title.help = "สามระนาบกำลังใช�
 
 คุณสามารถใช้ตัวเลือก `เชื่อมต่อเชิงทอพอโลยี` ในพาเนลหน้ากากเพื่อทาสีระนาบที่กระทบกับระนาบอื่นๆ";
 primitive.tube = "ท่อ";
+primitive.tube.unfold = "";
+primitive.tube.unfold.help = "";
 // Finalize the primitive as a sculptable mesh; this does not mean checking data validity
 primitive.validate = "ยืนยัน";
 
@@ -2491,6 +2541,24 @@ settings.multires.lowResVertices.help = "ความละเอียดที
 // Maximum number of vertices (points)
 settings.multires.maxVertices = "จำนวนสูงสุดของจุดยอด";
 settings.multires.maxVertices.help = "Nomad ไม่ได้ทำการตรวจสอบหน่วยความจำก่อนซับดิวิชัน การนับโพลีจำนวนมากอาจนำไปสู่การขัดข้องได้ง่าย";
+// Navigation widget in the viewport corner, shaped as a cube, a sphere or axes (easy to snap/align the view)
+settings.navigator = "ตัวนำทาง";
+// Alignment (can be auto/on/off)
+settings.navigator.align = "จำกัดการจัดแนว";
+settings.navigator.align.help = "จัดแนวมุมมองไปยังแกนโลก หากเปิดใช้งาน, มีเพียง 6 มุมมองที่สามารถจับได้
+
+ในโหมดอัตโนมัติ, การจำกัดจะเกิดขึ้นเฉพาะเมื่อกล้องอยู่ในโหมดออร์บิต.";
+// Extra snapping views on the edges and corners of the navigator
+settings.navigator.edgeCorner = "ขอบและมุม";
+settings.navigator.edgeCorner.help = "เพิ่มมุมมองการสแนปที่ขอบและมุม (โซนสีเหลืองอำพัน)";
+// Flip the camera (rotate 180° to see the other side)
+settings.navigator.flip = "พลิก 180°";
+settings.navigator.flip.help = "พลิกมุมมองหากมุมมองนั้นถูกจับแล้ว.";
+// Dragging the navigator rotates like the Turntable mode, even if the camera is in Trackball
+settings.navigator.turntable = "การลากแบบแท่นหมุน";
+settings.navigator.turntable.help = "การลากตัวนำทางจะหมุนกล้องโดยไม่เอียงแกน และหยุดที่แต่ละมุมมองสแนป
+
+ปิดใช้งานตัวเลือกนี้เพื่อลากตัวนำทางด้วยการหมุนแบบแทร็กบอลแทน การลากจะคงเป็นแนวนอนหรือแนวตั้งในทั้งสองกรณี";
 // These options will be reset when the app restarts
 settings.notSaved = "ตัวเลือกเหล่านี้ไม่ถูกบันทึกไว้ในการตั้งค่า";
 // Outline (contour highlight around the selected object)
@@ -2541,24 +2609,6 @@ settings.showMasking = "แสดงมาส์ก";
 settings.showPainting = "แสดงการวาดลงสี";
 // https://en.wikipedia.org/wiki/Shading
 settings.smoothShading = "แรเงาเรียบ";
-// Navigation widget in the viewport corner, shaped as a cube, a sphere or axes (easy to snap/align the view)
-settings.navigator = "ตัวนำทาง";
-// Alignment (can be auto/on/off)
-settings.navigator.align = "จำกัดการจัดแนว";
-settings.navigator.align.help = "จัดแนวมุมมองไปยังแกนโลก หากเปิดใช้งาน, มีเพียง 6 มุมมองที่สามารถจับได้
-
-ในโหมดอัตโนมัติ, การจำกัดจะเกิดขึ้นเฉพาะเมื่อกล้องอยู่ในโหมดออร์บิต.";
-// Extra snapping views on the edges and corners of the navigator
-settings.navigator.edgeCorner = "ขอบและมุม";
-settings.navigator.edgeCorner.help = "เพิ่มมุมมองการสแนปที่ขอบและมุม (โซนสีเหลืองอำพัน)";
-// Flip the camera (rotate 180° to see the other side)
-settings.navigator.flip = "พลิก 180°";
-settings.navigator.flip.help = "พลิกมุมมองหากมุมมองนั้นถูกจับแล้ว.";
-// Dragging the navigator rotates like the Turntable mode, even if the camera is in Trackball
-settings.navigator.turntable = "การลากแบบแท่นหมุน";
-settings.navigator.turntable.help = "การลากตัวนำทางจะหมุนกล้องโดยไม่เอียงแกน และหยุดที่แต่ละมุมมองสแนป
-
-ปิดใช้งานตัวเลือกนี้เพื่อลากตัวนำทางด้วยการหมุนแบบแทร็กบอลแทน การลากจะคงเป็นแนวนอนหรือแนวตั้งในทั้งสองกรณี";
 // Stats (information logs about the scene displayed on screen)
 settings.stats = "สถิติ";
 settings.stats.all = "แสดงทั้งซีน";
@@ -3043,8 +3093,12 @@ toggle.yes = "ใช่";
 tool.all = "ทั้งหมด";
 // Ideally short strings (Arrange selected objects)
 tool.arrange = "จัดเรียง";
+// Ideally short strings (Bend a sculpted object along a curve)
+tool.bend = "";
 // Ideally short strings
 tool.brush = "แปรง";
+tool.brush.clampRadius = "";
+tool.brush.clampRadius.help = "";
 // Ideally short strings
 tool.clay = "ดินเหนียว";
 // Ideally short strings (Subtract)
@@ -3360,7 +3414,14 @@ tool.shape = "รูปร่าง";
 tool.shape.band = "แถบ";
 // Ideally short strings (Band selection: past the far guide, everything keeps the full value, like a soft half-space)
 tool.shape.bandExtend = "ขยาย";
+// Ideally short strings (Band selection: past both guides, the near side keeps the start value and the far side the full value)
+tool.shape.bandExtend.both = "";
+tool.shape.bandExtend.both.help = "";
+// Ideally short strings (Band selection: only past the far guide)
+tool.shape.bandExtend.end = "";
 tool.shape.bandExtend.help = "ต่อเลยเส้นนำออกไป: ด้านไกลได้ค่าเต็มแทนที่จะหยุดที่แถบ";
+// Ideally short strings (Band selection: stops at both guides)
+tool.shape.bandExtend.off = "";
 // Ideally short strings (Band selection: swap which guide the gradient starts from)
 tool.shape.bandFlip = "กลับด้าน";
 // Ideally short strings (Whether a shape is closed or not, a tube is open, a torus is closed)

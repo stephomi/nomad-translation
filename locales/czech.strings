@@ -94,6 +94,8 @@ access.window = "Asistenční okno";
 alert.aborted = "Operace zrušena!";
 // Autosave popup
 alert.autoSave.auto = "Automatické uložení za... $0s";
+// Autosave popup shown while the app is idle: the countdown starts when the user touches the screen again
+alert.autoSave.wait = "";
 // Transform mode lets the user move the reference image with two fingers
 alert.backgroundTransform = "Jednoduché klepnutí pro ukončení režimu transformace.";
 alert.colorPicker = "Táhněte po objektu a vyberte barvu.";
@@ -115,23 +117,21 @@ alert.gizmo.editObject = "Režim úprav objektu.";
 alert.gizmo.editPivot = "Režim úprav pivotu.";
 // Surface repeater: the face group popup is open, tapping the object switches a group on or off
 alert.groupPicker = "Klepnutím nebo tažením po objektu přepnete skupiny ploch.";
-// Button that turns the heightmap render off
-alert.heightmap.hide = "Skrýt výškovou mapu";
 // The viewport renders the depth of the scene instead of the shaded objects
 alert.heightmapOn = "Výšková mapa je zapnutá!";
 // The user decided to display hidden faces
 alert.hideIgnored = "Ignorování skrytí!";
+// A project opens with fewer undo steps than it was saved with: some history data is missing, damaged or from another version
+alert.history.lost = "Část historie se nepodařilo načíst.";
+// Undo, redo or replay stopped: the data of this operation is missing or damaged on the disk
+alert.history.unreadable = "Data historie chybí nebo jsou poškozená, tuto operaci nelze vrátit zpět ani zopakovat.";
 // Error when an algorithm needs the object to have a hole (usually to fill it)
 alert.hole.nothing = "Objekt nemá žádné otvory!";
-// Button that turns the inspector off
-alert.inspect.hide = "Skrýt inspektor";
 // The viewport renders a material channel instead of the shaded objects
 alert.inspectOn = "Inspektor je zapnutý!";
 // The lattice deformation was applied with a different mask or visibility state
 // (the gui appends the icon of the changed states)
 alert.lattice.desync = "Mřížka není synchronizována!";
-// Button that re-applies the lattice deformation with the current mask/visibility
-alert.lattice.sync = "Aktualizovat mřížku";
 // A project was saved without the geometry of some objects: they open as empty groups ($0 = object names)
 alert.load.damaged = "Poškozené objekty, načtené jako prázdné skupiny: $0";
 // No operation occurred because the mesh is already manifold
@@ -162,6 +162,8 @@ alert.paintingHidden = "Malba je skrytá!";
 alert.quickSave = "Ukládání...";
 // The user is starting an operation that can lead to a crash
 alert.range.warning = "Hodnota detailu je vysoká a může vyžadovat hodně paměti!";
+// The limits removed some copies of the repeaters (a button next to it opens the settings that increase the limits)
+alert.repeater.limit = "";
 // Hide the objects that are not selected
 alert.selection.isolate = "Izolovat výběr";
 // Show the objects that are hidden
@@ -246,6 +248,8 @@ background.reference = "Referenční obrázek";
 binding.addSync = "Synchronizovat";
 binding.addSync.help = "Ve výchozím nastavení se použije hodnota synchronizace nastavená v menu scény.";
 binding.button = "Tlačítko";
+binding.onBackground = "";
+binding.onBackground.help = "";
 // Binding option
 binding.context.toggle = "Přepnout kontext";
 // Dead zones
@@ -476,10 +480,17 @@ cube.right = "Pravá";
 cube.top = "Horní";
 
 curve.bevel = "Zkosení";
+// Curve type: Bézier points with two handles
+curve.bezier = "";
 curve.bspline = "B-splajn";
+// Small toggle next to the Shift slider: the brush falloff gets a round tip, like a dome, instead of a pointed one
+curve.dome = "";
 curve.editor = "Editor křivky";
+// Button of the shape and profile editors: show the editor full screen
+curve.editor.maximize = "";
 // Time to hold a curve point or handle still before the long press edit starts
 curve.holdDelay = "Prodleva podržení";
+curve.holdDelay.help = "";
 curve.ik = "IK";
 curve.ik.help = "Inverzní kinematika (IK): tažením bodu nastavíte pózu křivky, propojené body jej následují. Klepnutím na bod jej zamknete nebo odemknete. Dlouhým stiskem bodu zamknete nebo odemknete všechny body. Zamčené body zůstávají na místě; tažením zámku posunete celou křivku.";
 curve.ik.stretch = "Protažení";
@@ -686,7 +697,6 @@ extract.wall = "Stěna";
 
 // Auto save section
 file.autoSave = "Automatické ukládání";
-file.autoSave.confirm = "Zakázat automatické ukládání?";
 // Delete the current autoSave data
 file.autoSave.delete = "Zrušení automatického ukládání";
 file.autoSave.help = "Uložte svůj projekt do samostatného souboru v pravidelných intervalech.
@@ -816,6 +826,8 @@ file.import.skipTextures = "Přeskočit textury";
 file.import.skipTextures.help = "Nevkládejte z tohoto souboru vložené textury.";
 // Import file section
 file.import.title = "Importovat";
+file.import.zbrush.dynamicSubdivision = "";
+file.import.zbrush.dynamicSubdivision.help = "";
 // Configure import options
 file.importSettings = "Možnosti importu";
 // Export the current selected objects instead of the entire scene
@@ -869,6 +881,8 @@ file.quarantine.deleteAll = "Smazat vše";
 file.quarantine.failedImport = "Neúspěšný import";
 // $0 = number of days
 file.quarantine.help = "Data projektů, které opustily složku projektů, a soubory nahrazené importem se zde uchovávají $0 dní. Neúspěšné importy zůstávají, dokud je nesmažete.";
+// Checkbox in the delete confirmation of a recently deleted entry: the next entries are deleted without asking until Nomad closes
+file.quarantine.silent = "";
 // Render a screenshot of the scene
 file.render = "Vykreslit";
 // height of exported screenshot
@@ -980,24 +994,20 @@ gesture.history.hold = "Dlouhý stisk";
 gesture.history.hold.help = "Podržet 2/3 prsty.";
 // Idle long press with pencil, mouse, finger, etc
 gesture.longPress = "Dlouhý stisk";
-gesture.mask.holdIdle = "Nástroj";
-gesture.mask.holdIdle.help = "Dlouhé stisknutí a uvolnění bez pohybu pro přepínání mezi Mask a SelMask.";
-// Hold the finger on screen to toggle between two tools: Mask and SelMask
-gesture.mask.holdStroke = "Tah";
-gesture.mask.holdStroke.help = "Dlouhým stisknutím přepnete mezi Mask a SelMask a začne nový tah.
-
-Na konci tahu se znovu vybere předchozí nástroj.";
+gesture.longPress.drag = "";
+gesture.longPress.drag.help = "";
+gesture.longPress.release = "";
+gesture.longPress.release.help = "";
 // Enable Mask gesture by tapping once on the screen
 gesture.mask.oneTap = "Zkratky jedním dotykem";
-gesture.mask.oneTap.help = "Povolit zkratku Masky klepnutím na obrazovku jednou, aniž by bylo nutné držet zkratku tlačítka masky.
-
-To povolí následující gesta:
-• klepněte na pozadí pro invertování masky
-• klepněte na maskovanou oblast pro rozostření masky
-• klepněte na nemaskovanou oblast pro zostření masky";
+gesture.oneTap.help = "";
+gesture.oneTap.hide.help = "";
+gesture.oneTap.mask.help = "";
 // Mouse/Trackpad
 gesture.mouse = "Myš";
 gesture.node = "Úprava uzlu";
+gesture.onBackground = "";
+gesture.onBackground.help = "";
 // Size rejection is when we try to ignore the palm of the hand when we interact with a tablet
 gesture.palmRejection = "Vyloučení dlaně";
 gesture.palmRejection.confirm = "Ujistěte se, že je tato možnost deaktivována, pokud máte potíže s interakcí s plátnem!";
@@ -1019,7 +1029,6 @@ gesture.sculpt = "Sochařit";
 gesture.select = "Vybrat objekt";
 // Shortcut customization: choose the action performed by the shortcut (select tool, etc.)
 gesture.shortcut = "Zkratka";
-gesture.smooth.holdSelect.help = "Dlouhý stisk přepne na nástroj výběru po dobu výběrového tahu.";
 // Hold the pointer at the end of a stroke to snap it into a line or a curve
 gesture.strokeSnap = "Přichycení tahu";
 gesture.strokeSnap.delay = "Doba podržení";
@@ -1044,6 +1053,13 @@ gesture.tool.select = "Vybrat";
 gesture.tool.transform = "Transformace";
 // Multi touch navigation with the macbook trackpad or the Magic Trackpad
 gesture.trackpad = "Trackpad";
+// What two fingers on the trackpad do in the curve and shape editors
+gesture.trackpad.curve = "";
+gesture.trackpad.curve.help = "";
+gesture.trackpad.curve.pan = "";
+gesture.trackpad.curve.pan.help = "";
+gesture.trackpad.curve.zoom = "";
+gesture.trackpad.curve.zoom.help = "";
 // What two fingers on the trackpad do
 gesture.trackpad.two = "Dva prsty";
 gesture.trackpad.two.help = "Pohybujte se v pohledu pomocí trackpadu. Sevření dvěma prsty vždy mění přiblížení a otočení ovládá náklon; zvednutím jednoho prstu přepnete na druhou akci.";
@@ -1106,8 +1122,22 @@ history.replay.camera = "Obnovit kameru";
 history.replay.camera.help = "Kamera sleduje přehrávané operace, i když je v historii vypnutá volba Obnovit kameru.";
 // Popup opened by the play button, above its two options
 history.replay.confirm = "Přehrát historii?";
+// Option of the replay popup: shows the gizmo, the object handles and the tool overlays in the viewport during the replay
+history.replay.handles = "";
+history.replay.handles.help = "";
 history.replay.help = "Vrátí se na začátek a postupně znovu provádí operace touto rychlostí (operace za sekundu).
 Dalším klepnutím na tlačítko přehrávání zastavíte. Zastaví ho také krok zpět, krok vpřed nebo klepnutí na záznam.";
+// Option of the replay popup: the replay runs with no interface at all, not even the small replay controls
+history.replay.minify = "Minimalizovat UI";
+history.replay.minify.help = "Skryje i ovládání přehrávání. Klepnutím na obrazovku přehrávání pozastavíte.";
+// Popup shown when the user touches the canvas or uses a shortcut while the history replay runs: the replay waits for a choice
+history.replay.pause = "Přehrávání pozastaveno";
+// Button of the replay paused popup: ends the replay and jumps to the most recent operation
+history.replay.pause.end = "Přejít na konec";
+// Button of the replay paused popup: the replay continues
+history.replay.pause.resume = "Pokračovat";
+// Button of the replay paused popup: ends the replay and stays on the current operation
+history.replay.pause.stop = "Zastavit zde";
 // Option of the replay popup: runs backwards, undoing from the current state to the root
 history.replay.reverse = "Opačný";
 history.replay.reverse.help = "Vrací operace z aktuálního stavu zpět na začátek místo přehrávání od začátku.";
@@ -1316,6 +1346,8 @@ item.edit = "Upravit";
 item.edit.help = "Přidá rovinu již vytvarovanou tímto razítkem, s vrstvou pro sochání a jedním čtyřúhelníkem na pixel.
 
 Upravte ji a poté ji znovu zapečte pomocí `Topologie -> Péct -> VDM`.";
+// Short button label, turns on the option named by the message next to it
+item.enable = "";
 // Short button label, opens a popup to correct the pixels of an imported image
 item.fix = "Opravit";
 item.fix.help = "Opravuje samotný obrázek: střední hodnotu, inverzi a otočení.
@@ -1521,7 +1553,7 @@ light.type.point = "Bodové";
 light.type.spot = "Bodové";
 
 link.address = "Toto zařízení";
-link.ai.request = "";
+link.ai.request = "$0 chce ovládat Nomad";
 link.approve = "Přijmout";
 link.bridges = "Skripty mostu (GitHub)";
 link.cameras = "Kamery";
@@ -1564,7 +1596,7 @@ link.mode.nomad.help = "Na jednom zařízení vyberte Hostitel a na ostatních P
 link.nearby = "Zařízení v okolí";
 link.objects = "Objekty a geometrie";
 link.off = "Vypnuto";
-link.pairings = "";
+link.pairings = "Spárovaná zařízení";
 link.peer = "Partner";
 link.peerAddress = "Adresa klienta";
 link.port = "Síťový port";
@@ -1658,6 +1690,8 @@ material.pbrRefraction.warning = "Refrakce vyžaduje režim osvětlení PBR.";
 // See glossary
 material.pbrRoughnessMetalness.warning = "Drsnost a kovost vyžadují režim osvětlení PBR.";
 // See glossary
+material.pbrShadowCatcher.warning = "";
+// See glossary
 material.pbrSubsurface.warning = "Podpovrchová distribuce vyžaduje režim osvětlení PBR.";
 // material (additive and blending) will write into depth
 material.preRefract = "Předrefrakční průchod";
@@ -1701,7 +1735,7 @@ material.texture.mipmap = "Mipmap";
 // Nearest Filtering (closest sample)
 material.texture.nearest = "Nejbližší";
 // Help on the link buttons of the texture settings: a linked section is shared by every linked texture channel
-material.texture.sync = "";
+material.texture.sync = "Sdíleno všemi propojenými texturami";
 // Textures, basically images wrapped on models (synonym: Maps, Texture maps)
 material.textures = "Textury";
 material.textures.help = "Importované obrázky se synchronizují s původním souborem, když se vrátíte do Nomadu.";
@@ -1879,6 +1913,8 @@ paint.gradient = "Přechod";
 paint.gradient.mirror.help = "Zrcadlí křivku kolem středu čáry: upravte jednu polovinu, druhá ji následuje.";
 // Second material of the gradient, painted where the curve is low; when disabled the paint fades into the surface
 paint.gradientEnd = "Koncový materiál";
+// Help of the Extend button, closed shapes (lasso, ellipse...): the end material also covers everything around the shape
+paint.gradientEnd.extend.help = "";
 // Help of the sync button next to the end material title
 paint.gradientEnd.sync = "Zkopíruje materiál malby do koncového materiálu.";
 // Factor/Opacity of paint tool
@@ -2191,6 +2227,17 @@ primitive.projectSphere = "Koule";
 primitive.radius = "Poloměr";
 primitive.radius.end = "Koncový poloměr";
 primitive.radius.start = "Počáteční poloměr";
+// Primitive extruded from an imported vector drawing (SVG)
+primitive.shape = "Tvar";
+primitive.shape.edit = "";
+primitive.shape.empty = "V tomto souboru nebyl nalezen žádný vyplněný tvar.";
+primitive.shape.limit = "Dosažen limit ploch. Zvyšte jej pro zobrazení celého tvaru.";
+// Opens the list of the curves of a 2D shape, from front to back, to reorder them
+primitive.shape.order = "";
+primitive.shape.order.help = "";
+// Toggle on a group of curves in a 2D shape: whether its overlapping curves cut each other or fill
+primitive.shape.overlaps = "";
+primitive.shape.overlaps.help = "";
 // Size (of cube x dimension)
 primitive.size = "Velikost";
 primitive.sizeX = "Velikost X";
@@ -2208,6 +2255,7 @@ primitive.text.boldItalic = "Tučná kurzíva";
 primitive.text.center = "Střed";
 primitive.text.depth = "Hloubka";
 primitive.text.edit = "Upravit text";
+primitive.text.fan = "Vějíř";
 primitive.text.font = "Písmo";
 primitive.text.italic = "Kurzíva";
 primitive.text.left = "Vlevo";
@@ -2254,6 +2302,8 @@ Pravděpodobně byste měli zakázat symetrii, protože nemusí fungovat podle v
 
 V panelu s maskou můžete použít možnost `Topologicky spojené` k malování roviny, která ovlivňuje ostatní roviny.";
 primitive.tube = "Trubka";
+primitive.tube.unfold = "";
+primitive.tube.unfold.help = "";
 // Finalize the primitive as a sculptable mesh; this does not mean checking data validity
 primitive.validate = "Dokončit";
 
@@ -2488,6 +2538,24 @@ Můžete tuto hodnotu zvýšit, pokud chcete zobrazit vyšší rozlišení sít�
 // Maximum number of vertices (points)
 settings.multires.maxVertices = "Maximální počet vrcholů";
 settings.multires.maxVertices.help = "Nomad nekontroluje paměť před dělením, vysoký počet polygónů může snadno způsobit zhroucení.";
+// Navigation widget in the viewport corner, shaped as a cube, a sphere or axes (easy to snap/align the view)
+settings.navigator = "Navigátor";
+// Alignment (can be auto/on/off)
+settings.navigator.align = "Omezit zarovnání";
+settings.navigator.align.help = "Zarovnejte pohledy na světové osy. Je-li povoleno, je možné pouze 6 pohledů.
+
+Při automatickém omezení bude omezení platit pouze při režimu oběžné dráhy.";
+// Extra snapping views on the edges and corners of the navigator
+settings.navigator.edgeCorner = "Hrany a rohy";
+settings.navigator.edgeCorner.help = "Přidá pohledy pro přichycení k hranám a rohům (jantarové zóny).";
+// Flip the camera (rotate 180° to see the other side)
+settings.navigator.flip = "Překlopit 180°";
+settings.navigator.flip.help = "Překlopte pohled, pokud je již spjatý.";
+// Dragging the navigator rotates like the Turntable mode, even if the camera is in Trackball
+settings.navigator.turntable = "Tažení v režimu otočného stolu";
+settings.navigator.turntable.help = "Při tažení Navigátoru se kamera otáčí bez naklánění a zastaví se v každém pohledu pro přichycení.
+
+Vypnutím této možnosti budete Navigátor táhnout pomocí rotace Trackball. V obou případech zůstává tažení vodorovné nebo svislé.";
 // These options will be reset when the app restarts
 settings.notSaved = "Tyto možnosti nejsou uloženy v nastavení.";
 // Outline (contour highlight around the selected object)
@@ -2538,24 +2606,6 @@ settings.showMasking = "Zobrazit masku";
 settings.showPainting = "Zobrazit malbu";
 // https://en.wikipedia.org/wiki/Shading
 settings.smoothShading = "Hladké odstíny";
-// Navigation widget in the viewport corner, shaped as a cube, a sphere or axes (easy to snap/align the view)
-settings.navigator = "Navigátor";
-// Alignment (can be auto/on/off)
-settings.navigator.align = "Omezit zarovnání";
-settings.navigator.align.help = "Zarovnejte pohledy na světové osy. Je-li povoleno, je možné pouze 6 pohledů.
-
-Při automatickém omezení bude omezení platit pouze při režimu oběžné dráhy.";
-// Extra snapping views on the edges and corners of the navigator
-settings.navigator.edgeCorner = "Hrany a rohy";
-settings.navigator.edgeCorner.help = "Přidá pohledy pro přichycení k hranám a rohům (jantarové zóny).";
-// Flip the camera (rotate 180° to see the other side)
-settings.navigator.flip = "Překlopit 180°";
-settings.navigator.flip.help = "Překlopte pohled, pokud je již spjatý.";
-// Dragging the navigator rotates like the Turntable mode, even if the camera is in Trackball
-settings.navigator.turntable = "Tažení v režimu otočného stolu";
-settings.navigator.turntable.help = "Při tažení Navigátoru se kamera otáčí bez naklánění a zastaví se v každém pohledu pro přichycení.
-
-Vypnutím této možnosti budete Navigátor táhnout pomocí rotace Trackball. V obou případech zůstává tažení vodorovné nebo svislé.";
 // Stats (information logs about the scene displayed on screen)
 settings.stats = "Statistiky";
 settings.stats.all = "Zobrazit celou scénu";
@@ -3040,8 +3090,12 @@ toggle.yes = "Ano";
 tool.all = "Vše";
 // Ideally short strings (Arrange selected objects)
 tool.arrange = "Uspořádat";
+// Ideally short strings (Bend a sculpted object along a curve)
+tool.bend = "";
 // Ideally short strings
 tool.brush = "Štětec";
+tool.brush.clampRadius = "";
+tool.brush.clampRadius.help = "";
 // Ideally short strings
 tool.clay = "Hlína";
 // Ideally short strings (Subtract)
@@ -3353,7 +3407,14 @@ tool.shape = "Tvar";
 tool.shape.band = "Pás";
 // Ideally short strings (Band selection: past the far guide, everything keeps the full value, like a soft half-space)
 tool.shape.bandExtend = "Rozšířit";
+// Ideally short strings (Band selection: past both guides, the near side keeps the start value and the far side the full value)
+tool.shape.bandExtend.both = "";
+tool.shape.bandExtend.both.help = "";
+// Ideally short strings (Band selection: only past the far guide)
+tool.shape.bandExtend.end = "";
 tool.shape.bandExtend.help = "Pokračuje za vodítka: vzdálená strana dostane plnou hodnotu, místo aby skončila u pásu.";
+// Ideally short strings (Band selection: stops at both guides)
+tool.shape.bandExtend.off = "";
 // Ideally short strings (Band selection: swap which guide the gradient starts from)
 tool.shape.bandFlip = "Obrátit";
 // Ideally short strings (Whether a shape is closed or not, a tube is open, a torus is closed)

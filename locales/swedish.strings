@@ -94,6 +94,8 @@ access.window = "Hjälpfönster";
 alert.aborted = "Operation avbruten!";
 // Autosave popup
 alert.autoSave.auto = "Autospara om... $0s";
+// Autosave popup shown while the app is idle: the countdown starts when the user touches the screen again
+alert.autoSave.wait = "";
 // Transform mode lets the user move the reference image with two fingers
 alert.backgroundTransform = "Enkel beröring för att avsluta transformationsläge.";
 alert.colorPicker = "Dra på objektet för att välja en färg.";
@@ -115,23 +117,21 @@ alert.gizmo.editObject = "Redigera objektläge.";
 alert.gizmo.editPivot = "Redigera pivotläge.";
 // Surface repeater: the face group popup is open, tapping the object switches a group on or off
 alert.groupPicker = "Tryck eller dra på objektet för att slå på eller av ytgrupper.";
-// Button that turns the heightmap render off
-alert.heightmap.hide = "Dölj höjdkarta";
 // The viewport renders the depth of the scene instead of the shaded objects
 alert.heightmapOn = "Höjdkartan är på!";
 // The user decided to display hidden faces
 alert.hideIgnored = "Dölj ignoreras!";
+// A project opens with fewer undo steps than it was saved with: some history data is missing, damaged or from another version
+alert.history.lost = "En del av historiken kunde inte läsas in.";
+// Undo, redo or replay stopped: the data of this operation is missing or damaged on the disk
+alert.history.unreadable = "Historikdata saknas eller är skadad, den här åtgärden kan inte ångras eller göras om.";
 // Error when an algorithm needs the object to have a hole (usually to fill it)
 alert.hole.nothing = "Objektet har inga hål!";
-// Button that turns the inspector off
-alert.inspect.hide = "Dölj inspektör";
 // The viewport renders a material channel instead of the shaded objects
 alert.inspectOn = "Inspektören är på!";
 // The lattice deformation was applied with a different mask or visibility state
 // (the gui appends the icon of the changed states)
 alert.lattice.desync = "Gallret är inte synkroniserat!";
-// Button that re-applies the lattice deformation with the current mask/visibility
-alert.lattice.sync = "Uppdatera gallret";
 // A project was saved without the geometry of some objects: they open as empty groups ($0 = object names)
 alert.load.damaged = "Skadade objekt, inlästa som tomma grupper: $0";
 // No operation occurred because the mesh is already manifold
@@ -162,6 +162,8 @@ alert.paintingHidden = "Målningen är dold!";
 alert.quickSave = "Sparar...";
 // The user is starting an operation that can lead to a crash
 alert.range.warning = "Detaljvärdet är högt och kan kräva mycket minne!";
+// The limits removed some copies of the repeaters (a button next to it opens the settings that increase the limits)
+alert.repeater.limit = "";
 // Hide the objects that are not selected
 alert.selection.isolate = "Isolera markering";
 // Show the objects that are hidden
@@ -246,6 +248,8 @@ background.reference = "Referensbild";
 binding.addSync = "Synka";
 binding.addSync.help = "Som standard kommer den att använda synkvärdet som ställs in i scene-menyn.";
 binding.button = "Knapp";
+binding.onBackground = "";
+binding.onBackground.help = "";
 // Binding option
 binding.context.toggle = "Växla kontext";
 // Dead zones
@@ -474,10 +478,17 @@ cube.right = "Höger";
 cube.top = "Övre";
 
 curve.bevel = "Fasning";
+// Curve type: Bézier points with two handles
+curve.bezier = "";
 curve.bspline = "B-spline";
+// Small toggle next to the Shift slider: the brush falloff gets a round tip, like a dome, instead of a pointed one
+curve.dome = "";
 curve.editor = "Kurvredigerare";
+// Button of the shape and profile editors: show the editor full screen
+curve.editor.maximize = "";
 // Time to hold a curve point or handle still before the long press edit starts
 curve.holdDelay = "Hållfördröjning";
+curve.holdDelay.help = "";
 curve.ik = "IK";
 curve.ik.help = "Invers kinematik (IK): dra en punkt för att posera kurvan; anslutna punkter följer med. Tryck på en punkt för att låsa eller låsa upp den. Håll intryckt på en punkt för att låsa eller låsa upp alla punkter. Låsta punkter stannar på plats; dra ett lås för att flytta hela kurvan.";
 curve.ik.stretch = "Sträckning";
@@ -684,7 +695,6 @@ extract.wall = "Vägg";
 
 // Auto save section
 file.autoSave = "Automatisk spara";
-file.autoSave.confirm = "Inaktivera Auto Spara?";
 // Delete the current autoSave data
 file.autoSave.delete = "Kassera Auto Spara";
 file.autoSave.help = "Spara ditt projekt i en separat fil med jämna mellanrum.
@@ -814,6 +824,8 @@ file.import.skipTextures = "Hoppa över texturer";
 file.import.skipTextures.help = "Läs inte in inbäddade texturer från filen.";
 // Import file section
 file.import.title = "Importera";
+file.import.zbrush.dynamicSubdivision = "";
+file.import.zbrush.dynamicSubdivision.help = "";
 // Configure import options
 file.importSettings = "Importera alternativ";
 // Export the current selected objects instead of the entire scene
@@ -867,6 +879,8 @@ file.quarantine.deleteAll = "Radera alla";
 file.quarantine.failedImport = "Misslyckad import";
 // $0 = number of days
 file.quarantine.help = "Data från projekt som har lämnat projektmappen och filer som ersatts av en import sparas här i $0 dagar. Misslyckade importer finns kvar tills du raderar dem.";
+// Checkbox in the delete confirmation of a recently deleted entry: the next entries are deleted without asking until Nomad closes
+file.quarantine.silent = "";
 // Render a screenshot of the scene
 file.render = "Rendera";
 // height of exported screenshot
@@ -979,24 +993,20 @@ gesture.history.hold = "Håll intryckt";
 gesture.history.hold.help = "Håll två/tre fingrar nere.";
 // Idle long press with pencil, mouse, finger, etc
 gesture.longPress = "Håll intryckt";
-gesture.mask.holdIdle = "Verktyg";
-gesture.mask.holdIdle.help = "Håll in och släpp utan att röra på dig för att växla mellan Mask och SelMask.";
-// Hold the finger on screen to toggle between two tools: Mask and SelMask
-gesture.mask.holdStroke = "Streck";
-gesture.mask.holdStroke.help = "Långtryck växlar mellan Mask och SelMask och börjar ett nytt drag.
-
-I slutet av draget väljs det föregående verktyget tillbaka.";
+gesture.longPress.drag = "";
+gesture.longPress.drag.help = "";
+gesture.longPress.release = "";
+gesture.longPress.release.help = "";
 // Enable Mask gesture by tapping once on the screen
 gesture.mask.oneTap = "Enkeltapp kortkommandon";
-gesture.mask.oneTap.help = "Tillåt Mask-genvägen genom att trycka en gång på skärmen, utan att behöva hålla ned maskningsknappen.
-
-Det kommer att möjliggöra följande gester:
-• tryck på bakgrunden för att invertera masken
-• tryck på ett maskerat område för att sudda masken
-• tryck på ett omaskerat område för att skärpa masken";
+gesture.oneTap.help = "";
+gesture.oneTap.hide.help = "";
+gesture.oneTap.mask.help = "";
 // Mouse/Trackpad
 gesture.mouse = "Mus";
 gesture.node = "Nodredigering";
+gesture.onBackground = "";
+gesture.onBackground.help = "";
 // Size rejection is when we try to ignore the palm of the hand when we interact with a tablet
 gesture.palmRejection = "Handflatsavvisning";
 gesture.palmRejection.confirm = "Se till att inaktivera detta alternativ om du har problem med att interagera med duken!";
@@ -1018,7 +1028,6 @@ gesture.sculpt = "Skulptera";
 gesture.select = "Markera objekt";
 // Shortcut customization: choose the action performed by the shortcut (select tool, etc.)
 gesture.shortcut = "Kortkommando";
-gesture.smooth.holdSelect.help = "Håll intryckt för att växla till väljverktyg under strokevalet.";
 // Hold the pointer at the end of a stroke to snap it into a line or a curve
 gesture.strokeSnap = "Fäst penseldrag";
 gesture.strokeSnap.delay = "Hålltid";
@@ -1043,6 +1052,13 @@ gesture.tool.select = "Välj";
 gesture.tool.transform = "Transformera";
 // Multi touch navigation with the macbook trackpad or the Magic Trackpad
 gesture.trackpad = "Styrplatta";
+// What two fingers on the trackpad do in the curve and shape editors
+gesture.trackpad.curve = "";
+gesture.trackpad.curve.help = "";
+gesture.trackpad.curve.pan = "";
+gesture.trackpad.curve.pan.help = "";
+gesture.trackpad.curve.zoom = "";
+gesture.trackpad.curve.zoom.help = "";
 // What two fingers on the trackpad do
 gesture.trackpad.two = "Två fingrar";
 gesture.trackpad.two.help = "Navigera i vyn med styrplattan. Med två fingrar zoomar en nypgest alltid och en vridgest styr rullningen; om du lyfter ett finger växlar du till den andra åtgärden.";
@@ -1105,8 +1121,22 @@ history.replay.camera = "Återställ kamera";
 history.replay.camera.help = "Kameran följer de uppspelade åtgärderna även när historikens alternativ Återställ kamera är avstängt.";
 // Popup opened by the play button, above its two options
 history.replay.confirm = "Spela upp historiken?";
+// Option of the replay popup: shows the gizmo, the object handles and the tool overlays in the viewport during the replay
+history.replay.handles = "";
+history.replay.handles.help = "";
 history.replay.help = "Går tillbaka till början och gör sedan om åtgärderna en i taget med denna hastighet (åtgärder per sekund).
 Tryck på knappen igen för att stoppa. Ångra, gör om eller ett tryck på en post stoppar också uppspelningen.";
+// Option of the replay popup: the replay runs with no interface at all, not even the small replay controls
+history.replay.minify = "Minimera gränssnitt";
+history.replay.minify.help = "Döljer även uppspelningskontrollerna. Tryck på skärmen för att pausa uppspelningen.";
+// Popup shown when the user touches the canvas or uses a shortcut while the history replay runs: the replay waits for a choice
+history.replay.pause = "Uppspelning pausad";
+// Button of the replay paused popup: ends the replay and jumps to the most recent operation
+history.replay.pause.end = "Gå till slutet";
+// Button of the replay paused popup: the replay continues
+history.replay.pause.resume = "Fortsätt";
+// Button of the replay paused popup: ends the replay and stays on the current operation
+history.replay.pause.stop = "Stanna här";
 // Option of the replay popup: runs backwards, undoing from the current state to the root
 history.replay.reverse = "Omvänd";
 history.replay.reverse.help = "Ångrar från det aktuella läget tillbaka till början i stället för att spela upp från början.";
@@ -1315,6 +1345,8 @@ item.edit = "Redigera";
 item.edit.help = "Lägger till ett plan som redan formats av denna stämpel, med ett skulpturlager och en fyrhörning per pixel.
 
 Skulptera det och baka sedan tillbaka det med `Topologi -> Baka -> VDM`.";
+// Short button label, turns on the option named by the message next to it
+item.enable = "";
 // Short button label, opens a popup to correct the pixels of an imported image
 item.fix = "Korrigera";
 item.fix.help = "Korrigerar själva bilden: mellanvärde, invertering, rotation.
@@ -1517,7 +1549,7 @@ light.type.point = "Punkt";
 light.type.spot = "Spot";
 
 link.address = "Den här enheten";
-link.ai.request = "";
+link.ai.request = "$0 vill styra Nomad";
 link.approve = "Godkänn";
 link.bridges = "Bryggskript (GitHub)";
 link.cameras = "Kameror";
@@ -1560,7 +1592,7 @@ link.mode.nomad.help = "Välj Värd på en enhet och Anslut på de andra och try
 link.nearby = "Enheter i närheten";
 link.objects = "Objekt och geometri";
 link.off = "Av";
-link.pairings = "";
+link.pairings = "Parkopplade enheter";
 link.peer = "Peer";
 link.peerAddress = "Klientadress";
 link.port = "Nätverksport";
@@ -1654,6 +1686,8 @@ material.pbrRefraction.warning = "Refraction kräver PBR-skuggning.";
 // See glossary
 material.pbrRoughnessMetalness.warning = "Roughness och metalness kräver PBR-skuggning.";
 // See glossary
+material.pbrShadowCatcher.warning = "";
+// See glossary
 material.pbrSubsurface.warning = "Underyta kräver PBR-skuggning.";
 // material (additive and blending) will write into depth
 material.preRefract = "Förbrytningspass";
@@ -1697,7 +1731,7 @@ material.texture.mipmap = "Mipmap";
 // Nearest Filtering (closest sample)
 material.texture.nearest = "Närmaste";
 // Help on the link buttons of the texture settings: a linked section is shared by every linked texture channel
-material.texture.sync = "";
+material.texture.sync = "Delas av alla länkade texturer";
 // Textures, basically images wrapped on models (synonym: Maps, Texture maps)
 material.textures = "Texturer";
 material.textures.help = "Importerade bilder synkas med sin originalfil när du går tillbaka till Nomad.";
@@ -1875,6 +1909,8 @@ paint.gradient = "Gradient";
 paint.gradient.mirror.help = "Speglar kurvan kring linjens mitt: redigera ena halvan, den andra följer med.";
 // Second material of the gradient, painted where the curve is low; when disabled the paint fades into the surface
 paint.gradientEnd = "Slutmaterial";
+// Help of the Extend button, closed shapes (lasso, ellipse...): the end material also covers everything around the shape
+paint.gradientEnd.extend.help = "";
 // Help of the sync button next to the end material title
 paint.gradientEnd.sync = "Kopierar målningsmaterialet till slutmaterialet.";
 // Factor/Opacity of paint tool
@@ -2186,6 +2222,17 @@ primitive.projectSphere = "Sfär";
 primitive.radius = "Radie";
 primitive.radius.end = "Radie slut";
 primitive.radius.start = "Radie start";
+// Primitive extruded from an imported vector drawing (SVG)
+primitive.shape = "Form";
+primitive.shape.edit = "";
+primitive.shape.empty = "Ingen fylld form hittades i den här filen.";
+primitive.shape.limit = "Maximalt antal ytor nått. Höj gränsen för att visa hela formen.";
+// Opens the list of the curves of a 2D shape, from front to back, to reorder them
+primitive.shape.order = "";
+primitive.shape.order.help = "";
+// Toggle on a group of curves in a 2D shape: whether its overlapping curves cut each other or fill
+primitive.shape.overlaps = "";
+primitive.shape.overlaps.help = "";
 // Size (of cube x dimension)
 primitive.size = "Storlek";
 primitive.sizeX = "Storlek X";
@@ -2203,6 +2250,7 @@ primitive.text.boldItalic = "Fet kursiv";
 primitive.text.center = "Mitten";
 primitive.text.depth = "Djup";
 primitive.text.edit = "Redigera text";
+primitive.text.fan = "Solfjäder";
 primitive.text.font = "Typsnitt";
 primitive.text.italic = "Kursiv";
 primitive.text.left = "Vänster";
@@ -2249,6 +2297,8 @@ Du bör nog inaktivera symmetri eftersom den kanske inte fungerar som förvänta
 
 Du kan använda `Topologiskt kopplad` - alternativet i maskpanelen för att måla ett plan som påverkar de andra planen.";
 primitive.tube = "Rör";
+primitive.tube.unfold = "";
+primitive.tube.unfold.help = "";
 // Finalize the primitive as a sculptable mesh; this does not mean checking data validity
 primitive.validate = "Slutför";
 
@@ -2483,6 +2533,24 @@ Du kan öka detta värde om du vill visa en högre upplösning av meshet.";
 // Maximum number of vertices (points)
 settings.multires.maxVertices = "Max antal vertiser";
 settings.multires.maxVertices.help = "Nomad utför ingen minneskontroll innan indelning, ett högt antal polygoner kan lätt leda till kraschar.";
+// Navigation widget in the viewport corner, shaped as a cube, a sphere or axes (easy to snap/align the view)
+settings.navigator = "Navigator";
+// Alignment (can be auto/on/off)
+settings.navigator.align = "Begränsa justering";
+settings.navigator.align.help = "Justera vyerna till världsaxeln. Om aktiverat, endast 6 snapping-vyer är möjliga.
+
+På Auto kommer begränsningen endast att ske om kameran är i Orbit-läge.";
+// Extra snapping views on the edges and corners of the navigator
+settings.navigator.edgeCorner = "Kanter och hörn";
+settings.navigator.edgeCorner.help = "Lägger till fästvyer på kanter och hörn (bärnstensfärgade zoner).";
+// Flip the camera (rotate 180° to see the other side)
+settings.navigator.flip = "Vänd 180°";
+settings.navigator.flip.help = "Vänd vy om vyn redan är snappad.";
+// Dragging the navigator rotates like the Turntable mode, even if the camera is in Trackball
+settings.navigator.turntable = "Dragning med vändskiva";
+settings.navigator.turntable.help = "När du drar Navigatorn roterar kameran utan att rulla och stannar vid varje fästvy.
+
+Inaktivera detta för att i stället dra Navigatorn med Trackball-rotation. Dragningen förblir horisontell eller vertikal i båda fallen.";
 // These options will be reset when the app restarts
 settings.notSaved = "Dessa alternativ sparas inte i inställningarna.";
 // Outline (contour highlight around the selected object)
@@ -2533,24 +2601,6 @@ settings.showMasking = "Visa mask";
 settings.showPainting = "Visa måleri";
 // https://en.wikipedia.org/wiki/Shading
 settings.smoothShading = "Jämn skuggning";
-// Navigation widget in the viewport corner, shaped as a cube, a sphere or axes (easy to snap/align the view)
-settings.navigator = "Navigator";
-// Alignment (can be auto/on/off)
-settings.navigator.align = "Begränsa justering";
-settings.navigator.align.help = "Justera vyerna till världsaxeln. Om aktiverat, endast 6 snapping-vyer är möjliga.
-
-På Auto kommer begränsningen endast att ske om kameran är i Orbit-läge.";
-// Extra snapping views on the edges and corners of the navigator
-settings.navigator.edgeCorner = "Kanter och hörn";
-settings.navigator.edgeCorner.help = "Lägger till fästvyer på kanter och hörn (bärnstensfärgade zoner).";
-// Flip the camera (rotate 180° to see the other side)
-settings.navigator.flip = "Vänd 180°";
-settings.navigator.flip.help = "Vänd vy om vyn redan är snappad.";
-// Dragging the navigator rotates like the Turntable mode, even if the camera is in Trackball
-settings.navigator.turntable = "Dragning med vändskiva";
-settings.navigator.turntable.help = "När du drar Navigatorn roterar kameran utan att rulla och stannar vid varje fästvy.
-
-Inaktivera detta för att i stället dra Navigatorn med Trackball-rotation. Dragningen förblir horisontell eller vertikal i båda fallen.";
 // Stats (information logs about the scene displayed on screen)
 settings.stats = "Statistik";
 settings.stats.all = "Visa fullständig scen";
@@ -3035,8 +3085,12 @@ toggle.yes = "Ja";
 tool.all = "Alla";
 // Ideally short strings (Arrange selected objects)
 tool.arrange = "Ordna";
+// Ideally short strings (Bend a sculpted object along a curve)
+tool.bend = "";
 // Ideally short strings
 tool.brush = "Pensel";
+tool.brush.clampRadius = "";
+tool.brush.clampRadius.help = "";
 // Ideally short strings
 tool.clay = "Lera";
 // Ideally short strings (Subtract)
@@ -3352,7 +3406,14 @@ tool.shape = "Form";
 tool.shape.band = "Band";
 // Ideally short strings (Band selection: past the far guide, everything keeps the full value, like a soft half-space)
 tool.shape.bandExtend = "Förläng";
+// Ideally short strings (Band selection: past both guides, the near side keeps the start value and the far side the full value)
+tool.shape.bandExtend.both = "";
+tool.shape.bandExtend.both.help = "";
+// Ideally short strings (Band selection: only past the far guide)
+tool.shape.bandExtend.end = "";
 tool.shape.bandExtend.help = "Fortsätter förbi guiderna: den bortre sidan får fullt värde i stället för att sluta vid bandet.";
+// Ideally short strings (Band selection: stops at both guides)
+tool.shape.bandExtend.off = "";
 // Ideally short strings (Band selection: swap which guide the gradient starts from)
 tool.shape.bandFlip = "Vänd";
 // Ideally short strings (Whether a shape is closed or not, a tube is open, a torus is closed)

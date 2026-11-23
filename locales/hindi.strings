@@ -94,6 +94,8 @@ access.window = "सहायक विंडो";
 alert.aborted = "ऑपरेशन निरस्त!";
 // Autosave popup
 alert.autoSave.auto = "$0s... में स्वतः सहेजें";
+// Autosave popup shown while the app is idle: the countdown starts when the user touches the screen again
+alert.autoSave.wait = "";
 // Transform mode lets the user move the reference image with two fingers
 alert.backgroundTransform = "रूपांतरण मोड से बाहर निकलने के लिए साधारण टैप करें.";
 alert.colorPicker = "रंग चुनने के लिए अपनी उंगली को वस्तु पर घसीटें.";
@@ -115,23 +117,21 @@ alert.gizmo.editObject = "वस्तु मोड संपादित कर
 alert.gizmo.editPivot = "धुरी मोड संपादित करें.";
 // Surface repeater: the face group popup is open, tapping the object switches a group on or off
 alert.groupPicker = "फेस समूह चालू या बंद करने के लिए ऑब्जेक्ट पर टैप करें या खींचें।";
-// Button that turns the heightmap render off
-alert.heightmap.hide = "हाइटमैप छिपाएँ";
 // The viewport renders the depth of the scene instead of the shaded objects
 alert.heightmapOn = "हाइटमैप चालू है!";
 // The user decided to display hidden faces
 alert.hideIgnored = "छुपाना नजरअंदाज किया गया है!";
+// A project opens with fewer undo steps than it was saved with: some history data is missing, damaged or from another version
+alert.history.lost = "इतिहास का कुछ हिस्सा लोड नहीं हो सका.";
+// Undo, redo or replay stopped: the data of this operation is missing or damaged on the disk
+alert.history.unreadable = "इतिहास का कुछ डेटा गायब या क्षतिग्रस्त है, इस कार्रवाई को पहले जैसा या फिर से नहीं किया जा सकता.";
 // Error when an algorithm needs the object to have a hole (usually to fill it)
 alert.hole.nothing = "वस्तु में कोई छेद नहीं है!";
-// Button that turns the inspector off
-alert.inspect.hide = "इंस्पेक्टर छिपाएँ";
 // The viewport renders a material channel instead of the shaded objects
 alert.inspectOn = "इंस्पेक्टर चालू है!";
 // The lattice deformation was applied with a different mask or visibility state
 // (the gui appends the icon of the changed states)
 alert.lattice.desync = "जाली सिंक नहीं है!";
-// Button that re-applies the lattice deformation with the current mask/visibility
-alert.lattice.sync = "जाली अपडेट करें";
 // A project was saved without the geometry of some objects: they open as empty groups ($0 = object names)
 alert.load.damaged = "क्षतिग्रस्त ऑब्जेक्ट खाली समूहों के रूप में लोड किए गए: $0";
 // No operation occurred because the mesh is already manifold
@@ -162,6 +162,8 @@ alert.paintingHidden = "पेंटिंग छिपी हुई है!";
 alert.quickSave = "सहेजा जा रहा है...";
 // The user is starting an operation that can lead to a crash
 alert.range.warning = "विवरण अधिक है और इसके लिए बहुत अधिक मेमोरी की आवश्यकता हो सकती है!";
+// The limits removed some copies of the repeaters (a button next to it opens the settings that increase the limits)
+alert.repeater.limit = "";
 // Hide the objects that are not selected
 alert.selection.isolate = "चयन को अलग करें";
 // Show the objects that are hidden
@@ -246,6 +248,8 @@ background.reference = "संदर्भ";
 binding.addSync = "सिंक करें";
 binding.addSync.help = "डिफ़ॉल्ट रूप से, यह दृश्य मेनू में सेट सिंक मान का उपयोग करेगा।";
 binding.button = "बटन";
+binding.onBackground = "";
+binding.onBackground.help = "";
 // Binding option
 binding.context.toggle = "संदर्भ टॉगल करें";
 // Dead zones
@@ -476,10 +480,17 @@ cube.right = "दायाँ";
 cube.top = "ऊपर";
 
 curve.bevel = "बेवल";
+// Curve type: Bézier points with two handles
+curve.bezier = "";
 curve.bspline = "बी-स्पलाइन";
+// Small toggle next to the Shift slider: the brush falloff gets a round tip, like a dome, instead of a pointed one
+curve.dome = "";
 curve.editor = "कर्व एडिटर";
+// Button of the shape and profile editors: show the editor full screen
+curve.editor.maximize = "";
 // Time to hold a curve point or handle still before the long press edit starts
 curve.holdDelay = "होल्ड विलंब";
+curve.holdDelay.help = "";
 curve.ik = "IK";
 curve.ik.help = "इनवर्स काइनेमैटिक्स (IK): वक्र को पोज़ देने के लिए एक बिंदु खींचें; जुड़े बिंदु उसके पीछे चलते हैं। किसी बिंदु को लॉक या अनलॉक करने के लिए उस पर टैप करें। सभी बिंदुओं को लॉक या अनलॉक करने के लिए किसी बिंदु को देर तक दबाएँ। लॉक किए गए बिंदु अपनी जगह पर रहते हैं; पूरा वक्र हिलाने के लिए ताला खींचें।";
 curve.ik.stretch = "खिंचाव";
@@ -684,7 +695,6 @@ extract.wall = "दीवार";
 
 // Auto save section
 file.autoSave = "स्वतः सहेजें";
-file.autoSave.confirm = "स्वतः सहेजें अक्षम करें?";
 // Delete the current autoSave data
 file.autoSave.delete = "स्वतः सहेजे गए को हटा दें";
 file.autoSave.help = "अपने प्रोजेक्ट को नियमित अंतराल पर एक अलग फाइल में सहेजें.
@@ -812,6 +822,8 @@ file.import.skipTextures = "टेक्स्चर छोडें";
 file.import.skipTextures.help = "फ़ाइल से एम्बेडेड टेक्सचर लोड न करें।";
 // Import file section
 file.import.title = "इंपोर्ट करें";
+file.import.zbrush.dynamicSubdivision = "";
+file.import.zbrush.dynamicSubdivision.help = "";
 // Configure import options
 file.importSettings = "इंपोर्ट विकल्प";
 // Export the current selected objects instead of the entire scene
@@ -865,6 +877,8 @@ file.quarantine.deleteAll = "सभी डिलीट करें";
 file.quarantine.failedImport = "इंपोर्ट विफल";
 // $0 = number of days
 file.quarantine.help = "प्रोजेक्ट्स फ़ोल्डर से निकल चुके प्रोजेक्ट का डेटा और इंपोर्ट से बदली गई फ़ाइलें यहाँ $0 दिनों तक रखी जाती हैं। विफल इंपोर्ट तब तक रहते हैं जब तक आप उन्हें डिलीट नहीं करते।";
+// Checkbox in the delete confirmation of a recently deleted entry: the next entries are deleted without asking until Nomad closes
+file.quarantine.silent = "";
 // Render a screenshot of the scene
 file.render = "रेंडर";
 // height of exported screenshot
@@ -977,24 +991,20 @@ gesture.history.hold = "देर तक दबाना";
 gesture.history.hold.help = "2/3 उंगलियों को नीचे रखें (निरंतर).";
 // Idle long press with pencil, mouse, finger, etc
 gesture.longPress = "देर तक दबाना";
-gesture.mask.holdIdle = "टूल";
-gesture.mask.holdIdle.help = "लंबे दबाव और बिना हिलाए छोड़ने पर मास्क और सेलमास्क के बीच स्विच करें।";
-// Hold the finger on screen to toggle between two tools: Mask and SelMask
-gesture.mask.holdStroke = "स्ट्रोक";
-gesture.mask.holdStroke.help = "लंबे दबाव से मास्क और सेलमास्क के बीच टॉगल होगा और एक नया स्ट्रोक शुरू होगा।
-
-स्ट्रोक के अंत में, पिछले उपकरण को वापस चुना जाता है।";
+gesture.longPress.drag = "";
+gesture.longPress.drag.help = "";
+gesture.longPress.release = "";
+gesture.longPress.release.help = "";
 // Enable Mask gesture by tapping once on the screen
 gesture.mask.oneTap = "एक टैप शॉर्टकट";
-gesture.mask.oneTap.help = "मुखौटा बटन शॉर्टकट को होल्ड किए बिना, स्क्रीन को एक बार टैप करके मुखौटा शॉर्टकट को अनुमति दें.
-
-यह निम्नलिखित जेस्चर की अनुमति देगा:
-• मुखौटा को पलटने के लिए पृष्ठभूमि पर टैप करें
-• मुखौटा को धुंधला करने के लिए मुखौटा क्षेत्र पर टैप करें
-• मुखौटा को पैना करने के लिए बिना मुखौटा वाली जगह पर टैप करें";
+gesture.oneTap.help = "";
+gesture.oneTap.hide.help = "";
+gesture.oneTap.mask.help = "";
 // Mouse/Trackpad
 gesture.mouse = "माउस";
 gesture.node = "नोड संपादन";
+gesture.onBackground = "";
+gesture.onBackground.help = "";
 // Size rejection is when we try to ignore the palm of the hand when we interact with a tablet
 gesture.palmRejection = "हथेली अस्वीकृति";
 gesture.palmRejection.confirm = "यदि आपको कैनवस के साथ इंटरैक्ट करने में समस्या हो रही है, तो इस विकल्प को अक्षम करना सुनिश्चित करें!";
@@ -1016,7 +1026,6 @@ gesture.sculpt = "गढ़ें";
 gesture.select = "ऑब्जेक्ट का चयन करें";
 // Shortcut customization: choose the action performed by the shortcut (select tool, etc.)
 gesture.shortcut = "शॉर्टकट";
-gesture.smooth.holdSelect.help = "देर तक दबाने पर चयन उपकरण को स्वीकार कर लेगा जब तक स्ट्रोक चयन चल रहा है।";
 // Hold the pointer at the end of a stroke to snap it into a line or a curve
 gesture.strokeSnap = "स्ट्रोक स्नैप";
 gesture.strokeSnap.delay = "होल्ड विलंब";
@@ -1041,6 +1050,13 @@ gesture.tool.select = "चुनें";
 gesture.tool.transform = "रूपांतरण";
 // Multi touch navigation with the macbook trackpad or the Magic Trackpad
 gesture.trackpad = "ट्रैकपैड";
+// What two fingers on the trackpad do in the curve and shape editors
+gesture.trackpad.curve = "";
+gesture.trackpad.curve.help = "";
+gesture.trackpad.curve.pan = "";
+gesture.trackpad.curve.pan.help = "";
+gesture.trackpad.curve.zoom = "";
+gesture.trackpad.curve.zoom.help = "";
 // What two fingers on the trackpad do
 gesture.trackpad.two = "दो उँगलियाँ";
 gesture.trackpad.two.help = "ट्रैकपैड से व्यू में नेविगेट करें। दो उँगलियों से पिंच करने पर हमेशा ज़ूम होता है और घुमाने पर रोल नियंत्रित होता है; एक उँगली उठाने पर दूसरी क्रिया सक्रिय हो जाती है।";
@@ -1103,8 +1119,22 @@ history.replay.camera = "कैमरा रीस्टोर करें";
 history.replay.camera.help = "कैमरा रीप्ले हो रही क्रियाओं का अनुसरण करता है, भले ही हिस्ट्री का कैमरा रीस्टोर करें विकल्प बंद हो।";
 // Popup opened by the play button, above its two options
 history.replay.confirm = "हिस्ट्री रीप्ले करें?";
+// Option of the replay popup: shows the gizmo, the object handles and the tool overlays in the viewport during the replay
+history.replay.handles = "";
+history.replay.handles.help = "";
 history.replay.help = "शुरुआत पर लौटकर इस गति से क्रियाओं को एक-एक करके फिर करता है (प्रति सेकंड क्रियाएँ)।
 रोकने के लिए बटन पर दोबारा टैप करें। अनडू, रीडू या किसी एंट्री पर टैप करने से भी रीप्ले रुक जाता है।";
+// Option of the replay popup: the replay runs with no interface at all, not even the small replay controls
+history.replay.minify = "UI को छोटा करें";
+history.replay.minify.help = "रीप्ले कंट्रोल भी छिपाता है. रीप्ले रोकने के लिए स्क्रीन पर टैप करें.";
+// Popup shown when the user touches the canvas or uses a shortcut while the history replay runs: the replay waits for a choice
+history.replay.pause = "रीप्ले रुका हुआ है";
+// Button of the replay paused popup: ends the replay and jumps to the most recent operation
+history.replay.pause.end = "अंत पर जाएँ";
+// Button of the replay paused popup: the replay continues
+history.replay.pause.resume = "जारी रखें";
+// Button of the replay paused popup: ends the replay and stays on the current operation
+history.replay.pause.stop = "यहीं रुकें";
 // Option of the replay popup: runs backwards, undoing from the current state to the root
 history.replay.reverse = "उल्टा";
 history.replay.reverse.help = "शुरुआत से रीप्ले करने के बजाय वर्तमान स्थिति से शुरुआत तक क्रियाओं को अनडू करता है।";
@@ -1313,6 +1343,8 @@ item.edit = "संपादित करें";
 item.edit.help = "इस ठप्पे से पहले ही आकार दिया गया एक प्लेन जोड़ता है, जिसमें एक स्कल्प्ट लेयर और हर पिक्सेल के लिए एक चतुर्भुज होता है।
 
 इसे तराशें, फिर `टोपोलॉजी -> बेक -> VDM` से दोबारा बेक करें।";
+// Short button label, turns on the option named by the message next to it
+item.enable = "";
 // Short button label, opens a popup to correct the pixels of an imported image
 item.fix = "सुधारें";
 item.fix.help = "चित्र को ही सुधारता है: मध्य मान, इनवर्ट, रोटेशन।
@@ -1517,7 +1549,7 @@ light.type.point = "बिंदु";
 light.type.spot = "स्पॉट";
 
 link.address = "यह डिवाइस";
-link.ai.request = "";
+link.ai.request = "$0 Nomad को नियंत्रित करना चाहता है";
 link.approve = "स्वीकार करें";
 link.bridges = "ब्रिज स्क्रिप्ट (GitHub)";
 link.cameras = "कैमरे";
@@ -1560,7 +1592,7 @@ link.mode.nomad.help = "एक डिवाइस पर होस्ट और 
 link.nearby = "आस-पास के डिवाइस";
 link.objects = "ऑब्जेक्ट और ज्यामिति";
 link.off = "बंद";
-link.pairings = "";
+link.pairings = "पेयर किए गए डिवाइस";
 link.peer = "पीयर";
 link.peerAddress = "क्लाइंट पता";
 link.port = "नेटवर्क पोर्ट";
@@ -1654,6 +1686,8 @@ material.pbrRefraction.warning = "अपवर्तन के लिए PBR छ
 // See glossary
 material.pbrRoughnessMetalness.warning = "खुरदरापन और धातुपन के लिए PBR छायांकन मोड की आवश्यकता होती है.";
 // See glossary
+material.pbrShadowCatcher.warning = "";
+// See glossary
 material.pbrSubsurface.warning = "उपसतह के लिए PBR छायांकन मोड की आवश्यकता होती है.";
 // material (additive and blending) will write into depth
 material.preRefract = "प्री-रिफ्रैक्ट पास";
@@ -1697,7 +1731,7 @@ material.texture.mipmap = "मिपमैप";
 // Nearest Filtering (closest sample)
 material.texture.nearest = "निकटतम";
 // Help on the link buttons of the texture settings: a linked section is shared by every linked texture channel
-material.texture.sync = "";
+material.texture.sync = "सभी लिंक किए गए टेक्स्चर में साझा";
 // Textures, basically images wrapped on models (synonym: Maps, Texture maps)
 material.textures = "टेक्स्चर";
 material.textures.help = "Nomad पर लौटने पर इम्पोर्ट की गई इमेज अपनी मूल फ़ाइल से सिंक हो जाती हैं।";
@@ -1875,6 +1909,8 @@ paint.gradient = "ग्रेडिएंट";
 paint.gradient.mirror.help = "कर्व को रेखा के मध्य के चारों ओर मिरर करें: एक आधा संपादित करें, दूसरा आधा उसका अनुसरण करता है।";
 // Second material of the gradient, painted where the curve is low; when disabled the paint fades into the surface
 paint.gradientEnd = "अंतिम मटीरीयल";
+// Help of the Extend button, closed shapes (lasso, ellipse...): the end material also covers everything around the shape
+paint.gradientEnd.extend.help = "";
 // Help of the sync button next to the end material title
 paint.gradientEnd.sync = "पेंट मटीरीयल को अंतिम मटीरीयल में कॉपी करें।";
 // Factor/Opacity of paint tool
@@ -2189,6 +2225,17 @@ primitive.projectSphere = "गोला";
 primitive.radius = "त्रिज्या";
 primitive.radius.end = "त्रिज्या अंत";
 primitive.radius.start = "त्रिज्या प्रारंभ";
+// Primitive extruded from an imported vector drawing (SVG)
+primitive.shape = "आकार";
+primitive.shape.edit = "";
+primitive.shape.empty = "इस फ़ाइल में कोई भरा हुआ आकार नहीं मिला.";
+primitive.shape.limit = "अधिकतम फेस सीमा पूरी हुई। पूरा आकार दिखाने के लिए सीमा बढ़ाएँ।";
+// Opens the list of the curves of a 2D shape, from front to back, to reorder them
+primitive.shape.order = "";
+primitive.shape.order.help = "";
+// Toggle on a group of curves in a 2D shape: whether its overlapping curves cut each other or fill
+primitive.shape.overlaps = "";
+primitive.shape.overlaps.help = "";
 // Size (of cube x dimension)
 primitive.size = "आकार";
 primitive.sizeX = "आकार X";
@@ -2206,6 +2253,7 @@ primitive.text.boldItalic = "बोल्ड इटैलिक";
 primitive.text.center = "केंद्रित";
 primitive.text.depth = "गहराई";
 primitive.text.edit = "टेक्स्ट संपादित करें";
+primitive.text.fan = "पंखा";
 primitive.text.font = "फ़ॉन्ट";
 primitive.text.italic = "इटैलिक";
 primitive.text.left = "बायाँ";
@@ -2252,6 +2300,8 @@ primitive.triplanar.title.help = "त्रिफलकीय 3 फलकों 
 
 आप अन्य फलकों को प्रभावित करने वाले फलक को पेंट करने के लिए मुखौटा पैनल में `टोपोलॉजिकली कनेक्टेड` विकल्प का उपयोग कर सकते हैं.";
 primitive.tube = "नली";
+primitive.tube.unfold = "";
+primitive.tube.unfold.help = "";
 // Finalize the primitive as a sculptable mesh; this does not mean checking data validity
 primitive.validate = "अंतिम रूप दें";
 
@@ -2486,6 +2536,24 @@ settings.multires.lowResVertices.help = "जब आप कैमरा घुम
 // Maximum number of vertices (points)
 settings.multires.maxVertices = "अधिकतम शीर्ष गणना";
 settings.multires.maxVertices.help = "Nomad उपखंड से पहले मेमोरी जांच नहीं करता है, उच्च बहुभुज गणना आसानी से क्रैश का कारण बन सकता है.";
+// Navigation widget in the viewport corner, shaped as a cube, a sphere or axes (easy to snap/align the view)
+settings.navigator = "नेविगेटर";
+// Alignment (can be auto/on/off)
+settings.navigator.align = "संरेखण प्रतिबंधित करें";
+settings.navigator.align.help = "विश्व अक्ष के लिए दृश्यों को संरेखित करें। यदि सक्षम है, तो केवल 6 स्नैपिंग दृश्य संभव हैं।
+
+ऑटो पर, प्रतिबंध केवल तब होगा यदि कैमरा ऑर्बिट मोड में है।";
+// Extra snapping views on the edges and corners of the navigator
+settings.navigator.edgeCorner = "किनारे और कोने";
+settings.navigator.edgeCorner.help = "किनारों और कोनों पर स्नैपिंग दृश्य जोड़ें (एम्बर क्षेत्र)।";
+// Flip the camera (rotate 180° to see the other side)
+settings.navigator.flip = "180° पलटें";
+settings.navigator.flip.help = "दृश्य पलटें यदि दृश्य पहले से ही स्नैप्ड है।";
+// Dragging the navigator rotates like the Turntable mode, even if the camera is in Trackball
+settings.navigator.turntable = "टर्नटेबल ड्रैग";
+settings.navigator.turntable.help = "नेविगेटर को खींचने पर कैमरा बिना रोल किए घूमता है और हर स्नैप व्यू पर रुकता है।
+
+इसके बजाय नेविगेटर को ट्रैकबॉल रोटेशन से खींचने के लिए इसे अक्षम करें। दोनों स्थितियों में ड्रैग क्षैतिज या लंबवत रहता है।";
 // These options will be reset when the app restarts
 settings.notSaved = "ये विकल्प सेटिंग्स में सहेजे नहीं गए हैं.";
 // Outline (contour highlight around the selected object)
@@ -2536,24 +2604,6 @@ settings.showMasking = "मुखौटा दिखाएँ";
 settings.showPainting = "पेंटिंग दिखाएँ";
 // https://en.wikipedia.org/wiki/Shading
 settings.smoothShading = "चिकना छायांकन";
-// Navigation widget in the viewport corner, shaped as a cube, a sphere or axes (easy to snap/align the view)
-settings.navigator = "नेविगेटर";
-// Alignment (can be auto/on/off)
-settings.navigator.align = "संरेखण प्रतिबंधित करें";
-settings.navigator.align.help = "विश्व अक्ष के लिए दृश्यों को संरेखित करें। यदि सक्षम है, तो केवल 6 स्नैपिंग दृश्य संभव हैं।
-
-ऑटो पर, प्रतिबंध केवल तब होगा यदि कैमरा ऑर्बिट मोड में है।";
-// Extra snapping views on the edges and corners of the navigator
-settings.navigator.edgeCorner = "किनारे और कोने";
-settings.navigator.edgeCorner.help = "किनारों और कोनों पर स्नैपिंग दृश्य जोड़ें (एम्बर क्षेत्र)।";
-// Flip the camera (rotate 180° to see the other side)
-settings.navigator.flip = "180° पलटें";
-settings.navigator.flip.help = "दृश्य पलटें यदि दृश्य पहले से ही स्नैप्ड है।";
-// Dragging the navigator rotates like the Turntable mode, even if the camera is in Trackball
-settings.navigator.turntable = "टर्नटेबल ड्रैग";
-settings.navigator.turntable.help = "नेविगेटर को खींचने पर कैमरा बिना रोल किए घूमता है और हर स्नैप व्यू पर रुकता है।
-
-इसके बजाय नेविगेटर को ट्रैकबॉल रोटेशन से खींचने के लिए इसे अक्षम करें। दोनों स्थितियों में ड्रैग क्षैतिज या लंबवत रहता है।";
 // Stats (information logs about the scene displayed on screen)
 settings.stats = "आँकड़े";
 settings.stats.all = "पूरा दृश्य दिखाएँ";
@@ -3038,8 +3088,12 @@ toggle.yes = "हाँ";
 tool.all = "सभी";
 // Ideally short strings (Arrange selected objects)
 tool.arrange = "व्यवस्थित करें";
+// Ideally short strings (Bend a sculpted object along a curve)
+tool.bend = "";
 // Ideally short strings
 tool.brush = "ब्रश";
+tool.brush.clampRadius = "";
+tool.brush.clampRadius.help = "";
 // Ideally short strings
 tool.clay = "क्ले";
 // Ideally short strings (Subtract)
@@ -3355,7 +3409,14 @@ tool.shape = "आकृति";
 tool.shape.band = "पट्टी";
 // Ideally short strings (Band selection: past the far guide, everything keeps the full value, like a soft half-space)
 tool.shape.bandExtend = "विस्तार";
+// Ideally short strings (Band selection: past both guides, the near side keeps the start value and the far side the full value)
+tool.shape.bandExtend.both = "";
+tool.shape.bandExtend.both.help = "";
+// Ideally short strings (Band selection: only past the far guide)
+tool.shape.bandExtend.end = "";
 tool.shape.bandExtend.help = "गाइड के आगे भी जारी रहता है: दूर वाली तरफ़ पट्टी पर रुकने के बजाय पूरा मान पाती है।";
+// Ideally short strings (Band selection: stops at both guides)
+tool.shape.bandExtend.off = "";
 // Ideally short strings (Band selection: swap which guide the gradient starts from)
 tool.shape.bandFlip = "पलटें";
 // Ideally short strings (Whether a shape is closed or not, a tube is open, a torus is closed)

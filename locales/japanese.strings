@@ -94,6 +94,8 @@ access.window = "アシスティブウィンドウ";
 alert.aborted = "操作が中止されました！";
 // Autosave popup
 alert.autoSave.auto = "自動保存... $0秒後";
+// Autosave popup shown while the app is idle: the countdown starts when the user touches the screen again
+alert.autoSave.wait = "";
 // Transform mode lets the user move the reference image with two fingers
 alert.backgroundTransform = "タップして変換モードを終了します。";
 alert.colorPicker = "指をオブジェクトにドラッグして、カラーを選択してください。";
@@ -115,23 +117,21 @@ alert.gizmo.editObject = "オブジェクト編集モード。";
 alert.gizmo.editPivot = "ピボット編集モード。";
 // Surface repeater: the face group popup is open, tapping the object switches a group on or off
 alert.groupPicker = "オブジェクトをタップまたはドラッグしてフェースグループを切り替えます。";
-// Button that turns the heightmap render off
-alert.heightmap.hide = "ハイトマップを非表示";
 // The viewport renders the depth of the scene instead of the shaded objects
 alert.heightmapOn = "ハイトマップがオンです！";
 // The user decided to display hidden faces
 alert.hideIgnored = "非表示は無視されています！";
+// A project opens with fewer undo steps than it was saved with: some history data is missing, damaged or from another version
+alert.history.lost = "履歴の一部を読み込めませんでした。";
+// Undo, redo or replay stopped: the data of this operation is missing or damaged on the disk
+alert.history.unreadable = "履歴データの一部が見つからないか破損しているため、この操作を取り消しまたはやり直しできません。";
 // Error when an algorithm needs the object to have a hole (usually to fill it)
 alert.hole.nothing = "オブジェクトに穴がありません。";
-// Button that turns the inspector off
-alert.inspect.hide = "インスペクタを非表示";
 // The viewport renders a material channel instead of the shaded objects
 alert.inspectOn = "インスペクタがオンです！";
 // The lattice deformation was applied with a different mask or visibility state
 // (the gui appends the icon of the changed states)
 alert.lattice.desync = "ラティスが同期されていません！";
-// Button that re-applies the lattice deformation with the current mask/visibility
-alert.lattice.sync = "ラティスを更新";
 // A project was saved without the geometry of some objects: they open as empty groups ($0 = object names)
 alert.load.damaged = "破損したオブジェクトを空のグループとして読み込みました：$0";
 // No operation occurred because the mesh is already manifold
@@ -162,6 +162,8 @@ alert.paintingHidden = "ペイントが非表示です!";
 alert.quickSave = "保存中…";
 // The user is starting an operation that can lead to a crash
 alert.range.warning = "ディテールの値が高いので、多くのメモリを必要とする可能性があります！";
+// The limits removed some copies of the repeaters (a button next to it opens the settings that increase the limits)
+alert.repeater.limit = "";
 // Hide the objects that are not selected
 alert.selection.isolate = "選択部分を分離";
 // Show the objects that are hidden
@@ -246,6 +248,8 @@ background.reference = "参照";
 binding.addSync = "同期";
 binding.addSync.help = "デフォルトでは、シーンメニューで設定された同期値を使用します。";
 binding.button = "ボタン";
+binding.onBackground = "";
+binding.onBackground.help = "";
 // Binding option
 binding.context.toggle = "コンテキストの切り替え";
 // Dead zones
@@ -476,10 +480,17 @@ cube.right = "右";
 cube.top = "上";
 
 curve.bevel = "ベベル";
+// Curve type: Bézier points with two handles
+curve.bezier = "";
 curve.bspline = "B-スプライン曲線";
+// Small toggle next to the Shift slider: the brush falloff gets a round tip, like a dome, instead of a pointed one
+curve.dome = "";
 curve.editor = "カーブエディター";
+// Button of the shape and profile editors: show the editor full screen
+curve.editor.maximize = "";
 // Time to hold a curve point or handle still before the long press edit starts
 curve.holdDelay = "長押し時間";
+curve.holdDelay.help = "";
 curve.ik = "IK";
 curve.ik.help = "インバースキネマティクス（IK）：ポイントをドラッグして曲線にポーズを付けると、接続したポイントが追従します。ポイントをタップするとロックまたはロック解除します。ポイントを長押しすると、すべてのポイントをロックまたはロック解除します。ロックしたポイントは動きません。錠前をドラッグすると曲線全体が移動します。";
 curve.ik.stretch = "伸縮";
@@ -686,7 +697,6 @@ extract.wall = "壁";
 
 // Auto save section
 file.autoSave = "自動保存";
-file.autoSave.confirm = "自動保存をオフにしますか？";
 // Delete the current autoSave data
 file.autoSave.delete = "自動保存の内容を破棄";
 file.autoSave.help = "プロジェクトを一定の間隔で別のファイルに保存します。
@@ -816,6 +826,8 @@ file.import.skipTextures = "テクスチャをスキップ";
 file.import.skipTextures.help = "ファイルから埋め込みテクスチャを読み込まないでください。";
 // Import file section
 file.import.title = "読み込む";
+file.import.zbrush.dynamicSubdivision = "";
+file.import.zbrush.dynamicSubdivision.help = "";
 // Configure import options
 file.importSettings = "読み込みオプション";
 // Export the current selected objects instead of the entire scene
@@ -869,6 +881,8 @@ file.quarantine.deleteAll = "すべて削除";
 file.quarantine.failedImport = "読み込み失敗";
 // $0 = number of days
 file.quarantine.help = "プロジェクトフォルダから外れたプロジェクトのデータと、読み込みで置き換えられたファイルは、ここに$0日間保管されます。読み込みに失敗したファイルは、削除するまで残ります。";
+// Checkbox in the delete confirmation of a recently deleted entry: the next entries are deleted without asking until Nomad closes
+file.quarantine.silent = "";
 // Render a screenshot of the scene
 file.render = "レンダリング";
 // height of exported screenshot
@@ -981,24 +995,20 @@ gesture.history.hold = "長押し";
 gesture.history.hold.help = "2 (または3) 本指で長押し (続けて)。";
 // Idle long press with pencil, mouse, finger, etc
 gesture.longPress = "長押し";
-gesture.mask.holdIdle = "ツール";
-gesture.mask.holdIdle.help = "移動せずに長押ししてから離すと、マスクとSelMaskを切り替えます。";
-// Hold the finger on screen to toggle between two tools: Mask and SelMask
-gesture.mask.holdStroke = "ストローク";
-gesture.mask.holdStroke.help = "長押しすると、マスクとSelMaskの間を切り替え、新しいストロークが始まります。
-
-ストロークの終了時には、以前のツールが再び選択されます。";
+gesture.longPress.drag = "";
+gesture.longPress.drag.help = "";
+gesture.longPress.release = "";
+gesture.longPress.release.help = "";
 // Enable Mask gesture by tapping once on the screen
 gesture.mask.oneTap = "ワンタップショートカット";
-gesture.mask.oneTap.help = "画面を1度タップしてマスクのショートカットを許可します。マスクボタンのショートカットを押す必要がなくなります。
-
-以下のジェスチャを利用できます:
-• 背景をタップして、マスクを反転
-• マスクしたエリアをタップして、マスクをぼかす
-• マスクされていないエリアをタップして、マスクをシャープにする";
+gesture.oneTap.help = "";
+gesture.oneTap.hide.help = "";
+gesture.oneTap.mask.help = "";
 // Mouse/Trackpad
 gesture.mouse = "マウス";
 gesture.node = "ノードの編集";
+gesture.onBackground = "";
+gesture.onBackground.help = "";
 // Size rejection is when we try to ignore the palm of the hand when we interact with a tablet
 gesture.palmRejection = "パームリジェクション";
 gesture.palmRejection.confirm = "キャンバスの操作で問題に遭遇した場合は、このオプションが無効になっているか確認してください！";
@@ -1020,7 +1030,6 @@ gesture.sculpt = "スカルプト";
 gesture.select = "オブジェクトを選択";
 // Shortcut customization: choose the action performed by the shortcut (select tool, etc.)
 gesture.shortcut = "ショートカット";
-gesture.smooth.holdSelect.help = "長押しすると、選択ツールに切り替わり、ストローク選択が続く間有効になります。";
 // Hold the pointer at the end of a stroke to snap it into a line or a curve
 gesture.strokeSnap = "ストロークスナップ";
 gesture.strokeSnap.delay = "長押し時間";
@@ -1045,6 +1054,13 @@ gesture.tool.select = "選択";
 gesture.tool.transform = "トランスフォーム";
 // Multi touch navigation with the macbook trackpad or the Magic Trackpad
 gesture.trackpad = "トラックパッド";
+// What two fingers on the trackpad do in the curve and shape editors
+gesture.trackpad.curve = "";
+gesture.trackpad.curve.help = "";
+gesture.trackpad.curve.pan = "";
+gesture.trackpad.curve.pan.help = "";
+gesture.trackpad.curve.zoom = "";
+gesture.trackpad.curve.zoom.help = "";
 // What two fingers on the trackpad do
 gesture.trackpad.two = "2本指";
 gesture.trackpad.two.help = "トラックパッドでビューを操作します。2本指のピンチ操作は常にズーム、ひねる操作はロールになり、片方の指を離すともう一方の操作に切り替わります。";
@@ -1107,8 +1123,22 @@ history.replay.camera = "カメラを復元";
 history.replay.camera.help = "履歴の「カメラを復元」がオフでも、再生中の操作にカメラが追従します。";
 // Popup opened by the play button, above its two options
 history.replay.confirm = "履歴を再生しますか？";
+// Option of the replay popup: shows the gizmo, the object handles and the tool overlays in the viewport during the replay
+history.replay.handles = "";
+history.replay.handles.help = "";
 history.replay.help = "先頭に戻り、この速度（1秒あたりの操作数）で操作を一つずつやり直します。
 もう一度ボタンをタップすると停止します。元に戻す、やり直す、履歴項目のタップでも停止します。";
+// Option of the replay popup: the replay runs with no interface at all, not even the small replay controls
+history.replay.minify = "UIを最小化";
+history.replay.minify.help = "再生コントロールも非表示にします。画面をタップすると再生を一時停止します。";
+// Popup shown when the user touches the canvas or uses a shortcut while the history replay runs: the replay waits for a choice
+history.replay.pause = "再生を一時停止中";
+// Button of the replay paused popup: ends the replay and jumps to the most recent operation
+history.replay.pause.end = "最後へ移動";
+// Button of the replay paused popup: the replay continues
+history.replay.pause.resume = "再開";
+// Button of the replay paused popup: ends the replay and stays on the current operation
+history.replay.pause.stop = "ここで停止";
 // Option of the replay popup: runs backwards, undoing from the current state to the root
 history.replay.reverse = "逆再生";
 history.replay.reverse.help = "先頭から再生する代わりに、現在の状態から先頭まで操作を元に戻します。";
@@ -1317,6 +1347,8 @@ item.edit = "編集";
 item.edit.help = "このスタンプで成形済みの平面を追加します。スカルプトレイヤーを持ち、1ピクセルにつき1つの四角形で構成されます。
 
 スカルプトしてから、`トポロジー -> ベイク -> VDM` で再びベイクします。";
+// Short button label, turns on the option named by the message next to it
+item.enable = "";
 // Short button label, opens a popup to correct the pixels of an imported image
 item.fix = "修正";
 item.fix.help = "画像自体を修正します：中間値、反転、回転。
@@ -1522,7 +1554,7 @@ light.type.point = "ポイント";
 light.type.spot = "スポットライト";
 
 link.address = "このデバイス";
-link.ai.request = "";
+link.ai.request = "$0がNomadの操作を求めています";
 link.approve = "承認";
 link.bridges = "ブリッジスクリプト（GitHub）";
 link.cameras = "カメラ";
@@ -1565,7 +1597,7 @@ link.mode.nomad.help = "1台のデバイスで「ホスト」、他のデバイ�
 link.nearby = "近くのデバイス";
 link.objects = "オブジェクトとジオメトリ";
 link.off = "オフ";
-link.pairings = "";
+link.pairings = "ペアリング済みデバイス";
 link.peer = "ピア";
 link.peerAddress = "クライアントアドレス";
 link.port = "ネットワークポート";
@@ -1659,6 +1691,8 @@ material.pbrRefraction.warning = "屈折の表示には、PBRシェーディン�
 // See glossary
 material.pbrRoughnessMetalness.warning = "粗さとメタリックの表示には、PBRシェーディングモードが必要です。";
 // See glossary
+material.pbrShadowCatcher.warning = "";
+// See glossary
 material.pbrSubsurface.warning = "サブサーフェスの表示には、PBRシェーディングモードが必要です。";
 // material (additive and blending) will write into depth
 material.preRefract = "プリリフラクションパス";
@@ -1702,7 +1736,7 @@ material.texture.mipmap = "ミップマップ";
 // Nearest Filtering (closest sample)
 material.texture.nearest = "ニアレスト";
 // Help on the link buttons of the texture settings: a linked section is shared by every linked texture channel
-material.texture.sync = "";
+material.texture.sync = "リンクされたすべてのテクスチャで共有";
 // Textures, basically images wrapped on models (synonym: Maps, Texture maps)
 material.textures = "テクスチャ";
 material.textures.help = "インポートした画像は、Nomadに戻ったときに元のファイルと同期されます。";
@@ -1880,6 +1914,8 @@ paint.gradient = "グラデーション";
 paint.gradient.mirror.help = "線の中央を軸にカーブをミラーします。片方を編集すると、もう片方も追従します。";
 // Second material of the gradient, painted where the curve is low; when disabled the paint fades into the surface
 paint.gradientEnd = "終了マテリアル";
+// Help of the Extend button, closed shapes (lasso, ellipse...): the end material also covers everything around the shape
+paint.gradientEnd.extend.help = "";
 // Help of the sync button next to the end material title
 paint.gradientEnd.sync = "ペイントマテリアルを終了マテリアルにコピーします。";
 // Factor/Opacity of paint tool
@@ -2194,6 +2230,17 @@ primitive.projectSphere = "球";
 primitive.radius = "半径";
 primitive.radius.end = "終端の半径";
 primitive.radius.start = "開始半径";
+// Primitive extruded from an imported vector drawing (SVG)
+primitive.shape = "シェイプ";
+primitive.shape.edit = "";
+primitive.shape.empty = "このファイルに塗りつぶされたシェイプが見つかりません。";
+primitive.shape.limit = "面数の上限に達しました。シェイプ全体を表示するには上限を増やしてください。";
+// Opens the list of the curves of a 2D shape, from front to back, to reorder them
+primitive.shape.order = "";
+primitive.shape.order.help = "";
+// Toggle on a group of curves in a 2D shape: whether its overlapping curves cut each other or fill
+primitive.shape.overlaps = "";
+primitive.shape.overlaps.help = "";
 // Size (of cube x dimension)
 primitive.size = "サイズ";
 primitive.sizeX = "サイズ X";
@@ -2211,6 +2258,7 @@ primitive.text.boldItalic = "太字 斜体";
 primitive.text.center = "中央揃え";
 primitive.text.depth = "深さ";
 primitive.text.edit = "テキストを編集";
+primitive.text.fan = "扇形";
 primitive.text.font = "フォント";
 primitive.text.italic = "斜体";
 primitive.text.left = "左";
@@ -2257,6 +2305,8 @@ primitive.triplanar.title.help = "トライプラナーは3つの平面のマス
 
 “マスク”パネルの“トポロジー接続”を使うと、1つの平面をペイントしながら他の平面にも影響を与えられます。";
 primitive.tube = "チューブ";
+primitive.tube.unfold = "";
+primitive.tube.unfold.help = "";
 // Finalize the primitive as a sculptable mesh; this does not mean checking data validity
 primitive.validate = "確定";
 
@@ -2491,6 +2541,24 @@ settings.multires.lowResVertices.help = "カメラを動かす際は、メッシ
 // Maximum number of vertices (points)
 settings.multires.maxVertices = "最大頂点数";
 settings.multires.maxVertices.help = "Nomadは分割の前にメモリの確認を行いません。数が多すぎると簡単にクラッシュにつながる可能性があります。";
+// Navigation widget in the viewport corner, shaped as a cube, a sphere or axes (easy to snap/align the view)
+settings.navigator = "ナビゲーター";
+// Alignment (can be auto/on/off)
+settings.navigator.align = "アライメントを制限";
+settings.navigator.align.help = "ビューを世界軸に揃えます。有効にすると、スナッピングビューは6つだけ可能です。
+
+自動では、カメラがオービットモードにある場合のみ制限が行われます。";
+// Extra snapping views on the edges and corners of the navigator
+settings.navigator.edgeCorner = "辺と角";
+settings.navigator.edgeCorner.help = "辺と角にスナップビューを追加します（琥珀色の領域）。";
+// Flip the camera (rotate 180° to see the other side)
+settings.navigator.flip = "180°回転";
+settings.navigator.flip.help = "ビューが既にスナップされている場合はビューを反転します。";
+// Dragging the navigator rotates like the Turntable mode, even if the camera is in Trackball
+settings.navigator.turntable = "ターンテーブルドラッグ";
+settings.navigator.turntable.help = "ナビゲーターをドラッグすると、カメラをロールさせずに回転し、各スナップビューで止まります。
+
+無効にすると、代わりにトラックボール回転でナビゲーターをドラッグします。どちらの場合も、ドラッグは水平または垂直に保たれます。";
 // These options will be reset when the app restarts
 settings.notSaved = "これらのオプションは設定に保存されません。";
 // Outline (contour highlight around the selected object)
@@ -2541,24 +2609,6 @@ settings.showMasking = "マスクを表示";
 settings.showPainting = "ペイントを表示";
 // https://en.wikipedia.org/wiki/Shading
 settings.smoothShading = "スムーズシェーディング";
-// Navigation widget in the viewport corner, shaped as a cube, a sphere or axes (easy to snap/align the view)
-settings.navigator = "ナビゲーター";
-// Alignment (can be auto/on/off)
-settings.navigator.align = "アライメントを制限";
-settings.navigator.align.help = "ビューを世界軸に揃えます。有効にすると、スナッピングビューは6つだけ可能です。
-
-自動では、カメラがオービットモードにある場合のみ制限が行われます。";
-// Extra snapping views on the edges and corners of the navigator
-settings.navigator.edgeCorner = "辺と角";
-settings.navigator.edgeCorner.help = "辺と角にスナップビューを追加します（琥珀色の領域）。";
-// Flip the camera (rotate 180° to see the other side)
-settings.navigator.flip = "180°回転";
-settings.navigator.flip.help = "ビューが既にスナップされている場合はビューを反転します。";
-// Dragging the navigator rotates like the Turntable mode, even if the camera is in Trackball
-settings.navigator.turntable = "ターンテーブルドラッグ";
-settings.navigator.turntable.help = "ナビゲーターをドラッグすると、カメラをロールさせずに回転し、各スナップビューで止まります。
-
-無効にすると、代わりにトラックボール回転でナビゲーターをドラッグします。どちらの場合も、ドラッグは水平または垂直に保たれます。";
 // Stats (information logs about the scene displayed on screen)
 settings.stats = "統計情報";
 settings.stats.all = "シーン全体を表示";
@@ -3043,8 +3093,12 @@ toggle.yes = "はい";
 tool.all = "すべて";
 // Ideally short strings (Arrange selected objects)
 tool.arrange = "整列";
+// Ideally short strings (Bend a sculpted object along a curve)
+tool.bend = "";
 // Ideally short strings
 tool.brush = "ブラシ";
+tool.brush.clampRadius = "";
+tool.brush.clampRadius.help = "";
 // Ideally short strings
 tool.clay = "粘土";
 // Ideally short strings (Subtract)
@@ -3360,7 +3414,14 @@ tool.shape = "シェイプ";
 tool.shape.band = "帯";
 // Ideally short strings (Band selection: past the far guide, everything keeps the full value, like a soft half-space)
 tool.shape.bandExtend = "延長";
+// Ideally short strings (Band selection: past both guides, the near side keeps the start value and the far side the full value)
+tool.shape.bandExtend.both = "";
+tool.shape.bandExtend.both.help = "";
+// Ideally short strings (Band selection: only past the far guide)
+tool.shape.bandExtend.end = "";
 tool.shape.bandExtend.help = "ガイドの先まで続けます。奥側は帯で止まらず、最大値になります。";
+// Ideally short strings (Band selection: stops at both guides)
+tool.shape.bandExtend.off = "";
 // Ideally short strings (Band selection: swap which guide the gradient starts from)
 tool.shape.bandFlip = "反転";
 // Ideally short strings (Whether a shape is closed or not, a tube is open, a torus is closed)

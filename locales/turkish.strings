@@ -96,6 +96,8 @@ access.window = "Yardımcı pencere";
 alert.aborted = "İşlem iptal edildi!";
 // Autosave popup
 alert.autoSave.auto = "$0s içinde otomatik kaydedilecek...";
+// Autosave popup shown while the app is idle: the countdown starts when the user touches the screen again
+alert.autoSave.wait = "";
 // Transform mode lets the user move the reference image with two fingers
 alert.backgroundTransform = "Dönüştürme modundan çıkmak için basitçe dokun.";
 alert.colorPicker = "Bir renk seçmek için parmağınızı nesnenin üzerinde sürükleyin.";
@@ -117,23 +119,21 @@ alert.gizmo.editObject = "Nesne modunu düzenle.";
 alert.gizmo.editPivot = "Eksen modunu düzenle.";
 // Surface repeater: the face group popup is open, tapping the object switches a group on or off
 alert.groupPicker = "Yüz gruplarını açıp kapatmak için nesneye dokunun veya üzerinde sürükleyin.";
-// Button that turns the heightmap render off
-alert.heightmap.hide = "Yükseklik haritasını gizle";
 // The viewport renders the depth of the scene instead of the shaded objects
 alert.heightmapOn = "Yükseklik haritası açık!";
 // The user decided to display hidden faces
 alert.hideIgnored = "Gizleme yok sayıldı!";
+// A project opens with fewer undo steps than it was saved with: some history data is missing, damaged or from another version
+alert.history.lost = "Geçmişin bir bölümü yüklenemedi.";
+// Undo, redo or replay stopped: the data of this operation is missing or damaged on the disk
+alert.history.unreadable = "Bazı geçmiş verileri eksik veya hasarlı, bu işlem geri alınamaz veya yinelenemez.";
 // Error when an algorithm needs the object to have a hole (usually to fill it)
 alert.hole.nothing = "Nesnenin hiç deliği yok!";
-// Button that turns the inspector off
-alert.inspect.hide = "Denetleyiciyi gizle";
 // The viewport renders a material channel instead of the shaded objects
 alert.inspectOn = "Denetleyici açık!";
 // The lattice deformation was applied with a different mask or visibility state
 // (the gui appends the icon of the changed states)
 alert.lattice.desync = "Kafes senkronize değil!";
-// Button that re-applies the lattice deformation with the current mask/visibility
-alert.lattice.sync = "Kafesi güncelle";
 // A project was saved without the geometry of some objects: they open as empty groups ($0 = object names)
 alert.load.damaged = "Hasarlı nesneler, boş gruplar olarak yüklendi: $0";
 // No operation occurred because the mesh is already manifold
@@ -164,6 +164,8 @@ alert.paintingHidden = "Boyama gizli!";
 alert.quickSave = "Kaydediliyor...";
 // The user is starting an operation that can lead to a crash
 alert.range.warning = "Detay değeri yüksek ve çok bellek gerektirebilir!";
+// The limits removed some copies of the repeaters (a button next to it opens the settings that increase the limits)
+alert.repeater.limit = "";
 // Hide the objects that are not selected
 alert.selection.isolate = "Seçimi soyutla";
 // Show the objects that are hidden
@@ -248,6 +250,8 @@ background.reference = "Referans";
 binding.addSync = "Senkronize";
 binding.addSync.help = "Varsayılan olarak, sahne menüsünde ayarlanan senkronizasyon değerini kullanacaktır.";
 binding.button = "Düğme";
+binding.onBackground = "";
+binding.onBackground.help = "";
 // Binding option
 binding.context.toggle = "Bağlamı değiştir";
 // Dead zones
@@ -478,10 +482,17 @@ cube.right = "Sağ";
 cube.top = "Üst";
 
 curve.bevel = "Pah";
+// Curve type: Bézier points with two handles
+curve.bezier = "";
 curve.bspline = "B-spline";
+// Small toggle next to the Shift slider: the brush falloff gets a round tip, like a dome, instead of a pointed one
+curve.dome = "";
 curve.editor = "Eğri düzenleyici";
+// Button of the shape and profile editors: show the editor full screen
+curve.editor.maximize = "";
 // Time to hold a curve point or handle still before the long press edit starts
 curve.holdDelay = "Basılı tutma süresi";
+curve.holdDelay.help = "";
 curve.ik = "IK";
 curve.ik.help = "Ters kinematik (IK): eğriye poz vermek için bir noktayı sürükleyin; bağlı noktalar onu izler. Bir noktayı kilitlemek veya kilidini açmak için ona dokunun. Tüm noktaları kilitlemek veya kilitlerini açmak için bir noktaya uzun basın. Kilitli noktalar yerinde kalır; tüm eğriyi taşımak için bir kilidi sürükleyin.";
 curve.ik.stretch = "Esneme";
@@ -686,7 +697,6 @@ extract.wall = "Duvar";
 
 // Auto save section
 file.autoSave = "Otomatik Kaydet";
-file.autoSave.confirm = "Otomatik kayıt kapatılsın mı?";
 // Delete the current autoSave data
 file.autoSave.delete = "Otomatik kaydı sil";
 file.autoSave.help = "Projenizi belirli aralıklarla ayrı bir dosyaya kaydedin.
@@ -816,6 +826,8 @@ file.import.skipTextures = "Dokuları atla";
 file.import.skipTextures.help = "Dosyadan gömülü dokuları yükleme.";
 // Import file section
 file.import.title = "İçe aktar";
+file.import.zbrush.dynamicSubdivision = "";
+file.import.zbrush.dynamicSubdivision.help = "";
 // Configure import options
 file.importSettings = "İçe aktarma seçenekleri";
 // Export the current selected objects instead of the entire scene
@@ -869,6 +881,8 @@ file.quarantine.deleteAll = "Tümünü sil";
 file.quarantine.failedImport = "İçe aktarma başarısız";
 // $0 = number of days
 file.quarantine.help = "Projeler klasöründen çıkan projelerin verileri ve bir içe aktarmayla değiştirilen dosyalar burada $0 gün saklanır. Başarısız içe aktarmalar siz silene kadar kalır.";
+// Checkbox in the delete confirmation of a recently deleted entry: the next entries are deleted without asking until Nomad closes
+file.quarantine.silent = "";
 // Render a screenshot of the scene
 file.render = "İşle";
 // height of exported screenshot
@@ -981,24 +995,20 @@ gesture.history.hold = "Uzun basılı tut";
 gesture.history.hold.help = "2/3 parmağı basılı tutun (sürekli).";
 // Idle long press with pencil, mouse, finger, etc
 gesture.longPress = "Uzun basılı tut";
-gesture.mask.holdIdle = "Araç";
-gesture.mask.holdIdle.help = "Mask ve SelMask arasında geçiş yapmak için hareket ettirmeden uzun basın ve bırakın.";
-// Hold the finger on screen to toggle between two tools: Mask and SelMask
-gesture.mask.holdStroke = "Darbe";
-gesture.mask.holdStroke.help = "Uzun basma Mask ve SelMask arasında geçiş yapacak ve yeni bir çizgi başlatacaktır.
-
-Çizginin sonunda, önceki alet tekrar seçilir.";
+gesture.longPress.drag = "";
+gesture.longPress.drag.help = "";
+gesture.longPress.release = "";
+gesture.longPress.release.help = "";
 // Enable Mask gesture by tapping once on the screen
 gesture.mask.oneTap = "Tek dokunmalı";
-gesture.mask.oneTap.help = "Ekrana bir kez dokunduğunuzda, Maske düğmesi kısayolunu basılı tutmaya gerek kalmadan maske kısayoluna izin verir.
-
-Aşağıdaki hareketlere olanak sağlar:
-• maskeyi ters çevirmek için arka plana dokunun
-• maskeyi bulanıklaştırmak için maskelenmiş alana dokunun
-• maskeyi netleştirmek için maskelenmemiş alana dokunun";
+gesture.oneTap.help = "";
+gesture.oneTap.hide.help = "";
+gesture.oneTap.mask.help = "";
 // Mouse/Trackpad
 gesture.mouse = "Fare";
 gesture.node = "Düğüm düzenleme";
+gesture.onBackground = "";
+gesture.onBackground.help = "";
 // Size rejection is when we try to ignore the palm of the hand when we interact with a tablet
 gesture.palmRejection = "Avuç içi reddi";
 gesture.palmRejection.confirm = "Kanvasla etkileşime geçmekte sorun yaşıyorsanız, bu seçeneği devre dışı bıraktığınızdan emin olun!";
@@ -1020,7 +1030,6 @@ gesture.sculpt = "Şekillendir";
 gesture.select = "Nesne seç";
 // Shortcut customization: choose the action performed by the shortcut (select tool, etc.)
 gesture.shortcut = "Kısayol";
-gesture.smooth.holdSelect.help = "Uzun basılı tut, vuruş seçim süresi boyunca seçim aracına geçecektir.";
 // Hold the pointer at the end of a stroke to snap it into a line or a curve
 gesture.strokeSnap = "Kontur yakalama";
 gesture.strokeSnap.delay = "Basılı tutma süresi";
@@ -1045,6 +1054,13 @@ gesture.tool.select = "Seç";
 gesture.tool.transform = "Dönüştür";
 // Multi touch navigation with the macbook trackpad or the Magic Trackpad
 gesture.trackpad = "İzleme dörtgeni";
+// What two fingers on the trackpad do in the curve and shape editors
+gesture.trackpad.curve = "";
+gesture.trackpad.curve.help = "";
+gesture.trackpad.curve.pan = "";
+gesture.trackpad.curve.pan.help = "";
+gesture.trackpad.curve.zoom = "";
+gesture.trackpad.curve.zoom.help = "";
 // What two fingers on the trackpad do
 gesture.trackpad.two = "İki parmak";
 gesture.trackpad.two.help = "İzleme dörtgeniyle görünümde gezinin. İki parmakla kıstırma her zaman yakınlaştırır, döndürme ise yuvarlamayı kontrol eder; parmaklardan birini kaldırmak diğer eyleme geçer.";
@@ -1107,8 +1123,22 @@ history.replay.camera = "Kamerayı eski durumuna getir";
 history.replay.camera.help = "Geçmişteki Kamerayı eski durumuna getir seçeneği kapalı olsa bile kamera yeniden oynatılan işlemleri takip eder.";
 // Popup opened by the play button, above its two options
 history.replay.confirm = "Geçmiş yeniden oynatılsın mı?";
+// Option of the replay popup: shows the gizmo, the object handles and the tool overlays in the viewport during the replay
+history.replay.handles = "";
+history.replay.handles.help = "";
 history.replay.help = "Başa döner, ardından işlemleri bu hızda (saniye başına işlem) teker teker yeniden yapar.
 Durdurmak için düğmeye tekrar dokunun. Geri alma, yineleme veya bir kayda dokunma da oynatmayı durdurur.";
+// Option of the replay popup: the replay runs with no interface at all, not even the small replay controls
+history.replay.minify = "Kullanıcı arayüzünü küçült";
+history.replay.minify.help = "Yeniden oynatma denetimlerini de gizler. Yeniden oynatmayı duraklatmak için ekrana dokunun.";
+// Popup shown when the user touches the canvas or uses a shortcut while the history replay runs: the replay waits for a choice
+history.replay.pause = "Yeniden oynatma duraklatıldı";
+// Button of the replay paused popup: ends the replay and jumps to the most recent operation
+history.replay.pause.end = "Sona git";
+// Button of the replay paused popup: the replay continues
+history.replay.pause.resume = "Devam et";
+// Button of the replay paused popup: ends the replay and stays on the current operation
+history.replay.pause.stop = "Burada dur";
 // Option of the replay popup: runs backwards, undoing from the current state to the root
 history.replay.reverse = "Tersine çevir";
 history.replay.reverse.help = "Baştan yeniden oynatmak yerine mevcut durumdan başa kadar işlemleri geri alır.";
@@ -1317,6 +1347,8 @@ item.edit = "Düzenle";
 item.edit.help = "Bu damgayla şekillendirilmiş, bir heykel katmanı ve piksel başına bir dörtgen içeren bir düzlem ekler.
 
 Şekillendirin, ardından `Topoloji -> Pişir -> VDM` ile tekrar pişirin.";
+// Short button label, turns on the option named by the message next to it
+item.enable = "";
 // Short button label, opens a popup to correct the pixels of an imported image
 item.fix = "Düzelt";
 item.fix.help = "Görüntünün kendisini düzeltir: orta değer, ters çevirme, döndürme.
@@ -1522,7 +1554,7 @@ light.type.point = "Nokta";
 light.type.spot = "Spot";
 
 link.address = "Bu aygıt";
-link.ai.request = "";
+link.ai.request = "$0, Nomad'ı kontrol etmek istiyor";
 link.approve = "Kabul et";
 link.bridges = "Köprü betikleri (GitHub)";
 link.cameras = "Kameralar";
@@ -1565,7 +1597,7 @@ link.mode.nomad.help = "Bir cihazda Ana makine, diğerlerinde Katıl seçeneğin
 link.nearby = "Yakındaki cihazlar";
 link.objects = "Nesneler ve geometri";
 link.off = "Kapalı";
-link.pairings = "";
+link.pairings = "Eşleştirilmiş cihazlar";
 link.peer = "Eş";
 link.peerAddress = "İstemci adresi";
 link.port = "Ağ bağlantı noktası";
@@ -1659,6 +1691,8 @@ material.pbrRefraction.warning = "Kırılma seviyesi için PBR gölgeleme modu g
 // See glossary
 material.pbrRoughnessMetalness.warning = "Pürüzlülük ve Metaliklik seviyesi için PBR gölgeleme modu gereklidir.";
 // See glossary
+material.pbrShadowCatcher.warning = "";
+// See glossary
 material.pbrSubsurface.warning = "Yüzey altı saçılımı için PBR gölgeleme modu gereklidir.";
 // material (additive and blending) will write into depth
 material.preRefract = "Ön kırılma geçişi";
@@ -1702,7 +1736,7 @@ material.texture.mipmap = "Mipmap";
 // Nearest Filtering (closest sample)
 material.texture.nearest = "En Yakın";
 // Help on the link buttons of the texture settings: a linked section is shared by every linked texture channel
-material.texture.sync = "";
+material.texture.sync = "Bağlı tüm dokularla paylaşılır";
 // Textures, basically images wrapped on models (synonym: Maps, Texture maps)
 material.textures = "Dokular";
 material.textures.help = "İçe aktarılan görseller, Nomad'a döndüğünüzde orijinal dosyalarıyla eşitlenir.";
@@ -1880,6 +1914,8 @@ paint.gradient = "Gradyan";
 paint.gradient.mirror.help = "Eğriyi çizginin ortası etrafında aynalar: bir yarısını düzenleyin, diğer yarısı onu takip eder.";
 // Second material of the gradient, painted where the curve is low; when disabled the paint fades into the surface
 paint.gradientEnd = "Bitiş malzemesi";
+// Help of the Extend button, closed shapes (lasso, ellipse...): the end material also covers everything around the shape
+paint.gradientEnd.extend.help = "";
 // Help of the sync button next to the end material title
 paint.gradientEnd.sync = "Boya malzemesini bitiş malzemesine kopyalar.";
 // Factor/Opacity of paint tool
@@ -2194,6 +2230,17 @@ primitive.projectSphere = "Küre";
 primitive.radius = "Yarıçap";
 primitive.radius.end = "Yarıçap sonu";
 primitive.radius.start = "Yarıçap başlangıcı";
+// Primitive extruded from an imported vector drawing (SVG)
+primitive.shape = "Şekil";
+primitive.shape.edit = "";
+primitive.shape.empty = "Bu dosyada dolgulu şekil bulunamadı.";
+primitive.shape.limit = "Yüz sınırına ulaşıldı. Tüm şekli göstermek için sınırı artırın.";
+// Opens the list of the curves of a 2D shape, from front to back, to reorder them
+primitive.shape.order = "";
+primitive.shape.order.help = "";
+// Toggle on a group of curves in a 2D shape: whether its overlapping curves cut each other or fill
+primitive.shape.overlaps = "";
+primitive.shape.overlaps.help = "";
 // Size (of cube x dimension)
 primitive.size = "Büyüklük";
 primitive.sizeX = "X Büyüklüğü";
@@ -2211,6 +2258,7 @@ primitive.text.boldItalic = "Kalın İtalik";
 primitive.text.center = "Ortalanmış";
 primitive.text.depth = "Derinlik";
 primitive.text.edit = "Metni düzenle";
+primitive.text.fan = "Yelpaze";
 primitive.text.font = "Yazı tipi";
 primitive.text.italic = "İtalik";
 primitive.text.left = "Sol";
@@ -2257,6 +2305,8 @@ Beklediğiniz şekilde çalışmayacağından, simetriyi devre dışı bırakman
 
 Diğer düzlemleri etkileyen bir düzlemi boyamak için maske panelinde `Topolojik bağlantılı` seçeneğini kullanabilirsiniz.";
 primitive.tube = "Tüp";
+primitive.tube.unfold = "";
+primitive.tube.unfold.help = "";
 // Finalize the primitive as a sculptable mesh; this does not mean checking data validity
 primitive.validate = "Tamamla";
 
@@ -2491,6 +2541,24 @@ Ağ örgüsünü daha yüksek bir çözünürlükte görüntülemek isterseniz, 
 // Maximum number of vertices (points)
 settings.multires.maxVertices = "Maks. verteks sayısı";
 settings.multires.maxVertices.help = "Nomad alt bölümlemeden önce bellek kontolü yürütmez, çok yüksek sayılar kolaylıkla çökmelere yol açabilir.";
+// Navigation widget in the viewport corner, shaped as a cube, a sphere or axes (easy to snap/align the view)
+settings.navigator = "Gezgin";
+// Alignment (can be auto/on/off)
+settings.navigator.align = "Hizalamayı Sınırla";
+settings.navigator.align.help = "Görünümleri dünya ekseni ile hizalayın. Etkinleştirildiğinde, sadece 6 sabit görünüm mümkündür.
+
+Otomatikte, kısıtlama sadece kamera Yörünge modundayken gerçekleşir.";
+// Extra snapping views on the edges and corners of the navigator
+settings.navigator.edgeCorner = "Kenarlar ve köşeler";
+settings.navigator.edgeCorner.help = "Kenarlara ve köşelere tutturma görünümleri ekler (kehribar bölgeler).";
+// Flip the camera (rotate 180° to see the other side)
+settings.navigator.flip = "180° Çevir";
+settings.navigator.flip.help = "Görünüm zaten sabitlendiğinde görünümü çevir.";
+// Dragging the navigator rotates like the Turntable mode, even if the camera is in Trackball
+settings.navigator.turntable = "Döner platform sürüklemesi";
+settings.navigator.turntable.help = "Gezgin'i sürüklemek kamerayı yatış yapmadan döndürür ve her yaslama görünümünde durur.
+
+Gezgin'i bunun yerine İztopu dönüşüyle sürüklemek için bu seçeneği devre dışı bırakın. Her iki durumda da sürükleme yatay veya dikey kalır.";
 // These options will be reset when the app restarts
 settings.notSaved = "Bu seçenekler ayarlara kaydedilmez.";
 // Outline (contour highlight around the selected object)
@@ -2540,24 +2608,6 @@ settings.showMasking = "Maskeyi göster";
 settings.showPainting = "Boyamayı göster";
 // https://en.wikipedia.org/wiki/Shading
 settings.smoothShading = "Yumuşak gölgelendirme";
-// Navigation widget in the viewport corner, shaped as a cube, a sphere or axes (easy to snap/align the view)
-settings.navigator = "Gezgin";
-// Alignment (can be auto/on/off)
-settings.navigator.align = "Hizalamayı Sınırla";
-settings.navigator.align.help = "Görünümleri dünya ekseni ile hizalayın. Etkinleştirildiğinde, sadece 6 sabit görünüm mümkündür.
-
-Otomatikte, kısıtlama sadece kamera Yörünge modundayken gerçekleşir.";
-// Extra snapping views on the edges and corners of the navigator
-settings.navigator.edgeCorner = "Kenarlar ve köşeler";
-settings.navigator.edgeCorner.help = "Kenarlara ve köşelere tutturma görünümleri ekler (kehribar bölgeler).";
-// Flip the camera (rotate 180° to see the other side)
-settings.navigator.flip = "180° Çevir";
-settings.navigator.flip.help = "Görünüm zaten sabitlendiğinde görünümü çevir.";
-// Dragging the navigator rotates like the Turntable mode, even if the camera is in Trackball
-settings.navigator.turntable = "Döner platform sürüklemesi";
-settings.navigator.turntable.help = "Gezgin'i sürüklemek kamerayı yatış yapmadan döndürür ve her yaslama görünümünde durur.
-
-Gezgin'i bunun yerine İztopu dönüşüyle sürüklemek için bu seçeneği devre dışı bırakın. Her iki durumda da sürükleme yatay veya dikey kalır.";
 // Stats (information logs about the scene displayed on screen)
 settings.stats = "İstatistik";
 settings.stats.all = "Tüm sahneyi göster";
@@ -3042,8 +3092,12 @@ toggle.yes = "Evet";
 tool.all = "Tümü";
 // Ideally short strings (Arrange selected objects)
 tool.arrange = "Düzenle";
+// Ideally short strings (Bend a sculpted object along a curve)
+tool.bend = "";
 // Ideally short strings
 tool.brush = "Fırça";
+tool.brush.clampRadius = "";
+tool.brush.clampRadius.help = "";
 // Ideally short strings
 tool.clay = "Kil";
 // Ideally short strings (Subtract)
@@ -3359,7 +3413,14 @@ tool.shape = "Biçim";
 tool.shape.band = "Şerit";
 // Ideally short strings (Band selection: past the far guide, everything keeps the full value, like a soft half-space)
 tool.shape.bandExtend = "Uzat";
+// Ideally short strings (Band selection: past both guides, the near side keeps the start value and the far side the full value)
+tool.shape.bandExtend.both = "";
+tool.shape.bandExtend.both.help = "";
+// Ideally short strings (Band selection: only past the far guide)
+tool.shape.bandExtend.end = "";
 tool.shape.bandExtend.help = "Kılavuzların ötesine devam eder: uzak taraf şeritte durmak yerine tam değeri alır.";
+// Ideally short strings (Band selection: stops at both guides)
+tool.shape.bandExtend.off = "";
 // Ideally short strings (Band selection: swap which guide the gradient starts from)
 tool.shape.bandFlip = "Ters çevir";
 // Ideally short strings (Whether a shape is closed or not, a tube is open, a torus is closed)

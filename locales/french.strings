@@ -94,6 +94,8 @@ access.window = "Fenêtre d'assistance";
 alert.aborted = "Opération annulée !";
 // Autosave popup
 alert.autoSave.auto = "Enregistrement automatique dans… $0 s";
+// Autosave popup shown while the app is idle: the countdown starts when the user touches the screen again
+alert.autoSave.wait = "";
 // Transform mode lets the user move the reference image with two fingers
 alert.backgroundTransform = "Appuyez une fois pour quitter le mode Transformation.";
 alert.colorPicker = "Faites glisser votre doigt sur l'objet pour sélectionner une couleur.";
@@ -115,23 +117,21 @@ alert.gizmo.editObject = "Mode objet.";
 alert.gizmo.editPivot = "Mode pivot.";
 // Surface repeater: the face group popup is open, tapping the object switches a group on or off
 alert.groupPicker = "Touchez ou glissez sur l'objet pour activer ou désactiver les groupes de faces.";
-// Button that turns the heightmap render off
-alert.heightmap.hide = "Masquer la carte de hauteur";
 // The viewport renders the depth of the scene instead of the shaded objects
 alert.heightmapOn = "La carte de hauteur est activée !";
 // The user decided to display hidden faces
 alert.hideIgnored = "Action Masquer ignorée !";
+// A project opens with fewer undo steps than it was saved with: some history data is missing, damaged or from another version
+alert.history.lost = "Une partie de l'historique n'a pas pu être chargée.";
+// Undo, redo or replay stopped: the data of this operation is missing or damaged on the disk
+alert.history.unreadable = "Des données de l'historique sont manquantes ou endommagées, cette opération ne peut être ni annulée ni rétablie.";
 // Error when an algorithm needs the object to have a hole (usually to fill it)
 alert.hole.nothing = "L'objet n'a pas de trou !";
-// Button that turns the inspector off
-alert.inspect.hide = "Masquer l’inspecteur";
 // The viewport renders a material channel instead of the shaded objects
 alert.inspectOn = "L’inspecteur est activé !";
 // The lattice deformation was applied with a different mask or visibility state
 // (the gui appends the icon of the changed states)
 alert.lattice.desync = "Le treillis n'est pas synchronisé !";
-// Button that re-applies the lattice deformation with the current mask/visibility
-alert.lattice.sync = "Mettre à jour le treillis";
 // A project was saved without the geometry of some objects: they open as empty groups ($0 = object names)
 alert.load.damaged = "Objets endommagés, chargés comme groupes vides : $0";
 // No operation occurred because the mesh is already manifold
@@ -162,6 +162,8 @@ alert.paintingHidden = "Peinture cachée !";
 alert.quickSave = "Enregistrement…";
 // The user is starting an operation that can lead to a crash
 alert.range.warning = "Le niveau de détail est élevé et peut nécessiter beaucoup de mémoire !";
+// The limits removed some copies of the repeaters (a button next to it opens the settings that increase the limits)
+alert.repeater.limit = "";
 // Hide the objects that are not selected
 alert.selection.isolate = "Isoler la sélection";
 // Show the objects that are hidden
@@ -246,6 +248,8 @@ background.reference = "Image de référence";
 binding.addSync = "Synchroniser";
 binding.addSync.help = "Par défaut, il utilisera la valeur de synchronisation définie dans le menu de la scène.";
 binding.button = "Bouton";
+binding.onBackground = "";
+binding.onBackground.help = "";
 // Binding option
 binding.context.toggle = "Basculer le contexte";
 // Dead zones
@@ -476,10 +480,17 @@ cube.right = "Droite";
 cube.top = "Dessus";
 
 curve.bevel = "Biseau";
+// Curve type: Bézier points with two handles
+curve.bezier = "";
 curve.bspline = "B-spline";
+// Small toggle next to the Shift slider: the brush falloff gets a round tip, like a dome, instead of a pointed one
+curve.dome = "";
 curve.editor = "Éditeur de courbe";
+// Button of the shape and profile editors: show the editor full screen
+curve.editor.maximize = "";
 // Time to hold a curve point or handle still before the long press edit starts
 curve.holdDelay = "Délai d’appui";
+curve.holdDelay.help = "";
 curve.ik = "IK";
 curve.ik.help = "Cinématique inverse (IK) : déplacez un point pour poser la courbe ; les points connectés suivent. Touchez un point pour le verrouiller ou le déverrouiller. Appuyez longuement sur un point pour verrouiller ou déverrouiller tous les points. Les points verrouillés restent en place ; déplacez un cadenas pour déplacer toute la courbe.";
 curve.ik.stretch = "Étirement";
@@ -684,7 +695,6 @@ extract.wall = "Paroi";
 
 // Auto save section
 file.autoSave = "Sauvegarde automatique";
-file.autoSave.confirm = "Désactiver la sauvegarde automatique ?";
 // Delete the current autoSave data
 file.autoSave.delete = "Supprimer l'auto-sauvegarde";
 file.autoSave.help = "Sauvegarde votre projet dans un fichier séparé à intervalles réguliers.
@@ -814,6 +824,8 @@ file.import.skipTextures = "Ignorer les textures";
 file.import.skipTextures.help = "Ne charge pas les textures intégrées au fichier.";
 // Import file section
 file.import.title = "Importer";
+file.import.zbrush.dynamicSubdivision = "";
+file.import.zbrush.dynamicSubdivision.help = "";
 // Configure import options
 file.importSettings = "Options d'importation";
 // Export the current selected objects instead of the entire scene
@@ -867,6 +879,8 @@ file.quarantine.deleteAll = "Tout supprimer";
 file.quarantine.failedImport = "Échec d’importation";
 // $0 = number of days
 file.quarantine.help = "Les données des projets sortis du dossier des projets et les fichiers remplacés par une importation sont conservés ici pendant $0 jours. Les importations échouées restent jusqu’à ce que vous les supprimiez.";
+// Checkbox in the delete confirmation of a recently deleted entry: the next entries are deleted without asking until Nomad closes
+file.quarantine.silent = "";
 // Render a screenshot of the scene
 file.render = "Rendu";
 // height of exported screenshot
@@ -979,24 +993,20 @@ gesture.history.hold = "Appui long";
 gesture.history.hold.help = "Appuyez de façon prolongée avec deux/trois doigts.";
 // Idle long press with pencil, mouse, finger, etc
 gesture.longPress = "Appui long";
-gesture.mask.holdIdle = "Outil";
-gesture.mask.holdIdle.help = "Appuyez longuement et relâchez sans bouger pour basculer entre Masque et SelMasque.";
-// Hold the finger on screen to toggle between two tools: Mask and SelMask
-gesture.mask.holdStroke = "Trait";
-gesture.mask.holdStroke.help = "Un appui long basculera entre Masque et SelMasque et commencera un nouveau trait.
-
-À la fin du trait, l'outil précédent est sélectionné de nouveau.";
+gesture.longPress.drag = "";
+gesture.longPress.drag.help = "";
+gesture.longPress.release = "";
+gesture.longPress.release.help = "";
 // Enable Mask gesture by tapping once on the screen
 gesture.mask.oneTap = "Raccourcis en un appui";
-gesture.mask.oneTap.help = "Autorisez l'accès au raccourci Masque par appui simple sur l'écran, sans qu'il soit nécessaire d'appuyer de façon prolongée sur le raccourci du bouton Masque.
-
-Vous pourrez effectuer les gestes suivants :
-• Appuyez sur l'arrière-plan pour inverser le masque.
-• Appuyez sur une zone masquée pour flouter le masque.
-• Appuyez sur une zone non masquée pour accentuer le masque.";
+gesture.oneTap.help = "";
+gesture.oneTap.hide.help = "";
+gesture.oneTap.mask.help = "";
 // Mouse/Trackpad
 gesture.mouse = "Souris";
 gesture.node = "Modification des nœuds";
+gesture.onBackground = "";
+gesture.onBackground.help = "";
 // Size rejection is when we try to ignore the palm of the hand when we interact with a tablet
 gesture.palmRejection = "Ignorer la paume";
 gesture.palmRejection.confirm = "Pensez à désactiver cette option si vous rencontrez des difficultés pour interagir avec la zone de travail !";
@@ -1018,7 +1028,6 @@ gesture.sculpt = "Sculpter";
 gesture.select = "Sélectionner l'objet";
 // Shortcut customization: choose the action performed by the shortcut (select tool, etc.)
 gesture.shortcut = "Raccourci";
-gesture.smooth.holdSelect.help = "Un appui long active l'outil Sélection pendant le tracé de la sélection.";
 // Hold the pointer at the end of a stroke to snap it into a line or a curve
 gesture.strokeSnap = "Accrochage du trait";
 gesture.strokeSnap.delay = "Délai de maintien";
@@ -1043,6 +1052,13 @@ gesture.tool.select = "Sélectionner";
 gesture.tool.transform = "Transformation";
 // Multi touch navigation with the macbook trackpad or the Magic Trackpad
 gesture.trackpad = "Pavé tactile";
+// What two fingers on the trackpad do in the curve and shape editors
+gesture.trackpad.curve = "";
+gesture.trackpad.curve.help = "";
+gesture.trackpad.curve.pan = "";
+gesture.trackpad.curve.pan.help = "";
+gesture.trackpad.curve.zoom = "";
+gesture.trackpad.curve.zoom.help = "";
 // What two fingers on the trackpad do
 gesture.trackpad.two = "Deux doigts";
 gesture.trackpad.two.help = "Naviguez dans la vue avec le pavé tactile. Un pincement à deux doigts effectue toujours un zoom et une rotation à deux doigts contrôle le roulis ; relever l’un des doigts passe à l’autre action.";
@@ -1105,8 +1121,22 @@ history.replay.camera = "Restaurer la caméra";
 history.replay.camera.help = "La caméra suit les opérations rejouées, même si l’option Restaurer la caméra de l’historique est désactivée.";
 // Popup opened by the play button, above its two options
 history.replay.confirm = "Rejouer l’historique ?";
+// Option of the replay popup: shows the gizmo, the object handles and the tool overlays in the viewport during the replay
+history.replay.handles = "";
+history.replay.handles.help = "";
 history.replay.help = "Revient au début, puis refait les opérations une par une à cette vitesse (opérations par seconde).
 Touchez à nouveau le bouton pour arrêter. Annuler, rétablir ou toucher une entrée arrête aussi la lecture.";
+// Option of the replay popup: the replay runs with no interface at all, not even the small replay controls
+history.replay.minify = "Réduire l'interface";
+history.replay.minify.help = "Masque aussi les commandes de lecture. Touchez l'écran pour mettre la lecture en pause.";
+// Popup shown when the user touches the canvas or uses a shortcut while the history replay runs: the replay waits for a choice
+history.replay.pause = "Lecture en pause";
+// Button of the replay paused popup: ends the replay and jumps to the most recent operation
+history.replay.pause.end = "Aller à la fin";
+// Button of the replay paused popup: the replay continues
+history.replay.pause.resume = "Reprendre";
+// Button of the replay paused popup: ends the replay and stays on the current operation
+history.replay.pause.stop = "Arrêter ici";
 // Option of the replay popup: runs backwards, undoing from the current state to the root
 history.replay.reverse = "Inverser";
 history.replay.reverse.help = "Annule les opérations depuis l’état actuel jusqu’au début, au lieu de les rejouer depuis le début.";
@@ -1315,6 +1345,8 @@ item.edit = "Modifier";
 item.edit.help = "Ajoute un plan déjà déformé par ce tampon, avec un calque de sculpture et un quadrilatère par pixel.
 
 Sculptez-le, puis refaites le baking avec `Topologie -> Baking -> VDM`.";
+// Short button label, turns on the option named by the message next to it
+item.enable = "";
 // Short button label, opens a popup to correct the pixels of an imported image
 item.fix = "Corriger";
 item.fix.help = "Corrige l’image elle-même : valeur médiane, inversion, rotation.
@@ -1520,7 +1552,7 @@ light.type.point = "Point";
 light.type.spot = "Projecteur";
 
 link.address = "Cet appareil";
-link.ai.request = "";
+link.ai.request = "$0 souhaite contrôler Nomad";
 link.approve = "Accepter";
 link.bridges = "Scripts de passerelle (GitHub)";
 link.cameras = "Caméras";
@@ -1563,7 +1595,7 @@ link.mode.nomad.help = "Choisissez Hôte sur un appareil et Rejoindre sur les au
 link.nearby = "Appareils à proximité";
 link.objects = "Objets et géométrie";
 link.off = "Désactivé";
-link.pairings = "";
+link.pairings = "Appareils associés";
 link.peer = "Pair";
 link.peerAddress = "Adresse du client";
 link.port = "Port réseau";
@@ -1657,6 +1689,8 @@ material.pbrRefraction.warning = "La fonction Réfraction nécessite le mode d'o
 // See glossary
 material.pbrRoughnessMetalness.warning = "Les fonctions Rugosité et Métallité nécessitent le mode d'ombrage PBR.";
 // See glossary
+material.pbrShadowCatcher.warning = "";
+// See glossary
 material.pbrSubsurface.warning = "La fonction Transluminescence nécessite le mode d'ombrage PBR.";
 // material (additive and blending) will write into depth
 material.preRefract = "Passe de pré-réfraction";
@@ -1700,7 +1734,7 @@ material.texture.mipmap = "Mipmap";
 // Nearest Filtering (closest sample)
 material.texture.nearest = "Au plus proche";
 // Help on the link buttons of the texture settings: a linked section is shared by every linked texture channel
-material.texture.sync = "";
+material.texture.sync = "Partagé par toutes les textures liées";
 // Textures, basically images wrapped on models (synonym: Maps, Texture maps)
 material.textures = "Textures";
 material.textures.help = "Les images importées se synchronisent avec leur fichier d'origine quand vous revenez dans Nomad.";
@@ -1878,6 +1912,8 @@ paint.gradient = "Dégradé";
 paint.gradient.mirror.help = "Symétrise la courbe autour du milieu de la ligne : modifiez une moitié, l'autre suit.";
 // Second material of the gradient, painted where the curve is low; when disabled the paint fades into the surface
 paint.gradientEnd = "Matériau de fin";
+// Help of the Extend button, closed shapes (lasso, ellipse...): the end material also covers everything around the shape
+paint.gradientEnd.extend.help = "";
 // Help of the sync button next to the end material title
 paint.gradientEnd.sync = "Copie le matériau de peinture dans le matériau de fin.";
 // Factor/Opacity of paint tool
@@ -2192,6 +2228,17 @@ primitive.projectSphere = "Sphère";
 primitive.radius = "Rayon";
 primitive.radius.end = "Rayon final";
 primitive.radius.start = "Rayon initial";
+// Primitive extruded from an imported vector drawing (SVG)
+primitive.shape = "Forme";
+primitive.shape.edit = "";
+primitive.shape.empty = "Aucune forme remplie trouvée dans ce fichier.";
+primitive.shape.limit = "Nombre maximal de faces atteint. Augmentez la limite pour afficher toute la forme.";
+// Opens the list of the curves of a 2D shape, from front to back, to reorder them
+primitive.shape.order = "";
+primitive.shape.order.help = "";
+// Toggle on a group of curves in a 2D shape: whether its overlapping curves cut each other or fill
+primitive.shape.overlaps = "";
+primitive.shape.overlaps.help = "";
 // Size (of cube x dimension)
 primitive.size = "Taille";
 primitive.sizeX = "Taille X";
@@ -2209,6 +2256,7 @@ primitive.text.boldItalic = "Gras italique";
 primitive.text.center = "Centre";
 primitive.text.depth = "Profondeur";
 primitive.text.edit = "Modifier le texte";
+primitive.text.fan = "Éventail";
 primitive.text.font = "Police";
 primitive.text.italic = "Italique";
 primitive.text.left = "Gauche";
@@ -2255,6 +2303,8 @@ Vous devrez probablement désactiver la symétrie, car elle peut générer des r
 
 Vous pouvez utiliser l'option « Liés par topologie » dans le panneau de masque pour peindre un plan influant sur les autres plans.";
 primitive.tube = "Tube";
+primitive.tube.unfold = "";
+primitive.tube.unfold.help = "";
 // Finalize the primitive as a sculptable mesh; this does not mean checking data validity
 primitive.validate = "Valider";
 
@@ -2489,6 +2539,24 @@ Vous pouvez augmenter cette valeur pour afficher le maillage dans une résolutio
 // Maximum number of vertices (points)
 settings.multires.maxVertices = "Nombre max. de sommets";
 settings.multires.maxVertices.help = "Nomad ne contrôle pas la mémoire avant la subdivision. Des plantages peuvent facilement survenir en présence de nombreux polygones.";
+// Navigation widget in the viewport corner, shaped as a cube, a sphere or axes (easy to snap/align the view)
+settings.navigator = "Navigateur";
+// Alignment (can be auto/on/off)
+settings.navigator.align = "Restreindre l'alignement";
+settings.navigator.align.help = "Aligne les vues sur les axes du monde. Lorsque cette option est activée, seules six vues d'alignement sont possibles.
+
+En Auto, la restriction ne se produira que si la caméra est en mode Orbite.";
+// Extra snapping views on the edges and corners of the navigator
+settings.navigator.edgeCorner = "Arêtes et coins";
+settings.navigator.edgeCorner.help = "Ajoute des vues d’accrochage sur les arêtes et les coins (zones ambrées).";
+// Flip the camera (rotate 180° to see the other side)
+settings.navigator.flip = "Retourner 180°";
+settings.navigator.flip.help = "Retourner la vue si elle est déjà ancrée.";
+// Dragging the navigator rotates like the Turntable mode, even if the camera is in Trackball
+settings.navigator.turntable = "Glissement en mode plateau tournant";
+settings.navigator.turntable.help = "Faire glisser le Navigateur fait pivoter la caméra sans l’incliner et marque un arrêt sur chaque vue d’alignement.
+
+Désactivez cette option pour faire glisser le Navigateur avec la rotation Trackball. Dans les deux cas, le glissement reste horizontal ou vertical.";
 // These options will be reset when the app restarts
 settings.notSaved = "Ces options ne sont pas enregistrées dans les réglages.";
 // Outline (contour highlight around the selected object)
@@ -2539,24 +2607,6 @@ settings.showMasking = "Afficher le masque";
 settings.showPainting = "Afficher la peinture";
 // https://en.wikipedia.org/wiki/Shading
 settings.smoothShading = "Ombrage lisse";
-// Navigation widget in the viewport corner, shaped as a cube, a sphere or axes (easy to snap/align the view)
-settings.navigator = "Navigateur";
-// Alignment (can be auto/on/off)
-settings.navigator.align = "Restreindre l'alignement";
-settings.navigator.align.help = "Aligne les vues sur les axes du monde. Lorsque cette option est activée, seules six vues d'alignement sont possibles.
-
-En Auto, la restriction ne se produira que si la caméra est en mode Orbite.";
-// Extra snapping views on the edges and corners of the navigator
-settings.navigator.edgeCorner = "Arêtes et coins";
-settings.navigator.edgeCorner.help = "Ajoute des vues d’accrochage sur les arêtes et les coins (zones ambrées).";
-// Flip the camera (rotate 180° to see the other side)
-settings.navigator.flip = "Retourner 180°";
-settings.navigator.flip.help = "Retourner la vue si elle est déjà ancrée.";
-// Dragging the navigator rotates like the Turntable mode, even if the camera is in Trackball
-settings.navigator.turntable = "Glissement en mode plateau tournant";
-settings.navigator.turntable.help = "Faire glisser le Navigateur fait pivoter la caméra sans l’incliner et marque un arrêt sur chaque vue d’alignement.
-
-Désactivez cette option pour faire glisser le Navigateur avec la rotation Trackball. Dans les deux cas, le glissement reste horizontal ou vertical.";
 // Stats (information logs about the scene displayed on screen)
 settings.stats = "Statistiques";
 settings.stats.all = "Afficher la scène complète";
@@ -3040,8 +3090,12 @@ toggle.yes = "Oui";
 tool.all = "Tout";
 // Ideally short strings (Arrange selected objects)
 tool.arrange = "Disposer";
+// Ideally short strings (Bend a sculpted object along a curve)
+tool.bend = "";
 // Ideally short strings
 tool.brush = "Pinceau";
+tool.brush.clampRadius = "";
+tool.brush.clampRadius.help = "";
 // Ideally short strings
 tool.clay = "Argile";
 // Ideally short strings (Subtract)
@@ -3357,7 +3411,14 @@ tool.shape = "Forme";
 tool.shape.band = "Bande";
 // Ideally short strings (Band selection: past the far guide, everything keeps the full value, like a soft half-space)
 tool.shape.bandExtend = "Étendre";
+// Ideally short strings (Band selection: past both guides, the near side keeps the start value and the far side the full value)
+tool.shape.bandExtend.both = "";
+tool.shape.bandExtend.both.help = "";
+// Ideally short strings (Band selection: only past the far guide)
+tool.shape.bandExtend.end = "";
 tool.shape.bandExtend.help = "Continue au-delà des guides : le côté opposé reçoit la valeur maximale au lieu de s’arrêter à la bande.";
+// Ideally short strings (Band selection: stops at both guides)
+tool.shape.bandExtend.off = "";
 // Ideally short strings (Band selection: swap which guide the gradient starts from)
 tool.shape.bandFlip = "Inverser";
 // Ideally short strings (Whether a shape is closed or not, a tube is open, a torus is closed)

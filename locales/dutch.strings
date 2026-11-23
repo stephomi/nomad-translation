@@ -94,6 +94,8 @@ access.window = "Hulpscherm";
 alert.aborted = "Operatie afgebroken!";
 // Autosave popup
 alert.autoSave.auto = "Automatisch opslaan in... $0s";
+// Autosave popup shown while the app is idle: the countdown starts when the user touches the screen again
+alert.autoSave.wait = "";
 // Transform mode lets the user move the reference image with two fingers
 alert.backgroundTransform = "Eenvoudig tikken om uit de transformatiemodus te gaan.";
 alert.colorPicker = "Sleep over het object om een kleur te kiezen.";
@@ -115,23 +117,21 @@ alert.gizmo.editObject = "Objectbewerkingsmodus.";
 alert.gizmo.editPivot = "Draaipuntbewerkingsmodus.";
 // Surface repeater: the face group popup is open, tapping the object switches a group on or off
 alert.groupPicker = "Tik of sleep over het object om vlakkengroepen aan of uit te zetten.";
-// Button that turns the heightmap render off
-alert.heightmap.hide = "Hoogtekaart verbergen";
 // The viewport renders the depth of the scene instead of the shaded objects
 alert.heightmapOn = "Hoogtekaart is ingeschakeld!";
 // The user decided to display hidden faces
 alert.hideIgnored = "Verbergen wordt genegeerd!";
+// A project opens with fewer undo steps than it was saved with: some history data is missing, damaged or from another version
+alert.history.lost = "Een deel van de geschiedenis kon niet worden geladen.";
+// Undo, redo or replay stopped: the data of this operation is missing or damaged on the disk
+alert.history.unreadable = "Geschiedenisgegevens ontbreken of zijn beschadigd, deze bewerking kan niet ongedaan worden gemaakt of opnieuw worden uitgevoerd.";
 // Error when an algorithm needs the object to have a hole (usually to fill it)
 alert.hole.nothing = "Het object heeft geen gaten!";
-// Button that turns the inspector off
-alert.inspect.hide = "Inspecteur verbergen";
 // The viewport renders a material channel instead of the shaded objects
 alert.inspectOn = "Inspecteur is ingeschakeld!";
 // The lattice deformation was applied with a different mask or visibility state
 // (the gui appends the icon of the changed states)
 alert.lattice.desync = "Rooster is niet gesynchroniseerd!";
-// Button that re-applies the lattice deformation with the current mask/visibility
-alert.lattice.sync = "Rooster bijwerken";
 // A project was saved without the geometry of some objects: they open as empty groups ($0 = object names)
 alert.load.damaged = "Beschadigde objecten, geladen als lege groepen: $0";
 // No operation occurred because the mesh is already manifold
@@ -162,6 +162,8 @@ alert.paintingHidden = "Schilderen is verborgen!";
 alert.quickSave = "Bezig met opslaan…";
 // The user is starting an operation that can lead to a crash
 alert.range.warning = "De detailwaarde is hoog en kan veel geheugen vereisen!";
+// The limits removed some copies of the repeaters (a button next to it opens the settings that increase the limits)
+alert.repeater.limit = "";
 // Hide the objects that are not selected
 alert.selection.isolate = "Selectie isoleren";
 // Show the objects that are hidden
@@ -246,6 +248,8 @@ background.reference = "Referentiebeeld";
 binding.addSync = "Synchronisatie";
 binding.addSync.help = "Standaard wordt de synchronisatiewaarde gebruikt die is ingesteld in het scene-menu.";
 binding.button = "Knop";
+binding.onBackground = "";
+binding.onBackground.help = "";
 // Binding option
 binding.context.toggle = "Context schakelen";
 // Dead zones
@@ -476,10 +480,17 @@ cube.right = "Rechts";
 cube.top = "Bovenkant";
 
 curve.bevel = "Afschuining";
+// Curve type: Bézier points with two handles
+curve.bezier = "";
 curve.bspline = "B-spline";
+// Small toggle next to the Shift slider: the brush falloff gets a round tip, like a dome, instead of a pointed one
+curve.dome = "";
 curve.editor = "Curve-editor";
+// Button of the shape and profile editors: show the editor full screen
+curve.editor.maximize = "";
 // Time to hold a curve point or handle still before the long press edit starts
 curve.holdDelay = "Vasthoudvertraging";
+curve.holdDelay.help = "";
 curve.ik = "IK";
 curve.ik.help = "Inverse kinematica (IK): versleep een punt om de kromme te poseren; verbonden punten volgen. Tik op een punt om het te vergrendelen of ontgrendelen. Houd een punt lang ingedrukt om alle punten te vergrendelen of ontgrendelen. Vergrendelde punten blijven op hun plek; versleep een slot om de hele kromme te bewegen.";
 curve.ik.stretch = "Uitrekken";
@@ -686,7 +697,6 @@ extract.wall = "Wand";
 
 // Auto save section
 file.autoSave = "Automatisch opslaan";
-file.autoSave.confirm = "Automatisch opslaan uitschakelen?";
 // Delete the current autoSave data
 file.autoSave.delete = "Automatisch opslaan verwijderen";
 file.autoSave.help = "Sla je project op een apart bestand op met regelmatige tussenpozen.
@@ -816,6 +826,8 @@ file.import.skipTextures = "Sla texturen over";
 file.import.skipTextures.help = "Laad geen ingesloten texturen uit het bestand.";
 // Import file section
 file.import.title = "Importeren";
+file.import.zbrush.dynamicSubdivision = "";
+file.import.zbrush.dynamicSubdivision.help = "";
 // Configure import options
 file.importSettings = "Importeeropties";
 // Export the current selected objects instead of the entire scene
@@ -869,6 +881,8 @@ file.quarantine.deleteAll = "Alles verwijderen";
 file.quarantine.failedImport = "Mislukte import";
 // $0 = number of days
 file.quarantine.help = "Gegevens van projecten die de projectenmap hebben verlaten en bestanden die door een import zijn vervangen, worden hier $0 dagen bewaard. Mislukte imports blijven staan tot je ze verwijdert.";
+// Checkbox in the delete confirmation of a recently deleted entry: the next entries are deleted without asking until Nomad closes
+file.quarantine.silent = "";
 // Render a screenshot of the scene
 file.render = "Render";
 // height of exported screenshot
@@ -981,24 +995,20 @@ gesture.history.hold = "Lang indrukken";
 gesture.history.hold.help = "Houd 2/3 vingers ingedrukt.";
 // Idle long press with pencil, mouse, finger, etc
 gesture.longPress = "Lang indrukken";
-gesture.mask.holdIdle = "Gereedschap";
-gesture.mask.holdIdle.help = "Lang indrukken en loslaten zonder te bewegen om te wisselen tussen Mask en SelMask.";
-// Hold the finger on screen to toggle between two tools: Mask and SelMask
-gesture.mask.holdStroke = "Penseelstreek";
-gesture.mask.holdStroke.help = "Lang indrukken schakelt tussen Mask en SelMask en start een nieuwe streek.
-
-Aan het einde van de streek wordt het vorige gereedschap opnieuw geselecteerd.";
+gesture.longPress.drag = "";
+gesture.longPress.drag.help = "";
+gesture.longPress.release = "";
+gesture.longPress.release.help = "";
 // Enable Mask gesture by tapping once on the screen
 gesture.mask.oneTap = "Snelle toetsen";
-gesture.mask.oneTap.help = "Sta de Mask-snelkoppeling toe door eenmaal op het scherm te tikken, zonder de sneltoets voor de mask te hoeven vasthouden.
-
-Dit staat de volgende gebaren toe:
-• tik op de achtergrond om het masker om te keren
-• tik op een gemaskeerd gebied om het masker te vervagen
-• tik op een ongemaskeerd gebied om het masker te verscherpen";
+gesture.oneTap.help = "";
+gesture.oneTap.hide.help = "";
+gesture.oneTap.mask.help = "";
 // Mouse/Trackpad
 gesture.mouse = "Muis";
 gesture.node = "Bewerken van knooppunten";
+gesture.onBackground = "";
+gesture.onBackground.help = "";
 // Size rejection is when we try to ignore the palm of the hand when we interact with a tablet
 gesture.palmRejection = "Handpalm negeren";
 gesture.palmRejection.confirm = "Zorg ervoor dat u deze optie uitschakelt als u problemen ondervindt bij interactie met het canvas!";
@@ -1020,7 +1030,6 @@ gesture.sculpt = "Beeldhouwen";
 gesture.select = "Selecteer object";
 // Shortcut customization: choose the action performed by the shortcut (select tool, etc.)
 gesture.shortcut = "Snelkoppeling";
-gesture.smooth.holdSelect.help = "Lang indrukken zal schakelen naar het selecteer gereedschap voor de duur van het selectieproces.";
 // Hold the pointer at the end of a stroke to snap it into a line or a curve
 gesture.strokeSnap = "Lijn-uitlijning";
 gesture.strokeSnap.delay = "Vasthoudtijd";
@@ -1045,6 +1054,13 @@ gesture.tool.select = "Selecteren";
 gesture.tool.transform = "Transformeren";
 // Multi touch navigation with the macbook trackpad or the Magic Trackpad
 gesture.trackpad = "Trackpad";
+// What two fingers on the trackpad do in the curve and shape editors
+gesture.trackpad.curve = "";
+gesture.trackpad.curve.help = "";
+gesture.trackpad.curve.pan = "";
+gesture.trackpad.curve.pan.help = "";
+gesture.trackpad.curve.zoom = "";
+gesture.trackpad.curve.zoom.help = "";
 // What two fingers on the trackpad do
 gesture.trackpad.two = "Twee vingers";
 gesture.trackpad.two.help = "Navigeer door de weergave met het trackpad. Met twee vingers zoomt knijpen altijd in of uit en regelt draaien de rolbeweging; door één vinger op te tillen schakelt u over naar de andere actie.";
@@ -1107,8 +1123,22 @@ history.replay.camera = "Camera herstellen";
 history.replay.camera.help = "De camera volgt de afgespeelde bewerkingen, ook als de optie Camera herstellen in de geschiedenis uitstaat.";
 // Popup opened by the play button, above its two options
 history.replay.confirm = "Geschiedenis afspelen?";
+// Option of the replay popup: shows the gizmo, the object handles and the tool overlays in the viewport during the replay
+history.replay.handles = "";
+history.replay.handles.help = "";
 history.replay.help = "Gaat terug naar het begin en voert de bewerkingen een voor een opnieuw uit op deze snelheid (bewerkingen per seconde).
 Tik nogmaals op de knop om te stoppen. Ongedaan maken, opnieuw uitvoeren of op een vermelding tikken stopt het afspelen ook.";
+// Option of the replay popup: the replay runs with no interface at all, not even the small replay controls
+history.replay.minify = "Interface verkleinen";
+history.replay.minify.help = "Verbergt ook de bediening van het afspelen. Tik op het scherm om het afspelen te pauzeren.";
+// Popup shown when the user touches the canvas or uses a shortcut while the history replay runs: the replay waits for a choice
+history.replay.pause = "Afspelen gepauzeerd";
+// Button of the replay paused popup: ends the replay and jumps to the most recent operation
+history.replay.pause.end = "Naar het einde";
+// Button of the replay paused popup: the replay continues
+history.replay.pause.resume = "Hervatten";
+// Button of the replay paused popup: ends the replay and stays on the current operation
+history.replay.pause.stop = "Hier stoppen";
 // Option of the replay popup: runs backwards, undoing from the current state to the root
 history.replay.reverse = "Omgekeerd";
 history.replay.reverse.help = "Maakt bewerkingen vanaf de huidige toestand tot het begin ongedaan, in plaats van ze vanaf het begin af te spelen.";
@@ -1317,6 +1347,8 @@ item.edit = "Bewerk";
 item.edit.help = "Voegt een vlak toe dat al door deze stempel is gevormd, met een beeldhouwlaag en één vierhoek per pixel.
 
 Bewerk het en bak het terug met `Topologie -> Bakken -> VDM`.";
+// Short button label, turns on the option named by the message next to it
+item.enable = "";
 // Short button label, opens a popup to correct the pixels of an imported image
 item.fix = "Corrigeren";
 item.fix.help = "Corrigeert de afbeelding zelf: middenwaarde, omkeren en rotatie.
@@ -1522,7 +1554,7 @@ light.type.point = "Punt";
 light.type.spot = "Spot";
 
 link.address = "Dit apparaat";
-link.ai.request = "";
+link.ai.request = "$0 wil Nomad besturen";
 link.approve = "Accepteren";
 link.bridges = "Bridge-scripts (GitHub)";
 link.cameras = "Camera’s";
@@ -1565,7 +1597,7 @@ link.mode.nomad.help = "Kies Host op één apparaat en Deelnemen op de andere; t
 link.nearby = "Apparaten in de buurt";
 link.objects = "Objecten en geometrie";
 link.off = "Uit";
-link.pairings = "";
+link.pairings = "Gekoppelde apparaten";
 link.peer = "Peer";
 link.peerAddress = "Clientadres";
 link.port = "Netwerkpoort";
@@ -1659,6 +1691,8 @@ material.pbrRefraction.warning = "Refractie vereist PBR-schaduwmodus.";
 // See glossary
 material.pbrRoughnessMetalness.warning = "Ruwheid en metaalheid vereisen de PBR-shadingmodus.";
 // See glossary
+material.pbrShadowCatcher.warning = "";
+// See glossary
 material.pbrSubsurface.warning = "Ondergrond vereist PBR-schaduwmodus.";
 // material (additive and blending) will write into depth
 material.preRefract = "Pre-refractie-pass";
@@ -1702,7 +1736,7 @@ material.texture.mipmap = "Mipmap";
 // Nearest Filtering (closest sample)
 material.texture.nearest = "Dichtstbijzijnd";
 // Help on the link buttons of the texture settings: a linked section is shared by every linked texture channel
-material.texture.sync = "";
+material.texture.sync = "Gedeeld door alle gekoppelde texturen";
 // Textures, basically images wrapped on models (synonym: Maps, Texture maps)
 material.textures = "Texturen";
 material.textures.help = "Geïmporteerde afbeeldingen synchroniseren met hun originele bestand wanneer je terugkeert naar Nomad.";
@@ -1880,6 +1914,8 @@ paint.gradient = "Overloop";
 paint.gradient.mirror.help = "Spiegelt de curve rond het midden van de lijn: bewerk één helft, de andere helft volgt.";
 // Second material of the gradient, painted where the curve is low; when disabled the paint fades into the surface
 paint.gradientEnd = "Eindmateriaal";
+// Help of the Extend button, closed shapes (lasso, ellipse...): the end material also covers everything around the shape
+paint.gradientEnd.extend.help = "";
 // Help of the sync button next to the end material title
 paint.gradientEnd.sync = "Kopieert het verfmateriaal naar het eindmateriaal.";
 // Factor/Opacity of paint tool
@@ -2193,6 +2229,17 @@ primitive.projectSphere = "Bol";
 primitive.radius = "Straal";
 primitive.radius.end = "Eindstraal";
 primitive.radius.start = "Beginstraal";
+// Primitive extruded from an imported vector drawing (SVG)
+primitive.shape = "Vorm";
+primitive.shape.edit = "";
+primitive.shape.empty = "Geen gevulde vorm gevonden in dit bestand.";
+primitive.shape.limit = "Maximaal aantal vlakken bereikt. Verhoog de limiet om de hele vorm te tonen.";
+// Opens the list of the curves of a 2D shape, from front to back, to reorder them
+primitive.shape.order = "";
+primitive.shape.order.help = "";
+// Toggle on a group of curves in a 2D shape: whether its overlapping curves cut each other or fill
+primitive.shape.overlaps = "";
+primitive.shape.overlaps.help = "";
 // Size (of cube x dimension)
 primitive.size = "Grootte";
 primitive.sizeX = "Grootte X";
@@ -2210,6 +2257,7 @@ primitive.text.boldItalic = "Vet cursief";
 primitive.text.center = "Midden";
 primitive.text.depth = "Diepte";
 primitive.text.edit = "Tekst bewerken";
+primitive.text.fan = "Waaier";
 primitive.text.font = "Lettertype";
 primitive.text.italic = "Cursief";
 primitive.text.left = "Links";
@@ -2256,6 +2304,8 @@ Je moet waarschijnlijk de symmetrie uitschakelen, aangezien deze mogelijk niet w
 
 Je kunt de optie `Topologisch verbonden` in het masker paneel gebruiken om een vlak te schilderen dat invloed heeft op de andere vlakken.";
 primitive.tube = "Buis";
+primitive.tube.unfold = "";
+primitive.tube.unfold.help = "";
 // Finalize the primitive as a sculptable mesh; this does not mean checking data validity
 primitive.validate = "Voltooien";
 
@@ -2490,6 +2540,24 @@ Je kunt deze waarde verhogen als je een hogere resolutie van de mesh wilt weerge
 // Maximum number of vertices (points)
 settings.multires.maxVertices = "Maximaal aantal vertices";
 settings.multires.maxVertices.help = "Nomad voert geen geheugentest uit vóór onderverdeling; een hoge polygaaltelling kan gemakkelijk leiden tot crashes.";
+// Navigation widget in the viewport corner, shaped as a cube, a sphere or axes (easy to snap/align the view)
+settings.navigator = "Navigator";
+// Alignment (can be auto/on/off)
+settings.navigator.align = "Uitlijning beperken";
+settings.navigator.align.help = "Lijn de weergave uit met de wereldas. Indien ingeschakeld, zijn slechts 6 snapposities mogelijk.
+
+In Automatisch zal de beperking alleen plaatsvinden als de camera in Orbit-modus is.";
+// Extra snapping views on the edges and corners of the navigator
+settings.navigator.edgeCorner = "Randen en hoeken";
+settings.navigator.edgeCorner.help = "Voeg snapweergaven toe aan de randen en hoeken (amberkleurige zones).";
+// Flip the camera (rotate 180° to see the other side)
+settings.navigator.flip = "Draai 180°";
+settings.navigator.flip.help = "Draai het beeld om als het al vaststaat.";
+// Dragging the navigator rotates like the Turntable mode, even if the camera is in Trackball
+settings.navigator.turntable = "Slepen als draaischijf";
+settings.navigator.turntable.help = "Door de Navigator te verslepen draait de camera zonder te kantelen en stopt hij bij elke uitlijnweergave.
+
+Schakel dit uit om de Navigator in plaats daarvan met Trackball-rotatie te verslepen. In beide gevallen blijft de sleepbeweging horizontaal of verticaal.";
 // These options will be reset when the app restarts
 settings.notSaved = "Deze opties worden niet opgeslagen in de instellingen.";
 // Outline (contour highlight around the selected object)
@@ -2540,24 +2608,6 @@ settings.showMasking = "Toon masker";
 settings.showPainting = "Toon schilderen";
 // https://en.wikipedia.org/wiki/Shading
 settings.smoothShading = "Vloeiende shading";
-// Navigation widget in the viewport corner, shaped as a cube, a sphere or axes (easy to snap/align the view)
-settings.navigator = "Navigator";
-// Alignment (can be auto/on/off)
-settings.navigator.align = "Uitlijning beperken";
-settings.navigator.align.help = "Lijn de weergave uit met de wereldas. Indien ingeschakeld, zijn slechts 6 snapposities mogelijk.
-
-In Automatisch zal de beperking alleen plaatsvinden als de camera in Orbit-modus is.";
-// Extra snapping views on the edges and corners of the navigator
-settings.navigator.edgeCorner = "Randen en hoeken";
-settings.navigator.edgeCorner.help = "Voeg snapweergaven toe aan de randen en hoeken (amberkleurige zones).";
-// Flip the camera (rotate 180° to see the other side)
-settings.navigator.flip = "Draai 180°";
-settings.navigator.flip.help = "Draai het beeld om als het al vaststaat.";
-// Dragging the navigator rotates like the Turntable mode, even if the camera is in Trackball
-settings.navigator.turntable = "Slepen als draaischijf";
-settings.navigator.turntable.help = "Door de Navigator te verslepen draait de camera zonder te kantelen en stopt hij bij elke uitlijnweergave.
-
-Schakel dit uit om de Navigator in plaats daarvan met Trackball-rotatie te verslepen. In beide gevallen blijft de sleepbeweging horizontaal of verticaal.";
 // Stats (information logs about the scene displayed on screen)
 settings.stats = "Statistieken";
 settings.stats.all = "Toon volledige scène";
@@ -3041,8 +3091,12 @@ toggle.yes = "Ja";
 tool.all = "Alles";
 // Ideally short strings (Arrange selected objects)
 tool.arrange = "Rangschikken";
+// Ideally short strings (Bend a sculpted object along a curve)
+tool.bend = "";
 // Ideally short strings
 tool.brush = "Kwast";
+tool.brush.clampRadius = "";
+tool.brush.clampRadius.help = "";
 // Ideally short strings
 tool.clay = "Klei";
 // Ideally short strings (Subtract)
@@ -3354,7 +3408,14 @@ tool.shape = "Vorm";
 tool.shape.band = "Band";
 // Ideally short strings (Band selection: past the far guide, everything keeps the full value, like a soft half-space)
 tool.shape.bandExtend = "Verlengen";
+// Ideally short strings (Band selection: past both guides, the near side keeps the start value and the far side the full value)
+tool.shape.bandExtend.both = "";
+tool.shape.bandExtend.both.help = "";
+// Ideally short strings (Band selection: only past the far guide)
+tool.shape.bandExtend.end = "";
 tool.shape.bandExtend.help = "Gaat door voorbij de hulplijnen: de verre kant krijgt de volle waarde in plaats van bij de band te stoppen.";
+// Ideally short strings (Band selection: stops at both guides)
+tool.shape.bandExtend.off = "";
 // Ideally short strings (Band selection: swap which guide the gradient starts from)
 tool.shape.bandFlip = "Omdraaien";
 // Ideally short strings (Whether a shape is closed or not, a tube is open, a torus is closed)
